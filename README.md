@@ -208,7 +208,7 @@ module.exports ={
 }
 ```
 
-💡 A full documentation have been added in the template file...  
+💡 A full documentation have been added in `.prettierrc.js`...  
 
 Installer l'extension Trivago pour le tri des imports.  
 
