@@ -164,21 +164,56 @@ Bien qu'il y ait une configuration dans `package.json`, il est préférable (Bes
 pnpm add -D prettier
 ```
 
-2. Créer un fichier `.prettierrc` à la racine et coller cette config  
+2. Créer un fichier `.prettierrc.js` à la racine et coller cette config  
 
-```shell
-{
-  "printWidth": 100,
-  "singleQuote": true,
-  "overrides": [
+```js
+module.exports ={
+  arrowParens: "always",
+  bracketSameLine: false,
+  bracketSpacing: true,
+  embeddedLanguageFormatting: "auto",
+  endOfLine: "lf",
+  experimentalTernaries: false,
+  htmlWhitespaceSensitivity: "css",
+  importOrder: [
+    "^@angular/(.*)$",
+    "^rxjs",
+    "<THIRD_PARTY_MODULES>",
+    "^@core/(.*)$",
+    "^@shared/(.*)$",
+    "^[./]"
+  ],
+  importOrderSeparation: true,
+  importOrderSortSpecifiers: true,
+  insertPragma: false,
+  overrides: [
     {
-      "files": "*.html",
-      "options": {
-        "parser": "angular"
+      files: "*.html",
+      options: {
+        parser: "angular"
       }
     }
-  ]
+  ],
+  plugins: ["@trivago/prettier-plugin-sort-imports"],
+  printWidth: 100,
+  proseWrap: "preserve",
+  quoteProps: "as-needed",
+  requirePragma: false,
+  semi: true,
+  singleAttributePerLine: true,
+  singleQuote: true,
+  tabWidth: 2,
+  trailingComma: "none",
+  useTabs: false,
 }
+```
+
+💡 A full documentation have been added in the template file...  
+
+Installer l'extension Trivago pour le tri des imports.  
+
+```shell
+pnpm add -D @trivago/prettier-plugin-sort-imports
 ```
 
 3. Nettoyage : Supprimer le bloc "prettier": { ... } du fichier `package.json` pour éviter les doublons  
