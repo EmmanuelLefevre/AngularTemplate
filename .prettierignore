@@ -1,8 +1,9 @@
-# .prettierignore
-node_modules
-dist
-coverage
+**/.git
+**/node_modules
 .angular
+.git
+coverage
+dist
 package-lock.json
 pnpm-lock.yaml
 yarn.lock
