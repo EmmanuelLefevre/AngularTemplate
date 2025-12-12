@@ -15,8 +15,10 @@
 - [ESLINT / PRETTIER](#eslint--prettier)
 - [HUSKY](#husky)
 - [WARNING](#warning)
-- [CONFIGSDOCUMENTATION](#configs-documentation)
+- [TOOLINGCONFIGURATION](#tooling-configuration)
   - [Prettier Rules](#prettier-rules)
+  - [EsLint Rules](#eslint-rules)
+  - [Tsconfig Rules](#tsconfig-rules)
 
 ## PNPM
 
@@ -433,7 +435,7 @@ Publier la branche et écraser le contenu sur Github avec la version locale :
 git push --force origin main
 ```
 
-## CONFIGS DOCUMENTATION
+## TOOLING CONFIGURATION
 
 ### Prettier Rules
 
@@ -540,3 +542,7 @@ trailingComma: "all"
 useTabs: false
   Use spaces for indentation, not tabs.
 ```
+
+### Eslint Rules
+
+### Tsconfig Rules
