@@ -14,6 +14,7 @@ module.exports = {
     '^@shared/(.*)$',
     '^[./]'
   ],
+  importOrderParserPlugins: ['typescript', 'classProperties', 'decorators-legacy'],
   importOrderSeparation: true,
   importOrderSortSpecifiers: true,
   insertPragma: false,
@@ -99,6 +100,12 @@ importOrder
     Capture all relevant imports (starting with . or ..).
     These are "local" files close to current file.
     They are always placed at end to separate external dependencies from internal code.
+
+importOrderParserPlugins:
+  List of plugins passed to the Babel parser used by the sorting plugin.
+  CRITICAL FOR ANGULAR: Without 'decorators-legacy', the plugin cannot parse
+  files containing decorators (like @Component) and will throw a SyntaxError.
+  We also enable 'typescript' to handle TS syntax correctly during the sort process.
 
 importOrderSeparation: true
   Empty line between groups.
