@@ -386,5 +386,5 @@ Puis "renormaliser" la config Git en lançant ces commandes dans le projet :
 
 ```shell
 git add --renormalize .
-git commit -m "chore: enforce LF line endings"
+git commit -m "chore: enforce LF line endings" --no-verify
 ```
