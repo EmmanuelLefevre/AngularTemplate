@@ -10,6 +10,7 @@
 
 ## SOMMAIRE
 
+- [ARCHITECTURE](#architecture)
 - [PNPM](#pnpm)
 - [ANGULAR](#angular)
 - [ESLINT / PRETTIER](#eslint--prettier)
@@ -20,6 +21,40 @@
   - [EsLint Rules](#eslint-rules)
   - [Tsconfig Rules](#tsconfig-rules)
   - [Schematics Rules](#schematics-rules)
+
+## ARCHITECTURE
+
+```text
+├── public/
+├── src/
+│   ├── app/
+│   │   ├── core/
+│   │   ├── shared/
+│   │   │   │   ├── components/
+│   │   │   │   │   ├── header/
+│   │   │   │   │   ├── footer/
+│   │   │   │   ├── directives/
+│   │   │   │   ├── pipes/
+│   │   │   │   ├── styles/
+│   │   ├── features/
+│   │   │   ├── site/
+│   │   │   │   ├── home/
+│   │   │   │   ├── contact/
+│   │   │   │   ├── site.route.ts
+│   │   │   │   ├── site.layout.ts
+│   │   │   ├── admin/
+│   │   │   │   ├── dashboard/
+│   │   │   │   ├── settings/
+│   │   │   │   ├── users/
+│   │   │   │   ├── admin.route.ts
+│   │   │   │   ├── admin.layout.ts
+│   │   ├── app.component.html
+│   │   ├── app.component.ts
+│   │   ├── app.routes.ts
+│   ├── index.html
+│   ├── main.ts
+│   ├── styles.scss
+```
 
 ## PNPM
 
@@ -67,13 +102,13 @@ ng version
 **\* Avec tags / versions stables :**
 
 ```shell
-npm view @angular/cli dist-tags
+pnpm view @angular/cli dist-tags
 ```
 
 **\* Liste complète :**
 
 ```shell
-npm view @angular/cli dist-tags
+pnpm view @angular/cli dist-tags
 ```
 
 3. Mettre à jour la CLI Angular globalement  
@@ -173,43 +208,50 @@ pnpm add -D prettier
 
 ```js
 module.exports ={
-  arrowParens: "always",
-  bracketSameLine: false,
+  arrowParens: 'always',
+  bracketSameLine: true,
   bracketSpacing: true,
-  embeddedLanguageFormatting: "auto",
-  endOfLine: "lf",
+  embeddedLanguageFormatting: 'auto',
+  endOfLine: 'lf',
   experimentalTernaries: false,
-  htmlWhitespaceSensitivity: "css",
+  htmlWhitespaceSensitivity: 'css',
   importOrder: [
-    "^@angular/(.*)$",
-    "^rxjs",
-    "<THIRD_PARTY_MODULES>",
-    "^@core/(.*)$",
-    "^@shared/(.*)$",
-    "^[./]"
+    '^@angular/(.*)$',
+    '^rxjs',
+    '<THIRD_PARTY_MODULES>',
+    '^@core/(.*)$',
+    '^@shared/(.*)$',
+    '^[./]'
   ],
+  importOrderParserPlugins: ['typescript', 'classProperties', 'decorators-legacy'],
   importOrderSeparation: true,
   importOrderSortSpecifiers: true,
   insertPragma: false,
   overrides: [
     {
-      files: "*.html",
+      files: '*.html',
       options: {
-        parser: "angular"
+        parser: 'angular'
+      }
+    },
+    {
+      files: ['*.ts', '**/*.ts'],
+      options: {
+        parser: 'typescript'
       }
     }
   ],
-  plugins: ["@trivago/prettier-plugin-sort-imports"],
+  plugins: ['@trivago/prettier-plugin-sort-imports'],
   printWidth: 100,
-  proseWrap: "preserve",
-  quoteProps: "as-needed",
+  proseWrap: 'preserve',
+  quoteProps: 'as-needed',
   requirePragma: false,
   semi: true,
   singleAttributePerLine: true,
   singleQuote: true,
   tabWidth: 2,
-  trailingComma: "none",
-  useTabs: false,
+  trailingComma: 'none',
+  useTabs: false
 }
 ```
 
@@ -219,6 +261,18 @@ Installer l'extension Trivago pour le tri des imports.
 
 ```shell
 pnpm add -D @trivago/prettier-plugin-sort-imports
+```
+
+Formater le code :  
+
+```shell
+pnpm format
+```
+
+Formater un fichier précis :  
+
+```shell
+pnpm exec prettier --write .prettierrc.js
 ```
 
 3. Nettoyage : Supprimer le bloc "prettier": { ... } du fichier `package.json` pour éviter les doublons  
@@ -391,14 +445,15 @@ pnpm exec lint-staged
 ```JSON
 "scripts": {
   "ng": "ng",
-  "start": "ng serve",
   "build": "ng build",
-  "watch": "ng build --watch --configuration development",
-  "test": "ng test",
+  "format": "prettier --write \"src/**/*.{ts,html,css,scss,json}\"",
+  "format:check": "prettier --check \"**/*.{ts,js,html,scss,css,json,md}\"",
   "lint": "ng lint",
   "lint:ci": "ng lint --max-warnings=0",
-  "format": "prettier --write \"src/**/*.{ts,html,css,scss,json}\"",
-  "prepare": "husky"
+  "prepare": "husky",
+  "start": "ng serve",
+  "test": "ng test",
+  "watch": "ng build --watch --configuration development"
 }
 ```
 
@@ -438,14 +493,16 @@ git push --force origin main
 
 ## TOOLING CONFIGURATION
 
+[Prettier Documentation](https://prettier.io/docs/options)
+
 ### Prettier Rules
 
 ```text
 arrowParens: "always"
   Force parentheses around arrow function arguments.
 
-bracketSameLine: false
-  Place closing angle bracket `>` of multi-line HTML elements onto a new line.
+bracketSameLine: true
+  Place closing angle bracket `>` of multi-line HTML elements on same line.
 
 bracketSpacing: true
   Add spaces in objects: { foo: bar } instead of {foo: bar}.
@@ -492,6 +549,12 @@ importOrder
     Capture all relevant imports (starting with . or ..).
     These are "local" files close to current file.
     They are always placed at end to separate external dependencies from internal code.
+
+importOrderParserPlugins:
+  List of plugins passed to the Babel parser used by the sorting plugin.
+  CRITICAL FOR ANGULAR: Without 'decorators-legacy', the plugin cannot parse
+  files containing decorators (like @Component) and will throw a SyntaxError.
+  We also enable 'typescript' to handle TS syntax correctly during the sort process.
 
 importOrderSeparation: true
   Empty line between groups.
@@ -552,12 +615,30 @@ useTabs: false
 
 ### Tsconfig Rules
 
+[Tsconfig Documentation](https://www.typescriptlang.org/tsconfig/)
+
 ```text
 
 ```
 
 ### Schematics Rules
 
-```text
+[Angular Documentation](https://github.com/angular/angular-cli/tree/main/packages/schematics/angular)
 
-```
+### 1. `@schematics/angular:application` (Project Initialization)
+
+Defines the foundational characteristics of the application, primarily used during project creation.
+
+| Option | Value | Description | Rationale |
+| :--- | :--- | :--- | :--- |
+| **`fileNameStyleGuide`** | `"2016"` | Uses the standard verbose file naming convention (e.g., `app.component.ts`). | **Clarity:** Prevents ambiguity associated with the shorter "2025" style (`app.ts`). |
+| **`inlineStyle`** | `false` | Styles are generated in a separate `.scss` file. | **Separation of Concerns:** Keeps component logic clean. |
+| **`inlineTemplate`** | `false` | Template is generated in a separate `.html` file. | **Separation of Concerns:** Improves template readability and tooling support. |
+| **`routing`** | `true` | Automatically sets up the `app.routes.ts` file for navigation. | Standard setup for almost all non-trivial applications. |
+| **`skipTests`** | `true` | Skips unit test file generation for initial components (like `app.component`). | Speeds up initial setup, tests can be added later as needed. |
+| **`ssr`** | `true` | Configures the application for Server-Side Rendering. | **Modern Standard:** Essential for SEO and optimized initial load performance. |
+| **`standalone`** | `true` | Generates the initial structure using the Standalone API (no `NgModules`). | Consistent with modern Angular architecture. |
+| **`strict`** | `true` | Enables stricter type-checking and bundle size budgets. | **Best Practice:** Improves code quality, maintainability, and catches errors earlier. |
+| **`style`** | `"scss"` | Sets SCSS as the default stylesheet language. | Standard choice for modern projects. |
+| **`zoneless`** | `false` | Keeps `zone.js` enabled for change detection. | **Compatibility:** Ensures stability with libraries that still rely on `zone.js`. |
+
