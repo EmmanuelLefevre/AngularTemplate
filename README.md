@@ -19,6 +19,7 @@
   - [Prettier Rules](#prettier-rules)
   - [EsLint Rules](#eslint-rules)
   - [Tsconfig Rules](#tsconfig-rules)
+  - [Schematics Rules](#schematics-rules)
 
 ## PNPM
 
@@ -545,4 +546,18 @@ useTabs: false
 
 ### Eslint Rules
 
+```text
+
+```
+
 ### Tsconfig Rules
+
+```text
+
+```
+
+### Schematics Rules
+
+```text
+
+```
