@@ -12,8 +12,73 @@
     "mon-projet-angular": {
       "projectType": "application",
       "schematics": {
+        "@schematics/angular:application": {
+          "fileNameStyleGuide": "2016",
+          "inlineStyle": false,
+          "inlineTemplate": false,
+          "routing": true,
+          "skipTests": true,
+          "ssr": true,
+          "standalone": true,
+          "strict": true,
+          "style": "scss",
+          "zoneless": false
+        },
+        "@schematics/angular:class": {
+          "skipTests": true
+        },
         "@schematics/angular:component": {
-          "style": "scss"
+          "changeDetection": "OnPush",
+          "displayBlock": true,
+          "inlineStyle": false,
+          "inlineTemplate": false,
+          "prefix": "",
+          "skipTests": false,
+          "standalone": true,
+          "style": "scss",
+          "type": "component"
+        },
+        "@schematics/angular:directive": {
+          "prefix": "",
+          "skipTests": false,
+          "standalone": true,
+          "type": "directive"
+        },
+        "@schematics/angular:enum": {
+          "type": "enum"
+        },
+        "@schematics/angular:guard": {
+          "functional": false,
+          "implements": [
+            "CanActivate",
+            "CanActivateChild",
+            "CanDeactivate",
+            "CanMatch"
+          ],
+          "skipTests": true,
+          "typeSeparator": "."
+        },
+        "@schematics/angular:interceptor": {
+          "skipTests": true,
+          "typeSeparator": "."
+        },
+        "@schematics/angular:interface": {
+          "type": "model"
+        },
+        "@schematics/angular:module": {
+          "typeSeparator": "."
+        },
+        "@schematics/angular:pipe": {
+          "skipTests": false,
+          "standalone": true
+        },
+        "@schematics/angular:resolver": {
+          "skipTests": true,
+          "typeSeparator": "."
+        },
+        "@schematics/angular:service": {
+          "skipTests": false,
+          "type": "service"
         }
       },
       "root": "",
