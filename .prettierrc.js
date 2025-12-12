@@ -1,46 +1,46 @@
 module.exports = {
-  arrowParens: "always",
+  arrowParens: 'always',
   bracketSameLine: false,
   bracketSpacing: true,
-  embeddedLanguageFormatting: "auto",
-  endOfLine: "lf",
+  embeddedLanguageFormatting: 'auto',
+  endOfLine: 'lf',
   experimentalTernaries: false,
-  htmlWhitespaceSensitivity: "css",
+  htmlWhitespaceSensitivity: 'css',
   importOrder: [
-    "^@angular/(.*)$",
-    "^rxjs",
-    "<THIRD_PARTY_MODULES>",
-    "^@core/(.*)$",
-    "^@shared/(.*)$",
-    "^[./]"
+    '^@angular/(.*)$',
+    '^rxjs',
+    '<THIRD_PARTY_MODULES>',
+    '^@core/(.*)$',
+    '^@shared/(.*)$',
+    '^[./]'
   ],
   importOrderSeparation: true,
   importOrderSortSpecifiers: true,
   insertPragma: false,
   overrides: [
     {
-      files: "*.html",
+      files: '*.html',
       options: {
-        parser: "angular"
+        parser: 'angular'
       }
     },
     {
-      files: "*.ts",
+      files: '*.ts',
       options: {
-        parser: "typescript"
+        parser: 'typescript'
       }
     }
   ],
-  plugins: ["@trivago/prettier-plugin-sort-imports"],
+  plugins: ['@trivago/prettier-plugin-sort-imports'],
   printWidth: 100,
-  proseWrap: "preserve",
-  quoteProps: "as-needed",
+  proseWrap: 'preserve',
+  quoteProps: 'as-needed',
   requirePragma: false,
   semi: true,
   singleAttributePerLine: true,
-  singleQuote: false,
+  singleQuote: true,
   tabWidth: 2,
-  trailingComma: "none",
+  trailingComma: 'none',
   useTabs: false
 };
 
@@ -137,8 +137,8 @@ singleAttributePerLine: true
   Forces one attribute per line in HTML if tag is long.
   Makes Angular templates very vertically readable.
 
-singleQuote: false
-  No use single quotes in JS/TS ('text').
+singleQuote: true
+  Use single quotes in JS/TS ('text') to reduce visual noise.
 
 tabWidth: 2
   One indentation corresponds to 2 spaces.
