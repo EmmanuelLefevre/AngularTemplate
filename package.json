@@ -3,14 +3,15 @@
   "version": "1.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
     "build": "ng build",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test",
+    "format": "prettier --write \"src/**/*.{ts,html,css,scss,json}\"",
+    "format:check": "prettier --check \"**/*.{ts,js,html,scss,css,json,md}\"",
     "lint": "ng lint",
     "lint:ci": "ng lint --max-warnings=0",
-    "format": "prettier --write \"src/**/*.{ts,html,css,scss,json}\"",
-    "prepare": "husky"
+    "prepare": "husky",
+    "start": "ng serve",
+    "test": "ng test",
+    "watch": "ng build --watch --configuration development"
   },
   "private": true,
   "packageManager": "pnpm@10.25.0",
