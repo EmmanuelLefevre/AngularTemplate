@@ -1,6 +1,6 @@
 module.exports = {
   arrowParens: 'always',
-  bracketSameLine: false,
+  bracketSameLine: true,
   bracketSpacing: true,
   embeddedLanguageFormatting: 'auto',
   endOfLine: 'lf',
@@ -52,8 +52,8 @@ PRETTIER RULES DOCUMENTATION
 arrowParens: "always"
   Force parentheses around arrow function arguments.
 
-bracketSameLine: false
-  Place closing angle bracket `>` of multi-line HTML elements onto a new line.
+bracketSameLine: true
+  Place closing angle bracket `>` of multi-line HTML elements on same line.
 
 bracketSpacing: true
   Add spaces in objects: { foo: bar } instead of {foo: bar}.
