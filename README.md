@@ -426,6 +426,7 @@ Puis "renormaliser" la config Git en lançant ces commandes dans le projet :
 git add --renormalize .
 git commit -m "chore: enforce LF line endings" --no-verify
 ```
+
 Publier la branche et écraser le contenu sur Github avec la version locale :
 
 ```shell
