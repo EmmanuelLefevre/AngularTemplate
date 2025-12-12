@@ -83,7 +83,8 @@ importOrder
     It captures EVERYTHING coming from 'node_modules' that hasn't been caught by rules 1 and 2
 
   4. "^@core/(.*)$"
-    Capture your TypeScript aliases defined in tsconfig.json for 'core' folder (services, guards, interceptors...)
+    Capture your TypeScript aliases defined in tsconfig.json for 'core' folder
+    (services, guards, interceptors...)
 
   5. "^@shared/(.*)$"
     Capture your aliases for 'shared' folder (UI reusable components, pipes, directives...)
@@ -103,11 +104,13 @@ insertPragma: false
   Do not add @format comment to top of  files.
 
 overrides (Angular Special)
-  Essential for correctly parsing Angular syntax (*ngIf, [prop], (event)) in .html files without breaking anything.
+  Essential for correctly parsing Angular syntax (*ngIf, [prop], (event)) in .html files
+  without breaking anything.
 
 plugins: ["@trivago/prettier-plugin-sort-imports"]
   Instructs Prettier to load this external plugin.
-  Without this line, all options starting with "importOrder" will be ignored and your imports will not be sorted.
+  Without this line, all options starting with "importOrder" will be ignored and your
+  imports will not be sorted.
 
 printWidth: 100
   Try to break lines after 100 characters (80 is default, often too short).
