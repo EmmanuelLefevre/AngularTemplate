@@ -1,0 +1,6 @@
+# Force line endings to LV for everyone (Mac/Linux/Windows)
+* text=auto eol=lf
+
+# Except for Windows batch files (if you have any)
+*.cmd text eol=crlf
+*.ps1 text eol=crlf

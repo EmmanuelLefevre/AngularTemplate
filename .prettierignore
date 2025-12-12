@@ -1,0 +1,8 @@
+# .prettierignore
+node_modules
+dist
+coverage
+.angular
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
