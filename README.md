@@ -463,7 +463,7 @@ pnpm exec lint-staged
 
 ## ⚠️ WARNING
 
-⚠️ Attention si vous recevez ce warning lors du premier push !  
+Attention si vous recevez ce warning lors du premier push !  
 
 <br>
 
@@ -648,7 +648,15 @@ Définit les caractéristiques fondamentales de l'application, principalement ut
 | **`style`** | `"scss"` | Définir SCSS par défaut |
 | **`zoneless`** | `false` | Maintenir `zone.js` activé pour la détection des changements |
 
-#### 2. `@schematics/angular:component` (Components)
+#### 2. `@schematics/angular:class` (Class)
+
+Configuration pour la génération des classes (`ng g cl`).
+
+| Option | Valeur | Description |
+| :--- | :--- | :--- |
+| **`skipTests`** | `true` | Les classes (souvent des DTO ou des wrappers utilitaires) n'ont généralement pas besoin de tests |
+
+#### 3. `@schematics/angular:component` (Components)
 
 Configuration pour la génération des composants (`ng g c`).
 
@@ -663,7 +671,7 @@ Configuration pour la génération des composants (`ng g c`).
 | **`style`** | `"scss"` | Définir SCSS par défaut |
 | **`type`** | `"component"` | Ajouter le type à la classe et au fichier (`my-feature.component.ts`) |
 
-#### 3. `@schematics/angular:directive` (Directives)
+#### 4. `@schematics/angular:directive` (Directives)
 
 Configuration pour la génération des directives (`ng g d`).
 
@@ -674,9 +682,17 @@ Configuration pour la génération des directives (`ng g d`).
 | **`standalone`** | `true` | Utiliser le STANDALONE pour les directives |
 | **`type`** | `"directive"` | Ajouter le type à la classe et au fichier (`my-highlight.directive.ts`) |
 
-#### 4. `@schematics/angular:guard` (Route Guards)
+#### 5. `@schematics/angular:enum` (Enum)
 
-Configuration pour le routage des éléments de protection et de sécurité.
+Configuration pour la génération des enums (`ng g e`).
+
+| Option | Valeur | Description |
+| :--- | :--- | :--- |
+| **`type`** | `"enum"` | Ajouter le type à la classe et au fichier `.enum.ts` |
+
+#### 6. `@schematics/angular:guard` (Guards)
+
+Configuration pour le routage des guards (`ng g guard`).
 
 | Option | Valeur | Description |
 | :--- | :--- | :--- |
@@ -685,33 +701,51 @@ Configuration pour le routage des éléments de protection et de sécurité.
 | **`skipTests`** | `true` | Ne pas générer de fichiers de tests unitaires |
 | **`typeSeparator`** | `.` | Définir le séparateur `guard` (`auth.guard.ts`) |
 
-#### 5. `@schematics/angular:interceptor` (HTTP Interceptors)
+#### 7. `@schematics/angular:interceptor` (HTTP Interceptors)
 
-Configuration pour la gestion globale des requêtes/réponses HTTP.
+Configuration pour la gestion des interceptors (`ng g interceptor`).
+
+| Option | Valeur | Description |
+| **`type`** | `"model"` | Ajouter le type à la classe et au fichier `.model.ts` |
+
+#### 8. `@schematics/angular:interface` (Interfaces)
+
+Configuration pour la gestion globale des interfaces (`ng g i`).
 
 | Option | Valeur | Description |
 | :--- | :--- | :--- |
 | **`skipTests`** | `true` | Ne pas générer de fichiers de tests unitaires |
 | **`typeSeparator`** | `.` | Définir le séparateur `interceptor` (`auth.interceptor.ts`) |
 
-#### 6. `@schematics/angular:service` (Services)
+#### 9. `@schematics/angular:module` (Modules)
 
-Configuration pour la logique métier principale et les fournisseurs de données.
+Configuration pour la gestion globale des modules (`ng g m`).
+
+| Option | Valeur | Description |
+| **`typeSeparator`** | `.` | Définit le séparateur `module` (uniquement si STANDALONE est désactivé) |
+
+#### 10. `@schematics/angular:pipe` (Pipes)
+
+Configuration pour la gestion globale des pipes (`ng g p`).
+
+| Option | Valeur | Description |
+| **`skipTests`** | `false` | Les résolveurs sont étroitement liés au routage et sont généralement testés via E2E |
+| **`standalone`** | `true` | Utiliser le STANDALONE pour les pipes |
+
+#### 11. `@schematics/angular:resolver` (Resolvers)
+
+Configuration pour la gestion globale des resolvers (`ng g r`).
 
 | Option | Valeur | Description |
 | :--- | :--- | :--- |
 | **`skipTests`** | `false` | Génèrer un fichier de test unitaire (`.spec.ts`). |
 | **`type`** | `"service"` | Ajouter le type à la classe et au fichier (`api.service.ts`) |
 
-#### 7. Autres éléments (Enums, Interfaces, Pipes...)
+#### 12. `@schematics/angular:service` (Services)
 
-| Schematic | Option | Valeur | Description |
-| :--- | :--- | :--- | :--- |
-| **`@schematics/angular:class`** | `skipTests` | `true` | Les classes (souvent des DTO ou des wrappers utilitaires) n'ont généralement pas besoin de tests |
-| **`@schematics/angular:enum`** | `type` | `"enum"` | Ajouter le type à la classe et au fichier `.enum.ts` |
-| **`@schematics/angular:interface`** | `type` | `"model"` | Ajouter le type à la classe et au fichier `.model.ts` |
-| **`@schematics/angular:pipe`** | `skipTests` | `false` | Les Pipes contiennent une logique de transformation et doivent être testés par défaut |
-| | `standalone` | `true` | Utiliser le Standalone pour les pipes |
-| **`@schematics/angular:resolver`**| `skipTests` | `true` | Les résolveurs sont étroitement liés au routage et sont généralement testés via E2E |
-| | `typeSeparator` | `.` | Définit le séparateur (`data.resolver.ts`) |
-| **`@schematics/angular:module`** | `typeSeparator` | `.` | Définit le séparateur `module` (uniquement si STANDALONE est désactivé) |
+Configuration pour la gestion globale des services (`ng g s`).
+
+| Option | Valeur | Description |
+| :--- | :--- | :--- |
+| **`skipTests`** | `false` | Génèrer un fichier de test unitaire (`.spec.ts`). |
+| **`type`** | `"service"` | Ajouter le type à la classe et au fichier (`api.service.ts`) |
