@@ -46,10 +46,10 @@
 ├── src/
 │   ├── app/
 │   │   ├── core/
+│   │   │   ├── _models/
+│   │   │   ├── _services/
 │   │   │   ├── auth/
 │   │   │   ├── config/
-│   │   │   ├── models/
-│   │   │   ├── services/
 │   │   ├── features/
 │   │   │   ├── site/
 │   │   │   │   ├── _models/
@@ -83,13 +83,19 @@
 │   │   │   │   │   ├── _variables.scss
 │   │   ├── app.component.html
 │   │   ├── app.component.ts
+│   │   ├── app.config.ts
 │   │   ├── app.routes.ts
 │   ├── assets/
+│   │   ├── config/
+│   │   ├── data/
+│   │   ├── icons/
 │   │   ├── fonts/
+│   │   ├── logos/
 │   │   ├── i18n/
 │   │   ├── img/
-│   ├── styles/
-│   │   ├── shared/
+│   ├── environments/
+│   │   ├── environment.ts
+│   │   ├── environment.prod.ts
 │   ├── index.html
 │   ├── main.ts
 │   ├── styles.scss
