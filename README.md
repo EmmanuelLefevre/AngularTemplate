@@ -11,7 +11,7 @@
 ## SOMMAIRE
 
 - [ARCHITECTURE](#-architecture)
-- [PNPM](#pnpm)
+- [PNPM](#-pnpm)
 - [ANGULAR](#angular)
 - [ESLINT / PRETTIER](#eslint--prettier)
 - [HUSKY](#husky)
@@ -57,7 +57,7 @@
 │   ├── styles.scss
 ```
 
-## PNPM
+## <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pnpm/pnpm-original-wordmark.svg" /> PNPM
 
 Installer PNPM.
 
