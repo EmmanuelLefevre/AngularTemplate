@@ -36,7 +36,7 @@
 - [TOOLINGCONFIGURATION](#tooling-configuration)
   - [Prettier Rules](#prettier-rules)
   - [EsLint Rules](#eslint-rules)
-  - [Tsconfig Rules](#tsconfig-rules)
+  - [Tsconfig Rules](#ts-config-rules)
   - [Schematics Rules](#schematics-rules)
 
 ## 🏗 ARCHITECTURE
@@ -658,9 +658,17 @@ git push --force origin main
 
 ## TOOLING CONFIGURATION
 
-[Prettier Documentation](https://prettier.io/docs/options)
+<h3 id="prettier-rules">
+  <img
+    alt="Prettier"
+    title="Prettier"
+    width="30px"
+    src="https://raw.githubusercontent.com/EmmanuelLefevre/GitHubProfileIcons/main/prettier.png"
+  />
+  Prettier Rules
+</h3>
 
-### Prettier Rules
+[Prettier Documentation](https://prettier.io/docs/options)
 
 | Option | Valeur | Description / Justification |
 | :--- | :--- | :--- |
@@ -689,13 +697,29 @@ git push --force origin main
 | **`trailingComma`** | `"all"` | Ajoute des virgules à la fin des listes (objets, tableaux, fonctions). Rend les diffs Git plus propres |
 | **`useTabs`** | `false` | Utilise des espaces pour l'indentation, pas des tabulations |
 
-### Eslint Rules
+<h3 id="eslint-rules">
+  <img
+    alt="ESLint"
+    title="ESLint"
+    width="34px"
+    src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/eslint/eslint-original.svg"
+  />
+  ESLint Rules
+</h3>
 
 ```text
 
 ```
 
-### Tsconfig Rules
+<h3 id="ts-config-rules">
+  <img
+    alt="TS Config"
+    title="TS Config"
+    width="34px"
+    src="https://raw.githubusercontent.com/EmmanuelLefevre/GitHubProfileIcons/main/ts_config.png"
+  />
+  TSconfig Rules
+</h3>
 
 [Tsconfig Documentation](https://www.typescriptlang.org/tsconfig/)
 
@@ -703,7 +727,15 @@ git push --force origin main
 
 ```
 
-### Schematics Rules
+<h3 id="schematics-rules">
+  <img
+    alt="Schematics"
+    title="Schematics"
+    width="60px"
+    src="https://raw.githubusercontent.com/EmmanuelLefevre/GitHubProfileIcons/main/schematics.png"
+  />
+  Schematics Rules
+</h3>
 
 [Angular Documentation](https://github.com/angular/angular-cli/tree/main/packages/schematics/angular)
 
