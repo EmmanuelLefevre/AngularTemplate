@@ -5,7 +5,7 @@
 /bazel-out
 
 # Environments Files
-.environment.prod.ts
+src/_environments/environment.prod.ts
 
 # Node
 /node_modules
