@@ -210,25 +210,7 @@ save-exact=true
 
 Désormais, si on lance `pnpm add rxjs`, il installera **`"rxjs"`: `"7.8.0"`** au lieu de **`"^7.8.0"`**.
 
-<h2 id="eslint-prettier">
-  <img
-    alt="ESLint"
-    title="ESLint"
-    width="34px"
-    style="padding-right:10px; vertical-align: middle;"
-    src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/eslint/eslint-original.svg"
-  />
-
-  ESLINT / PRETTIER
-
-  <img
-    alt="Prettier"
-    title="Prettier"
-    width="30px"
-    style="padding-left:10px; vertical-align: middle;"
-    src="https://raw.githubusercontent.com/EmmanuelLefevre/GitHubProfileIcons/main/prettier.png"
-  />
-</h2>
+<h2 id="eslint-prettier" style="margin-top: 20px; margin-bottom: 10px;"><img alt="ESLint" title="ESLint" width="34px" style="padding-right:10px; vertical-align: middle;" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/eslint/eslint-original.svg" /> ESLINT / PRETTIER <img alt="Prettier" title="Prettier" width="30px" style="padding-left:10px; vertical-align: middle;" src="https://raw.githubusercontent.com/EmmanuelLefevre/GitHubProfileIcons/main/prettier.png" /></h2>
 
 Pour un projet Angular moderne, la combinaison standard de l'industrie est ESLint (pour la qualité du code et les erreurs) et Prettier (pour le style et le formatage).  
 
