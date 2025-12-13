@@ -27,6 +27,7 @@
 - [ARCHITECTURE](#-architecture)
 - [PNPM](#pnpm)
 - [ANGULAR](#angular)
+- [NPMRC](#npmrc)
 - [ESLINT / PRETTIER](#eslint-prettier)
 - [HUSKY](#husky)
 - [TSCONFIG](#ts-config)
@@ -212,7 +213,15 @@ Une fois le `package.json` modifié avec les tildes (~), ne pas oublier d'enregi
 pnpm install
 ```
 
-## NPMRC
+<h2 id="npmrc">
+  <img
+    alt="NPMRC"
+    title="NPMRC"
+    width="34px"
+    src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/npm/npm-original-wordmark.svg"
+  />
+  NPMRC
+</h2>
 
 Pour éviter d'avoir à retirer manuellement les "^" à chaque installation d'une nouvelle librairie, il est possible de configurer le projet pour qu'il sauvegarde toujours la version exacte de la librairie installée.  
 Créer un fichier nommé `.npmrc` à la racine du projet et ajouter cette ligne :  
