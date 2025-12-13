@@ -10,19 +10,20 @@
 
 ## SOMMAIRE
 
-- [ARCHITECTURE](#architecture)
+- [ARCHITECTURE](#-architecture)
 - [PNPM](#pnpm)
 - [ANGULAR](#angular)
 - [ESLINT / PRETTIER](#eslint--prettier)
 - [HUSKY](#husky)
-- [WARNING](#warning)
+- [SCHEMATICS](#schematics)
+- [WARNING](#-warning)
 - [TOOLINGCONFIGURATION](#tooling-configuration)
   - [Prettier Rules](#prettier-rules)
   - [EsLint Rules](#eslint-rules)
   - [Tsconfig Rules](#tsconfig-rules)
   - [Schematics Rules](#schematics-rules)
 
-## ARCHITECTURE
+## 🏗️ ARCHITECTURE
 
 ```text
 ├── public/
@@ -457,7 +458,10 @@ pnpm exec lint-staged
 }
 ```
 
-## WARNING
+## SCHEMATICS
+
+
+## ⚠️ WARNING
 
 ⚠️ Attention si vous recevez ce warning lors du premier push !  
 
@@ -499,99 +503,100 @@ git push --force origin main
 
 ```text
 arrowParens: "always"
-  Force parentheses around arrow function arguments.
+  Forcer les parenthèses autour des arguments des fonctions fléchées.
 
 bracketSameLine: true
-  Place closing angle bracket `>` of multi-line HTML elements on same line.
+  Placer la balise de fermeture de l'élément HTML multi-lignes (>) sur la même ligne que le dernier attribut.
 
 bracketSpacing: true
-  Add spaces in objects: { foo: bar } instead of {foo: bar}.
+  Ajouter des espaces entre les accolades des objets. ({ foo: bar } au lieu de {foo: bar}).
 
 embeddedLanguageFormatting: "auto"
-  Prettier automatically formats embedded code (e.g., CSS in JS) if it recognizes it.
+  Prettier formate automatiquement le code intégré (ex: CSS dans JS) s'il le reconnaît.
 
 endOfLine: "lf"
-  Line Feed. This is Unix standard. Even on Windows, Git handles line feeds well.
-  This prevents the entire file from appearing "modified" simply because of line breaks.
+  Line Feed (LF). C'est le standard Unix. Il garantit la cohérence des fins de ligne même sous Windows,
+  prévenant des modifications inutiles dans Git.
 
 experimentalTernaries: false
-  Keep classic formatting of ternaries (condition? true: false).
+  Conserver le formatage classique des ternaires (condition ? true : false).
 
 htmlWhitespaceSensitivity: "css"
-  Respect default CSS "display" property for handling whitespace in HTML.
-  Avoid breaking the layout of inline elements.
+  Respecter la propriété CSS display par défaut pour la gestion des espaces dans le HTML,
+  évitant de casser la mise en page des éléments inline.
 
 importOrder
-  Defines vertical hierarchy of imports. Plugin reads this table from top to bottom:
-  imports matching the first rule will be placed at the very top of the file.
+  Définit la hiérarchie verticale des imports. Le plugin lit cette liste de haut en bas pour organiser
+  les imports en groupes.
 
   Rules details (Regex) :
   1. "^@angular/(.*)$"
-    Capture all official Angular packages (core, common, router, forms...).
-    Convention: Framework always comes first !!!
+    Capturer tous les packages Angular officiels (core, common, router, forms...).
+    Convention : Le framework passe toujours en premier !
 
   2. "^rxjs"
-    Captures RxJS imports (Observable, Subject...).
-    Positioned high because it's the fundamental asynchronous engine of Angular.
+    Capturer les importations RxJS (Observable, Subject...).
+    Positionné en haut car il s'agit du moteur asynchrone fondamental d'Angular.
 
   3. "<THIRD_PARTY_MODULES>"
-    This is not a Regex, but a magic keyword from the plugin.
-    It captures EVERYTHING coming from 'node_modules' that hasn't been caught by rules 1 and 2
+    Il ne s'agit pas d'une expression régulière, mais d'un mot-clé magique provenant du plugin.
+    Capturer TOUT ce qui provient de 'node_modules' et qui n'a pas été intercepté par les règles 1 et 2.
 
   4. "^@core/(.*)$"
-    Capture your TypeScript aliases defined in tsconfig.json for 'core' folder
+    Capture vos alias TypeScript définis dans tsconfig.json pour le dossier « core ».
     (services, guards, interceptors...)
 
   5. "^@shared/(.*)$"
-    Capture your aliases for 'shared' folder (UI reusable components, pipes, directives...)
+    Capture vos alias pour le dossier « partagé »
+    (composants d'interface utilisateur réutilisables, pipes, directives...)
 
   6. "^[./]"
-    Capture all relevant imports (starting with . or ..).
-    These are "local" files close to current file.
-    They are always placed at end to separate external dependencies from internal code.
+    Capture toutes les importations pertinentes (commençant par . ou ..).
+    Ce sont des fichiers « locaux » proches du fichier actuel.
+    Elles sont toujours placées à la fin pour séparer les dépendances externes du code interne.
 
 importOrderParserPlugins:
-  List of plugins passed to the Babel parser used by the sorting plugin.
-  CRITICAL FOR ANGULAR: Without 'decorators-legacy', the plugin cannot parse
-  files containing decorators (like @Component) and will throw a SyntaxError.
-  We also enable 'typescript' to handle TS syntax correctly during the sort process.
+  Liste des plugins transmis à l'analyseur Babel utilisé par le plugin de tri.
+  IMPORTANT POUR ANGULAR : Sans « decorators-legacy », le plugin ne peut pas analyser
+  les fichiers contenant des décorateurs (comme @Component) et générera une erreur de syntaxe.
+  Activer également « typescript » pour une gestion correcte de la syntaxe TypeScript lors du tri.
 
 importOrderSeparation: true
-  Empty line between groups.
+  Ligne vide entre les groupes.
 
 importOrderSortSpecifiers: true
-  Also sort {b, a} into {a, b}.
+  Trier également {b, a} en {a, b}.
 
 insertPragma: false
-  Do not add @format comment to top of  files.
+  N'ajouter pas de commentaire @format en haut des fichiers.
 
 overrides (Angular Special)
-  Essential for correctly parsing Angular syntax (*ngIf, [prop], (event)) in .html files
-  without breaking anything.
+  Indispensable pour analyser correctement la syntaxe Angular (*ngIf, [prop], (event))
+  dans les fichiers .html sans rien casser.
 
 plugins: ["@trivago/prettier-plugin-sort-imports"]
-  Instructs Prettier to load this external plugin.
-  Without this line, all options starting with "importOrder" will be ignored and your
-  imports will not be sorted.
+  Indique à Prettier de charger ce plugin externe.
+  Sans cette ligne, toutes les options commençant par « importOrder » seront ignorées
+  et vos importations ne seront pas triées.
 
-printWidth: 100
-  Try to break lines after 100 characters (80 is default, often too short).
+printWidth: 120
+  Couper les lignes après 120 caractères (80 par défaut, souvent trop court).
 
 proseWrap: "preserve"
-  Do not reformat text blocks in Markdown (avoids unnecessary Git diffs).
+  Ne pas reformater pas les blocs de texte en Markdown (évite les différences Git inutiles).
 
 quoteProps: "as-needed"
-  Only put quotes around object keys if syntax requires it (ex: "my-key").
+  N'utiliser des guillemets autour des clés d’objet que si la syntaxe l’exige.
 
 requirePragma: false
-  Format all files, not just those with @format tag.
+  Formater tous les fichiers, et pas seulement ceux comportant la balise @format.
 
 semi: true
-  Always add a semicolon at end of instructions.
+  Ne jamais oublier d'ajouter un point-virgule à la fin des instructions.
 
 singleAttributePerLine: true
-  Forces one attribute per line in HTML if tag is long.
-  Makes Angular templates very vertically readable.
+  Force un attribut par ligne en HTML si la balise est longue.
+  Rendre les modèles Angular très lisibles verticalement.
 
 singleQuote: true
   Use single quotes in JS/TS ('text') to reduce visual noise.
@@ -600,11 +605,11 @@ tabWidth: 2
   One indentation corresponds to 2 spaces.
 
 trailingComma: "all"
-  Adds commas to the end of lists (objects, arrays, functions).
-  Makes code changes cleaner in Git.
+  Ajouter des virgules à la fin des listes (objects, arrays, functions).
+  Permet de rendre les modifications de code plus propres dans Git.
 
 useTabs: false
-  Use spaces for indentation, not tabs.
+  Utiliser des espaces pour l'indentation, pas des tabulations.
 ```
 
 ### Eslint Rules
@@ -625,20 +630,87 @@ useTabs: false
 
 [Angular Documentation](https://github.com/angular/angular-cli/tree/main/packages/schematics/angular)
 
-### 1. `@schematics/angular:application` (Project Initialization)
+#### 1. `@schematics/angular:application` (Project Initialization)
 
-Defines the foundational characteristics of the application, primarily used during project creation.
+Définit les caractéristiques fondamentales de l'application, principalement utilisées lors de la création du projet.
 
-| Option | Value | Description | Rationale |
+| Option | Valeur | Description |
 | :--- | :--- | :--- | :--- |
-| **`fileNameStyleGuide`** | `"2016"` | Uses the standard verbose file naming convention (e.g., `app.component.ts`). | **Clarity:** Prevents ambiguity associated with the shorter "2025" style (`app.ts`). |
-| **`inlineStyle`** | `false` | Styles are generated in a separate `.scss` file. | **Separation of Concerns:** Keeps component logic clean. |
-| **`inlineTemplate`** | `false` | Template is generated in a separate `.html` file. | **Separation of Concerns:** Improves template readability and tooling support. |
-| **`routing`** | `true` | Automatically sets up the `app.routes.ts` file for navigation. | Standard setup for almost all non-trivial applications. |
-| **`skipTests`** | `true` | Skips unit test file generation for initial components (like `app.component`). | Speeds up initial setup, tests can be added later as needed. |
-| **`ssr`** | `true` | Configures the application for Server-Side Rendering. | **Modern Standard:** Essential for SEO and optimized initial load performance. |
-| **`standalone`** | `true` | Generates the initial structure using the Standalone API (no `NgModules`). | Consistent with modern Angular architecture. |
-| **`strict`** | `true` | Enables stricter type-checking and bundle size budgets. | **Best Practice:** Improves code quality, maintainability, and catches errors earlier. |
-| **`style`** | `"scss"` | Sets SCSS as the default stylesheet language. | Standard choice for modern projects. |
-| **`zoneless`** | `false` | Keeps `zone.js` enabled for change detection. | **Compatibility:** Ensures stability with libraries that still rely on `zone.js`. |
+| **`fileNameStyleGuide`** | `"2016"` | Utiliser l'ancienne convention de nommage (`app.component.ts`) |
+| **`inlineStyle`** | `false` | Les styles sont générés dans un fichier `.scss` séparé |
+| **`inlineTemplate`** | `false` | Le template est généré dans un fichier `.html` séparé |
+| **`routing`** | `true` | Configurer automatiquement le fichier `app.routes.ts` pour la navigation |
+| **`skipTests`** | `true` | Ne pas générer de fichiers de tests unitaires pour les composants initiaux (`app.component`) |
+| **`ssr`** | `true` | Configurer l'application pour le SSR |
+| **`standalone`** | `true` | Génèrer la structure initiale en STANDALONE (sans `NgModules`) |
+| **`strict`** | `true` | Permet des contrôles de type plus stricts |
+| **`style`** | `"scss"` | Définir SCSS par défaut |
+| **`zoneless`** | `false` | Maintenir `zone.js` activé pour la détection des changements |
 
+#### 2. `@schematics/angular:component` (Components)
+
+Configuration pour la génération des composants (`ng g c`).
+
+| Option | Valeur | Description |
+| :--- | :--- | :--- | :--- |
+| **`changeDetection`** | `"OnPush"` | Définir la stratégie de détection des changements sur `OnPush` |
+| **`displayBlock`** | `true` | Ajoute automatiquement `:host { display: block; }` au SCSS du composant |
+| **`inlineStyle/inlineTemplate`**| `false` | Force la séparation des fichiers `.html` et `.scss` |
+| **`prefix`** | `""` | Le préfixe du sélecteur est explicitement vide |
+| **`skipTests`** | `false` | Génèrer un fichier de test unitaire (`.spec.ts`) |
+| **`standalone`** | `true` | Utiliser le STANDALONE pour les composants |
+| **`style`** | `"scss"` | Définir SCSS par défaut |
+| **`type`** | `"component"` | Ajouter le type à la classe et au fichier (`my-feature.component.ts`) |
+
+#### 3. `@schematics/angular:directive` (Directives)
+
+Configuration pour la génération des directives (`ng g d`).
+
+| Option | Valeur | Description |
+| :--- | :--- | :--- | :--- |
+| **`prefix`** | `""` | Le préfixe du sélecteur est explicitement vide |
+| **`skipTests`** | `false` | Génèrer un fichier de test unitaire (`.spec.ts`) |
+| **`standalone`** | `true` | Utiliser le STANDALONE pour les directives |
+| **`type`** | `"directive"` | Ajouter le type à la classe et au fichier (`my-highlight.directive.ts`) |
+
+#### 4. `@schematics/angular:guard` (Route Guards)
+
+Configuration pour le routage des éléments de protection et de sécurité.
+
+| Option | Valeur | Description |
+| :--- | :--- | :--- | :--- |
+| **`functional`** | `false` | Génèrer une Guard basée sur une classe (au lieu d'une simple fonction) |
+| **`implements`** | `[...]` | Génèrer le Guard implémentant les quatre interfaces de routage |
+| **`skipTests`** | `true` | Ne pas générer de fichiers de tests unitaires |
+| **`typeSeparator`** | `.` | Définir le séparateur `guard` (`auth.guard.ts`) |
+
+#### 5. `@schematics/angular:interceptor` (HTTP Interceptors)
+
+Configuration pour la gestion globale des requêtes/réponses HTTP.
+
+| Option | Valeur | Description |
+| :--- | :--- | :--- | :--- |
+| **`skipTests`** | `true` | Ne pas générer de fichiers de tests unitaires |
+| **`typeSeparator`** | `.` | Définir le séparateur `interceptor` (`auth.interceptor.ts`) |
+
+#### 6. `@schematics/angular:service` (Services)
+
+Configuration pour la logique métier principale et les fournisseurs de données.
+
+| Option | Valeur | Description |
+| :--- | :--- | :--- | :--- |
+| **`skipTests`** | `false` | Génèrer un fichier de test unitaire (`.spec.ts`). |
+| **`type`** | `"service"` | Ajouter le type à la classe et au fichier (`api.service.ts`) |
+
+#### 7. Autres éléments (Enums, Interfaces, Pipes...)
+
+| Schematic | Option | Valeur | Description |
+| :--- | :--- | :--- | :--- |
+| **`@schematics/angular:class`** | `skipTests` | `true` | Les classes (souvent des DTO ou des wrappers utilitaires) n'ont généralement pas besoin de tests |
+| **`@schematics/angular:enum`** | `type` | `"enum"` | Ajouter le type à la classe et au fichier `.enum.ts` |
+| **`@schematics/angular:interface`** | `type` | `"model"` | Ajouter le type à la classe et au fichier `.model.ts` |
+| **`@schematics/angular:pipe`** | `skipTests` | `false` | Les Pipes contiennent une logique de transformation et doivent être testés par défaut |
+| | `standalone` | `true` | Utiliser le Standalone pour les pipes |
+| **`@schematics/angular:resolver`**| `skipTests` | `true` | Les résolveurs sont étroitement liés au routage et sont généralement testés via E2E |
+| | `typeSeparator` | `.` | Définit le séparateur (`data.resolver.ts`) |
+| **`@schematics/angular:module`** | `typeSeparator` | `.` | Définit le séparateur `module` (uniquement si STANDALONE est désactivé) |
