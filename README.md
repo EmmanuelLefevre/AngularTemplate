@@ -539,7 +539,7 @@ pnpm exec lint-staged
 
 ```
 
-💡 A full documentation have been added in `tsconfig.json` and here too... [TS Config Rules](#schematics-rules)  
+💡 A full documentation have been added in `tsconfig.json` and here too... [TS Config Rules](#ts-config-rules)  
 
 <h2 id="schematics">
   <img
