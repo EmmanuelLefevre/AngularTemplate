@@ -8,5 +8,5 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  protected readonly title = signal('mon-projet-angular');
+  protected readonly title = signal('AngularTemplate');
 }

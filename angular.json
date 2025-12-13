@@ -9,7 +9,7 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "mon-projet-angular": {
+    "AngularTemplate": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:application": {
@@ -129,10 +129,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "mon-projet-angular:build:production"
+              "buildTarget": "AngularTemplate:build:production"
             },
             "development": {
-              "buildTarget": "mon-projet-angular:build:development"
+              "buildTarget": "AngularTemplate:build:development"
             }
           },
           "defaultConfiguration": "development"

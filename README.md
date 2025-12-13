@@ -463,6 +463,9 @@ pnpm exec lint-staged
 
 ## SCHEMATICS
 
+```JSON
+
+```
 
 ## ⚠️ WARNING
 
