@@ -563,6 +563,8 @@ pnpm exec lint-staged
   TS CONFIG
 </h2>
 
+**`tsconfig.json`**
+
 ```JSON
 {
   "compileOnSave": false,
@@ -610,6 +612,36 @@ pnpm exec lint-staged
 ```
 
 💡 A full documentation have been added in `tsconfig.json` and here too... [TS Config Rules](#ts-config-rules)  
+
+**`tsconfig.app.json`**
+
+Configuration des alias  
+
+```JSON
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./out-tsc/app",
+    "types": [],
+    "paths": {
+      "@app/*": ["./src/app/*"],
+      "@assets/*": ["./src/assets/*"],
+      "@core/*": ["./src/app/core/*"],
+      "@env/*": ["./src/_environments/*"],
+      "@features/*": ["./src/app/features/*"],
+      "@shared/*": ["./src/app/shared/*"],
+      "@styles/*": ["./src/styles/*"]
+    },
+    "rootDir": "./src"
+  },
+  "include": [
+    "src/**/*.ts"
+  ],
+  "exclude": [
+    "src/**/*.spec.ts"
+  ]
+}
+```
 
 <h2 id="schematics">
   <img
