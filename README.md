@@ -713,6 +713,14 @@ git push --force origin main
   ESLint Rules
 </h3>
 
+[ESLint Documentation](https://eslint.org/docs/latest/use/getting-started)  
+
+[ESLint Recommanded Documentation](https://eslint.org/docs/latest/rules/)  
+
+[ESLint Stylistics Documentation](https://eslint.style/rules)  
+
+[ESLint TypeScript Documentation](https://typescript-eslint.io/rules/)
+
 ```text
 
 ```
@@ -727,7 +735,7 @@ git push --force origin main
   TS Config Rules
 </h3>
 
-[Tsconfig Documentation](https://www.typescriptlang.org/tsconfig/)
+[TS Config Documentation](https://www.typescriptlang.org/tsconfig/)
 
 ```text
 
