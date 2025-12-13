@@ -57,7 +57,7 @@
 │   ├── styles.scss
 ```
 
-## <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pnpm/pnpm-original-wordmark.svg" /> PNPM
+## <img alt="PNPM" title="PNPM" width="34px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pnpm/pnpm-original-wordmark.svg" /> PNPM
 
 Installer PNPM.
 
