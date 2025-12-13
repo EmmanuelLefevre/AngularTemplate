@@ -32,7 +32,7 @@
 - [HUSKY](#husky)
 - [TSCONFIG](#ts-config)
 - [SCHEMATICS](#schematics)
-- [ANGULARJSON](#angular-json)
+- [CONFIGURATION DE BUILD](#configuration-de-build)
 - [ERREURS FREQUENTES](#erreurs-frequentes)
 - [TOOLINGCONFIGURATION](#tooling-configuration)
   - [Prettier Rules](#prettier-rules)
@@ -566,6 +566,8 @@ pnpm exec lint-staged
 
 **`tsconfig.json`**
 
+Ce fichier contient les paramètres fondamentaux du compilateur TypeScript (`compilerOptions`) et du compilateur Angular (`angularCompilerOptions`) qui sont hérités par tous les autres fichiers de configuration de l'espace de travail.
+
 ```JSON
 {
   "compileOnSave": false,
@@ -654,6 +656,12 @@ Configuration des alias
   SCHEMATICS
 </h2>
 
+La section de configuration des schematics définit les paramètres par défaut de la commande `ng generate` de l'interface de la CLI d'Angular.  
+
+Ceci garantit la cohérence et le respect des bonnes pratiques architecturales dans l'ensemble du projet lors de la création de nouveaux fichiers (composants, services, gardes...).  
+
+**`angular.json`**
+
 ```JSON
 "schematics": {
   "@schematics/angular:application": {
@@ -729,24 +737,42 @@ Configuration des alias
 
 💡 A full documentation have been added in `angular.json` and here too... [Schematics Rules](#schematics-rules)  
 
-<h2 id="angular-json">
+<h2 id="configuration-de-build">
   <img
     alt="Angular JSON"
     title="Angular JSON"
     width="34px"
     src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/angular/angular-original.svg"
   />
-  ANGULAR JSON
+  CONFIGURATION DE BUILD
 </h2>
 
-Cette section (`architect.build.configurations.production`) définit les paramètres spécifiques qui sont appliqués lorsque vous  
-exécutez la commande `ng build --configuration=production` (souvent abrégée en `ng build --prod` ou `ng build`).  
+**`angular.json`**
 
-Dans `"fileReplacements"` renseigner le chemin des fichiers d'environnement  
+Cette section (`architect.build.configurations.production`) définit les paramètres spécifiques qui sont appliqués lorsque vous exécutez la commande `ng build --configuration=production` (souvent abrégée en `ng build --prod` ou `ng build`).  
+
+L'option `fileReplacements` est cruciale pour gérer les configurations spécifiques à l'environnement de production. L'option `budgets` est quand à elle un mécanisme essentiel pour basculer les variables d'environnement (API endpoints, clés) vers leurs valeurs de production sans nécessiter de modification manuelle du code source.  
+
+Renseigner le chemin des fichiers d'environnement et définir des budgets de performance pour garantir que la taille de l'application reste sous contrôle  
+
+De plus il faut ajouter le favicon, les scripts, le browser, le polyfills et l'index dans l'objet `options`  
 
 ```JSON
 "architect": {
   "build": {
+    "builder": "@angular/build:application",
+    "options": {
+      "index": "src/index.html",
+      "polyfills": ["zone.js"],
+      "scripts": [],
+      "assets": [
+        "src/favicon.ico",
+        {
+          "glob": "**/*",
+          "input": "public"
+        }
+      ],
+    }
     "configurations": {
       "production": {
         "fileReplacements": [
@@ -755,7 +781,18 @@ Dans `"fileReplacements"` renseigner le chemin des fichiers d'environnement
             "with": "src/_environments/environment.prod.ts"
           }
         ],
-        "budgets": []
+        "budgets": [
+          {
+            "type": "initial",
+            "maximumWarning": "500kB",
+            "maximumError": "2MB"
+          },
+          {
+            "type": "anyComponentStyle",
+            "maximumWarning": "kB",
+            "maximumError": "8kB"
+          }
+        ]
       }
     }
   }
