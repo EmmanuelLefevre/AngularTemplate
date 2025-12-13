@@ -755,7 +755,7 @@ L'option `fileReplacements` est cruciale pour gérer les configurations spécifi
 
 Renseigner le chemin des fichiers d'environnement et définir des budgets de performance pour garantir que la taille de l'application reste sous contrôle  
 
-De plus il faut ajouter le favicon, les scripts, le browser, le polyfills et l'index dans l'objet `options`  
+De plus il faut ajouter le favicon, les scripts, le browser et l'index dans l'objet `options`  
 
 ```JSON
 "architect": {
@@ -763,7 +763,6 @@ De plus il faut ajouter le favicon, les scripts, le browser, le polyfills et l'i
     "builder": "@angular/build:application",
     "options": {
       "index": "src/index.html",
-      "polyfills": ["zone.js"],
       "scripts": [],
       "assets": [
         "src/favicon.ico",
