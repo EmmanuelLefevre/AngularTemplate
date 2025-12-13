@@ -5,3 +5,26 @@
     "tsconfig.app.json": "jsonc"
   }
 }
+
+/* =========================================================================
+  VS CODE WORKSPACE SETTINGS (settings.json)
+
+  These settings are specific to the Visual Studio Code editor (IDE)
+  and do NOT affect the compilation, build, or deployment of the project.
+
+  Their primary purpose is to enhance the development experience (DX)
+  within this specific IDE instance.
+  =========================================================================
+
+  files.associations: { ... }
+    Defines language associations for specific file names or extensions.
+
+    "*.json": "jsonc"
+      Treats all generic JSON files as JSON with Comments (JSONC).
+
+    "tsconfig.json": "jsonc"
+    "tsconfig.app.json": "jsonc"
+      Forces TypeScript configuration files to be treated as JSONC.
+      This is necessary to allow comments (e.g., documentation) within
+      these files without VS Code signaling a syntax error.
+*/
