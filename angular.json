@@ -159,3 +159,127 @@
     }
   }
 }
+
+/* =========================================================================
+  ANGULAR CLI WORKSPACE CONFIGURATION (angular.json)
+
+  This document defines global settings, build targets, and default options
+  for the 'ng generate' command across the workspace.
+  =========================================================================
+
+  --- BUILD CONFIGURATIONS ------------------------------------------------
+
+  architect.build.configurations.production.fileReplacements
+    [Environments] List of files to substitute during the Production build.
+    This is critical for switching configuration variables (e.g., API URLs)
+    between development and production environments.
+
+    * replace: "src/_environments/environment.ts"
+      The default environment file imported by the application.
+
+    * with: "src/_environments/environment.prod.ts"
+      The file that substitutes the default one when the command
+      `ng build --configuration=production` is executed.
+
+  --- SCHEMATICS CONFIGURATION (ng generate defaults) ---------------------
+
+  1. @schematics/angular:application (Project Initialization)
+
+    fileNameStyleGuide: "2016"
+      [Convention] Uses the explicit naming convention (e.g., `app.component.ts`).
+
+    inlineStyle: false / inlineTemplate: false
+      [Clarity] Enforces separation of templates (.html) and styles (.scss)
+      into dedicated files.
+
+    routing: true
+      Automatically sets up the router configuration via `app.routes.ts`.
+
+    skipTests: true
+      [Setup] Skips unit test file generation for the initial application shell.
+
+    ssr: true
+      [Performance] Configures the application for Server-Side Rendering (SSR).
+
+    standalone: true
+      [Modern] Generates the initial structure using the Standalone Component API (no NgModules).
+
+    strict: true
+      Enables strict type checking and bundle budgets.
+
+    style: "scss"
+      Sets SCSS (Sass) as the default stylesheet format.
+
+    zoneless: false
+      [Compatibility] Keeps `zone.js` enabled for change detection.
+
+  2. @schematics/angular:component (Components)
+
+    changeDetection: "OnPush"
+      [Performance] Sets the change detection strategy to `OnPush`. Component updates
+      only when inputs change or events occur.
+
+    displayBlock: true
+      [Layout] Automatically adds `:host { display: block; }` to the component's styles.
+
+    skipTests: false
+      [Quality] Generates a unit test file (`.spec.ts`).
+
+    standalone: true
+      [Modern] Uses the Standalone API for components.
+
+    type: "component"
+      Adds the `.component.ts` suffix to the file name.
+
+  3. @schematics/angular:directive (Directives)
+
+    skipTests: false
+      [Quality] Generates a unit test file (`.spec.ts`).
+
+    standalone: true
+      [Modern] Uses the Standalone API for directives.
+
+    type: "directive"
+      Adds the `.directive.ts` suffix to the file name.
+
+  4. @schematics/angular:class (Class) / 5. @schematics/angular:enum (Enum)
+    6. @schematics/angular:interface (Interfaces)
+
+    @schematics/angular:class -> skipTests: true
+      Plain classes/DTOs usually don't need dedicated spec files.
+
+    @schematics/angular:enum -> type: "enum"
+      Adds the `.enum.ts` suffix.
+
+    @schematics/angular:interface -> type: "model"
+      [DDD/Model] Forces the use of the `.model.ts` suffix for data structures.
+
+  7. @schematics/angular:guard (Guards)
+
+    functional: false
+      Generates a Class-based guard (useful for constructor injection or inheritance).
+
+    implements: [Array]
+      Generates the Guard class implementing the four core routing interfaces.
+
+    skipTests: true
+      Guards are often better tested via integration or E2E as they rely on the router.
+
+  8. @schematics/angular:interceptor (HTTP Interceptors)
+
+    skipTests: true
+      Interceptors are usually better tested via integration/E2E as they handle side effects.
+
+  9. @schematics/angular:pipe (Pipes) / 10. @schematics/angular:service (Services)
+
+    skipTests: false
+      [Quality] Pipes and Services contain critical logic and should have unit tests by default.
+
+    standalone: true (for pipe)
+      Uses the Standalone API for Pipes.
+
+  11. @schematics/angular:resolver (Resolvers)
+
+    skipTests: true
+      Resolvers are tightly coupled to routing and data fetching, often tested via E2E.
+*/
