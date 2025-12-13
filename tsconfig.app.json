@@ -21,3 +21,61 @@
     "src/**/*.spec.ts"
   ]
 }
+
+/* =========================================================================
+  TYPESCRIPT APPLICATION CONFIGURATION (tsconfig.app.json)
+
+  This file extends the core configuration (`tsconfig.json`) and defines
+  the paths and compilation settings specific to the application source files (excluding tests).
+  =========================================================================
+
+  --- INHERITANCE & STRUCTURE ---------------------------------------------
+
+  extends: "./tsconfig.json"
+    Inherits all core compilation rules and strict typing options from the base file.
+
+  rootDir: "./src"
+    Defines the root directory for source code resolution.
+
+  outDir: "./out-tsc/app"
+    Output directory where compiled JavaScript code will be placed.
+
+  include: ["src/** /*.ts"]
+    Includes all TypeScript files within the 'src' folder for compilation.
+
+  exclude: ["src/** /*.spec.ts"]
+    Explicitly excludes unit test files (`.spec.ts`) from the main application compilation.
+
+  --- COMPILER OPTIONS ----------------------------------------------------
+
+  types: []
+    Disables automatic inclusion of all types from `node_modules/@types`.
+    Only explicitly referenced types will be included (if any).
+
+  --- ALIASES & PATHS -----------------------------------------------------
+
+  paths: { ... }
+    Defines absolute path aliases. This enables clean, absolute imports,
+    regardless of the current file's depth.
+
+    @app/* : ["./src/app/*"]
+      Primary alias for the 'app' folder structure.
+
+    @assets/* : ["./src/assets/*"]
+      Direct access to static resources (images, fonts).
+
+    @core/* : ["./src/app/core/*"]
+      Access to core services, guards, and interceptors.
+
+    @env/* : ["./src/_environments/*"]
+      Access to environment-specific configuration files.
+
+    @features/* : ["./src/app/features/*"]
+      Access to feature modules or standalone component bundles (often lazy-loaded).
+
+    @shared/* : ["./src/app/shared/*"]
+      Access to reusable components, pipes, and directives.
+
+    @styles/* : ["./src/styles/*"]
+      Access to global style sheets folder.
+*/
