@@ -46,28 +46,50 @@
 ├── src/
 │   ├── app/
 │   │   ├── core/
-│   │   ├── shared/
-│   │   │   │   ├── components/
-│   │   │   │   │   ├── header/
-│   │   │   │   │   ├── footer/
-│   │   │   │   ├── directives/
-│   │   │   │   ├── pipes/
-│   │   │   │   ├── styles/
+│   │   │   ├── auth/
+│   │   │   ├── config/
+│   │   │   ├── models/
+│   │   │   ├── services/
 │   │   ├── features/
 │   │   │   ├── site/
-│   │   │   │   ├── home/
+│   │   │   │   ├── _models/
+│   │   │   │   ├── _services/
 │   │   │   │   ├── contact/
+│   │   │   │   ├── home/
 │   │   │   │   ├── site.route.ts
 │   │   │   │   ├── site.layout.ts
 │   │   │   ├── admin/
+│   │   │   │   ├── _models/
+│   │   │   │   ├── _services/
 │   │   │   │   ├── dashboard/
+│   │   │   │   │   ├── dashboard.component.html
+│   │   │   │   │   ├── dashboard.component.ts
+│   │   │   │   │   ├── dashboard.component.scss
+│   │   │   │   │   ├── dashboard.view-model.ts
 │   │   │   │   ├── settings/
 │   │   │   │   ├── users/
 │   │   │   │   ├── admin.route.ts
 │   │   │   │   ├── admin.layout.ts
+│   │   ├── shared/
+│   │   │   │   ├── _directives/
+│   │   │   │   ├── _pipes/
+│   │   │   │   ├── _utils/
+│   │   │   │   ├── components/
+│   │   │   │   │   ├── header/
+│   │   │   │   │   ├── footer/
+│   │   │   │   ├── styles/
+│   │   │   │   │   ├── _mixins.scss
+│   │   │   │   │   ├── _reset.scss
+│   │   │   │   │   ├── _variables.scss
 │   │   ├── app.component.html
 │   │   ├── app.component.ts
 │   │   ├── app.routes.ts
+│   ├── assets/
+│   │   ├── fonts/
+│   │   ├── i18n/
+│   │   ├── img/
+│   ├── styles/
+│   │   ├── shared/
 │   ├── index.html
 │   ├── main.ts
 │   ├── styles.scss
