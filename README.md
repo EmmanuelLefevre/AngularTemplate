@@ -564,7 +564,49 @@ pnpm exec lint-staged
 </h2>
 
 ```JSON
-
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "declaration": false,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "forceConsistentCasingInFileNames": true,
+    "importHelpers": true,
+    "isolatedModules": true,
+    "lib": [
+      "ES2022",
+      "DOM"
+    ],
+    "module": "preserve",
+    "moduleResolution": "node",
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "sourceMap": false,
+    "strict": true,
+    "target": "ES2022",
+    "useDefineForClassFields": false
+  },
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictStandalone": true,
+    "strictTemplates": true
+  },
+  "files": [],
+  "references": [
+    {
+      "path": "./tsconfig.app.json"
+    },
+    {
+      "path": "./tsconfig.spec.json"
+    }
+  ]
+}
 ```
 
 💡 A full documentation have been added in `tsconfig.json` and here too... [TS Config Rules](#ts-config-rules)  
@@ -801,9 +843,35 @@ npx @andrewbranch/ts5to6 --fixRootDir ./tsconfig.app.json
 
 [TS Config Documentation](https://www.typescriptlang.org/tsconfig/)
 
-```text
+Cette configuration (`tsconfig.json`) sert de **base stricte** pour l'ensemble de l'espace de travail. Elle utilise l'approche **"Solution Style"**, déléguant la compilation effective aux fichiers `tsconfig.app.json` (pour l'application) et `tsconfig.spec.json` (pour les tests).
 
-```
+### 1. Options du Compilateur (`compilerOptions`)
+
+| Option | Valeur | Description & Justification |
+| :--- | :--- | :--- |
+| **`target`** | `"ES2022"` | Compile le code vers ECMAScript 2022 moderne, permettant l'usage natif de `async/await` et des fonctionnalités de classes récentes. |
+| **`module`** | `"preserve"` | Laisse les instructions d'import/export intactes. Permet au bundler (Vite/Webpack) de gérer le chargement des modules le plus efficacement possible. |
+| **`strict`** | `true` | **Sécurité :** Active toutes les options de vérification de type strictes (pas de `any` implicite, gestion stricte du `null`, etc.). |
+| **`experimentalDecorators`** | `true` | **Requis :** Active le support de la syntaxe des décorateurs, massivement utilisée par Angular (`@Component`, `@Injectable`). |
+| **`isolatedModules`** | `true` | **Vitesse de Build :** Garantit que chaque fichier peut être transpilé individuellement, ce qui est requis pour les outils ultra-rapides comme Vite ou Esbuild. |
+| **`noImplicitOverride`** | `true` | Force l'utilisation du mot-clé `override` lorsqu'une méthode écrase celle d'une classe parente. Sécurise l'héritage. |
+| **`noImplicitReturns`** | `true` | Vérifie que tous les chemins d'exécution d'une fonction retournent bien une valeur. |
+| **`noFallthroughCasesInSwitch`**| `true` | Empêche de passer accidentellement d'un `case` à un autre dans un `switch` (oubli du `break`). |
+| **`skipLibCheck`** | `true` | **Performance :** Ignore la vérification des types à l'intérieur de `node_modules` pour accélérer considérablement la compilation. |
+| **`importHelpers`** | `true` | **Taille du Bundle :** Importe les fonctions utilitaires depuis `tslib` au lieu de générer du code dupliqué dans chaque fichier. |
+| **`useDefineForClassFields`** | `false` | **Compatibilité :** Maintient le comportement historique d'initialisation des champs de classe pour assurer une compatibilité totale avec les décorateurs Angular. |
+| **`forceConsistentCasing...`** | `true` | **Multi-plateforme :** Interdit les références de fichiers avec une casse incohérente (évite les bugs entre Windows et Linux/Mac). |
+
+### 2. Options du Compilateur Angular (`angularCompilerOptions`)
+
+Ces paramètres contrôlent le compilateur AOT (Ahead-of-Time) d'Angular, spécifiquement pour la vérification des types dans les templates HTML.
+
+| Option | Valeur | Description |
+| :--- | :--- | :--- |
+| **`strictTemplates`** | `true` | **Bonne Pratique :** Active la vérification stricte des types dans les templates Angular (`.html`). Détecte les erreurs de liaison de données à la compilation. |
+| **`strictInjectionParameters`** | `true` | Signale une erreur si un paramètre injecté n'est pas compatible avec le type d'injection attendu. |
+| **`strictInputAccessModifiers`**| `true` | Respecte les modificateurs d'accès (`private`, `protected`) lors de l'accès aux propriétés depuis les templates HTML. |
+| **`strictStandalone`** | `true` | Applique des règles de validation plus strictes pour les composants, directives et pipes Standalone. |
 
 <h3 id="schematics-rules">
   <img
