@@ -12,7 +12,7 @@
       "DOM"
     ],
     "module": "preserve",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "noImplicitOverride": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
@@ -81,8 +81,10 @@
     Leaves import/export statements intact.
     Lets the bundler (Vite/Webpack) handle module loading efficiently.
 
-  moduleResolution: "node"
-    Uses Node.js resolution algorithm to find modules in node_modules.
+  moduleResolution: "bundler"
+    Instructs TypeScript to use a resolution strategy optimized for modern bundlers (Vite, Esbuild).
+    This is required by Angular 17+ for proper support of conditional exports (customConditions)
+    and ensures a fast and correct build.
 
   noFallthroughCasesInSwitch: true
     Prevents accidental fall-throughs in switch statements (missing `break`).

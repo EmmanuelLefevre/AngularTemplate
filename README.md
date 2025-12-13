@@ -855,7 +855,7 @@ Pour le fichier de configuration de l'application (où se trouvent les paths)
 npx @andrewbranch/ts5to6 --fixBaseUrl ./tsconfig.app.json
 ```
 
-- **Root Dir**
+- **RootDir**
 
 Pour le fichier de configuration de base du projet  
 
@@ -960,7 +960,7 @@ Cette configuration (`tsconfig.json`) sert de **base stricte** pour l'ensemble d
 | **`isolatedModules`** | `true` | Garantit que chaque fichier peut être transpilé individuellement, ce qui est requis pour les outils ultra-rapides comme Vite ou Esbuild |
 | **`lib`**| `[Array]` | **1. `"ES2022"`** : inclure les types de JavaScript moderne au navigateur<br><br>**2. `"DOM"`** : inclure les types spécifiques au navigateur.<br><br> |
 | **`module`** | `"preserve"` | Laisser les instructions d'import/export intactes. Permet au bundler (Vite/Webpack) de gérer le chargement des modules le plus efficacement possible |
-| **`moduleResolution`**| `"node"` | Utiliser l'algorithme de résolution des modules de Node.js pour trouver les fichiers dans node_modules et les chemins relatifs |
+| **`moduleResolution`**| `"bundler"` | Indique à TypeScript d'utiliser une stratégie de résolution optimisée pour les bundlers modernes (Vite, Esbuild). Ceci est requis par Angular 17+ pour le support correct des exports conditionnels (customConditions) et garantit un build rapide et correct |
 | **`noImplicitOverride`** | `true` | Forcer l'utilisation du mot-clé `override` lorsqu'une méthode écrase celle d'une classe parente et sécurise l'héritage |
 | **`noImplicitReturns`** | `true` | Vérifier que tous les chemins d'exécution d'une fonction retournent bien une valeur |
 | **`noFallthroughCasesInSwitch`**| `true` | Empêche de passer accidentellement d'un `case` à un autre dans un `switch` (oubli du `break`) |
