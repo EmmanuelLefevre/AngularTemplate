@@ -694,7 +694,7 @@ git push --force origin main
 
 L'auteur "Andrew Branch" est membre de l'équipe TypeScript chez Microsoft, ce qui garantit la fiabilité et la pertinence de l'outil.  
 
-![Link Github Issue](https://github.com/andrewbranch/ts5to6)
+[andrewbranch/ts5to6 – Outil de migration TypeScript 5 vers 6](https://github.com/andrewbranch/ts5to6)
 
 - **BaseUrl**
 
