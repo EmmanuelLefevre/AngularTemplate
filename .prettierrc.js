@@ -6,14 +6,7 @@ module.exports = {
   endOfLine: 'lf',
   experimentalTernaries: false,
   htmlWhitespaceSensitivity: 'css',
-  importOrder: [
-    '^@angular/(.*)$',
-    '^rxjs',
-    '<THIRD_PARTY_MODULES>',
-    '^@core/(.*)$',
-    '^@shared/(.*)$',
-    '^[./]'
-  ],
+  importOrder: ['^@angular/(.*)$', '^rxjs', '<THIRD_PARTY_MODULES>', '^@core/(.*)$', '^@shared/(.*)$', '^[./]'],
   importOrderParserPlugins: ['typescript', 'classProperties', 'decorators-legacy'],
   importOrderSeparation: true,
   importOrderSortSpecifiers: true,
@@ -33,7 +26,7 @@ module.exports = {
     }
   ],
   plugins: ['@trivago/prettier-plugin-sort-imports'],
-  printWidth: 100,
+  printWidth: 120,
   proseWrap: 'preserve',
   quoteProps: 'as-needed',
   requirePragma: false,
@@ -126,7 +119,7 @@ plugins: ["@trivago/prettier-plugin-sort-imports"]
   imports will not be sorted.
 
 printWidth: 100
-  Try to break lines after 100 characters (80 is default, often too short).
+  Try to break lines after 120 characters (80 is default, often too short).
 
 proseWrap: "preserve"
   Do not reformat text blocks in Markdown (avoids unnecessary Git diffs).
