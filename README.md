@@ -658,7 +658,7 @@ pnpm exec lint-staged
   ⚠️ ERREURS FREQUENTES
 </h2>
 
-### Attention si vous recevez ce warning lors du premier push !  
+### 1. Attention si vous recevez ce warning lors du premier push !  
 
 <br>
 
@@ -690,7 +690,7 @@ Publier la branche et écraser le contenu sur Github avec la version locale :
 git push --force origin main
 ```
 
-### Option 'baseUrl' is deprecated
+### 2. Option 'baseUrl' is deprecated
 
 L'auteur "Andrew Branch" est membre de l'équipe TypeScript chez Microsoft, ce qui garantit la fiabilité et la pertinence de l'outil.  
 
