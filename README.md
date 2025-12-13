@@ -6,7 +6,21 @@
 
 <br>
 
-# <img alt="Angular" title="Angular" width="34px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/angular/angular-original.svg" /> ANGULAR TEMPLATE <img alt="Angular" title="Angular" width="34px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/angular/angular-original.svg" />
+<h1 id="angular-template">
+  <img
+    alt="Angular"
+    title="Angular"
+    width="34px"
+    src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/angular/angular-original.svg"
+  />
+  ANGULAR TEMPLATE
+  <img
+    alt="Angular"
+    title="Angular"
+    width="34px"
+    src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/angular/angular-original.svg"
+  />
+</h1>
 
 ## SOMMAIRE
 
@@ -15,6 +29,7 @@
 - [ANGULAR](#angular)
 - [ESLINT / PRETTIER](#eslint-prettier)
 - [HUSKY](#husky)
+- [TSCONFIG](#ts-config)
 - [SCHEMATICS](#schematics)
 - [ERREURS FREQUENTES](#erreurs-frequentes)
 - [TOOLINGCONFIGURATION](#tooling-configuration)
@@ -62,7 +77,6 @@
     alt="PNPM"
     title="PNPM"
     width="34px"
-    style="padding-right:10px; vertical-align: middle;"
     src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pnpm/pnpm-original-wordmark.svg"
   />
   PNPM
@@ -100,7 +114,6 @@ npm install -g pnpm
     alt="Angular"
     title="Angular"
     width="34px"
-    style="padding-right:10px; vertical-align: middle;"
     src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/angular/angular-original.svg"
   />
   ANGULAR
@@ -210,7 +223,21 @@ save-exact=true
 
 Désormais, si on lance `pnpm add rxjs`, il installera **`"rxjs"`: `"7.8.0"`** au lieu de **`"^7.8.0"`**.
 
-<h2 id="eslint-prettier" style="margin-top: 20px; margin-bottom: 10px;"><img alt="ESLint" title="ESLint" width="34px" style="padding-right:10px; vertical-align: middle;" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/eslint/eslint-original.svg" /> ESLINT / PRETTIER <img alt="Prettier" title="Prettier" width="30px" style="padding-left:10px; vertical-align: middle;" src="https://raw.githubusercontent.com/EmmanuelLefevre/GitHubProfileIcons/main/prettier.png" /></h2>
+<h2 id="eslint-prettier">
+  <img
+    alt="ESLint"
+    title="ESLint"
+    width="34px"
+    src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/eslint/eslint-original.svg"
+  /> 
+    ESLINT / PRETTIER 
+  <img
+    alt="Prettier"
+    title="Prettier"
+    width="30px"
+    src="https://raw.githubusercontent.com/EmmanuelLefevre/GitHubProfileIcons/main/prettier.png"
+  />
+</h2>
 
 Pour un projet Angular moderne, la combinaison standard de l'industrie est ESLint (pour la qualité du code et les erreurs) et Prettier (pour le style et le formatage).  
 
@@ -418,7 +445,6 @@ Vous devriez voir s'afficher =>
     alt="Husky"
     title="Husky"
     width="30px"
-    style="padding-right:10px; vertical-align: middle;"
     src="https://raw.githubusercontent.com/EmmanuelLefevre/GitHubProfileIcons/main/husky.png"
   />
   HUSKY
@@ -488,10 +514,101 @@ pnpm exec lint-staged
 }
 ```
 
-## SCHEMATICS
+<h2 id="ts-config">
+  <img
+    alt="TSCONFIG"
+    title="TSCONFIG"
+    width="34px"
+    src="https://raw.githubusercontent.com/EmmanuelLefevre/GitHubProfileIcons/main/ts_config.png"
+  />
+  TS CONFIG
+</h2>
 
 ```JSON
 
+```
+
+<h2 id="schematics">
+  <img
+    alt="Angular Schematics"
+    title="Angular Schematics"
+    width="60px"
+    src="https://raw.githubusercontent.com/EmmanuelLefevre/GitHubProfileIcons/main/schematics.png"
+  />
+  SCHEMATICS
+</h2>
+
+```JSON
+"schematics": {
+  "@schematics/angular:application": {
+    "fileNameStyleGuide": "2016",
+    "inlineStyle": false,
+    "inlineTemplate": false,
+    "routing": true,
+    "skipTests": true,
+    "ssr": true,
+    "standalone": true,
+    "strict": true,
+    "style": "scss",
+    "zoneless": false
+  },
+  "@schematics/angular:class": {
+    "skipTests": true
+  },
+  "@schematics/angular:component": {
+    "changeDetection": "OnPush",
+    "displayBlock": true,
+    "inlineStyle": false,
+    "inlineTemplate": false,
+    "prefix": "",
+    "skipTests": false,
+    "standalone": true,
+    "style": "scss",
+    "type": "component"
+  },
+  "@schematics/angular:directive": {
+    "prefix": "",
+    "skipTests": false,
+    "standalone": true,
+    "type": "directive"
+  },
+  "@schematics/angular:enum": {
+    "type": "enum"
+  },
+  "@schematics/angular:guard": {
+    "functional": false,
+    "implements": [
+      "CanActivate",
+      "CanActivateChild",
+      "CanDeactivate",
+      "CanMatch"
+    ],
+    "skipTests": true,
+    "typeSeparator": "."
+  },
+  "@schematics/angular:interceptor": {
+    "skipTests": true,
+    "typeSeparator": "."
+  },
+  "@schematics/angular:interface": {
+    "type": "model"
+  },
+  "@schematics/angular:module": {
+    "typeSeparator": "."
+  },
+  "@schematics/angular:pipe": {
+    "skipTests": false,
+    "standalone": true
+  },
+  "@schematics/angular:resolver": {
+    "skipTests": true,
+    "typeSeparator": "."
+  },
+  "@schematics/angular:service": {
+    "skipTests": false,
+    "type": "service"
+  }
+},
 ```
 
 <h2 id="erreurs-frequentes">
