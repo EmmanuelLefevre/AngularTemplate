@@ -35,8 +35,8 @@
 - [ERREURS FREQUENTES](#erreurs-frequentes)
 - [TOOLINGCONFIGURATION](#tooling-configuration)
   - [Prettier Rules](#prettier-rules)
-  - [EsLint Rules](#eslint-rules)
-  - [Tsconfig Rules](#ts-config-rules)
+  - [ESLint Rules](#eslint-rules)
+  - [TS Config Rules](#ts-config-rules)
   - [Schematics Rules](#schematics-rules)
 
 ## 🏗 ARCHITECTURE
@@ -416,6 +416,8 @@ module.exports = tseslint.config(
 );
 ```
 
+💡 A full documentation have been added in `eslint.config.js` and here too... [ESLint Rules](#eslint-rules)  
+
 **Etape 4 :** Ajouter les scripts pratiques  
 
 Mettre à jour la section "scripts" du `package.json` pour faciliter l'utilisation :
@@ -536,6 +538,8 @@ pnpm exec lint-staged
 ```JSON
 
 ```
+
+💡 A full documentation have been added in `tsconfig.json` and here too... [TS Config Rules](#schematics-rules)  
 
 <h2 id="schematics">
   <img
@@ -720,7 +724,7 @@ git push --force origin main
     width="34px"
     src="https://raw.githubusercontent.com/EmmanuelLefevre/GitHubProfileIcons/main/ts_config.png"
   />
-  TSconfig Rules
+  TS Config Rules
 </h3>
 
 [Tsconfig Documentation](https://www.typescriptlang.org/tsconfig/)
