@@ -620,6 +620,8 @@ pnpm exec lint-staged
 },
 ```
 
+💡 A full documentation have been added in `angular.json` and here too... [Schematics Rules](#schematics-rules)  
+
 <h2 id="erreurs-frequentes">
   ⚠️ ERREURS FREQUENTES
 </h2>
