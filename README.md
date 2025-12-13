@@ -658,7 +658,7 @@ pnpm exec lint-staged
   ⚠️ ERREURS FREQUENTES
 </h2>
 
-Attention si vous recevez ce warning lors du premier push !  
+### Attention si vous recevez ce warning lors du premier push !  
 
 <br>
 
@@ -688,6 +688,40 @@ Publier la branche et écraser le contenu sur Github avec la version locale :
 
 ```shell
 git push --force origin main
+```
+
+### Option 'baseUrl' is deprecated
+
+L'auteur "Andrew Branch" est membre de l'équipe TypeScript chez Microsoft, ce qui garantit la fiabilité et la pertinence de l'outil.  
+
+![Link Github Issue](https://github.com/andrewbranch/ts5to6)
+
+- **BaseUrl**
+
+Pour le fichier de configuration de base du projet  
+
+```shell
+npx @andrewbranch/ts5to6 --fixBaseUrl ./tsconfig.json
+```
+
+Pour le fichier de configuration de l'application (où se trouvent les paths)  
+
+```shell
+npx @andrewbranch/ts5to6 --fixBaseUrl ./tsconfig.app.json
+```
+
+- **Root Dir**
+
+Pour le fichier de configuration de base du projet  
+
+```shell
+npx @andrewbranch/ts5to6 --fixRootDir ./tsconfig.json
+```
+
+Pour le fichier de configuration de l'application  
+
+```shell
+npx @andrewbranch/ts5to6 --fixRootDir ./tsconfig.app.json
 ```
 
 <h2 id="tooling-configuration">
