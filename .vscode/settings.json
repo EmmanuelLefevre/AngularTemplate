@@ -1,0 +1,7 @@
+{
+  "files.associations": {
+    "*.json": "jsonc",
+    "tsconfig.json": "jsonc",
+    "tsconfig.app.json": "jsonc"
+  }
+}
