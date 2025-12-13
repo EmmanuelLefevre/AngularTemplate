@@ -23,7 +23,7 @@
   - [Tsconfig Rules](#tsconfig-rules)
   - [Schematics Rules](#schematics-rules)
 
-## 🏗️ ARCHITECTURE
+## 🏗 ARCHITECTURE
 
 ```text
 ├── public/
@@ -635,7 +635,7 @@ useTabs: false
 Définit les caractéristiques fondamentales de l'application, principalement utilisées lors de la création du projet.
 
 | Option | Valeur | Description |
-| :--- | :--- | :--- | :--- |
+| :--- | :--- | :--- |
 | **`fileNameStyleGuide`** | `"2016"` | Utiliser l'ancienne convention de nommage (`app.component.ts`) |
 | **`inlineStyle`** | `false` | Les styles sont générés dans un fichier `.scss` séparé |
 | **`inlineTemplate`** | `false` | Le template est généré dans un fichier `.html` séparé |
@@ -652,7 +652,7 @@ Définit les caractéristiques fondamentales de l'application, principalement ut
 Configuration pour la génération des composants (`ng g c`).
 
 | Option | Valeur | Description |
-| :--- | :--- | :--- | :--- |
+| :--- | :--- | :--- |
 | **`changeDetection`** | `"OnPush"` | Définir la stratégie de détection des changements sur `OnPush` |
 | **`displayBlock`** | `true` | Ajoute automatiquement `:host { display: block; }` au SCSS du composant |
 | **`inlineStyle/inlineTemplate`**| `false` | Force la séparation des fichiers `.html` et `.scss` |
@@ -667,7 +667,7 @@ Configuration pour la génération des composants (`ng g c`).
 Configuration pour la génération des directives (`ng g d`).
 
 | Option | Valeur | Description |
-| :--- | :--- | :--- | :--- |
+| :--- | :--- | :--- |
 | **`prefix`** | `""` | Le préfixe du sélecteur est explicitement vide |
 | **`skipTests`** | `false` | Génèrer un fichier de test unitaire (`.spec.ts`) |
 | **`standalone`** | `true` | Utiliser le STANDALONE pour les directives |
@@ -678,7 +678,7 @@ Configuration pour la génération des directives (`ng g d`).
 Configuration pour le routage des éléments de protection et de sécurité.
 
 | Option | Valeur | Description |
-| :--- | :--- | :--- | :--- |
+| :--- | :--- | :--- |
 | **`functional`** | `false` | Génèrer une Guard basée sur une classe (au lieu d'une simple fonction) |
 | **`implements`** | `[...]` | Génèrer le Guard implémentant les quatre interfaces de routage |
 | **`skipTests`** | `true` | Ne pas générer de fichiers de tests unitaires |
@@ -698,14 +698,14 @@ Configuration pour la gestion globale des requêtes/réponses HTTP.
 Configuration pour la logique métier principale et les fournisseurs de données.
 
 | Option | Valeur | Description |
-| :--- | :--- | :--- | :--- |
+| :--- | :--- | :--- |
 | **`skipTests`** | `false` | Génèrer un fichier de test unitaire (`.spec.ts`). |
 | **`type`** | `"service"` | Ajouter le type à la classe et au fichier (`api.service.ts`) |
 
 #### 7. Autres éléments (Enums, Interfaces, Pipes...)
 
 | Schematic | Option | Valeur | Description |
-| :--- | :--- | :--- | :--- |
+| :--- | :--- | :--- |
 | **`@schematics/angular:class`** | `skipTests` | `true` | Les classes (souvent des DTO ou des wrappers utilitaires) n'ont généralement pas besoin de tests |
 | **`@schematics/angular:enum`** | `type` | `"enum"` | Ajouter le type à la classe et au fichier `.enum.ts` |
 | **`@schematics/angular:interface`** | `type` | `"model"` | Ajouter le type à la classe et au fichier `.model.ts` |
