@@ -509,142 +509,30 @@ git push --force origin main
 
 | Option | Valeur | Description / Justification |
 | :--- | :--- | :--- |
-| **`arrowParens`** | `"always"` | Forcer les parenthèses autour des arguments des fonctions fléchées. |
-| **`bracketSameLine`** | `true` | Placer la balise de fermeture de l'élément HTML multi-lignes (`>`) sur la même ligne que le dernier attribut. |
-| **`bracketSpacing`** | `true` | Ajouter des espaces entre les accolades des objets (`{ foo: bar }` au lieu de `{foo: bar}`). |
-| **`embeddedLanguageFormatting`** | `"auto"` | Prettier formate automatiquement le code intégré (ex: CSS dans JS) s'il le reconnaît. |
-| **`endOfLine`** | `"lf"` | Line Feed (LF). Standard Unix. Garantit la cohérence des fins de ligne (même sous Windows) et évite des modifications inutiles dans Git. |
-| **`experimentalTernaries`** | `false` | Conserver le formatage classique des ternaires (`condition ? true : false`). |
-| **`htmlWhitespaceSensitivity`** | `"css"` | Respecter la propriété CSS `display` par défaut pour la gestion des espaces dans le HTML (évite de casser la mise en page inline). |
-| **`importOrder`** | *[Array]* | Définit la hiérarchie verticale des imports (nécessite `@trivago/prettier-plugin-sort-imports`).<br><br>**1. `^@angular/(.*)$`** : Packages Angular officiels (Core, Common...) en premier.<br>**2. `^rxjs`** : RxJS, moteur asynchrone fondamental.<br>**3. `<THIRD_PARTY_MODULES>`** : Tout ce qui vient de `node_modules` (non intercepté avant).<br>**4. `^@core/(.*)$`** : Alias TypeScript pour le dossier « core » (services, guards...).<br>**5. `^@shared/(.*)$`** : Alias pour le dossier « partagé » (composants UI, pipes...).<br>**6. `^[./]`** : Importations locales (fichiers proches), placées à la fin. |
-| **`importOrderParserPlugins`** | *[Array]* | Plugins pour l'analyseur Babel.<br>**Important :** Inclure `"decorators-legacy"` pour qu'Angular (`@Component`) ne génère pas d'erreur, et `"typescript"` pour la syntaxe TS. |
-| **`importOrderSeparation`** | `true` | Ajoute une ligne vide entre les groupes d'imports. |
-| **`importOrderSortSpecifiers`** | `true` | Trie également les imports nommés entre accolades (ex: `{b, a}` devient `{a, b}`). |
-| **`insertPragma`** | `false` | N'ajoute pas de commentaire `@format` en haut des fichiers. |
-| **`overrides`** | *[Object]* | Configuration spécifique (notamment pour Angular) pour analyser correctement la syntaxe (`*ngIf`, `[prop]`, `(event)`) dans les fichiers HTML. |
-| **`plugins`** | `["@trivago..."]` | Indique à Prettier de charger le plugin `@trivago/prettier-plugin-sort-imports`. Sans cela, les options de tri sont ignorées. |
-| **`printWidth`** | `120` | Coupe les lignes après 120 caractères (plus confortable que le défaut de 80). |
-| **`proseWrap`** | `"preserve"` | Ne reformate pas les blocs de texte en Markdown (évite des différences Git inutiles). |
-| **`quoteProps`** | `"as-needed"` | N'utilise des guillemets autour des clés d’objet que si la syntaxe l’exige. |
-| **`requirePragma`** | `false` | Formate tous les fichiers, pas seulement ceux comportant la balise `@format`. |
-| **`semi`** | `true` | Ajoute systématiquement un point-virgule à la fin des instructions. |
-| **`singleAttributePerLine`** | `true` | Force un attribut par ligne en HTML si la balise est longue (rend les templates Angular plus lisibles). |
-| **`singleQuote`** | `true` | Utilise des guillemets simples (`'text'`) en JS/TS pour réduire le bruit visuel. |
-| **`tabWidth`** | `2` | Une indentation correspond à 2 espaces. |
-| **`trailingComma`** | `"all"` | Ajoute des virgules à la fin des listes (objets, tableaux, fonctions). Rend les diffs Git plus propres. |
-| **`useTabs`** | `false` | Utilise des espaces pour l'indentation, pas des tabulations. |
-
-```text
-arrowParens: "always"
-  Forcer les parenthèses autour des arguments des fonctions fléchées.
-
-bracketSameLine: true
-  Placer la balise de fermeture de l'élément HTML multi-lignes (>)
-  sur la même ligne que le dernier attribut.
-
-bracketSpacing: true
-  Ajouter des espaces entre les accolades des objets, { foo: bar } au lieu de {foo: bar}.
-
-embeddedLanguageFormatting: "auto"
-  Prettier formate automatiquement le code intégré (ex: CSS dans JS) s'il le reconnaît.
-
-endOfLine: "lf"
-  Line Feed (LF). C'est le standard Unix. Il garantit la cohérence des fins de
-  ligne même sous Windows, prévenant des modifications inutiles dans Git.
-
-experimentalTernaries: false
-  Conserver le formatage classique des ternaires (condition ? true : false).
-
-htmlWhitespaceSensitivity: "css"
-  Respecter la propriété CSS display par défaut pour la gestion des espaces dans le
-  HTML, évitant de casser la mise en page des éléments inline.
-
-importOrder
-  Définit la hiérarchie verticale des imports. Le plugin lit cette liste de haut
-  en bas pour organiser les imports en groupes.
-
-  Rules details (Regex) :
-  1. "^@angular/(.*)$"
-    Capturer tous les packages Angular officiels (core, common, router, forms...).
-    Convention : Le framework passe toujours en premier !
-
-  2. "^rxjs"
-    Capturer les importations RxJS (Observable, Subject...).
-    Positionné en haut car il s'agit du moteur asynchrone fondamental d'Angular.
-
-  3. "<THIRD_PARTY_MODULES>"
-    Il ne s'agit pas d'une expression régulière, mais d'un mot-clé magique provenant du plugin.
-    Capturer TOUT ce qui vient de 'node_modules' et qui n'a pas été intercepté par les règles 1 et 2.
-
-  4. "^@core/(.*)$"
-    Capture vos alias TypeScript définis dans tsconfig.json pour le dossier « core ».
-    (services, guards, interceptors...)
-
-  5. "^@shared/(.*)$"
-    Capture vos alias pour le dossier « partagé »
-    (composants d'interface utilisateur réutilisables, pipes, directives...)
-
-  6. "^[./]"
-    Capture toutes les importations pertinentes (commençant par . ou ..).
-    Ce sont des fichiers « locaux » proches du fichier actuel.
-    Elles sont toujours placées à la fin pour séparer les dépendances externes du code interne.
-
-importOrderParserPlugins:
-  Liste des plugins transmis à l'analyseur Babel utilisé par le plugin de tri.
-  IMPORTANT POUR ANGULAR : Sans « decorators-legacy », le plugin ne peut pas analyser
-  les fichiers contenant des décorateurs (comme @Component) et générera une erreur de syntaxe.
-  Activer également « typescript » pour une gestion correcte de la syntaxe TypeScript lors du tri.
-
-importOrderSeparation: true
-  Ligne vide entre les groupes.
-
-importOrderSortSpecifiers: true
-  Trier également {b, a} en {a, b}.
-
-insertPragma: false
-  N'ajouter pas de commentaire @format en haut des fichiers.
-
-overrides (Angular Special)
-  Indispensable pour analyser correctement la syntaxe Angular (*ngIf, [prop], (event))
-  dans les fichiers .html sans rien casser.
-
-plugins: ["@trivago/prettier-plugin-sort-imports"]
-  Indique à Prettier de charger ce plugin externe.
-  Sans cette ligne, toutes les options commençant par « importOrder » seront ignorées
-  et vos importations ne seront pas triées.
-
-printWidth: 120
-  Couper les lignes après 120 caractères (80 par défaut, souvent trop court).
-
-proseWrap: "preserve"
-  Ne pas reformater pas les blocs de texte en Markdown (évite les différences Git inutiles).
-
-quoteProps: "as-needed"
-  N'utiliser des guillemets autour des clés d’objet que si la syntaxe l’exige.
-
-requirePragma: false
-  Formater tous les fichiers, et pas seulement ceux comportant la balise @format.
-
-semi: true
-  Ne jamais oublier d'ajouter un point-virgule à la fin des instructions.
-
-singleAttributePerLine: true
-  Force un attribut par ligne en HTML si la balise est longue.
-  Rendre les modèles Angular très lisibles verticalement.
-
-singleQuote: true
-  Use single quotes in JS/TS ('text') to reduce visual noise.
-
-tabWidth: 2
-  One indentation corresponds to 2 spaces.
-
-trailingComma: "all"
-  Ajouter des virgules à la fin des listes (objects, arrays, functions).
-  Permet de rendre les modifications de code plus propres dans Git.
-
-useTabs: false
-  Utiliser des espaces pour l'indentation, pas des tabulations.
-```
+| **`arrowParens`** | `"always"` | Forcer les parenthèses autour des arguments des fonctions fléchées |
+| **`bracketSameLine`** | `true` | Placer la balise de fermeture de l'élément HTML multi-lignes (`>`) sur la même ligne que le dernier attribut |
+| **`bracketSpacing`** | `true` | Ajouter des espaces entre les accolades des objets<br>(`{ foo: bar }` au lieu de `{foo: bar}`) |
+| **`embeddedLanguageFormatting`** | `"auto"` | Prettier formate automatiquement le code intégré (ex: CSS dans JS) s'il le reconnaît |
+| **`endOfLine`** | `"lf"` | Line Feed (LF). Standard Unix. Garantit la cohérence des fins de ligne (même sous Windows) et évite des modifications inutiles dans Git |
+| **`experimentalTernaries`** | `false` | Conserver le formatage classique des ternaires<br>(`condition ? true : false`) |
+| **`htmlWhitespaceSensitivity`** | `"css"` | Respecter la propriété CSS `display` par défaut pour la gestion des espaces dans le HTML (évite de casser la mise en page inline) |
+| **`importOrder`** | `[Array]` | Définit la hiérarchie verticale des imports (nécessite `@trivago/prettier-plugin-sort-imports`).<br><br>**1. `^@angular/(.*)$`** : Packages Angular officiels (Core, Common...) en premier.<br><br>**2. `^rxjs`** : RxJS, moteur asynchrone fondamental.<br><br>**3. `<THIRD_PARTY_MODULES>`** : Tout ce qui vient de `node_modules` (non intercepté avant).<br><br>**4. `^@core/(.*)$`** : Alias TypeScript pour le dossier « core » (services, guards...).<br><br>**5. `^@shared/(.*)$`** : Alias pour le dossier « partagé » (composants UI, pipes...).<br><br>**6. `^[./]`** : Importations locales (fichiers proches), placées à la fin. |
+| **`importOrderParserPlugins`** | `[Array]` | Plugins pour l'analyseur Babel<br>**Important :** Inclure `"decorators-legacy"` pour qu'Angular (`@Component`) ne génère pas d'erreur et `"typescript"` pour la syntaxe TS |
+| **`importOrderSeparation`** | `true` | Ajoute une ligne vide entre les groupes d'imports |
+| **`importOrderSortSpecifiers`** | `true` | Trie également les imports nommés entre accolades<br>(ex: `{b, a}` devient `{a, b}`) |
+| **`insertPragma`** | `false` | N'ajoute pas de commentaire `@format` en haut des fichiers |
+| **`overrides`** | `[Object]` | Configuration spécifique (notamment pour Angular) pour analyser correctement la syntaxe (`*ngIf`, `[prop]`, `(event)`) dans les fichiers HTML |
+| **`plugins`** | `["@trivago..."]` | Indique à Prettier de charger le plugin `@trivago/prettier-plugin-sort-imports`. Sans cela, les options de tri sont ignorées |
+| **`printWidth`** | `120` | Coupe les lignes après 120 caractères (plus confortable que le défaut de 80) |
+| **`proseWrap`** | `"preserve"` | Ne reformate pas les blocs de texte en Markdown (évite des différences Git inutiles) |
+| **`quoteProps`** | `"as-needed"` | N'utilise des guillemets autour des clés d’objet que si la syntaxe l’exige |
+| **`requirePragma`** | `false` | Formate tous les fichiers, pas seulement ceux comportant la balise `@format` |
+| **`semi`** | `true` | Ajoute systématiquement un point-virgule à la fin des instructions |
+| **`singleAttributePerLine`** | `true` | Force un attribut par ligne en HTML si la balise est longue (rend les templates Angular plus lisibles) |
+| **`singleQuote`** | `true` | Utilise des guillemets simples (`'text'`) en JS/TS pour réduire le bruit visuel |
+| **`tabWidth`** | `2` | Une indentation correspond à 2 espaces |
+| **`trailingComma`** | `"all"` | Ajoute des virgules à la fin des listes (objets, tableaux, fonctions). Rend les diffs Git plus propres |
+| **`useTabs`** | `false` | Utilise des espaces pour l'indentation, pas des tabulations |
 
 ### Eslint Rules
 
