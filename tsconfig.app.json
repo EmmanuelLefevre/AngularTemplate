@@ -4,14 +4,15 @@
     "outDir": "./out-tsc/app",
     "types": [],
     "paths": {
-      "@app/*": ["src/app/*"],
-      "@assets/*": ["src/assets/*"],
-      "@core/*": ["src/app/core/*"],
-      "@env/*": ["src/_environments/*"],
-      "@features/*": ["src/app/features/*"],
-      "@shared/*": ["src/app/shared/*"],
-      "@styles/*": ["src/styles/*"]
-    }
+      "@app/*": ["./src/app/*"],
+      "@assets/*": ["./src/assets/*"],
+      "@core/*": ["./src/app/core/*"],
+      "@env/*": ["./src/_environments/*"],
+      "@features/*": ["./src/app/features/*"],
+      "@shared/*": ["./src/app/shared/*"],
+      "@styles/*": ["./src/styles/*"]
+    },
+    "rootDir": "./src"
   },
   "include": [
     "src/**/*.ts"
