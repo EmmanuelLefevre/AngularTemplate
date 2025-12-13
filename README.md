@@ -46,7 +46,6 @@
 ├── src/
 │   ├── _environments/
 │   │   ├── environment.prod.sample.ts
-│   │   ├── environment.prod.ts
 │   │   ├── environment.ts
 │   ├── app/
 │   │   ├── core/
