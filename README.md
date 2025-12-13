@@ -44,6 +44,10 @@
 ```text
 ├── public/
 ├── src/
+│   ├── _environments/
+│   │   ├── environment.prod.sample.ts
+│   │   ├── environment.prod.ts
+│   │   ├── environment.ts
 │   ├── app/
 │   │   ├── core/
 │   │   │   ├── _models/
@@ -77,10 +81,6 @@
 │   │   │   │   ├── components/
 │   │   │   │   │   ├── header/
 │   │   │   │   │   ├── footer/
-│   │   │   │   ├── styles/
-│   │   │   │   │   ├── _mixins.scss
-│   │   │   │   │   ├── _reset.scss
-│   │   │   │   │   ├── _variables.scss
 │   │   ├── app.component.html
 │   │   ├── app.component.ts
 │   │   ├── app.config.ts
@@ -93,9 +93,10 @@
 │   │   ├── logos/
 │   │   ├── i18n/
 │   │   ├── img/
-│   ├── environments/
-│   │   ├── environment.ts
-│   │   ├── environment.prod.ts
+│   ├── styles/
+│   │   ├── _mixins.scss
+│   │   ├── _reset.scss
+│   │   ├── _variables.scss
 │   ├── index.html
 │   ├── main.ts
 │   ├── styles.scss
