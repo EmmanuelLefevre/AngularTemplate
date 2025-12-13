@@ -16,7 +16,7 @@
 - [ESLINT / PRETTIER](#eslint-prettier)
 - [HUSKY](#husky)
 - [SCHEMATICS](#schematics)
-- [WARNING](#warning)
+- [ERREURS FREQUENTES](#erreurs-frequentes)
 - [TOOLINGCONFIGURATION](#tooling-configuration)
   - [Prettier Rules](#prettier-rules)
   - [EsLint Rules](#eslint-rules)
@@ -494,8 +494,8 @@ pnpm exec lint-staged
 
 ```
 
-<h2 id="warning">
-  ⚠️ WARNING
+<h2 id="erreurs-frequentes">
+  ⚠️ ERREURS FREQUENTES
 </h2>
 
 Attention si vous recevez ce warning lors du premier push !  
