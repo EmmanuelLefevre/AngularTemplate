@@ -6,7 +6,7 @@
 
 <br>
 
-# ANGULAR TEMPLATE
+# <img alt="Angular" title="Angular" width="34px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/angular/angular-original.svg" /> ANGULAR TEMPLATE <img alt="Angular" title="Angular" width="34px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/angular/angular-original.svg" />
 
 ## SOMMAIRE
 
@@ -564,7 +564,7 @@ Définit les caractéristiques fondamentales de l'application, principalement ut
 | **`routing`** | `true` | Configurer automatiquement le fichier `app.routes.ts` pour la navigation |
 | **`skipTests`** | `true` | Ne pas générer de fichiers de tests unitaires pour les composants initiaux (`app.component`) |
 | **`ssr`** | `true` | Configurer l'application pour le SSR |
-| **`standalone`** | `true` | Génèrer la structure initiale en STANDALONE (sans `NgModules`) |
+| **`standalone`** | `true` | Générer la structure initiale en STANDALONE (sans `NgModules`) |
 | **`strict`** | `true` | Permet des contrôles de type plus stricts |
 | **`style`** | `"scss"` | Définir SCSS par défaut |
 | **`zoneless`** | `false` | Maintenir `zone.js` activé pour la détection des changements |
@@ -587,7 +587,7 @@ Configuration pour la génération des composants (`ng g c`).
 | **`displayBlock`** | `true` | Ajoute automatiquement `:host { display: block; }` au SCSS du composant |
 | **`inlineStyle/inlineTemplate`**| `false` | Force la séparation des fichiers `.html` et `.scss` |
 | **`prefix`** | `""` | Le préfixe du sélecteur est explicitement vide |
-| **`skipTests`** | `false` | Génèrer un fichier de test unitaire (`.spec.ts`) |
+| **`skipTests`** | `false` | Générer un fichier de test unitaire (`.spec.ts`) |
 | **`standalone`** | `true` | Utiliser le STANDALONE pour les composants |
 | **`style`** | `"scss"` | Définir SCSS par défaut |
 | **`type`** | `"component"` | Ajouter le type à la classe et au fichier (`my-feature.component.ts`) |
@@ -599,7 +599,7 @@ Configuration pour la génération des directives (`ng g d`).
 | Option | Valeur | Description |
 | :--- | :--- | :--- |
 | **`prefix`** | `""` | Le préfixe du sélecteur est explicitement vide |
-| **`skipTests`** | `false` | Génèrer un fichier de test unitaire (`.spec.ts`) |
+| **`skipTests`** | `false` | Générer un fichier de test unitaire (`.spec.ts`) |
 | **`standalone`** | `true` | Utiliser le STANDALONE pour les directives |
 | **`type`** | `"directive"` | Ajouter le type à la classe et au fichier (`my-highlight.directive.ts`) |
 
@@ -617,8 +617,8 @@ Configuration pour le routage des guards (`ng g guard`).
 
 | Option | Valeur | Description |
 | :--- | :--- | :--- |
-| **`functional`** | `false` | Génèrer une Guard basée sur une classe (au lieu d'une simple fonction) |
-| **`implements`** | `[...]` | Génèrer le Guard implémentant les quatre interfaces de routage |
+| **`functional`** | `false` | Générer une Guard basée sur une classe (au lieu d'une simple fonction) |
+| **`implements`** | `[...]` | Générer le Guard implémentant les quatre interfaces de routage |
 | **`skipTests`** | `true` | Ne pas générer de fichiers de tests unitaires |
 | **`typeSeparator`** | `.` | Définir le séparateur `guard` (`auth.guard.ts`) |
 
@@ -662,7 +662,7 @@ Configuration pour la gestion globale des resolvers (`ng g r`).
 
 | Option | Valeur | Description |
 | :--- | :--- | :--- |
-| **`skipTests`** | `false` | Génèrer un fichier de test unitaire (`.spec.ts`). |
+| **`skipTests`** | `false` | Générer un fichier de test unitaire (`.spec.ts`). |
 | **`type`** | `"service"` | Ajouter le type à la classe et au fichier (`api.service.ts`) |
 
 #### 12. `@schematics/angular:service` (Services)
@@ -671,5 +671,5 @@ Configuration pour la gestion globale des services (`ng g s`).
 
 | Option | Valeur | Description |
 | :--- | :--- | :--- |
-| **`skipTests`** | `false` | Génèrer un fichier de test unitaire (`.spec.ts`). |
+| **`skipTests`** | `false` | Générer un fichier de test unitaire (`.spec.ts`). |
 | **`type`** | `"service"` | Ajouter le type à la classe et au fichier (`api.service.ts`) |
