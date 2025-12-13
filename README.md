@@ -662,7 +662,9 @@ Publier la branche et écraser le contenu sur Github avec la version locale :
 git push --force origin main
 ```
 
-## TOOLING CONFIGURATION
+<h2 id="tooling-configuration">
+  🔧 TOOLING CONFIGURATION
+</h2>
 
 <h3 id="prettier-rules">
   <img
