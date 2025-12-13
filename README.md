@@ -280,12 +280,13 @@ pnpm exec prettier --write .prettierrc.js
 
 4. Créer un fichier `.prettierignore` pour éviter de formater des fichiers inutiles  
 
-```shell
-# .prettierignore
-node_modules
-dist
-coverage
+```text
+**/.git
+**/node_modules
 .angular
+.git
+coverage
+dist
 package-lock.json
 pnpm-lock.yaml
 yarn.lock
@@ -368,13 +369,15 @@ Mettre à jour la section "scripts" du `package.json` pour faciliter l'utilisati
 ```JSON
 "scripts": {
   "ng": "ng",
-  "start": "ng serve",
   "build": "ng build",
-  "watch": "ng build --watch --configuration development",
-  "test": "ng test",
+  "format": "prettier --write \"src/**/*.{ts,html,css,scss,json}\"",
+  "format:check": "prettier --check \"**/*.{ts,js,html,scss,css,json,md}\"",
   "lint": "ng lint",
   "lint:ci": "ng lint --max-warnings=0",
-  "format": "prettier --write \"src/**/*.{ts,html,css,scss,json}\""
+  "prepare": "husky",
+  "start": "ng serve",
+  "test": "ng test",
+  "watch": "ng build --watch --configuration development"
 }
 ```
 
