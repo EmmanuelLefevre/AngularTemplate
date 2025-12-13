@@ -706,6 +706,7 @@ Configuration pour le routage des guards (`ng g guard`).
 Configuration pour la gestion des interceptors (`ng g interceptor`).
 
 | Option | Valeur | Description |
+| :--- | :--- | :--- |
 | **`type`** | `"model"` | Ajouter le type à la classe et au fichier `.model.ts` |
 
 #### 8. `@schematics/angular:interface` (Interfaces)
@@ -722,6 +723,7 @@ Configuration pour la gestion globale des interfaces (`ng g i`).
 Configuration pour la gestion globale des modules (`ng g m`).
 
 | Option | Valeur | Description |
+| :--- | :--- | :--- |
 | **`typeSeparator`** | `.` | Définit le séparateur `module` (uniquement si STANDALONE est désactivé) |
 
 #### 10. `@schematics/angular:pipe` (Pipes)
@@ -729,6 +731,7 @@ Configuration pour la gestion globale des modules (`ng g m`).
 Configuration pour la gestion globale des pipes (`ng g p`).
 
 | Option | Valeur | Description |
+| :--- | :--- | :--- |
 | **`skipTests`** | `false` | Les résolveurs sont étroitement liés au routage et sont généralement testés via E2E |
 | **`standalone`** | `true` | Utiliser le STANDALONE pour les pipes |
 
