@@ -506,28 +506,29 @@ arrowParens: "always"
   Forcer les parenthèses autour des arguments des fonctions fléchées.
 
 bracketSameLine: true
-  Placer la balise de fermeture de l'élément HTML multi-lignes (>) sur la même ligne que le dernier attribut.
+  Placer la balise de fermeture de l'élément HTML multi-lignes (>)
+  sur la même ligne que le dernier attribut.
 
 bracketSpacing: true
-  Ajouter des espaces entre les accolades des objets. ({ foo: bar } au lieu de {foo: bar}).
+  Ajouter des espaces entre les accolades des objets, { foo: bar } au lieu de {foo: bar}.
 
 embeddedLanguageFormatting: "auto"
   Prettier formate automatiquement le code intégré (ex: CSS dans JS) s'il le reconnaît.
 
 endOfLine: "lf"
-  Line Feed (LF). C'est le standard Unix. Il garantit la cohérence des fins de ligne même sous Windows,
-  prévenant des modifications inutiles dans Git.
+  Line Feed (LF). C'est le standard Unix. Il garantit la cohérence des fins de
+  ligne même sous Windows, prévenant des modifications inutiles dans Git.
 
 experimentalTernaries: false
   Conserver le formatage classique des ternaires (condition ? true : false).
 
 htmlWhitespaceSensitivity: "css"
-  Respecter la propriété CSS display par défaut pour la gestion des espaces dans le HTML,
-  évitant de casser la mise en page des éléments inline.
+  Respecter la propriété CSS display par défaut pour la gestion des espaces dans le
+  HTML, évitant de casser la mise en page des éléments inline.
 
 importOrder
-  Définit la hiérarchie verticale des imports. Le plugin lit cette liste de haut en bas pour organiser
-  les imports en groupes.
+  Définit la hiérarchie verticale des imports. Le plugin lit cette liste de haut
+  en bas pour organiser les imports en groupes.
 
   Rules details (Regex) :
   1. "^@angular/(.*)$"
@@ -540,7 +541,7 @@ importOrder
 
   3. "<THIRD_PARTY_MODULES>"
     Il ne s'agit pas d'une expression régulière, mais d'un mot-clé magique provenant du plugin.
-    Capturer TOUT ce qui provient de 'node_modules' et qui n'a pas été intercepté par les règles 1 et 2.
+    Capturer TOUT ce qui vient de 'node_modules' et qui n'a pas été intercepté par les règles 1 et 2.
 
   4. "^@core/(.*)$"
     Capture vos alias TypeScript définis dans tsconfig.json pour le dossier « core ».
