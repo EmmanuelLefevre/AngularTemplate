@@ -705,7 +705,7 @@ Configuration pour la logique métier principale et les fournisseurs de données
 #### 7. Autres éléments (Enums, Interfaces, Pipes...)
 
 | Schematic | Option | Valeur | Description |
-| :--- | :--- | :--- |
+| :--- | :--- | :--- | :--- |
 | **`@schematics/angular:class`** | `skipTests` | `true` | Les classes (souvent des DTO ou des wrappers utilitaires) n'ont généralement pas besoin de tests |
 | **`@schematics/angular:enum`** | `type` | `"enum"` | Ajouter le type à la classe et au fichier `.enum.ts` |
 | **`@schematics/angular:interface`** | `type` | `"model"` | Ajouter le type à la classe et au fichier `.model.ts` |
