@@ -32,6 +32,7 @@
 - [HUSKY](#husky)
 - [TSCONFIG](#ts-config)
 - [SCHEMATICS](#schematics)
+- [ANGULARJSON](#angular-json)
 - [ERREURS FREQUENTES](#erreurs-frequentes)
 - [TOOLINGCONFIGURATION](#tooling-configuration)
   - [Prettier Rules](#prettier-rules)
@@ -728,6 +729,39 @@ Configuration des alias
 
 💡 A full documentation have been added in `angular.json` and here too... [Schematics Rules](#schematics-rules)  
 
+<h2 id="angular-json">
+  <img
+    alt="Angular JSON"
+    title="Angular JSON"
+    width="34px"
+    src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/angular/angular-original.svg"
+  />
+  ANGULAR JSON
+</h2>
+
+Cette section (`architect.build.configurations.production`) définit les paramètres spécifiques qui sont appliqués lorsque vous  
+exécutez la commande `ng build --configuration=production` (souvent abrégée en `ng build --prod` ou `ng build`).  
+
+Dans `"fileReplacements"` renseigner le chemin des fichiers d'environnement  
+
+```JSON
+"architect": {
+  "build": {
+    "configurations": {
+      "production": {
+        "fileReplacements": [
+          {
+            "replace": "src/_environments/environment.ts",
+            "with": "src/_environments/environment.prod.ts"
+          }
+        ],
+        "budgets": []
+      }
+    }
+  }
+}
+```
+
 <h2 id="erreurs-frequentes">
   ⚠️ ERREURS FREQUENTES
 </h2>
@@ -1000,7 +1034,8 @@ Configuration pour la gestion des interceptors (`ng g interceptor`).
 
 | Option | Valeur | Description |
 | :--- | :--- | :--- |
-| **`type`** | `"model"` | Ajouter le type à la classe et au fichier `.model.ts` |
+| **`skipTests`** | `true` | Ne pas générer de fichiers de tests unitaires |
+| **`typeSeparator`** | `.` | Définir le séparateur `interceptor` (`auth.interceptor.ts`) |
 
 #### 8. @schematics/angular:interface (`Interfaces`)
 
@@ -1008,8 +1043,7 @@ Configuration pour la gestion globale des interfaces (`ng g i`).
 
 | Option | Valeur | Description |
 | :--- | :--- | :--- |
-| **`skipTests`** | `true` | Ne pas générer de fichiers de tests unitaires |
-| **`typeSeparator`** | `.` | Définir le séparateur `interceptor` (`auth.interceptor.ts`) |
+| **`type`** | `"model"` | Ajouter le type à la classe et au fichier `.model.ts` |
 
 #### 9. @schematics/angular:module (`Modules`)
 
