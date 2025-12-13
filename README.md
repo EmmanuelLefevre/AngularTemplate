@@ -6,7 +6,7 @@
 
 <br>
 
-<h1 id="angular-template">
+<h1 id="angular-template" align="center">
   <img
     alt="Angular"
     title="Angular"
