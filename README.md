@@ -11,12 +11,12 @@
 ## SOMMAIRE
 
 - [ARCHITECTURE](#-architecture)
-- [PNPM](#-pnpm)
-- [ANGULAR](#-angular)
-- [ESLINT / PRETTIER](#-eslint--prettier)
-- [HUSKY](#-husky)
+- [PNPM](#pnpm)
+- [ANGULAR](#angular)
+- [ESLINT / PRETTIER](#eslint-prettier)
+- [HUSKY](#husky)
 - [SCHEMATICS](#schematics)
-- [WARNING](#-warning)
+- [WARNING](#warning)
 - [TOOLINGCONFIGURATION](#tooling-configuration)
   - [Prettier Rules](#prettier-rules)
   - [EsLint Rules](#eslint-rules)
@@ -57,7 +57,16 @@
 │   ├── styles.scss
 ```
 
-## <img alt="PNPM" title="PNPM" width="34px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pnpm/pnpm-original-wordmark.svg" />  PNPM
+<h2 id="pnpm">
+  <img
+    alt="PNPM"
+    title="PNPM"
+    width="34px"
+    style="padding-right:10px; vertical-align: middle;"
+    src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pnpm/pnpm-original-wordmark.svg"
+  />
+  PNPM
+</h2>
 
 Installer PNPM.
 
@@ -86,7 +95,16 @@ Exécuter simplement cette commande dans un terminal :
 npm install -g pnpm
 ```
 
-## <img alt="Angular" title="Angular" width="34px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/angular/angular-original.svg" />  ANGULAR
+<h2 id="angular">
+  <img
+    alt="Angular"
+    title="Angular"
+    width="34px"
+    style="padding-right:10px; vertical-align: middle;"
+    src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/angular/angular-original.svg"
+  />
+  ANGULAR
+</h2>
 
 1. Vérifier les versions de la CLI
 
@@ -192,7 +210,25 @@ save-exact=true
 
 Désormais, si on lance `pnpm add rxjs`, il installera **`"rxjs"`: `"7.8.0"`** au lieu de **`"^7.8.0"`**.
 
-## <img alt="ESLint" title="ESLint" width="34px" style="padding-right:10px;"src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/eslint/eslint-original.svg" />  ESLINT / PRETTIER  <img alt="Prettier" title="Prettier" width="30px" style="padding-right:10px;" src="https://raw.githubusercontent.com/EmmanuelLefevre/GitHubProfileIcons/main/prettier.png" />
+<h2 id="eslint-prettier">
+  <img
+    alt="ESLint"
+    title="ESLint"
+    width="34px"
+    style="padding-right:10px; vertical-align: middle;"
+    src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/eslint/eslint-original.svg"
+  />
+
+  ESLINT / PRETTIER
+
+  <img
+    alt="Prettier"
+    title="Prettier"
+    width="30px"
+    style="padding-left:10px; vertical-align: middle;"
+    src="https://raw.githubusercontent.com/EmmanuelLefevre/GitHubProfileIcons/main/prettier.png"
+  />
+</h2>
 
 Pour un projet Angular moderne, la combinaison standard de l'industrie est ESLint (pour la qualité du code et les erreurs) et Prettier (pour le style et le formatage).  
 
@@ -395,7 +431,16 @@ Vous devriez voir s'afficher =>
 
 <br>
 
-## <img alt="Husky" title="Husky" width="30px" style="padding-right:10px;" src="https://raw.githubusercontent.com/EmmanuelLefevre/GitHubProfileIcons/main/husky.png" />  HUSKY
+<h2 id="husky">
+  <img
+    alt="Husky"
+    title="Husky"
+    width="30px"
+    style="padding-right:10px; vertical-align: middle;"
+    src="https://raw.githubusercontent.com/EmmanuelLefevre/GitHubProfileIcons/main/husky.png"
+  />
+  HUSKY
+</h2>
 
 Nous allons utiliser Husky couplé à Lint-staged.  
 Pourquoi Lint-staged ? Lancer `ng lint` sur tout le projet prend du temps (10s... 30s... 1min). Si l'on doit attendre 1 minute à chaque commit, nous allons finir par désactiver Husky.  
@@ -467,7 +512,9 @@ pnpm exec lint-staged
 
 ```
 
-## ⚠️ WARNING
+<h2 id="warning">
+  ⚠️ WARNING
+</h2>
 
 Attention si vous recevez ce warning lors du premier push !  
 
