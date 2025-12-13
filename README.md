@@ -791,7 +791,7 @@ npx @andrewbranch/ts5to6 --fixRootDir ./tsconfig.app.json
 | **`endOfLine`** | `"lf"` | Line Feed (LF). Standard Unix. Garantit la cohérence des fins de ligne (même sous Windows) et évite des modifications inutiles dans Git |
 | **`experimentalTernaries`** | `false` | Conserver le formatage classique des ternaires<br>(`condition ? true : false`) |
 | **`htmlWhitespaceSensitivity`** | `"css"` | Respecter la propriété CSS `display` par défaut pour la gestion des espaces dans le HTML (évite de casser la mise en page inline) |
-| **`importOrder`** | `[Array]` | Définit la hiérarchie verticale des imports (nécessite `@trivago/prettier-plugin-sort-imports`).<br><br>**1. `^@angular/(.*)$`** : Packages Angular officiels (Core, Common...) en premier.<br><br>**2. `^rxjs`** : RxJS, moteur asynchrone fondamental.<br><br>**3. `<THIRD_PARTY_MODULES>`** : Tout ce qui vient de `node_modules` (non intercepté avant).<br><br>**4. `^@core/(.*)$`** : Alias TypeScript pour le dossier « core » (services, guards...).<br><br>**5. `^@shared/(.*)$`** : Alias pour le dossier « partagé » (composants UI, pipes...).<br><br>**6. `^[./]`** : Importations locales (fichiers proches), placées à la fin. |
+| **`importOrder`** | `[Array]` | Définit la hiérarchie verticale des imports (nécessite `@trivago/prettier-plugin-sort-imports`)<br><br>**1. `^@angular/(.*)$`** : Packages Angular officiels (Core, Common...) en premier<br><br>**2. `^rxjs`** : RxJS, moteur asynchrone fondamental<br><br>**3. `<THIRD_PARTY_MODULES>`** : Tout ce qui vient de `node_modules` (non intercepté avant)<br><br>**4. `^@core/(.*)$`** : Alias TypeScript pour le dossier « core » (services, guards...)<br><br>**5. `^@shared/(.*)$`** : Alias pour le dossier « partagé » (composants UI, pipes...)<br><br>**6. `^[./]`** : Importations locales (fichiers proches), placées à la fin |
 | **`importOrderParserPlugins`** | `[Array]` | Plugins pour l'analyseur Babel<br>**Important :** Inclure `"decorators-legacy"` pour qu'Angular (`@Component`) ne génère pas d'erreur et `"typescript"` pour la syntaxe TS |
 | **`importOrderSeparation`** | `true` | Ajoute une ligne vide entre les groupes d'imports |
 | **`importOrderSortSpecifiers`** | `true` | Trie également les imports nommés entre accolades<br>(ex: `{b, a}` devient `{a, b}`) |
@@ -841,37 +841,44 @@ npx @andrewbranch/ts5to6 --fixRootDir ./tsconfig.app.json
   TS Config Rules
 </h3>
 
-[TS Config Documentation](https://www.typescriptlang.org/tsconfig/)
+[TS Config Documentation](https://www.typescriptlang.org/tsconfig/)  
 
-Cette configuration (`tsconfig.json`) sert de **base stricte** pour l'ensemble de l'espace de travail. Elle utilise l'approche **"Solution Style"**, déléguant la compilation effective aux fichiers `tsconfig.app.json` (pour l'application) et `tsconfig.spec.json` (pour les tests).
+Cette configuration (`tsconfig.json`) sert de **base stricte** pour l'ensemble de l'espace de travail. Elle utilise l'approche **"Solution Style"**, déléguant la compilation effective aux fichiers `tsconfig.app.json` (pour l'application) et `tsconfig.spec.json` (pour les tests).  
 
 ### 1. Options du Compilateur (`compilerOptions`)
 
 | Option | Valeur | Description & Justification |
 | :--- | :--- | :--- |
-| **`target`** | `"ES2022"` | Compile le code vers ECMAScript 2022 moderne, permettant l'usage natif de `async/await` et des fonctionnalités de classes récentes. |
-| **`module`** | `"preserve"` | Laisse les instructions d'import/export intactes. Permet au bundler (Vite/Webpack) de gérer le chargement des modules le plus efficacement possible. |
-| **`strict`** | `true` | **Sécurité :** Active toutes les options de vérification de type strictes (pas de `any` implicite, gestion stricte du `null`, etc.). |
-| **`experimentalDecorators`** | `true` | **Requis :** Active le support de la syntaxe des décorateurs, massivement utilisée par Angular (`@Component`, `@Injectable`). |
-| **`isolatedModules`** | `true` | **Vitesse de Build :** Garantit que chaque fichier peut être transpilé individuellement, ce qui est requis pour les outils ultra-rapides comme Vite ou Esbuild. |
-| **`noImplicitOverride`** | `true` | Force l'utilisation du mot-clé `override` lorsqu'une méthode écrase celle d'une classe parente. Sécurise l'héritage. |
-| **`noImplicitReturns`** | `true` | Vérifie que tous les chemins d'exécution d'une fonction retournent bien une valeur. |
-| **`noFallthroughCasesInSwitch`**| `true` | Empêche de passer accidentellement d'un `case` à un autre dans un `switch` (oubli du `break`). |
-| **`skipLibCheck`** | `true` | **Performance :** Ignore la vérification des types à l'intérieur de `node_modules` pour accélérer considérablement la compilation. |
-| **`importHelpers`** | `true` | **Taille du Bundle :** Importe les fonctions utilitaires depuis `tslib` au lieu de générer du code dupliqué dans chaque fichier. |
-| **`useDefineForClassFields`** | `false` | **Compatibilité :** Maintient le comportement historique d'initialisation des champs de classe pour assurer une compatibilité totale avec les décorateurs Angular. |
-| **`forceConsistentCasing...`** | `true` | **Multi-plateforme :** Interdit les références de fichiers avec une casse incohérente (évite les bugs entre Windows et Linux/Mac). |
+| **`declaration`**| `false` | Ne pas générer de fichiers de déclaration TypeScript (`.d.ts`). N'est généralement pas nécessaire pour les applications, mais l'est pour les bibliothèques. |
+| **`esModuleInterop`**| `true` | Améliore la compatibilité entre les modules CommonJS (Node/Legacy) et les modules ES (Modern JS) pour les imports |
+| **`experimentalDecorators`** | `true` | Active le support de la syntaxe des décorateurs, massivement utilisée par Angular (`@Component`, `@Injectable`) |
+| **`forceConsistentCasing...`** | `true` | Interdire les références de fichiers avec une casse incohérente (éviter bugs entre Windows / Linux/Mac) |
+| **`importHelpers`** | `true` | Importer les fonctions utilitaires depuis `tslib` au lieu de générer du code dupliqué dans chaque fichier |
+| **`isolatedModules`** | `true` | Garantit que chaque fichier peut être transpilé individuellement, ce qui est requis pour les outils ultra-rapides comme Vite ou Esbuild |
+| **`lib`**| `[Array]` | **1. `"ES2022"`** : inclure les types de JavaScript moderne au navigateur<br><br>**2. `"DOM"`** : inclure les types spécifiques au navigateur.<br><br> |
+| **`module`** | `"preserve"` | Laisser les instructions d'import/export intactes. Permet au bundler (Vite/Webpack) de gérer le chargement des modules le plus efficacement possible |
+| **`moduleResolution`**| `"node"` | Utiliser l'algorithme de résolution des modules de Node.js pour trouver les fichiers dans node_modules et les chemins relatifs |
+| **`noImplicitOverride`** | `true` | Forcer l'utilisation du mot-clé `override` lorsqu'une méthode écrase celle d'une classe parente et sécurise l'héritage |
+| **`noImplicitReturns`** | `true` | Vérifier que tous les chemins d'exécution d'une fonction retournent bien une valeur |
+| **`noFallthroughCasesInSwitch`**| `true` | Empêche de passer accidentellement d'un `case` à un autre dans un `switch` (oubli du `break`) |
+| **`resolveJsonModule...`**| `true` | Permettre d'importer directement des fichiers `.json` comme des modules TypeScript (`import data from './data.json'`) |
+| **`skipLibCheck`** | `true` | Ignorer la vérification des types à l'intérieur de `node_modules` pour accélérer considérablement la compilation |
+| **`sourceMap`**| `false` | Indiquer au compilateur de ne pas générer de fichiers `.map` pour le débogage (souvent géré par les outils de build dans les fichiers spécifiques comme `tsconfig.app.json`) |
+| **`strict`** | `true` | Activer toutes les options de vérification de type strictes (pas de `any` implicite, gestion stricte du `null`, etc.) |
+| **`target`** | `"ES2022"` | Compiler le code vers ECMAScript 2022 moderne, permettant l'usage natif de `async/await` et des fonctionnalités de classes récentes |
+| **`useDefineForClassFields`** | `false` | Maintenir le comportement historique d'initialisation des champs de classe pour assurer une compatibilité totale avec les décorateurs Angular |
 
 ### 2. Options du Compilateur Angular (`angularCompilerOptions`)
 
-Ces paramètres contrôlent le compilateur AOT (Ahead-of-Time) d'Angular, spécifiquement pour la vérification des types dans les templates HTML.
+Ces paramètres contrôlent le compilateur AOT (Ahead-of-Time) d'Angular, spécifiquement pour la vérification des types dans les templates HTML.  
 
 | Option | Valeur | Description |
 | :--- | :--- | :--- |
-| **`strictTemplates`** | `true` | **Bonne Pratique :** Active la vérification stricte des types dans les templates Angular (`.html`). Détecte les erreurs de liaison de données à la compilation. |
-| **`strictInjectionParameters`** | `true` | Signale une erreur si un paramètre injecté n'est pas compatible avec le type d'injection attendu. |
-| **`strictInputAccessModifiers`**| `true` | Respecte les modificateurs d'accès (`private`, `protected`) lors de l'accès aux propriétés depuis les templates HTML. |
-| **`strictStandalone`** | `true` | Applique des règles de validation plus strictes pour les composants, directives et pipes Standalone. |
+| **`enableI18nLegacy...`** | `false` | Indiquer au compilateur Angular de ne pas utiliser le format d'identifiant de message hérité (legacy) pour l'internationalisation |
+| **`strictInjectionParameters`** | `true` | Signaler une erreur si un paramètre injecté n'est pas compatible avec le type d'injection attendu |
+| **`strictInputAccessModifiers`**| `true` | Respecter les modificateurs d'accès (`private`, `protected`) lors de l'accès aux propriétés depuis les templates HTML |
+| **`strictStandalone`** | `true` | Appliquer des règles de validation plus strictes pour les composants, directives et pipes Standalone |
+| **`strictTemplates`** | `true` | Activer la vérification stricte des types dans les templates Angular (`.html`). Détecte les erreurs de liaison de données à la compilation |
 
 <h3 id="schematics-rules">
   <img
@@ -885,7 +892,7 @@ Ces paramètres contrôlent le compilateur AOT (Ahead-of-Time) d'Angular, spéci
 
 [Angular Documentation](https://github.com/angular/angular-cli/tree/main/packages/schematics/angular)
 
-#### 1. `@schematics/angular:application` (Project Initialization)
+#### 1. @schematics/angular:application (`Project Initialization`)
 
 Définit les caractéristiques fondamentales de l'application, principalement utilisées lors de la création du projet.
 
@@ -902,7 +909,7 @@ Définit les caractéristiques fondamentales de l'application, principalement ut
 | **`style`** | `"scss"` | Définir SCSS par défaut |
 | **`zoneless`** | `false` | Maintenir `zone.js` activé pour la détection des changements |
 
-#### 2. `@schematics/angular:class` (Class)
+#### 2. @schematics/angular:class (`Class`)
 
 Configuration pour la génération des classes (`ng g cl`).
 
@@ -910,7 +917,7 @@ Configuration pour la génération des classes (`ng g cl`).
 | :--- | :--- | :--- |
 | **`skipTests`** | `true` | Les classes (souvent des DTO ou des wrappers utilitaires) n'ont généralement pas besoin de tests |
 
-#### 3. `@schematics/angular:component` (Components)
+#### 3. @schematics/angular:component (`Components`)
 
 Configuration pour la génération des composants (`ng g c`).
 
@@ -925,7 +932,7 @@ Configuration pour la génération des composants (`ng g c`).
 | **`style`** | `"scss"` | Définir SCSS par défaut |
 | **`type`** | `"component"` | Ajouter le type à la classe et au fichier (`my-feature.component.ts`) |
 
-#### 4. `@schematics/angular:directive` (Directives)
+#### 4. @schematics/angular:directive (`Directives`)
 
 Configuration pour la génération des directives (`ng g d`).
 
@@ -936,7 +943,7 @@ Configuration pour la génération des directives (`ng g d`).
 | **`standalone`** | `true` | Utiliser le STANDALONE pour les directives |
 | **`type`** | `"directive"` | Ajouter le type à la classe et au fichier (`my-highlight.directive.ts`) |
 
-#### 5. `@schematics/angular:enum` (Enum)
+#### 5. @schematics/angular:enum (`Enum`)
 
 Configuration pour la génération des enums (`ng g e`).
 
@@ -944,18 +951,18 @@ Configuration pour la génération des enums (`ng g e`).
 | :--- | :--- | :--- |
 | **`type`** | `"enum"` | Ajouter le type à la classe et au fichier `.enum.ts` |
 
-#### 6. `@schematics/angular:guard` (Guards)
+#### 6. @schematics/angular:guard (`Guards`)
 
 Configuration pour le routage des guards (`ng g guard`).
 
 | Option | Valeur | Description |
 | :--- | :--- | :--- |
 | **`functional`** | `false` | Générer une Guard basée sur une classe (au lieu d'une simple fonction) |
-| **`implements`** | `[...]` | Générer le Guard implémentant les quatre interfaces de routage |
+| **`implements`** | `[Array]` | Générer le Guard implémentant les quatre interfaces de routage |
 | **`skipTests`** | `true` | Ne pas générer de fichiers de tests unitaires |
 | **`typeSeparator`** | `.` | Définir le séparateur `guard` (`auth.guard.ts`) |
 
-#### 7. `@schematics/angular:interceptor` (HTTP Interceptors)
+#### 7. @schematics/angular:interceptor (`HTTP Interceptors`)
 
 Configuration pour la gestion des interceptors (`ng g interceptor`).
 
@@ -963,7 +970,7 @@ Configuration pour la gestion des interceptors (`ng g interceptor`).
 | :--- | :--- | :--- |
 | **`type`** | `"model"` | Ajouter le type à la classe et au fichier `.model.ts` |
 
-#### 8. `@schematics/angular:interface` (Interfaces)
+#### 8. @schematics/angular:interface (`Interfaces`)
 
 Configuration pour la gestion globale des interfaces (`ng g i`).
 
@@ -972,7 +979,7 @@ Configuration pour la gestion globale des interfaces (`ng g i`).
 | **`skipTests`** | `true` | Ne pas générer de fichiers de tests unitaires |
 | **`typeSeparator`** | `.` | Définir le séparateur `interceptor` (`auth.interceptor.ts`) |
 
-#### 9. `@schematics/angular:module` (Modules)
+#### 9. @schematics/angular:module (`Modules`)
 
 Configuration pour la gestion globale des modules (`ng g m`).
 
@@ -980,7 +987,7 @@ Configuration pour la gestion globale des modules (`ng g m`).
 | :--- | :--- | :--- |
 | **`typeSeparator`** | `.` | Définit le séparateur `module` (uniquement si STANDALONE est désactivé) |
 
-#### 10. `@schematics/angular:pipe` (Pipes)
+#### 10. @schematics/angular:pipe (`Pipes`)
 
 Configuration pour la gestion globale des pipes (`ng g p`).
 
@@ -989,7 +996,7 @@ Configuration pour la gestion globale des pipes (`ng g p`).
 | **`skipTests`** | `false` | Les résolveurs sont étroitement liés au routage et sont généralement testés via E2E |
 | **`standalone`** | `true` | Utiliser le STANDALONE pour les pipes |
 
-#### 11. `@schematics/angular:resolver` (Resolvers)
+#### 11. @schematics/angular:resolver (`Resolvers`)
 
 Configuration pour la gestion globale des resolvers (`ng g r`).
 
@@ -998,7 +1005,7 @@ Configuration pour la gestion globale des resolvers (`ng g r`).
 | **`skipTests`** | `false` | Générer un fichier de test unitaire (`.spec.ts`). |
 | **`type`** | `"service"` | Ajouter le type à la classe et au fichier (`api.service.ts`) |
 
-#### 12. `@schematics/angular:service` (Services)
+#### 12. @schematics/angular:service (`Services`)
 
 Configuration pour la gestion globale des services (`ng g s`).
 
