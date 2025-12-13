@@ -689,7 +689,7 @@ Configuration pour le routage des éléments de protection et de sécurité.
 Configuration pour la gestion globale des requêtes/réponses HTTP.
 
 | Option | Valeur | Description |
-| :--- | :--- | :--- | :--- |
+| :--- | :--- | :--- |
 | **`skipTests`** | `true` | Ne pas générer de fichiers de tests unitaires |
 | **`typeSeparator`** | `.` | Définir le séparateur `interceptor` (`auth.interceptor.ts`) |
 
