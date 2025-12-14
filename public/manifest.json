@@ -53,7 +53,7 @@
       }]
     },
     {
-      "name": "Contact us",
+      "name": "Contact Us",
       "short_name": "Contact",
       "description": "Open contact form.",
       "url": "/contact",
