@@ -50,19 +50,16 @@
 │   │   ├── environment.ts
 │   ├── app/
 │   │   ├── core/
+│   │   │   ├── _config/
 │   │   │   ├── _models/
 │   │   │   ├── _services/
 │   │   │   ├── auth/
-│   │   │   ├── config/
+│   │   │   ├── guard/
+│   │   │   ├── interceptor/
+│   │   │   ├── routing/
 │   │   ├── features/
-│   │   │   ├── site/
-│   │   │   │   ├── _models/
-│   │   │   │   ├── _services/
-│   │   │   │   ├── contact/
-│   │   │   │   ├── home/
-│   │   │   │   ├── site.route.ts
-│   │   │   │   ├── site.layout.ts
 │   │   │   ├── admin/
+│   │   │   │   ├── _config/
 │   │   │   │   ├── _models/
 │   │   │   │   ├── _services/
 │   │   │   │   ├── dashboard/
@@ -74,6 +71,13 @@
 │   │   │   │   ├── users/
 │   │   │   │   ├── admin.route.ts
 │   │   │   │   ├── admin.layout.ts
+│   │   │   ├── site/
+│   │   │   │   ├── _models/
+│   │   │   │   ├── _services/
+│   │   │   │   ├── contact/
+│   │   │   │   ├── home/
+│   │   │   │   ├── site.route.ts
+│   │   │   │   ├── site.layout.ts
 │   │   ├── shared/
 │   │   │   │   ├── _directives/
 │   │   │   │   ├── _pipes/
@@ -81,6 +85,14 @@
 │   │   │   │   ├── components/
 │   │   │   │   │   ├── header/
 │   │   │   │   │   ├── footer/
+│   │   │   │   ├── error-handler/
+│   │   │   │   │   ├── error-views/
+│   │   │   │   │   │    ├── server-error/
+│   │   │   │   │   │    ├── unauthorized-error/
+│   │   │   │   │   │    ├── unconnected-error/
+│   │   │   │   │   │    ├── unfound-error/
+│   │   │   │   │   ├── error-handler.component.html
+│   │   │   │   │   ├── error-handler.component.ts
 │   │   ├── app.component.html
 │   │   ├── app.component.ts
 │   │   ├── app.config.ts
@@ -94,6 +106,7 @@
 │   │   ├── i18n/
 │   │   ├── img/
 │   ├── styles/
+│   │   ├── _animations.scss
 │   │   ├── _mixins.scss
 │   │   ├── _reset.scss
 │   │   ├── _variables.scss
