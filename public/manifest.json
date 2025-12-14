@@ -2,21 +2,66 @@
   "name": "Angular Template",
   "short_name": "AT",
   "description": "Template Angular for front-end projects",
+
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
+  "orientation": "portrait",
+
   "background_color": "#ffffff",
   "theme_color": "#0d6efd",
-  "orientation": "portrait",
+
   "icons": [
     {
-      "src": "/icons/icon-192x192.png",
+      "src": "/assets/icons/icon-72x72.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/assets/icons/icon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/icons/icon-128x128.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/icons/icon-192x192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "/icons/icon-512x512.png",
+      "src": "/assets/icons/icon-512x512.png",
       "sizes": "512x512",
       "type": "image/png"
+    }
+  ],
+
+  "shortcuts": [
+    {
+      "name": "Settings and Profile",
+      "short_name": "Settings",
+      "description": "Modify your preferences and account information.",
+      "url": "/settings",
+      "icons": [{
+        "src": "/assets/icons/shortcut-settings.png",
+        "sizes": "96x96",
+        "type": "image/png"
+      }]
+    },
+    {
+      "name": "Contact us",
+      "short_name": "Contact",
+      "description": "Open contact form.",
+      "url": "/contact",
+      "icons": [{
+        "src": "/assets/icons/shortcut-contact.png",
+        "sizes": "96x96",
+        "type": "image/png"
+      }]
     }
   ]
 }
