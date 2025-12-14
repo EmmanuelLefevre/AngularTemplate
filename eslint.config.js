@@ -34,6 +34,9 @@ module.exports = defineConfig([
   {
     files: ['**/*.html'],
     extends: [angular.configs.templateRecommended, angular.configs.templateAccessibility],
-    rules: {}
+    rules: {
+      '@angular-eslint/template/component-selector': 'off',
+      '@angular-eslint/template/directive-selector': 'off'
+    }
   }
 ]);
