@@ -1,1 +1,21 @@
-/* You can add global styles to this file, and also import other style files */
+/*===============ABSTRACTS===============*/
+// (Variables, Mixins, Functions)
+@import 'styles/abstracts/mixins';
+@import 'styles/abstracts/functions';
+@import 'styles/abstracts/globals';
+
+/*===============BASE===============*/
+// (Reset, Typo)
+@import 'styles/base/reset';
+@import 'styles/base/typography';
+@import 'styles/base/animations';
+
+/*===============LAYOUT===============*/
+// (Header, Footer, Grid, Sidebar)
+@import 'styles/layout/admin-layout';
+@import 'styles/layout/main-layout';
+
+/*===============THEMES===============*/
+// (Light/Dark Mode)
+@import 'styles/themes/theme-variables';
+@import 'styles/themes/light-theme';
