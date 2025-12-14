@@ -44,6 +44,9 @@
 
 ```text
 ├── public/
+│   ├── manifest.json
+│   ├── robots.txt
+│   ├── sitemap.xml
 ├── src/
 │   ├── _environments/
 │   │   ├── environment.prod.sample.ts
@@ -71,45 +74,57 @@
 │   │   │   │   ├── users/
 │   │   │   │   ├── admin.route.ts
 │   │   │   │   ├── admin.layout.ts
-│   │   │   ├── site/
+│   │   │   ├── public/
+│   │   │   │   ├── _config/
 │   │   │   │   ├── _models/
 │   │   │   │   ├── _services/
 │   │   │   │   ├── contact/
 │   │   │   │   ├── home/
-│   │   │   │   ├── site.route.ts
-│   │   │   │   ├── site.layout.ts
+│   │   │   │   ├── public.route.ts
+│   │   │   │   ├── public.layout.ts
+│   │   │   ├── private/
+│   │   │   │   ├── _config/
+│   │   │   │   ├── _models/
+│   │   │   │   ├── _services/
 │   │   ├── shared/
-│   │   │   │   ├── _directives/
-│   │   │   │   ├── _pipes/
-│   │   │   │   ├── _utils/
-│   │   │   │   ├── components/
-│   │   │   │   │   ├── header/
-│   │   │   │   │   ├── footer/
-│   │   │   │   ├── error-handler/
-│   │   │   │   │   ├── error-views/
-│   │   │   │   │   │    ├── server-error/
-│   │   │   │   │   │    ├── unauthorized-error/
-│   │   │   │   │   │    ├── unconnected-error/
-│   │   │   │   │   │    ├── unfound-error/
-│   │   │   │   │   ├── error-handler.component.html
-│   │   │   │   │   ├── error-handler.component.ts
+│   │   │   ├── _directives/
+│   │   │   ├── _pipes/
+│   │   │   ├── _utils/
+│   │   │   ├── components/
+│   │   │   │   ├── header/
+│   │   │   │   ├── footer/
+│   │   │   ├── error-handler/
+│   │   │   │   ├── error-views/
+│   │   │   │   │   ├── server-error/
+│   │   │   │   │   ├── unauthorized-error/
+│   │   │   │   │   ├── unconnected-error/
+│   │   │   │   │   ├── unfound-error/
+│   │   │   │   ├── error-handler.component.html
+│   │   │   │   ├── error-handler.component.ts
+│   │   │   │   ├── error-handler.view-model.ts
 │   │   ├── app.component.html
 │   │   ├── app.component.ts
 │   │   ├── app.config.ts
 │   │   ├── app.routes.ts
 │   ├── assets/
-│   │   ├── config/
-│   │   ├── data/
+│   │   ├── _config/
+│   │   ├── _data/
+│   │   ├── _i18n/
 │   │   ├── icons/
+│   │   ├── img/
 │   │   ├── fonts/
 │   │   ├── logos/
-│   │   ├── i18n/
-│   │   ├── img/
 │   ├── styles/
-│   │   ├── _animations.scss
-│   │   ├── _mixins.scss
-│   │   ├── _reset.scss
-│   │   ├── _variables.scss
+│   │   ├── abstracts/
+│   │   │   ├── _functions.scss
+│   │   │   ├── _globals.scss
+│   │   │   ├── _mixins.scss
+│   │   ├── base/
+│   │   │    ├── _animations.scss
+│   │   │    ├── _reset.scss
+│   │   │    ├── _typography.scss
+│   │   ├── layout/
+│   │   ├── themes/
 │   ├── index.html
 │   ├── main.ts
 │   ├── styles.scss
