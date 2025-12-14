@@ -44,9 +44,10 @@ __screenshots__/
 Thumbs.db
 
 
-########################################################################
-##########    Files ignored by `.gitignore_global` locally,   ##########
-########## these files could be reintegrated via theses rules ##########
-########################################################################
+######################################################################
+##########    Files ignored by .gitignore_global locally,   ##########
+########## these files could be reintegrated via theses rules ########
+######################################################################
 
+!/.npmrc
 !/public/sitemap.xml
