@@ -42,3 +42,11 @@ __screenshots__/
 # System files
 .DS_Store
 Thumbs.db
+
+
+########################################################################
+##########    Files ignored by `.gitignore_global` locally,   ##########
+########## these files could be reintegrated via theses rules ##########
+########################################################################
+
+!/public/sitemap.xml
