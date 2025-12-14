@@ -1,6 +1,7 @@
 User-agent: *
 Allow: /
 Allow: /home
+Allow: /settings
 
 #Sitemap
 Sitemap: https://www.angular-template/sitemap.xml
