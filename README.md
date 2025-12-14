@@ -42,118 +42,117 @@
 
 ## 🏗 ARCHITECTURE
 
-```text
-📦.husky
-📦.vscode
-📦src
- ┣ 📂app
- ┃ ┣ 📂core
+```plaintext
+🐶.husky
+💻.vscode
+🌍public
+ ┣ 🛠️manifest.json
+ ┣ 🤖robots.txt
+ ┣ 🗺️sitemap.xml
+📂src
+ ┣ 🔄_environments
+ ┃ ┣ 🔑environment.prod.sample.ts
+ ┃ ┗ 🔑environment.ts
+ ┣ 🈸app
+ ┃ ┣ 🧠core
+ ┃ ┃ ┣ ⚙️_config
+ ┃ ┃ ┣ 🧱_models
+ ┃ ┃ ┣ 💉_services
  ┃ ┃ ┣ 📂auth
  ┃ ┃ ┣ 📂guard
  ┃ ┃ ┣ 📂interceptor
- ┃ ┃ ┣ 📂routing
- ┃ ┃ ┣ 📂_config
- ┃ ┃ ┣ 📂_models
- ┃ ┃ ┗ 📂_services
- ┃ ┣ 📂features
- ┃ ┃ ┣ 📂admin
+ ┃ ┃ ┗ 📂routing
+ ┃ ┣ 🧩features
+ ┃ ┃ ┣ 👔admin
+ ┃ ┃ ┃ ┣ ⚙️_config
+ ┃ ┃ ┃ ┣ 🧱_models
+ ┃ ┃ ┃ ┣ 💉_services
+ ┃ ┃ ┃ ┣ 🗃️components
  ┃ ┃ ┃ ┣ 📂dashboard
- ┃ ┃ ┃ ┣ 📂_config
- ┃ ┃ ┃ ┣ 📂_models
- ┃ ┃ ┃ ┗ 📂_services
- ┃ ┃ ┣ 📂private
- ┃ ┃ ┃ ┣ 📂_config
- ┃ ┃ ┃ ┣ 📂_models
- ┃ ┃ ┃ ┗ 📂_services
- ┃ ┃ ┗ 📂public
- ┃ ┃ ┃ ┣ 📂_config
- ┃ ┃ ┃ ┣ 📂_models
- ┃ ┃ ┃ ┗ 📂_services
- ┃ ┣ 📂shared
- ┃ ┃ ┣ 📂components
+ ┃ ┃ ┃ ┃ ┣ 📄dashboard.component.html
+ ┃ ┃ ┃ ┃ ┗ 📄dashboard.component.ts
+ ┃ ┃ ┃ ┣ 👁️admin-views
+ ┃ ┃ ┃ ┣ 📂settings
+ ┃ ┃ ┃ ┣ 📂users
+ ┃ ┃ ┃ ┣ 📄admin.component.html
+ ┃ ┃ ┃ ┣ 📄admin.component.ts
+ ┃ ┃ ┃ ┣ 📄admin.config.ts
+ ┃ ┃ ┃ ┗ 📄admin.route.ts
+ ┃ ┃ ┣ 🔒private
+ ┃ ┃ ┃ ┣ ⚙️_config
+ ┃ ┃ ┃ ┣ 🧱_models
+ ┃ ┃ ┃ ┣ 💉_services
+ ┃ ┃ ┃ ┣ 🗃️components
+ ┃ ┃ ┃ ┣ 👁️private-views
+ ┃ ┃ ┃ ┣ 📄private.component.html
+ ┃ ┃ ┃ ┣ 📄private.component.ts
+ ┃ ┃ ┃ ┣ 📄private.config.ts
+ ┃ ┃ ┃ ┗ 📄private.route.ts
+ ┃ ┃ ┗ 😺public
+ ┃ ┃   ┣ ⚙️_config
+ ┃ ┃   ┣ 🧱_models
+ ┃ ┃   ┣ 💉_services
+ ┃ ┃   ┣ 🗃️components
+ ┃ ┃   ┣ 👁️public-views
+ ┃ ┃   ┃ ┣ ✉️contact
+ ┃ ┃   ┃ ┗ 🏠home
+ ┃ ┃   ┣ 📄public.component.html
+ ┃ ┃   ┣ 📄public.component.ts
+ ┃ ┃   ┣ 📄public.config.ts
+ ┃ ┃   ┗ 📄public.route.ts
+ ┃ ┣ ♻️shared
+ ┃ ┃ ┣ 🎛️_directives
+ ┃ ┃ ┣ 🧪_pipes
+ ┃ ┃ ┣ 🧰_utils
+ ┃ ┃ ┣ 🗃️components
  ┃ ┃ ┃ ┣ 📂footer
- ┃ ┃ ┃ ┃ ┣ 📜footer.component.html
- ┃ ┃ ┃ ┃ ┣ 📜footer.component.scss
- ┃ ┃ ┃ ┃ ┣ 📜footer.component.spec.ts
- ┃ ┃ ┃ ┃ ┗ 📜footer.component.ts
  ┃ ┃ ┃ ┗ 📂header
- ┃ ┃ ┃ ┃ ┣ 📜header.component.html
- ┃ ┃ ┃ ┃ ┣ 📜header.component.scss
- ┃ ┃ ┃ ┃ ┣ 📜header.component.spec.ts
- ┃ ┃ ┃ ┃ ┗ 📜header.component.ts
- ┃ ┃ ┣ 📂error-handler
- ┃ ┃ ┃ ┣ 📂error-views
- ┃ ┃ ┃ ┃ ┣ 📂server-error
- ┃ ┃ ┃ ┃ ┃ ┣ 📜server-error.component.html
- ┃ ┃ ┃ ┃ ┃ ┣ 📜server-error.component.scss
- ┃ ┃ ┃ ┃ ┃ ┣ 📜server-error.component.spec.ts
- ┃ ┃ ┃ ┃ ┃ ┗ 📜server-error.component.ts
- ┃ ┃ ┃ ┃ ┣ 📂unauthorized-error
- ┃ ┃ ┃ ┃ ┃ ┣ 📜unauthorized-error.component.html
- ┃ ┃ ┃ ┃ ┃ ┣ 📜unauthorized-error.component.scss
- ┃ ┃ ┃ ┃ ┃ ┣ 📜unauthorized-error.component.spec.ts
- ┃ ┃ ┃ ┃ ┃ ┗ 📜unauthorized-error.component.ts
- ┃ ┃ ┃ ┃ ┣ 📂unconnected-error
- ┃ ┃ ┃ ┃ ┃ ┣ 📜unconnected-error.component.html
- ┃ ┃ ┃ ┃ ┃ ┣ 📜unconnected-error.component.scss
- ┃ ┃ ┃ ┃ ┃ ┣ 📜unconnected-error.component.spec.ts
- ┃ ┃ ┃ ┃ ┃ ┗ 📜unconnected-error.component.ts
- ┃ ┃ ┃ ┃ ┗ 📂unfound-error
- ┃ ┃ ┃ ┃ ┃ ┣ 📜unfound-error.component.html
- ┃ ┃ ┃ ┃ ┃ ┣ 📜unfound-error.component.scss
- ┃ ┃ ┃ ┃ ┃ ┣ 📜unfound-error.component.spec.ts
- ┃ ┃ ┃ ┃ ┃ ┗ 📜unfound-error.component.ts
- ┃ ┃ ┃ ┣ 📜error-handler.component.html
- ┃ ┃ ┃ ┣ 📜error-handler.component.scss
- ┃ ┃ ┃ ┣ 📜error-handler.component.spec.ts
- ┃ ┃ ┃ ┗ 📜error-handler.component.ts
- ┃ ┃ ┣ 📂_directives
- ┃ ┃ ┣ 📂_pipes
- ┃ ┃ ┗ 📂_utils
- ┃ ┣ 📜app.component.html
- ┃ ┣ 📜app.component.scss
- ┃ ┣ 📜app.component.spec.ts
- ┃ ┣ 📜app.component.ts
- ┃ ┣ 📜app.config.ts
- ┃ ┗ 📜app.routes.ts
- ┣ 📂assets
- ┃ ┣ 📂fonts
- ┃ ┣ 📂icons
- ┃ ┣ 📂img
- ┃ ┣ 📂logos
- ┃ ┣ 📂_config
- ┃ ┣ 📂_data
- ┃ ┗ 📂_i18n
- ┣ 📂styles
+ ┃ ┃ ┗ ❌error-handler
+ ┃ ┃   ┣ 👁️error-views
+ ┃ ┃   ┃ ┣ 📂server-error
+ ┃ ┃   ┃ ┣ 📂unauthorized-error
+ ┃ ┃   ┃ ┣ 📂unconnected-error
+ ┃ ┃   ┃ ┗ 📂unfound-error
+ ┃ ┃   ┣ 📄error-handler.component.html
+ ┃ ┃   ┗ 📄error-handler.component.ts
+ ┃ ┣ 📄app.component.html
+ ┃ ┣ 📄app.component.ts
+ ┃ ┣ 📄app.config.ts
+ ┃ ┗ 📄app.routes.ts
+ ┣ 🖼️assets
+ ┃ ┣ ⚙️_config
+ ┃ ┣ 💾_data
+ ┃ ┣ 🗣️_i18n
+ ┃ ┣ 🔡fonts
+ ┃ ┣ ✨icons
+ ┃ ┣ 📷img
+ ┃ ┗ 🏢logos
+ ┣ 🎨styles
  ┃ ┣ 📂abstracts
- ┃ ┃ ┣ 📜_functions.scss
- ┃ ┃ ┣ 📜_globals.scss
- ┃ ┃ ┗ 📜_mixins.scss
+ ┃ ┃ ┣ 🎨_functions.scss
+ ┃ ┃ ┣ 🎨_globals.scss
+ ┃ ┃ ┗ 🎨_mixins.scss
  ┃ ┣ 📂base
- ┃ ┃ ┣ 📜_animations.scss
- ┃ ┃ ┣ 📜_reset.scss
- ┃ ┃ ┗ 📜_typography.scss
+ ┃ ┃ ┣ 🎨_animations.scss
+ ┃ ┃ ┣ 🎨_reset.scss
+ ┃ ┃ ┗ 🎨_typography.scss
  ┃ ┣ 📂layout
- ┃ ┃ ┣ 📜admin-layout.scss
- ┃ ┃ ┗ 📜main-layout.scss
+ ┃ ┃ ┣ 🎨admin-layout.scss
+ ┃ ┃ ┗ 🎨main-layout.scss
  ┃ ┗ 📂themes
- ┃ ┃ ┣ 📜light-theme.scss
- ┃ ┃ ┗ 📜theme-variables.scss
- ┣ 📂_environments
- ┃ ┣ 📜environment.prod.sample.ts
- ┃ ┣ 📜environment.prod.ts
- ┃ ┗ 📜environment.ts
- ┣ 📜index.html
- ┣ 📜main.ts
- ┗ 📜styles.scss
-📜.....
-📜.gitignore
-📜.npmrc
-📜.LICENSE
-📜.package.json
-📜.pnpm-lock.yaml
-📜.README.md
-📜.....
+ ┃   ┣ 🎨light-theme.scss
+ ┃   ┗ 🎨theme-variables.scss
+ ┣ 📄index.html
+ ┣ 📄main.ts
+ ┗ 🎨styles.scss
+📄.....
+📄.gitignore
+📄.npmrc
+📄.LICENSE
+📄.package.json
+📄.pnpm-lock.yaml
+📄.README.md
+📄.....
 ```
 
 <h2 id="pnpm">
