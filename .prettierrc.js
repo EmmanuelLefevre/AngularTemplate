@@ -42,30 +42,30 @@ module.exports = {
 PRETTIER RULES DOCUMENTATION
 =========================================================================
 
-arrowParens: "always"
+* arrowParens: "always"
   Force parentheses around arrow function arguments.
 
-bracketSameLine: true
+* bracketSameLine: true
   Place closing angle bracket `>` of multi-line HTML elements on same line.
 
-bracketSpacing: true
+* bracketSpacing: true
   Add spaces in objects: { foo: bar } instead of {foo: bar}.
 
-embeddedLanguageFormatting: "auto"
+* embeddedLanguageFormatting: "auto"
   Prettier automatically formats embedded code (e.g., CSS in JS) if it recognizes it.
 
-endOfLine: "lf"
+* endOfLine: "lf"
   Line Feed. This is Unix standard. Even on Windows, Git handles line feeds well.
   This prevents the entire file from appearing "modified" simply because of line breaks.
 
-experimentalTernaries: false
+* experimentalTernaries: false
   Keep classic formatting of ternaries (condition? true: false).
 
-htmlWhitespaceSensitivity: "css"
+* htmlWhitespaceSensitivity: "css"
   Respect default CSS "display" property for handling whitespace in HTML.
   Avoid breaking the layout of inline elements.
 
-importOrder
+* importOrder
   Defines vertical hierarchy of imports. Plugin reads this table from top to bottom:
   imports matching the first rule will be placed at the very top of the file.
 
@@ -94,59 +94,59 @@ importOrder
     These are "local" files close to current file.
     They are always placed at end to separate external dependencies from internal code.
 
-importOrderParserPlugins:
+* importOrderParserPlugins:
   List of plugins passed to the Babel parser used by the sorting plugin.
   CRITICAL FOR ANGULAR: Without 'decorators-legacy', the plugin cannot parse
   files containing decorators (like @Component) and will throw a SyntaxError.
   We also enable 'typescript' to handle TS syntax correctly during the sort process.
 
-importOrderSeparation: true
+* importOrderSeparation: true
   Empty line between groups.
 
-importOrderSortSpecifiers: true
+* importOrderSortSpecifiers: true
   Also sort {b, a} into {a, b}.
 
-insertPragma: false
+* insertPragma: false
   Do not add @format comment to top of  files.
 
-overrides (Angular Special)
+* overrides (Angular Special)
   Essential for correctly parsing Angular syntax (*ngIf, [prop], (event)) in .html files
   without breaking anything.
 
-plugins: ["@trivago/prettier-plugin-sort-imports"]
+* plugins: ["@trivago/prettier-plugin-sort-imports"]
   Instructs Prettier to load this external plugin.
   Without this line, all options starting with "importOrder" will be ignored and your
   imports will not be sorted.
 
-printWidth: 100
+* printWidth: 100
   Try to break lines after 120 characters (80 is default, often too short).
 
-proseWrap: "preserve"
+* proseWrap: "preserve"
   Do not reformat text blocks in Markdown (avoids unnecessary Git diffs).
 
-quoteProps: "as-needed"
+* quoteProps: "as-needed"
   Only put quotes around object keys if syntax requires it (ex: "my-key").
 
-requirePragma: false
+* requirePragma: false
   Format all files, not just those with @format tag.
 
-semi: true
+* semi: true
   Always add a semicolon at end of instructions.
 
-singleAttributePerLine: true
+* singleAttributePerLine: true
   Forces one attribute per line in HTML if tag is long.
   Makes Angular templates very vertically readable.
 
-singleQuote: true
+* singleQuote: true
   Use single quotes in JS/TS ('text') to reduce visual noise.
 
-tabWidth: 2
+* tabWidth: 2
   One indentation corresponds to 2 spaces.
 
-trailingComma: "all"
+* trailingComma: "all"
   Adds commas to the end of lists (objects, arrays, functions).
   Makes code changes cleaner in Git.
 
-useTabs: false
+* useTabs: false
   Use spaces for indentation, not tabs.
 */
