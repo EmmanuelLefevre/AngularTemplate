@@ -102,7 +102,12 @@
             ],
             "styles": [
               "src/styles.scss"
-            ]
+            ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/styles"
+              ]
+            }
           },
           "configurations": {
             "production": {
@@ -159,7 +164,10 @@
           "defaultConfiguration": "development"
         },
         "test": {
-          "builder": "@angular/build:unit-test"
+          "builder": "@angular/build:unit-test",
+          "options": {
+            "tsConfig": "tsconfig.spec.json"
+          }
         },
         "lint": {
           "builder": "@angular-eslint/builder:lint",
@@ -175,7 +183,7 @@
   }
 }
 
-/* =========================================================================
+/* ========================================================================
   ANGULAR CLI WORKSPACE CONFIGURATION (angular.json)
 
   This document defines global settings, build targets, and default options
@@ -184,8 +192,8 @@
 
   --- BUILD CONFIGURATIONS ------------------------------------------------
 
-  architect.build.configurations.production.fileReplacements
-    [Environments] List of files to substitute during the Production build.
+  1. @architect.build.configurations.production.fileReplacements
+    [Environments] List of files to substitute during Production build.
     This is critical for switching configuration variables (e.g., API URLs)
     between development and production environments.
 
@@ -193,108 +201,161 @@
       The default environment file imported by the application.
 
     * with: "src/_environments/environment.prod.ts"
-      The file that substitutes the default one when the command
+      The file that substitutes the default one when command
       `ng build --configuration=production` is executed.
+
+  2. @architect.build.options.stylePreprocessorOptions
+    [Sass Resolution] Configures how Sass resolves imports.
+
+    * includePaths: ["src/styles"]
+      Defines the root directories for Sass lookups.
+      [Benefit] Allows using absolute imports like `@use 'abstracts'` from any component,
+      eliminating the need for deep relative paths like `../../styles/abstracts`.
+
+  --- TESTING CONFIGURATION -----------------------------------------------
+
+  @architect.test
+    [Unit Testing] Configuration for the test runner.
+
+    * builder: "@angular/build:unit-test"
+      [Modern] Uses the new build system for running unit tests.
+
+    * options.tsConfig: "tsconfig.spec.json"
+      Points to the TypeScript configuration specific to testing.
 
   --- SCHEMATICS CONFIGURATION (ng generate defaults) ---------------------
 
   1. @schematics/angular:application (Project Initialization)
 
-    fileNameStyleGuide: "2016"
+    * fileNameStyleGuide: "2016"
       [Convention] Uses the explicit naming convention (e.g., `app.component.ts`).
 
-    inlineStyle: false / inlineTemplate: false
+    * inlineStyle: false / inlineTemplate: false
       [Clarity] Enforces separation of templates (.html) and styles (.scss)
       into dedicated files.
 
-    routing: true
+    * routing: true
       Automatically sets up the router configuration via `app.routes.ts`.
 
-    skipTests: true
+    * skipTests: true
       [Setup] Skips unit test file generation for the initial application shell.
 
-    ssr: true
+    * ssr: true
       [Performance] Configures the application for Server-Side Rendering (SSR).
 
-    standalone: true
+    * standalone: true
       [Modern] Generates the initial structure using the Standalone Component API (no NgModules).
 
-    strict: true
+    * strict: true
       Enables strict type checking and bundle budgets.
 
-    style: "scss"
+    * style: "scss"
       Sets SCSS (Sass) as the default stylesheet format.
 
-    zoneless: false
+    * zoneless: false
       [Compatibility] Keeps `zone.js` enabled for change detection.
 
-  2. @schematics/angular:component (Components)
+  2. @schematics/angular:class (Class)
 
-    changeDetection: "OnPush"
+    * skipTests: true
+      Plain classes/DTOs usually don't need dedicated spec files.
+
+  3. @schematics/angular:component (Components)
+
+    * changeDetection: "OnPush"
       [Performance] Sets the change detection strategy to `OnPush`. Component updates
       only when inputs change or events occur.
 
-    displayBlock: true
+    * displayBlock: true
       [Layout] Automatically adds `:host { display: block; }` to the component's styles.
 
-    skipTests: false
+    * inlineStyle / inlineTemplate: false
+      Forces the separation of `.html` and `.scss` files.
+
+    * prefix: ""
+      The selector prefix is explicitly empty.
+
+    * skipTests: false
       [Quality] Generates a unit test file (`.spec.ts`).
 
-    standalone: true
+    * standalone: true
       [Modern] Uses the Standalone API for components.
 
-    type: "component"
+    * style: "scss"
+      Sets SCSS as the default.
+
+    * type: "component"
       Adds the `.component.ts` suffix to the file name.
 
-  3. @schematics/angular:directive (Directives)
+  4. @schematics/angular:directive (Directives)
 
-    skipTests: false
+    * prefix: ""
+      The selector prefix is explicitly empty.
+
+    * skipTests: false
       [Quality] Generates a unit test file (`.spec.ts`).
 
-    standalone: true
+    * standalone: true
       [Modern] Uses the Standalone API for directives.
 
-    type: "directive"
+    * type: "directive"
       Adds the `.directive.ts` suffix to the file name.
 
-  4. @schematics/angular:class (Class) / 5. @schematics/angular:enum (Enum)
-    6. @schematics/angular:interface (Interfaces)
+  5. @schematics/angular:enum (Enum)
 
-    @schematics/angular:class -> skipTests: true
-      Plain classes/DTOs usually don't need dedicated spec files.
+    * type: "enum"
+      Adds the `.enum.ts` suffix to the file name.
 
-    @schematics/angular:enum -> type: "enum"
-      Adds the `.enum.ts` suffix.
+  6. @schematics/angular:guard (Guards)
 
-    @schematics/angular:interface -> type: "model"
-      [DDD/Model] Forces the use of the `.model.ts` suffix for data structures.
+    * functional: false
+      Generates a Class-based guard (instead of a functional one).
 
-  7. @schematics/angular:guard (Guards)
-
-    functional: false
-      Generates a Class-based guard (useful for constructor injection or inheritance).
-
-    implements: [Array]
+    * implements: [Array]
       Generates the Guard class implementing the four core routing interfaces.
 
-    skipTests: true
+    * skipTests: true
       Guards are often better tested via integration or E2E as they rely on the router.
 
-  8. @schematics/angular:interceptor (HTTP Interceptors)
+    * typeSeparator: "."
+      Defines the separator style (e.g., `auth.guard.ts`).
 
-    skipTests: true
+  7. @schematics/angular:interceptor (HTTP Interceptors)
+
+    * skipTests: true
       Interceptors are usually better tested via integration/E2E as they handle side effects.
 
-  9. @schematics/angular:pipe (Pipes) / 10. @schematics/angular:service (Services)
+    * typeSeparator: "."
+      Defines the separator style (e.g., `auth.interceptor.ts`).
 
-    skipTests: false
-      [Quality] Pipes and Services contain critical logic and should have unit tests by default.
+  8. @schematics/angular:interface (Interfaces)
 
-    standalone: true (for pipe)
+    * type: "model"
+      [DDD/Model] Forces the use of the `.model.ts` suffix for data structures.
+
+  9. @schematics/angular:module (Modules)
+
+    * typeSeparator: "."
+      Defines the separator style (only relevant if Standalone is disabled).
+
+  10. @schematics/angular:pipe (Pipes)
+
+    * skipTests: false
+      [Quality] Pipes contain critical logic and should have unit tests by default.
+
+    * standalone: true
       Uses the Standalone API for Pipes.
 
   11. @schematics/angular:resolver (Resolvers)
 
-    skipTests: true
+    * skipTests: true
       Resolvers are tightly coupled to routing and data fetching, often tested via E2E.
+
+  12. @schematics/angular:service (Services)
+
+    * skipTests: false
+      [Quality] Services contain critical business logic and should have unit tests.
+
+    * type: "service"
+      Adds the `.service.ts` suffix to the file name.
 */
