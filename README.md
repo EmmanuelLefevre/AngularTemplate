@@ -708,11 +708,13 @@ Configuration des alias
 
 Activer le nouveau système de tests unitaires natif d'Angular. Ce builder moderne remplace l'ancienne stack (basée sur Karma) pour offrir une exécution nettement plus rapide et légère, tout en s'alignant sur l'architecture de build actuelle (esbuild). Il isole la compilation des tests via le fichier `tsconfig.spec.json`.  
 
+1. Installer les librairies requises  
+
 ```shell
 pnpm add -D vitest jsdom
 ```
 
-Dans `tsconfig.spec.json` ajouter la propriété `rootDir` dans `@compilerOptions`.  
+2. Dans `tsconfig.spec.json` ajouter la propriété `rootDir` dans `@compilerOptions`.  
 
 ```JSON
 "compilerOptions": {
@@ -724,7 +726,7 @@ Dans `tsconfig.spec.json` ajouter la propriété `rootDir` dans `@compilerOption
 }
 ```
 
-Dans `angular.json` ajouter la propriété `test` dans `@architect`.  
+3. Dans `angular.json` ajouter la propriété `test` dans `@architect`.  
 
 ```JSON
 "test": {
@@ -733,6 +735,25 @@ Dans `angular.json` ajouter la propriété `test` dans `@architect`.
     "tsConfig": "tsconfig.spec.json"
   }
 }
+```
+
+4. Optionnel : installer l'interface graphique de Vitest.  
+Vitest possède une interface web agréable pour visualiser les tests, voir le code et les logs. C'est bien plus pratique que le terminal.  
+
+```shell
+pnpm add -D @vitest/ui
+```
+
+5. Lancer les tests 
+
+```shell
+pnpm test
+```
+
+Ou pour l'interface graphique  
+
+```shell
+pnpm test -- --ui
 ```
 
 <h2 id="styles">
