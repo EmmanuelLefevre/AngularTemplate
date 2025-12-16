@@ -706,7 +706,21 @@ Configuration des alias
   🧪 TESTS
 </h2>
 
-Dans `angular.json` => `@architect.test`
+Activer le nouveau système de tests unitaires natif d'Angular. Ce builder moderne remplace l'ancienne stack (basée sur Karma) pour offrir une exécution nettement plus rapide et légère, tout en s'alignant sur l'architecture de build actuelle (esbuild). Il isole la compilation des tests via le fichier `tsconfig.spec.json`.  
+
+Dans `tsconfig.spec.json` ajouter la propriété `rootDir` dans `@compilerOptions`.  
+
+```JSON
+"compilerOptions": {
+  "outDir": "./out-tsc/spec",
+  "types": [
+    "vitest/globals"
+  ],
+  "rootDir": "./src/app"
+}
+```
+
+Dans `angular.json` ajouter la propriété `test` dans `@architect`.  
 
 ```JSON
 "test": {
@@ -714,14 +728,16 @@ Dans `angular.json` => `@architect.test`
   "options": {
     "tsConfig": "tsconfig.spec.json"
   }
-},
+}
 ```
 
 <h2 id="styles">
   🎨 STYLES
 </h2>
 
-Dans `angular.json` => `@architect.build.options.stylePreprocessorOptions`
+Simplifie la gestion des imports Sass en définissant `src/styles` comme racine de résolution. Cela permet d'importer le Barrel File abstracts (ou autre fichier global) depuis n'importe quel composant via un chemin absolu et propre (ex: `@use 'abstracts'`), éliminant définitivement les chemins relatifs complexes et fragiles (ex: `../../../../styles/abstracts`)."  
+
+Dans `angular.json` ajouter la propriété `stylePreprocessorOptions` dans `@architect.build.options`.  
 
 ```JSON
 "stylePreprocessorOptions": {
