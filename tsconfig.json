@@ -42,103 +42,105 @@
   ]
 }
 
-/* =========================================================================
+/* ========================================================================
   TYPESCRIPT CONFIGURATION DOCUMENTATION
   =========================================================================
 
-  compileOnSave: false
+  1. @compilerOptions
+
+  * compileOnSave: false
     Prevents IDEs from generating .js files on save. We rely on Angular CLI/Webpack.
 
   --- STANDARD COMPILER OPTIONS -------------------------------------------
 
-  declaration: false
+  * declaration: false
     Do not generate .d.ts declaration files (not needed for app, only for libs).
 
-  esModuleInterop: true
+  * esModuleInterop: true
     Enables compatibility between CommonJS (legacy Node) and ES Modules.
     Allows imports like `import React from 'react'` instead of `import * as React...`.
 
-  experimentalDecorators: true
+  * experimentalDecorators: true
     [REQUIRED] Enables support for decorators, heavily used by Angular
     (@Component, @Injectable, etc.).
 
-  forceConsistentCasingInFileNames: true
+  * forceConsistentCasingInFileNames: true
     Disallows inconsistently-cased references to the same file.
     Prevents bugs between Case-Sensitive OS (Linux/Mac) and Case-Insensitive OS (Windows).
 
-  importHelpers: true
+  * importHelpers: true
     Reduces bundle size by importing helper functions from `tslib`
     instead of duplicating code in every file.
 
-  isolatedModules: true
+  * isolatedModules: true
     [BUILD SPEED] Ensures each file can be transpiled individually.
     Mandatory for modern bundlers like Vite or Esbuild used in Angular 17+.
 
-  lib: ["ES2022", "DOM"]
+  * lib: ["ES2022", "DOM"]
     Defines the global environment. Includes modern JS features and Browser DOM APIs.
 
-  module: "preserve"
+  * module: "preserve"
     Leaves import/export statements intact.
     Lets the bundler (Vite/Webpack) handle module loading efficiently.
 
-  moduleResolution: "bundler"
+  * moduleResolution: "bundler"
     Instructs TypeScript to use a resolution strategy optimized for modern bundlers (Vite, Esbuild).
     This is required by Angular 17+ for proper support of conditional exports (customConditions)
     and ensures a fast and correct build.
 
-  noFallthroughCasesInSwitch: true
+  * noFallthroughCasesInSwitch: true
     Prevents accidental fall-throughs in switch statements (missing `break`).
 
-  noImplicitOverride: true
+  * noImplicitOverride: true
     Forces the use of the `override` keyword when extending classes.
     Secures inheritance logic.
 
-  noImplicitReturns: true
+  * noImplicitReturns: true
     Ensures all code paths in a function return a value (or void), but not a mix.
 
-  noPropertyAccessFromIndexSignature: true
+  * noPropertyAccessFromIndexSignature: true
     Prevents accessing properties via index syntax (obj['key']) if not explicitly typed.
 
-  resolveJsonModule: true
+  * resolveJsonModule: true
     Allows importing .json files directly as modules (e.g., `import config from './config.json'`).
 
-  skipLibCheck: true
+  * skipLibCheck: true
     [PERFORMANCE] Skips type checking of declaration files in node_modules.
     Drastically speeds up compilation.
 
-  sourceMap: false
+  * sourceMap: false
     Do not emit .map files in this base config (handled by specific app/build configs).
 
-  strict: true
+  * strict: true
     [SECURITY] Enables all strict type-checking options.
     Includes noImplicitAny, strictNullChecks, etc.
 
-  target: "ES2022"
+  * target: "ES2022"
     Compiles code to modern ECMAScript 2022.
     Enables native async/await and modern class features.
 
-  useDefineForClassFields: false
+  * useDefineForClassFields: false
     [COMPATIBILITY] Maintains legacy class field initialization.
     Ensures full compatibility with Angular decorators.
 
-  --- ANGULAR COMPILER OPTIONS --------------------------------------------
+  2. @angularCompilerOptions
 
-  enableI18nLegacyMessageIdFormat: false
+  * enableI18nLegacyMessageIdFormat: false
     Use the modern, stable message ID format for translations.
     Prevents IDs from changing when whitespace changes in templates.
 
-  strictInjectionParameters: true
+  * strictInjectionParameters: true
     Reports an error if a supplied parameter's type is not compatible
     with the injection type.
 
-  strictInputAccessModifiers: true
+  * strictInputAccessModifiers: true
     Respects access modifiers (private/protected) when accessing properties
     from HTML templates.
 
-  strictStandalone: true
+  * strictStandalone: true
     Enforces stricter validation rules for Standalone components/directives.
 
-  strictTemplates: true
+  * strictTemplates: true
     [BEST PRACTICE] Enables strict type checking in Angular HTML templates.
     Catches type errors in bindings during build.
 */
