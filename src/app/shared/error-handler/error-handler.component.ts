@@ -9,38 +9,46 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ErrorHandlerComponent implements OnInit {
-  private readonly router = inject(Router);
   private readonly route = inject(ActivatedRoute);
+  private readonly router = inject(Router);
 
   code!: string;
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe((params) => {
-      this.code = params['code'] ? String(params['code']) : '';
+    this.route.queryParams.subscribe((currentParams) => {
+      this.code = currentParams['code'] ? String(currentParams['code']) : '';
 
       let destination: string | null = null;
-      let queryParams: Params = {};
+      let nextParams: Params | undefined = undefined;
 
-      if (this.code === '404') {
-        destination = 'unfound-error';
-      } else if (this.code === '401') {
-        destination = 'unauthorized';
-      } else if (this.code === '500') {
-        destination = 'server-error';
-      } else if (/^[1-5][0-9]{2}$/.test(this.code)) {
-        destination = 'generic-error';
-        queryParams = { code: this.code };
-      } else {
-        destination = 'unknown-error';
+      switch (this.code) {
+        case '401':
+          destination = 'unauthorized-error';
+          break;
+        case '404':
+          destination = 'unfound-error';
+          break;
+        case '500':
+          destination = 'server-error';
+          break;
+
+        default:
+          if (/^[1-5][0-9]{2}$/.test(this.code)) {
+            destination = 'generic-error';
+            nextParams = { code: this.code };
+          } else {
+            destination = 'unknown-error';
+          }
+          break;
       }
 
       if (destination) {
-        this.router.navigate([destination], { queryParams: queryParams });
+        this.router.navigate([destination], { queryParams: nextParams });
       }
     });
   }
 
   goHome() {
-    this.router.navigate(['/']);
+    this.router.navigate(['/home']);
   }
 }

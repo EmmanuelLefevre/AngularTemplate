@@ -47,48 +47,53 @@ describe('ErrorHandlerComponent', () => {
 
   // --- Redirection tests ---
 
-  it('should navigate to "unfound" when code is 404', () => {
+  it('should navigate to "unauthorized-error" when code is 401', () => {
     // Simulate value
-    queryParamsSubject.next({ code: '404' });
+    queryParamsSubject.next({ code: '401' });
 
     // Trigger change detection (launch ngOnInit)
     fixture.detectChanges();
 
     // Vitest assertion
-    expect(routerSpy.navigate).toHaveBeenCalledWith(['unfound']);
+    expect(routerSpy.navigate).toHaveBeenCalledWith(['unauthorized-error'], { queryParams: undefined });
   });
 
-  it('should navigate to "unauthorized" when code is 401', () => {
-    queryParamsSubject.next({ code: '401' });
+  it('should navigate to "unfound-error" when code is 404', () => {
+    queryParamsSubject.next({ code: '404' });
     fixture.detectChanges();
 
-    expect(routerSpy.navigate).toHaveBeenCalledWith(['unauthorized']);
+    expect(routerSpy.navigate).toHaveBeenCalledWith(['unfound-error'], { queryParams: undefined });
   });
 
   it('should navigate to "server-error" when code is 500', () => {
     queryParamsSubject.next({ code: '500' });
     fixture.detectChanges();
 
-    expect(routerSpy.navigate).toHaveBeenCalledWith(['server-error']);
+    expect(routerSpy.navigate).toHaveBeenCalledWith(['server-error'], { queryParams: undefined });
   });
 
-  it('should NOT navigate if code is unknown', () => {
-    queryParamsSubject.next({ code: '999' });
+  it('should navigate to "generic-error" with params when code is valid but unhandled', () => {
+    queryParamsSubject.next({ code: '418' });
     fixture.detectChanges();
 
-    // Checks that function has not been called
-    expect(routerSpy.navigate).not.toHaveBeenCalled();
+    expect(routerSpy.navigate).toHaveBeenCalledWith(['generic-error'], { queryParams: { code: '418' } });
+  });
+
+  it('should navigate to "unknown-error" without params when code is invalid (ex : 999)', () => {
+    queryParamsSubject.next({ code: '999' });
+    fixture.detectChanges();
+    expect(routerSpy.navigate).toHaveBeenCalledWith(['unknown-error'], { queryParams: undefined });
   });
 
   // --- Home return test ---
 
-  it('should navigate to root when goHome() is called', () => {
+  it('should navigate to /home when goHome() is called', () => {
     fixture.detectChanges();
 
     // Action
     component.goHome();
 
     // Assertion
-    expect(routerSpy.navigate).toHaveBeenCalledWith(['/']);
+    expect(routerSpy.navigate).toHaveBeenCalledWith(['/home']);
   });
 });
