@@ -56,29 +56,27 @@
   --- ALIASES & PATHS -----------------------------------------------------
 
   @compilerOptions.paths
+  Defines absolute path aliases. This enables clean, absolute imports,
+  regardless of the current file's depth.
 
-  paths: { ... }
-    Defines absolute path aliases. This enables clean, absolute imports,
-    regardless of the current file's depth.
+  * @app/* : ["./src/app/*"]
+    Primary alias for the 'app' folder structure.
 
-    @app/* : ["./src/app/*"]
-      Primary alias for the 'app' folder structure.
+  * @assets/* : ["./src/assets/*"]
+    Direct access to static resources (images, fonts).
 
-    @assets/* : ["./src/assets/*"]
-      Direct access to static resources (images, fonts).
+  * @core/* : ["./src/app/core/*"]
+    Access to core services, guards, and interceptors.
 
-    @core/* : ["./src/app/core/*"]
-      Access to core services, guards, and interceptors.
+  * @env/* : ["./src/_environments/*"]
+    Access to environment-specific configuration files.
 
-    @env/* : ["./src/_environments/*"]
-      Access to environment-specific configuration files.
+  * @features/* : ["./src/app/features/*"]
+    Access to feature modules or standalone component bundles (often lazy-loaded).
 
-    @features/* : ["./src/app/features/*"]
-      Access to feature modules or standalone component bundles (often lazy-loaded).
+  * @shared/* : ["./src/app/shared/*"]
+    Access to reusable components, pipes, and directives.
 
-    @shared/* : ["./src/app/shared/*"]
-      Access to reusable components, pipes, and directives.
-
-    @styles/* : ["./src/styles/*"]
-      Access to global style sheets folder.
+  * @styles/* : ["./src/styles/*"]
+    Access to global style sheets folder.
 */
