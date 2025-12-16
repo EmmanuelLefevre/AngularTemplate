@@ -102,7 +102,7 @@
  ┃ ┃   ┗ 📄public.route.ts
  ┃ ┣ ♻️shared
  ┃ ┃ ┣ 🎛️_directives
- ┃ ┃ ┣ 🧪_pipes
+ ┃ ┃ ┣ ⚗️_pipes
  ┃ ┃ ┣ 🧰_utils
  ┃ ┃ ┣ 🗃️components
  ┃ ┃ ┃ ┣ 📂footer
@@ -131,7 +131,8 @@
  ┃ ┣ 📂abstracts
  ┃ ┃ ┣ 🎨_functions.scss
  ┃ ┃ ┣ 🎨_globals.scss
- ┃ ┃ ┗ 🎨_mixins.scss
+ ┃ ┃ ┣ 🎨_mixins.scss
+ ┃ ┃ ┗ 🎨_index.scss
  ┃ ┣ 📂base
  ┃ ┃ ┣ 🎨_animations.scss
  ┃ ┃ ┣ 🎨_reset.scss
