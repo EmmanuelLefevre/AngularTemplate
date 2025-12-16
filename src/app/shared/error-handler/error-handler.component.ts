@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 @Component({
   selector: 'error-handler',
@@ -16,15 +16,26 @@ export class ErrorHandlerComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
-      this.code = params['code'];
+      this.code = params['code'] ? String(params['code']) : '';
+
+      let destination: string | null = null;
+      let queryParams: Params = {};
+
       if (this.code === '404') {
-        this.router.navigate(['unfound']);
+        destination = 'unfound-error';
+      } else if (this.code === '401') {
+        destination = 'unauthorized';
+      } else if (this.code === '500') {
+        destination = 'server-error';
+      } else if (/^[1-5][0-9]{2}$/.test(this.code)) {
+        destination = 'generic-error';
+        queryParams = { code: this.code };
+      } else {
+        destination = 'unknown-error';
       }
-      if (this.code === '401') {
-        this.router.navigate(['unauthorized']);
-      }
-      if (this.code === '500') {
-        this.router.navigate(['server-error']);
+
+      if (destination) {
+        this.router.navigate([destination], { queryParams: queryParams });
       }
     });
   }
