@@ -192,7 +192,7 @@
 
   --- BUILD CONFIGURATIONS ------------------------------------------------
 
-  1. @architect.build.configurations.production.fileReplacements
+  - @architect.build.configurations.production.fileReplacements
     [Environments] List of files to substitute during Production build.
     This is critical for switching configuration variables (e.g., API URLs)
     between development and production environments.
@@ -204,7 +204,7 @@
       The file that substitutes the default one when command
       `ng build --configuration=production` is executed.
 
-  2. @architect.build.options.stylePreprocessorOptions
+  - @architect.build.options.stylePreprocessorOptions
     [Sass Resolution] Configures how Sass resolves imports.
 
     * includePaths: ["src/styles"]
@@ -214,7 +214,7 @@
 
   --- TESTING CONFIGURATION -----------------------------------------------
 
-  @architect.test
+  - @architect.test
     [Unit Testing] Configuration for the test runner.
 
     * builder: "@angular/build:unit-test"

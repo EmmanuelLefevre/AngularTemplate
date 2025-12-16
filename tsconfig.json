@@ -46,12 +46,14 @@
   TYPESCRIPT CONFIGURATION DOCUMENTATION
   =========================================================================
 
-  1. @compilerOptions
+  - @compileOnSave
 
   * compileOnSave: false
     Prevents IDEs from generating .js files on save. We rely on Angular CLI/Webpack.
 
   --- STANDARD COMPILER OPTIONS -------------------------------------------
+
+  - @compilerOptions
 
   * declaration: false
     Do not generate .d.ts declaration files (not needed for app, only for libs).
@@ -123,7 +125,9 @@
     [COMPATIBILITY] Maintains legacy class field initialization.
     Ensures full compatibility with Angular decorators.
 
-  2. @angularCompilerOptions
+  --- ANGULAR COMPILER OPTIONS --------------------------------------------
+
+  - @angularCompilerOptions
 
   * enableI18nLegacyMessageIdFormat: false
     Use the modern, stable message ID format for translations.
