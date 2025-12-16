@@ -708,6 +708,10 @@ Configuration des alias
 
 Activer le nouveau système de tests unitaires natif d'Angular. Ce builder moderne remplace l'ancienne stack (basée sur Karma) pour offrir une exécution nettement plus rapide et légère, tout en s'alignant sur l'architecture de build actuelle (esbuild). Il isole la compilation des tests via le fichier `tsconfig.spec.json`.  
 
+```shell
+pnpm add -D vitest
+```
+
 Dans `tsconfig.spec.json` ajouter la propriété `rootDir` dans `@compilerOptions`.  
 
 ```JSON
