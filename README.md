@@ -30,11 +30,13 @@
 - [NPMRC](#npmrc)
 - [ESLINT / PRETTIER](#eslint-prettier)
 - [HUSKY](#husky)
-- [TSCONFIG](#ts-config)
+- [TS CONFIG](#ts-config)
+- [TESTS](#tests)
+- [STYLES](#styles)
 - [SCHEMATICS](#schematics)
 - [CONFIGURATION DE BUILD](#configuration-de-build)
 - [ERREURS FREQUENTES](#erreurs-frequentes)
-- [TOOLINGCONFIGURATION](#tooling-configuration)
+- [TOOLING DOCUMENTATIONS](#tooling-documentations)
   - [Prettier Rules](#prettier-rules)
   - [ESLint Rules](#eslint-rules)
   - [TS Config Rules](#ts-config-rules)
@@ -700,6 +702,35 @@ Configuration des alias
 }
 ```
 
+<h2 id="tests">
+  🧪 TESTS
+</h2>
+
+Dans `angular.json` => `@architect.test`
+
+```JSON
+"test": {
+  "builder": "@angular/build:unit-test",
+  "options": {
+    "tsConfig": "tsconfig.spec.json"
+  }
+},
+```
+
+<h2 id="styles">
+  🎨 STYLES
+</h2>
+
+Dans `angular.json` => `@architect.build.options.stylePreprocessorOptions`
+
+```JSON
+"stylePreprocessorOptions": {
+  "includePaths": [
+    "src/styles"
+  ]
+}
+```
+
 <h2 id="schematics">
   <img
     alt="Angular Schematics"
@@ -922,8 +953,8 @@ Pour le fichier de configuration de l'application
 npx @andrewbranch/ts5to6 --fixRootDir ./tsconfig.app.json
 ```
 
-<h2 id="tooling-configuration">
-  🔧 TOOLING CONFIGURATION
+<h2 id="tooling-documentations">
+  🔧 TOOLING DOCUMENTATIONS
 </h2>
 
 <h3 id="prettier-rules">
