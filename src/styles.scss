@@ -1,21 +1,15 @@
-/*===============ABSTRACTS===============*/
-// (Variables, Mixins, Functions)
-@import 'styles/abstracts/mixins';
-@import 'styles/abstracts/functions';
-@import 'styles/abstracts/globals';
-
 /*===============BASE===============*/
 // (Reset, Typo)
-@import 'styles/base/reset';
-@import 'styles/base/typography';
-@import 'styles/base/animations';
+@use 'styles/base/reset';
+@use 'styles/base/typography';
+@use 'styles/base/animations';
 
 /*===============LAYOUT===============*/
 // (Header, Footer, Grid, Sidebar)
-@import 'styles/layout/admin-layout';
-@import 'styles/layout/main-layout';
+@use 'styles/layout/admin-layout';
+@use 'styles/layout/main-layout';
 
 /*===============THEMES===============*/
 // (Light/Dark Mode)
-@import 'styles/themes/theme-variables';
-@import 'styles/themes/light-theme';
+@use 'styles/themes/theme-variables';
+@use 'styles/themes/light-theme';
