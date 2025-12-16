@@ -744,7 +744,7 @@ Vitest possède une interface web agréable pour visualiser les tests, voir le c
 pnpm add -D @vitest/ui
 ```
 
-5. Lancer les tests dans la console 
+5. Lancer les tests dans le terminal 
 
 ```shell
 pnpm test
