@@ -1,5 +1,5 @@
-import { Directive, ElementRef, inject, output } from '@angular/core';
 import { NgControl } from '@angular/forms';
+import { Directive, ElementRef, inject, output } from '@angular/core';
 
 @Directive({
   selector: '[inputTrim]',
@@ -13,7 +13,7 @@ export class InputTrimDirective {
   private readonly EL = inject(ElementRef<HTMLInputElement>);
   private readonly CONTROL = inject(NgControl, { optional: true });
 
-  readonly ngModelChange = output<string>();
+  readonly trimChange = output<string>();
 
   onFocusOut(): void {
     const INPUT_ELEMENT = this.EL.nativeElement;
@@ -31,7 +31,7 @@ export class InputTrimDirective {
       });
 
       // Synchronization with ngModel
-      this.ngModelChange.emit(TRIMMED_VALUE);
+      this.trimChange.emit(TRIMMED_VALUE);
     }
   }
 }
