@@ -3,6 +3,7 @@ import { Directive, ElementRef, afterNextRender, inject } from '@angular/core';
 @Directive({
   selector: '[inputFocus]'
 })
+
 export class InputFocusDirective {
   private readonly EL = inject(ElementRef);
 
