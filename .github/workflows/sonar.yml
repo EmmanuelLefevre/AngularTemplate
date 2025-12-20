@@ -32,6 +32,9 @@ jobs:
       - name: Run Tests & Coverage
         run: pnpm test:coverage
 
+      - name: Debug Files
+        run: ls -la
+
       - name: SonarCloud Scan
         uses: SonarSource/sonarqube-scan-action@v5.0.0
         env:
