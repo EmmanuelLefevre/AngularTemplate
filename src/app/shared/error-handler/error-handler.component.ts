@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 
 @Component({
   selector: 'error-handler',
@@ -8,6 +8,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
   styleUrl: './error-handler.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
+
 export class ErrorHandlerComponent implements OnInit {
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
@@ -36,7 +37,8 @@ export class ErrorHandlerComponent implements OnInit {
           if (/^[1-5][0-9]{2}$/.test(this.code)) {
             destination = 'generic-error';
             nextParams = { code: this.code };
-          } else {
+          }
+          else {
             destination = 'unknown-error';
           }
           break;
