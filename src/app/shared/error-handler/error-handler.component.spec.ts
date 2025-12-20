@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { BehaviorSubject } from 'rxjs';
@@ -12,21 +13,21 @@ describe('ErrorHandlerComponent', () => {
   let fixture: ComponentFixture<ErrorHandlerComponent>;
 
   // Create Vitest mock router
-  const routerSpy = {
+  const ROUTER_SPY = {
     navigate: vi.fn()
   };
 
   // QueryParams mock
-  const queryParamsSubject = new BehaviorSubject<unknown>({});
+  const QUERY_PARAMS_SUBJECT = new BehaviorSubject<unknown>({});
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [ErrorHandlerComponent],
       providers: [
-        { provide: Router, useValue: routerSpy },
+        { provide: Router, useValue: ROUTER_SPY },
         {
           provide: ActivatedRoute,
-          useValue: { queryParams: queryParamsSubject.asObservable() }
+          useValue: { queryParams: QUERY_PARAMS_SUBJECT.asObservable() }
         }
       ]
     }).compileComponents();
@@ -45,55 +46,69 @@ describe('ErrorHandlerComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  // --- Redirection tests ---
+  // --- Conditionnal test ---
+  it('should handle missing code parameter', () => {
+    QUERY_PARAMS_SUBJECT.next({});
 
-  it('should navigate to "unauthorized-error" when code is 401', () => {
-    // Simulate value
-    queryParamsSubject.next({ code: '401' });
-
-    // Trigger change detection (launch ngOnInit)
     fixture.detectChanges();
 
-    // Vitest assertion
-    expect(routerSpy.navigate).toHaveBeenCalledWith(['unauthorized-error'], { queryParams: undefined });
+    expect(component.code).toBe('');
+    expect(ROUTER_SPY.navigate).toHaveBeenCalledWith(['unknown-error'], { queryParams: undefined });
   });
 
-  it('should navigate to "unfound-error" when code is 404', () => {
-    queryParamsSubject.next({ code: '404' });
+  // --- HTML test ---
+  it('should navigate to /home when the button is clicked in the UI', () => {
     fixture.detectChanges();
 
-    expect(routerSpy.navigate).toHaveBeenCalledWith(['unfound-error'], { queryParams: undefined });
+    const BUTTON_DEBUG_EL = fixture.debugElement.query(By.css('button'));
+
+    BUTTON_DEBUG_EL.triggerEventHandler('click', null);
+
+    expect(ROUTER_SPY.navigate).toHaveBeenCalledWith(['/home']);
   });
 
-  it('should navigate to "server-error" when code is 500', () => {
-    queryParamsSubject.next({ code: '500' });
-    fixture.detectChanges();
-
-    expect(routerSpy.navigate).toHaveBeenCalledWith(['server-error'], { queryParams: undefined });
-  });
-
-  it('should navigate to "generic-error" with params when code is valid but unhandled', () => {
-    queryParamsSubject.next({ code: '418' });
-    fixture.detectChanges();
-
-    expect(routerSpy.navigate).toHaveBeenCalledWith(['generic-error'], { queryParams: { code: '418' } });
-  });
-
-  it('should navigate to "unknown-error" without params when code is invalid (ex : 999)', () => {
-    queryParamsSubject.next({ code: '999' });
-    fixture.detectChanges();
-    expect(routerSpy.navigate).toHaveBeenCalledWith(['unknown-error'], { queryParams: undefined });
-  });
-
-  // --- Home return test ---
-
+  // --- TS test ---
   it('should navigate to /home when goHome() is called', () => {
     fixture.detectChanges();
 
-    // Action
     component.goHome();
 
-    // Assertion
-    expect(routerSpy.navigate).toHaveBeenCalledWith(['/home']);
+    expect(ROUTER_SPY.navigate).toHaveBeenCalledWith(['/home']);
+  });
+
+  // --- Redirection tests ---
+  it('should navigate to "unauthorized-error" when code is 401', () => {
+    QUERY_PARAMS_SUBJECT.next({ code: '401' });
+
+    fixture.detectChanges();
+
+    expect(ROUTER_SPY.navigate).toHaveBeenCalledWith(['unauthorized-error'], { queryParams: undefined });
+  });
+
+  it('should navigate to "unfound-error" when code is 404', () => {
+    QUERY_PARAMS_SUBJECT.next({ code: '404' });
+    fixture.detectChanges();
+
+    expect(ROUTER_SPY.navigate).toHaveBeenCalledWith(['unfound-error'], { queryParams: undefined });
+  });
+
+  it('should navigate to "server-error" when code is 500', () => {
+    QUERY_PARAMS_SUBJECT.next({ code: '500' });
+    fixture.detectChanges();
+
+    expect(ROUTER_SPY.navigate).toHaveBeenCalledWith(['server-error'], { queryParams: undefined });
+  });
+
+  it('should navigate to "generic-error" with params when code is valid but unhandled', () => {
+    QUERY_PARAMS_SUBJECT.next({ code: '418' });
+    fixture.detectChanges();
+
+    expect(ROUTER_SPY.navigate).toHaveBeenCalledWith(['generic-error'], { queryParams: { code: '418' } });
+  });
+
+  it('should navigate to "unknown-error" without params when code is invalid (ex : 999)', () => {
+    QUERY_PARAMS_SUBJECT.next({ code: '999' });
+    fixture.detectChanges();
+    expect(ROUTER_SPY.navigate).toHaveBeenCalledWith(['unknown-error'], { queryParams: undefined });
   });
 });

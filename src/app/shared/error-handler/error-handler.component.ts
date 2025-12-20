@@ -42,9 +42,7 @@ export class ErrorHandlerComponent implements OnInit {
           break;
       }
 
-      if (destination) {
-        this.router.navigate([destination], { queryParams: nextParams });
-      }
+      this.router.navigate([destination], { queryParams: nextParams });
     });
   }
 
