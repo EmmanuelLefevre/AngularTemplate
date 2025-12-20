@@ -550,18 +550,19 @@ Mettre à jour la section "scripts" du `package.json` pour faciliter l'utilisati
 
 ```JSON
 "scripts": {
-    "ng": "ng",
-    "clean": "rimraf coverage .angular",
-    "build": "pnpm clean && ng build",
-    "format": "prettier --write \"src/**/*.{ts,html,css,scss,json}\"",
-    "format:check": "prettier --check \"**/*.{ts,js,html,scss,css,json,md}\"",
-    "lint": "ng lint",
-    "lint:ci": "ng lint --max-warnings=0",
-    "prepare": "husky",
-    "start": "ng serve",
-    "test": "ng test",
-    "test:coverage": "pnpm clean && pnpm test -- --coverage --watch=false",
-    "watch": "ng build --watch --configuration development"
+  "ng": "ng",
+  "clean": "rimraf coverage .angular",
+  "build": "pnpm clean && ng build",
+  "format": "prettier --write \"src/**/*.{ts,html,css,scss,json}\"",
+  "format:check": "prettier --check \"**/*.{ts,js,html,scss,css,json,md}\"",
+  "lint": "ng lint",
+  "lint:ci": "ng lint --max-warnings=0",
+  "prepare": "husky",
+  "start": "ng serve",
+  "test": "ng test",
+  "test:coverage": "pnpm clean && ng test --coverage --watch=false",
+  "test:ui": "vitest --ui",
+  "watch": "ng build --watch --configuration development"
 }
 ```
 
@@ -808,9 +809,10 @@ import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
   test: {
+    reporters: ['default'],
     coverage: {
       provider: 'v8',
-      skipFull: true,
+      enabled: true,
       reporter: ['text', 'lcov', 'html'],
       reportsDirectory: './coverage',
       exclude: [
@@ -873,7 +875,7 @@ pnpm add -D rimraf
 ```JSON
 "scripts": {
   "clean": "rimraf coverage .angular",
-  "test:coverage": "pnpm clean && pnpm test -- --coverage --watch=false",
+  "test:coverage": "pnpm clean && ng test --coverage --watch=false",
 }
 ```
 

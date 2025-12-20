@@ -2,9 +2,10 @@ import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
   test: {
+    reporters: ['default'],
     coverage: {
       provider: 'v8',
-      skipFull: true,
+      enabled: true,
       reporter: ['text', 'lcov', 'html'],
       reportsDirectory: './coverage',
       exclude: [
