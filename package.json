@@ -47,15 +47,18 @@
     "vitest": "4.0.16"
   },
   "lint-staged": {
-    "src/**/*.{ts,html}": [
-      "eslint --max-warnings=0",
+    "src/**/*.{html}": [
+      "eslint --fix --max-warnings=0",
       "prettier --write"
+    ],
+    "src/**/*.{ts}": [
+      "eslint --fix --max-warnings=0"
     ],
     "src/**/*.{css,scss,json,md}": [
       "prettier --write"
     ],
     "*.{js,cjs,mjs}": [
-      "eslint --max-warnings=0",
+      "eslint --fix --max-warnings=0",
       "prettier --write"
     ],
     "*.{yaml,yml}": [

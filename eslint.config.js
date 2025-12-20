@@ -30,7 +30,17 @@ module.exports = defineConfig([
           type: 'attribute',
           style: 'camelCase'
         }
-      ]
+      ],
+      '@typescript-eslint/brace-style': ['error', 'stroustrup'],
+      '@typescript-eslint/padding-line-between-statements': [
+        'error',
+        {
+          blankLine: 'always',
+          prev: 'decorator',
+          next: 'class'
+        }
+      ],
+      indent: ['error', 2]
     }
   },
   {
