@@ -43,8 +43,13 @@ module.exports = defineConfig([
         'error',
         {
           blankLine: 'always',
-          prev: 'decorator',
+          prev: '*',
           next: 'class'
+        },
+        {
+          blankLine: 'always',
+          prev: 'import',
+          next: '*'
         }
       ],
       '@stylistic/semi': ['error', 'always'],
