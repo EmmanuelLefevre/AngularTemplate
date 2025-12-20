@@ -45,11 +45,6 @@ module.exports = defineConfig([
           blankLine: 'always',
           prev: '*',
           next: 'class'
-        },
-        {
-          blankLine: 'always',
-          prev: 'import',
-          next: '*'
         }
       ],
       '@stylistic/semi': ['error', 'always'],
