@@ -11,8 +11,9 @@
     "lint:ci": "ng lint --max-warnings=0",
     "prepare": "husky",
     "start": "ng serve",
-    "test": "pnpm clean && ng test",
-    "test:coverage": "pnpm clean && pnpm test -- --coverage --watch=false",
+    "test": "ng test",
+    "test:coverage": "pnpm clean && ng test --coverage --watch=false",
+    "test:ui": "vitest --ui",
     "watch": "ng build --watch --configuration development"
   },
   "private": true,
