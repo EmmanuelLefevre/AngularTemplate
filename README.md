@@ -156,6 +156,7 @@
 📄.package.json
 📄.pnpm-lock.yaml
 📄.README.md
+🛡️sonar-project.properties
 🧪.vitest.config.ts
 📄.....
 ```
