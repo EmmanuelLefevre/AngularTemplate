@@ -34,7 +34,7 @@ export class ErrorHandlerComponent implements OnInit {
           break;
 
         default:
-          if (/^[1-5][0-9]{2}$/.test(this.code)) {
+          if (/^[1-5]\d{2}$/.test(this.code)) {
             destination = 'generic-error';
             nextParams = { code: this.code };
           }
