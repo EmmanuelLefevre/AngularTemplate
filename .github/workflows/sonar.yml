@@ -32,8 +32,8 @@ jobs:
       - name: Run Tests & Coverage
         run: pnpm test:coverage
 
-      - name: Debug Files
-        run: ls -la
+      - name: Locate LCOV
+        run: ls -R coverage
 
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@v6
