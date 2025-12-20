@@ -10,5 +10,7 @@ import { Component, signal } from '@angular/core';
 })
 
 export class AppComponent {
+  /* v8 ignore start */
   protected readonly title = signal('AngularTemplate');
+  /* v8 ignore stop */
 }
