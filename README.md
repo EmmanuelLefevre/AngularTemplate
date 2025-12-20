@@ -32,6 +32,7 @@
 - [HUSKY](#husky)
 - [TS CONFIG](#ts-config)
 - [TESTS](#tests)
+- [CI/CD](#ci-cd)
 - [STYLES](#styles)
 - [SCHEMATICS](#schematics)
 - [CONFIGURATION DE BUILD](#configuration-de-build)
@@ -860,6 +861,25 @@ Dans `angular.json` ajouter la propriété `stylePreprocessorOptions` dans `@arc
   "includePaths": [
     "src/styles"
   ]
+}
+```
+
+<h2 id="ci-cd">
+  🤖 CI/CD
+</h2>
+
+1. Rimraf => supprimer le dossier `coverage` (cross-platform: Sonarqube, GitHub Actions, Linux)  
+
+```shell
+pnpm add -D rimraf
+```
+
+2. Dans `package.json` ajouter les scripts `clean` et `test:coverage`  
+
+```JSON
+"scripts": {
+  "clean": "rimraf coverage",
+  "test:coverage": "rimraf coverage && pnpm test -- --coverage --watch=false",
 }
 ```
 
