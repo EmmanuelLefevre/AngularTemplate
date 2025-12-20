@@ -801,14 +801,6 @@ Dans `angular.json` ajouter la propriété `coverage` à l'objet `test`
 
 8. Lancer les tests  
 
-- **Via console**
-
-```shell
-pnpm test
-```
-
-- **Via UI**
-
 ```shell
 pnpm test -- --ui --coverage --watch=false
 ```
