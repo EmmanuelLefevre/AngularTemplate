@@ -1,4 +1,5 @@
 import { AlertPipe } from './alert.pipe';
+import { TestBed } from '@angular/core/testing';
 
 import { describe, it, expect, beforeEach } from 'vitest';
 
@@ -8,7 +9,10 @@ describe('AlertPipe', () => {
 
   beforeEach(() => {
     // --- ARRANGE ---
-    pipe = new AlertPipe();
+    TestBed.configureTestingModule({
+      providers: [AlertPipe]
+    });
+    pipe = TestBed.inject(AlertPipe);
   });
 
   it('should create an instance', () => {
