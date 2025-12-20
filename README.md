@@ -455,6 +455,8 @@ pnpm add -D eslint-config-prettier
 
 2. Installer les `stylistics`
 
+[Stylistics Documentation Rules](https://eslint.style/rules/brace-style)  
+
 ```shell
 pnpm add -D @stylistic/eslint-plugin
 ```
