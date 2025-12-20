@@ -550,16 +550,18 @@ Mettre à jour la section "scripts" du `package.json` pour faciliter l'utilisati
 
 ```JSON
 "scripts": {
-  "ng": "ng",
-  "build": "ng build",
-  "format": "prettier --write \"src/**/*.{ts,html,css,scss,json}\"",
-  "format:check": "prettier --check \"**/*.{ts,js,html,scss,css,json,md}\"",
-  "lint": "ng lint",
-  "lint:ci": "ng lint --max-warnings=0",
-  "prepare": "husky",
-  "start": "ng serve",
-  "test": "ng test",
-  "watch": "ng build --watch --configuration development"
+    "ng": "ng",
+    "clean": "rimraf coverage .angular",
+    "build": "pnpm clean && ng build",
+    "format": "prettier --write \"src/**/*.{ts,html,css,scss,json}\"",
+    "format:check": "prettier --check \"**/*.{ts,js,html,scss,css,json,md}\"",
+    "lint": "ng lint",
+    "lint:ci": "ng lint --max-warnings=0",
+    "prepare": "husky",
+    "start": "ng serve",
+    "test": "ng test",
+    "test:coverage": "pnpm clean && pnpm test -- --coverage --watch=false",
+    "watch": "ng build --watch --configuration development"
 }
 ```
 
@@ -641,16 +643,7 @@ pnpm exec lint-staged
 
 ```JSON
 "scripts": {
-  "ng": "ng",
-  "build": "ng build",
-  "format": "prettier --write \"src/**/*.{ts,html,css,scss,json}\"",
-  "format:check": "prettier --check \"**/*.{ts,js,html,scss,css,json,md}\"",
-  "lint": "ng lint",
-  "lint:ci": "ng lint --max-warnings=0",
   "prepare": "husky",
-  "start": "ng serve",
-  "test": "ng test",
-  "watch": "ng build --watch --configuration development"
 }
 ```
 
@@ -816,7 +809,8 @@ import { defineConfig } from 'vitest/config';
 export default defineConfig({
   test: {
     coverage: {
-      provider: 'v8',
+      provider: 'istanbul',
+      skipFull: true,
       reporter: ['text', 'lcov', 'html'],
       reportsDirectory: './coverage',
       exclude: [
@@ -878,9 +872,13 @@ pnpm add -D rimraf
 
 ```JSON
 "scripts": {
-  "clean": "rimraf coverage",
-  "test:coverage": "rimraf coverage && pnpm test -- --coverage --watch=false",
+  "clean": "rimraf coverage .angular",
+  "test:coverage": "pnpm clean && pnpm test -- --coverage --watch=false",
 }
+```
+
+```shell
+Remove-Item -Recurse -Force coverage
 ```
 
 <h2 id="schematics">
