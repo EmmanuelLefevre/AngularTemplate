@@ -155,6 +155,7 @@
 📄.package.json
 📄.pnpm-lock.yaml
 📄.README.md
+🧪.vitest.config.ts
 📄.....
 ```
 
@@ -744,16 +745,72 @@ Vitest possède une interface web agréable pour visualiser les tests, voir le c
 pnpm add -D @vitest/ui
 ```
 
-5. Lancer les tests dans le terminal 
+5. Lancer les tests  
+
+- **Via console**
 
 ```shell
 pnpm test
 ```
 
-Lancer les tests avec l'interface graphique  
+- **Via UI**
 
 ```shell
 pnpm test -- --ui
+```
+
+6. Installer le package de coverage `@vitest/coverage-v8`  
+
+```shell
+pnpm add -D @vitest/coverage-v8
+```
+
+7. Créer le fichier `vitest.config.ts`  
+
+```typescript
+import { defineConfig } from 'vitest/config';
+
+export default defineConfig({
+  test: {
+    coverage: {
+      provider: 'v8',
+      reporter: ['text', 'lcov', 'html'],
+      reportsDirectory: './coverage',
+      exclude: [
+        'src/test-setup.ts',
+        'src/main.ts',
+        '**/*.spec.ts',
+        '**/*.module.ts'
+      ]
+    }
+  }
+});
+```
+
+Dans `angular.json` ajouter la propriété `coverage` à l'objet `test`  
+
+```JSON
+"test": {
+  "builder": "@angular/build:unit-test",
+  "options": {
+    "tsConfig": "tsconfig.spec.json",
+    "coverage": true
+  }
+},
+```
+
+8. Lancer les tests  
+
+- **Via console**
+
+```shell
+pnpm test
+```
+
+- **Via UI**
+
+```shell
+pnpm test -- --ui --coverage --watch=false
 ```
 
 <h2 id="styles">
