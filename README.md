@@ -453,7 +453,13 @@ ESLint a aussi des règles de formatage qui peuvent contredire Prettier. Il faut
 pnpm add -D eslint-config-prettier
 ```
 
-2. Configurer ESLint  
+2. Installer les `stylistics`
+
+```shell
+pnpm add -D @stylistic/eslint-plugin
+```
+
+3. Configurer ESLint  
 
 Ouvrir le fichier `eslint.config.js` (qui vient d'être créé à la racine).  
 
@@ -462,44 +468,75 @@ Voici à quoi cela devrait ressembler (simplifié) :
 **\* Note :** Prettier ne sera pas ajouté automatiquement il faut le faire manuellement comme indiqué ci dessous.  
 
 ```js
-const tseslint = require("typescript-eslint");
-const angular = require("angular-eslint");
-const prettier = require("eslint-config-prettier");
+const eslint = require('@eslint/js');
+const { defineConfig } = require('eslint/config');
+const tseslint = require('typescript-eslint');
+const angular = require('angular-eslint');
+const stylistic = require('@stylistic/eslint-plugin');
 
-module.exports = tseslint.config(
-  // TypeScript
+module.exports = defineConfig([
+  // TS ----------
   {
-    files: ["**/*.ts"],
+    files: ['**/*.ts'],
+    plugins: {
+      '@stylistic': stylistic
+    },
     extends: [
+      eslint.configs.recommended,
       ...tseslint.configs.recommended,
       ...tseslint.configs.stylistic,
-      ...angular.configs.tsRecommended,
-      prettier, // ALWAYS LAST ONE
+      ...angular.configs.tsRecommended
     ],
     processor: angular.processInlineTemplates,
     rules: {
       // Angular selectors configuration
-      "@angular-eslint/directive-selector": [
-        "error",
-        { "type": "attribute", "prefix": "app", "style": "camelCase" }
+      '@angular-eslint/component-selector': [
+        'error',
+        {
+          prefix: '',
+          type: 'element',
+          style: 'kebab-case'
+        }
       ],
-      "@angular-eslint/component-selector": [
-        "error",
-        { "type": "element", "prefix": "app", "style": "kebab-case" }
+      '@angular-eslint/directive-selector': [
+        'error',
+        {
+          prefix: '',
+          type: 'attribute',
+          style: 'camelCase'
+        }
       ],
-    },
+      // Stylistics selectors configuration
+      '@stylistic/brace-style': ['error', 'stroustrup'],
+      '@stylistic/indent': ['error', 2],
+      '@stylistic/padding-line-between-statements': [
+        'error',
+        {
+          blankLine: 'always',
+          prev: 'decorator',
+          next: 'class'
+        }
+      ],
+      '@stylistic/semi': ['error', 'always'],
+      '@stylistic/quotes': ['error', 'single'],
+      // Typescript selectors configuration
+      // Commons
+      // Disabling old rules to avoid duplicates
+      indent: 'off',
+      semi: 'off',
+      quotes: 'off'
+    }
   },
-  // HTML
+  // HTML ----------
   {
-    files: ["**/*.html"],
-    extends: [
-      ...angular.configs.templateRecommended,
-      ...angular.configs.templateAccessibility,
-      prettier, // ALWAYS LAST ONE
-    ],
-    rules: {}
+    files: ['**/*.html'],
+    extends: [...angular.configs.templateRecommended, ...angular.configs.templateAccessibility],
+    rules: {
+      '@angular-eslint/template/component-selector': 'off',
+      '@angular-eslint/template/directive-selector': 'off'
+    }
   }
-);
+]);
 ```
 
 💡 A full documentation have been added in `eslint.config.js` and here too... [ESLint Rules](#eslint-rules)  
@@ -570,19 +607,22 @@ Ouvrir le fichier `package.json`. Ajouter la configuration tout à la fin du fic
 
 ```JSON
 "lint-staged": {
-  "src/**/*.{ts,html}": [
-    "eslint --max-warnings=0",
-    "prettier --check"
+  "src/**/*.htm}": [
+    "eslint --fix --max-warnings=0",
+    "prettier --write"
+  ],
+  "src/**/*.ts": [
+    "eslint --fix --max-warnings=0"
   ],
   "src/**/*.{css,scss,json,md}": [
-    "prettier --check"
+    "prettier --write"
   ],
   "*.{js,cjs,mjs}": [
-    "eslint --max-warnings=0",
-    "prettier --check"
+    "eslint --fix --max-warnings=0",
+    "prettier --write"
   ],
   "*.{yaml,yml}": [
-    "prettier --check"
+    "prettier --write"
   ]
 }
 ```
