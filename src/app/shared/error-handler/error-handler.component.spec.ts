@@ -1,12 +1,10 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { ActivatedRoute, Router } from '@angular/router';
-
 import { BehaviorSubject } from 'rxjs';
+import { By } from '@angular/platform-browser';
+import { ErrorHandlerComponent } from './error-handler.component';
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-
-import { ErrorHandlerComponent } from './error-handler.component';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 describe('ErrorHandlerComponent', () => {
   let component: ErrorHandlerComponent;
