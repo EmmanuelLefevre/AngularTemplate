@@ -515,7 +515,7 @@ module.exports = defineConfig([
         'error',
         {
           blankLine: 'always',
-          prev: 'decorator',
+          prev: '*',
           next: 'class'
         }
       ],
