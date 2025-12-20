@@ -13,7 +13,7 @@
     "start": "ng serve",
     "test": "ng test",
     "test:coverage": "pnpm clean && ng test --coverage --watch=false",
-    "test:ui": "vitest --ui",
+    "test:ui": "pnpm test -- --ui --coverage --watch=false",
     "watch": "ng build --watch --configuration development"
   },
   "private": true,

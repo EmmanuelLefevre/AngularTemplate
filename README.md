@@ -810,17 +810,19 @@ import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
   test: {
+    globals: true,
     reporters: ['default'],
     coverage: {
       provider: 'v8',
       enabled: true,
-      reporter: ['text', 'lcov', 'html'],
+      reporter: ['text', 'lcov', 'clover', 'html'],
       reportsDirectory: './coverage',
       exclude: [
         'src/test-setup.ts',
         'src/main.ts',
         '**/*.spec.ts',
-        '**/*.module.ts'
+        '**/*.module.ts',
+        '.angular/**'
       ]
     }
   }
@@ -878,10 +880,6 @@ pnpm add -D rimraf
   "clean": "rimraf coverage .angular",
   "test:coverage": "pnpm clean && ng test --coverage --watch=false",
 }
-```
-
-```shell
-Remove-Item -Recurse -Force coverage
 ```
 
 <h2 id="schematics">
