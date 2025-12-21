@@ -105,6 +105,7 @@
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
+                "src",
                 "src/styles"
               ]
             }
