@@ -44,6 +44,28 @@ describe('ErrorHandlerComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should cover the generic-error branch (Regex TRUE)', () => {
+    // --- ARRANGE ---
+    QUERY_PARAMS_SUBJECT.next({ code: '418' });
+
+    // --- ACT ---
+    fixture.detectChanges();
+
+    // --- ASSERT ---
+    expect(ROUTER_SPY.navigate).toHaveBeenCalledWith(['generic-error'], expect.anything());
+  });
+
+  it('should cover the unknown-error branch (Regex FALSE)', () => {
+    // --- ARRANGE ---
+    QUERY_PARAMS_SUBJECT.next({ code: '999' });
+
+    // --- ACT ---
+    fixture.detectChanges();
+
+    // --- ASSERT ---
+    expect(ROUTER_SPY.navigate).toHaveBeenCalledWith(['unknown-error'], expect.anything());
+  });
+
   it('should handle missing code parameter', () => {
     // --- ARRANGE ---
     QUERY_PARAMS_SUBJECT.next({});
