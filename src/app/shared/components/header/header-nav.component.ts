@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 
 @Component({
   selector: 'header-nav',
@@ -12,13 +12,13 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 })
 
 export class HeaderNavComponent {
-  isMenuOpen = false;
+  public isMenuOpen = signal(false);
 
-  toggleMenu() {
-    this.isMenuOpen = !this.isMenuOpen;
+  public toggleMenu(): void {
+    this.isMenuOpen.update(value => !value);
   }
 
-  closeMenu() {
-    this.isMenuOpen = false;
+  public closeMenu(): void {
+    this.isMenuOpen.set(false);
   }
 }

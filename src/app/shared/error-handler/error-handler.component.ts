@@ -48,7 +48,7 @@ export class ErrorHandlerComponent implements OnInit {
     });
   }
 
-  goHome() {
+  goHome(): void {
     this.router.navigate(['/home']);
   }
 }

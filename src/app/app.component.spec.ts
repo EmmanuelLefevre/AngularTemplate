@@ -1,6 +1,7 @@
-import { provideRouter } from '@angular/router';
-import { AppComponent } from './app.component';
 import { TestBed } from '@angular/core/testing';
+import { provideRouter, RouterOutlet } from '@angular/router';
+import { By } from '@angular/platform-browser';
+import { AppComponent } from './app.component';
 
 import { describe, it, expect, beforeEach } from 'vitest';
 
@@ -24,29 +25,25 @@ describe('AppComponent', () => {
     expect(APP).toBeTruthy();
   });
 
-  it('should render title', async () => {
+  it('should have a router outlet', () => {
     // --- ARRANGE ---
     const FIXTURE = TestBed.createComponent(AppComponent);
 
     // --- ACT ---
     FIXTURE.detectChanges();
-    await FIXTURE.whenStable();
 
     // --- ASSERT ---
-    const COMPILED = FIXTURE.nativeElement as HTMLElement;
-    expect(COMPILED.querySelector('h1')?.textContent).toContain('AngularTemplate');
+    const OUTLET = FIXTURE.debugElement.query(By.directive(RouterOutlet));
+    expect(OUTLET).toBeTruthy();
   });
 
-  it('should verify signal value directly', () => {
+  it('should have the correct title in the signal', () => {
     // --- ARRANGE ---
     const FIXTURE = TestBed.createComponent(AppComponent);
     const APP = FIXTURE.componentInstance;
 
-    // --- ACT ---
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const TITLE_VALUE = (APP as any).title();
-
     // --- ASSERT ---
-    expect(TITLE_VALUE).toBe('AngularTemplate');
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    expect((APP as any).title()).toBe('AngularTemplate');
   });
 });

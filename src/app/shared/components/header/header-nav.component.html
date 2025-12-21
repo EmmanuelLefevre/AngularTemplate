@@ -10,8 +10,8 @@
     <button type="button"
       (click)="toggleMenu()"
       (keydown.enter)="toggleMenu()"
-      [class.is-active]="isMenuOpen"
-      [attr.aria-expanded]="isMenuOpen"
+      [class.is-active]="isMenuOpen()"
+      [attr.aria-expanded]="isMenuOpen()"
       aria-controls="main-nav"
       aria-label="Ouvrir le menu"
       class="header__burger">
@@ -20,7 +20,7 @@
       <span></span>
     </button>
 
-    <nav id="main-nav" class="header__nav" [class.is-open]="isMenuOpen">
+    <nav id="main-nav" class="header__nav" [class.is-open]="isMenuOpen()">
       <ul class="header__list">
         <li class="header__item">
           <a routerLink="/public/home" routerLinkActive="active" (click)="closeMenu()">Accueil</a>
@@ -38,7 +38,7 @@
 </header>
 
 <div class="header__overlay"
-  [class.is-visible]="isMenuOpen"
+  [class.is-visible]="isMenuOpen()"
   (click)="closeMenu()"
   (keydown.escape)="closeMenu()"
   (keydown.enter)="closeMenu()"
