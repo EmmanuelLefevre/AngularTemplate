@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { BehaviorSubject } from 'rxjs';
 import { By } from '@angular/platform-browser';
 import { ErrorHandlerComponent } from './error-handler.component';
@@ -10,31 +11,31 @@ describe('ErrorHandlerComponent', () => {
   let component: ErrorHandlerComponent;
   let fixture: ComponentFixture<ErrorHandlerComponent>;
 
-  // Create Vitest mock router
-  const ROUTER_SPY = {
-    navigate: vi.fn()
-  };
-
-  // QueryParams mock
-  const QUERY_PARAMS_SUBJECT = new BehaviorSubject<unknown>({});
+  let queryParams$: BehaviorSubject<any>;
+  let router: Router;
 
   beforeEach(async () => {
+    queryParams$ = new BehaviorSubject({});
+
     await TestBed.configureTestingModule({
       imports: [ErrorHandlerComponent],
       providers: [
-        { provide: Router, useValue: ROUTER_SPY },
+        {
+          provide: Router,
+          useValue: { navigate: vi.fn().mockResolvedValue(true) }
+        },
         {
           provide: ActivatedRoute,
-          useValue: { queryParams: QUERY_PARAMS_SUBJECT.asObservable() }
+          useValue: { queryParams: queryParams$.asObservable() }
         }
       ]
     }).compileComponents();
 
+    router = TestBed.inject(Router);
     fixture = TestBed.createComponent(ErrorHandlerComponent);
     component = fixture.componentInstance;
   });
 
-  // Clean after each test (prevents test '404' from influencing test '500')
   afterEach(() => {
     vi.clearAllMocks();
   });
@@ -44,38 +45,64 @@ describe('ErrorHandlerComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should cover the generic-error branch (Regex TRUE)', () => {
+  it('should handle missing code parameter', () => {
     // --- ARRANGE ---
-    QUERY_PARAMS_SUBJECT.next({ code: '418' });
+    queryParams$.next({});
 
     // --- ACT ---
     fixture.detectChanges();
 
     // --- ASSERT ---
-    expect(ROUTER_SPY.navigate).toHaveBeenCalledWith(['generic-error'], expect.anything());
+    expect(component.code()).toBe('');
+    expect(router.navigate).toHaveBeenCalledWith(
+      ['unknown-error'],
+      expect.objectContaining({ queryParams: undefined })
+    );
+  });
+
+  it('should cover the generic-error branch (Regex TRUE)', () => {
+    const customCode = '418';
+    queryParams$.next({ code: customCode });
+
+    // --- ACT ---
+    fixture.detectChanges();
+
+    // --- ASSERT ---
+    expect(router.navigate).toHaveBeenCalledWith(
+      ['generic-error'],
+      expect.objectContaining({
+        queryParams: { code: customCode },
+        relativeTo: expect.any(Object)
+      })
+    );
   });
 
   it('should cover the unknown-error branch (Regex FALSE)', () => {
     // --- ARRANGE ---
-    QUERY_PARAMS_SUBJECT.next({ code: '999' });
+    queryParams$.next({ code: '999' });
 
     // --- ACT ---
     fixture.detectChanges();
 
     // --- ASSERT ---
-    expect(ROUTER_SPY.navigate).toHaveBeenCalledWith(['unknown-error'], expect.anything());
+    expect(router.navigate).toHaveBeenCalledWith(['unknown-error'], expect.anything());
   });
 
   it('should handle missing code parameter', () => {
     // --- ARRANGE ---
-    QUERY_PARAMS_SUBJECT.next({});
+    queryParams$.next({});
 
     // --- ACT ---
     fixture.detectChanges();
 
     // --- ASSERT ---
-    expect(component.code).toBe('');
-    expect(ROUTER_SPY.navigate).toHaveBeenCalledWith(['unknown-error'], { queryParams: undefined });
+    expect(component.code()).toBe('');
+    expect(router.navigate).toHaveBeenCalledWith(
+      ['unknown-error'],
+      expect.objectContaining({
+        queryParams: undefined
+      })
+    );
   });
 
   it('should navigate to /home when the button is clicked in the UI', () => {
@@ -87,7 +114,7 @@ describe('ErrorHandlerComponent', () => {
     BUTTON_DEBUG_EL.triggerEventHandler('click', null);
 
     // --- ASSERT ---
-    expect(ROUTER_SPY.navigate).toHaveBeenCalledWith(['/home']);
+    expect(router.navigate).toHaveBeenCalledWith(['/home']);
   });
 
   it('should navigate to /home when goHome() is called', () => {
@@ -98,62 +125,94 @@ describe('ErrorHandlerComponent', () => {
     component.goHome();
 
     // --- ASSERT ---
-    expect(ROUTER_SPY.navigate).toHaveBeenCalledWith(['/home']);
+    expect(router.navigate).toHaveBeenCalledWith(['/home']);
   });
 
   // --- Redirection tests ---
+
   it('should navigate to "unauthorized-error" when code is 401', () => {
     // --- ARRANGE ---
-    QUERY_PARAMS_SUBJECT.next({ code: '401' });
+    queryParams$.next({ code: '401' });
 
     // --- ACT ---
     fixture.detectChanges();
 
     // --- ASSERT ---
-    expect(ROUTER_SPY.navigate).toHaveBeenCalledWith(['unauthorized-error'], { queryParams: undefined });
+    expect(router.navigate).toHaveBeenCalledWith(
+      ['unauthorized-error'],
+      expect.objectContaining({
+        queryParams: undefined,
+        relativeTo: expect.any(Object)
+      })
+    );
   });
 
   it('should navigate to "unfound-error" when code is 404', () => {
     // --- ARRANGE ---
-    QUERY_PARAMS_SUBJECT.next({ code: '404' });
+    queryParams$.next({ code: '404' });
 
     // --- ACT ---
     fixture.detectChanges();
 
     // --- ASSERT ---
-    expect(ROUTER_SPY.navigate).toHaveBeenCalledWith(['unfound-error'], { queryParams: undefined });
+    expect(router.navigate).toHaveBeenCalledWith(
+      ['unfound-error'],
+      expect.objectContaining({
+        queryParams: undefined,
+        relativeTo: expect.any(Object)
+      })
+    );
   });
 
   it('should navigate to "server-error" when code is 500', () => {
     // --- ARRANGE ---
-    QUERY_PARAMS_SUBJECT.next({ code: '500' });
+    queryParams$.next({ code: '500' });
 
     // --- ACT ---
     fixture.detectChanges();
 
     // --- ASSERT ---
-    expect(ROUTER_SPY.navigate).toHaveBeenCalledWith(['server-error'], { queryParams: undefined });
+    expect(router.navigate).toHaveBeenCalledWith(
+      ['server-error'],
+      expect.objectContaining({
+        queryParams: undefined,
+        relativeTo: expect.any(Object)
+      })
+    );
   });
 
   it('should navigate to "generic-error" with params when code is valid but unhandled', () => {
     // --- ARRANGE ---
-    QUERY_PARAMS_SUBJECT.next({ code: '418' });
+    const customCode = '418';
+    queryParams$.next({ code: customCode });
 
     // --- ACT ---
     fixture.detectChanges();
 
     // --- ASSERT ---
-    expect(ROUTER_SPY.navigate).toHaveBeenCalledWith(['generic-error'], { queryParams: { code: '418' } });
+    expect(router.navigate).toHaveBeenCalledWith(
+      ['generic-error'],
+      expect.objectContaining({
+        queryParams: { code: customCode },
+        relativeTo: expect.any(Object)
+      })
+    );
   });
 
   it('should navigate to "unknown-error" without params when code is invalid (ex : 999)', () => {
     // --- ARRANGE ---
-    QUERY_PARAMS_SUBJECT.next({ code: '999' });
+    queryParams$.next({ code: '999' });
 
     // --- ACT ---
     fixture.detectChanges();
 
     // --- ASSERT ---
-    expect(ROUTER_SPY.navigate).toHaveBeenCalledWith(['unknown-error'], { queryParams: undefined });
+    expect(router.navigate).toHaveBeenCalledWith(
+      ['unknown-error'],
+      expect.objectContaining({
+        queryParams: undefined,
+        relativeTo: expect.any(Object)
+      })
+    );
   });
 });

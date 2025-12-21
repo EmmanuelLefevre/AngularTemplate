@@ -5,7 +5,9 @@ export const routes: Routes = [
   {
     path: '',
     // Public Layout
-    loadComponent: () => import('@features/public/public-layout.component').then(m => m.PublicLayoutComponent),
+    loadComponent: () => import(
+      '@features/public/public-layout.component')
+      .then(m => m.PublicLayoutComponent),
     children: [
       {
         path: '',
@@ -14,7 +16,9 @@ export const routes: Routes = [
       },
       {
         path: 'home',
-        loadComponent: () => import('@features/public/public-views/home/home-view.component').then(m => m.HomeViewComponent)
+        loadComponent: () => import(
+          '@features/public/public-views/home/home-view.component')
+          .then(m => m.HomeViewComponent)
       },
       // Add 'contact', 'about'
     ]
@@ -23,7 +27,9 @@ export const routes: Routes = [
   // --- PRIVATE AREA ---
   {
     path: 'admin',
-    loadComponent: () => import('@features/admin/admin-layout.component').then(m => m.AdminLayoutComponent),
+    loadComponent: () => import(
+      '@features/admin/admin-layout.component').
+      then(m => m.AdminLayoutComponent),
     children: [
       /* Admin routes */
     ]
@@ -32,28 +38,39 @@ export const routes: Routes = [
   // --- ERROR MANAGEMENT ---
   {
     path: 'error',
-    loadComponent: () => import('@shared/error-handler/error-handler.component').then(m => m.ErrorHandlerComponent),
+    loadComponent: () => import(
+      '@shared/error-handler/error-handler.component')
+      .then(m => m.ErrorHandlerComponent),
     children: [
-      {
-        path: 'unauthorized-error',
-        loadComponent: () => import('@shared/error-handler/error-views/unauthorized-error/unauthorized-error.component').then(m => m.UnauthorizedErrorComponent)
+      { path: 'unauthorized-error', loadComponent: () => import(
+        '@shared/error-handler/error-views/unauthorized-error/unauthorized-error.component')
+        .then(m => m.UnauthorizedErrorComponent)
       },
-      {
-        path: 'unfound-error',
-        loadComponent: () => import('@shared/error-handler/error-views/unfound-error/unfound-error.component').then(m => m.UnfoundErrorComponent)
+      { path: 'unfound-error', loadComponent: () => import(
+        '@shared/error-handler/error-views/unfound-error/unfound-error.component')
+        .then(m => m.UnfoundErrorComponent)
       },
-      {
-        path: 'server-error',
-        loadComponent: () => import('@shared/error-handler/error-views/server-error/server-error.component').then(m => m.ServerErrorComponent)
+      { path: 'server-error', loadComponent: () => import(
+        '@shared/error-handler/error-views/server-error/server-error.component')
+        .then(m => m.ServerErrorComponent)
       },
-      {
-        path: 'generic-error',
-        loadComponent: () => import('@shared/error-handler/error-views/generic-error/generic-error.component').then(m => m.GenericErrorComponent)
+      { path: 'generic-error', loadComponent: () => import(
+        '@shared/error-handler/error-views/generic-error/generic-error.component')
+        .then(m => m.GenericErrorComponent)
       },
-      {
-        path: 'unknown-error',
-        loadComponent: () => import('@shared/error-handler/error-views/unknown-error/unknown-error.component').then(m => m.UnknownErrorComponent)
+      { path: 'unknown-error', loadComponent: () => import(
+        '@shared/error-handler/error-views/unknown-error/unknown-error.component')
+        .then(m => m.UnknownErrorComponent)
       }
     ]
+  },
+
+  // --- WILDCARD ROUTE ---
+  {
+    path: '**',
+    redirectTo: () => {
+    // Could add logic here...
+      return 'error/unfound-error';
+    }
   }
 ];

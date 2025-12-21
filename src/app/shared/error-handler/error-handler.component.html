@@ -1,5 +1,11 @@
 <section>
   <h1>Une erreur est survenue</h1>
-  <h3>Erreur {{ code }}</h3>
-  <button (click)="goHome()">Retour</button>
+
+  <h3>Erreur {{ code() }}</h3>
+
+  <div class="error-view-slot">
+    <router-outlet />
+  </div>
+
+  <button (click)="goHome()">Retour à l'accueil</button>
 </section>

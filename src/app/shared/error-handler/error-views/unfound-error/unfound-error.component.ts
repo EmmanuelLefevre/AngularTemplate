@@ -7,4 +7,5 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrl: './unfound-error.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
+
 export class UnfoundErrorComponent {}

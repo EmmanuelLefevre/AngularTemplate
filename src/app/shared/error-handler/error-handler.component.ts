@@ -1,9 +1,9 @@
-import { ActivatedRoute, Params, Router } from '@angular/router';
-import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
+import { ActivatedRoute, Params, Router, RouterOutlet } from '@angular/router';
+import { ChangeDetectionStrategy, Component, OnInit, inject, signal } from '@angular/core';
 
 @Component({
   selector: 'error-handler',
-  imports: [],
+  imports: [RouterOutlet],
   templateUrl: './error-handler.component.html',
   styleUrl: './error-handler.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -13,16 +13,19 @@ export class ErrorHandlerComponent implements OnInit {
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
 
-  code!: string;
+  public readonly code = signal<string>('');
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((currentParams) => {
-      this.code = currentParams['code'] ? String(currentParams['code']) : '';
+      const codeValue = currentParams['code'] ? String(currentParams['code']) : '';
+      this.code.set(codeValue);
+
+      const rawValue = this.code();
 
       let destination: string | null = null;
       let nextParams: Params | undefined = undefined;
 
-      switch (this.code) {
+      switch (rawValue) {
         case '401':
           destination = 'unauthorized-error';
           break;
@@ -34,9 +37,9 @@ export class ErrorHandlerComponent implements OnInit {
           break;
 
         default:
-          if (/^[1-5]\d{2}$/.test(this.code)) {
+          if (/^[1-5]\d{2}$/.test(rawValue)) {
             destination = 'generic-error';
-            nextParams = { code: this.code };
+            nextParams = { code: rawValue };
           }
           else {
             destination = 'unknown-error';
@@ -44,7 +47,10 @@ export class ErrorHandlerComponent implements OnInit {
           break;
       }
 
-      this.router.navigate([destination], { queryParams: nextParams });
+      this.router.navigate([destination], {
+        relativeTo: this.route,
+        queryParams: nextParams
+      });
     });
   }
 
