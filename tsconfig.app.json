@@ -10,6 +10,7 @@
       "@env/*": ["./src/_environments/*"],
       "@features/*": ["./src/app/features/*"],
       "@shared": ["./src/app/shared/shared.ts"],
+      "@shared/*": ["./src/app/shared/*"],
       "@styles/*": ["./src/styles/*"]
     },
     "rootDir": "./src"
@@ -73,6 +74,9 @@
 
   * @features/* : ["./src/app/features/*"]
     Access to feature modules or standalone component bundles (often lazy-loaded).
+
+  * "@shared": ["./src/app/shared/shared.ts"],
+    # Barrel file
 
   * @shared/* : ["./src/app/shared/*"]
     Access to reusable components, pipes, and directives.

@@ -149,11 +149,11 @@
  ┃ ┃ ┣ 🎨_reset.scss
  ┃ ┃ ┗ 🎨_typography.scss
  ┃ ┣ 📂layout
- ┃ ┃ ┣ 🎨admin-layout.scss
- ┃ ┃ ┗ 🎨main-layout.scss
+ ┃ ┃ ┣ 🎨_admin-layout.scss
+ ┃ ┃ ┗ 🎨_main-layout.scss
  ┃ ┗ 📂themes
- ┃   ┣ 🎨light-theme.scss
- ┃   ┗ 🎨theme-variables.scss
+ ┃   ┣ 🎨_light-theme.scss
+ ┃   ┗ 🎨_theme-variables.scss
  ┣ 📄index.html
  ┣ 📄main.ts
  ┣ 🎨styles.scss
@@ -736,6 +736,7 @@ Configuration des alias
       "@core/*": ["./src/app/core/*"],
       "@env/*": ["./src/_environments/*"],
       "@features/*": ["./src/app/features/*"],
+      "@shared": ["./src/app/shared/shared.ts"],
       "@shared/*": ["./src/app/shared/*"],
       "@styles/*": ["./src/styles/*"]
     },
@@ -772,6 +773,10 @@ pnpm add -D @analogjs/vite-plugin-angular
 
 ```shell
 pnpm add -D @types/node
+```
+
+```shell
+pnpm add -D vite-tsconfig-paths
 ```
 
 2. Dans `tsconfig.spec.json` remplacer par ces propriétés dans `@compilerOptions`.  

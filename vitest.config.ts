@@ -6,7 +6,17 @@ import { dirname, resolve } from 'node:path';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
-  plugins: [angular()],
+  plugins: [
+    angular(),
+    tsconfigPaths()
+  ],
+  css: {
+    preprocessorOptions: {
+      scss: {
+        includePaths: ['src', 'src/styles'],
+      },
+    },
+  },
   test: {
     globals: true,
     environment: 'jsdom',
