@@ -1208,15 +1208,28 @@ De plus il faut ajouter le favicon, les scripts, le browser et l'index dans l'ob
     "builder": "@angular/build:application",
     "options": {
       "index": "src/index.html",
+      "browser": "src/main.ts",
+      "tsConfig": "tsconfig.app.json",
+      "inlineStyleLanguage": "scss",
       "scripts": [],
       "assets": [
         "src/favicon.ico",
+        "src/assets",
         {
           "glob": "**/*",
           "input": "public"
         }
       ],
-    }
+      "styles": [
+        "src/styles.scss"
+      ],
+      "stylePreprocessorOptions": {
+        "includePaths": [
+          "src",
+          "src/styles"
+        ]
+      }
+    },
     "configurations": {
       "production": {
         "fileReplacements": [
@@ -1237,9 +1250,39 @@ De plus il faut ajouter le favicon, les scripts, le browser et l'index dans l'ob
             "maximumError": "8kB"
           }
         ]
+      },
+      "development": {
+        "optimization": false,
+        "extractLicenses": false,
+        "sourceMap": true,
+        "budgets": [
+          {
+            "type": "initial",
+            "maximumWarning": "1.5MB",
+            "maximumError": "2MB"
+          },
+          {
+            "type": "anyComponentStyle",
+            "maximumWarning": "6kB",
+            "maximumError": "10kB"
+          }
+        ]
       }
-    }
-  }
+    },
+    "defaultConfiguration": "production"
+  },
+  "serve": {
+    "builder": "@angular/build:dev-server",
+    "configurations": {
+      "production": {
+        "buildTarget": "AngularTemplate:build:production"
+      },
+      "development": {
+        "buildTarget": "AngularTemplate:build:development"
+      }
+    },
+    "defaultConfiguration": "development"
+  },
 }
 ```
 

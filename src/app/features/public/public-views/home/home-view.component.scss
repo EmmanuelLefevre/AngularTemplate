@@ -22,17 +22,31 @@
   }
 
   &__logo {
-    max-width: 120px;
+    max-width: 200px;
   }
 
   &__divider {
     width: 100%;
     height: 1px;
-    background: linear-gradient(90deg, var(--primary-blue), var(--primary-violet));
+    background: linear-gradient(
+      90deg,
+      var(--primary-color) 0%,
+      oklch(from var(--primary-color) l c h) 25%,
+      var(--secondary-color) 100%
+    );
 
     @include respond-to('tablet') {
-      width: 1px;
-      height: 200px;
+      width: 2px;
+      height: 150px;
+      flex-shrink: 0;
+      margin: 0 2rem;
+
+      background: linear-gradient(
+        180deg,
+        var(--primary-color) 0%,
+        oklch(from var(--primary-color) l c h) 25%,
+        var(--secondary-color) 100%
+      );
     }
   }
 }
