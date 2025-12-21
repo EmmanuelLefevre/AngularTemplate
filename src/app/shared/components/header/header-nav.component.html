@@ -1,0 +1,48 @@
+<header class="header">
+
+  <div class="header__container">
+    <a routerLink="/"
+      (click)="closeMenu()"
+      class="header__logo">
+      <span>ANGULAR</span>TEMPLATE
+    </a>
+
+    <button type="button"
+      (click)="toggleMenu()"
+      (keydown.enter)="toggleMenu()"
+      [class.is-active]="isMenuOpen"
+      [attr.aria-expanded]="isMenuOpen"
+      aria-controls="main-nav"
+      aria-label="Ouvrir le menu"
+      class="header__burger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav id="main-nav" class="header__nav" [class.is-open]="isMenuOpen">
+      <ul class="header__list">
+        <li class="header__item">
+          <a routerLink="/public/home" routerLinkActive="active" (click)="closeMenu()">Accueil</a>
+        </li>
+        <li class="header__item">
+          <a routerLink="/public/contact" routerLinkActive="active" (click)="closeMenu()">Contact</a>
+        </li>
+        <li class="header__item header__item--admin">
+          <a routerLink="/admin" routerLinkActive="active" (click)="closeMenu()">Dashboard</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+
+</header>
+
+<div class="header__overlay"
+  [class.is-visible]="isMenuOpen"
+  (click)="closeMenu()"
+  (keydown.escape)="closeMenu()"
+  (keydown.enter)="closeMenu()"
+  role="button"
+  tabindex="0"
+  aria-label="Fermer le menu">
+</div>
