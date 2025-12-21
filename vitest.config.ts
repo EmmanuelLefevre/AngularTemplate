@@ -11,11 +11,11 @@ export default defineConfig({
     globals: true,
     environment: 'jsdom',
     setupFiles: [resolve(__dirname, 'src/test-setup.ts')],
-    reporters: ['default', 'junit'],
+    reporters: ['default'],
     coverage: {
       provider: 'v8',
       enabled: true,
-      reporter: ['text', 'lcov', 'clover', 'json', 'html'],
+      reporter: ['text', 'lcov'],
       reportsDirectory: './coverage',
       exclude: [
         'src/main.ts',

@@ -19,19 +19,8 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: 📦 Install PNPM
-        uses: pnpm/action-setup@v2
-        with:
-          version: latest
-
-      - name: 🏗️ Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: 'pnpm'
-
       # Semantique Analysis (XSS vulnerabilities, injections...)
-      - name: ⚙️ Initialize CodeQL
+      - name: 🏗️ Initialize CodeQL
         uses: github/codeql-action/init@v4
         with:
           languages: javascript-typescript
