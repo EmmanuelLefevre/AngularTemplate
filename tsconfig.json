@@ -2,14 +2,14 @@
   "compileOnSave": false,
   "compilerOptions": {
     "paths": {
-      "@app/*": ["src/app/*"],
-      "@assets/*": ["src/assets/*"],
-      "@core/*": ["src/app/core/*"],
-      "@env/*": ["src/_environments/*"],
-      "@features/*": ["src/app/features/*"],
-      "@shared": ["src/app/shared/shared.ts"],
-      "@shared/*": ["src/app/shared/*"],
-      "@styles/*": ["src/styles/*"]
+      "@app/*": ["./src/app/*"],
+      "@assets/*": ["./src/assets/*"],
+      "@core/*": ["./src/app/core/*"],
+      "@env/*": ["./src/_environments/*"],
+      "@features/*": ["./src/app/features/*"],
+      "@shared": ["./src/app/shared/shared.ts"],
+      "@shared/*": ["./src/app/shared/*"],
+      "@styles/*": ["./src/styles/*"]
     },
     "declaration": false,
     "esModuleInterop": true,
