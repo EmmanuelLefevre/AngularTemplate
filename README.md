@@ -4,17 +4,19 @@
   <img src="https://img.shields.io/github/last-commit/EmmanuelLefevre/AngularTemplate" alt="Last Commit"/>
 </div>
 
+<br>
+
 <div align="right">
-  <a href="https://github.com/EmmanuelLefevre/AngularTemplate/actions">
-    <img src="https://github.com/EmmanuelLefevre/AngularTemplate/actions/workflows/pipeline.yml/badge.svg" alt="CI/CD Pipeline"/>
-  </a>
-  <img src="https://sonarcloud.io/api/project_badges/measure?project=emmanuel-lefevre_angular-template&metric=security_rating" alt="Security Rating"/>
-  <a href="https://sonarcloud.io/dashboard?id=emmanuel-lefevre_angular-template">
-    <img src="https://sonarcloud.io/api/project_badges/measure?project=emmanuel-lefevre_angular-template&metric=alert_status" alt="Quality Gate"/>
-  </a>
-  <a href="https://sonarcloud.io/dashboard?id=emmanuel-lefevre_angular-template">
-    <img src="https://sonarcloud.io/api/project_badges/measure?project=emmanuel-lefevre_angular-template&metric=coverage" alt="Coverage"/>
-  </a>
+<a href="https://github.com/EmmanuelLefevre/AngularTemplate/actions">
+<img src="https://github.com/EmmanuelLefevre/AngularTemplate/actions/workflows/pipeline.yml/badge.svg" alt="CI/CD Pipeline"/>
+</a>
+<img src="https://sonarcloud.io/api/project_badges/measure?project=emmanuel-lefevre_angular-template&metric=security_rating" alt="Security Rating"/>
+<a href="https://sonarcloud.io/dashboard?id=emmanuel-lefevre_angular-template">
+<img src="https://sonarcloud.io/api/project_badges/measure?project=emmanuel-lefevre_angular-template&metric=alert_status" alt="Quality Gate"/>
+</a>
+<a href="https://sonarcloud.io/dashboard?id=emmanuel-lefevre_angular-template">
+<img src="https://sonarcloud.io/api/project_badges/measure?project=emmanuel-lefevre_angular-template&metric=coverage" alt="Coverage"/>
+</a>
 </div>
 
 <br>
