@@ -52,6 +52,7 @@
     "typescript": "5.9.3",
     "typescript-eslint": "8.47.0",
     "vite": "7.3.0",
+    "vite-tsconfig-paths": "6.0.3",
     "vitest": "4.0.16"
   },
   "lint-staged": {

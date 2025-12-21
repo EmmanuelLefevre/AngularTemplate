@@ -852,13 +852,24 @@ getTestBed().initTestEnvironment(
 ```typescript
 import { defineConfig } from 'vitest/config';
 import angular from '@analogjs/vite-plugin-angular';
+import tsconfigPaths from 'vite-tsconfig-paths';
 import { fileURLToPath } from 'node:url';
 import { dirname, resolve } from 'node:path';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
-  plugins: [angular()],
+  plugins: [
+    angular(),
+    tsconfigPaths()
+  ],
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: '@use "src/styles/abstracts/_index.scss" as *;'
+      },
+    },
+  },
   test: {
     globals: true,
     environment: 'jsdom',
