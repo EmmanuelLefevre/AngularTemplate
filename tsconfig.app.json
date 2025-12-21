@@ -3,24 +3,10 @@
   "compilerOptions": {
     "outDir": "./out-tsc/app",
     "types": [],
-    "paths": {
-      "@app/*": ["./src/app/*"],
-      "@assets/*": ["./src/assets/*"],
-      "@core/*": ["./src/app/core/*"],
-      "@env/*": ["./src/_environments/*"],
-      "@features/*": ["./src/app/features/*"],
-      "@shared": ["./src/app/shared/shared.ts"],
-      "@shared/*": ["./src/app/shared/*"],
-      "@styles/*": ["./src/styles/*"]
-    },
     "rootDir": "./src"
   },
-  "include": [
-    "src/**/*.ts"
-  ],
-  "exclude": [
-    "src/**/*.spec.ts"
-  ]
+  "include": ["src/**/*.ts"],
+  "exclude": ["src/**/*.spec.ts"]
 }
 
 /* ========================================================================
@@ -52,35 +38,4 @@
   * types: []
     Disables automatic inclusion of all types from `node_modules/@types`.
     Only explicitly referenced types will be included (if any).
-
-
-  --- ALIASES & PATHS -----------------------------------------------------
-
-  @compilerOptions.paths
-  Defines absolute path aliases. This enables clean, absolute imports,
-  regardless of the current file's depth.
-
-  * @app/* : ["./src/app/*"]
-    Primary alias for the 'app' folder structure.
-
-  * @assets/* : ["./src/assets/*"]
-    Direct access to static resources (images, fonts).
-
-  * @core/* : ["./src/app/core/*"]
-    Access to core services, guards, and interceptors.
-
-  * @env/* : ["./src/_environments/*"]
-    Access to environment-specific configuration files.
-
-  * @features/* : ["./src/app/features/*"]
-    Access to feature modules or standalone component bundles (often lazy-loaded).
-
-  * "@shared": ["./src/app/shared/shared.ts"],
-    # Barrel file
-
-  * @shared/* : ["./src/app/shared/*"]
-    Access to reusable components, pipes, and directives.
-
-  * @styles/* : ["./src/styles/*"]
-    Access to global style sheets folder.
 */

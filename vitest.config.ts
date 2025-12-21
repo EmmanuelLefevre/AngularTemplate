@@ -9,7 +9,9 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 export default defineConfig({
   plugins: [
     angular(),
-    tsconfigPaths()
+    tsconfigPaths({
+      projects: [resolve(__dirname, 'tsconfig.json')]
+    })
   ],
   css: {
     preprocessorOptions: {
