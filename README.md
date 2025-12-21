@@ -561,8 +561,8 @@ Mettre à jour la section "scripts" du `package.json` pour faciliter l'utilisati
   "prepare": "husky",
   "start": "ng serve",
   "test": "ng test",
-  "test:coverage": "pnpm clean && ng test --coverage --watch=false",
-  "test:ui": "vitest --ui",
+  "test:ui": "ng test --ui",
+  "test:coverage": "ng test --coverage --watch=false",
   "watch": "ng build --watch --configuration development"
 }
 ```
@@ -614,7 +614,7 @@ Ouvrir le fichier `package.json`. Ajouter la configuration tout à la fin du fic
 
 ```JSON
 "lint-staged": {
-  "src/**/*.htm}": [
+  "src/**/*.html}": [
     "eslint --fix --max-warnings=0",
     "prettier --write"
   ],
@@ -753,6 +753,14 @@ Activer le nouveau système de tests unitaires natif d'Angular. Ce builder moder
 pnpm add -D vitest jsdom
 ```
 
+```shell
+pnpm add -D @angular/platform-browser-dynamic
+```
+
+```shell
+pnpm add -D @analogjs/vite-plugin-angular
+```
+
 2. Dans `tsconfig.spec.json` ajouter la propriété `rootDir` dans `@compilerOptions`.  
 
 ```JSON
@@ -794,7 +802,7 @@ pnpm test
 - **Via UI**
 
 ```shell
-pnpm test -- --ui
+pnpm test:ui
 ```
 
 6. Installer le package de coverage `@vitest/coverage-v8`  
@@ -835,16 +843,17 @@ Dans `angular.json` ajouter la propriété `coverage` à l'objet `test`
 "test": {
   "builder": "@angular/build:unit-test",
   "options": {
+    "runnerConfig": "vitest.config.ts",
     "tsConfig": "tsconfig.spec.json",
     "coverage": true
   }
 },
 ```
 
-8. Lancer les tests  
+8. Lancer les tests avec le coverage dans le terminal  
 
 ```shell
-pnpm test -- --ui --coverage --watch=false
+pnpm test:coverage
 ```
 
 <h2 id="styles">
@@ -878,7 +887,7 @@ pnpm add -D rimraf
 ```JSON
 "scripts": {
   "clean": "rimraf coverage .angular",
-  "test:coverage": "pnpm clean && ng test --coverage --watch=false",
+  "test:coverage": "ng test --coverage --watch=false",
 }
 ```
 

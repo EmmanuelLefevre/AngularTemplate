@@ -1,21 +1,31 @@
 import { defineConfig } from 'vitest/config';
+import angular from '@analogjs/vite-plugin-angular';
+import { fileURLToPath } from 'node:url';
+import { dirname, resolve } from 'node:path';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
+  plugins: [angular()],
   test: {
     globals: true,
+    environment: 'jsdom',
+    setupFiles: [resolve(__dirname, 'src/test-setup.ts')],
     reporters: ['default'],
     coverage: {
       provider: 'v8',
       enabled: true,
-      reporter: ['text', 'lcov', 'clover', 'html'],
+      reporter: ['text', 'lcov', 'clover', 'json', 'html'],
       reportsDirectory: './coverage',
       exclude: [
-        'src/test-setup.ts',
         'src/main.ts',
-        '**/*.spec.ts',
         '**/*.module.ts',
-        '.angular/**'
-      ]
-    }
+        '**/index.ts',
+        '.angular/**',
+        'eslint.config.js',
+        'dist/**',
+      ],
+      clean: true
+    },
   }
 });

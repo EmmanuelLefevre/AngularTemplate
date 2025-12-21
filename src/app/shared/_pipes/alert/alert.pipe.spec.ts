@@ -10,6 +10,7 @@ describe('AlertPipe', () => {
   beforeEach(() => {
     // --- ARRANGE ---
     TestBed.configureTestingModule({
+      imports: [AlertPipe],
       providers: [AlertPipe]
     });
     pipe = TestBed.inject(AlertPipe);

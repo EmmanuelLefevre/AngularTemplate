@@ -1,12 +1,13 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "importHelpers": true,
     "outDir": "./out-tsc/spec",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
     "types": [
-      "vitest/globals"
-    ],
-    "rootDir": "./src/app"
+      "vitest/globals",
+      "node"
+    ]
   },
   "include": [
     "src/**/*.d.ts",
