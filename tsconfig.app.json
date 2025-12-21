@@ -9,7 +9,7 @@
       "@core/*": ["./src/app/core/*"],
       "@env/*": ["./src/_environments/*"],
       "@features/*": ["./src/app/features/*"],
-      "@shared/*": ["./src/app/shared/*"],
+      "@shared": ["./src/app/shared/shared.ts"],
       "@styles/*": ["./src/styles/*"]
     },
     "rootDir": "./src"
