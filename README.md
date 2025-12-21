@@ -1,15 +1,17 @@
 <div align="right">
   <img src="https://visitor-badge.laobi.icu/badge?page_id=EmmanuelLefevre.AngularTemplate" />
   <img src="https://img.shields.io/github/last-commit/EmmanuelLefevre/AngularTemplate" />
-  <img src="https://github.com/EmmanuelLefevre/AngularTemplate/.github/workflows/pipeline.yml/badge.svg" />
-  [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=emmanuel-lefevre_angular-template&metric=alert_status)](https://sonarcloud.io/api/dashboard?id=emmanuel-lefevre_angular-template)
-  [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=emmanuel-lefevre_angular-template&metric=coverage)](https://sonarcloud.io/api/dashboard?id=emmanuel-lefevre_angular-template)
-  [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=emmanuel-lefevre_angular-template&metric=security_rating)](https://sonarcloud.io/api/dashboard?id=emmanuel-lefevre_angular-template)
+  <img src="https://github.com/EmmanuelLefevre/AngularTemplate/actions/workflows/pipeline.yml/badge.svg" />
 </div>
 
-[![CI/CD Pipeline](https://github.com/EmmanuelLefevre/AngularTemplate/actions/workflows/pipeline.yml/badge.svg)](https://github.com/EmmanuelLefevre/AngularTemplate/actions)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=emmanuel-lefevre_angular-template&metric=alert_status)](https://sonarcloud.io/api/dashboard?id=emmanuel-lefevre_angular-template)
+
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=emmanuel-lefevre_angular-template&metric=coverage)](https://sonarcloud.io/api/dashboard?id=emmanuel-lefevre_angular-template)
+
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=emmanuel-lefevre_angular-template&metric=security_rating)](https://sonarcloud.io/api/dashboard?id=emmanuel-lefevre_angular-template)
 
 [![CI/CD Pipeline](https://github.com/EmmanuelLefevre/AngularTemplate/actions/workflows/pipeline.yml/badge.svg)](https://github.com/EmmanuelLefevre/AngularTemplate/actions)
+
 [![Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=emmanuel-lefevre_angular-template&metric=alert_status)](https://sonarcloud.io/dashboard?id=emmanuel-lefevre_angular-template)
 
 <br>
