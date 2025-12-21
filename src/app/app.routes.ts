@@ -68,9 +68,6 @@ export const routes: Routes = [
   // --- WILDCARD ROUTE ---
   {
     path: '**',
-    redirectTo: () => {
-    // Could add logic here...
-      return 'error/unfound-error';
-    }
+    redirectTo: '/error/unfound-error'
   }
 ];

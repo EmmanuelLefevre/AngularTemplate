@@ -22,11 +22,17 @@ describe('ErrorHandlerComponent', () => {
       providers: [
         {
           provide: Router,
-          useValue: { navigate: vi.fn().mockResolvedValue(true) }
+          useValue: {
+            navigate: vi.fn().mockResolvedValue(true),
+            url: '/error'
+          }
         },
         {
           provide: ActivatedRoute,
-          useValue: { queryParams: queryParams$.asObservable() }
+          useValue: {
+            queryParams: queryParams$.asObservable(),
+            snapshot: { firstChild: null }
+          }
         }
       ]
     }).compileComponents();
@@ -45,7 +51,7 @@ describe('ErrorHandlerComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should handle missing code parameter', () => {
+  it('should handle missing code parameter and navigate to unknown-error', () => {
     // --- ARRANGE ---
     queryParams$.next({});
 
@@ -56,7 +62,10 @@ describe('ErrorHandlerComponent', () => {
     expect(component.code()).toBe('');
     expect(router.navigate).toHaveBeenCalledWith(
       ['unknown-error'],
-      expect.objectContaining({ queryParams: undefined })
+      expect.objectContaining({
+        queryParams: undefined,
+        replaceUrl: true
+      })
     );
   });
 
@@ -72,7 +81,8 @@ describe('ErrorHandlerComponent', () => {
       ['generic-error'],
       expect.objectContaining({
         queryParams: { code: customCode },
-        relativeTo: expect.any(Object)
+        relativeTo: expect.any(Object),
+        replaceUrl: true
       })
     );
   });
@@ -85,22 +95,11 @@ describe('ErrorHandlerComponent', () => {
     fixture.detectChanges();
 
     // --- ASSERT ---
-    expect(router.navigate).toHaveBeenCalledWith(['unknown-error'], expect.anything());
-  });
-
-  it('should handle missing code parameter', () => {
-    // --- ARRANGE ---
-    queryParams$.next({});
-
-    // --- ACT ---
-    fixture.detectChanges();
-
-    // --- ASSERT ---
-    expect(component.code()).toBe('');
     expect(router.navigate).toHaveBeenCalledWith(
       ['unknown-error'],
       expect.objectContaining({
-        queryParams: undefined
+        queryParams: { code: '999' },
+        replaceUrl: true
       })
     );
   });
@@ -141,7 +140,7 @@ describe('ErrorHandlerComponent', () => {
     expect(router.navigate).toHaveBeenCalledWith(
       ['unauthorized-error'],
       expect.objectContaining({
-        queryParams: undefined,
+        queryParams: { code: '401' },
         relativeTo: expect.any(Object)
       })
     );
@@ -158,7 +157,7 @@ describe('ErrorHandlerComponent', () => {
     expect(router.navigate).toHaveBeenCalledWith(
       ['unfound-error'],
       expect.objectContaining({
-        queryParams: undefined,
+        queryParams: { code: '404' },
         relativeTo: expect.any(Object)
       })
     );
@@ -175,7 +174,7 @@ describe('ErrorHandlerComponent', () => {
     expect(router.navigate).toHaveBeenCalledWith(
       ['server-error'],
       expect.objectContaining({
-        queryParams: undefined,
+        queryParams: { code: '500' },
         relativeTo: expect.any(Object)
       })
     );
@@ -199,20 +198,51 @@ describe('ErrorHandlerComponent', () => {
     );
   });
 
-  it('should navigate to "unknown-error" without params when code is invalid (ex : 999)', () => {
+  it('should NOT navigate if the current URL already includes an error page', () => {
     // --- ARRANGE ---
-    queryParams$.next({ code: '999' });
+    Object.defineProperty(router, 'url', { get: () => '/error/unfound-error' });
+    queryParams$.next({ code: '404' });
 
     // --- ACT ---
     fixture.detectChanges();
 
     // --- ASSERT ---
-    expect(router.navigate).toHaveBeenCalledWith(
-      ['unknown-error'],
-      expect.objectContaining({
-        queryParams: undefined,
-        relativeTo: expect.any(Object)
-      })
-    );
+    expect(router.navigate).not.toHaveBeenCalled();
+  });
+
+  it('should infer code 404 from URL when queryParams are missing', () => {
+    // --- ARRANGE ---
+    Object.defineProperty(router, 'url', { value: '/error/unfound-error', configurable: true });
+    queryParams$.next({});
+
+    // --- ACT ---
+    fixture.detectChanges();
+
+    // --- ASSERT ---
+    expect(component.code()).toBe('404');
+  });
+
+  it('should infer code 401 from URL when queryParams are missing', () => {
+    // --- ARRANGE ---
+    Object.defineProperty(router, 'url', { value: '/error/unauthorized-error', configurable: true });
+    queryParams$.next({});
+
+    // --- ACT ---
+    fixture.detectChanges();
+
+    // --- ASSERT ---
+    expect(component.code()).toBe('401');
+  });
+
+  it('should infer code 500 from URL when queryParams are missing', () => {
+    // --- ARRANGE ---
+    Object.defineProperty(router, 'url', { value: '/error/server-error', configurable: true });
+    queryParams$.next({});
+
+    // --- ACT ---
+    fixture.detectChanges();
+
+    // --- ASSERT ---
+    expect(component.code()).toBe('500');
   });
 });
