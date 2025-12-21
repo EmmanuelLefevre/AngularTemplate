@@ -1,8 +1,13 @@
 <div align="right">
   <img src="https://visitor-badge.laobi.icu/badge?page_id=EmmanuelLefevre.AngularTemplate" />
   <img src="https://img.shields.io/github/last-commit/EmmanuelLefevre/AngularTemplate" />
-  <img src="https://github.com/EmmanuelLefevre/AngularTemplate/actions/workflows/main.yaml/badge.svg" />
+  <img src="https://github.com/EmmanuelLefevre/AngularTemplate/actions/workflows/pipeline.yml/badge.svg" />
 </div>
+
+[![CI/CD Pipeline](https://github.com/emmanuel-lefevre/AngularTemplate/actions/workflows/pipeline.yml/badge.svg)](https://github.com/emmanuel-lefevre/AngularTemplate/actions)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=emmanuel-lefevre_angular-template&metric=alert_status)](https://sonarcloud.io/api/dashboard?id=emmanuel-lefevre_angular-template)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=emmanuel-lefevre_angular-template&metric=coverage)](https://sonarcloud.io/api/dashboard?id=emmanuel-lefevre_angular-template)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=emmanuel-lefevre_angular-template&metric=security_rating)](https://sonarcloud.io/api/dashboard?id=emmanuel-lefevre_angular-template)
 
 <br>
 
@@ -922,7 +927,7 @@ sonar.javascript.lcov.reportPaths=coverage/lcov.info
 sonar.coverage.exclusions=src/test-setup.ts, src/main.ts
 ```
 
-5. Créer `.github > workflows > sonar.yml`
+5. Créer `.github > workflows > pipeline.yml`
 
 ```yml
 name: CI/CD Pipeline
@@ -1018,10 +1023,31 @@ jobs:
       - name: 🧱 Build Project (Production)
         run: pnpm build --configuration=production
 
-      # ... Complete ...
+      - name: 🚀 Sync Files to Server
+        uses: easingthemes/ssh-deploy@main
+        with:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          ARGS: '-rlgoDzvc -i --delete'
+          # ⚠️ Double-check folder name in /dist directory after build (pnpm build).
+          SOURCE: 'dist/AngularTemplate/browser/'
+          REMOTE_HOST: ${{ secrets.SSH_HOST }}
+          REMOTE_USER: ${{ secrets.SSH_USER }}
+          TARGET: ${{ secrets.SSH_TARGET }}
+          EXCLUDE: '/node_modules/'
+
+      - name: 📡 Post-Deployment Commands
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            echo "Restarting Nginx or clearing the cache..."
+            # sudo systemctl reload nginx
 
       - name: 🚩 Deployment Task
         run: echo "Deployment is underway following security and quality validation."
+
 ```
 
 <h2 id="styles">

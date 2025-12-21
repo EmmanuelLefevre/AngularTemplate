@@ -96,8 +96,8 @@ jobs:
         with:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           ARGS: '-rlgoDzvc -i --delete'
-          # ⚠️ Double-check folder name in your /dist directory after the build.
-          SOURCE: 'dist/angular-template/browser/'
+          # ⚠️ Double-check folder name in /dist directory after build (pnpm build).
+          SOURCE: 'dist/AngularTemplate/browser/'
           REMOTE_HOST: ${{ secrets.SSH_HOST }}
           REMOTE_USER: ${{ secrets.SSH_USER }}
           TARGET: ${{ secrets.SSH_TARGET }}
