@@ -1,4 +1,4 @@
-<div align="right">
+<div align="center">
   <img src="https://visitor-badge.laobi.icu/badge?page_id=EmmanuelLefevre.AngularTemplate" alt="Visitors"/>
   <img src="https://img.shields.io/github/last-commit/EmmanuelLefevre/AngularTemplate" alt="Last Commit"/>
   <img src="https://img.shields.io/github/license/EmmanuelLefevre/AngularTemplate" alt="License MIT"/>
@@ -6,7 +6,7 @@
 
 <br>
 
-<div align="right"><a href="https://github.com/EmmanuelLefevre/AngularTemplate/actions"> <img src="https://github.com/EmmanuelLefevre/AngularTemplate/actions/workflows/pipeline.yml/badge.svg" alt="CI/CD Pipeline"/></a><a href="https://sonarcloud.io/api/dashboard?id=emmanuel-lefevre_angular-template"> <img src="https://sonarcloud.io/api/project_badges/measure?project=emmanuel-lefevre_angular-template&metric=security_rating" alt="Security Rating"/></a><a href="https://sonarcloud.io/dashboard?id=emmanuel-lefevre_angular-template"> <img src="https://sonarcloud.io/api/project_badges/measure?project=emmanuel-lefevre_angular-template&metric=alert_status" alt="Quality Gate"/></a><a href="https://sonarcloud.io/dashboard?id=emmanuel-lefevre_angular-template"> <img src="https://sonarcloud.io/api/project_badges/measure?project=emmanuel-lefevre_angular-template&metric=coverage" alt="Coverage"/></a></div>
+<div align="center"><a href="https://github.com/EmmanuelLefevre/AngularTemplate/actions"><img style="padding-right:10px;" src="https://github.com/EmmanuelLefevre/AngularTemplate/actions/workflows/pipeline.yml/badge.svg" alt="CI/CD Pipeline"/></a><a href="https://sonarcloud.io/api/dashboard?id=emmanuel-lefevre_angular-template"><img style="padding-right:10px;" src="https://sonarcloud.io/api/project_badges/measure?project=emmanuel-lefevre_angular-template&metric=security_rating" alt="Security Rating"/></a><a href="https://sonarcloud.io/dashboard?id=emmanuel-lefevre_angular-template"><img style="padding-right:10px;" src="https://sonarcloud.io/api/project_badges/measure?project=emmanuel-lefevre_angular-template&metric=alert_status" alt="Quality Gate"/></a><a href="https://sonarcloud.io/dashboard?id=emmanuel-lefevre_angular-template"><img style="padding-right:10px;" src="https://sonarcloud.io/api/project_badges/measure?project=emmanuel-lefevre_angular-template&metric=coverage" alt="Coverage"/></a></div>
 
 <br>
 
@@ -1049,6 +1049,10 @@ jobs:
       - name: 🚩 Deployment Task
         run: echo "Deployment is underway following security and quality validation."
 
+```
+
+```yml
+if: github.ref == 'refs/heads/main' && github.event_name == 'push'
 ```
 
 <h2 id="styles">
