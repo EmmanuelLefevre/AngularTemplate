@@ -19,7 +19,6 @@ jobs:
         with:
           fetch-depth: 0
 
-      # Semantique Analysis (XSS vulnerabilities, injections...)
       - name: 🏗️ Initialize CodeQL
         uses: github/codeql-action/init@v4
         with:
@@ -92,6 +91,27 @@ jobs:
       - name: 🧱 Build Project (Production)
         run: pnpm build --configuration=production
 
+      - name: 🚀 Sync Files to Server
+        uses: easingthemes/ssh-deploy@main
+        with:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          ARGS: '-rlgoDzvc -i --delete'
+          # ⚠️ Double-check folder name in your /dist directory after the build.
+          SOURCE: 'dist/angular-template/browser/'
+          REMOTE_HOST: ${{ secrets.SSH_HOST }}
+          REMOTE_USER: ${{ secrets.SSH_USER }}
+          TARGET: ${{ secrets.SSH_TARGET }}
+          EXCLUDE: '/node_modules/'
+
+      - name: 📡 Post-Deployment Commands
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            echo "Restarting Nginx or clearing the cache..."
+            # sudo systemctl reload nginx
+
       - name: 🚩 Deployment Task
         run: echo "Deployment is underway following security and quality validation."
-      # ... Complete ...

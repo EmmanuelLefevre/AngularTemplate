@@ -787,7 +787,8 @@ pnpm add -D @types/node
   "builder": "@angular/build:unit-test",
   "options": {
     "runnerConfig": "vitest.config.ts",
-    "tsConfig": "tsconfig.spec.json"
+    "tsConfig": "tsconfig.spec.json",
+    "coverage": true
   }
 },
 ```
@@ -853,7 +854,7 @@ export default defineConfig({
     coverage: {
       provider: 'v8',
       enabled: true,
-      reporter: ['text', 'lcov', 'clover', 'json', 'html'],
+      reporter: ['text', 'lcov'],
       reportsDirectory: './coverage',
       exclude: [
         'src/main.ts',
@@ -910,6 +911,7 @@ pnpm add -D rimraf
 4. Créer fichier `sonar-project.properties` à la racine
 
 ```shell
+sonar.host.url=https://sonarcloud.io
 sonar.projectKey=emmanuel-lefevre_angular-template
 sonar.organization=emmanuel-lefevre
 sonar.projectName=AngularTemplate
@@ -917,6 +919,7 @@ sonar.sources=src
 sonar.tests=src
 sonar.test.inclusions=**/*.spec.ts
 sonar.javascript.lcov.reportPaths=coverage/lcov.info
+sonar.coverage.exclusions=src/test-setup.ts, src/main.ts
 ```
 
 5. Créer `.github > workflows > sonar.yml`
@@ -931,8 +934,28 @@ on:
     branches: [main, develop]
 
 jobs:
+  security:
+    name: 🛡️ Security Scan
+    runs-on: ubuntu-latest
+    permissions:
+      security-events: write
+      contents: read
+    steps:
+      - name: 📂 Get Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 🏗️ Initialize CodeQL
+        uses: github/codeql-action/init@v4
+        with:
+          languages: javascript-typescript
+
+      - name: 🔍 Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v4
+
   quality:
-    name: 🛡️ Sonar Cloud
+    name: ✨ Quality & Tests
     runs-on: ubuntu-latest
     steps:
       - name: 📂 Get Code
@@ -970,13 +993,35 @@ jobs:
 
   deploy:
     name: 🎯 Deploy to Production
-    needs: quality
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    needs: [security, quality]
+    # 🚩 Temporarily disabled (will never launch)
+    if: false
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Code
+      - name: 📂 Get Code
         uses: actions/checkout@v4
+
+      - name: 📦 Install PNPM
+        uses: pnpm/action-setup@v2
+        with:
+          version: latest
+
+      - name: 🏗️ Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'pnpm'
+
+      - name: ⚙️ Install Dependencies
+        run: pnpm install
+
+      - name: 🧱 Build Project (Production)
+        run: pnpm build --configuration=production
+
       # ... Complete ...
+
+      - name: 🚩 Deployment Task
+        run: echo "Deployment is underway following security and quality validation."
 ```
 
 <h2 id="styles">
