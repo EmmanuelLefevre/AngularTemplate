@@ -762,15 +762,21 @@ pnpm add -D @angular/platform-browser-dynamic
 pnpm add -D @analogjs/vite-plugin-angular
 ```
 
-2. Dans `tsconfig.spec.json` ajouter la propriété `rootDir` dans `@compilerOptions`.  
+```shell
+pnpm add -D @types/node
+```
+
+2. Dans `tsconfig.spec.json` remplacer par ces propriétés dans `@compilerOptions`.  
 
 ```JSON
 "compilerOptions": {
   "outDir": "./out-tsc/spec",
+  "module": "ESNext",
+  "moduleResolution": "Bundler",
   "types": [
-    "vitest/globals"
-  ],
-  "rootDir": "./src/app"
+    "vitest/globals",
+    "node"
+  ]
 }
 ```
 
@@ -780,9 +786,10 @@ pnpm add -D @analogjs/vite-plugin-angular
 "test": {
   "builder": "@angular/build:unit-test",
   "options": {
+    "runnerConfig": "vitest.config.ts",
     "tsConfig": "tsconfig.spec.json"
   }
-}
+},
 ```
 
 4. Optionnel : installer l'interface graphique de Vitest.  
@@ -812,28 +819,52 @@ pnpm test:ui
 pnpm add -D @vitest/coverage-v8
 ```
 
-7. Créer le fichier `vitest.config.ts`  
+7. Créer le fichier `test-setup.ts` dans `src`
+
+```typescript
+import '@angular/compiler';
+import { getTestBed } from '@angular/core/testing';
+
+import { BrowserTestingModule, platformBrowserTesting } from '@angular/platform-browser/testing';
+
+getTestBed().initTestEnvironment(
+  BrowserTestingModule,
+  platformBrowserTesting(),
+);
+```
+
+8. Créer le fichier `vitest.config.ts`  
 
 ```typescript
 import { defineConfig } from 'vitest/config';
+import angular from '@analogjs/vite-plugin-angular';
+import { fileURLToPath } from 'node:url';
+import { dirname, resolve } from 'node:path';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
+  plugins: [angular()],
   test: {
     globals: true,
+    environment: 'jsdom',
+    setupFiles: [resolve(__dirname, 'src/test-setup.ts')],
     reporters: ['default'],
     coverage: {
       provider: 'v8',
       enabled: true,
-      reporter: ['text', 'lcov', 'clover', 'html'],
+      reporter: ['text', 'lcov', 'clover', 'json', 'html'],
       reportsDirectory: './coverage',
       exclude: [
-        'src/test-setup.ts',
         'src/main.ts',
-        '**/*.spec.ts',
         '**/*.module.ts',
-        '.angular/**'
-      ]
-    }
+        '**/index.ts',
+        '.angular/**',
+        'eslint.config.js',
+        'dist/**',
+      ],
+      clean: true
+    },
   }
 });
 ```
@@ -844,17 +875,91 @@ Dans `angular.json` ajouter la propriété `coverage` à l'objet `test`
 "test": {
   "builder": "@angular/build:unit-test",
   "options": {
-    "runnerConfig": "vitest.config.ts",
-    "tsConfig": "tsconfig.spec.json",
     "coverage": true
   }
 },
 ```
 
-8. Lancer les tests avec le coverage dans le terminal  
+9. Lancer les tests avec le coverage dans le terminal  
 
 ```shell
 pnpm test:coverage
+```
+
+<h2 id="ci-cd">
+  🤖 CI/CD
+</h2>
+
+1. L'utilisation de rimraf permet de supprimer des dossiers de manière fiable que l'on soit sous Windows, macOS ou Linux. C'est essentiel pour éviter que d'anciens rapports de couverture ne viennent fausser les nouvelles analyses.  
+
+```shell
+pnpm add -D rimraf
+```
+
+2. Dans `package.json` ajouter les scripts `clean` et `test:coverage`  
+
+```JSON
+"scripts": {
+  "clean": "rimraf coverage .angular",
+  "test:coverage": "ng test --coverage --watch=false",
+}
+```
+
+3. Configurer son compte SonarCloud et son secret SONAR_TOKEN
+
+4. Créer fichier `sonar-project.properties` à la racine
+
+```shell
+sonar.projectKey=emmanuel-lefevre_angular-template
+sonar.organization=emmanuel-lefevre
+sonar.projectName=AngularTemplate
+sonar.sources=src
+sonar.tests=src
+sonar.test.inclusions=**/*.spec.ts
+sonar.javascript.lcov.reportPaths=coverage/lcov.info
+```
+
+5. Créer `.github > workflows > sonar.yml`
+
+```yml
+name: SonarQube Analysis
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  sonarcloud:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install PNPM
+        uses: pnpm/action-setup@v2
+        with:
+          version: latest
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'pnpm'
+
+      - name: Install Dependencies
+        run: pnpm install
+
+      - name: Run Tests & Coverage
+        run: pnpm test:coverage
+
+      - name: SonarQube Scan
+        uses: SonarSource/sonarqube-scan-action@v6
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 ```
 
 <h2 id="styles">
@@ -870,25 +975,6 @@ Dans `angular.json` ajouter la propriété `stylePreprocessorOptions` dans `@arc
   "includePaths": [
     "src/styles"
   ]
-}
-```
-
-<h2 id="ci-cd">
-  🤖 CI/CD
-</h2>
-
-1. Rimraf => supprimer le dossier `coverage` (cross-platform: Sonarqube, GitHub Actions, Linux)  
-
-```shell
-pnpm add -D rimraf
-```
-
-2. Dans `package.json` ajouter les scripts `clean` et `test:coverage`  
-
-```JSON
-"scripts": {
-  "clean": "rimraf coverage .angular",
-  "test:coverage": "ng test --coverage --watch=false",
 }
 ```
 
@@ -1048,7 +1134,7 @@ De plus il faut ajouter le favicon, les scripts, le browser et l'index dans l'ob
   ⚠️ ERREURS FREQUENTES
 </h2>
 
-### 1. Attention si vous recevez ce warning lors du premier push !  
+### 1. Warning lors du premier push !  
 
 <br>
 

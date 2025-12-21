@@ -225,6 +225,19 @@
     * options.tsConfig: "tsconfig.spec.json"
       Points to the TypeScript configuration specific to testing.
 
+    * options.runnerConfig: "vitest.config.ts"
+      [Engine] Defines Vitest as test engine instead of Karma.
+      Using `vitest.config.ts` allows for much faster testing, better ESM support
+      and native integration with modern tooling.
+
+    * options.coverage: true
+      [Quality] Automatically activates the generation of code coverage reports
+      during test execution. This allows you to see which parts of the code are
+      covered by the unit tests.
+
+    * options.tsConfig: "tsconfig.spec.json"
+      Points to TypeScript configuration specific to testing.
+
   --- SCHEMATICS CONFIGURATION (ng generate defaults) ---------------------
 
   1. @schematics/angular:application (Project Initialization)
