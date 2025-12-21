@@ -1,13 +1,14 @@
-name: SonarQube Analysis
+name: CI/CD Pipeline
 
 on:
   push:
-    branches: [main, develop]
+    branches: [main, develop, 'feature/**']
   pull_request:
-    types: [opened, synchronize, reopened]
+    branches: [main, develop]
 
 jobs:
-  sonarcloud:
+  quality:
+    name: 🛡️ Sonar Cloud
     runs-on: ubuntu-latest
     steps:
       - name: 📂 Get Code
@@ -36,3 +37,19 @@ jobs:
         uses: SonarSource/sonarqube-scan-action@v6
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+      - name: 📊 SonarQube Quality Gate
+        uses: SonarSource/sonarqube-quality-gate-action@v1
+        timeout-minutes: 5
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+  deploy:
+    name: Deploy to Production
+    needs: quality
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      # ... Complete ...

@@ -922,44 +922,61 @@ sonar.javascript.lcov.reportPaths=coverage/lcov.info
 5. Créer `.github > workflows > sonar.yml`
 
 ```yml
-name: SonarQube Analysis
+name: CI/CD Pipeline
 
 on:
   push:
-    branches: [main, develop]
+    branches: [main, develop, 'feature/**']
   pull_request:
-    types: [opened, synchronize, reopened]
+    branches: [main, develop]
 
 jobs:
-  sonarcloud:
+  quality:
+    name: 🛡️ Sonar Cloud
     runs-on: ubuntu-latest
     steps:
-      - name: Get Code
+      - name: 📂 Get Code
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Install PNPM
+      - name: 📦 Install PNPM
         uses: pnpm/action-setup@v2
         with:
           version: latest
 
-      - name: Setup Node
+      - name: 🏗️ Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: 'pnpm'
 
-      - name: Install Dependencies
+      - name: ⚙️ Install Dependencies
         run: pnpm install
 
-      - name: Run Tests & Coverage
+      - name: 🧪 Run Tests & Coverage
         run: pnpm test:coverage
 
-      - name: SonarQube Scan
+      - name: 🚀 SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@v6
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+      - name: 📊 SonarQube Quality Gate
+        uses: SonarSource/sonarqube-quality-gate-action@v1
+        timeout-minutes: 5
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+  deploy:
+    name: Deploy to Production
+    needs: quality
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      # ... Complete ...
 ```
 
 <h2 id="styles">
