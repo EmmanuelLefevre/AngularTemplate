@@ -10,7 +10,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 export default defineConfig({
   resolve: {
     alias: {
-      '@core': path.resolve(__dirname, './src/app/core'),
+      '@core': path.resolve(__dirname, 'src/app/core'),
     },
   },
   plugins: [
