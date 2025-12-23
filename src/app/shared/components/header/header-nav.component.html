@@ -29,24 +29,31 @@
         <li class="header__item">
           <a routerLink="/public/home"
             routerLinkActive="active"
-            (click)="closeMenu()">{{ 'HEADER.WELCOME' | translate }}
+            (click)="closeMenu()"
+            class="header__link">{{ 'HEADER.WELCOME' | translate }}
           </a>
         </li>
         <li class="header__item">
           <a routerLink="/public/contact"
             routerLinkActive="active"
-            (click)="closeMenu()">{{ 'HEADER.CONTACT' | translate }}
+            (click)="closeMenu()"
+            class="header__link">{{ 'HEADER.CONTACT' | translate }}
           </a>
         </li>
         <li class="header__item header__item--admin">
           <a routerLink="/admin"
           routerLinkActive="active"
-          (click)="closeMenu()">{{ 'HEADER.DASHBOARD' | translate }}
+          (click)="closeMenu()"
+          class="header__link">{{ 'HEADER.DASHBOARD' | translate }}
         </a>
         </li>
       </ul>
 
     </nav>
+
+    <div class="header__actions">
+      <language-toggle></language-toggle>
+    </div>
   </div>
 
 </header>

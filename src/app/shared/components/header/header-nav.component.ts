@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
+import { LanguageToggleComponent } from '../language-toggle/language-toggle.component';
 
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 
@@ -9,7 +10,8 @@ import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
   imports: [
     CommonModule,
     RouterModule,
-    TranslateModule
+    TranslateModule,
+    LanguageToggleComponent
   ],
   templateUrl: './header-nav.component.html',
   styleUrl: './header-nav.component.scss',

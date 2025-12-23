@@ -16,8 +16,8 @@
 
   &__container {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
     height: 100%;
     padding: 0 20px;
     max-width: 1200px;
@@ -25,6 +25,9 @@
   }
 
   &__logo {
+    flex: 1;
+    display: flex;
+    align-items: center;
     font-weight: bold;
     font-size: 1.5rem;
     text-decoration: none;
@@ -40,6 +43,79 @@
     }
   }
 
+  &__nav {
+    // --- MOBILE ---
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 250px;
+    height: 100vh;
+    background: #fff;
+    padding-top: 100px;
+    transition: right 0.4s ease;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+    z-index: 1050;
+
+    &.is-open {
+      right: 0;
+    }
+
+    // --- TABLET / DESKTOP ---
+    @include respond-to('tablet') {
+      position: static;
+      height: auto;
+      width: auto;
+      background: transparent;
+      padding: 0;
+      box-shadow: none;
+      flex: 0 1 auto;
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+  &__list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 0 40px;
+
+    @include respond-to('tablet') {
+      flex-direction: row;
+      gap: 30px;
+      padding: 0;
+    }
+  }
+
+  &__link {
+    text-decoration: none;
+    color: #333;
+    font-size: 1.2rem;
+    font-weight: 500;
+    transition: color 0.2s;
+
+    &.active {
+      color: #ff6b6b;
+    }
+
+    &:hover {
+      color: #ff6b6b;
+    }
+
+    &:focus-visible {
+      outline: 2px solid #ff6b6b;
+      outline-offset: 3px;
+    }
+  }
+
+  &__actions {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
   // --- MOBILE BURGER ---
   &__burger {
     display: flex;
@@ -52,11 +128,6 @@
     border: none;
     cursor: pointer;
     z-index: 1100;
-
-    &:focus-visible {
-      outline: 2px solid #333;
-      outline-offset: 5px;
-    }
 
     span {
       width: 100%;
@@ -79,91 +150,27 @@
     }
 
     @include respond-to('tablet') {
-      display: none;
-    }
-  }
-
-  // --- NAV MOBILE ---
-  &__nav {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    width: 250px;
-    height: 100vh;
-    background: #fff;
-    padding-top: 100px;
-    transition: right 0.4s ease;
-    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-    z-index: 1050;
-
-    &.is-open {
-      right: 0;
-    }
-
-    @include respond-to('tablet') {
-      position: static;
-      height: auto;
-      width: auto;
-      background: transparent;
-      padding-top: 0;
-      box-shadow: none;
-    }
-  }
-
-  &__list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    padding: 0 40px;
-
-    @include respond-to('tablet') {
-      flex-direction: row;
-      gap: 30px;
-      padding: 0;
-    }
-  }
-
-  &__item a {
-    text-decoration: none;
-    color: #333;
-    font-size: 1.2rem;
-    font-weight: 500;
-    transition: color 0.2s;
-
-    &.active {
-      color: #ff6b6b;
-    }
-
-    &:focus-visible {
-      outline: 2px solid #ff6b6b;
-      outline-offset: 3px;
-    }
-  }
-
-  // --- OVERLAY ---
-  &__overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.5);
-    display: none;
-    border: none;
-    padding: 0;
-    z-index: 1040;
-
-    &.is-visible {
-      display: block;
-    }
-
-    &:focus {
-      outline: none;
-    }
-
-    @include respond-to('tablet') {
       display: none !important;
     }
+  }
+}
+
+// --- OVERLAY ---
+.header__overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
+  z-index: 1040;
+
+  &.is-visible {
+    display: block;
+  }
+
+  @include respond-to('tablet') {
+    display: none !important;
   }
 }
