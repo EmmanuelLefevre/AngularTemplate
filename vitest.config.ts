@@ -9,9 +9,16 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
   resolve: {
-    alias: {
-      '@core': path.resolve(__dirname, 'src/app/core'),
-    },
+    alias: [
+      {
+        find: '@core',
+        replacement: path.resolve(__dirname, './src/app/core')
+      },
+      {
+        find: '@app',
+        replacement: path.resolve(__dirname, './src/app')
+      }
+    ],
   },
   plugins: [
     angular(),
