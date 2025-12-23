@@ -4,8 +4,12 @@
 
     <div class="home__welcome">
       <img src="assets/logos/pizza-logo.png" alt="Pizza Logo" class="home__logo">
-      <!-- <h1>Hello, {{ title }}</h1> -->
-      <p>AngularTemplate <strong>AngularTemplate</strong> est prêt. 🎉</p>
+      <h1>{{ 'HOME.TITLE' | translate }}</h1>
+      <p>
+        {{ 'HOME.WELCOME_PREFIX' | translate }}
+        <strong>{{ 'PROJECT_NAME' | translate }}</strong>
+        {{ 'HOME.WELCOME_SUFFIX' | translate }}
+      </p>
     </div>
 
     <div class="home__divider" aria-hidden="true"></div>

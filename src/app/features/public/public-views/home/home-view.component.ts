@@ -1,10 +1,14 @@
 import { CommonModule } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 
 @Component({
   selector: 'home-view',
-  imports: [CommonModule],
+  imports: [
+    CommonModule,
+    TranslateModule
+  ],
   templateUrl: './home-view.component.html',
   styleUrl: './home-view.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
