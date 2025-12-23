@@ -6,6 +6,7 @@ import { ErrorHandlerComponent } from './error-handler.component';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TranslateModule } from '@ngx-translate/core';
 
 describe('ErrorHandlerComponent', () => {
   let component: ErrorHandlerComponent;
@@ -18,7 +19,10 @@ describe('ErrorHandlerComponent', () => {
     queryParams$ = new BehaviorSubject({});
 
     await TestBed.configureTestingModule({
-      imports: [ErrorHandlerComponent],
+      imports: [
+        ErrorHandlerComponent,
+        TranslateModule.forRoot()
+      ],
       providers: [
         {
           provide: Router,

@@ -1,11 +1,13 @@
 <section>
-  <h1>Une erreur est survenue</h1>
+  <h1>{{ 'ERROR_PAGE.TITLE' | translate }}</h1>
 
-  <h3>Erreur {{ code() }}</h3>
+  <h3>{{ 'ERROR_PAGE.LABEL' | translate }} {{ code() }}</h3>
 
   <div class="error-view-slot">
     <router-outlet />
   </div>
 
-  <button (click)="goHome()">Retour à l'accueil</button>
+  <button (click)="goHome()">
+    {{ 'ERROR_PAGE.BUTTON_BACK' | translate }}
+  </button>
 </section>

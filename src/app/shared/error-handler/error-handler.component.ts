@@ -2,10 +2,14 @@ import { Component, OnInit, inject, signal, DestroyRef, ChangeDetectorRef } from
 import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ChangeDetectionStrategy } from '@angular/core';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'error-handler',
-  imports: [RouterOutlet],
+  imports: [
+    RouterOutlet,
+    TranslateModule
+  ],
   templateUrl: './error-handler.component.html',
   styleUrl: './error-handler.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -60,20 +64,24 @@ export class ErrorHandlerComponent implements OnInit {
       }
 
       const rawValue = this.code();
+      let destination: string;
 
-      let destination = 'unknown-error';
-
-      if (rawValue === '401') {
-        destination = 'unauthorized-error';
-      }
-      else if (rawValue === '404') {
-        destination = 'unfound-error';
-      }
-      else if (rawValue === '500') {
-        destination = 'server-error';
-      }
-      else if (/^[1-5]\d{2}$/.test(rawValue)) {
-        destination = 'generic-error';
+      switch (true) {
+        case rawValue === '401':
+          destination = 'unauthorized-error';
+          break;
+        case rawValue === '404':
+          destination = 'unfound-error';
+          break;
+        case rawValue === '500':
+          destination = 'server-error';
+          break;
+        case /^[1-5]\d{2}$/.test(rawValue):
+          destination = 'generic-error';
+          break;
+        default:
+          destination = 'unknown-error';
+          break;
       }
 
       this.router.navigate([destination], {
