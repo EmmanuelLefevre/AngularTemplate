@@ -12,7 +12,7 @@ export default defineConfig({
     alias: [
       {
         find: '@core',
-        replacement: path.resolve(__dirname, 'src/app/core')
+        replacement: path.resolve(__dirname, 'src/app/core')  
       },
       {
         find: '@app',
