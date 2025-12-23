@@ -1,4 +1,5 @@
 {
+  "PROJECT_NAME": "AngularTemplate",
   "HEADER": {
     "LOGO_LINK": "Retour à l'accueil",
     "WELCOME": "Bienvenue",
@@ -7,9 +8,15 @@
     "CLOSE_MENU": "Fermer le menu",
     "OPEN_MENU": "Ouvrir le menu"
   },
+  "HOME": {
+    "TITLE": "Bonjour l'ami !",
+    "WELCOME_PREFIX": "Ton projet",
+    "WELCOME_SUFFIX": "est prêt 🎉"
+  },
   "ERROR_PAGE": {
-    "TITLE": "Une erreur est survenue",
+    "TITLE": "Une erreur est survenue.",
     "LABEL": "Erreur",
     "BUTTON_BACK": "Retour à l'accueil"
-  }
+  },
+  "LANGUAGE_TOGGLE": "Changer la langue en Français"
 }
