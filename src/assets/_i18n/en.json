@@ -1,0 +1,15 @@
+{
+  "HEADER": {
+    "LOGO_LINK": "Back to home",
+    "WELCOME": "Welcome",
+    "CONTACT": "Contact",
+    "DASHBOARD": "Dashboard",
+    "CLOSE_MENU": "Close menu",
+    "OPEN_MENU": "Open menu"
+  },
+  "ERROR_PAGE": {
+    "TITLE": "An error has occurred",
+    "LABEL": "Error",
+    "BUTTON_BACK": "Back to home"
+  }
+}

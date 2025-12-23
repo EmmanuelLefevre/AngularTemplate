@@ -1,19 +1,28 @@
 import { TestBed } from '@angular/core/testing';
 import { provideRouter, RouterOutlet } from '@angular/router';
 import { By } from '@angular/platform-browser';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { AppComponent } from './app.component';
 
 import { describe, it, expect, beforeEach } from 'vitest';
 
 describe('AppComponent', () => {
+  let translateService: TranslateService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AppComponent],
+      imports: [
+        AppComponent,
+        TranslateModule.forRoot({
+          fallbackLang: 'fr'
+        })
+      ],
       providers: [
         provideRouter([])
       ]
     }).compileComponents();
+
+    translateService = TestBed.inject(TranslateService);
   });
 
   it('should create the app', () => {
@@ -45,5 +54,17 @@ describe('AppComponent', () => {
     // --- ASSERT ---
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     expect((APP as any).title()).toBe('AngularTemplate');
+  });
+
+  it('should use "fr" if browser language is not fr or en (Coverage 100%)', () => {
+    // --- ARRANGE ---
+    vi.spyOn(translateService, 'getBrowserLang').mockReturnValue('de');
+
+    // --- ACT ---
+    const FIXTURE = TestBed.createComponent(AppComponent);
+    FIXTURE.detectChanges();
+
+    // --- ASSERT ---
+    expect(translateService.currentLang).toBe('fr');
   });
 });
