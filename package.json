@@ -5,8 +5,8 @@
     "ng": "ng",
     "clean": "rimraf coverage .angular",
     "build": "pnpm clean && ng build",
-    "format": "prettier --write \"src/**/*.{ts,html,css,scss,json}\"",
-    "format:check": "prettier --check \"**/*.{ts,js,html,scss,css,json,md}\"",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "lint": "ng lint",
     "lint:ci": "ng lint --max-warnings=0",
     "prepare": "husky",
@@ -63,7 +63,8 @@
       "prettier --write"
     ],
     "src/**/*.ts": [
-      "eslint --fix --max-warnings=0"
+      "eslint --fix --max-warnings=0",
+      "prettier --write"
     ],
     "src/**/*.{css,scss,json,md}": [
       "prettier --write"
