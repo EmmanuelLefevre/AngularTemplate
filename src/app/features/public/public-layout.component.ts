@@ -2,14 +2,14 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { SHARED_ALL } from '@shared';
+import { SHARED_COMPONENTS } from '@shared';
 
 @Component({
   selector: 'public-layout',
   imports: [
     RouterOutlet,
     TranslateModule,
-    ...SHARED_ALL
+    ...SHARED_COMPONENTS
   ],
   templateUrl: './public-layout.component.html',
   styleUrl: './public-layout.component.scss',

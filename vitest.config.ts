@@ -3,23 +3,10 @@ import angular from '@analogjs/vite-plugin-angular';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import { fileURLToPath } from 'node:url';
 import { dirname, resolve } from 'node:path';
-// import path from 'path';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
-  // resolve: {
-  //   alias: [
-  //     {
-  //       find: '@core',
-  //       replacement: path.resolve(__dirname, './src/app/core')
-  //     },
-  //     {
-  //       find: '@app',
-  //       replacement: path.resolve(__dirname, './src/app')
-  //     }
-  //   ],
-  // },
   plugins: [
     angular(),
     tsconfigPaths({
