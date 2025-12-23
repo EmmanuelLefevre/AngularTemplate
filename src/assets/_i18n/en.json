@@ -10,7 +10,7 @@
   },
   "HOME": {
     "TITLE": "Hello my friend !",
-    "WELCOME_PREFIX": "Your project ",
+    "WELCOME_PREFIX": "Your new project ",
     "WELCOME_SUFFIX": " is ready 🎉"
   },
   "ERROR_PAGE": {
