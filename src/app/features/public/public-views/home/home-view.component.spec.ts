@@ -13,9 +13,7 @@ describe('HomeViewComponent', () => {
         HomeViewComponent,
         TranslateModule.forRoot()
       ]
-    })
-
-      .compileComponents();
+    }).compileComponents();
 
     fixture = TestBed.createComponent(HomeViewComponent);
     component = fixture.componentInstance;
