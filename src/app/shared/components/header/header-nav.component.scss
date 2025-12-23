@@ -19,40 +19,46 @@
     align-items: center;
     justify-content: space-between;
     height: 100%;
-    padding: 0 20px;
-    max-width: 1200px;
+    padding: 0 30px;
+    width: 100%;
+    max-width: none;
     margin: 0 auto;
   }
 
+  // --- LOGO ---
   &__logo {
-    flex: 1;
     display: flex;
     align-items: center;
+    flex: 1;
     font-weight: bold;
     font-size: 1.5rem;
     text-decoration: none;
     color: #333;
 
     span {
-      color: #ff6b6b;
+      color: var(--tertiary-color);
     }
 
     &:focus-visible {
-      outline: 2px solid #ff6b6b;
+      outline: 2px solid var(--tertiary-color);
       outline-offset: 5px;
     }
   }
 
+  // --- NAVIGATION & MENU MOBILE ---
   &__nav {
-    // --- MOBILE ---
+    // Mobile Styles (Sliding Menu)
     position: fixed;
     top: 0;
     right: -100%;
-    width: 250px;
+    width: 280px;
     height: 100vh;
-    background: #fff;
-    padding-top: 100px;
-    transition: right 0.4s ease;
+    background: #ffffff;
+    padding: 100px 0 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
     z-index: 1050;
 
@@ -60,7 +66,7 @@
       right: 0;
     }
 
-    // --- TABLET / DESKTOP ---
+    // Desktop Styles (Centering)
     @include respond-to('tablet') {
       position: static;
       height: auto;
@@ -71,6 +77,7 @@
       flex: 0 1 auto;
       display: flex;
       justify-content: center;
+      flex-direction: row;
     }
   }
 
@@ -96,27 +103,46 @@
     transition: color 0.2s;
 
     &.active {
-      color: #ff6b6b;
+      color: var(--tertiary-color);
     }
 
     &:hover {
-      color: #ff6b6b;
+      color: var(--tertiary-color);
     }
 
     &:focus-visible {
-      outline: 2px solid #ff6b6b;
+      outline: 2px solid var(--tertiary-color);
       outline-offset: 3px;
     }
   }
 
+  // --- ACTIONS (JUST DESKTOP VERSION) ---
   &__actions {
-    flex: 1;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
+    display: none;
+
+    @include respond-to('tablet') {
+      display: flex;
+      flex: 1;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 20px;
+    }
   }
 
-  // --- MOBILE BURGER ---
+  // --- ACTIONS IN NAV (JUST MOBILE VERSION) ---
+  &__nav-actions {
+    display: flex;
+    justify-content: center;
+    padding-top: 30px;
+    margin: 0 40px;
+    border-top: 1px solid #eeeeee;
+
+    @include respond-to('tablet') {
+      display: none;
+    }
+  }
+
+  // --- BURGER MENU ---
   &__burger {
     display: flex;
     flex-direction: column;

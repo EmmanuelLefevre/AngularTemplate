@@ -26,29 +26,22 @@
         class="header__nav">
 
       <ul class="header__list">
-        <li class="header__item">
-          <a routerLink="/public/home"
-            routerLinkActive="active"
-            (click)="closeMenu()"
-            class="header__link">{{ 'HEADER.WELCOME' | translate }}
-          </a>
-        </li>
-        <li class="header__item">
-          <a routerLink="/public/contact"
-            routerLinkActive="active"
-            (click)="closeMenu()"
-            class="header__link">{{ 'HEADER.CONTACT' | translate }}
-          </a>
-        </li>
-        <li class="header__item header__item--admin">
-          <a routerLink="/admin"
-          routerLinkActive="active"
-          (click)="closeMenu()"
-          class="header__link">{{ 'HEADER.DASHBOARD' | translate }}
-        </a>
-        </li>
+        @for (link of navLinks; track link.path) {
+          <li class="header__item" [class]="link.cssClass">
+            <a [routerLink]="link.path"
+              routerLinkActive="active"
+              (click)="closeMenu()"
+              (keydown.escape)="closeMenu()"
+              class="header__link">
+              {{ link.label | translate }}
+            </a>
+          </li>
+        }
       </ul>
 
+      <div class="header__nav-actions">
+        <language-toggle></language-toggle>
+      </div>
     </nav>
 
     <div class="header__actions">

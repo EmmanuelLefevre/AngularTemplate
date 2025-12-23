@@ -2,7 +2,9 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 import { HeaderNavComponent } from './header-nav.component';
 
-import { describe, it, expect, beforeEach } from 'vitest';
+import { TranslateService, TranslateModule } from '@ngx-translate/core';
+import { of } from 'rxjs';
+import { describe, it, expect, beforeEach, vi } from 'vitest';
 
 describe('HeaderNavComponent', () => {
   let component: HeaderNavComponent;
@@ -10,9 +12,22 @@ describe('HeaderNavComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HeaderNavComponent],
+      imports: [
+        HeaderNavComponent,
+        TranslateModule.forRoot()
+      ],
       providers: [
-        provideRouter([])
+        provideRouter([]),
+        {
+          provide: TranslateService,
+          useValue: {
+            onLangChange: of({ lang: 'fr', translations: {} }),
+            getFallbackLang: vi.fn().mockReturnValue('fr'),
+            get: vi.fn().mockReturnValue(of('')),
+            stream: vi.fn().mockReturnValue(of('')),
+            instant: vi.fn().mockImplementation((key) => key)
+          }
+        }
       ]
     }).compileComponents();
 
