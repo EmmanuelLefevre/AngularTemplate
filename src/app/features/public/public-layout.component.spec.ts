@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 import { PublicLayoutComponent } from './public-layout.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { describe, it, expect, beforeEach } from 'vitest';
 
@@ -10,7 +11,10 @@ describe('PublicLayoutComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PublicLayoutComponent],
+      imports: [
+        PublicLayoutComponent,
+        TranslateModule.forRoot()
+      ],
       providers: [
         provideRouter([])
       ]
