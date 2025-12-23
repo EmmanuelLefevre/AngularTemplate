@@ -10,6 +10,8 @@ describe('HeaderNavComponent', () => {
   let component: HeaderNavComponent;
   let fixture: ComponentFixture<HeaderNavComponent>;
 
+  let service: TranslateService;
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
@@ -18,25 +20,19 @@ describe('HeaderNavComponent', () => {
       ],
       providers: [
         provideRouter([]),
-        {
-          provide: TranslateService,
-          useValue: {
-            onLangChange: of({ lang: 'fr', translations: {} }),
-            getFallbackLang: vi.fn().mockReturnValue('fr'),
-            get: vi.fn().mockReturnValue(of('')),
-            stream: vi.fn().mockReturnValue(of('')),
-            instant: vi.fn().mockImplementation((key) => key)
-          }
-        }
       ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(HeaderNavComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
+    service = TestBed.inject(TranslateService);
+
+    vi.spyOn(service, 'getFallbackLang').mockReturnValue('fr');
+    vi.spyOn(service, 'use').mockReturnValue(of({}));
   });
 
   it('should create', () => {
+    fixture.detectChanges();
     expect(component).toBeTruthy();
   });
 
