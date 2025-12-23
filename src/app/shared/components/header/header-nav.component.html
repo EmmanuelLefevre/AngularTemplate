@@ -3,6 +3,7 @@
   <div class="header__container">
     <a routerLink="/"
       (click)="closeMenu()"
+      [attr.aria-label]="'HEADER.LOGO_LINK' | translate"
       class="header__logo">
       <span>ANGULAR</span>TEMPLATE
     </a>
@@ -13,25 +14,38 @@
       [class.is-active]="isMenuOpen()"
       [attr.aria-expanded]="isMenuOpen()"
       aria-controls="main-nav"
-      aria-label="Ouvrir le menu"
+      [attr.aria-label]="isMenuOpen() ? ('HEADER.CLOSE_MENU' | translate) : ('HEADER.OPEN_MENU' | translate)"
       class="header__burger">
       <span></span>
       <span></span>
       <span></span>
     </button>
 
-    <nav id="main-nav" class="header__nav" [class.is-open]="isMenuOpen()">
+    <nav id="main-nav"
+        [class.is-open]="isMenuOpen()"
+        class="header__nav">
+
       <ul class="header__list">
         <li class="header__item">
-          <a routerLink="/public/home" routerLinkActive="active" (click)="closeMenu()">Accueil</a>
+          <a routerLink="/public/home"
+            routerLinkActive="active"
+            (click)="closeMenu()">{{ 'HEADER.WELCOME' | translate }}
+          </a>
         </li>
         <li class="header__item">
-          <a routerLink="/public/contact" routerLinkActive="active" (click)="closeMenu()">Contact</a>
+          <a routerLink="/public/contact"
+            routerLinkActive="active"
+            (click)="closeMenu()">{{ 'HEADER.CONTACT' | translate }}
+          </a>
         </li>
         <li class="header__item header__item--admin">
-          <a routerLink="/admin" routerLinkActive="active" (click)="closeMenu()">Dashboard</a>
+          <a routerLink="/admin"
+          routerLinkActive="active"
+          (click)="closeMenu()">{{ 'HEADER.DASHBOARD' | translate }}
+        </a>
         </li>
       </ul>
+
     </nav>
   </div>
 
@@ -42,7 +56,8 @@
   (click)="closeMenu()"
   (keydown.escape)="closeMenu()"
   (keydown.enter)="closeMenu()"
+  (keydown.space)="$event.preventDefault(); closeMenu()"
   role="button"
-  tabindex="0"
-  aria-label="Fermer le menu">
+  [tabindex]="isMenuOpen() ? 0 : -1"
+  [attr.aria-label]="'HEADER.CLOSE_MENU' | translate">
 </div>

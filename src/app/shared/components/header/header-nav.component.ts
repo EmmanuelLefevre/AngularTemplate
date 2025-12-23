@@ -1,11 +1,16 @@
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 
 @Component({
   selector: 'header-nav',
-  imports: [CommonModule, RouterModule],
+  imports: [
+    CommonModule,
+    RouterModule,
+    TranslateModule
+  ],
   templateUrl: './header-nav.component.html',
   styleUrl: './header-nav.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
