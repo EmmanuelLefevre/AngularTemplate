@@ -16,18 +16,54 @@
     @include respond-to('tablet') {
       flex-direction: row;
       justify-content: center;
-      max-width: 1000px;
+      max-width: 500px;
       margin: 0 auto;
+      text-align: left;
+    }
+  }
+
+  &__welcome {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1.5rem;
+
+    @include respond-to('tablet') {
+      align-items: flex-start;
+      text-align: center;
     }
   }
 
   &__logo {
     max-width: 200px;
+    height: auto;
+    margin: 0 auto;
+  }
+
+  &__title {
+    font-size: 2.5rem;
+    color: var(--text-color, #333);
+    margin: 0 auto;
+  }
+
+  &__description {
+    max-width: 600px;
+    line-height: 1.6;
+    strong {
+      color: var(--tertiary-color);
+    }
+  }
+
+  &__accent {
+    color: var(--tertiary-color);
+    font-weight: bold;
   }
 
   &__divider {
     width: 100%;
     height: 1px;
+
     background: linear-gradient(
       90deg,
       var(--primary-color) 0%,
@@ -39,7 +75,7 @@
       width: 2px;
       height: 150px;
       flex-shrink: 0;
-      margin: 0 2rem;
+      margin: 0 1rem;
 
       background: linear-gradient(
         180deg,
