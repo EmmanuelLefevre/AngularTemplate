@@ -3,8 +3,13 @@
 *.ts
 .angular
 .git
-coverage
-dist
+angular.json
+coverage/
+dist/
 package-lock.json
 pnpm-lock.yaml
+public/manifest.json
+README.md
+tsconfig.json
+tsconfig.spec.json
 yarn.lock
