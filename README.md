@@ -147,7 +147,8 @@
  ┃ ┣ 📂base
  ┃ ┃ ┣ 🎨_animations.scss
  ┃ ┃ ┣ 🎨_reset.scss
- ┃ ┃ ┗ 🎨_typography.scss
+ ┃ ┃ ┣ 🎨_typography.scss
+ ┃ ┃ ┗ 🎨_utilities.scss
  ┃ ┣ 📂layout
  ┃ ┃ ┣ 🎨_admin-layout.scss
  ┃ ┃ ┗ 🎨_main-layout.scss
