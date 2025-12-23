@@ -12,11 +12,11 @@ export default defineConfig({
   //   alias: [
   //     {
   //       find: '@core',
-  //       replacement: path.resolve(__dirname, 'src/app/core')
+  //       replacement: path.resolve(__dirname, './src/app/core')
   //     },
   //     {
   //       find: '@app',
-  //       replacement: path.resolve(__dirname, 'src/app')
+  //       replacement: path.resolve(__dirname, './src/app')
   //     }
   //   ],
   // },
@@ -37,7 +37,6 @@ export default defineConfig({
     globals: true,
     environment: 'jsdom',
     setupFiles: [
-      resolve(__dirname, 'src/app/core/_config/navlinks.constant.ts'),
       resolve(__dirname, 'src/test-setup.ts'),
     ],
     reporters: ['default'],
