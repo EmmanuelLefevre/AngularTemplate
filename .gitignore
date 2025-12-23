@@ -52,3 +52,4 @@ Thumbs.db
 !/.npmrc
 !/public/sitemap.xml
 !sonar-project.properties
+!config
