@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { LanguageToggleComponent } from '../language-toggle/language-toggle.component';
-import { HEADER_NAV_LINKS } from '@app/core/_config/nav-links.constant';
+import { HEADER_NAV_LINKS } from '@core/_config/nav-links.constant';
 
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 
