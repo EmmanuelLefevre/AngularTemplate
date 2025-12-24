@@ -36,7 +36,14 @@ module.exports = defineConfig([
           style: 'camelCase'
         }
       ],
+      '@angular-eslint/no-empty-lifecycle-method': 'error',
+      '@angular-eslint/no-pipe-impure': 'error',
+      '@angular-eslint/prefer-on-push-component-change-detection': 'error',
+      '@angular-eslint/prefer-output-readonly': 'error',
+      '@angular-eslint/pipe-prefix': 'error',
       '@angular-eslint/prefer-standalone': 'error',
+      '@angular-eslint/sort-keys-in-type-decorator': 'error',
+      '@angular-eslint/sort-lifecycle-methods': 'error',
       // Stylistics selectors configuration
       '@stylistic/brace-style': ['error', 'stroustrup'],
       '@stylistic/indent': ['error', 2],
