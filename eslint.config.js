@@ -36,6 +36,7 @@ module.exports = defineConfig([
           style: 'camelCase'
         }
       ],
+      '@angular-eslint/prefer-standalone': 'error',
       // Stylistics selectors configuration
       '@stylistic/brace-style': ['error', 'stroustrup'],
       '@stylistic/indent': ['error', 2],
