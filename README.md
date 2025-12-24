@@ -469,6 +469,12 @@ ESLint a aussi des règles de formatage qui peuvent contredire Prettier. Il faut
 pnpm add -D eslint-config-prettier
 ```
 
+2. Installer ``
+
+```shell
+pnpm add -D angular-eslint
+```
+
 2. Installer les `stylistics`
 
 [Stylistics Documentation Rules](https://eslint.style/rules/brace-style)  
@@ -1423,20 +1429,34 @@ npx @andrewbranch/ts5to6 --fixRootDir ./tsconfig.app.json
 
 [ESLint Documentation](https://eslint.org/docs/latest/use/getting-started)  
 
-[ESLint Recommanded Documentation](https://eslint.org/docs/latest/rules/)  
+[ESLint Angular Documentation](https://www.npmjs.com/package/@angular-eslint/eslint-plugin)  
+
+[ESLint TypeScript Documentation](https://typescript-eslint.io/rules/)  
+
+[ESLint RXJS Documentation](https://eslint.style/rules/brace-style)  
 
 [ESLint Stylistics Documentation](https://eslint.style/rules)  
 
-[ESLint TypeScript Documentation](https://typescript-eslint.io/rules/)
+[ESLint Recommanded Documentation](https://eslint.org/docs/latest/rules/)  
 
-[Stylistics Documentation Rules](https://eslint.style/rules/brace-style)  
-[Stylistics Documentation Rules](https://eslint.style/rules/brace-style)  
-[Stylistics Documentation Rules](https://eslint.style/rules/brace-style)  
-[Stylistics Documentation Rules](https://eslint.style/rules/brace-style)  
-[Stylistics Documentation Rules](https://eslint.style/rules/brace-style)  
-[Stylistics Documentation Rules](https://eslint.style/rules/brace-style)  
+1. 
+```shell
+pnpm add -D angular-eslint
+```
 
-```text
+```shell
+
+```
+
+```shell
+
+```
+
+```shell
+
+```
+
+```shell
 
 ```
 
