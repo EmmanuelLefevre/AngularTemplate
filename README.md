@@ -54,6 +54,9 @@
 ## 🏗 ARCHITECTURE
 
 ```plaintext
+🏗️.github
+ ┗ 🤖workflows
+   ┗ pipeline.yml
 🐶.husky
 💻.vscode
 🌍public
@@ -67,6 +70,7 @@
  ┣ 🈸app
  ┃ ┣ 🧠core
  ┃ ┃ ┣ ⚙️_config
+ ┃ ┃ ┃ ┗ nav-links.constant.ts
  ┃ ┃ ┣ 🧱_models
  ┃ ┃ ┣ 💉_services
  ┃ ┃ ┣ 📂auth
@@ -117,15 +121,16 @@
  ┃ ┃ ┣ 🧰_utils
  ┃ ┃ ┣ 🗃️components
  ┃ ┃ ┃ ┣ 📂footer
- ┃ ┃ ┃ ┗ 📂header
- ┃ ┃ ┗ ❌error-handler
- ┃ ┃   ┣ 👁️error-views
- ┃ ┃   ┃ ┣ 📂server-error
- ┃ ┃   ┃ ┣ 📂unauthorized-error
- ┃ ┃   ┃ ┣ 📂unconnected-error
- ┃ ┃   ┃ ┗ 📂unfound-error
- ┃ ┃   ┣ 📄error-handler.component.html
- ┃ ┃   ┗ 📄error-handler.component.ts
+ ┃ ┃ ┃ ┣ 📂header
+ ┃ ┃ ┃ ❌error-handler
+ ┃ ┃ ┃ ┣ 👁️error-views
+ ┃ ┃ ┃ ┃ ┣ 📂server-error
+ ┃ ┃ ┃ ┃ ┣ 📂unauthorized-error
+ ┃ ┃ ┃ ┃ ┣ 📂unconnected-error
+ ┃ ┃ ┃ ┃ ┗ 📂unfound-error
+ ┃ ┃ ┃ ┣ 📄error-handler.component.html
+ ┃ ┃ ┃ ┗ 📄error-handler.component.ts
+ ┃ ┃ ┗ 📄shared.ts
  ┃ ┣ 📄app.component.html
  ┃ ┣ 📄app.component.ts
  ┃ ┣ 📄app.config.ts
@@ -360,7 +365,7 @@ pnpm add -D prettier
 2. Créer un fichier `.prettierrc.js` à la racine et coller cette config  
 
 ```js
-module.exports ={
+module.exports = {
   arrowParens: 'always',
   bracketSameLine: true,
   bracketSpacing: true,
@@ -368,14 +373,7 @@ module.exports ={
   endOfLine: 'lf',
   experimentalTernaries: false,
   htmlWhitespaceSensitivity: 'css',
-  importOrder: [
-    '^@angular/(.*)$',
-    '^rxjs',
-    '<THIRD_PARTY_MODULES>',
-    '^@core/(.*)$',
-    '^@shared/(.*)$',
-    '^[./]'
-  ],
+  importOrder: ['^@angular/(.*)$', '^rxjs', '<THIRD_PARTY_MODULES>', '^@core/(.*)$', '^@shared/(.*)$', '^[./]'],
   importOrderParserPlugins: ['typescript', 'classProperties', 'decorators-legacy'],
   importOrderSeparation: true,
   importOrderSortSpecifiers: true,
@@ -395,7 +393,7 @@ module.exports ={
     }
   ],
   plugins: ['@trivago/prettier-plugin-sort-imports'],
-  printWidth: 100,
+  printWidth: 120,
   proseWrap: 'preserve',
   quoteProps: 'as-needed',
   requirePragma: false,
@@ -405,7 +403,7 @@ module.exports ={
   tabWidth: 2,
   trailingComma: 'none',
   useTabs: false
-}
+};
 ```
 
 💡 A full documentation have been added in `.prettierrc.js` and here too... [Prettier Rules](#prettier-rules)  
@@ -435,12 +433,18 @@ pnpm exec prettier --write .prettierrc.js
 ```text
 **/.git
 **/node_modules
+*.ts
 .angular
 .git
-coverage
-dist
+angular.json
+coverage/
+dist/
 package-lock.json
 pnpm-lock.yaml
+public/manifest.json
+README.md
+tsconfig.json
+tsconfig.spec.json
 yarn.lock
 ```
 
@@ -520,6 +524,7 @@ module.exports = defineConfig([
           style: 'camelCase'
         }
       ],
+      '@angular-eslint/prefer-standalone': 'error',
       // Stylistics selectors configuration
       '@stylistic/brace-style': ['error', 'stroustrup'],
       '@stylistic/indent': ['error', 2],
@@ -564,8 +569,8 @@ Mettre à jour la section "scripts" du `package.json` pour faciliter l'utilisati
   "ng": "ng",
   "clean": "rimraf coverage .angular",
   "build": "pnpm clean && ng build",
-  "format": "prettier --write \"src/**/*.{ts,html,css,scss,json}\"",
-  "format:check": "prettier --check \"**/*.{ts,js,html,scss,css,json,md}\"",
+  "format": "prettier --write .",
+  "format:check": "prettier --check .",
   "lint": "ng lint",
   "lint:ci": "ng lint --max-warnings=0",
   "prepare": "husky",
@@ -580,7 +585,7 @@ Mettre à jour la section "scripts" du `package.json` pour faciliter l'utilisati
 **Etape 5 :** Tester la commande  
 
 ```shell
-ng lint
+pnpm lint
 ```
 
 Vous devriez voir s'afficher =>
@@ -590,6 +595,12 @@ Vous devriez voir s'afficher =>
 ![Terminal Screen](https://github.com/EmmanuelLefevre/MarkdownImg/blob/main/template_angular_lint_command.png)
 
 <br>
+
+**Etape 6 :** Ajouter les autres packages `ESLint`  
+
+```shell
+pnpm lint
+```
 
 <h2 id="husky">
   <img
@@ -602,7 +613,7 @@ Vous devriez voir s'afficher =>
 </h2>
 
 Nous allons utiliser Husky couplé à Lint-staged.  
-Pourquoi Lint-staged ? Lancer `ng lint` sur tout le projet prend du temps (10s... 30s... 1min). Si l'on doit attendre 1 minute à chaque commit, nous allons finir par désactiver Husky.  
+Pourquoi Lint-staged ? Lancer `pnpm lint` sur tout le projet prend du temps (10s... 30s... 1min). Si l'on doit attendre 1 minute à chaque commit, nous allons finir par désactiver Husky.  
 Lint-staged permet de lancer l'analyse uniquement sur les fichiers que nous sommes en train de modifier. C'est instantané.  
 
 **Etape 1 :** Installer Husky et Lint-staged  
@@ -1417,6 +1428,13 @@ npx @andrewbranch/ts5to6 --fixRootDir ./tsconfig.app.json
 [ESLint Stylistics Documentation](https://eslint.style/rules)  
 
 [ESLint TypeScript Documentation](https://typescript-eslint.io/rules/)
+
+[Stylistics Documentation Rules](https://eslint.style/rules/brace-style)  
+[Stylistics Documentation Rules](https://eslint.style/rules/brace-style)  
+[Stylistics Documentation Rules](https://eslint.style/rules/brace-style)  
+[Stylistics Documentation Rules](https://eslint.style/rules/brace-style)  
+[Stylistics Documentation Rules](https://eslint.style/rules/brace-style)  
+[Stylistics Documentation Rules](https://eslint.style/rules/brace-style)  
 
 ```text
 
