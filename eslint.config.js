@@ -38,7 +38,7 @@ module.exports = defineConfig([
       ],
       '@angular-eslint/no-empty-lifecycle-method': 'error',
       '@angular-eslint/no-pipe-impure': 'error',
-      '@angular-eslint/prefer-on-push-component-change-detection': 'warn',
+      '@angular-eslint/prefer-on-push-component-change-detection': 'off',
       '@angular-eslint/prefer-output-readonly': 'error',
       '@angular-eslint/pipe-prefix': 'error',
       '@angular-eslint/prefer-standalone': 'error',

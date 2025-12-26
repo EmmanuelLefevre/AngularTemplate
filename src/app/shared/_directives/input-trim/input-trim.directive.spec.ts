@@ -7,8 +7,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormControl, ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @Component({
-  standalone: true,
   imports: [InputTrimDirective, FormsModule],
+  standalone: true,
   template: '<input id="BASIC" inputTrim [(ngModel)]="value" (ngModelChange)="onOutputChange($event)" />'
 })
 class TestBasicComponent {
@@ -17,8 +17,8 @@ class TestBasicComponent {
 }
 
 @Component({
-  standalone: true,
   imports: [InputTrimDirective, ReactiveFormsModule],
+  standalone: true,
   template: '<input id="REACTIVE" inputTrim [formControl]="control" />'
 })
 class TestReactiveComponent {

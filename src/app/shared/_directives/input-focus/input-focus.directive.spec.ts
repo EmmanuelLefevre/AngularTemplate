@@ -10,8 +10,8 @@ interface TestableDirective {
 }
 
 @Component({
-  standalone: true,
   imports: [InputFocusDirective],
+  standalone: true,
   template: `
     <input
       id="DIRECT_INPUT"
