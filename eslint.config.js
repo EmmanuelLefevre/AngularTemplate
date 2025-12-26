@@ -44,9 +44,82 @@ module.exports = defineConfig([
       '@angular-eslint/prefer-standalone': 'error',
       '@angular-eslint/sort-keys-in-type-decorator': 'error',
       '@angular-eslint/sort-lifecycle-methods': 'error',
+
       // Stylistics selectors configuration
+      '@stylistic/arrow-spacing': [
+        'error',
+        {
+          before: true,
+          after: true
+        }
+      ],
+      '@stylistic/block-spacing': ['error', 'always'],
       '@stylistic/brace-style': ['error', 'stroustrup'],
+      '@stylistic/comma-spacing': [
+        'error',
+        {
+          before: false,
+          after: true
+        }
+      ],
+      '@stylistic/curly-newline': [
+        'error',
+        {
+          multiline: true,
+          minElements: 1,
+          consistent: true
+        }
+      ],
+      '@stylistic/function-call-spacing': ['error', 'never'],
       '@stylistic/indent': ['error', 2],
+      '@stylistic/key-spacing': [
+        'error',
+        {
+          beforeColon: false,
+          afterColon: true
+        }
+      ],
+      '@stylistic/line-comment-position': ['error', 'above'],
+      '@stylistic/max-len': [
+        'error',
+        {
+          code: 120,
+          comments: 500,
+          ignoreComments: true,
+          ignoreUrls: true,
+          ignoreStrings: true
+        }
+      ],
+      '@stylistic/member-delimiter-style': [
+        'error',
+        {
+          multiline: {
+            delimiter: 'semi',
+            requireLast: true
+          },
+          singleline: {
+            delimiter: 'semi',
+            requireLast: false
+          }
+        }
+      ],
+      '@stylistic/no-extra-semi': 'error',
+      '@stylistic/no-multi-spaces': 'error',
+      '@stylistic/no-multiple-empty-lines': [
+        'error',
+        {
+          max: 2
+        }
+      ],
+      '@stylistic/no-trailing-spaces': [
+        'error',
+        {
+          ignoreComments: false,
+          skipBlankLines: false
+        }
+      ],
+      '@stylistic/no-whitespace-before-property': 'error',
+      '@stylistic/object-curly-spacing': ['error', 'always'],
       '@stylistic/padding-line-between-statements': [
         'error',
         {
@@ -56,9 +129,30 @@ module.exports = defineConfig([
         }
       ],
       '@stylistic/semi': ['error', 'always'],
+      '@stylistic/space-before-blocks': [
+        'error',
+        {
+          classes: 'always',
+          functions: 'always',
+          keywords: 'always',
+          modules: 'always'
+        }
+      ],
+      '@stylistic/space-before-function-paren': ['error', 'never'],
+      '@stylistic/spaced-comment': ['error', 'always'],
+      '@stylistic/switch-colon-spacing': [
+        'error',
+        {
+          after: true,
+          before: false
+        }
+      ],
       '@stylistic/quotes': ['error', 'single'],
+
       // Typescript selectors configuration
+
       // Commons
+
       // Disabling old rules to avoid duplicates
       indent: 'off',
       semi: 'off',
