@@ -6,7 +6,7 @@ describe('ServerErrorComponent', () => {
   let component: ServerErrorComponent;
   let fixture: ComponentFixture<ServerErrorComponent>;
 
-  beforeEach(async () => {
+  beforeEach(async() => {
     await TestBed.configureTestingModule({
       imports: [ServerErrorComponent]
     }).compileComponents();

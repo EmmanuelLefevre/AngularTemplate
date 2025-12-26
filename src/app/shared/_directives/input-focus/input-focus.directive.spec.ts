@@ -37,7 +37,7 @@ describe('InputFocusDirective', () => {
 
   let fixture: ComponentFixture<TestHostComponent>;
 
-  beforeEach(async () => {
+  beforeEach(async() => {
     await TestBed.configureTestingModule({
       imports: [TestHostComponent, InputFocusDirective]
     }).compileComponents();
@@ -53,7 +53,7 @@ describe('InputFocusDirective', () => {
     expect(DIRECTIVE_DEBUG_EL).toBeTruthy();
   });
 
-  it('should execute focus automatically via afterNextRender', async () => {
+  it('should execute focus automatically via afterNextRender', async() => {
     // --- ARRANGE ---
     const INPUT_EL = fixture.nativeElement.querySelector('#DIRECT_INPUT') as HTMLInputElement;
     const FOCUS_SPY = vi.spyOn(INPUT_EL, 'focus');
@@ -66,7 +66,7 @@ describe('InputFocusDirective', () => {
     expect(FOCUS_SPY).toBeTruthy();
   });
 
-  it('should focus the input element directly', async () => {
+  it('should focus the input element directly', async() => {
     // --- ARRANGE ---
     const INPUT_EL = fixture.nativeElement.querySelector('#DIRECT_INPUT') as HTMLInputElement;
     const FOCUS_SPY = vi.spyOn(INPUT_EL, 'focus');
@@ -80,7 +80,7 @@ describe('InputFocusDirective', () => {
     expect(FOCUS_SPY).toHaveBeenCalled();
   });
 
-  it('should focus the child textarea when applied to a container', async () => {
+  it('should focus the child textarea when applied to a container', async() => {
     // --- ARRANGE ---
     const TEXTAREA_EL = fixture.nativeElement.querySelector('#CHILD_TEXTAREA') as HTMLTextAreaElement;
     const FOCUS_SPY = vi.spyOn(TEXTAREA_EL, 'focus');
@@ -103,7 +103,7 @@ describe('InputFocusDirective', () => {
     expect(() => INSTANCE.executeFocus()).not.toThrow();
   });
 
-  it('should handle Shadow DOM focus', async () => {
+  it('should handle Shadow DOM focus', async() => {
     // --- ARRANGE ---
     const CONTAINER_DEBUG_EL = fixture.debugElement.query(By.css('#CONTAINER'));
     const HOST_EL = CONTAINER_DEBUG_EL.nativeElement;
@@ -126,7 +126,7 @@ describe('InputFocusDirective', () => {
     expect(FOCUS_SPY).toHaveBeenCalled();
   });
 
-  it('should continue to native search if shadowRoot exists but is empty', async () => {
+  it('should continue to native search if shadowRoot exists but is empty', async() => {
     // --- ARRANGE ---
     const CONTAINER_DEBUG_EL = fixture.debugElement.query(By.css('#CONTAINER'));
     const HOST_EL = CONTAINER_DEBUG_EL.nativeElement;

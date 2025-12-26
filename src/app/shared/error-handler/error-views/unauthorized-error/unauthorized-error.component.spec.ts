@@ -6,7 +6,7 @@ describe('UnauthorizedErrorComponent', () => {
   let component: UnauthorizedErrorComponent;
   let fixture: ComponentFixture<UnauthorizedErrorComponent>;
 
-  beforeEach(async () => {
+  beforeEach(async() => {
     await TestBed.configureTestingModule({
       imports: [UnauthorizedErrorComponent]
     }).compileComponents();

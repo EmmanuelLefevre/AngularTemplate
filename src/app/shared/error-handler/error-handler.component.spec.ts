@@ -15,7 +15,7 @@ describe('ErrorHandlerComponent', () => {
   let queryParams$: BehaviorSubject<any>;
   let router: Router;
 
-  beforeEach(async () => {
+  beforeEach(async() => {
     queryParams$ = new BehaviorSubject({});
 
     await TestBed.configureTestingModule({

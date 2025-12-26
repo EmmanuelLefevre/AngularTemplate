@@ -6,7 +6,7 @@ describe('UnfoundErrorComponent', () => {
   let component: UnfoundErrorComponent;
   let fixture: ComponentFixture<UnfoundErrorComponent>;
 
-  beforeEach(async () => {
+  beforeEach(async() => {
     await TestBed.configureTestingModule({
       imports: [UnfoundErrorComponent]
     }).compileComponents();

@@ -14,7 +14,7 @@ describe('LanguageToggleComponent', () => {
 
   let langChangeSubject: Subject<any>;
 
-  beforeEach(async () => {
+  beforeEach(async() => {
     langChangeSubject = new Subject<any>();
 
     await TestBed.configureTestingModule({

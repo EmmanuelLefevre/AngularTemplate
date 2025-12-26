@@ -9,7 +9,7 @@ describe('PublicLayoutComponent', () => {
   let component: PublicLayoutComponent;
   let fixture: ComponentFixture<PublicLayoutComponent>;
 
-  beforeEach(async () => {
+  beforeEach(async() => {
     await TestBed.configureTestingModule({
       imports: [
         PublicLayoutComponent,

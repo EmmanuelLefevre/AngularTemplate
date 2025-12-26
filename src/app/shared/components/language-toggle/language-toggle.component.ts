@@ -4,7 +4,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'language-toggle',
-  imports : [
+  imports: [
     TranslateModule
   ],
   templateUrl: './language-toggle.component.html',

@@ -12,7 +12,7 @@ describe('HeaderNavComponent', () => {
 
   let translateService: TranslateService;
 
-  beforeEach(async () => {
+  beforeEach(async() => {
     await TestBed.configureTestingModule({
       imports: [
         HeaderNavComponent,

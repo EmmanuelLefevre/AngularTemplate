@@ -9,7 +9,7 @@ import { describe, it, expect, beforeEach } from 'vitest';
 describe('AppComponent', () => {
   let translateService: TranslateService;
 
-  beforeEach(async () => {
+  beforeEach(async() => {
     await TestBed.configureTestingModule({
       imports: [
         AppComponent,

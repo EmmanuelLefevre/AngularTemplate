@@ -6,7 +6,7 @@ describe('UnknownErrorComponent', () => {
   let component: UnknownErrorComponent;
   let fixture: ComponentFixture<UnknownErrorComponent>;
 
-  beforeEach(async () => {
+  beforeEach(async() => {
     await TestBed.configureTestingModule({
       imports: [UnknownErrorComponent]
     }).compileComponents();

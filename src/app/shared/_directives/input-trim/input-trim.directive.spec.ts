@@ -1,5 +1,5 @@
 import { By } from '@angular/platform-browser';
-import { Component} from '@angular/core';
+import { Component } from '@angular/core';
 import { InputTrimDirective } from './input-trim.directive';
 
 import { beforeEach, describe, expect, it, vi } from 'vitest';
@@ -32,7 +32,7 @@ describe('InputTrimDirective', () => {
     let fixture: ComponentFixture<TestBasicComponent>;
     let component: TestBasicComponent;
 
-    beforeEach(async () => {
+    beforeEach(async() => {
       await TestBed.configureTestingModule({
         imports: [TestBasicComponent, InputTrimDirective]
       }).compileComponents();
@@ -72,7 +72,7 @@ describe('InputTrimDirective', () => {
     let fixture: ComponentFixture<TestReactiveComponent>;
     let component: TestReactiveComponent;
 
-    beforeEach(async () => {
+    beforeEach(async() => {
       await TestBed.configureTestingModule({
         imports: [TestReactiveComponent, InputTrimDirective]
       }).compileComponents();

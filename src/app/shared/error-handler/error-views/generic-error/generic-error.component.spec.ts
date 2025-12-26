@@ -6,7 +6,7 @@ describe('GenericErrorComponent', () => {
   let component: GenericErrorComponent;
   let fixture: ComponentFixture<GenericErrorComponent>;
 
-  beforeEach(async () => {
+  beforeEach(async() => {
     await TestBed.configureTestingModule({
       imports: [GenericErrorComponent]
     }).compileComponents();
