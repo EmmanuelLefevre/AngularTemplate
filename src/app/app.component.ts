@@ -14,10 +14,10 @@ export class AppComponent {
   /* v8 ignore start */
   protected readonly title = signal('AngularTemplate');
   /* v8 ignore stop */
-  private translate = inject(TranslateService);
+  private readonly translate = inject(TranslateService);
 
   constructor() {
-    const browserLang = this.translate.getBrowserLang();
-    this.translate.use(browserLang?.match(/en|fr/) ? browserLang : 'fr');
+    const BROWSER_LANG = this.translate.getBrowserLang();
+    this.translate.use(BROWSER_LANG?.match(/en|fr/) ? BROWSER_LANG : 'fr');
   }
 }

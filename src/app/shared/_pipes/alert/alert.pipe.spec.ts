@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-magic-numbers */
 import { AlertPipe } from './alert.pipe';
 import { TestBed } from '@angular/core/testing';
 

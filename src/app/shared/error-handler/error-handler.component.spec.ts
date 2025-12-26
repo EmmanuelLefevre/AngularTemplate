@@ -74,8 +74,8 @@ describe('ErrorHandlerComponent', () => {
   });
 
   it('should cover the generic-error branch (Regex TRUE)', () => {
-    const customCode = '418';
-    queryParams$.next({ code: customCode });
+    const CUSTOM_CODE = '418';
+    queryParams$.next({ code: CUSTOM_CODE });
 
     // --- ACT ---
     fixture.detectChanges();
@@ -84,7 +84,7 @@ describe('ErrorHandlerComponent', () => {
     expect(router.navigate).toHaveBeenCalledWith(
       ['generic-error'],
       expect.objectContaining({
-        queryParams: { code: customCode },
+        queryParams: { code: CUSTOM_CODE },
         relativeTo: expect.any(Object),
         replaceUrl: true
       })
@@ -186,8 +186,8 @@ describe('ErrorHandlerComponent', () => {
 
   it('should navigate to "generic-error" with params when code is valid but unhandled', () => {
     // --- ARRANGE ---
-    const customCode = '418';
-    queryParams$.next({ code: customCode });
+    const CUSTOM_CODE = '418';
+    queryParams$.next({ code: CUSTOM_CODE });
 
     // --- ACT ---
     fixture.detectChanges();
@@ -196,7 +196,7 @@ describe('ErrorHandlerComponent', () => {
     expect(router.navigate).toHaveBeenCalledWith(
       ['generic-error'],
       expect.objectContaining({
-        queryParams: { code: customCode },
+        queryParams: { code: CUSTOM_CODE },
         relativeTo: expect.any(Object)
       })
     );

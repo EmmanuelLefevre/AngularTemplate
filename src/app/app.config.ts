@@ -4,10 +4,10 @@ import { provideTranslateService, TranslateLoader } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { provideRouter } from '@angular/router';
-import { routes } from './app.routes';
+import { ROUTES } from './app.routes';
 
 export class MyCustomLoader implements TranslateLoader {
-  constructor(private http: HttpClient) {}
+  constructor(private readonly http: HttpClient) {}
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   getTranslation(lang: string): Observable<any> {
@@ -19,10 +19,10 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
   return new MyCustomLoader(http);
 }
 
-export const appConfig: ApplicationConfig = {
+export const APP_CONFIG: ApplicationConfig = {
   providers: [
     provideHttpClient(),
-    provideRouter(routes),
+    provideRouter(ROUTES),
     provideTranslateService({
       fallbackLang: 'fr',
       loader: {

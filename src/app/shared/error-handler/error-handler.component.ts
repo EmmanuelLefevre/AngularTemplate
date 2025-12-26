@@ -29,16 +29,16 @@ export class ErrorHandlerComponent implements OnInit {
       let codeValue = params['code'] ? String(params['code']) : '';
 
       if (!codeValue) {
-        const url = this.router.url;
+        const URL = this.router.url;
 
         switch (true) {
-          case url.includes('unfound-error'):
+          case URL.includes('unfound-error'):
             codeValue = '404';
             break;
-          case url.includes('unauthorized-error'):
+          case URL.includes('unauthorized-error'):
             codeValue = '401';
             break;
-          case url.includes('server-error'):
+          case URL.includes('server-error'):
             codeValue = '500';
             break;
           default:
@@ -50,8 +50,8 @@ export class ErrorHandlerComponent implements OnInit {
       this.code.set(codeValue);
       this.cdr.markForCheck();
 
-      const currentUrl = this.router.url;
-      const errorPages = [
+      const CURRENT_URL = this.router.url;
+      const ERROR_PAGES = [
         'unauthorized-error',
         'unfound-error',
         'server-error',
@@ -59,24 +59,24 @@ export class ErrorHandlerComponent implements OnInit {
         'unknown-error'
       ];
 
-      if (errorPages.some(page => currentUrl.includes(page))) {
+      if (ERROR_PAGES.some(page => CURRENT_URL.includes(page))) {
         return;
       }
 
-      const rawValue = this.code();
+      const RAW_VALUE = this.code();
       let destination: string;
 
       switch (true) {
-        case rawValue === '401':
+        case RAW_VALUE === '401':
           destination = 'unauthorized-error';
           break;
-        case rawValue === '404':
+        case RAW_VALUE === '404':
           destination = 'unfound-error';
           break;
-        case rawValue === '500':
+        case RAW_VALUE === '500':
           destination = 'server-error';
           break;
-        case /^[1-5]\d{2}$/.test(rawValue):
+        case /^[1-5]\d{2}$/.test(RAW_VALUE):
           destination = 'generic-error';
           break;
         default:
@@ -86,7 +86,7 @@ export class ErrorHandlerComponent implements OnInit {
 
       this.router.navigate([destination], {
         relativeTo: this.route,
-        queryParams: rawValue ? { code: rawValue } : undefined,
+        queryParams: RAW_VALUE ? { code: RAW_VALUE } : undefined,
         replaceUrl: true
       });
     });
