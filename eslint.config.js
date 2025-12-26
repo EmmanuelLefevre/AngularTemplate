@@ -11,6 +11,12 @@ module.exports = defineConfig([
     plugins: {
       '@stylistic': stylistic
     },
+    languageOptions: {
+      parserOptions: {
+        projectService: true,
+        tsconfigRootDir: __dirname
+      }
+    },
     extends: [
       eslint.configs.recommended,
       ...tseslint.configs.recommended,
@@ -150,6 +156,34 @@ module.exports = defineConfig([
       '@stylistic/quotes': ['error', 'single'],
 
       // Typescript selectors configuration
+      '@typescript-eslint/explicit-function-return-type': 'error',
+      '@typescript-eslint/naming-convention': [
+        'error',
+        {
+          selector: 'variable',
+          format: ['camelCase']
+        },
+        {
+          selector: 'variable',
+          modifiers: ['const'],
+          format: ['UPPER_CASE']
+        },
+        {
+          selector: 'method',
+          format: ['camelCase']
+        },
+        {
+          selector: 'class',
+          format: ['PascalCase']
+        }
+      ],
+      '@typescript-eslint/no-empty-function': 'error',
+      '@typescript-eslint/no-empty-interface': 'error',
+      '@typescript-eslint/no-magic-numbers': 'error',
+      '@typescript-eslint/no-shadow': 'error',
+      '@typescript-eslint/no-unsafe-return': 'error',
+      '@typescript-eslint/no-unused-vars': 'error',
+      '@typescript-eslint/prefer-readonly': 'error',
 
       // Commons
 
