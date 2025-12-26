@@ -1431,6 +1431,8 @@ npx @andrewbranch/ts5to6 --fixRootDir ./tsconfig.app.json
 
 [ESLint Angular Documentation](https://www.npmjs.com/package/@angular-eslint/eslint-plugin)  
 
+[ESLint Angular Template Documentation](https://www.npmjs.com/package/@angular-eslint/eslint-plugin-template)  
+
 [ESLint TypeScript Documentation](https://typescript-eslint.io/rules/)  
 
 [ESLint RXJS Documentation](https://eslint.style/rules/brace-style)  
