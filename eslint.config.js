@@ -51,6 +51,14 @@ module.exports = defineConfig([
       '@angular-eslint/sort-keys-in-type-decorator': 'error',
       '@angular-eslint/sort-lifecycle-methods': 'error',
 
+      // RXJS
+      // 'rxjs/no-async-subscribe': 'error',
+      // 'rxjs/no-ignored-observable': 'error',
+      // 'rxjs/no-ignored-subscription': 'error',
+      // 'rxjs/no-nested-subscribe': 'error',
+      // 'rxjs/no-unbound-methods': 'error',
+      // 'rxjs/throw-error': 'error',
+
       // Stylistics selectors configuration
       '@stylistic/arrow-spacing': [
         'error',

@@ -1435,28 +1435,19 @@ npx @andrewbranch/ts5to6 --fixRootDir ./tsconfig.app.json
 
 [ESLint TypeScript Documentation](https://typescript-eslint.io/rules/)  
 
-[ESLint RXJS Documentation](https://eslint.style/rules/brace-style)  
+[ESLint RXJS Documentation](https://github.com/cartant/eslint-plugin-rxjs)  
 
 [ESLint Stylistics Documentation](https://eslint.style/rules)  
 
 [ESLint Recommanded Documentation](https://eslint.org/docs/latest/rules/)  
 
-1. 
-```shell
-pnpm add -D angular-eslint
-```
+1. Pour la configuration des règles RXJS il faut ajouter ces deux librairies:  
 
 ```shell
-
+pnpm add -D @typescript-eslint/parser eslint-plugin-rxjs
 ```
 
-```shell
-
-```
-
-```shell
-
-```
+2. Pour la configuration des règles CSS il faut ajouter 
 
 ```shell
 
