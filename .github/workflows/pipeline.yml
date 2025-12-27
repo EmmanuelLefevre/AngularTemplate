@@ -50,11 +50,14 @@ jobs:
       - name: ⚙️ Install Dependencies
         run: pnpm install
 
-      - name: 🎨 Prettier Formatting
+      - name: 💄 Prettier Formatting
         run: pnpm format:check
 
       - name: 🧹 ESLint Linting
         run: pnpm lint:ci
+
+      - name: 🎨 Stylelint SCSS
+        run: pnpm lint:scss
 
       - name: 🧪 Run Vitest Tests & Coverage
         run: pnpm test:coverage

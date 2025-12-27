@@ -193,8 +193,6 @@ module.exports = defineConfig([
       '@typescript-eslint/no-unused-vars': 'error',
       '@typescript-eslint/prefer-readonly': 'error',
 
-      // Commons
-
       // Disabling old rules to avoid duplicates
       indent: 'off',
       semi: 'off',

@@ -1441,16 +1441,34 @@ npx @andrewbranch/ts5to6 --fixRootDir ./tsconfig.app.json
 
 [ESLint Recommanded Documentation](https://eslint.org/docs/latest/rules/)  
 
+[StyleLint SCSS Documentation](https://www.npmjs.com/package/stylelint-scss)  
+
 1. Pour la configuration des règles RXJS il faut ajouter ces deux librairies:  
 
 ```shell
 pnpm add -D @typescript-eslint/parser eslint-plugin-rxjs
 ```
 
-2. Pour la configuration des règles CSS il faut ajouter 
+2. Pour la configuration des règles SCSS il faut ajouter Stylelint  
 
 ```shell
+pnpm add -D stylelint stylelint-config-standard-scss
+```
 
+Il faut ensuite créer le fichier `.stylelintrc.json` à la racine du projet  
+
+```JSON
+{
+  "extends": [
+    "stylelint-config-standard-scss"
+  ],
+  "rules": {
+    "scss/at-rule-no-unknown": true,
+    "no-empty-source": null,
+    "scss/dollar-variable-pattern": "^[a-z][a-zA-Z0-9\-]+$",
+    "selector-class-pattern": null
+  }
+}
 ```
 
 <h3 id="ts-config-rules">
