@@ -8,6 +8,29 @@
     "CLOSE_MENU": "Fermer le menu",
     "OPEN_MENU": "Ouvrir le menu"
   },
+  "FOOTER": {
+    "COPYRIGHT": "©{{year}}",
+    "RIGHTS_RESERVED": "Tous droits réservés.",
+    "OWNER_NAME": "LEFEVRE Emmanuel",
+    "LINKS": {
+      "LINKEDIN": {
+        "TOOLTIP": "Lien LinkedIn",
+        "ARIA": "Lien vers le profil LinkedIn de Emmanuel Lefevre"
+      },
+      "GITHUB": {
+        "TOOLTIP": "Lien GitHub",
+        "ARIA": "Lien vers le GitHub de Emmanuel Lefevre"
+      },
+      "CONTACT": {
+        "TOOLTIP": "Formulaire de contact",
+        "ARIA": "Lien vers le formulaire de contact du site"
+      },
+      "PORTFOLIO": {
+        "TOOLTIP": "Portfolio Emmanuel Lefevre",
+        "ARIA": "Lien vers le portfolio du développeur du site"
+      }
+    }
+  },
   "HOME": {
     "TITLE": "Bonjour l'ami !",
     "WELCOME_PREFIX": "Ton nouveau projet",
