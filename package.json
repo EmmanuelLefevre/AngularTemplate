@@ -50,10 +50,11 @@
     "husky": "9.1.7",
     "jsdom": "27.3.0",
     "lint-staged": "16.2.7",
+    "postcss-scss": "4.0.9",
     "prettier": "3.7.4",
     "rimraf": "6.1.2",
     "stylelint": "16.26.1",
-    "stylelint-config-standard-scss": "16.0.0",
+    "stylelint-scss": "6.13.0",
     "typescript": "5.9.3",
     "typescript-eslint": "8.47.0",
     "vite": "7.3.0",
@@ -72,7 +73,10 @@
     "src/**/*.{css,scss,json,md}": [
       "prettier --write"
     ],
-    "*.{js,cjs,mjs}": [
+    "*.scss": [
+      "stylelint --fix"
+    ],
+    "*.{js,cjs,mjs,json}": [
       "eslint --fix --max-warnings=0",
       "prettier --write"
     ],

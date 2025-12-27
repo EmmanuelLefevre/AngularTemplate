@@ -13,7 +13,9 @@ module.exports = defineConfig([
     },
     languageOptions: {
       parserOptions: {
-        projectService: true,
+        projectService: {
+          allowDefaultProject: ['vitest.config.ts', 'eslint.config.js']
+        },
         tsconfigRootDir: __dirname
       }
     },

@@ -167,10 +167,12 @@
 📄.....
 📄.gitignore
 📄.npmrc
-📄.LICENSE
-📄.package.json
-📄.pnpm-lock.yaml
-📄.README.md
+📄.stylelintrc.json
+📄eslint.config.js
+📄LICENSE
+📄package.json
+📄pnpm-lock.yaml
+📄README.md
 🛡️sonar-project.properties
 🧪.vitest.config.ts
 📄.....
@@ -1435,15 +1437,13 @@ npx @andrewbranch/ts5to6 --fixRootDir ./tsconfig.app.json
 
 [ESLint TypeScript Documentation](https://typescript-eslint.io/rules/)  
 
-[ESLint RXJS Documentation](https://github.com/cartant/eslint-plugin-rxjs)  
-
 [ESLint Stylistics Documentation](https://eslint.style/rules)  
 
 [ESLint Recommanded Documentation](https://eslint.org/docs/latest/rules/)  
 
-[StyleLint SCSS Documentation](https://www.npmjs.com/package/stylelint-scss)  
-
 1. Pour la configuration des règles RXJS il faut ajouter ces deux librairies:  
+
+[ESLint RXJS Documentation](https://github.com/cartant/eslint-plugin-rxjs)  
 
 ```shell
 pnpm add -D @typescript-eslint/parser eslint-plugin-rxjs
@@ -1451,22 +1451,30 @@ pnpm add -D @typescript-eslint/parser eslint-plugin-rxjs
 
 2. Pour la configuration des règles SCSS il faut ajouter Stylelint  
 
+[StyleLint SCSS Documentation](https://www.npmjs.com/package/stylelint-scss)  
+
 ```shell
-pnpm add -D stylelint stylelint-config-standard-scss
+pnpm add -D stylelint stylelint-scss postcss-scss
 ```
 
 Il faut ensuite créer le fichier `.stylelintrc.json` à la racine du projet  
 
 ```JSON
 {
-  "extends": [
-    "stylelint-config-standard-scss"
-  ],
+  "plugins": ["stylelint-scss"],
+  "customSyntax": "postcss-scss",
   "rules": {
-    "scss/at-rule-no-unknown": true,
-    "no-empty-source": null,
-    "scss/dollar-variable-pattern": "^[a-z][a-zA-Z0-9\-]+$",
-    "selector-class-pattern": null
+    "block-no-empty": true,
+    "color-no-invalid-hex": true,
+    "scss/at-if-no-null": true,
+    "max-nesting-depth": [
+      3,
+      {
+        "ignore": ["blockless-at-rules"]
+      }
+    ],
+    "at-rule-no-unknown": null,
+    "scss/at-rule-no-unknown": true
   }
 }
 ```

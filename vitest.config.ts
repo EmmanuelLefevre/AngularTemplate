@@ -4,13 +4,13 @@ import tsconfigPaths from 'vite-tsconfig-paths';
 import { fileURLToPath } from 'node:url';
 import { dirname, resolve } from 'node:path';
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
+const DIRNAME = dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
   plugins: [
     angular(),
     tsconfigPaths({
-      projects: [resolve(__dirname, 'tsconfig.json')]
+      projects: [resolve(DIRNAME, 'tsconfig.json')]
     })
   ],
   css: {
@@ -24,7 +24,7 @@ export default defineConfig({
     globals: true,
     environment: 'jsdom',
     setupFiles: [
-      resolve(__dirname, 'src/test-setup.ts'),
+      resolve(DIRNAME, 'src/test-setup.ts'),
     ],
     reporters: ['default'],
     coverage: {
