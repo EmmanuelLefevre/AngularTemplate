@@ -1,7 +1,11 @@
 :root {
+  --bg-color: oklch(0.9736 0.0034 174.48);
+  --bg-header-color: oklch(1 0 0);
+  --bg-footer-color: oklch(1 0 0);
+
   --primary-color: oklch(0.7756 0.1959 126.67);
   --secondary-color: oklch(0.6067 0.2393 306);
   --tertiary-color: oklch(0.7116 0.1812 22.84);
-  // --gray-900: oklch(19.37% 0.006 300.98);
-  // ... others variables
+
+  --text-color: oklch(0.3211 0 0);
 }
