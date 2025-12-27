@@ -1475,7 +1475,7 @@ pnpm add -D @typescript-eslint/parser eslint-plugin-rxjs
   StyleLint Rules
 </h3>
 
-Pour la configuration des règles SCSS il faut ajouter Stylelint  
+Pour la configuration des règles SCSS il faut ajouter StyleLint  
 
 [StyleLint SCSS Documentation](https://stylelint.io/user-guide/rules)  
 
