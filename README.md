@@ -1451,7 +1451,7 @@ pnpm add -D @typescript-eslint/parser eslint-plugin-rxjs
 
 2. Pour la configuration des règles SCSS il faut ajouter Stylelint  
 
-[StyleLint SCSS Documentation](https://www.npmjs.com/package/stylelint-scss)  
+[StyleLint SCSS Documentation](https://stylelint.io/user-guide/rules)  
 
 ```shell
 pnpm add -D stylelint stylelint-scss postcss-scss
@@ -1466,6 +1466,7 @@ Il faut ensuite créer le fichier `.stylelintrc.json` à la racine du projet
   "rules": {
     "block-no-empty": true,
     "color-no-invalid-hex": true,
+    "scss/at-extend-no-missing-placeholder": true,
     "scss/at-if-no-null": true,
     "max-nesting-depth": [
       3,
@@ -1474,7 +1475,9 @@ Il faut ensuite créer le fichier `.stylelintrc.json` à la racine du projet
       }
     ],
     "at-rule-no-unknown": null,
-    "scss/at-rule-no-unknown": true
+    "scss/at-rule-no-unknown": true,
+    "comment-no-empty": null,
+    "scss/comment-no-empty": true
   }
 }
 ```
