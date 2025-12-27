@@ -1,1 +1,37 @@
-<p>footer works!</p>
+<footer class="footer">
+  <div class="footer__container">
+    <ul class="footer__social-list">
+      @for (link of socialLinks; track link.label) {
+        <li class="footer__social-item">
+          @if (link.path) {
+            <a [routerLink]="[link.path]"
+              class="footer__link"
+              [attr.aria-label]="link.label + '.ARIA' | translate">
+              <fa-icon [icon]="link.icon" class="footer__icon" />
+            </a>
+          }
+          @else {
+            <a [href]="link.href"
+              class="footer__link"
+              target="_blank"
+              rel="noopener noreferrer"
+              [attr.aria-label]="link.label + '.ARIA' | translate">
+              <fa-icon [icon]="link.icon" class="footer__icon" />
+            </a>
+          }
+        </li>
+      }
+    </ul>
+  </div>
+
+  <p class="footer__copyright">
+    {{ 'FOOTER.COPYRIGHT' | translate: { year: currentYear } }}
+    <a [href]="externalLinks.portfolio"
+      target="_blank"
+      rel="noopener noreferrer"
+      [attr.aria-label]="'FOOTER.LINKS.PORTFOLIO.ARIA' | translate"
+      matTooltipPosition="left"
+      class="footer__owner">{{ 'FOOTER.OWNER_NAME' | translate }}
+    </a> - {{ 'FOOTER.RIGHTS_RESERVED' | translate }}
+  </p>
+</footer>
