@@ -49,6 +49,7 @@
 - [TOOLING DOCUMENTATIONS](#tooling-documentations)
   - [Prettier Rules](#prettier-rules)
   - [ESLint Rules](#eslint-rules)
+  - [StyleLint Rules](#stylelint-rules)
   - [TS Config Rules](#ts-config-rules)
   - [Schematics Rules](#schematics-rules)
 
@@ -473,13 +474,13 @@ ESLint a aussi des règles de formatage qui peuvent contredire Prettier. Il faut
 pnpm add -D eslint-config-prettier
 ```
 
-2. Installer ``
+2. Installer `Angular ESLint`  
 
 ```shell
 pnpm add -D angular-eslint
 ```
 
-2. Installer les `stylistics`
+2. Installer les `stylistics`  
 
 [Stylistics Documentation Rules](https://eslint.style/rules/brace-style)  
 
@@ -583,6 +584,7 @@ Mettre à jour la section "scripts" du `package.json` pour faciliter l'utilisati
   "format:check": "prettier --check .",
   "lint": "ng lint",
   "lint:ci": "ng lint --max-warnings=0",
+  "lint:scss": "stylelint \"src/**/*.scss\"",
   "prepare": "husky",
   "start": "ng serve",
   "test": "ng test",
@@ -698,6 +700,16 @@ Ce fichier contient les paramètres fondamentaux du compilateur TypeScript (`com
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "paths": {
+      "@app/*": ["./src/app/*"],
+      "@assets/*": ["./src/assets/*"],
+      "@core/*": ["./src/app/core/*"],
+      "@env/*": ["./src/_environments/*"],
+      "@features/*": ["./src/app/features/*"],
+      "@shared": ["./src/app/shared/shared.ts"],
+      "@shared/*": ["./src/app/shared/*"],
+      "@styles/*": ["./src/styles/*"]
+    },
     "declaration": false,
     "esModuleInterop": true,
     "experimentalDecorators": true,
@@ -709,11 +721,11 @@ Ce fichier contient les paramètres fondamentaux du compilateur TypeScript (`com
       "DOM"
     ],
     "module": "preserve",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "noImplicitOverride": true,
-    "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
+    "noPropertyAccessFromIndexSignature": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "sourceMap": false,
@@ -752,24 +764,10 @@ Configuration des alias
   "compilerOptions": {
     "outDir": "./out-tsc/app",
     "types": [],
-    "paths": {
-      "@app/*": ["./src/app/*"],
-      "@assets/*": ["./src/assets/*"],
-      "@core/*": ["./src/app/core/*"],
-      "@env/*": ["./src/_environments/*"],
-      "@features/*": ["./src/app/features/*"],
-      "@shared": ["./src/app/shared/shared.ts"],
-      "@shared/*": ["./src/app/shared/*"],
-      "@styles/*": ["./src/styles/*"]
-    },
     "rootDir": "./src"
   },
-  "include": [
-    "src/**/*.ts"
-  ],
-  "exclude": [
-    "src/**/*.spec.ts"
-  ]
+  "include": ["src/**/*.ts"],
+  "exclude": ["src/**/*.spec.ts"]
 }
 ```
 
@@ -822,8 +820,7 @@ pnpm add -D vite-tsconfig-paths
   "builder": "@angular/build:unit-test",
   "options": {
     "runnerConfig": "vitest.config.ts",
-    "tsConfig": "tsconfig.spec.json",
-    "coverage": true
+    "tsConfig": "tsconfig.spec.json"
   }
 },
 ```
@@ -1090,11 +1087,6 @@ jobs:
 
       - name: 🚩 Deployment Task
         run: echo "Deployment is underway following security and quality validation."
-
-```
-
-```yml
-if: github.ref == 'refs/heads/main' && github.event_name == 'push'
 ```
 
 <h2 id="dependencies">
@@ -1107,7 +1099,7 @@ if: github.ref == 'refs/heads/main' && github.event_name == 'push'
 pnpm add @angular/material @angular/cdk
 ```
 
-2. Ajouter `FontAwesome`  
+2. Ajouter `Font Awesome`  
 
 ```shell
 pnpm add @fortawesome/fontawesome-svg-core @fortawesome/angular-fontawesome
@@ -1129,6 +1121,7 @@ Dans `angular.json` ajouter la propriété `stylePreprocessorOptions` dans `@arc
 ```JSON
 "stylePreprocessorOptions": {
   "includePaths": [
+    "src",
     "src/styles"
   ]
 }
@@ -1464,7 +1457,7 @@ npx @andrewbranch/ts5to6 --fixRootDir ./tsconfig.app.json
 
 [ESLint Recommanded Documentation](https://eslint.org/docs/latest/rules/)  
 
-1. Pour la configuration des règles RXJS il faut ajouter ces deux librairies:  
+Pour la configuration des règles RXJS il faut ajouter ces deux librairies:  
 
 [ESLint RXJS Documentation](https://github.com/cartant/eslint-plugin-rxjs)  
 
@@ -1472,7 +1465,17 @@ npx @andrewbranch/ts5to6 --fixRootDir ./tsconfig.app.json
 pnpm add -D @typescript-eslint/parser eslint-plugin-rxjs
 ```
 
-2. Pour la configuration des règles SCSS il faut ajouter Stylelint  
+<h3 id="stylelint-rules">
+  <img
+    alt="StyleLint"
+    title="StyleLint"
+    width="34px"
+    src="https://raw.githubusercontent.com/EmmanuelLefevre/GitHubProfileIcons/main/stylelint.png"
+  />
+  StyleLint Rules
+</h3>
+
+Pour la configuration des règles SCSS il faut ajouter Stylelint  
 
 [StyleLint SCSS Documentation](https://stylelint.io/user-guide/rules)  
 
