@@ -3,10 +3,11 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 @Component({
   selector: 'contact',
   imports: [],
-  templateUrl: './contact.component.html',
-  styleUrl: './contact.component.scss',
+  templateUrl: './contact-view.component.html',
+  styleUrl: './contact-view.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ContactComponent {
+
+export class ContactViewComponent {
 
 }
