@@ -53,3 +53,4 @@ Thumbs.db
 !/public/sitemap.xml
 !sonar-project.properties
 !config
+!src/app/core/

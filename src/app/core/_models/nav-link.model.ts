@@ -1,0 +1,5 @@
+export interface NavLink {
+  path: string;
+  label: string;
+  cssClass?: string;
+}
