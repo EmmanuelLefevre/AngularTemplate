@@ -6,8 +6,11 @@
           @if (link.path) {
             <a
               [routerLink]="[link.path]"
-              class="footer__link"
-              [attr.aria-label]="link.label + '.ARIA' | translate">
+              [attr.aria-label]="link.label + '.ARIA' | translate"
+              [matTooltip]="link.label + '.TOOLTIP' | translate"
+              matTooltipPosition="above"
+              matTooltipShowDelay="600"
+              class="footer__link">
               <fa-icon
                 [icon]="link.icon"
                 class="footer__icon" />
@@ -15,10 +18,13 @@
           } @else {
             <a
               [href]="link.href"
-              class="footer__link"
               target="_blank"
               rel="noopener noreferrer"
-              [attr.aria-label]="link.label + '.ARIA' | translate">
+              [attr.aria-label]="link.label + '.ARIA' | translate"
+              [matTooltip]="link.label + '.TOOLTIP' | translate"
+              matTooltipPosition="above"
+              matTooltipShowDelay="600"
+              class="footer__link">
               <fa-icon
                 [icon]="link.icon"
                 class="footer__icon" />
@@ -36,7 +42,9 @@
       target="_blank"
       rel="noopener noreferrer"
       [attr.aria-label]="'FOOTER.LINKS.PORTFOLIO.ARIA' | translate"
+      [matTooltip]="'FOOTER.LINKS.PORTFOLIO.TOOLTIP' | translate"
       matTooltipPosition="left"
+      matTooltipShowDelay="600"
       class="footer__owner"
       >{{ 'FOOTER.OWNER_NAME' | translate }}
     </a>

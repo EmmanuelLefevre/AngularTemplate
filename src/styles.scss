@@ -6,10 +6,11 @@
 
 /*===============LAYOUT===============*/
 // (Header, Footer, Grid, Sidebar)
-@use 'styles/layout/admin-layout';
 @use 'styles/layout/main-layout';
+@use 'styles/layout/admin-layout';
 
 /*===============THEMES===============*/
-// (Light/Dark Mode)
+// (Light/Dark Mode/Angular Material)
 @use 'styles/themes/theme-variables';
 @use 'styles/themes/light-theme';
+@use 'styles/themes/material-overrides';

@@ -41,6 +41,7 @@
 - [TS CONFIG](#ts-config)
 - [TESTS](#tests)
 - [CI/CD](#ci-cd)
+- [DEPENDENCIES](#dependencies)
 - [STYLES](#styles)
 - [SCHEMATICS](#schematics)
 - [CONFIGURATION DE BUILD](#configuration-de-build)
@@ -159,6 +160,7 @@
  ┃ ┃ ┗ 🎨_main-layout.scss
  ┃ ┗ 📂themes
  ┃   ┣ 🎨_light-theme.scss
+ ┃   ┣ 🎨_material-overrides.scss
  ┃   ┗ 🎨_theme-variables.scss
  ┣ 📄index.html
  ┣ 📄main.ts
@@ -1093,6 +1095,27 @@ jobs:
 
 ```yml
 if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+```
+
+<h2 id="styles">
+  📦 DEPENDENCIES
+</h2>
+
+1. Ajouter `Angular Material`  
+
+```shell
+pnpm add @angular/material @angular/cdk
+```
+
+2. Ajouter `FontAwesome`  
+
+```shell
+pnpm add @fortawesome/fontawesome-svg-core @fortawesome/angular-fontawesome
+```
+
+Puis ajouter les différentes variantes d'icônes...  
+```shell
+pnpm add @fortawesome/free-solid-svg-icons @fortawesome/free-brands-svg-icons @fortawesome/free-regular-svg-icons
 ```
 
 <h2 id="styles">

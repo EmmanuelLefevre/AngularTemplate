@@ -2,12 +2,14 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { TranslateModule } from '@ngx-translate/core';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { FOOTER_SOCIAL_LINKS, EXTERNAL_LINKS } from '@app/core/_config/social-links.constant';
 
 @Component({
   selector: 'main-footer',
   imports: [
     FontAwesomeModule,
+    MatTooltipModule,
     RouterModule,
     TranslateModule
   ],

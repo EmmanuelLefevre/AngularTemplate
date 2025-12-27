@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MainFooterComponent } from './main-footer.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { MatTooltip, MatTooltipModule } from '@angular/material/tooltip';
 import { provideRouter } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { By } from '@angular/platform-browser';
@@ -17,7 +18,8 @@ describe('MainFooterComponent', () => {
       imports: [
         MainFooterComponent,
         FontAwesomeModule,
-        TranslateModule.forRoot()
+        TranslateModule.forRoot(),
+        MatTooltipModule
       ],
       providers: [provideRouter([])]
     }).compileComponents();
@@ -29,8 +31,11 @@ describe('MainFooterComponent', () => {
     translate.setTranslation('fr', {
       'FOOTER': {
         'COPYRIGHT': '©{{year}}',
-        'OWNER_NAME': 'LEFEVRE Emmanuel',
-        'RIGHTS_RESERVED': 'Tous droits réservés.'
+        'LINKS': {
+          'LINKEDIN': { 'TOOLTIP': 'Lien LinkedIn' },
+          'GITHUB': { 'TOOLTIP': 'Lien GitHub' },
+          'CONTACT': { 'TOOLTIP': 'Me contacter' }
+        }
       }
     });
     translate.use('fr');
@@ -93,5 +98,16 @@ describe('MainFooterComponent', () => {
 
     // --- ASSERT ---
     expect(ARIA_LABEL).toBeTruthy();
+  });
+
+  it('should apply the correct translated tooltips to all links', () => {
+    // --- ARRANGE ---
+    const TOOLTIP_DEBUG_ELS = fixture.debugElement.queryAll(By.directive(MatTooltip));
+
+    // --- ACT & ASSERT ---
+    TOOLTIP_DEBUG_ELS.forEach((debugEl) => {
+      const TOOLTIP_INSTANCE = debugEl.injector.get(MatTooltip);
+      expect(TOOLTIP_INSTANCE.message).toBeTruthy();
+    });
   });
 });
