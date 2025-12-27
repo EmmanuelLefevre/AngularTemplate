@@ -1097,7 +1097,7 @@ jobs:
 if: github.ref == 'refs/heads/main' && github.event_name == 'push'
 ```
 
-<h2 id="styles">
+<h2 id="dependencies">
   📦 DEPENDENCIES
 </h2>
 
