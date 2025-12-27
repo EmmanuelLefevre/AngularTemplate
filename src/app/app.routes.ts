@@ -20,7 +20,13 @@ export const ROUTES: Routes = [
           '@features/public/public-views/home/home-view.component')
           .then(m => m.HomeViewComponent)
       },
-      // Add 'contact', 'about'
+      {
+        path: 'contact',
+        loadComponent: () => import(
+          '@app/features/public/public-views/contact/contact-view.component')
+          .then(m => m.ContactViewComponent)
+      },
+      // Add 'about', 'other views'...
     ]
   },
 
