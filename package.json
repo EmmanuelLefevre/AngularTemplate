@@ -76,7 +76,7 @@
     "*.scss": [
       "stylelint --fix"
     ],
-    "*.{js,cjs,mjs,json}": [
+    "*.{js,cjs,mjs}": [
       "eslint --fix --max-warnings=0",
       "prettier --write"
     ],
