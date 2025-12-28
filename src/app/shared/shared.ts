@@ -22,6 +22,7 @@ export * from './_directives/input-uppercase/input-uppercase.directive';
 // --- Pipes
 export * from './_pipes/alert/alert.pipe';
 export * from './_pipes/date/date-format.pipe';
+export * from './_pipes/yes-no/yes-no.pipe';
 
 // ========== IMPORTS ==========
 // --- Errors Management
@@ -47,6 +48,7 @@ import { InputUppercaseDirective } from './_directives/input-uppercase/input-upp
 // --- Pipes
 import { AlertPipe } from './_pipes/alert/alert.pipe';
 import { DateFormatPipe } from './_pipes/date/date-format.pipe';
+import { YesNoPipe } from './_pipes/yes-no/yes-no.pipe';
 
 export const SHARED_ERRORS_COMPONENTS = [
   ErrorHandlerComponent,
@@ -74,7 +76,8 @@ export const SHARED_DIRECTIVES = [
 
 export const SHARED_PIPES = [
   AlertPipe,
-  DateFormatPipe
+  DateFormatPipe,
+  YesNoPipe
 ] as const;
 
 export const SHARED_UTILS = [
