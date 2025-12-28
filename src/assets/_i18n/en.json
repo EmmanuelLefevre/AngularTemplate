@@ -11,10 +11,10 @@
   "FOOTER": {
     "COPYRIGHT": "©{{year}}",
     "DEVELOPPER": "Site developped by",
-    "DEVELOPPER_NAME": "Emmanuel Lefevre",
+    "DEVELOPPER_NAME": "Emmanuel Lefevre ",
     "HOST": "and hosted on",
     "HOST_ADDRESS": "10, Rue de la Paix 75000 Paris",
-    "HOST_NAME": "Planet Hoster",
+    "HOST_NAME": "Planet Hoster ",
     "HOST_PHONE": "0 800 123 456",
     "RIGHTS_RESERVED": "All rights reserved.",
     "PROJECT": "AngularTemplate",
@@ -34,6 +34,9 @@
       "PORTFOLIO": {
         "TOOLTIP": "Portfolio Emmanuel Lefevre",
         "ARIA": "Link to the website developer's portfolio"
+      },
+      "HOST": {
+        "ARIA": "Link to the website's hosting provider"
       }
     }
   },

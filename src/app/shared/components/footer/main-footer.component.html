@@ -1,53 +1,88 @@
 <footer class="footer">
-  <div class="footer__container">
-    <ul class="footer__social-list">
-      @for (link of socialLinks; track link.label) {
-        <li class="footer__social-item">
-          @if (link.path) {
-            <a
-              [routerLink]="[link.path]"
-              [attr.aria-label]="link.label + '.ARIA' | translate"
-              [matTooltip]="link.label + '.TOOLTIP' | translate"
-              matTooltipPosition="above"
-              matTooltipShowDelay="600"
-              class="footer__link">
-              <fa-icon
-                [icon]="link.icon"
-                class="footer__icon" />
-            </a>
-          } @else {
-            <a
-              [href]="link.href"
-              target="_blank"
-              rel="noopener noreferrer"
-              [attr.aria-label]="link.label + '.ARIA' | translate"
-              [matTooltip]="link.label + '.TOOLTIP' | translate"
-              matTooltipPosition="above"
-              matTooltipShowDelay="600"
-              class="footer__link">
-              <fa-icon
-                [icon]="link.icon"
-                class="footer__icon" />
-            </a>
-          }
-        </li>
-      }
-    </ul>
-  </div>
+  <ul class="footer__social-list">
+    @for (link of socialLinks; track link.label) {
+      <li class="footer__social-item">
+        @if (link.path) {
+          <a
+            [routerLink]="[link.path]"
+            [attr.aria-label]="link.label + '.ARIA' | translate"
+            [matTooltip]="link.label + '.TOOLTIP' | translate"
+            matTooltipPosition="above"
+            matTooltipShowDelay="600"
+            class="footer__link">
+            <fa-icon
+              [icon]="link.icon"
+              class="footer__icon" />
+          </a>
+        } @else {
+          <a
+            [href]="link.href"
+            target="_blank"
+            rel="noopener noreferrer"
+            [attr.aria-label]="link.label + '.ARIA' | translate"
+            [matTooltip]="link.label + '.TOOLTIP' | translate"
+            matTooltipPosition="above"
+            matTooltipShowDelay="600"
+            class="footer__link">
+            <fa-icon
+              [icon]="link.icon"
+              class="footer__icon" />
+          </a>
+        }
+      </li>
+    }
+  </ul>
 
   <p class="footer__copyright">
     {{ 'FOOTER.COPYRIGHT' | translate: { year: currentYear } }}
-    <a
-      [href]="externalLinks.portfolio"
-      target="_blank"
-      rel="noopener noreferrer"
-      [attr.aria-label]="'FOOTER.LINKS.PORTFOLIO.ARIA' | translate"
-      [matTooltip]="'FOOTER.LINKS.PORTFOLIO.TOOLTIP' | translate"
-      matTooltipPosition="left"
-      matTooltipShowDelay="600"
-      class="footer__owner"
-      >{{ 'FOOTER.OWNER_NAME' | translate }}
-    </a>
+    <span class="footer__owner">{{ 'FOOTER.PROJECT' | translate }}</span>
     - {{ 'FOOTER.RIGHTS_RESERVED' | translate }}
   </p>
+
+  <div class="footer__hosting">
+    <p class="footer__text">
+      <span class="footer__group">
+        <span class="footer__label">{{ hosting.developer.labelKey | translate }}</span>
+        <span class="footer__value">
+          <a
+            [href]="externalLinks.portfolio"
+            target="_blank"
+            rel="noopener noreferrer"
+            [attr.aria-label]="'FOOTER.LINKS.PORTFOLIO.ARIA' | translate"
+            [matTooltip]="'FOOTER.LINKS.PORTFOLIO.TOOLTIP' | translate"
+            matTooltipPosition="left"
+            matTooltipShowDelay="600">{{ hosting.developer.nameKey | translate }}
+          </a>
+        </span>
+      </span>
+
+      <span class="footer__separator"></span>
+
+      <span class="footer__label">{{ hosting.host.labelKey | translate }}</span>
+
+      <span class="footer__break"></span>
+
+      <span class="footer__separator footer__separator--desktop"></span>
+
+      <span class="footer__value">
+        <a
+          [href]="hosting.host.url"
+          target="_blank"
+          rel="noopener"
+          [attr.aria-label]="'FOOTER.LINKS.HOST.ARIA' | translate">{{ hosting.host.nameKey | translate }}
+        </a>
+      </span>
+
+      <span class="footer__separator"></span>
+
+      <span>{{ hosting.host.addressKey | translate }}</span>
+    </p>
+
+    <p class="footer__phone">
+      <fa-icon
+        [icon]="hosting.phone.icon"
+        class="footer__phone_icon" />
+      <span>{{ hosting.phone.nameKey | translate }}</span>
+    </p>
+  </div>
 </footer>

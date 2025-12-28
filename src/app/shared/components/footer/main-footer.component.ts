@@ -3,7 +3,9 @@ import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { FOOTER_SOCIAL_LINKS, EXTERNAL_LINKS } from '@app/core/_config/social-links.constant';
+
+import { EXTERNAL_LINKS, FOOTER_SOCIAL_LINKS } from '@core/_config/social-links.constant';
+import { HOSTING_INFOS } from '@core/_config/host-links.constant';
 
 @Component({
   selector: 'main-footer',
@@ -21,5 +23,7 @@ import { FOOTER_SOCIAL_LINKS, EXTERNAL_LINKS } from '@app/core/_config/social-li
 export class MainFooterComponent {
   protected readonly socialLinks = FOOTER_SOCIAL_LINKS;
   protected readonly externalLinks = EXTERNAL_LINKS;
+  protected readonly hosting = HOSTING_INFOS;
+
   protected readonly currentYear = new Date().getFullYear();
 }

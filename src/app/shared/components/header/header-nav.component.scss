@@ -32,7 +32,6 @@
     flex: 0 1 auto;
     font-weight: bold;
     font-size: 1.5rem;
-    text-decoration: none;
     color: var(--text-color);
 
     span {
@@ -96,7 +95,6 @@
   }
 
   &__link {
-    text-decoration: none;
     color: var(--text-color);
     font-size: 1.2rem;
     font-weight: 500;
@@ -167,7 +165,6 @@
     padding: 0;
     background: transparent;
     border: none;
-    cursor: pointer;
     z-index: 1100;
 
     span {
