@@ -6,7 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 export class AlertPipe implements PipeTransform {
 
-  transform(value: unknown): string {
+  transform(value: boolean): string {
     return value ? 'Alerte !' : '-';
   }
 }

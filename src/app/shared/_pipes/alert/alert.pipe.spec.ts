@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-magic-numbers */
-import { TestBed } from '@angular/core/testing';
 
 import { AlertPipe } from './alert.pipe';
 
@@ -8,40 +6,32 @@ describe('AlertPipe', () => {
   let pipe: AlertPipe;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({
-      imports: [AlertPipe],
-      providers: [AlertPipe]
-    });
-    pipe = TestBed.inject(AlertPipe);
+    pipe = new AlertPipe();
   });
 
   it('should create an instance', () => {
     expect(pipe).toBeTruthy();
   });
 
-  describe('Value presence (Truthy)', () => {
-    it('should return "Alerte !" when value is truthy', () => {
-      // --- ARRANGE ---
-      const TEST_VALUES = [true, 'Attention', 1, { id: 1 }];
+  it('should transform true to "Alerte !"', () => {
+    // --- ARRANGE ---
+    const PRESENCE = true;
 
-      // --- ACT & ASSERT ---
-      TEST_VALUES.forEach(VAL => {
-        const RESULT = pipe.transform(VAL);
-        expect(RESULT).toBe('Alerte !');
-      });
-    });
+    // --- ACT ---
+    const RESULT = pipe.transform(PRESENCE);
+
+    // --- ASSERT ---
+    expect(RESULT).toBe('Alerte !');
   });
 
-  describe('Value absence (Falsy)', () => {
-    it('should return "-" when value is falsy', () => {
-      // --- ARRANGE ---
-      const TEST_VALUES = [false, '', 0, null, undefined];
+  it('should transform false to "-"', () => {
+    // --- ARRANGE ---
+    const NO_PRESENCE = false;
 
-      // --- ACT & ASSERT ---
-      TEST_VALUES.forEach(VAL => {
-        const RESULT = pipe.transform(VAL);
-        expect(RESULT).toBe('-');
-      });
-    });
+    // --- ACT ---
+    const RESULT = pipe.transform(NO_PRESENCE);
+
+    // --- ASSERT ---
+    expect(RESULT).toBe('-');
   });
 });
