@@ -70,7 +70,8 @@
         },
         "@schematics/angular:pipe": {
           "skipTests": false,
-          "standalone": true
+          "standalone": true,
+          "typeSeparator": "."
         },
         "@schematics/angular:resolver": {
           "skipTests": true,

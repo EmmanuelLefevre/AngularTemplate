@@ -1203,7 +1203,8 @@ Ceci garantit la cohérence et le respect des bonnes pratiques architecturales d
   },
   "@schematics/angular:pipe": {
     "skipTests": false,
-    "standalone": true
+    "standalone": true,
+    "typeSeparator": "."
   },
   "@schematics/angular:resolver": {
     "skipTests": true,
@@ -1672,6 +1673,7 @@ Configuration pour la gestion globale des pipes (`ng g p`).
 | :--- | :--- | :--- |
 | **`skipTests`** | `false` | Les résolveurs sont étroitement liés au routage et sont généralement testés via E2E |
 | **`standalone`** | `true` | Utiliser le STANDALONE pour les pipes |
+| **`typeSeparator`** | `.` | Définir le séparateur `pipe` (`date.pipe.ts`) |
 
 #### 11. @schematics/angular:resolver (`Resolvers`)
 
