@@ -153,6 +153,7 @@
  ┃ ┃ ┗ 🎨_index.scss
  ┃ ┣ 📂base
  ┃ ┃ ┣ 🎨_animations.scss
+ ┃ ┃ ┣ 🎨_fonts.scss
  ┃ ┃ ┣ 🎨_reset.scss
  ┃ ┃ ┣ 🎨_typography.scss
  ┃ ┃ ┗ 🎨_utilities.scss
