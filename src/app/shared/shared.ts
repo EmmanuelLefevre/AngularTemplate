@@ -16,6 +16,7 @@ export * from './components/footer/main-footer.component';
 export * from './_directives/input-focus/input-focus.directive';
 export * from './_directives/input-trim/input-trim.directive';
 export * from './_pipes/alert/alert.pipe';
+export * from './_pipes/date/date-format.pipe';
 
 // --- IMPORTS ---
 // --- Errors Management
@@ -35,6 +36,7 @@ import { MainFooterComponent } from './components/footer/main-footer.component';
 import { InputFocusDirective } from './_directives/input-focus/input-focus.directive';
 import { InputTrimDirective } from './_directives/input-trim/input-trim.directive';
 import { AlertPipe } from './_pipes/alert/alert.pipe';
+import { DateFormatPipe } from './_pipes/date/date-format.pipe';
 
 
 export const SHARED_COMPONENTS = [
@@ -55,7 +57,8 @@ export const SHARED_DIRECTIVES = [
 ] as const;
 
 export const SHARED_PIPES = [
-  AlertPipe
+  AlertPipe,
+  DateFormatPipe
 ] as const;
 
 export const SHARED_UTILS = [
