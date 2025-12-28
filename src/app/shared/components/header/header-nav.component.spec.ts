@@ -31,6 +31,10 @@ describe('HeaderNavComponent', () => {
     vi.spyOn(translateService, 'use').mockReturnValue(of({}));
   });
 
+  afterEach(() => {
+    document.body.classList.remove('no-scroll');
+  });
+
   it('should create', () => {
     fixture.detectChanges();
     expect(component).toBeTruthy();
@@ -54,5 +58,28 @@ describe('HeaderNavComponent', () => {
 
     // --- ASSERT ---
     expect(component.isMenuOpen()).toBe(false);
+  });
+
+  it('should add "no-scroll" class to body when menu is opened', () => {
+    // --- ACT ---
+    component.isMenuOpen.set(true);
+    fixture.detectChanges();
+
+    // --- ASSERT ---
+    expect(document.body.classList.contains('no-scroll')).toBe(true);
+  });
+
+  it('should remove "no-scroll" class from body when menu is closed', () => {
+    // --- ARRANGE ---
+    component.isMenuOpen.set(true);
+    fixture.detectChanges();
+    expect(document.body.classList.contains('no-scroll')).toBe(true);
+
+    // --- ACT ---
+    component.isMenuOpen.set(false);
+    fixture.detectChanges();
+
+    // --- ASSERT ---
+    expect(document.body.classList.contains('no-scroll')).toBe(false);
   });
 });

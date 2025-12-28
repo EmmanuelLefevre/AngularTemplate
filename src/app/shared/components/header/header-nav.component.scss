@@ -10,14 +10,14 @@
   left: 0;
   width: 100%;
   height: 70px;
-  background: var(--bg-header-color);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  background: var(--bg-header-color);
   z-index: 1000;
 
   &__container {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     height: 100%;
     padding: 0 30px;
     width: 100%;
@@ -29,7 +29,7 @@
   &__logo {
     display: flex;
     align-items: center;
-    flex: 1;
+    flex: 0 1 auto;
     font-weight: bold;
     font-size: 1.5rem;
     text-decoration: none;
@@ -49,17 +49,17 @@
   &__nav {
     // Mobile Styles (Sliding Menu)
     position: fixed;
+    display: flex;
+    flex-direction: column;
     top: 0;
     right: -100%;
     width: 280px;
     height: 100vh;
-    background: var(--bg-header-color);
     padding: 100px 0 40px;
-    display: flex;
-    flex-direction: column;
     gap: 40px;
-    transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+    transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    background: var(--bg-header-color);
     z-index: 1050;
 
     &.is-open {
@@ -69,24 +69,24 @@
     // Desktop Styles (Centering)
     @include respond-to('tablet') {
       position: static;
-      height: auto;
-      width: auto;
-      background: transparent;
-      padding: 0;
-      box-shadow: none;
-      flex: 0 1 auto;
       display: flex;
       justify-content: center;
       flex-direction: row;
+      flex: 1;
+      height: auto;
+      width: auto;
+      padding: 0;
+      box-shadow: none;
+      background: transparent;
     }
   }
 
   &__list {
-    list-style: none;
     display: flex;
     flex-direction: column;
     gap: 20px;
     padding: 0 40px;
+    list-style: none;
 
     @include respond-to('tablet') {
       flex-direction: row;
@@ -100,19 +100,33 @@
     color: var(--text-color);
     font-size: 1.2rem;
     font-weight: 500;
-    transition: color 0.2s;
+    opacity: 0;
+    transform: translateX(20px);
+    transition:
+      color 0.2s,
+      transform 0.4s ease,
+      opacity 0.4s ease;
 
-    &.active {
-      color: var(--tertiary-color);
+    @include respond-to('tablet') {
+      opacity: 1;
+      transform: translateX(0);
     }
 
+    &.active,
     &:hover {
       color: var(--tertiary-color);
     }
+  }
 
-    &:focus-visible {
-      outline: 2px solid var(--tertiary-color);
-      outline-offset: 3px;
+  &__nav.is-open {
+    .header__list li {
+      @for $i from 1 through 8 {
+        &:nth-child(#{$i}) .header__link {
+          transition-delay: calc(0.2s + (#{$i} * 0.1s));
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
     }
   }
 
@@ -122,7 +136,7 @@
 
     @include respond-to('tablet') {
       display: flex;
-      flex: 1;
+      flex: 0 1 auto;
       justify-content: flex-end;
       align-items: center;
       gap: 20px;
@@ -149,6 +163,7 @@
     justify-content: space-around;
     width: 30px;
     height: 25px;
+    margin-left: auto;
     padding: 0;
     background: transparent;
     border: none;
@@ -158,9 +173,9 @@
     span {
       width: 100%;
       height: 3px;
-      background: #333;
       border-radius: 10px;
       transition: all 0.3s ease;
+      background: #333;
     }
 
     &.is-active {
