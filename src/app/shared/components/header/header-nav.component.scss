@@ -36,11 +36,11 @@
     color: var(--text-color);
 
     span {
-      color: var(--tertiary-color);
+      color: var(--primary-color);
     }
 
     &:focus-visible {
-      outline: 2px solid var(--tertiary-color);
+      outline: 2px solid var(--primary-color);
       outline-offset: 5px;
     }
   }
@@ -114,7 +114,7 @@
 
     &.active,
     &:hover {
-      color: var(--tertiary-color);
+      color: var(--primary-color);
     }
   }
 
