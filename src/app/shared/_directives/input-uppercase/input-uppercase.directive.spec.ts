@@ -65,7 +65,7 @@ describe('InputUppercaseDirective', () => {
     expect(emittedValue).toBe('HELLO');
   });
 
-  it('should do nothing if the input value is empty (branch coverage)', () => {
+  it('should do nothing if the input value is empty', () => {
     // --- ARRANGE ---
     const DIRECTIVE_EL = fixture.debugElement.query(By.directive(InputUppercaseDirective));
     const DIRECTIVE_INSTANCE = DIRECTIVE_EL.injector.get(InputUppercaseDirective);
