@@ -1,13 +1,16 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MainFooterComponent } from './main-footer.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { MatTooltip, MatTooltipModule } from '@angular/material/tooltip';
-import { provideRouter } from '@angular/router';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { By } from '@angular/platform-browser';
+import { provideRouter } from '@angular/router';
+import { MatTooltip, MatTooltipModule } from '@angular/material/tooltip';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FOOTER_SOCIAL_LINKS } from '@app/core/_config/social-links.constant';
+import { MainFooterComponent } from './main-footer.component';
+
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 describe('MainFooterComponent', () => {
+
   let component: MainFooterComponent;
   let fixture: ComponentFixture<MainFooterComponent>;
 
@@ -44,7 +47,6 @@ describe('MainFooterComponent', () => {
   });
 
   it('should create the footer', () => {
-    // --- ASSERT ---
     expect(component).toBeTruthy();
   });
 

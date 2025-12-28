@@ -1,11 +1,11 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
-import { PublicLayoutComponent } from './public-layout.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { PublicLayoutComponent } from './public-layout.component';
 
-import { describe, it, expect, beforeEach } from 'vitest';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 describe('PublicLayoutComponent', () => {
+
   let component: PublicLayoutComponent;
   let fixture: ComponentFixture<PublicLayoutComponent>;
 

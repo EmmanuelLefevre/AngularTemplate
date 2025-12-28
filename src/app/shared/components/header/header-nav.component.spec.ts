@@ -1,10 +1,10 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
-import { HeaderNavComponent } from './header-nav.component';
-
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
 import { of } from 'rxjs';
-import { describe, it, expect, beforeEach, vi } from 'vitest';
+
+import { HeaderNavComponent } from './header-nav.component';
+
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 describe('HeaderNavComponent', () => {
   let component: HeaderNavComponent;

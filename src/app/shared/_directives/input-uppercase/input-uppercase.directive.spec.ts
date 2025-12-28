@@ -15,6 +15,7 @@ class TestHostComponent {
 }
 
 describe('InputUppercaseDirective', () => {
+
   let fixture: ComponentFixture<TestHostComponent>;
   let inputElement: HTMLInputElement;
 

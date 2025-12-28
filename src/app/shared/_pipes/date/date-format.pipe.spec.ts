@@ -2,6 +2,7 @@
 import { DateFormatPipe } from './date-format.pipe';
 
 describe('DateFormatPipe', () => {
+
   let pipe: DateFormatPipe;
 
   beforeEach(() => {
@@ -9,7 +10,6 @@ describe('DateFormatPipe', () => {
   });
 
   it('should create an instance', () => {
-    // --- ASSERT ---
     expect(pipe).toBeTruthy();
   });
 

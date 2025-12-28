@@ -1,14 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { BehaviorSubject } from 'rxjs';
 import { By } from '@angular/platform-browser';
+import { ActivatedRoute, Router } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
+import { BehaviorSubject } from 'rxjs';
+
 import { ErrorHandlerComponent } from './error-handler.component';
 
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { ActivatedRoute, Router } from '@angular/router';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { TranslateModule } from '@ngx-translate/core';
 
 describe('ErrorHandlerComponent', () => {
+
   let component: ErrorHandlerComponent;
   let fixture: ComponentFixture<ErrorHandlerComponent>;
 
@@ -51,7 +52,6 @@ describe('ErrorHandlerComponent', () => {
   });
 
   it('should create', () => {
-    // --- ASSERT ---
     expect(component).toBeTruthy();
   });
 
@@ -74,6 +74,7 @@ describe('ErrorHandlerComponent', () => {
   });
 
   it('should cover the generic-error branch (Regex TRUE)', () => {
+    // --- ARRANGE ---
     const CUSTOM_CODE = '418';
     queryParams$.next({ code: CUSTOM_CODE });
 

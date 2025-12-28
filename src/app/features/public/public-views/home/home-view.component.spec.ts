@@ -4,6 +4,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { HomeViewComponent } from './home-view.component';
 
 describe('HomeViewComponent', () => {
+
   let component: HomeViewComponent;
   let fixture: ComponentFixture<HomeViewComponent>;
 

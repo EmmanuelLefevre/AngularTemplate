@@ -2,7 +2,6 @@ import { By } from '@angular/platform-browser';
 import { Component } from '@angular/core';
 import { InputFocusDirective } from './input-focus.directive';
 
-import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 interface TestableDirective {

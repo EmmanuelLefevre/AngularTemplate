@@ -1,15 +1,13 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
-import { AlertPipe } from './alert.pipe';
 import { TestBed } from '@angular/core/testing';
 
-import { describe, it, expect, beforeEach } from 'vitest';
+import { AlertPipe } from './alert.pipe';
 
 describe('AlertPipe', () => {
 
   let pipe: AlertPipe;
 
   beforeEach(() => {
-    // --- ARRANGE ---
     TestBed.configureTestingModule({
       imports: [AlertPipe],
       providers: [AlertPipe]
@@ -18,7 +16,6 @@ describe('AlertPipe', () => {
   });
 
   it('should create an instance', () => {
-    // --- ASSERT ---
     expect(pipe).toBeTruthy();
   });
 
