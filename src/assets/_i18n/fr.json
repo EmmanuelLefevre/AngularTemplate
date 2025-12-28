@@ -10,8 +10,14 @@
   },
   "FOOTER": {
     "COPYRIGHT": "©{{year}}",
+    "DEVELOPPER": "Site développé par",
+    "DEVELOPPER_NAME": "Emmanuel Lefevre",
+    "HOST": "et hébergé sur",
+    "HOST_ADDRESS": "10, Rue de la Paix 75000 Paris",
+    "HOST_NAME": "Planet Hoster",
+    "HOST_PHONE": "0 800 123 456",
     "RIGHTS_RESERVED": "Tous droits réservés.",
-    "OWNER_NAME": "LEFEVRE Emmanuel",
+    "PROJECT": "AngularTemplate",
     "LINKS": {
       "LINKEDIN": {
         "TOOLTIP": "Lien LinkedIn",
