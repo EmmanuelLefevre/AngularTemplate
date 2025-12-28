@@ -1,0 +1,73 @@
+/* =========== INTER =========== */
+// Normal
+@font-face {
+  font-family: 'Inter';
+  src: url('/assets/fonts/inter/inter.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+// Italic
+@font-face {
+  font-family: 'Inter';
+  src: url('/assets/fonts/inter/inter_italic.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* =========== FIRACODE =========== */
+@font-face {
+  font-family: 'Fira Code';
+  src: url('/assets/fonts/fira-code/firacode.ttf') format('truetype');
+  font-weight: 300 700;
+  font-display: swap;
+}
+
+/* =========== MONTSERRAT =========== */
+// Normal
+@font-face {
+  font-family: 'Montserrat';
+  src: url('/assets/fonts/montserrat/montserrat.ttf') format('truetype');
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+// Italic
+@font-face {
+  font-family: 'Montserrat';
+  src: url('/assets/fonts/montserrat/montserrat_italic.ttf') format('truetype');
+  font-weight: 300 800;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* =========== OPEN SANS =========== */
+// Normal
+@font-face {
+  font-family: 'Open Sans';
+  src: url('/assets/fonts/open-sans/open_sans.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+// Italic
+@font-face {
+  font-family: 'Open Sans';
+  src: url('/assets/fonts/open-sans/open_sans_italic.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* =========== ROBOTO =========== */
+// Normal
+@font-face {
+  font-family: 'Roboto';
+  src: url('/assets/fonts/roboto/roboto.ttf') format('truetype');
+  font-weight: 100 900;
+  font-display: swap;
+}

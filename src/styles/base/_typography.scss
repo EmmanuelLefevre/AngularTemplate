@@ -1,0 +1,31 @@
+@use '../abstracts' as *;
+
+body {
+  font-family: var(--font-main);
+  font-optical-sizing: auto;
+  -webkit-font-smoothing: antialiased;
+}
+
+nav {
+  font-family: var(--font-nav);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  letter-spacing: -0.02em;
+}
+
+footer {
+  font-family: var(--font-footer);
+}
+
+code,
+pre,
+.admin-id {
+  font-family: var(--font-mono);
+}

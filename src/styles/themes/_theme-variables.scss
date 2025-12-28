@@ -1,13 +1,26 @@
 :root {
+  /* =========== BACKGROUNDS =========== */
   --bg-color: oklch(0.9736 0.0034 174.48);
   --bg-header-color: oklch(1 0 0);
   --bg-footer-color: oklch(1 0 0);
 
+  /* =========== COLORS =========== */
   --primary-color: oklch(0.7756 0.1959 126.67);
   --secondary-color: oklch(0.6067 0.2393 306);
   --tertiary-color: oklch(0.7116 0.1812 22.84);
 
   --color-white: oklch(1 0 0);
+  --color-black: oklch(0.3211 0 0);
 
-  --text-color: oklch(0.3211 0 0);
+  /* =========== TEXT COLORS =========== */
+  --text-color: var(--color-black);
+
+  /* =========== FONTS =========== */
+  --font-main: 'Roboto', sans-serif;
+  --font-footer: 'Roboto', sans-serif;
+  --font-heading: 'Montserrat', sans-serif;
+  --font-nav: 'Roboto', sans-serif;
+  --font-alt: 'Open Sans', sans-serif;
+  --font-mono: 'Fira Code', monospace;
+  --font-special: 'Inter', sans-serif;
 }
