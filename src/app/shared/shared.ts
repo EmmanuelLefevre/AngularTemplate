@@ -1,4 +1,4 @@
-// --- EXPORTS ---
+// ========== EXPORTS ==========
 // --- Errors Management
 export * from './error-handler/error-handler.component';
 export * from './error-handler/error-views/generic-error/generic-error.component';
@@ -7,18 +7,23 @@ export * from './error-handler/error-views/unauthorized-error/unauthorized-error
 export * from './error-handler/error-views/unfound-error/unfound-error.component';
 export * from './error-handler/error-views/unknown-error/unknown-error.component';
 
-// --- UI / Layout Components
-export * from './components/header/header-nav.component';
-export * from './components/language-toggle/language-toggle.component';
+// --- Layout Components
 export * from './components/footer/main-footer.component';
+export * from './components/header/header-nav.component';
 
-// --- Directives & Pipes
+// --- UI
+export * from './components/language-toggle/language-toggle.component';
+
+// --- Directives
 export * from './_directives/input-focus/input-focus.directive';
 export * from './_directives/input-trim/input-trim.directive';
+export * from './_directives/input-uppercase/input-uppercase.directive';
+
+// --- Pipes
 export * from './_pipes/alert/alert.pipe';
 export * from './_pipes/date/date-format.pipe';
 
-// --- IMPORTS ---
+// ========== IMPORTS ==========
 // --- Errors Management
 import { ErrorHandlerComponent } from './error-handler/error-handler.component';
 import { GenericErrorComponent } from './error-handler/error-views/generic-error/generic-error.component';
@@ -27,33 +32,44 @@ import { UnauthorizedErrorComponent } from './error-handler/error-views/unauthor
 import { UnfoundErrorComponent } from './error-handler/error-views/unfound-error/unfound-error.component';
 import { UnknownErrorComponent } from './error-handler/error-views/unknown-error/unknown-error.component';
 
-// --- UI / Layout Components
+// --- Layout Components
 import { HeaderNavComponent } from './components/header/header-nav.component';
-import { LanguageToggleComponent } from './components/language-toggle/language-toggle.component';
 import { MainFooterComponent } from './components/footer/main-footer.component';
 
-// --- Directives & Pipes
+// --- UI
+import { LanguageToggleComponent } from './components/language-toggle/language-toggle.component';
+
+// --- Directives
 import { InputFocusDirective } from './_directives/input-focus/input-focus.directive';
 import { InputTrimDirective } from './_directives/input-trim/input-trim.directive';
+import { InputUppercaseDirective } from './_directives/input-uppercase/input-uppercase.directive';
+
+// --- Pipes
 import { AlertPipe } from './_pipes/alert/alert.pipe';
 import { DateFormatPipe } from './_pipes/date/date-format.pipe';
 
-
-export const SHARED_COMPONENTS = [
+export const SHARED_ERRORS_COMPONENTS = [
   ErrorHandlerComponent,
   GenericErrorComponent,
-  HeaderNavComponent,
-  LanguageToggleComponent,
-  MainFooterComponent,
   ServerErrorComponent,
   UnauthorizedErrorComponent,
   UnfoundErrorComponent,
   UnknownErrorComponent
 ] as const;
 
+export const SHARED_LAYOUT_COMPONENTS = [
+  HeaderNavComponent,
+  MainFooterComponent,
+] as const;
+
+export const SHARED_UI_COMPONENTS = [
+  LanguageToggleComponent,
+] as const;
+
 export const SHARED_DIRECTIVES = [
   InputFocusDirective,
-  InputTrimDirective
+  InputTrimDirective,
+  InputUppercaseDirective
 ] as const;
 
 export const SHARED_PIPES = [
