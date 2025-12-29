@@ -1,6 +1,5 @@
-import { HttpInterceptorFn, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpInterceptorFn, HttpResponse } from '@angular/common/http';
 import { inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { delay, map, of } from 'rxjs';
 
 import { ENVIRONMENT } from '@env/environment';
