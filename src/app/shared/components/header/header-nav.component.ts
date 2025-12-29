@@ -5,7 +5,7 @@ import { TranslateModule } from '@ngx-translate/core';
 
 import { LanguageToggleComponent } from '../language-toggle/language-toggle.component';
 
-import { HEADER_NAV_LINKS } from '@core/_config/nav-links.constant';
+import { HEADER_NAV_LINKS } from '@core/_config/links/nav-links.constant';
 
 @Component({
   selector: 'header-nav',
