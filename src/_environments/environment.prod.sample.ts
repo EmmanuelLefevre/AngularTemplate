@@ -1,5 +1,5 @@
 export const ENVIRONMENT = {
   production: true,
-  apiUrl: 'PRODUCTION_API_URL',
+  apiUrl: 'https://api.your-domain.com/api',
   logLevel: 'error'
 };
