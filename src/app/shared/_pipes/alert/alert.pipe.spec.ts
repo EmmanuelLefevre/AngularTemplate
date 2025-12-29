@@ -15,10 +15,10 @@ describe('AlertPipe', () => {
 
   it('should transform true to "Alerte !"', () => {
     // --- ARRANGE ---
-    const PRESENCE = true;
+    const HAS_ALERT = true;
 
     // --- ACT ---
-    const RESULT = pipe.transform(PRESENCE);
+    const RESULT = pipe.transform(HAS_ALERT);
 
     // --- ASSERT ---
     expect(RESULT).toBe('Alerte !');
@@ -26,10 +26,22 @@ describe('AlertPipe', () => {
 
   it('should transform false to "-"', () => {
     // --- ARRANGE ---
-    const NO_PRESENCE = false;
+    const HAS_ALERT = false;
 
     // --- ACT ---
-    const RESULT = pipe.transform(NO_PRESENCE);
+    const RESULT = pipe.transform(HAS_ALERT);
+
+    // --- ASSERT ---
+    expect(RESULT).toBe('-');
+  });
+
+  it('should return "-" as a fallback for null or undefined values', () => {
+    // --- ARRANGE ---
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const UNKNOWN_VALUE = null as any;
+
+    // --- ACT ---
+    const RESULT = pipe.transform(UNKNOWN_VALUE);
 
     // --- ASSERT ---
     expect(RESULT).toBe('-');

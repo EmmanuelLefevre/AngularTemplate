@@ -6,15 +6,16 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 export class YesNoPipe implements PipeTransform {
 
+  private readonly LABELS: Record<string, string> = {
+    'true': 'Oui',
+    'false': 'Non'
+  };
+
   transform(value: boolean): string {
-    return value ? this.getYesLabel() : this.getNoLabel();
+    return this.resolveLabel(value);
   }
 
-  private getYesLabel(): string {
-    return 'Oui';
-  }
-
-  private getNoLabel(): string {
-    return 'Non';
+  private resolveLabel(value: boolean): string {
+    return this.LABELS[String(value)] ?? this.LABELS['false'];
   }
 }

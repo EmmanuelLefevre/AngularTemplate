@@ -15,10 +15,10 @@ describe('YesNoPipe', () => {
 
   it('should transform true to "Oui"', () => {
     // --- ARRANGE ---
-    const INPUT = true;
+    const VALUE = true;
 
     // --- ACT ---
-    const RESULT = pipe.transform(INPUT);
+    const RESULT = pipe.transform(VALUE);
 
     // --- ASSERT ---
     expect(RESULT).toBe('Oui');
@@ -26,10 +26,22 @@ describe('YesNoPipe', () => {
 
   it('should transform false to "Non"', () => {
     // --- ARRANGE ---
-    const INPUT = false;
+    const VALUE = false;
 
     // --- ACT ---
-    const RESULT = pipe.transform(INPUT);
+    const RESULT = pipe.transform(VALUE);
+
+    // --- ASSERT ---
+    expect(RESULT).toBe('Non');
+  });
+
+  it('should fallback to "Non" when value is null or undefined (as any)', () => {
+    // --- ARRANGE ---
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const VALUE = null as any;
+
+    // --- ACT ---
+    const RESULT = pipe.transform(VALUE);
 
     // --- ASSERT ---
     expect(RESULT).toBe('Non');
