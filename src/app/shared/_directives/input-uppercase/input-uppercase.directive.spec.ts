@@ -1,9 +1,9 @@
 import { By } from '@angular/platform-browser';
 import { Component } from '@angular/core';
-import { InputUppercaseDirective } from './input-uppercase.directive';
-
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
+
+import { InputUppercaseDirective } from './input-uppercase.directive';
 
 @Component({
   imports: [ReactiveFormsModule, InputUppercaseDirective],

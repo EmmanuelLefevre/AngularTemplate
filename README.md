@@ -84,9 +84,8 @@
  ┃ ┃ ┃   ┗ 📄auth.service.ts
  ┃ ┃ ┣ 📂guard
  ┃ ┃ ┃ ┗ 📄admin.guard.ts
- ┃ ┃ ┣ 📂interceptor
- ┃ ┃ ┃ ┗ 📄auth.interceptor.ts
- ┃ ┃ ┗ 📂routing
+ ┃ ┃ ┗ 📂interceptor
+ ┃ ┃   ┗ 📄auth.interceptor.ts
  ┃ ┣ 🧩features
  ┃ ┃ ┣ 👔admin
  ┃ ┃ ┃ ┣ ⚙️_config

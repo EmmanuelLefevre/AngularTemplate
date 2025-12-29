@@ -1,10 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { of, Subject } from 'rxjs';
 
 import { LanguageToggleComponent } from './language-toggle.component';
-
-import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 describe('LanguageToggleComponent', () => {
 

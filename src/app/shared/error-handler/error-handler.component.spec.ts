@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { By } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TranslateModule } from '@ngx-translate/core';
 import { BehaviorSubject } from 'rxjs';
 
 import { ErrorHandlerComponent } from './error-handler.component';
 
-import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 describe('ErrorHandlerComponent', () => {
 

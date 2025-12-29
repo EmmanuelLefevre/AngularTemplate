@@ -1,7 +1,7 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
 
-import { AuthService } from '@app/core/_services/auth/auth.service';
+import { AuthService } from '@core/_services/auth/auth.service';
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export const adminGuard: CanActivateFn = () => {

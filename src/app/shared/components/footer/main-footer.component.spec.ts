@@ -2,12 +2,11 @@ import { By } from '@angular/platform-browser';
 import { provideRouter } from '@angular/router';
 import { MatTooltip, MatTooltipModule } from '@angular/material/tooltip';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FOOTER_SOCIAL_LINKS } from '@core/_config/links/social-links.constant';
 import { MainFooterComponent } from './main-footer.component';
-
-import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 describe('MainFooterComponent', () => {
 

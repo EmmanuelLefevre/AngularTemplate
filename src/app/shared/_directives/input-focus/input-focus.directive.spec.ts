@@ -1,8 +1,8 @@
 import { By } from '@angular/platform-browser';
 import { Component } from '@angular/core';
-import { InputFocusDirective } from './input-focus.directive';
-
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { InputFocusDirective } from './input-focus.directive';
 
 interface TestableDirective {
   executeFocus(): void;

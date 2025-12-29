@@ -1,9 +1,9 @@
 import { By } from '@angular/platform-browser';
 import { Component } from '@angular/core';
-import { InputTrimDirective } from './input-trim.directive';
-
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormControl, ReactiveFormsModule, FormsModule } from '@angular/forms';
+
+import { InputTrimDirective } from './input-trim.directive';
 
 @Component({
   imports: [InputTrimDirective, FormsModule],

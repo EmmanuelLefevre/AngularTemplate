@@ -1,7 +1,7 @@
 import { HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
 
-import { AuthService } from '@app/core/_services/auth/auth.service';
+import { AuthService } from '@core/_services/auth/auth.service';
 import { ENVIRONMENT } from '@env/environment';
 
 // eslint-disable-next-line @typescript-eslint/naming-convention

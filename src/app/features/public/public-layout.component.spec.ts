@@ -1,8 +1,8 @@
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
-import { PublicLayoutComponent } from './public-layout.component';
 
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { PublicLayoutComponent } from './public-layout.component';
 
 describe('PublicLayoutComponent', () => {
 
