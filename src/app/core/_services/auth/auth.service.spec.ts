@@ -173,4 +173,40 @@ describe('AuthService', () => {
     // Test case : roles.includes('ADMIN') -> true
     expect(service.isAdmin()).toBe(true);
   });
+
+  it('should return false when currentUser is null', () => {
+    // --- ARRANGE ---
+    service.currentUser.set(null);
+
+    // --- ACT & ASSERT ---
+    expect(service.isAuthenticated()).toBe(false);
+  });
+
+  it('should return true when currentUser is set', () => {
+    // --- ARRANGE ---
+    service.currentUser.set(MOCK_USER);
+
+    // --- ACT & ASSERT ---
+    expect(service.isAuthenticated()).toBe(true);
+  });
+
+  it('should initialize token signal with value from localStorage on creation', () => {
+    // --- ARRANGE ---
+    const PERSISTED_TOKEN = 'stored-token';
+    localStorage.setItem('token', PERSISTED_TOKEN);
+
+    TestBed.resetTestingModule();
+    TestBed.configureTestingModule({
+      providers: [
+        AuthService,
+        provideHttpClient(),
+        provideHttpClientTesting()
+      ]
+    });
+
+    const NEW_SERVICE = TestBed.inject(AuthService);
+
+    // --- ACT & ASSERT ---
+    expect(NEW_SERVICE.token()).toBe(PERSISTED_TOKEN);
+  });
 });
