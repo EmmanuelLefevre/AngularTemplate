@@ -1,11 +1,54 @@
 <div class="admin-layout">
-  <!-- <app-admin-sidebar></app-admin-sidebar> -->
+  <aside class="admin-layout__sidebar sidebar">
+    <div class="sidebar__brand">
+      <h2 class="sidebar__title">ADMIN</h2>
+    </div>
+
+    <nav class="sidebar__nav">
+      <ul class="sidebar__list">
+        <li class="sidebar__item">
+          <a
+            routerLink="dashboard"
+            routerLinkActive="sidebar__link--active"
+            class="sidebar__link"
+            >Dashboard</a
+          >
+        </li>
+        <li class="sidebar__item">
+          <a
+            routerLink="users"
+            routerLinkActive="sidebar__link--active"
+            class="sidebar__link"
+            >Utilisateurs</a
+          >
+        </li>
+      </ul>
+    </nav>
+  </aside>
 
   <div class="admin-layout__body">
-    <!-- <app-admin-topbar></app-admin-topbar> -->
+    <header class="admin-layout__topbar topbar">
+      <nav class="topbar__tabs tabs">
+        <a class="tabs__item tabs__item--active">Vue d'ensemble</a>
+        <a class="tabs__item">Rapports</a>
+        <a class="tabs__item">Paramètres</a>
+      </nav>
 
-    <main>
-      <router-outlet />
+      <div class="topbar__user user-info">
+        <span class="user-info__name">{{ authService.currentUser()?.username }}</span>
+        <button
+          (click)="logout()"
+          type="button"
+          class="user-info__btn">
+          Quitter
+        </button>
+      </div>
+    </header>
+
+    <main class="admin-layout__main">
+      <div class="admin-layout__view-container">
+        <router-outlet />
+      </div>
     </main>
   </div>
 </div>

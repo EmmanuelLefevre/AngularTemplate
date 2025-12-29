@@ -1,3 +1,147 @@
+$sidebar-width: 250px;
+$topbar-height: 56px;
+$color-dark: #1e293b;
+$color-accent: #6366f1;
+$color-bg: #f8fafc;
+
 :host {
   display: block;
+}
+
+.admin-layout {
+  display: flex;
+  font-family: 'Inter', sans-serif;
+  height: 100vh;
+  width: 100vw;
+  background-color: $color-bg;
+
+  &__sidebar {
+    color: white;
+    width: $sidebar-width;
+    background-color: $color-dark;
+    flex-shrink: 0;
+  }
+
+  &__brand {
+    height: $topbar-height;
+    display: flex;
+    align-items: center;
+    padding: 0 1.5rem;
+    background-color: darken($color-dark, 5%);
+  }
+
+  &__body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  &__title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin: 0;
+  }
+
+  &__nav {
+    flex: 1;
+    padding: 1.5rem 0;
+  }
+
+  &__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  &__topbar {
+    display: flex;
+    justify-content: space-between;
+    height: $topbar-height;
+    padding: 0 2rem;
+    border-bottom: 1px solid #e2e8f0;
+    background: white;
+  }
+
+  &__main {
+    flex: 1;
+    overflow-y: auto;
+    padding: 2rem;
+  }
+
+  &__link {
+    display: block;
+    padding: 0.75rem 1.5rem;
+    color: #94a3b8;
+    text-decoration: none;
+    transition: all 0.2s;
+
+    &:hover {
+      color: white;
+      background-color: rgba(white, 0.05);
+    }
+
+    &--active {
+      color: white;
+      background-color: $color-accent;
+      font-weight: 600;
+    }
+  }
+}
+
+.tabs {
+  display: flex;
+  height: 100%;
+  gap: 1.5rem;
+
+  &__item {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #64748b;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+    cursor: pointer;
+
+    &--active {
+      color: $color-accent;
+      border-bottom-color: $color-accent;
+    }
+
+    &:hover:not(&--active) {
+      color: #1e293b;
+    }
+  }
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  &__name {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: $color-dark;
+  }
+
+  &__btn {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #ef4444;
+    background: transparent;
+    border: 1px solid #fee2e2;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+
+    &:hover {
+      background-color: #fef2f2;
+      border-color: #ef4444;
+    }
+  }
 }
