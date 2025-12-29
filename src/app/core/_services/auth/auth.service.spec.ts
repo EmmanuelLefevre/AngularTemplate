@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { TestBed } from '@angular/core/testing';
 import { provideHttpClient, withInterceptors, HttpClient } from '@angular/common/http';
 import { provideHttpClientTesting, HttpTestingController } from '@angular/common/http/testing';
@@ -253,5 +254,25 @@ describe('AuthService', () => {
 
     // --- ASSERT ---
     httpMock.expectNone(`${ENVIRONMENT.apiUrl}/auth/me`);
+  });
+
+  it('should NOT update signals or localStorage if response is missing user or token', () => {
+    // --- ARRANGE ---
+    const MOCK_CREDENTIALS = { email: 'admin@test.com', password: '1234' };
+    // On simule une réponse incomplète (il manque le token ici)
+    const MALFORMED_RESPONSE = { user: { id: 1, username: 'Admin' } } as any;
+
+    const SAVE_SESSION_SPY = vi.spyOn(service as any, 'saveSession');
+
+    // --- ACT ---
+    service.login(MOCK_CREDENTIALS).subscribe();
+
+    // --- ASSERT ---
+    const REQUEST = httpMock.expectOne(`${ENVIRONMENT.apiUrl}/auth/login`);
+    REQUEST.flush(MALFORMED_RESPONSE);
+
+    expect(SAVE_SESSION_SPY).not.toHaveBeenCalled();
+    expect(service.currentUser()).toBeUndefined();
+    expect(localStorage.getItem('token')).toBeNull();
   });
 });
