@@ -72,12 +72,22 @@
  ┣ 🈸app
  ┃ ┣ 🧠core
  ┃ ┃ ┣ ⚙️_config
- ┃ ┃ ┃ ┗ nav-links.constant.ts
+ ┃ ┃ ┃ ┣ host-links.constant.ts
+ ┃ ┃ ┃ ┣ nav-links.constant.ts
+ ┃ ┃ ┃ ┗ social-links.constant.ts
  ┃ ┃ ┣ 🧱_models
+ ┃ ┃ ┃ ┣ 📂auth
+ ┃ ┃ ┃ ┣ 📂links
+ ┃ ┃ ┃ ┗ 📂user
  ┃ ┃ ┣ 💉_services
- ┃ ┃ ┣ 📂auth
+ ┃ ┃ ┃ ┗ 📂auth
+ ┃ ┃ ┃   ┗ 📄auth.service.ts
+ ┃ ┃ ┣ 🔐auth
+ ┃ ┃ ┃ ┗ 📄auth.initializer.ts
  ┃ ┃ ┣ 📂guard
+ ┃ ┃ ┃ ┗ 📄admin.guard.ts
  ┃ ┃ ┣ 📂interceptor
+ ┃ ┃ ┃ ┗ 📄auth.interceptor.ts
  ┃ ┃ ┗ 📂routing
  ┃ ┣ 🧩features
  ┃ ┃ ┣ 👔admin
@@ -95,7 +105,7 @@
  ┃ ┃ ┃ ┣ 📄admin.component.ts
  ┃ ┃ ┃ ┣ 📄admin.config.ts
  ┃ ┃ ┃ ┗ 📄admin.route.ts
- ┃ ┃ ┣ 🔒private
+ ┃ ┃ ┣ 🔓private
  ┃ ┃ ┃ ┣ ⚙️_config
  ┃ ┃ ┃ ┣ 🧱_models
  ┃ ┃ ┃ ┣ 💉_services
