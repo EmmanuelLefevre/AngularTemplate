@@ -80,10 +80,8 @@
  ┃ ┃ ┃ ┣ 📂links
  ┃ ┃ ┃ ┗ 📂user
  ┃ ┃ ┣ 💉_services
- ┃ ┃ ┃ ┗ 📂auth
+ ┃ ┃ ┃ ┗ 🔐auth
  ┃ ┃ ┃   ┗ 📄auth.service.ts
- ┃ ┃ ┣ 🔐auth
- ┃ ┃ ┃ ┗ 📄auth.initializer.ts
  ┃ ┃ ┣ 📂guard
  ┃ ┃ ┃ ┗ 📄admin.guard.ts
  ┃ ┃ ┣ 📂interceptor
