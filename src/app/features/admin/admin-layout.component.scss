@@ -27,7 +27,7 @@ $color-bg: #f8fafc;
     display: flex;
     align-items: center;
     padding: 0 1.5rem;
-    background-color: darken($color-dark, 5%);
+    background-color: var($color-dark, 5%);
   }
 
   &__body {
@@ -50,7 +50,6 @@ $color-bg: #f8fafc;
   }
 
   &__list {
-    list-style: none;
     padding: 0;
     margin: 0;
   }
@@ -83,9 +82,9 @@ $color-bg: #f8fafc;
     }
 
     &--active {
+      font-weight: 600;
       color: white;
       background-color: $color-accent;
-      font-weight: 600;
     }
   }
 }
@@ -129,19 +128,19 @@ $color-bg: #f8fafc;
   }
 
   &__btn {
-    padding: 0.4rem 0.8rem;
     font-size: 0.8rem;
     font-weight: 600;
     color: #ef4444;
-    background: transparent;
+    padding: 0.4rem 0.8rem;
     border: 1px solid #fee2e2;
     border-radius: 6px;
-    cursor: pointer;
     transition: all 0.2s;
+    background: transparent;
+    cursor: pointer;
 
     &:hover {
-      background-color: #fef2f2;
       border-color: #ef4444;
+      background-color: #fef2f2;
     }
   }
 }
