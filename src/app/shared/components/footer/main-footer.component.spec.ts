@@ -4,7 +4,7 @@ import { MatTooltip, MatTooltipModule } from '@angular/material/tooltip';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { FOOTER_SOCIAL_LINKS } from '@app/core/_config/social-links.constant';
+import { FOOTER_SOCIAL_LINKS } from '@core/_config/links/social-links.constant';
 import { MainFooterComponent } from './main-footer.component';
 
 import { ComponentFixture, TestBed } from '@angular/core/testing';
