@@ -1,6 +1,8 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
+
 import { AuthService } from '@app/core/_services/auth/auth.service';
+import { ENVIRONMENT } from '@env/environment';
 
 const NAVIGATION_DELAY_MS = 100;
 
@@ -20,7 +22,7 @@ export class MockAdminLoginButtonComponent {
   handleLogin(): void {
     this.authService.login({
       email: 'admin@test.com',
-      password: '1234'
+      password: ENVIRONMENT.mockAdminPassword
     }).subscribe({
       next: () => {
         setTimeout(() => {
