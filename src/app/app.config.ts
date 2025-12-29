@@ -1,34 +1,40 @@
-import { ApplicationConfig } from '@angular/core';
-import { provideHttpClient } from '@angular/common/http';
+import { ApplicationConfig, provideAppInitializer, inject } from '@angular/core';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { provideTranslateService, TranslateLoader } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { firstValueFrom, Observable } from 'rxjs';
 import { provideRouter } from '@angular/router';
-import { ROUTES } from './app.routes';
 
-export class MyCustomLoader implements TranslateLoader {
-  constructor(private readonly http: HttpClient) {}
+import { ROUTES } from '@app/app.routes';
+import { authInterceptor } from '@core/interceptor/auth.interceptor';
+import { AuthService } from '@core/_services/auth/auth.service';
+
+export class CustomTranslateLoader implements TranslateLoader {
+  private readonly http = inject(HttpClient);
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   getTranslation(lang: string): Observable<any> {
-    return this.http.get(`/assets/_i18n/${lang}.json`);
+    return this.http.get(`./assets/_i18n/${lang}.json`);
   }
-}
-
-export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
-  return new MyCustomLoader(http);
 }
 
 export const APP_CONFIG: ApplicationConfig = {
   providers: [
-    provideHttpClient(),
     provideRouter(ROUTES),
+    provideHttpClient(
+      withInterceptors([authInterceptor])
+    ),
+    provideAppInitializer(() => {
+      const AUTH_SERVICE = inject(AuthService);
+      const REFRESH$ = AUTH_SERVICE.refreshUser();
+
+      return REFRESH$ ? firstValueFrom(REFRESH$) : Promise.resolve(null);
+    }),
     provideTranslateService({
       fallbackLang: 'fr',
       loader: {
         provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient],
+        useClass: CustomTranslateLoader
       },
     }),
   ]
