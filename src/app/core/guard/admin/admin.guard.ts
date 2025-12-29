@@ -25,7 +25,7 @@ export const adminGuard: CanActivateFn = () => {
     filter((user) => user !== undefined),
     take(ONE_EMISSION),
     map((user): boolean | UrlTree => {
-      if (user && user.roles.includes('ADMIN')) {
+      if (user?.roles.includes('ADMIN')) {
         return true;
       }
 

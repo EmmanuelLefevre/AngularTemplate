@@ -25,7 +25,7 @@ export class AuthService {
   login(credentials: LoginCredentials): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(`${this.apiUrl}/login`, credentials).pipe(
       tap((res) => {
-        if (res && res.user && res.token) {
+        if (res?.user && res?.token) {
           this.saveSession(res.token, res.user);
         }
       })

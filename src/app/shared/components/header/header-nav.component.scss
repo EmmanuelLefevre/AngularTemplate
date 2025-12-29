@@ -62,7 +62,15 @@
     z-index: 1050;
 
     &.is-open {
-      right: 0;
+      .header__list li {
+        @for $i from 1 through 8 {
+          &:nth-child(#{$i}) .header__link {
+            transition-delay: calc(0.2s + (#{$i} * 0.1s));
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+      }
     }
 
     // Desktop Styles (Centering)
@@ -113,18 +121,6 @@
     &.active,
     &:hover {
       color: var(--primary-color);
-    }
-  }
-
-  &__nav.is-open {
-    .header__list li {
-      @for $i from 1 through 8 {
-        &:nth-child(#{$i}) .header__link {
-          transition-delay: calc(0.2s + (#{$i} * 0.1s));
-          opacity: 1;
-          transform: translateX(0);
-        }
-      }
     }
   }
 

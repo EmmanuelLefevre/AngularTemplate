@@ -1,27 +1,43 @@
 // --- Errors Management
+export { ErrorHandlerComponent } from './error-handler/error-handler.component';
 import { ErrorHandlerComponent } from './error-handler/error-handler.component';
+export { GenericErrorComponent } from './error-handler/error-views/generic-error/generic-error.component';
 import { GenericErrorComponent } from './error-handler/error-views/generic-error/generic-error.component';
+export { ServerErrorComponent } from './error-handler/error-views/server-error/server-error.component';
 import { ServerErrorComponent } from './error-handler/error-views/server-error/server-error.component';
+export { UnauthorizedErrorComponent } from './error-handler/error-views/unauthorized-error/unauthorized-error.component';
 import { UnauthorizedErrorComponent } from './error-handler/error-views/unauthorized-error/unauthorized-error.component';
+export { UnfoundErrorComponent } from './error-handler/error-views/unfound-error/unfound-error.component';
 import { UnfoundErrorComponent } from './error-handler/error-views/unfound-error/unfound-error.component';
+export { UnknownErrorComponent } from './error-handler/error-views/unknown-error/unknown-error.component';
 import { UnknownErrorComponent } from './error-handler/error-views/unknown-error/unknown-error.component';
 
 // --- Layout Components
+export { HeaderNavComponent } from './components/header/header-nav.component';
 import { HeaderNavComponent } from './components/header/header-nav.component';
+export { MainFooterComponent } from './components/footer/main-footer.component';
 import { MainFooterComponent } from './components/footer/main-footer.component';
 
 // --- UI
+export { LanguageToggleComponent } from './components/language-toggle/language-toggle.component';
 import { LanguageToggleComponent } from './components/language-toggle/language-toggle.component';
+export { MockAdminLoginButtonComponent } from './components/dev/mock-admin-login-button/mock-admin-login-button.component';
 import { MockAdminLoginButtonComponent } from './components/dev/mock-admin-login-button/mock-admin-login-button.component';
 
 // --- Directives
+export { InputFocusDirective } from './_directives/input-focus/input-focus.directive';
 import { InputFocusDirective } from './_directives/input-focus/input-focus.directive';
+export { InputTrimDirective } from './_directives/input-trim/input-trim.directive';
 import { InputTrimDirective } from './_directives/input-trim/input-trim.directive';
+export { InputUppercaseDirective } from './_directives/input-uppercase/input-uppercase.directive';
 import { InputUppercaseDirective } from './_directives/input-uppercase/input-uppercase.directive';
 
 // --- Pipes
+export { AlertPipe } from './_pipes/alert/alert.pipe';
 import { AlertPipe } from './_pipes/alert/alert.pipe';
+export { DateFormatPipe } from './_pipes/date/date-format.pipe';
 import { DateFormatPipe } from './_pipes/date/date-format.pipe';
+export { YesNoPipe } from './_pipes/yes-no/yes-no.pipe';
 import { YesNoPipe } from './_pipes/yes-no/yes-no.pipe';
 
 // --- Utils
@@ -63,30 +79,3 @@ export const SHARED_PIPES = [
 export const SHARED_UTILS = [
   // My utils...
 ] as const;
-
-
-export {
-  // --- Errors Management
-  ErrorHandlerComponent,
-  GenericErrorComponent,
-  ServerErrorComponent,
-  UnauthorizedErrorComponent,
-  UnfoundErrorComponent,
-  UnknownErrorComponent,
-  // --- Layout Components
-  HeaderNavComponent,
-  MainFooterComponent,
-  // --- UI Components
-  LanguageToggleComponent,
-  // --- Dev Components
-  MockAdminLoginButtonComponent,
-  // --- Directives
-  InputFocusDirective,
-  InputTrimDirective,
-  InputUppercaseDirective,
-  // --- Pipes
-  AlertPipe,
-  DateFormatPipe,
-  YesNoPipe,
-  // --- Utils
-};

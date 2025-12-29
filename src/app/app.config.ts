@@ -1,7 +1,6 @@
 import { ApplicationConfig, provideAppInitializer, inject } from '@angular/core';
-import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { HttpClient, provideHttpClient, withInterceptors } from '@angular/common/http';
 import { provideTranslateService, TranslateLoader } from '@ngx-translate/core';
-import { HttpClient } from '@angular/common/http';
 import { firstValueFrom, Observable } from 'rxjs';
 import { provideRouter } from '@angular/router';
 
