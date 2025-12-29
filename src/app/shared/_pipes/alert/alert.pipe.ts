@@ -6,18 +6,16 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 export class AlertPipe implements PipeTransform {
 
-  private readonly ALERT_TEXT = 'Alerte !';
-  private readonly DEFAULT_TEXT = '-';
+  private readonly LABELS: Record<string, string> = {
+    'true': 'Alerte !',
+    'false': '-'
+  };
 
   transform(hasAlert: boolean): string {
-    return hasAlert ? this.getAlertLabel() : this.getDefaultLabel();
+    return this.resolveLabel(hasAlert);
   }
 
-  private getAlertLabel(): string {
-    return this.ALERT_TEXT;
-  }
-
-  private getDefaultLabel(): string {
-    return this.DEFAULT_TEXT;
+  private resolveLabel(value: boolean): string {
+    return this.LABELS[String(value)] ?? this.LABELS['false'];
   }
 }
