@@ -1,3 +1,74 @@
+@use 'sass:color';
+
 :host {
   display: block;
+}
+
+.dashboard {
+  &__header {
+    margin-bottom: 2.5rem;
+  }
+
+  &__title {
+    font-size: 1.8rem;
+    color: #1e293b;
+    margin: 0;
+  }
+
+  &__subtitle {
+    color: #64748b;
+    margin-top: 0.5rem;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+}
+
+.stat-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e2e8f0;
+
+  &--highlight {
+    background-color: #f0fdf4;
+    border-color: #bbf7d0;
+
+    .stat-card__value {
+      color: #166534;
+    }
+  }
+
+  &__icon {
+    font-size: 2rem;
+    background: #f1f5f9;
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+  }
+
+  &__label {
+    display: block;
+    font-size: 0.875rem;
+    color: #64748b;
+    font-weight: 500;
+  }
+
+  &__value {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-top: 0.25rem;
+  }
 }

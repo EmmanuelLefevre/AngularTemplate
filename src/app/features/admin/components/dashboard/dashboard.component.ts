@@ -1,4 +1,6 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+
+import { AuthService } from '@core/_services/auth/auth.service';
 
 @Component({
   selector: 'dashboard',
@@ -8,4 +10,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class DashboardComponent {}
+export class DashboardComponent {
+
+  public readonly authService = inject(AuthService);
+}

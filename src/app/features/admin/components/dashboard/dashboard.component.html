@@ -1,1 +1,32 @@
-<p>dashboard works!</p>
+<div class="dashboard">
+  <header class="dashboard__header">
+    <h1 class="dashboard__title">Tableau de bord</h1>
+    <p class="dashboard__subtitle">Bienvenue sur votre espace de gestion, {{ authService.currentUser()?.username }}.</p>
+  </header>
+
+  <div class="dashboard__grid">
+    <article class="stat-card">
+      <div class="stat-card__icon">👥</div>
+      <div class="stat-card__content">
+        <span class="stat-card__label">Utilisateurs actifs</span>
+        <strong class="stat-card__value">1,284</strong>
+      </div>
+    </article>
+
+    <article class="stat-card stat-card--highlight">
+      <div class="stat-card__icon">⚙️</div>
+      <div class="stat-card__content">
+        <span class="stat-card__label">Mode Système</span>
+        <strong class="stat-card__value">MOCK MODE</strong>
+      </div>
+    </article>
+
+    <article class="stat-card">
+      <div class="stat-card__icon">🔐</div>
+      <div class="stat-card__content">
+        <span class="stat-card__label">Vos permissions</span>
+        <strong class="stat-card__value">{{ authService.currentUser()?.roles?.join(', ') }}</strong>
+      </div>
+    </article>
+  </div>
+</div>
