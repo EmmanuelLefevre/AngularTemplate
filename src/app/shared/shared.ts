@@ -12,6 +12,7 @@ import { MainFooterComponent } from './components/footer/main-footer.component';
 
 // --- UI
 import { LanguageToggleComponent } from './components/language-toggle/language-toggle.component';
+import { MockAdminLoginButtonComponent } from './components/dev/mock-admin-login-button/mock-admin-login-button.component';
 
 // --- Directives
 import { InputFocusDirective } from './_directives/input-focus/input-focus.directive';
@@ -43,6 +44,10 @@ export const SHARED_UI_COMPONENTS = [
   LanguageToggleComponent,
 ] as const;
 
+export const SHARED_DEV_COMPONENTS = [
+  MockAdminLoginButtonComponent,
+] as const;
+
 export const SHARED_DIRECTIVES = [
   InputFocusDirective,
   InputTrimDirective,
@@ -59,6 +64,7 @@ export const SHARED_UTILS = [
   // My utils...
 ] as const;
 
+
 export {
   // --- Errors Management
   ErrorHandlerComponent,
@@ -72,6 +78,8 @@ export {
   MainFooterComponent,
   // --- UI Components
   LanguageToggleComponent,
+  // --- Dev Components
+  MockAdminLoginButtonComponent,
   // --- Directives
   InputFocusDirective,
   InputTrimDirective,

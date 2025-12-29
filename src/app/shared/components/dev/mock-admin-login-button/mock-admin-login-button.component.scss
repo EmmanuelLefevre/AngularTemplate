@@ -1,0 +1,31 @@
+@use 'abstracts' as *;
+
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 0 3rem 0;
+  background-color: var(--bg-color);
+}
+
+.c-mock-admin-btn {
+  font-weight: bold;
+  width: fit-content;
+  padding: 0.6rem 1.2rem;
+  color: var(--primary-color);
+  border-radius: 6px;
+  border: 2px solid var(--primary-color);
+  transition: all 0.2s ease;
+  background: var(--color-white);
+
+  &:hover {
+    color: var(--color-white);
+    background: var(--primary-color);
+    opacity: 0.7;
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
