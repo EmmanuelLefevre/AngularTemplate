@@ -93,6 +93,6 @@ export class ErrorHandlerComponent implements OnInit {
   }
 
   goHome(): void {
-    this.router.navigate(['/home']);
+    this.router.navigate(['/']);
   }
 }

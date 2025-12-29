@@ -118,7 +118,7 @@ describe('ErrorHandlerComponent', () => {
     BUTTON_DEBUG_EL.triggerEventHandler('click', null);
 
     // --- ASSERT ---
-    expect(router.navigate).toHaveBeenCalledWith(['/home']);
+    expect(router.navigate).toHaveBeenCalledWith(['/']);
   });
 
   it('should navigate to /home when goHome() is called', () => {
@@ -129,7 +129,7 @@ describe('ErrorHandlerComponent', () => {
     component.goHome();
 
     // --- ASSERT ---
-    expect(router.navigate).toHaveBeenCalledWith(['/home']);
+    expect(router.navigate).toHaveBeenCalledWith(['/']);
   });
 
   // --- Redirection tests ---
