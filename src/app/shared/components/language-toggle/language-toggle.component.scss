@@ -22,14 +22,17 @@
     padding: 0;
     border-radius: 50%;
     border: 2px solid rgb(124, 124, 124);
-    background: #f8f8f8;
     transition:
       border-color 0.2s,
       background-color 0.2s;
 
     &:hover {
       border-color: var(--primary-color);
-      background: white;
+      transform: translateY(-1px);
+    }
+
+    &:active {
+      transform: translateY(0);
     }
   }
 
