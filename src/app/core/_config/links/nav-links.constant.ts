@@ -8,10 +8,5 @@ export const HEADER_NAV_LINKS: NavLink[] = [
   {
     path: '/contact',
     label: 'HEADER.CONTACT'
-  },
-  {
-    path: '/admin',
-    label: 'HEADER.DASHBOARD',
-    cssClass: 'header__item--admin'
   }
 ];

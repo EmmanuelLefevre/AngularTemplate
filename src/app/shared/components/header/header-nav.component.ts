@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { LanguageToggleComponent } from '../language-toggle/language-toggle.component';
+import { LanguageToggleComponent } from '@shared/components/language-toggle/language-toggle.component';
 
 import { HEADER_NAV_LINKS } from '@core/_config/links/nav-links.constant';
 
