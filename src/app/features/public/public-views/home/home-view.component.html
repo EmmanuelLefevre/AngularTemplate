@@ -20,9 +20,14 @@
     <div class="home__resources">
       <div class="pill-group">
         @for (item of resources; track item.title) {
-          <a class="pill" [href]="item.link" target="_blank" rel="noopener">
+          <a
+            class="pill"
+            [href]="item.link"
+            target="_blank"
+            rel="noopener">
             <span>{{ item.title }}</span>
-            <i class="icon-external-link"></i> </a>
+            <i class="icon-external-link"></i>
+          </a>
         }
       </div>
     </div>
