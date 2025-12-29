@@ -1,6 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { provideHttpClient, withInterceptors, HttpClient } from '@angular/common/http';
 import { provideHttpClientTesting, HttpTestingController } from '@angular/common/http/testing';
+import { provideRouter } from '@angular/router';
 
 import { AuthService } from './auth.service';
 import { authInterceptor } from '@core/interceptor/auth.interceptor';
@@ -19,7 +20,8 @@ describe('AuthService', () => {
       providers: [
         AuthService,
         provideHttpClient(withInterceptors([authInterceptor])),
-        provideHttpClientTesting()
+        provideHttpClientTesting(),
+        provideRouter([])
       ]
     });
 
@@ -208,5 +210,48 @@ describe('AuthService', () => {
 
     // --- ACT & ASSERT ---
     expect(NEW_SERVICE.token()).toBe(PERSISTED_TOKEN);
+  });
+
+  it('should call refreshUser and update currentUser on success', () => {
+    // --- ARRANGE ---
+    const FAKE_TOKEN = 'valid-token';
+    service.token.set(FAKE_TOKEN);
+
+    // --- ACT ---
+    service.initAuth();
+
+    // --- ASSERT (HTTP Verification) ---
+    const REQUEST = httpMock.expectOne(`${ENVIRONMENT.apiUrl}/auth/me`);
+    expect(REQUEST.request.method).toBe('GET');
+
+    REQUEST.flush(MOCK_USER);
+    expect(service.currentUser()).toEqual(MOCK_USER);
+  });
+
+  it('should call logout() if refreshUser fails', () => {
+    // --- ARRANGE ---
+    service.token.set('expired-token');
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    const LOGOUT_SPY = vi.spyOn(service, 'logout').mockImplementation(() => {});
+
+    // --- ACT ---
+    service.initAuth();
+
+    // --- ASSERT ---
+    const REQUEST = httpMock.expectOne(`${ENVIRONMENT.apiUrl}/auth/me`);
+    REQUEST.flush('Invalid token', { status: 401, statusText: 'Unauthorized' });
+
+    expect(LOGOUT_SPY).toHaveBeenCalled();
+  });
+
+  it('should do nothing if no token is present', () => {
+    // --- ARRANGE ---
+    service.token.set(null);
+
+    // --- ACT ---
+    service.initAuth();
+
+    // --- ASSERT ---
+    httpMock.expectNone(`${ENVIRONMENT.apiUrl}/auth/me`);
   });
 });
