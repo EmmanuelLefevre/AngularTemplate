@@ -1,4 +1,4 @@
-import { NavLink } from '@core/_models/nav-link.model';
+import { NavLink } from '@core/_models/links/nav-link.model';
 
 export const HEADER_NAV_LINKS: NavLink[] = [
   {

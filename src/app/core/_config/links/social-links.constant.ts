@@ -1,4 +1,5 @@
-import { SocialLink } from '@core/_models/social-link.model';
+import { SocialLink } from '@core/_models/links/social-link.model';
+
 import { faLinkedin, faGithub } from '@fortawesome/free-brands-svg-icons';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 

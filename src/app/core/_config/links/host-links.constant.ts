@@ -1,4 +1,4 @@
-import { HostingConfig } from '../_models/host-link.model';
+import { HostingConfig } from '@core/_models/links/host-link.model';
 
 import { faPhoneAlt } from '@fortawesome/free-solid-svg-icons';
 
