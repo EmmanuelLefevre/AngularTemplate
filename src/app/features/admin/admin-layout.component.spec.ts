@@ -61,6 +61,6 @@ describe('AdminLayoutComponent', () => {
 
     // --- ASSERT ---
     expect(LOGOUT_SPY).toHaveBeenCalled();
-    expect(NAVIGATE_SPY).toHaveBeenCalledWith(['/auth/login']);
+    expect(NAVIGATE_SPY).toHaveBeenCalledWith(['/']);
   });
 });
