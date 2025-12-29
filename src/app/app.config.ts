@@ -7,6 +7,7 @@ import { provideRouter } from '@angular/router';
 
 import { ROUTES } from '@app/app.routes';
 import { authInterceptor } from '@core/interceptor/auth.interceptor';
+import { mockInterceptor } from './core/interceptor/mock.interceptor';
 import { AuthService } from '@core/_services/auth/auth.service';
 
 export class CustomTranslateLoader implements TranslateLoader {
@@ -22,7 +23,10 @@ export const APP_CONFIG: ApplicationConfig = {
   providers: [
     provideRouter(ROUTES),
     provideHttpClient(
-      withInterceptors([authInterceptor])
+      withInterceptors([
+        authInterceptor,
+        mockInterceptor
+      ])
     ),
     provideAppInitializer(() => {
       const AUTH_SERVICE = inject(AuthService);
