@@ -1,5 +1,7 @@
 import { Routes } from '@angular/router';
 
+import { adminGuard } from './core/guard/admin/admin.guard';
+
 export const ROUTES: Routes = [
   // --- PUBLIC AREA ---
   {
@@ -23,7 +25,7 @@ export const ROUTES: Routes = [
       {
         path: 'contact',
         loadComponent: () => import(
-          '@app/features/public/public-views/contact/contact-view.component')
+          '@features/public/public-views/contact/contact-view.component')
           .then(m => m.ContactViewComponent)
       },
       // Add 'about', 'other views'...
@@ -36,8 +38,18 @@ export const ROUTES: Routes = [
     loadComponent: () => import(
       '@features/admin/admin-layout.component').
       then(m => m.AdminLayoutComponent),
+    canActivate: [adminGuard],
     children: [
-      /* Admin routes */
+      {
+        path: 'dashboard',
+        loadComponent: () => import(
+          '@features/admin/components/dashboard/dashboard.component').
+          then(m => m.DashboardComponent)
+      },
+      // {
+      //   path: 'users',
+      //   loadComponent: () => import('@features/admin/components/users/users.component').then(m => m.UsersComponent)
+      // }
     ]
   },
 
