@@ -28,8 +28,7 @@
       class="header__nav">
       <ul class="header__list">
         @for (link of navLinks; track link.path) {
-          <li
-            class="header__item">
+          <li class="header__item">
             <a
               [routerLink]="link.path"
               routerLinkActive="active"
