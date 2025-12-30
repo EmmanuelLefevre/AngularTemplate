@@ -1267,11 +1267,15 @@ De plus il faut ajouter le favicon, les scripts, le browser et l'index dans l'ob
       "inlineStyleLanguage": "scss",
       "scripts": [],
       "assets": [
-        "src/favicon.ico",
-        "src/assets",
         {
           "glob": "**/*",
           "input": "public"
+        },
+        "src/favicon.ico",
+        {
+          "glob": "**/*",
+          "input": "src/assets",
+          "output": "/assets/"
         }
       ],
       "styles": [
@@ -1286,6 +1290,14 @@ De plus il faut ajouter le favicon, les scripts, le browser et l'index dans l'ob
     },
     "configurations": {
       "production": {
+        "optimization": {
+          "scripts": true,
+          "styles": {
+            "minify": true,
+            "inlineCritical": false
+          },
+          "fonts": true
+        },
         "fileReplacements": [
           {
             "replace": "src/_environments/environment.ts",
@@ -1300,10 +1312,11 @@ De plus il faut ajouter le favicon, les scripts, le browser et l'index dans l'ob
           },
           {
             "type": "anyComponentStyle",
-            "maximumWarning": "kB",
+            "maximumWarning": "4kB",
             "maximumError": "8kB"
           }
-        ]
+        ],
+        "outputHashing": "all"
       },
       "development": {
         "optimization": false,
@@ -1337,6 +1350,23 @@ De plus il faut ajouter le favicon, les scripts, le browser et l'index dans l'ob
     },
     "defaultConfiguration": "development"
   },
+  "test": {
+    "builder": "@angular/build:unit-test",
+    "options": {
+      "runnerConfig": "vitest.config.ts",
+      "tsConfig": "tsconfig.spec.json",
+      "coverage": true
+    }
+  },
+  "lint": {
+    "builder": "@angular-eslint/builder:lint",
+    "options": {
+      "lintFilePatterns": [
+        "src/**/*.ts",
+        "src/**/*.html"
+      ]
+    }
+  }
 }
 ```
 

@@ -3,5 +3,15 @@ export const ENVIRONMENT = {
   useMocks: true,
   apiUrl: 'http://localhost:3000/api',
   logLevel: 'debug',
-  mockAdminPassword: import.meta.env['VITE_MOCK_ADMIN_PWD'] || '1234'
+  mockAdminPassword: import.meta.env['VITE_MOCK_ADMIN_PWD'] || '1234',
+  application: {
+    name: 'AngularTemplate',
+    version: '1.0.0',
+    author: 'Emmanuel Lefevre',
+    developer: 'Emmanuel Lefevre',
+    mainDescription: 'Template Angular 21 avec CI/CD, SEO, i18n et plus',
+    keywords: 'angular, template, seo, i18n, vitest, pnpm',
+    colorTheme: '#ff6b6b',
+    defaultShareImage: ''
+  }
 };

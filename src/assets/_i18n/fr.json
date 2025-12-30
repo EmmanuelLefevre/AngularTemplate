@@ -1,5 +1,13 @@
 {
   "PROJECT_NAME": "AngularTemplate",
+  "SEO": {
+    "DEFAULT_TITLE": "AngularTemplate",
+    "DEFAULT_DESCRIPTION": "Template Angular 21 avec CI/CD, SEO, i18n et plus",
+    "HOME_TITLE": "Accueil",
+    "HOME_DESC": "Bienvenue sur Template Angular",
+    "CONTACT_TITLE": "Contact",
+    "CONTACT_DESC": "Page de contact du site"
+  },
   "HEADER": {
     "LOGO_LINK": "Retour à l'accueil",
     "WELCOME": "Bienvenue",

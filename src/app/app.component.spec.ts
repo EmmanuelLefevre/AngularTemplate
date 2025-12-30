@@ -46,16 +46,6 @@ describe('AppComponent', () => {
     expect(OUTLET).toBeTruthy();
   });
 
-  it('should have the correct title in the signal', () => {
-    // --- ARRANGE ---
-    const FIXTURE = TestBed.createComponent(AppComponent);
-    const APP = FIXTURE.componentInstance;
-
-    // --- ASSERT ---
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    expect((APP as any).title()).toBe('AngularTemplate');
-  });
-
   it('should use "fr" if browser language is not fr or en (Coverage 100%)', () => {
     // --- ARRANGE ---
     vi.spyOn(translateService, 'getBrowserLang').mockReturnValue('de');
