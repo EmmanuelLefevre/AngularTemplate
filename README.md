@@ -820,6 +820,8 @@ pnpm add -D vite-tsconfig-paths
   "moduleResolution": "Bundler",
   "types": [
     "vitest/globals",
+    "vitest/importMeta",
+    "vite/client",
     "node"
   ]
 }
@@ -914,12 +916,14 @@ export default defineConfig({
       reporter: ['text', 'lcov', 'html'],
       reportsDirectory: './coverage',
       exclude: [
+        'src/_environments/environment.prod.sample.ts',
         'src/main.ts',
-        '**/*.module.ts',
+        'src/app/app.config.ts',
         '**/index.ts',
         '.angular/**',
         'eslint.config.js',
         'dist/**',
+        'coverage/**',
       ],
       clean: true
     },

@@ -33,12 +33,14 @@ export default defineConfig({
       reporter: ['text', 'lcov', 'html'],
       reportsDirectory: './coverage',
       exclude: [
+        'src/_environments/environment.prod.sample.ts',
         'src/main.ts',
-        '**/*.module.ts',
+        'src/app/app.config.ts',
         '**/index.ts',
         '.angular/**',
         'eslint.config.js',
         'dist/**',
+        'coverage/**',
       ],
       clean: true
     },
