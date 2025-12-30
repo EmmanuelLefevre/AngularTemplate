@@ -1,4 +1,3 @@
-
 import { AlertPipe } from './alert.pipe';
 
 describe('AlertPipe', () => {

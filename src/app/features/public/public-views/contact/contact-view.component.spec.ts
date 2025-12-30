@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ContactViewComponent } from './contact-view.component';
 
 describe('ContactViewComponent', () => {
+
   let component: ContactViewComponent;
   let fixture: ComponentFixture<ContactViewComponent>;
 

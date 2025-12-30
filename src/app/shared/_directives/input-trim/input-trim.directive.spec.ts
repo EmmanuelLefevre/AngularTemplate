@@ -68,6 +68,7 @@ describe('InputTrimDirective', () => {
   });
 
   describe('Reactive Forms Usage', () => {
+
     let fixture: ComponentFixture<TestReactiveComponent>;
     let component: TestReactiveComponent;
 

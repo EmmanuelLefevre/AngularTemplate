@@ -6,6 +6,7 @@ import { of } from 'rxjs';
 import { HeaderNavComponent } from './header-nav.component';
 
 describe('HeaderNavComponent', () => {
+
   let component: HeaderNavComponent;
   let fixture: ComponentFixture<HeaderNavComponent>;
 

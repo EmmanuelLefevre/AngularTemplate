@@ -1,4 +1,3 @@
-
 import { YesNoPipe } from './yes-no.pipe';
 
 describe('YesNoPipe', () => {

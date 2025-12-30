@@ -143,7 +143,7 @@ jobs:
       - name: 🧱 Build Project
         run: pnpm build --configuration=production
 
-      - name: 📝 Create .htaccess (High Security Headers)
+      - name: 📝 Create .htaccess
         run: |
           cat <<EOF > dist/AngularTemplate/browser/.htaccess
           <IfModule mod_rewrite.c>
@@ -162,7 +162,7 @@ jobs:
           </IfModule>
 
           <IfModule mod_headers.c>
-            # Tell browser to only communicate via HTTPS for 1 year
+            # Tell browser to only communicate via HTTPS
             Header set Strict-Transport-Security "max-age=31536000; includeSubDomains"
 
             # Prevent your site from being displayed in an iframe (anti-clickjacking)
@@ -176,7 +176,7 @@ jobs:
 
             # ONLY allow scripts from your own site
             # Note : If you are using Google fonts or external APIs, you will need to add them here.
-            Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://api.your-domain.com;"
+            Header set Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self'; connect-src 'self' https://api.votre-domaine.com; object-src 'none'; base-uri 'self';"
           </IfModule>
           EOF
 

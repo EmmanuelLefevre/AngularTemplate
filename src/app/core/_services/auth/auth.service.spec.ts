@@ -10,6 +10,7 @@ import { ENVIRONMENT } from '@env/environment';
 import { User } from '@core/_models/user/user.model';
 
 describe('AuthService', () => {
+
   let service: AuthService;
   let httpMock: HttpTestingController;
   let httpClient: HttpClient;

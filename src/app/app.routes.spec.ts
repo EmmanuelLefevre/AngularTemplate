@@ -10,6 +10,7 @@ import { AuthService } from '@core/_services/auth/auth.service';
 import { ROUTES } from './app.routes';
 
 describe('App Routes', () => {
+
   let harness: RouterTestingHarness;
 
   const AUTH_SERVICE_MOCK = {
@@ -90,6 +91,7 @@ describe('App Routes', () => {
   });
 
   describe('Error Management Routes Coverage', () => {
+
     const ERROR_CASES = [
       { path: '/error/unauthorized-error' },
       { path: '/error/unfound-error' },

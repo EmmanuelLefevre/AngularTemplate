@@ -2,11 +2,11 @@ import { TestBed } from '@angular/core/testing';
 import { provideRouter, RouterOutlet } from '@angular/router';
 import { By } from '@angular/platform-browser';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { describe, it, expect, beforeEach } from 'vitest';
 
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
+
   let translateService: TranslateService;
 
   beforeEach(async() => {

@@ -19,6 +19,7 @@ vi.mock('@env/environment', () => ({
 }));
 
 describe('mockInterceptor', () => {
+
   let httpMock: HttpTestingController;
   let httpClient: HttpClient;
 
@@ -108,6 +109,7 @@ describe('mockInterceptor', () => {
   });
 
   describe('Auth Me', () => {
+
     const MOCK_USERS = [
       { id: 1, roles: ['ADMIN'], username: 'Admin' },
       { id: 2, roles: ['USER'], username: 'Manu' }

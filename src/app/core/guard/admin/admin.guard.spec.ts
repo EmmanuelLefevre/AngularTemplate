@@ -10,6 +10,7 @@ import { adminGuard } from './admin.guard';
 const ASYNC_DELAY_MS = 0;
 
 describe('adminGuard', () => {
+
   const AUTH_SERVICE_MOCK = {
     currentUser: signal<any>(undefined),
     isAdmin: vi.fn()
