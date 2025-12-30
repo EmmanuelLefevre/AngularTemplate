@@ -43,7 +43,6 @@ describe('MainButtonComponent', () => {
       // --- ASSERT ---
       const LINK_EL = fixture.debugElement.query(By.css('a'));
       expect(LINK_EL).toBeTruthy();
-      expect(LINK_EL.attributes['role']).toBe('button');
     });
 
     it('should display the icon if provided', () => {

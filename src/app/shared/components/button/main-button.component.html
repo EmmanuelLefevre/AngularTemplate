@@ -9,8 +9,7 @@
     [attr.aria-expanded]="ariaExpanded()"
     [attr.aria-controls]="ariaControls()"
     (keydown.escape)="onHandleKeydown($event)"
-    (keydown.space)="onHandleKeydown($event)"
-    role="button">
+    (keydown.space)="onHandleKeydown($event)">
     <ng-container *ngTemplateOutlet="renderContent" />
   </a>
 } @else {
