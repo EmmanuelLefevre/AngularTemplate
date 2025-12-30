@@ -5,8 +5,8 @@ import { firstValueFrom, Observable } from 'rxjs';
 import { provideRouter } from '@angular/router';
 
 import { ROUTES } from '@app/app.routes';
-import { authInterceptor } from '@core/interceptor/auth.interceptor';
-import { mockInterceptor } from './core/interceptor/mock.interceptor';
+import { authInterceptor } from '@app/core/interceptor/auth/auth.interceptor';
+import { mockInterceptor } from './core/interceptor/dev/mock.interceptor';
 import { AuthService } from '@core/_services/auth/auth.service';
 
 export class CustomTranslateLoader implements TranslateLoader {

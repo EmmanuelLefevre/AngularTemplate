@@ -1,6 +1,6 @@
-import { HttpClient, HttpInterceptorFn, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpInterceptorFn, HttpResponse } from '@angular/common/http';
 import { inject } from '@angular/core';
-import { delay, map, of } from 'rxjs';
+import { delay, map, of, throwError } from 'rxjs';
 
 import { ENVIRONMENT } from '@env/environment';
 
@@ -27,9 +27,11 @@ export const mockInterceptor: HttpInterceptorFn = (req, next) => {
     };
 
     if (BODY?.password !== '1234') {
-      return of(new HttpResponse({
+      return throwError(() => new HttpErrorResponse({
         status: 401,
-        body: { message: 'Invalid credentials (Try "1234")' }
+        statusText: 'Unauthorized',
+        error: { message: 'Invalid credentials (Try "1234")' },
+        url: req.url
       })).pipe(delay(MOCK_DELAY_MS));
     }
 

@@ -5,7 +5,7 @@ import { provideHttpClientTesting, HttpTestingController } from '@angular/common
 import { provideRouter } from '@angular/router';
 
 import { AuthService } from './auth.service';
-import { authInterceptor } from '@core/interceptor/auth.interceptor';
+import { authInterceptor } from '@core/interceptor/auth/auth.interceptor';
 import { ENVIRONMENT } from '@env/environment';
 import { User } from '@core/_models/user/user.model';
 

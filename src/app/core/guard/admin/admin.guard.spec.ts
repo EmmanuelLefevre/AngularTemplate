@@ -3,7 +3,6 @@ import { TestBed } from '@angular/core/testing';
 import { Router, UrlTree } from '@angular/router';
 import { signal } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
-import { vi, describe, it, expect, beforeEach } from 'vitest';
 
 import { AuthService } from '@core/_services/auth/auth.service';
 import { adminGuard } from './admin.guard';
