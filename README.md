@@ -775,7 +775,7 @@ Configuration des alias
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./out-tsc/app",
-    "types": [],
+    "types": ["vite/client"],
     "rootDir": "./src"
   },
   "include": ["src/**/*.ts"],

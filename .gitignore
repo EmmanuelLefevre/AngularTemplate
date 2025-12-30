@@ -6,6 +6,7 @@
 
 # Environments Files
 src/_environments/environment.prod.ts
+.env.local
 
 # Node
 /node_modules
@@ -51,6 +52,7 @@ Thumbs.db
 
 !/.npmrc
 !/public/sitemap.xml
+!.env.local.example
 !sonar-project.properties
 !config
 !src/app/core/
