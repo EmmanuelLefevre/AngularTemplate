@@ -1,0 +1,52 @@
+@let classes = 'c-btn c-btn--' + variant() + (isDisabled() ? ' is-disabled' : '') + (isLoading() ? ' is-loading' : '');
+
+@if (type() === 'link' && link()) {
+  <a
+    [routerLink]="link()!"
+    [class]="classes"
+    [tabindex]="isDisabled() ? -1 : tabIndex()"
+    [attr.aria-label]="ariaLabel() | translate"
+    [attr.aria-expanded]="ariaExpanded()"
+    [attr.aria-controls]="ariaControls()"
+    (keydown.escape)="onHandleKeydown($event)"
+    (keydown.space)="onHandleKeydown($event)"
+    role="button">
+    <ng-container *ngTemplateOutlet="renderContent" />
+  </a>
+} @else {
+  <button
+    [type]="type()"
+    [class]="classes"
+    [disabled]="isDisabled() || isLoading()"
+    [tabindex]="tabIndex()"
+    [attr.aria-label]="ariaLabel() | translate"
+    [attr.aria-expanded]="ariaExpanded()"
+    [attr.aria-controls]="ariaControls()"
+    (click)="onHandleClick($event)"
+    (keydown.escape)="onHandleKeydown($event)"
+    (keydown.enter)="onHandleKeydown($event)"
+    (keydown.space)="onHandleKeydown($event)">
+    <ng-container *ngTemplateOutlet="renderContent" />
+  </button>
+}
+
+<ng-template #renderContent>
+  <div class="c-btn__content">
+    @if (isLoading()) {
+      <span
+        class="c-btn__loader"
+        aria-hidden="true"></span>
+      <span class="u-visually-hidden">{{ 'COMMON.LOADING' | translate }}</span>
+    } @else {
+      @if (icon()) {
+        <i
+          [class]="icon() + ' c-btn__icon'"
+          aria-hidden="true"></i>
+      }
+      @if (label()) {
+        <span class="c-btn__label">{{ label() | translate }}</span>
+      }
+      <ng-content />
+    }
+  </div>
+</ng-template>

@@ -1,0 +1,84 @@
+@use 'abstracts' as *;
+
+:host {
+  display: block;
+}
+
+.c-btn {
+  display: inline-block;
+  text-decoration: none;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+
+  &__content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 24px;
+    gap: 10px;
+    min-height: 44px;
+  }
+
+  &__icon {
+    font-size: 1.1rem;
+  }
+
+  &__label {
+    font-weight: 600;
+    line-height: 1;
+  }
+
+  &__loader {
+    width: 18px;
+    height: 18px;
+    border: 2px solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    animation: btn-spin 0.75s linear infinite;
+  }
+
+  &--primary {
+    background-color: var(--primary-color);
+    color: var(--color-white);
+    &:hover:not(:disabled) {
+      background-color: var(--primary-dark);
+    }
+  }
+
+  &--outline {
+    background-color: transparent;
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    &:hover:not(:disabled) {
+      background-color: var(--primary-light);
+    }
+  }
+
+  &--ghost {
+    background-color: transparent;
+    color: var(--text-color);
+    &:hover:not(:disabled) {
+      background-color: rgba(0, 0, 0, 0.05);
+    }
+  }
+
+  &--danger {
+    background-color: var(--error-color);
+    color: var(--color-white);
+  }
+
+  &.is-disabled {
+    opacity: 0.5;
+    pointer-events: none;
+    filter: grayscale(1);
+  }
+}
+
+@keyframes btn-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

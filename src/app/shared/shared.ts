@@ -21,6 +21,10 @@ import { MainFooterComponent } from './components/footer/main-footer.component';
 // --- UI
 export { LanguageToggleComponent } from './components/language-toggle/language-toggle.component';
 import { LanguageToggleComponent } from './components/language-toggle/language-toggle.component';
+export { MainButtonComponent } from './components/button/main-button.component';
+import { MainButtonComponent } from './components/button/main-button.component';
+
+// --- DEV
 export { MockAdminLoginButtonComponent } from './components/dev/mock-admin-login-button/mock-admin-login-button.component';
 import { MockAdminLoginButtonComponent } from './components/dev/mock-admin-login-button/mock-admin-login-button.component';
 
@@ -58,6 +62,7 @@ export const SHARED_LAYOUT_COMPONENTS = [
 
 export const SHARED_UI_COMPONENTS = [
   LanguageToggleComponent,
+  MainButtonComponent,
 ] as const;
 
 export const SHARED_DEV_COMPONENTS = [
