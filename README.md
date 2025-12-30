@@ -655,15 +655,19 @@ Ouvrir le fichier `package.json`. Ajouter la configuration tout à la fin du fic
 
 ```JSON
 "lint-staged": {
-  "src/**/*.html}": [
+  "src/**/*.html": [
     "eslint --fix --max-warnings=0",
     "prettier --write"
   ],
   "src/**/*.ts": [
-    "eslint --fix --max-warnings=0"
+    "eslint --fix --max-warnings=0",
+    "prettier --write"
   ],
   "src/**/*.{css,scss,json,md}": [
     "prettier --write"
+  ],
+  "*.scss": [
+    "stylelint --fix"
   ],
   "*.{js,cjs,mjs}": [
     "eslint --fix --max-warnings=0",

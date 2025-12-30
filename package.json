@@ -69,7 +69,7 @@
     "vitest": "4.0.16"
   },
   "lint-staged": {
-    "src/**/*.html}": [
+    "src/**/*.html": [
       "eslint --fix --max-warnings=0",
       "prettier --write"
     ],
