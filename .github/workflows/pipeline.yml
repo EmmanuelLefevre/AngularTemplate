@@ -145,7 +145,8 @@ jobs:
 
       - name: 📝 Create .htaccess with High Security Headers
         run: |
-          echo "<IfModule mod_rewrite.c>
+          cat <<EOF > dist/AngularTemplate/browser/.htaccess
+          <IfModule mod_rewrite.c>
             RewriteEngine On
             RewriteBase /
 
@@ -176,7 +177,8 @@ jobs:
             # ONLY allow scripts from your own site
             # Note : If you are using Google fonts or external APIs, you will need to add them here.
             Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://api.your-domain.com;"
-          </IfModule>" > dist/AngularTemplate/browser/.htaccess
+          </IfModule>
+          EOF
 
       - name: 🚀 Sync Files to Server
         uses: easingthemes/ssh-deploy@main
