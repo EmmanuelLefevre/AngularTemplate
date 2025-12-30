@@ -143,17 +143,39 @@ jobs:
       - name: 🧱 Build Project
         run: pnpm build --configuration=production
 
-      - name: 📝 Create .htaccess (Angular Routing)
+      - name: 📝 Create .htaccess with High Security Headers
         run: |
           echo "<IfModule mod_rewrite.c>
             RewriteEngine On
             RewriteBase /
+
+            # Force HTTPS
             RewriteCond %{HTTPS} off
             RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+            # Angular Router Management
             RewriteRule ^index\.html$ - [L]
             RewriteCond %{REQUEST_FILENAME} !-f
             RewriteCond %{REQUEST_FILENAME} !-d
             RewriteRule . /index.html [L]
+          </IfModule>
+
+          <IfModule mod_headers.c>
+            # Tell browser to only communicate via HTTPS for 1 year
+            Header set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+
+            # Prevent your site from being displayed in an iframe (anti-clickjacking)
+            Header set X-Frame-Options "SAMEORIGIN"
+
+            # Prevents the browser from interpreting a file other than by its MIME type
+            Header set X-Content-Type-Options "nosniff"
+
+            # Limit the information sent to other sites when a link is clicked
+            Header set Referrer-Policy "strict-origin-when-cross-origin"
+
+            # ONLY allow scripts from your own site
+            # Note : If you are using Google fonts or external APIs, you will need to add them here.
+            Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://api.your-domain.com;"
           </IfModule>" > dist/AngularTemplate/browser/.htaccess
 
       - name: 🚀 Sync Files to Server
