@@ -36,8 +36,8 @@ jobs:
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
-          command: monitor
           # 🚩 Only blocks if a 'high' vulnerability is found
+          command: test
           args: --severity-threshold=high
 
       - name: 🏗️ Initialize CodeQL
@@ -110,7 +110,8 @@ jobs:
     name: 🎯 Deploy to Production
     needs: [security, quality]
     # 🚩 Temporarily disabled (will never launch)
-    if: github.ref == 'refs/heads/main' && false
+    # if: github.ref == 'refs/heads/main' && false
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
       - name: 📂 Get Code
@@ -128,30 +129,49 @@ jobs:
       - name: ⚙️ Install Dependencies
         run: pnpm install
 
-      - name: 🧱 Build Project (Production)
+      - name: 📝 Create Prod Environment File
+        run: |
+          mkdir -p src/_environments
+          echo "export const ENVIRONMENT = {
+            production: true,
+            useMocks: false,
+            apiUrl: 'https://api.your-domain.com/api',
+            logLevel: 'error',
+            mockAdminPassword: '${{ secrets.MOCK_ADMIN_PWD }}'
+          };" > src/_environments/environment.prod.ts
+
+      - name: 🧱 Build Project
         run: pnpm build --configuration=production
+
+      - name: 📝 Create .htaccess (Angular Routing)
+        run: |
+          echo "<IfModule mod_rewrite.c>
+            RewriteEngine On
+            RewriteBase /
+            RewriteCond %{HTTPS} off
+            RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+            RewriteRule ^index\.html$ - [L]
+            RewriteCond %{REQUEST_FILENAME} !-f
+            RewriteCond %{REQUEST_FILENAME} !-d
+            RewriteRule . /index.html [L]
+          </IfModule>" > dist/AngularTemplate/browser/.htaccess
 
       - name: 🚀 Sync Files to Server
         uses: easingthemes/ssh-deploy@main
         with:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          ARGS: '-rlgoDzvc -i --delete'
-          # ⚠️ Double-check folder name in /dist directory after build (pnpm build).
+          # Delete from the server the files that are no longer in your code (cleanup)
+          ARGS: '-rlgoDazvc -i --delete'
+          # ⚠️ Double-check folder name in /dist directory after build (pnpm build)
           SOURCE: 'dist/AngularTemplate/browser/'
-          REMOTE_HOST: ${{ secrets.SSH_HOST }}
-          REMOTE_USER: ${{ secrets.SSH_USER }}
-          TARGET: ${{ secrets.SSH_TARGET }}
-          EXCLUDE: '/node_modules/'
+          # Server IP address
+          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+          REMOTE_USER: ${{ secrets.REMOTE_USER }}
+          REMOTE_PORT: ${{ secrets.SSH_PORT }}
+          # Exact location to place code (/home/<your_user>/public_html)
+          TARGET: ${{ secrets.TARGET_PATH }}
+          # Avoids sending git configuration files on server
+          EXCLUDE: '/node_modules/, /.github/, /.git/'
 
-      - name: 📡 Post-Deployment Commands
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
-            echo "Restarting Nginx or clearing the cache..."
-            # sudo systemctl reload nginx
-
-      - name: 🚩 Deployment Task
-        run: echo "Deployment is underway following security and quality validation."
+      - name: 🎯 Deployment
+        run: echo "Deployment is underway following security and quality validation..."
