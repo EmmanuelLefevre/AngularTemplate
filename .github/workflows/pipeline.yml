@@ -117,6 +117,11 @@ jobs:
       - name: ⚙️ Install Dependencies
         run: pnpm install
 
+      - name: 📝 Create Prod Environment File
+        run: |
+          mkdir -p src/_environments
+          echo "export const ENVIRONMENT = { production: true, mockAdminPassword: '${{ secrets.MOCK_ADMIN_PWD }}' };" > src/_environments/environment.prod.ts
+
       - name: 🧱 Build Project (Production)
         run: pnpm build --configuration=production
 
