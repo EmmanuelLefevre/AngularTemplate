@@ -4,7 +4,8 @@ import { Router } from '@angular/router';
 import { of } from 'rxjs';
 import { vi, describe, it, expect, beforeEach, afterEach } from 'vitest';
 
-import { AuthService } from '@app/core/_services/auth/auth.service';
+import { AuthService } from '@core/_services/auth/auth.service';
+import { ENVIRONMENT } from '@env/environment';
 import { MockAdminLoginButtonComponent } from './mock-admin-login-button.component';
 
 describe('MockAdminLoginButtonComponent', () => {
@@ -56,7 +57,7 @@ describe('MockAdminLoginButtonComponent', () => {
     // --- ASSERT ---
     expect(authServiceMock.login).toHaveBeenCalledWith({
       email: 'admin@test.com',
-      password: '1234'
+      password: ENVIRONMENT.mockAdminPassword
     });
 
     expect(routerMock.navigate).not.toHaveBeenCalled();
