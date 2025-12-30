@@ -19,6 +19,28 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: 📦 Install PNPM
+        uses: pnpm/action-setup@v4
+        with:
+          version: latest
+
+      - name: 🏗️ Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'pnpm'
+
+      - name: ⚙️ Install Dependencies
+        run: pnpm install
+
+      - name: 🕵️ Snyk Open Source Analysis
+        uses: snyk/actions/node@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          # 🚩 Only blocks if a 'high' vulnerability is found
+          args: --severity-threshold=high
+
       - name: 🏗️ Initialize CodeQL
         uses: github/codeql-action/init@v4
         with:
@@ -37,7 +59,7 @@ jobs:
           fetch-depth: 0
 
       - name: 📦 Install PNPM
-        uses: pnpm/action-setup@v2
+        uses: pnpm/action-setup@v4
         with:
           version: latest
 
@@ -62,6 +84,9 @@ jobs:
       - name: 🧪 Run Vitest Tests & Coverage
         run: pnpm test:coverage
 
+      - name: 🧱 Build Check
+        run: pnpm build --configuration=production
+
       - name: 🚀 SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@v6
         env:
@@ -77,14 +102,14 @@ jobs:
     name: 🎯 Deploy to Production
     needs: [security, quality]
     # 🚩 Temporarily disabled (will never launch)
-    if: false
+    if: github.ref == 'refs/heads/main' && false
     runs-on: ubuntu-latest
     steps:
       - name: 📂 Get Code
         uses: actions/checkout@v4
 
       - name: 📦 Install PNPM
-        uses: pnpm/action-setup@v2
+        uses: pnpm/action-setup@v4
         with:
           version: latest
 
