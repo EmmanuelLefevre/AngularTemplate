@@ -62,6 +62,8 @@
     z-index: 1050;
 
     &.is-open {
+      right: 0;
+
       .header__list li {
         @for $i from 1 through 8 {
           &:nth-child(#{$i}) .header__link {
