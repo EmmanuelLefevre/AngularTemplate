@@ -27,10 +27,8 @@ describe('MainButtonComponent', () => {
 
   describe('Rendering and semantics', () => {
     it('should render a <button> by default', () => {
-      // --- ACT ---
-      const BUTTON_EL = fixture.debugElement.query(By.css('button'));
-
       // --- ASSERT ---
+      const BUTTON_EL = fixture.debugElement.query(By.css('button'));
       expect(BUTTON_EL).toBeTruthy();
     });
 
