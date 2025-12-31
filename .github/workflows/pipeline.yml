@@ -100,7 +100,15 @@ jobs:
             useMocks: false,
             apiUrl: 'https://api.your-domain.com/api',
             logLevel: 'error',
-            mockAdminPassword: '${{ secrets.MOCK_ADMIN_PWD }}'
+            mockAdminPassword: '${{ secrets.MOCK_ADMIN_PWD }}',
+            application: {
+              name: 'AngularTemplate',
+              author: 'Emmanuel Lefevre',
+              mainDescription: 'Template Angular 21 avec CI/CD, SEO, i18n et plus',
+              keywords: 'angular, template, seo, i18n, vitest, pnpm',
+              themeColor: '#ff6b6b',
+              defaultShareImage: ''
+            }
           };" > src/_environments/environment.prod.ts
 
       - name: 🧱 Build Check
