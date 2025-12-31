@@ -4,9 +4,9 @@
     "DEFAULT_TITLE": "AngularTemplate",
     "DEFAULT_DESCRIPTION": "Angular 21 template with CI/CD, SEO, i18n and more",
     "HOME_TITLE": "Home",
-    "HOME_DESC": "Welcome to Angular Template",
+    "HOME_DESCRIPTION": "Welcome to Angular Template",
     "CONTACT_TITLE": "Contact",
-    "CONTACT_DESC": "Website contact page"
+    "CONTACT_DESCRIPTION": "Website contact page"
   },
   "HEADER": {
     "LOGO_LINK": "Back to home",
