@@ -22,7 +22,7 @@ export const ROUTES: Routes = [
           '@features/public/public-views/home/home-view.component')
           .then(m => m.HomeViewComponent),
         data: {
-          seo: { titleKey: 'SEO.HOME_TITLE', descriptionKey: 'HOME.DESC' }
+          seo: { titleKey: 'SEO.HOME_TITLE', descriptionKey: 'SEO.HOME_DESCRIPTION' }
         }
       },
       {
@@ -31,7 +31,7 @@ export const ROUTES: Routes = [
           '@features/public/public-views/contact/contact-view.component')
           .then(m => m.ContactViewComponent),
         data: {
-          seo: { titleKey: 'SEO.CONTACT_TITLE', descriptionKey: 'CONTACT_DESC' }
+          seo: { titleKey: 'SEO.CONTACT_TITLE', descriptionKey: 'SEO.CONTACT_DESCRIPTION' }
         }
       },
       // Add 'about', 'other views'...
