@@ -19,6 +19,11 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: 🔑 Check for Leaked Secrets
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: 📦 Install PNPM
         uses: pnpm/action-setup@v4
 
@@ -30,6 +35,9 @@ jobs:
 
       - name: ⚙️ Install Dependencies
         run: pnpm install
+
+      - name: 🛡️ PNPM Audit
+        run: pnpm audit --audit-level=high
 
       - name: 🕵️ Snyk Packages Analysis
         uses: snyk/actions/node@master
