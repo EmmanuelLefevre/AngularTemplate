@@ -1,0 +1,21 @@
+name: 🧹 Cleanup Cancelled Runs
+
+on:
+  schedule:
+    - cron: '0 5 * * *'
+  workflow_dispatch:
+
+jobs:
+  delete-cancelled:
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
+    steps:
+      - name: 🗑️ Delete cancelled runs
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          # 1. Listing last 100 cancelled runs
+          # 2. Get only their IDs
+          # 3. Remove them one by one
+          gh run list --status cancelled --limit 100 --json databaseId -q '.[].databaseId' | xargs -r -I{} gh run delete {}
