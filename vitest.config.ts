@@ -6,6 +6,10 @@ import { dirname, resolve } from 'node:path';
 
 const DIRNAME = dirname(fileURLToPath(import.meta.url));
 
+const LOCAL_COVERAGE = 50;
+const PIPELINE_COVERAGE = 80;
+const COVERAGE_THRESHOLD = process.env.CI ? PIPELINE_COVERAGE : LOCAL_COVERAGE;
+
 export default defineConfig({
   plugins: [
     angular(),
@@ -33,10 +37,10 @@ export default defineConfig({
       reporter: ['text', 'lcov', 'html'],
       reportsDirectory: './coverage',
       thresholds: {
-        statements: 80,
-        branches: 80,
-        functions: 80,
-        lines: 80,
+        statements: COVERAGE_THRESHOLD,
+        branches: COVERAGE_THRESHOLD,
+        functions: COVERAGE_THRESHOLD,
+        lines: COVERAGE_THRESHOLD,
       },
       exclude: [
         '**/index.ts',
