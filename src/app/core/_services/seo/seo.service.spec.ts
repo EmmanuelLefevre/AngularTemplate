@@ -277,8 +277,8 @@ describe('SeoService', () => {
     await service.updateMetaTags(DATA);
 
     // --- ASSERT ---
-    const OG_IMAGE_CALLS = META_MOCK.updateTag.mock.calls.filter(call =>
-      call[NULL].property === 'og:image'
+    const OG_IMAGE_CALLS = META_MOCK.updateTag.mock.calls.filter(
+      ([firstArg]) => firstArg?.property === 'og:image'
     );
 
     expect(OG_IMAGE_CALLS.length).toBe(NULL);

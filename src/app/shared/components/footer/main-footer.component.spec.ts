@@ -77,7 +77,8 @@ describe('MainFooterComponent', () => {
 
     // --- ACT & ASSERT ---
     LINKS.forEach((linkDebugEl, index) => {
-      const LINK_DATA = FOOTER_SOCIAL_LINKS[index];
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const LINK_DATA: any = FOOTER_SOCIAL_LINKS[index as number];
       const NATIVE_ELEMENT = linkDebugEl.nativeElement;
 
       if (LINK_DATA.path) {

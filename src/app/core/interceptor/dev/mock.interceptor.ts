@@ -69,7 +69,7 @@ export const mockInterceptor: HttpInterceptorFn = (req, next) => {
 
         return new HttpResponse({
           status: HTTP_STATUS_OK,
-          body: USER || users[FIRST_ARRAY_INDEX] });
+          body: USER || users.at(FIRST_ARRAY_INDEX) });
       })
     );
   }
