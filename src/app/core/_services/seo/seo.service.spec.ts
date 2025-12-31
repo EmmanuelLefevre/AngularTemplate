@@ -1,8 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { TestBed } from '@angular/core/testing';
 import { Meta, Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
+import { DOCUMENT } from '@angular/common';
 import { of } from 'rxjs';
 
+import { ENVIRONMENT } from '@env/environment';
 import { SeoService } from './seo.service';
 import { SeoData } from '@core/_models/seo/seo.model';
 
@@ -20,10 +23,8 @@ describe('SeoService', () => {
   };
 
   const MOCK_TRANSLATIONS: Record<string, string> = {
-    'SEO.DEFAULT_TITLE': 'Titre par défaut',
-    'SEO.DEFAULT_DESCRIPTION': 'Description par défaut',
     'CUSTOM.TITLE': 'Ma Page',
-    'CUSTOM.DESC': 'Ma Description'
+    'CUSTOM.DESCRIPTION': 'Ma Description'
   };
 
   beforeEach(() => {
@@ -38,7 +39,14 @@ describe('SeoService', () => {
         SeoService,
         { provide: Meta, useValue: META_MOCK },
         { provide: Title, useValue: TITLE_MOCK },
-        { provide: TranslateService, useValue: TRANSLATE_MOCK }
+        { provide: TranslateService, useValue: TRANSLATE_MOCK },
+        {
+          provide: DOCUMENT,
+          useValue: {
+            documentElement: { lang: 'fr' },
+            URL: 'http://localhost:3000/'
+          }
+        }
       ]
     });
 
@@ -51,11 +59,25 @@ describe('SeoService', () => {
     expect(service).toBeTruthy();
   });
 
+  it('should update tags from environment configuration', async() => {
+    // Arrange
+    const DATA: SeoData = { titleKey: 'CUSTOM.TITLE' };
+
+    // Act
+    await service.updateMetaTags(DATA);
+
+    // Assert
+    expect(META_MOCK.updateTag).toHaveBeenCalledWith({
+      name: 'author',
+      content: ENVIRONMENT.application.author
+    });
+  });
+
   it('should update tags with translated values', async() => {
     // Arrange
     const DATA: SeoData = {
       titleKey: 'CUSTOM.TITLE',
-      descriptionKey: 'CUSTOM.DESC'
+      descriptionKey: 'CUSTOM.DESCRIPTION'
     };
 
     // Act
@@ -63,9 +85,25 @@ describe('SeoService', () => {
 
     // Assert
     expect(TITLE_MOCK.setTitle).toHaveBeenCalledWith('Ma Page');
+    expect(META_MOCK.updateTag).toHaveBeenCalledWith(
+      expect.objectContaining({ name: 'description', content: 'Ma Description' })
+    );
+    expect(META_MOCK.updateTag).toHaveBeenCalledWith(
+      expect.objectContaining({ property: 'og:title', content: 'Ma Page' })
+    );
+  });
+
+  it('should use default robots value when not provided', async() => {
+    // Arrange
+    const DATA: SeoData = {};
+
+    // Act
+    await service.updateMetaTags(DATA);
+
+    // Assert
     expect(META_MOCK.updateTag).toHaveBeenCalledWith({
-      name: 'description',
-      content: 'Ma Description'
+      name: 'robots',
+      content: 'index, follow'
     });
   });
 
@@ -97,19 +135,104 @@ describe('SeoService', () => {
     });
   });
 
-  // it('should update open graph type when provided', async() => {
-  //   // --- Arrange ---
-  //   const DATA: SeoData = { type: 'article' };
+  it('should update tags from environment configuration', async() => {
+    // Arrange
+    const DATA: SeoData = { titleKey: 'CUSTOM.TITLE' };
 
-  //   // --- Act ---
-  //   await service.updateMetaTags(DATA);
+    // Act
+    await service.updateMetaTags(DATA);
 
-  //   // --- Assert ---
-  //   expect(META_MOCK.updateTag).toHaveBeenCalledWith(
-  //     expect.objectContaining({
-  //       property: 'og:type',
-  //       content: 'article'
-  //     })
-  //   );
-  // });
+    // Assert
+    expect(META_MOCK.updateTag).toHaveBeenCalledWith({
+      name: 'author',
+      content: ENVIRONMENT.application.author
+    });
+    expect(META_MOCK.updateTag).toHaveBeenCalledWith({
+      name: 'keywords',
+      content: ENVIRONMENT.application.keywords
+    });
+  });
+
+  it('should update open graph type when provided', async() => {
+    // --- Arrange ---
+    const DATA: SeoData = { type: 'article' };
+
+    // --- Act ---
+    await service.updateMetaTags(DATA);
+
+    // --- Assert ---
+    expect(META_MOCK.updateTag).toHaveBeenCalledWith(
+      expect.objectContaining({
+        property: 'og:type',
+        content: 'article'
+      })
+    );
+  });
+
+  it('should update og:image when provided', async() => {
+    // Arrange
+    const DATA: SeoData = { image: 'https://test.com/image.jpg' };
+
+    // Act
+    await service.updateMetaTags(DATA);
+
+    // Assert
+    expect(META_MOCK.updateTag).toHaveBeenCalledWith({
+      property: 'og:image',
+      content: 'https://test.com/image.jpg'
+    });
+  });
+
+  it('should update the document language attribute based on current language', async() => {
+    // --- Arrange ---
+    const DOC = TestBed.inject(DOCUMENT);
+    const TRANSLATE = TestBed.inject(TranslateService);
+
+    (TRANSLATE as any).currentLang = 'en';
+
+    // --- Act ---
+    await service.updateMetaTags({});
+
+    // --- Assert ---
+    expect(DOC.documentElement.lang).toBe('en');
+  });
+
+  it('should fallback to fr if currentLang is undefined', async() => {
+    // --- Arrange ---
+    const DOC = TestBed.inject(DOCUMENT);
+    const TRANSLATE = TestBed.inject(TranslateService);
+
+    (TRANSLATE as any).currentLang = '';
+
+    // --- Act ---
+    await service.updateMetaTags({});
+
+    // --- Assert ---
+    expect(DOC.documentElement.lang).toBe('fr');
+  });
+
+  it('should handle missing documentElement gracefully', async() => {
+    // --- Arrange ---
+    const TRANSLATE_MOCK: Partial<TranslateService> = {
+      get: () => of({}),
+      onLangChange: of({ lang: 'fr', translations: {} }) as any,
+      currentLang: 'fr'
+    };
+
+    TestBed.resetTestingModule();
+    TestBed.configureTestingModule({
+      providers: [
+        SeoService,
+        { provide: Meta, useValue: META_MOCK },
+        { provide: Title, useValue: TITLE_MOCK },
+        { provide: TranslateService, useValue: TRANSLATE_MOCK },
+        { provide: DOCUMENT, useValue: { URL: 'http://localhost' } }
+      ]
+    });
+
+    const LOCAL_SERVICE = TestBed.inject(SeoService);
+
+    // --- Act & Assert ---
+    await expect(LOCAL_SERVICE.updateMetaTags({})).resolves.not.toThrow();
+  });
 });

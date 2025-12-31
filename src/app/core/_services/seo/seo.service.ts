@@ -22,26 +22,28 @@ export class SeoService {
   private readonly config = ENVIRONMENT.application;
 
   async updateMetaTags(data: SeoData = {}): Promise<void> {
-    const KEYS_TO_TRANSLATE: string[] = [];
+    const KEYS: string[] = [];
 
     if (data.titleKey) {
-      KEYS_TO_TRANSLATE.push(data.titleKey);
+      KEYS.push(data.titleKey);
     }
     if (data.descriptionKey) {
-      KEYS_TO_TRANSLATE.push(data.descriptionKey);
+      KEYS.push(data.descriptionKey);
     }
 
-    // Translation ONLY if necessary
-    const TRANSLATIONS = KEYS_TO_TRANSLATE.length > NULL
-      ? await firstValueFrom(this.translate.get(KEYS_TO_TRANSLATE))
-      : {};
+    // Retrieve translations ONLY if there are keys
+    let translations: Record<string, string> = {};
+    if (KEYS.length > NULL) {
+      translations = await firstValueFrom(this.translate.get(KEYS));
+    }
 
-    const PAGE_TITLE = data.titleKey ? TRANSLATIONS[data.titleKey] : '';
-    const DESCRIPTION = data.descriptionKey ? TRANSLATIONS[data.descriptionKey] : '';
+    // Extracting values
+    const TITLE = data.titleKey ? translations[data.titleKey] : null;
+    const DESCRIPTION = data.descriptionKey ? translations[data.descriptionKey] : null;
 
-    if (PAGE_TITLE) {
-      this.title.setTitle(PAGE_TITLE);
-      this.meta.updateTag({ property: 'og:title', content: PAGE_TITLE });
+    if (TITLE) {
+      this.title.setTitle(TITLE);
+      this.meta.updateTag({ property: 'og:title', content: TITLE });
     }
 
     if (DESCRIPTION) {
@@ -49,11 +51,19 @@ export class SeoService {
       this.meta.updateTag({ property: 'og:description', content: DESCRIPTION });
     }
 
-    // Tags without traduction
-    this.document.documentElement.lang = this.translate.currentLang;
+    // Systematic tags (Always updated)
+    if (this.document?.documentElement) {
+      this.document.documentElement.lang = this.translate.currentLang || 'fr';
+    }
+
     this.meta.updateTag({ name: 'robots', content: data.robots || 'index, follow' });
     this.meta.updateTag({ name: 'author', content: this.config.author });
     this.meta.updateTag({ name: 'keywords', content: this.config.keywords });
+    this.meta.updateTag({ name: 'theme-color', content: this.config.themeColor });
+
+    if (data.type) {
+      this.meta.updateTag({ property: 'og:type', content: data.type });
+    }
 
     if (data.image) {
       this.meta.updateTag({ property: 'og:image', content: data.image });
