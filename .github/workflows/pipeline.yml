@@ -6,6 +6,11 @@ on:
   pull_request:
     branches: [main, develop]
 
+# Cancel current execution for this workflow and branch if a new push is detected
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   security:
     name: 🛡️ Security Scans
@@ -13,13 +18,14 @@ jobs:
     permissions:
       security-events: write
       contents: read
+
     steps:
       - name: 📂 Get Code
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: 🔑 Check for Leaked Secrets
+      - name: 🔑 Check Leaked Secrets
         uses: gitleaks/gitleaks-action@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -34,10 +40,13 @@ jobs:
           cache: 'pnpm'
 
       - name: ⚙️ Install Dependencies
-        run: pnpm install
+        run: pnpm install --frozen-lockfile
 
       - name: 🛡️ PNPM Audit
         run: pnpm audit --audit-level=high
+
+      - name: 🧪 Security Linting
+        run: pnpm lint
 
       - name: 🕵️ Snyk Packages Analysis
         uses: snyk/actions/node@master
@@ -52,6 +61,7 @@ jobs:
         uses: github/codeql-action/init@v4
         with:
           languages: javascript-typescript
+          queries: security-extended,security-and-quality
 
       - name: 🔍 Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v4
@@ -59,6 +69,7 @@ jobs:
   quality:
     name: ✨ Quality & Tests
     runs-on: ubuntu-latest
+
     steps:
       - name: 📂 Get Code
         uses: actions/checkout@v4
@@ -129,6 +140,7 @@ jobs:
     # if: github.ref == 'refs/heads/main' && false
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
+
     steps:
       - name: 📂 Get Code
         uses: actions/checkout@v4
