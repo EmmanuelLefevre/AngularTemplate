@@ -61,14 +61,16 @@ export class SeoService {
     this.meta.updateTag({ name: 'keywords', content: this.config.keywords });
     this.meta.updateTag({ name: 'theme-color', content: this.config.themeColor });
 
+    this.meta.updateTag({ property: 'og:url', content: this.document.URL });
+
     if (data.type) {
       this.meta.updateTag({ property: 'og:type', content: data.type });
     }
 
-    if (data.image) {
-      this.meta.updateTag({ property: 'og:image', content: data.image });
+    const IMAGE_TO_USE = data.image || this.config.defaultShareImage;
+    if (IMAGE_TO_USE && IMAGE_TO_USE.trim() !== '') {
+      this.meta.updateTag({ property: 'og:image', content: IMAGE_TO_USE });
+      this.meta.updateTag({ name: 'twitter:image', content: IMAGE_TO_USE });
     }
-
-    this.meta.updateTag({ property: 'og:url', content: this.document.URL });
   }
 }

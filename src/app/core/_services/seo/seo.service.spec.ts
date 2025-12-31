@@ -9,6 +9,8 @@ import { ENVIRONMENT } from '@env/environment';
 import { SeoService } from './seo.service';
 import { SeoData } from '@core/_models/seo/seo.model';
 
+const NULL = 0;
+
 describe('SeoService', () => {
 
   let service: SeoService;
@@ -60,13 +62,13 @@ describe('SeoService', () => {
   });
 
   it('should update tags from environment configuration', async() => {
-    // Arrange
+    // --- ARRANGE ---
     const DATA: SeoData = { titleKey: 'CUSTOM.TITLE' };
 
-    // Act
+    // --- ACT ---
     await service.updateMetaTags(DATA);
 
-    // Assert
+    // --- ASSERT ---
     expect(META_MOCK.updateTag).toHaveBeenCalledWith({
       name: 'author',
       content: ENVIRONMENT.application.author
@@ -74,16 +76,16 @@ describe('SeoService', () => {
   });
 
   it('should update tags with translated values', async() => {
-    // Arrange
+    // --- ARRANGE ---
     const DATA: SeoData = {
       titleKey: 'CUSTOM.TITLE',
       descriptionKey: 'CUSTOM.DESCRIPTION'
     };
 
-    // Act
+    // --- ACT ---
     await service.updateMetaTags(DATA);
 
-    // Assert
+    // --- ASSERT ---
     expect(TITLE_MOCK.setTitle).toHaveBeenCalledWith('Ma Page');
     expect(META_MOCK.updateTag).toHaveBeenCalledWith(
       expect.objectContaining({ name: 'description', content: 'Ma Description' })
@@ -94,13 +96,13 @@ describe('SeoService', () => {
   });
 
   it('should use default robots value when not provided', async() => {
-    // Arrange
+    // --- ARRANGE ---
     const DATA: SeoData = {};
 
-    // Act
+    // --- ACT ---
     await service.updateMetaTags(DATA);
 
-    // Assert
+    // --- ASSERT ---
     expect(META_MOCK.updateTag).toHaveBeenCalledWith({
       name: 'robots',
       content: 'index, follow'
@@ -108,13 +110,13 @@ describe('SeoService', () => {
   });
 
   it('should use default robots value when not provided', async() => {
-    // Arrange
+    // --- ARRANGE ---
     const DATA: SeoData = {};
 
-    // Act
+    // --- ACT ---
     await service.updateMetaTags(DATA);
 
-    // Assert
+    // --- ASSERT ---
     expect(META_MOCK.updateTag).toHaveBeenCalledWith({
       name: 'robots',
       content: 'index, follow'
@@ -122,13 +124,13 @@ describe('SeoService', () => {
   });
 
   it('should use specific robots value for error pages', async() => {
-    // Arrange
+    // --- ARRANGE ---
     const DATA: SeoData = { robots: 'noindex, nofollow' };
 
-    // Act
+    // --- ACT ---
     await service.updateMetaTags(DATA);
 
-    // Assert
+    // --- ASSERT ---
     expect(META_MOCK.updateTag).toHaveBeenCalledWith({
       name: 'robots',
       content: 'noindex, nofollow'
@@ -136,13 +138,13 @@ describe('SeoService', () => {
   });
 
   it('should update tags from environment configuration', async() => {
-    // Arrange
+    // --- ARRANGE ---
     const DATA: SeoData = { titleKey: 'CUSTOM.TITLE' };
 
-    // Act
+    // --- ACT ---
     await service.updateMetaTags(DATA);
 
-    // Assert
+    // --- ASSERT ---
     expect(META_MOCK.updateTag).toHaveBeenCalledWith({
       name: 'author',
       content: ENVIRONMENT.application.author
@@ -170,13 +172,13 @@ describe('SeoService', () => {
   });
 
   it('should update og:image when provided', async() => {
-    // Arrange
+    // --- ARRANGE ---
     const DATA: SeoData = { image: 'https://test.com/image.jpg' };
 
-    // Act
+    // --- ACT ---
     await service.updateMetaTags(DATA);
 
-    // Assert
+    // --- ASSERT ---
     expect(META_MOCK.updateTag).toHaveBeenCalledWith({
       property: 'og:image',
       content: 'https://test.com/image.jpg'
@@ -190,29 +192,29 @@ describe('SeoService', () => {
 
     (TRANSLATE as any).currentLang = 'en';
 
-    // --- Act ---
+    // --- ACT ---
     await service.updateMetaTags({});
 
-    // --- Assert ---
+    // --- ASSERT ---
     expect(DOC.documentElement.lang).toBe('en');
   });
 
   it('should fallback to fr if currentLang is undefined', async() => {
-    // --- Arrange ---
+    // --- ARRANGE ---
     const DOC = TestBed.inject(DOCUMENT);
     const TRANSLATE = TestBed.inject(TranslateService);
 
     (TRANSLATE as any).currentLang = '';
 
-    // --- Act ---
+    // --- ACT ---
     await service.updateMetaTags({});
 
-    // --- Assert ---
+    // --- ASSERT ---
     expect(DOC.documentElement.lang).toBe('fr');
   });
 
   it('should handle missing documentElement gracefully', async() => {
-    // --- Arrange ---
+    // --- ARRANGE ---
     const TRANSLATE_MOCK: Partial<TranslateService> = {
       get: () => of({}),
       onLangChange: of({ lang: 'fr', translations: {} }) as any,
@@ -232,7 +234,53 @@ describe('SeoService', () => {
 
     const LOCAL_SERVICE = TestBed.inject(SeoService);
 
-    // --- Act & Assert ---
+    // --- ACT & ASSERT ---
     await expect(LOCAL_SERVICE.updateMetaTags({})).resolves.not.toThrow();
+  });
+
+  it('should use the environment default image if no image is provided in data', async() => {
+    // --- ARRANGE ---
+    const DATA: SeoData = {};
+
+    // --- ACT ---
+    await service.updateMetaTags(DATA);
+
+    // --- ASSERT ---
+    expect(META_MOCK.updateTag).toHaveBeenCalledWith({
+      property: 'og:image',
+      content: ENVIRONMENT.application.defaultShareImage
+    });
+  });
+
+  it('should update og:image when an image is provided in data', async() => {
+    // --- ARRANGE ---
+    const MOCK_IMAGE = 'https://test.com/image.jpg';
+    const DATA: SeoData = { image: MOCK_IMAGE };
+
+    // --- ACT ---
+    await service.updateMetaTags(DATA);
+
+    // --- ASSERT ---
+    expect(META_MOCK.updateTag).toHaveBeenCalledWith({
+      property: 'og:image',
+      content: MOCK_IMAGE
+    });
+  });
+
+  it('should NOT update og:image if no image is provided and default is empty', async() => {
+    // --- ARRANGE ---
+    (service as any).config.defaultShareImage = '';
+
+    const DATA: SeoData = { image: undefined };
+
+    // --- ACT ---
+    await service.updateMetaTags(DATA);
+
+    // --- ASSERT ---
+    const OG_IMAGE_CALLS = META_MOCK.updateTag.mock.calls.filter(call =>
+      call[NULL].property === 'og:image'
+    );
+
+    expect(OG_IMAGE_CALLS.length).toBe(NULL);
   });
 });
