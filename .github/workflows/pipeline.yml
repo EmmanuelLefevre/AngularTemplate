@@ -98,9 +98,18 @@ jobs:
         run: pnpm lint:scss
 
       - name: 🧪 Run Vitest Tests & Coverage
+        id: vitest
         run: pnpm test:coverage
 
+      - name: 📢 Failure Notification
+        if: failure() && steps.vitest.outcome == 'failure'
+        run: |
+          echo "### ❌ Pipeline failed because test coverage is less than 80% !" >> $GITHUB_STEP_SUMMARY
+          echo "Hey ${{ github.actor }}, please work harder ! 🤣🤣🤣" >> $GITHUB_STEP_SUMMARY
+          exit 1
+
       - name: 🚀 SonarQube Scan
+        if: success()
         uses: SonarSource/sonarqube-scan-action@v6
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
