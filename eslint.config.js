@@ -3,13 +3,15 @@ const { defineConfig } = require('eslint/config');
 const tseslint = require('typescript-eslint');
 const angular = require('angular-eslint');
 const stylistic = require('@stylistic/eslint-plugin');
+const securityPlugin = require('eslint-plugin-security');
 
 module.exports = defineConfig([
   // TS ----------
   {
     files: ['**/*.ts'],
     plugins: {
-      '@stylistic': stylistic
+      '@stylistic': stylistic,
+      security: securityPlugin
     },
     languageOptions: {
       parserOptions: {
@@ -23,10 +25,14 @@ module.exports = defineConfig([
       eslint.configs.recommended,
       ...tseslint.configs.recommended,
       ...tseslint.configs.stylistic,
-      ...angular.configs.tsRecommended
+      ...angular.configs.tsRecommended,
+      securityPlugin.configs.recommended
     ],
     processor: angular.processInlineTemplates,
     rules: {
+      // Security
+      'security/detect-object-injection': 'error',
+
       // Angular selectors configuration
       '@angular-eslint/component-selector': [
         'error',
