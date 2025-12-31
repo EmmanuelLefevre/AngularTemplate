@@ -19,26 +19,26 @@ jobs:
         with:
           fetch-depth: 0
 
-      # - name: 📦 Install PNPM
-      #   uses: pnpm/action-setup@v4
+      - name: 📦 Install PNPM
+        uses: pnpm/action-setup@v4
 
-      # - name: 🏗️ Setup Node
-      #   uses: actions/setup-node@v4
-      #   with:
-      #     node-version: 22
-      #     cache: 'pnpm'
+      - name: 🏗️ Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'pnpm'
 
-      # - name: ⚙️ Install Dependencies
-      #   run: pnpm install
+      - name: ⚙️ Install Dependencies
+        run: pnpm install
 
-      # - name: 🕵️ Snyk Packages Analysis
-      #   uses: snyk/actions/node@master
-      #   env:
-      #     SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-      #   with:
-      #     # 🚩 Only blocks if a 'high' vulnerability is found
-      #     command: test
-      #     args: --severity-threshold=high
+      - name: 🕵️ Snyk Packages Analysis
+        uses: snyk/actions/node@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          # 🚩 Only blocks if a 'high' vulnerability is found
+          command: test
+          args: --severity-threshold=high
 
       - name: 🏗️ Initialize CodeQL
         uses: github/codeql-action/init@v4
@@ -119,7 +119,7 @@ jobs:
     needs: [security, quality]
     # 🚩 Temporarily disabled (will never launch)
     # if: github.ref == 'refs/heads/main' && false
-    if: github.ref == 'refs/heads/main' && false
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
       - name: 📂 Get Code
@@ -145,7 +145,15 @@ jobs:
             useMocks: false,
             apiUrl: 'https://api.your-domain.com/api',
             logLevel: 'error',
-            mockAdminPassword: '${{ secrets.MOCK_ADMIN_PWD }}'
+            mockAdminPassword: '${{ secrets.MOCK_ADMIN_PWD }}',
+            application: {
+              name: 'AngularTemplate',
+              author: 'Emmanuel Lefevre',
+              mainDescription: 'Template Angular 21 avec CI/CD, SEO, i18n et plus',
+              keywords: 'angular, template, seo, i18n, vitest, pnpm',
+              themeColor: '#ff6b6b',
+              defaultShareImage: ''
+            }
           };" > src/_environments/environment.prod.ts
 
       - name: 🧱 Build Project
