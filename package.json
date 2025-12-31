@@ -19,6 +19,11 @@
   },
   "private": true,
   "packageManager": "pnpm@10.25.0",
+  "pnpm": {
+    "overrides": {
+      "qs": ">=6.14.1"
+    }
+  },
   "dependencies": {
     "@angular/cdk": "21.0.5",
     "@angular/common": "~21.0.0",
@@ -54,6 +59,7 @@
     "angular-eslint": "21.1.0",
     "eslint": "9.39.1",
     "eslint-config-prettier": "10.1.8",
+    "eslint-plugin-security": "3.0.1",
     "husky": "9.1.7",
     "jsdom": "27.3.0",
     "lint-staged": "16.2.7",
@@ -75,7 +81,8 @@
     ],
     "src/**/*.ts": [
       "eslint --fix --max-warnings=0",
-      "prettier --write"
+      "prettier --write",
+      "vitest related --run"
     ],
     "src/**/*.{css,scss,json,md}": [
       "prettier --write"
