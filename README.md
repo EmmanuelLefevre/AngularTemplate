@@ -217,13 +217,33 @@ iwr https://get.pnpm.io/install.ps1 -useb | iex
 curl -fsSL https://get.pnpm.io/install.sh | sh -
 ```
 
-2. Via npm (méthode classique)  
+2. Via NPM (méthode classique)  
 
 Si Node.js est déjà installé, c'est souvent la méthode la plus simple et la plus rapide.  
 Exécuter simplement cette commande dans un terminal :  
 
 ```shell
 npm install -g pnpm
+```
+
+3. Audit de séxurité de PNPM
+
+```shell
+pnpm audit
+```
+
+```shell
+pnpm audit --audit-level=high
+```
+
+Si problème avec un package, ajouter sa version patchée dans `package.json` =>  
+
+```JSON
+"pnpm": {
+  "overrides": {
+    "qs": ">=6.14.1"
+  }
+}
 ```
 
 <h2 id="angular">
@@ -257,7 +277,13 @@ pnpm view @angular/cli dist-tags
 **\* Liste complète :**
 
 ```shell
-pnpm view @angular/cli dist-tags
+pnpm view @angular/cli versions
+```
+
+**\* Dernière version :**
+
+```shell
+pnpm view @angular/cli version
 ```
 
 3. Mettre à jour la CLI Angular globalement  
@@ -271,7 +297,7 @@ pnpm add -g @angular/cli@21
 Lancer la commande suivante. L'option `--package-manager=pnpm` est importante, elle configure directement le projet pour utiliser pnpm au lieu de npm par défaut.
 
 ```shell
-ng new mon-projet-angular --style=scss --ssr=false --package-manager=pnpm
+ng new mon-projet-angular --style=scss --ssr=true --package-manager=pnpm
 ```
 
 5. Tableau de compatibilité  
@@ -470,7 +496,7 @@ Pour être sûr à 100%, on peut même ajouter un "flag" pour forcer le gestionn
 ng add @angular-eslint/schematics --package-manager=pnpm
 ```
 
-**\* Note :** Si on demande quel gestionnaire utiliser, confirmer celui déjà choisi (PNPM, yarn...). Ici PNPM. Cette commande va ajouter les dépendances eslint et créer un fichier de configuration (`eslint.config.js` pour les versions modernes utilisant le "Flat Config").
+**\* Note :** Si on demande quel gestionnaire utiliser, confirmer celui déjà choisi (PNPM, Yarn...). Ici PNPM. Cette commande va ajouter les dépendances eslint et créer un fichier de configuration (`eslint.config.js` pour les versions modernes utilisant le "Flat Config").
 
 **Etape 3 :** Empêcher les conflits (ESLint vs Prettier)  
 
@@ -482,13 +508,13 @@ ESLint a aussi des règles de formatage qui peuvent contredire Prettier. Il faut
 pnpm add -D eslint-config-prettier
 ```
 
-2. Installer `Angular ESLint`  
+2. Installer `ESLint` et `Angular ESLint`  
 
 ```shell
-pnpm add -D angular-eslint
+pnpm add -D eslint angular-eslint
 ```
 
-2. Installer les `stylistics`  
+3. Installer les `stylistics`  
 
 [Stylistics Documentation Rules](https://eslint.style/rules/brace-style)  
 
@@ -496,7 +522,13 @@ pnpm add -D angular-eslint
 pnpm add -D @stylistic/eslint-plugin
 ```
 
-3. Configurer ESLint  
+4. Installer le plugin `security`  
+
+```shell
+pnpm add -D eslint-plugin-security
+```
+
+5. Configurer ESLint  
 
 Ouvrir le fichier `eslint.config.js` (qui vient d'être créé à la racine).  
 
@@ -619,7 +651,7 @@ Vous devriez voir s'afficher =>
 **Etape 6 :** Ajouter les autres packages `ESLint`  
 
 ```shell
-pnpm lint
+pnpm add -D @angular-eslint/builder @eslint/js typescript-eslint
 ```
 
 <h2 id="husky">
@@ -661,7 +693,8 @@ Ouvrir le fichier `package.json`. Ajouter la configuration tout à la fin du fic
   ],
   "src/**/*.ts": [
     "eslint --fix --max-warnings=0",
-    "prettier --write"
+    "prettier --write",
+    "vitest related --run"
   ],
   "src/**/*.{css,scss,json,md}": [
     "prettier --write"
@@ -1494,6 +1527,8 @@ npx @andrewbranch/ts5to6 --fixRootDir ./tsconfig.app.json
 </h3>
 
 [ESLint Documentation](https://eslint.org/docs/latest/use/getting-started)  
+
+[ESLint Security Documentation](https://www.npmjs.com/package/eslint-plugin-security)  
 
 [ESLint Angular Documentation](https://www.npmjs.com/package/@angular-eslint/eslint-plugin)  
 
