@@ -1,7 +1,7 @@
 export const ENVIRONMENT = {
   production: true,
   useMocks: false,
-  apiUrl: 'https://api.your-domain.com/api',
+  apiUrl: 'YOUR_API_URL',
   logLevel: 'error',
   mockAdminPassword: '',
   application: {
@@ -10,6 +10,6 @@ export const ENVIRONMENT = {
     mainDescription: 'YOUR_DESCRIPTION',
     keywords: 'YOUR_KEYWORDS',
     themeColor: 'YOUR_THEME_COLOR',
-    defaultShareImage: ''
+    defaultShareImage: 'YOUR_DEFAULT_IMAGE/LOGO__PATH'
   }
 };

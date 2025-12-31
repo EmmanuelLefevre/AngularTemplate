@@ -10,6 +10,6 @@ export const ENVIRONMENT = {
     mainDescription: 'Template Angular 21 avec CI/CD, SEO, i18n et plus',
     keywords: 'angular, template, seo, i18n, vitest, pnpm',
     themeColor: '#ff6b6b',
-    defaultShareImage: ''
+    defaultShareImage: 'https://angulartemplate.emmanuellefevre.com/assets/logos/logo.png'
   }
 };
