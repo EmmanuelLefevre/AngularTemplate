@@ -62,6 +62,10 @@ jobs:
         with:
           languages: javascript-typescript
           queries: security-extended,security-and-quality
+          config: |
+            paths-ignore:
+              - 'src/**/*.spec.ts'
+              - 'src/test-setup.ts'
 
       - name: 🔍 Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v4
