@@ -3,5 +3,13 @@ export const ENVIRONMENT = {
   useMocks: false,
   apiUrl: 'https://api.your-domain.com/api',
   logLevel: 'error',
-  mockAdminPassword: ''
+  mockAdminPassword: '',
+  application: {
+    name: 'PROJECT_NAME',
+    author: 'YOUR_NAME',
+    mainDescription: 'YOUR_DESCRIPTION',
+    keywords: 'YOUR_KEYWORDS',
+    themeColor: 'YOUR_THEME_COLOR',
+    defaultShareImage: ''
+  }
 };
