@@ -1,12 +1,13 @@
 import { ApplicationConfig, provideAppInitializer, inject } from '@angular/core';
 import { HttpClient, provideHttpClient, withInterceptors } from '@angular/common/http';
-import { provideTranslateService, TranslateLoader } from '@ngx-translate/core';
-import { firstValueFrom, Observable } from 'rxjs';
+import { provideTranslateService, TranslateLoader, TranslateService } from '@ngx-translate/core';
+import { provideClientHydration } from '@angular/platform-browser';
 import { provideRouter } from '@angular/router';
+import { catchError, firstValueFrom, Observable, of } from 'rxjs';
 
 import { ROUTES } from '@app/app.routes';
-import { authInterceptor } from '@app/core/interceptor/auth/auth.interceptor';
-import { mockInterceptor } from './core/interceptor/dev/mock.interceptor';
+import { authInterceptor } from '@core/interceptor/auth/auth.interceptor';
+import { mockInterceptor } from '@core/interceptor/dev/mock.interceptor';
 import { AuthService } from '@core/_services/auth/auth.service';
 
 export class CustomTranslateLoader implements TranslateLoader {
@@ -21,17 +22,25 @@ export class CustomTranslateLoader implements TranslateLoader {
 export const APP_CONFIG: ApplicationConfig = {
   providers: [
     provideRouter(ROUTES),
+    provideClientHydration(),
     provideHttpClient(
       withInterceptors([
         authInterceptor,
         mockInterceptor
       ])
     ),
-    provideAppInitializer(() => {
+    provideAppInitializer(async() => {
       const AUTH_SERVICE = inject(AuthService);
-      const REFRESH$ = AUTH_SERVICE.refreshUser();
+      const TRANSLATE = inject(TranslateService);
 
-      return REFRESH$ ? firstValueFrom(REFRESH$) : Promise.resolve(null);
+      const BROWSER_LANG = TRANSLATE.getBrowserLang();
+      const LANG_TO_USE = BROWSER_LANG?.match(/en|fr/) ? BROWSER_LANG : 'fr';
+      TRANSLATE.setFallbackLang('fr');
+
+      await Promise.all([
+        firstValueFrom(AUTH_SERVICE.refreshUser()?.pipe(catchError(() => of(null))) || of(null)),
+        firstValueFrom(TRANSLATE.use(LANG_TO_USE))
+      ]);
     }),
     provideTranslateService({
       fallbackLang: 'fr',
