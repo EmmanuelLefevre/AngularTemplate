@@ -31,6 +31,8 @@ import { MockAdminLoginButtonComponent } from './components/dev/mock-admin-login
 // --- Directives
 export { InputFocusDirective } from './_directives/input-focus/input-focus.directive';
 import { InputFocusDirective } from './_directives/input-focus/input-focus.directive';
+export { InputTitleCaseDirective } from './_directives/input-title-case/input-title-case.directive';
+import { InputTitleCaseDirective } from './_directives/input-title-case/input-title-case.directive';
 export { InputTrimDirective } from './_directives/input-trim/input-trim.directive';
 import { InputTrimDirective } from './_directives/input-trim/input-trim.directive';
 export { InputUppercaseDirective } from './_directives/input-uppercase/input-uppercase.directive';
@@ -71,6 +73,7 @@ export const SHARED_DEV_COMPONENTS = [
 
 export const SHARED_DIRECTIVES = [
   InputFocusDirective,
+  InputTitleCaseDirective,
   InputTrimDirective,
   InputUppercaseDirective
 ] as const;
