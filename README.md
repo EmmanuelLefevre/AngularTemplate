@@ -714,9 +714,17 @@ Ouvrir le fichier `package.json`. Ajouter la configuration tout à la fin du fic
 **Etape 4 :** Dire à Husky d'utiliser Lint-staged  
 Aller dans le dossier `.husky` qui a été créé à la racine du projet. Trouver le fichier nommé `pre-commit`.
 
+- Simple linting  
+
 ```shell
-pnpm test
-npx lint-staged
+pnpm exec lint-staged
+```
+
+- Tests + linting  
+
+```shell
+pnpm test -- --run
+pnpm exec lint-staged
 ```
 
 **Etape 5 :** Ajouter la commande au `package.json` si ça n'a pas été fait automatiquement  
