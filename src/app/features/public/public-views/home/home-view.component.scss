@@ -7,6 +7,10 @@
 .home {
   padding: 2rem 1rem;
 
+  @include respond-to('tablet') {
+    padding: 4rem 1rem 2rem 1rem;
+  }
+
   &__hero {
     display: flex;
     flex-direction: column;
@@ -16,7 +20,7 @@
     @include respond-to('tablet') {
       flex-direction: row;
       justify-content: center;
-      max-width: 500px;
+      max-width: 700px;
       margin: 0 auto;
       text-align: left;
     }
@@ -50,9 +54,6 @@
   &__description {
     max-width: 600px;
     line-height: 1.6;
-    strong {
-      color: var(--primary-color);
-    }
   }
 
   &__accent {
@@ -63,26 +64,59 @@
   &__divider {
     display: none;
 
-    background: linear-gradient(
-      90deg,
-      var(--primary-color) 0%,
-      oklch(from var(--primary-color) l c h) 25%,
-      var(--secondary-color) 100%
-    );
-
     @include respond-to('tablet') {
       display: block;
       width: 2px;
-      height: 150px;
+      height: 250px;
       flex-shrink: 0;
       margin: 0 1rem;
 
       background: linear-gradient(
-        180deg,
-        var(--primary-color) 0%,
-        oklch(from var(--primary-color) l c h) 25%,
-        var(--secondary-color) 100%
+        90deg,
+        var(--secondary-color) 0%,
+        oklch(from var(--secondary-color) l c h) 25%,
+        var(--primary-color) 100%
       );
+    }
+  }
+
+  &__resources {
+    @include respond-to('desktop') {
+      flex: 1;
+    }
+  }
+}
+
+.pill-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-weight: bold;
+  color: var(--secondary-color);
+  gap: 1rem;
+  width: 100%;
+
+  @include respond-to('desktop') {
+    align-items: flex-start;
+    width: 100%;
+  }
+}
+
+.pill {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  width: fit-content;
+  min-width: 220px;
+
+  @include respond-to('tablet') {
+    justify-content: flex-start;
+    font-size: 1.1rem;
+    padding-left: 1.5rem;
+
+    &:hover {
+      color: var(--primary-color);
     }
   }
 }
