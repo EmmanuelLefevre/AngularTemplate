@@ -10,8 +10,12 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       actions: write
+
     steps:
-      - name: 🗑️ Delete cancelled runs
+      - name: 📂 Get Code
+        uses: actions/checkout@v4
+
+      - name: 🗑️ Delete Cancelled Runs
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
