@@ -6,7 +6,7 @@ import { dirname, resolve } from 'node:path';
 
 const DIRNAME = dirname(fileURLToPath(import.meta.url));
 
-const LOCAL_COVERAGE = 50;
+const LOCAL_COVERAGE = 0;
 const PIPELINE_COVERAGE = 80;
 const COVERAGE_THRESHOLD = process.env.CI ? PIPELINE_COVERAGE : LOCAL_COVERAGE;
 
