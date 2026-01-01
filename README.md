@@ -10,6 +10,11 @@
 
 <br>
 
+![Security Scans](https://github.com/TON_USER/TON_REPO/actions/workflows/pipeline.yml/badge.svg)
+![CodeQL](https://github.com/TON_USER/TON_REPO/actions/workflows/codeql-analysis.yml/badge.svg)
+
+<br>
+
 <br>
 
 <br>
