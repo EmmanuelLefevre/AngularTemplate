@@ -693,8 +693,7 @@ Ouvrir le fichier `package.json`. Ajouter la configuration tout à la fin du fic
   ],
   "src/**/*.ts": [
     "eslint --fix --max-warnings=0",
-    "prettier --write",
-    "vitest related --run"
+    "prettier --write"
   ],
   "src/**/*.{css,scss,json,md}": [
     "prettier --write"
@@ -716,7 +715,8 @@ Ouvrir le fichier `package.json`. Ajouter la configuration tout à la fin du fic
 Aller dans le dossier `.husky` qui a été créé à la racine du projet. Trouver le fichier nommé `pre-commit`.
 
 ```shell
-pnpm exec lint-staged
+pnpm test
+npx lint-staged
 ```
 
 **Etape 5 :** Ajouter la commande au `package.json` si ça n'a pas été fait automatiquement  
