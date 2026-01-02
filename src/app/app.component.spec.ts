@@ -10,6 +10,7 @@ import { AuthService } from '@core/_services/auth/auth.service';
 import { SeoService } from '@core/_services/seo/seo.service';
 
 const NAV_ID = 1;
+const NULL = 0;
 
 describe('AppComponent', () => {
 
@@ -168,5 +169,23 @@ describe('AppComponent', () => {
 
     // --- ASSERT ---
     expect(seoServiceMock.updateMetaTags).toHaveBeenCalledWith(undefined);
+  });
+
+  it('should scroll to top of window on NavigationEnd', () => {
+    // --- ARRANGE ---
+    const SCROLL_SPY = vi.spyOn(window, 'scrollTo').mockImplementation((): void => {
+      return undefined;
+    });
+
+    fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+
+    // --- ACT ---
+    routerEventsSubject.next(new NavigationEnd(NAV_ID, '/new-page', '/new-page'));
+
+    // --- ASSERT ---
+    expect(SCROLL_SPY).toHaveBeenCalledWith(NULL, NULL);
+
+    SCROLL_SPY.mockRestore();
   });
 });

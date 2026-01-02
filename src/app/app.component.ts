@@ -7,9 +7,13 @@ import { AuthService } from '@core/_services/auth/auth.service';
 import { SeoService } from '@core/_services/seo/seo.service';
 import { SeoData } from '@core/_models/seo/seo.model';
 
+const NULL = 0;
+
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [
+    RouterOutlet,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
@@ -29,6 +33,7 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.authService.initAuth();
     this.initSeoListener();
+    this.initScrollTopListener();
   }
 
   private initSeoListener(): void {
@@ -52,5 +57,13 @@ export class AppComponent implements OnInit {
       child = child.firstChild;
     }
     return child?.snapshot.data || {};
+  }
+
+  private initScrollTopListener(): void {
+    this.router.events.pipe(
+      filter((event): event is NavigationEnd => event instanceof NavigationEnd)
+    ).subscribe(() => {
+      window.scrollTo(NULL, NULL);
+    });
   }
 }
