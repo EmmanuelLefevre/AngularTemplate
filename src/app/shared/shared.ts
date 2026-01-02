@@ -23,6 +23,8 @@ export { LanguageToggleComponent } from './components/language-toggle/language-t
 import { LanguageToggleComponent } from './components/language-toggle/language-toggle.component';
 export { MainButtonComponent } from './components/button/main-button.component';
 import { MainButtonComponent } from './components/button/main-button.component';
+export { ScrollToTopComponent } from './components/scroll-to-top/scroll-to-top.component';
+import { ScrollToTopComponent } from './components/scroll-to-top/scroll-to-top.component';
 
 // --- DEV
 export { MockAdminLoginButtonComponent } from './components/dev/mock-admin-login-button/mock-admin-login-button.component';
@@ -65,6 +67,7 @@ export const SHARED_LAYOUT_COMPONENTS = [
 export const SHARED_UI_COMPONENTS = [
   LanguageToggleComponent,
   MainButtonComponent,
+  ScrollToTopComponent,
 ] as const;
 
 export const SHARED_DEV_COMPONENTS = [
