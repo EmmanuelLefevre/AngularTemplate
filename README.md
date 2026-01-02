@@ -45,6 +45,7 @@
 - [STYLES](#styles)
 - [SCHEMATICS](#schematics)
 - [CONFIGURATION DE BUILD](#configuration-de-build)
+- [MULTI LANGUES](#multi-langues)
 - [ERREURS FREQUENTES](#erreurs-frequentes)
 - [TOOLING DOCUMENTATIONS](#tooling-documentations)
   - [Prettier Rules](#prettier-rules)
@@ -1411,8 +1412,18 @@ De plus il faut ajouter le favicon, les scripts, le browser et l'index dans l'ob
 }
 ```
 
+<h2 id="multi-langues">
+  ⚠️ MULTI LANGUES
+</h2>
+
+### Installer les librairies suivantes  
+
+```shell
+pnpm add @ngx-translate/core @ngx-translate/http-loader
+```
+
 <h2 id="erreurs-frequentes">
-  ⚠️ ERREURS FREQUENTES
+  🗣️ ERREURS FREQUENTES
 </h2>
 
 ### 1. Warning lors du premier push !  
