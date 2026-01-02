@@ -79,14 +79,18 @@
  ┃ ┃ ┣ 🧱_models
  ┃ ┃ ┃ ┣ 📂auth
  ┃ ┃ ┃ ┣ 📂links
+ ┃ ┃ ┃ ┣ 📂seo
  ┃ ┃ ┃ ┗ 📂user
  ┃ ┃ ┣ 💉_services
- ┃ ┃ ┃ ┗ 🔐auth
- ┃ ┃ ┃   ┗ 📄auth.service.ts
+ ┃ ┃ ┃ ┣ 🔐auth
+ ┃ ┃ ┃ ┃ ┗ 📄auth.service.ts
+ ┃ ┃ ┃ ┗ 📈seo
+ ┃ ┃ ┃   ┗ 📄seo.service.ts
  ┃ ┃ ┣ 📂guard
  ┃ ┃ ┃ ┗ 📄admin.guard.ts
  ┃ ┃ ┗ 📂interceptor
- ┃ ┃   ┗ 📄auth.interceptor.ts
+ ┃ ┃   ┗ 📂auth
+ ┃ ┃     ┗ 📄auth.interceptor.ts
  ┃ ┣ 🧩features
  ┃ ┃ ┣ 👔admin
  ┃ ┃ ┃ ┣ ⚙️_config
@@ -99,10 +103,8 @@
  ┃ ┃ ┃ ┣ 👁️admin-views
  ┃ ┃ ┃ ┣ 📂settings
  ┃ ┃ ┃ ┣ 📂users
- ┃ ┃ ┃ ┣ 📄admin.component.html
- ┃ ┃ ┃ ┣ 📄admin.component.ts
- ┃ ┃ ┃ ┣ 📄admin.config.ts
- ┃ ┃ ┃ ┗ 📄admin.route.ts
+ ┃ ┃ ┃ ┣ 📄admin-layout.component.html
+ ┃ ┃ ┃ ┗ 📄admin-layout.component.ts
  ┃ ┃ ┣ 🔓private
  ┃ ┃ ┃ ┣ ⚙️_config
  ┃ ┃ ┃ ┣ 🧱_models
