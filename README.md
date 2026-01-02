@@ -1416,7 +1416,7 @@ De plus il faut ajouter le favicon, les scripts, le browser et l'index dans l'ob
   🗣️ MULTI LANGUES
 </h2>
 
-### Installer les librairies suivantes  
+Installer les librairies suivantes =>  
 
 ```shell
 pnpm add @ngx-translate/core @ngx-translate/http-loader
