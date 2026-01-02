@@ -3,3 +3,73 @@
 :host {
   display: block;
 }
+
+.scroll-top {
+  display: none;
+
+  @include respond-to('mobile') {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: fixed;
+    width: 3.5rem;
+    height: 3.5rem;
+    right: 2vw;
+    bottom: 2vh;
+    border-radius: 50%;
+    line-height: 28px;
+    border: 3px solid var(--bg-color-light);
+    background-color: var(--button-scroll-bg-color);
+    opacity: 0;
+    transition: all 0.2s ease-in-out;
+    z-index: 1000;
+
+    &:hover {
+      background-color: var(--color-white);
+      border-color: var(--color-blue);
+
+      .scroll-top__icon {
+        color: var(--color-blue);
+      }
+    }
+  }
+
+  @include respond-to('desktop') {
+    width: 4rem;
+    height: 4rem;
+
+    .scroll-top__icon {
+      font-size: 35px;
+    }
+  }
+
+  @include respond-to('desktop-xl') {
+    width: 4.4rem;
+    height: 4.4rem;
+    right: 2.3vw;
+    bottom: 4vh;
+
+    .scroll-top__icon {
+      font-size: 40px;
+    }
+  }
+
+  &__icon {
+    font-size: 30px;
+    color: var(--button-scroll-color);
+    transition: color 0.2s ease-in-out;
+
+    &:hover {
+      animation: rubber-band 1.5s linear 0s infinite reverse;
+    }
+  }
+
+  &--show {
+    opacity: 1 !important;
+  }
+
+  &__tooltip {
+    background-color: var(--color-blue) !important;
+  }
+}

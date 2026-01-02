@@ -1,1 +1,14 @@
-<p>scroll-to-top works!</p>
+<button
+  type="button"
+  class="scroll-top"
+  [class.scroll-top--visible]="showScroll()"
+  (click)="scrollToTop()"
+  [aria-label]="'UI_COMPONENTS.SCROLL_TO_TOP.ARIA' | translate"
+  [matTooltip]="'UI_COMPONENTS.SCROLL_TO_TOP.TOOLTIP' | translate"
+  matTooltipPosition="left"
+  matTooltipShowDelay="200"
+  matTooltipClass="scroll-top__tooltip">
+  <fa-icon
+    [icon]="faAngleDoubleUp"
+    class="scroll-top__icon" />
+</button>
