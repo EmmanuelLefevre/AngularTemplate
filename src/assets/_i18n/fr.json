@@ -57,5 +57,11 @@
     "LABEL": "Erreur",
     "BUTTON_BACK": "Retour à l'accueil"
   },
-  "LANGUAGE_TOGGLE": "Changer la langue en Français"
+  "UI_COMPONENTS": {
+    "LANGUAGE_TOGGLE": "Changer la langue en Français",
+    "SCROLL_TO_TOP": {
+      "ARIA": "Bouton pour revenir en haut de la page",
+      "TOOLTIP": "Haut de page"
+    }
+  }
 }
