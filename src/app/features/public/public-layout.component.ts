@@ -3,6 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { MockAdminLoginButtonComponent } from '@app/shared/components/dev/mock-admin-login-button/mock-admin-login-button.component';
+import { ScrollToTopComponent } from '@shared/components/scroll-to-top/scroll-to-top.component';
 import { SHARED_LAYOUT_COMPONENTS } from '@shared';
 
 @Component({
@@ -10,6 +11,7 @@ import { SHARED_LAYOUT_COMPONENTS } from '@shared';
   imports: [
     MockAdminLoginButtonComponent,
     RouterOutlet,
+    ScrollToTopComponent,
     TranslateModule,
     ...SHARED_LAYOUT_COMPONENTS
   ],
