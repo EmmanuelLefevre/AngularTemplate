@@ -7,8 +7,8 @@ import { Observable, of } from 'rxjs';
 
 import { ScrollToTopComponent } from './scroll-to-top.component';
 
-const SCROLL_SUFFICIENT = 900;
-const INSUFFICIENT_SCROLL = 500;
+const SCROLL_SUFFICIENT = 100;
+const INSUFFICIENT_SCROLL = 10;
 const RESTORE_SCROLL = 0;
 const VIEWPORT_HEIGHT = 800;
 

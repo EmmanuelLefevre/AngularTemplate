@@ -6,6 +6,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { faAngleDoubleUp } from '@fortawesome/free-solid-svg-icons';
 
+const THRESHOLD = 50;
 const TOP_POSITION = 0;
 
 @Component({
@@ -31,8 +32,6 @@ export class ScrollToTopComponent {
   @HostListener('window:scroll', [])
 
   onWindowScroll(): void {
-    const THRESHOLD = window.innerHeight;
-
     const SCROLL_POSITION = window.scrollY ||
       window.pageYOffset ||
       this.document.documentElement.scrollTop ||

@@ -6,38 +6,44 @@
 
 .scroll-top {
   display: none;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border: 3px solid var(--primary-color);
+  border-radius: 50%;
+  background-color: var(--color-white);
+  opacity: 0;
+  transition: all 0.2s ease-in-out;
+  z-index: 10000;
+
+  &--visible {
+    display: flex;
+    opacity: 1;
+  }
+
+  &:hover {
+    background-color: var(--primary-color);
+
+    .scroll-top__icon {
+      color: var(--color-white);
+      animation: rubber-band 1.5s linear 0s infinite reverse;
+    }
+  }
 
   @include respond-to('mobile') {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    position: fixed;
     width: 3.5rem;
     height: 3.5rem;
     right: 2vw;
     bottom: 2vh;
-    border-radius: 50%;
     line-height: 28px;
-    border: 3px solid var(--bg-color-light);
-    background-color: var(--button-scroll-bg-color);
-    opacity: 0;
-    transition: all 0.2s ease-in-out;
-    z-index: 1000;
-
-    &:hover {
-      background-color: var(--color-white);
-      border-color: var(--color-blue);
-
-      .scroll-top__icon {
-        color: var(--color-blue);
-      }
-    }
   }
 
   @include respond-to('desktop') {
     width: 4rem;
     height: 4rem;
+    right: 2vw;
+    bottom: 2vh;
 
     .scroll-top__icon {
       font-size: 35px;
@@ -57,19 +63,12 @@
 
   &__icon {
     font-size: 30px;
-    color: var(--button-scroll-color);
+    color: var(--primary-color);
     transition: color 0.2s ease-in-out;
-
-    &:hover {
-      animation: rubber-band 1.5s linear 0s infinite reverse;
-    }
-  }
-
-  &--show {
-    opacity: 1 !important;
+    background: transparent;
   }
 
   &__tooltip {
-    background-color: var(--color-blue) !important;
+    background-color: var(--color-white);
   }
 }
