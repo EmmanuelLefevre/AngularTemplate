@@ -64,10 +64,17 @@
 }
 
 /* =========== ROBOTO =========== */
-// Normal
+// Normal / Italic
 @font-face {
   font-family: 'Roboto';
   src: url('/assets/fonts/roboto/roboto.ttf') format('truetype');
   font-weight: 100 900;
   font-display: swap;
+}
+
+/* =========== HELLO RADEA =========== */
+@font-face {
+  font-family: 'Hello Radea';
+  font-weight: normal;
+  src: url('/assets/fonts/hello_radea.woff') format('woff');
 }
