@@ -33,14 +33,14 @@
     flex: 0 1 auto;
     font-weight: bold;
     font-size: 1.5rem;
-    color: var(--text-color);
+    color: var(--text-black-color);
 
     span {
-      color: var(--primary-color);
+      color: var(--text-primary-color);
     }
 
     &:focus-visible {
-      outline: 2px solid var(--primary-color);
+      outline: 2px solid var(--text-primary-color);
       outline-offset: 5px;
     }
   }
@@ -106,7 +106,7 @@
   }
 
   &__link {
-    color: var(--text-color);
+    color: var(--text-black-color);
     font-size: 1.2rem;
     font-weight: 500;
     opacity: 0;
@@ -123,7 +123,7 @@
 
     &.active,
     &:hover {
-      color: var(--primary-color);
+      color: var(--text-primary-color);
     }
   }
 
@@ -136,7 +136,7 @@
       flex: 0 1 auto;
       justify-content: flex-end;
       align-items: center;
-      gap: 20px;
+      gap: 30px;
     }
   }
 

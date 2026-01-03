@@ -12,7 +12,7 @@
   text-align: center;
   border: 3px solid var(--primary-color);
   border-radius: 50%;
-  background-color: var(--color-white);
+  background-color: var(--white-color);
   opacity: 0;
   transition: all 0.2s ease-in-out;
   z-index: 10000;
@@ -26,7 +26,7 @@
     background-color: var(--primary-color);
 
     .scroll-top__icon {
-      color: var(--color-white);
+      color: var(--white-color);
       animation: rubber-band 1.5s linear 0s infinite reverse;
     }
   }
@@ -69,6 +69,6 @@
   }
 
   &__tooltip {
-    background-color: var(--color-white);
+    background-color: var(--white-color);
   }
 }

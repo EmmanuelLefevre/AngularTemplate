@@ -10,18 +10,17 @@
 
 .c-mock-admin-btn {
   font-weight: bold;
-  width: fit-content;
   padding: 0.6rem 1.2rem;
-  color: var(--primary-color);
+  color: var(--text-primary-color);
   border-radius: 6px;
   border: 2px solid var(--primary-color);
   transition: all 0.2s ease;
-  background: var(--color-white);
+  background: var(--white-color);
 
   &:hover {
-    color: var(--color-white);
+    color: var(--text-white-color);
     background: var(--primary-color);
-    opacity: 0.7;
+    opacity: 0.8;
     transform: translateY(-1px);
   }
 

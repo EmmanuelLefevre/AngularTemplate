@@ -2,22 +2,23 @@
 
 :host {
   display: block;
+  margin: 0 auto;
 }
 
 .c-btn {
   display: inline-block;
-  text-decoration: none;
-  border: 2px solid transparent;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.3s ease;
+  font-weight: bold;
+  width: 100%;
   padding: 0;
+  border-radius: 6px;
+  border: 2px solid var(--primary-color);
+  transition: all 0.2s ease;
 
   &__content {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 10px 24px;
+    padding: 6px 12px;
     gap: 10px;
     min-height: 44px;
   }
@@ -40,34 +41,39 @@
     animation: btn-spin 0.75s linear infinite;
   }
 
+  &:hover:not(:disabled, .is-disabled) {
+    opacity: 0.8;
+    transform: translateY(-1px);
+  }
+
   &--primary {
-    background-color: var(--primary-color);
-    color: var(--color-white);
+    color: var(--text-primary-color);
+    background-color: var(--white-color);
     &:hover:not(:disabled) {
-      background-color: var(--primary-dark);
+      color: var(--white-color);
+      background-color: var(--primary-color);
     }
   }
 
   &--outline {
+    color: var(--text-primary-color);
     background-color: transparent;
-    border-color: var(--primary-color);
-    color: var(--primary-color);
     &:hover:not(:disabled) {
       background-color: var(--primary-light);
     }
   }
 
   &--ghost {
+    color: var(--text-primary-color);
     background-color: transparent;
-    color: var(--text-color);
     &:hover:not(:disabled) {
       background-color: rgba(0, 0, 0, 0.05);
     }
   }
 
   &--danger {
-    background-color: var(--error-color);
-    color: var(--color-white);
+    color: var(--text-white-color);
+    background-color: var(--danger-color);
   }
 
   &.is-disabled {
