@@ -12,14 +12,6 @@ import { UnfoundErrorComponent } from './error-handler/error-views/unfound-error
 export { UnknownErrorComponent } from './error-handler/error-views/unknown-error/unknown-error.component';
 import { UnknownErrorComponent } from './error-handler/error-views/unknown-error/unknown-error.component';
 
-// --- Layout Components
-export { HeaderNavComponent } from './components/header/header-nav.component';
-import { HeaderNavComponent } from './components/header/header-nav.component';
-export { LoginViewComponent } from '@app/features/public/public-views/login/login-view.component';
-import { LoginViewComponent } from '@app/features/public/public-views/login/login-view.component';
-export { MainFooterComponent } from './components/footer/main-footer.component';
-import { MainFooterComponent } from './components/footer/main-footer.component';
-
 // --- UI
 export { DynamicFormComponent } from './components/dynamic-form/dynamic-form.component';
 import { DynamicFormComponent } from './components/dynamic-form/dynamic-form.component';
@@ -65,12 +57,6 @@ export const SHARED_ERRORS_COMPONENTS = [
   UnauthorizedErrorComponent,
   UnfoundErrorComponent,
   UnknownErrorComponent
-] as const;
-
-export const SHARED_LAYOUT_COMPONENTS = [
-  HeaderNavComponent,
-  LoginViewComponent,
-  MainFooterComponent,
 ] as const;
 
 export const SHARED_UI_COMPONENTS = [
