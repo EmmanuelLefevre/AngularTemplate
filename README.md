@@ -158,12 +158,12 @@
  ┣ 🎨styles
  ┃ ┣ 📂abstracts
  ┃ ┃ ┣ 🎨_functions.scss
- ┃ ┃ ┣ 🎨_globals.scss
  ┃ ┃ ┣ 🎨_mixins.scss
  ┃ ┃ ┗ 🎨_index.scss
  ┃ ┣ 📂base
  ┃ ┃ ┣ 🎨_animations.scss
  ┃ ┃ ┣ 🎨_fonts.scss
+ ┃ ┃ ┣ 🎨_globals.scss
  ┃ ┃ ┣ 🎨_reset.scss
  ┃ ┃ ┣ 🎨_typography.scss
  ┃ ┃ ┗ 🎨_utilities.scss
