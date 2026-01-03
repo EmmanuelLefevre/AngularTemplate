@@ -11,7 +11,7 @@ import { DynamicFormComponent } from '@shared/components/dynamic-form/dynamic-fo
 import { MainButtonComponent } from '@shared/components/button/main-button.component';
 
 @Component({
-  selector: 'app-login-view',
+  selector: 'login-view',
   imports: [
     TranslateModule,
     DynamicFormComponent,

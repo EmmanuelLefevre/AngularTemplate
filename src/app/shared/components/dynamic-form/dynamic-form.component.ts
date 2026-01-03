@@ -6,7 +6,7 @@ import { GenericInputComponent } from '@shared/components/generic-input/generic-
 import { MainButtonComponent } from '@shared/components/button/main-button.component';
 
 @Component({
-  selector: 'app-dynamic-form',
+  selector: 'dynamic-form',
   imports: [
     ReactiveFormsModule,
     GenericInputComponent,

@@ -4,7 +4,7 @@
   class="c-form">
   <div class="c-form__fields">
     @for (field of visibleFields(); track field.name) {
-      <app-generic-input
+      <generic-input
         [id]="field.name"
         [label]="field.label"
         [type]="field.type"

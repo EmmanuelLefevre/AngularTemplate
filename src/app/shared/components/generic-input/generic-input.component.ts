@@ -5,7 +5,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { FormFieldConfig } from '@core/_models/forms/form.model';
 
 @Component({
-  selector: 'app-generic-input',
+  selector: 'generic-input',
   imports: [
     ReactiveFormsModule,
     TranslateModule

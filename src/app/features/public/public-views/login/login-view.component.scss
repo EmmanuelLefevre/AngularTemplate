@@ -3,3 +3,70 @@
 :host {
   display: block;
 }
+
+.v-login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 70px);
+  padding: 20px;
+  background-color: var(--bg-light-color);
+
+  &__container {
+    width: 100%;
+    max-width: 480px;
+    padding: 40px;
+    border-radius: 12px;
+    border: 2px solid var(--primary-color);
+    background: var(--color-white);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  }
+
+  &__header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  &__title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--text-primary-color);
+    margin-bottom: 10px;
+  }
+
+  &__subtitle {
+    font-size: 1rem;
+    color: var(--text-light-color);
+    line-height: 1.5;
+  }
+
+  &__footer {
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+    text-align: center;
+
+    // On s'assure que le bouton ghost est bien centré
+    main-button {
+      display: inline-block;
+      width: auto;
+    }
+  }
+
+  // Animation simple lors du changement de mode
+  dynamic-form {
+    display: block;
+    animation: fadeIn 0.3s ease-in-out;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
