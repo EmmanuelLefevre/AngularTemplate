@@ -1,4 +1,4 @@
-import { provideRouter } from '@angular/router';
+import { provideRouter, Router } from '@angular/router';
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
@@ -29,6 +29,8 @@ describe('HeaderNavComponent', () => {
 
     vi.spyOn(translateService, 'getFallbackLang').mockReturnValue('fr');
     vi.spyOn(translateService, 'use').mockReturnValue(of({}));
+
+    document.body.className = '';
   });
 
   afterEach(() => {
@@ -81,5 +83,19 @@ describe('HeaderNavComponent', () => {
 
     // --- ASSERT ---
     expect(document.body.classList.contains('no-scroll')).toBe(false);
+  });
+
+  it('should close the menu and navigate to /login when onLoginClick() is called', () => {
+    // --- ARRANGE ---
+    const ROUTER = TestBed.inject(Router);
+    const NAVIGATE_SPY = vi.spyOn(ROUTER, 'navigate').mockImplementation(() => Promise.resolve(true));
+    const CLOSE_MESNU_SPY = vi.spyOn(component, 'closeMenu');
+
+    // --- ACT ---
+    component.onLoginClick();
+
+    // --- ASSERT ---
+    expect(CLOSE_MESNU_SPY).toHaveBeenCalled();
+    expect(NAVIGATE_SPY).toHaveBeenCalledWith(['/login']);
   });
 });
