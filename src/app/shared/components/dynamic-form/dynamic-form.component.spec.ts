@@ -15,9 +15,23 @@ describe('DynamicFormComponent', () => {
   let fixture: ComponentFixture<DynamicFormComponent>;
 
   const MOCK_FIELDS: FormFieldConfig[] = [
-    { name: 'email', label: 'Email', type: 'email', validators: [Validators.required] },
-    { name: 'password', label: 'Password', type: 'password' },
-    { name: 'confirmPassword', label: 'Confirm', type: 'password' }
+    {
+      name: 'email',
+      label: 'Email',
+      type: 'email',
+      initialValue: 'test@test.com',
+      validators: [Validators.required]
+    },
+    {
+      name: 'password',
+      label: 'Password',
+      type: 'password'
+    },
+    {
+      name: 'confirmPassword',
+      label: 'Confirm',
+      type: 'password'
+    }
   ];
 
   beforeEach(async() => {
@@ -124,6 +138,33 @@ describe('DynamicFormComponent', () => {
 
       // --- ASSERT ---
       expect(component['form'].get('email')?.value).toBe(null);
+    });
+  });
+
+  describe('Effect & initialization', () => {
+    it('should create controls and handle missing initialValue (branch coverage)', async() => {
+      // --- ARRANGE ---
+      const FIELDS: FormFieldConfig[] = [{ name: 'empty', label: 'Empty', type: 'text' }];
+
+      // --- ACT ---
+      fixture.componentRef.setInput('fields', FIELDS);
+      fixture.detectChanges();
+
+      // --- ASSERT ---
+      expect(component['form'].contains('empty')).toBe(true);
+      expect(component['form'].get('empty')?.value).toBe('');
+    });
+
+    it('should not re-add controls if they already exist', async() => {
+      // --- ARRANGE ---
+      const EXPECTED_FIELDS_COUNT = MOCK_FIELDS.length;
+
+      // --- ACT ---
+      fixture.componentRef.setInput('fields', [...MOCK_FIELDS]);
+      fixture.detectChanges();
+
+      // --- ASSERT ---
+      expect(Object.keys(component['form'].controls).length).toBe(EXPECTED_FIELDS_COUNT);
     });
   });
 });
