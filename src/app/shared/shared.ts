@@ -27,6 +27,8 @@ export { GenericInputComponent } from './components/generic-input/generic-input.
 import { GenericInputComponent } from './components/generic-input/generic-input.component';
 export { LanguageToggleComponent } from './components/language-toggle/language-toggle.component';
 import { LanguageToggleComponent } from './components/language-toggle/language-toggle.component';
+export { LinkComponent } from './components/link/link.component';
+import { LinkComponent } from './components/link/link.component';
 export { MainButtonComponent } from './components/button/main-button.component';
 import { MainButtonComponent } from './components/button/main-button.component';
 export { ScrollToTopComponent } from './components/scroll-to-top/scroll-to-top.component';
@@ -75,6 +77,7 @@ export const SHARED_UI_COMPONENTS = [
   DynamicFormComponent,
   GenericInputComponent,
   LanguageToggleComponent,
+  LinkComponent,
   MainButtonComponent,
   ScrollToTopComponent,
 ] as const;

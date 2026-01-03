@@ -1,0 +1,21 @@
+@use 'abstracts' as *;
+
+:host {
+  display: block;
+}
+
+.c-link {
+  display: inline-flex;
+  align-items: center;
+  color: var(--text-primary-color);
+  gap: 0.4rem;
+  font: inherit;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &__icon {
+    font-size: 10px;
+  }
+}

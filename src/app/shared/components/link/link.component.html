@@ -1,0 +1,14 @@
+<a
+  [routerLink]="routerLink() ? routerLink() : null"
+  [queryParams]="queryParams()"
+  [class]="'c-link ' + customClass()"
+  [attr.aria-label]="ariaLabel() | translate"
+  (click)="onHandleClick($event)">
+  @if (icon()) {
+    <i
+      [class]="icon() + ' c-link__icon'"
+      aria-hidden="true"></i>
+  }
+
+  <span class="c-link__label">{{ label() | translate }}</span>
+</a>
