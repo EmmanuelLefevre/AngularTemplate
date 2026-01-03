@@ -1,6 +1,7 @@
 <div
   class="c-field"
-  [class]="className()">
+  [class]="className()"
+  [class.is-invalid]="hasError()">
   <label
     [for]="id()"
     class="c-field__label"
@@ -13,8 +14,7 @@
       [type]="inputType()"
       [formControl]="control()"
       [placeholder]="placeholder() | translate"
-      class="c-field__input"
-      [class.is-invalid]="control().invalid && control().touched" />
+      class="c-field__input" />
 
     @if (isPassword() && behaviors()?.hasPasswordToggle) {
       <button
@@ -26,4 +26,10 @@
       </button>
     }
   </div>
+
+  @if (hasError()) {
+    <div class="c-field__error">
+      <span>{{ 'FORM.ERROR.INVALID' | translate }}</span>
+    </div>
+  }
 </div>

@@ -1,4 +1,4 @@
-import { Component, input, signal, computed } from '@angular/core';
+import { Component, input, signal, computed, ChangeDetectionStrategy } from '@angular/core';
 import { ReactiveFormsModule, FormControl } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -11,7 +11,8 @@ import { FormFieldConfig } from '@core/_models/forms/form.model';
     TranslateModule
   ],
   templateUrl: './generic-input.component.html',
-  styleUrl: './generic-input.component.scss'
+  styleUrl: './generic-input.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class GenericInputComponent {
@@ -24,13 +25,22 @@ export class GenericInputComponent {
   readonly className = input<string>('');
   readonly behaviors = input<FormFieldConfig['behaviors']>();
 
-  protected showPassword = signal(false);
-  protected isPassword = computed(() => this.type() === 'password');
-  protected inputType = computed(() =>
+  protected readonly showPassword = signal(false);
+  protected readonly isPassword = computed(() => this.type() === 'password');
+
+  protected readonly inputType = computed(() =>
     (this.isPassword() && this.showPassword()) ? 'text' : this.type()
   );
 
-  togglePassword(): void {
+  protected togglePassword(): void {
     this.showPassword.update(v => !v);
   }
+
+  /**
+   * Helper to know if we display the error
+   */
+  protected readonly hasError = computed(() => {
+    const CTRL = this.control();
+    return CTRL.invalid && (CTRL.dirty || CTRL.touched);
+  });
 }
