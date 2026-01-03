@@ -7,6 +7,7 @@ import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideTranslateService } from '@ngx-translate/core';
 
 import { AuthService } from '@core/_services/auth/auth.service';
+
 import { ROUTES } from './app.routes';
 
 describe('App Routes', () => {
@@ -16,7 +17,8 @@ describe('App Routes', () => {
   const AUTH_SERVICE_MOCK = {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     currentUser: signal<any>(undefined),
-    isAdmin: vi.fn()
+    isAdmin: vi.fn(),
+    isAuthenticated: vi.fn()
   };
 
   beforeEach(async() => {
@@ -118,5 +120,43 @@ describe('App Routes', () => {
       expect(COMPONENT_INSTANCE).toBeTruthy();
     });
   });
-});
 
+  describe('Private Route (Lines 49-51 coverage)', () => {
+
+    it('should allow navigation to /private if authGuard passes', async() => {
+      // --- ARRANGE ---
+      AUTH_SERVICE_MOCK.isAuthenticated.mockReturnValue(true);
+
+      // --- ACT ---
+      const INSTANCE = await harness.navigateByUrl('/private');
+
+      // --- ASSERT ---
+      expect(INSTANCE).toBeTruthy();
+      expect(TestBed.inject(Router).url).toBe('/private');
+    });
+
+    it('should redirect to /home if authGuard fails (no token)', async() => {
+      // --- ARRANGE ---
+      AUTH_SERVICE_MOCK.isAuthenticated.mockReturnValue(false);
+      localStorage.clear();
+
+      // --- ACT ---
+      await harness.navigateByUrl('/private');
+
+      // --- ASSERT ---
+      expect(TestBed.inject(Router).url).toBe('/home');
+    });
+
+    it('should redirect to unauthorized error if authGuard fails (token present but not authenticated)', async() => {
+      // --- ARRANGE ---
+      AUTH_SERVICE_MOCK.isAuthenticated.mockReturnValue(false);
+      localStorage.setItem('token', 'fake-token');
+
+      // --- ACT ---
+      await harness.navigateByUrl('/private');
+
+      // --- ASSERT ---
+      expect(TestBed.inject(Router).url).toBe('/error/unauthorized-error');
+    });
+  });
+});
