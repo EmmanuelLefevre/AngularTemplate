@@ -56,13 +56,16 @@
   },
   "AUTH": {
     "LOGIN": {
-      "TITLE": "Connexion",
-      "SUBTITLE": "Formulaire"
+      "TITLE": "Ravi de vous revoir !",
+      "SUBTITLE": "Connectez-vous pour accéder à votre espace privé.",
+      "SWITCH_LINK": "Déjà un compte ? Connectez-vous"
     },
     "REGISTER": {
       "TITLE": "Créer un compte",
-      "SUBTITLE": "Formulaire"
-    }
+      "SUBTITLE": "Rejoignez-nous en quelques clics.",
+      "SWITCH_LINK": "Pas encore de compte ? S'inscrire"
+    },
+    "SWITCH_MODE_ARIA": "Basculer entre le formulaire de connexion et le formulaire d'inscription"
   },
   "ERROR_PAGE": {
     "TITLE": "Une erreur est survenue.",

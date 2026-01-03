@@ -56,13 +56,16 @@
   },
   "AUTH": {
     "LOGIN": {
-      "TITLE": "Login",
-      "SUBTITLE": "Form"
+      "TITLE": "Great to see you again !",
+      "SUBTITLE": "Login to access your private area.",
+      "SWITCH_LINK": "Already have an account? Login"
     },
     "REGISTER": {
       "TITLE": "Create an account",
-      "SUBTITLE": "Form"
-    }
+      "SUBTITLE": "Join us in just a few clicks.",
+      "SWITCH_LINK": "Don't have an account yet? Sign up"
+    },
+    "SWITCH_MODE_ARIA": "Switch between the login form and the registration form"
   },
   "ERROR_PAGE": {
     "TITLE": "An error has occurred.",
