@@ -1,0 +1,27 @@
+<section class="v-login">
+  <div class="v-login__container">
+    <header class="v-login__header">
+      <h1 class="v-login__title">
+        {{ (isRegisterMode() ? 'AUTH.REGISTER.TITLE' : 'AUTH.LOGIN.TITLE') | translate }}
+      </h1>
+      <p class="v-login__subtitle">
+        {{ (isRegisterMode() ? 'AUTH.REGISTER.SUBTITLE' : 'AUTH.LOGIN.SUBTITLE') | translate }}
+      </p>
+    </header>
+
+    <app-dynamic-form
+      [fields]="loginFields"
+      [isRegisterMode]="isRegisterMode()"
+      [isLoading]="isLoading()"
+      (submitted)="onFormSubmit($event)"
+      (cancelled)="onCancel()" />
+
+    <footer class="v-login__footer">
+      <main-button
+        variant="ghost"
+        [label]="isRegisterMode() ? 'AUTH.LOGIN.SWITCH_LINK' : 'AUTH.REGISTER.SWITCH_LINK'"
+        [ariaLabel]="'AUTH.SWITCH_MODE_ARIA' | translate"
+        (clicked)="toggleMode()" />
+    </footer>
+  </div>
+</section>
