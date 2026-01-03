@@ -29,7 +29,7 @@
 
   @if (hasError()) {
     <div class="c-field__error">
-      <span>{{ 'FORM.ERROR.INVALID' | translate }}</span>
+      <span>{{ errorKey() | translate }}</span>
     </div>
   }
 </div>
