@@ -29,7 +29,6 @@ export const adminGuard: CanActivateFn = () => {
         return true;
       }
 
-      // Otherwise, redirection to login page...
       return ROUTER.parseUrl('/error/unauthorized-error');
     })
   );
