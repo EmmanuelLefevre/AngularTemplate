@@ -33,23 +33,23 @@ export class LoginViewComponent {
   readonly loginFields: FormFieldConfig[] = [
     {
       name: 'email',
-      label: 'FORM.EMAIL.LABEL',
+      label: 'UI_COMPONENTS.FORM.EMAIL.LABEL',
       type: 'email',
-      placeholder: 'FORM.EMAIL.PLACEHOLDER',
+      placeholder: 'UI_COMPONENTS.FORM.EMAIL.PLACEHOLDER',
       behaviors: { autofocus: true }
     },
     {
       name: 'password',
-      label: 'FORM.PASSWORD.LABEL',
+      label: 'UI_COMPONENTS.FORM.PASSWORD.LABEL',
       type: 'password',
-      placeholder: 'FORM.PASSWORD.PLACEHOLDER',
+      placeholder: 'UI_COMPONENTS.FORM.PASSWORD.PLACEHOLDER',
       behaviors: { hasPasswordToggle: true }
     },
     {
       name: 'confirmPassword',
-      label: 'FORM.CONFIRM_PASSWORD.LABEL',
+      label: 'UI_COMPONENTS.FORM.CONFIRM_PASSWORD.LABEL',
       type: 'password',
-      placeholder: 'FORM.CONFIRM_PASSWORD.PLACEHOLDER',
+      placeholder: 'UI_COMPONENTS.FORM.CONFIRM_PASSWORD.PLACEHOLDER',
       behaviors: { hasPasswordToggle: true }
     }
   ];
