@@ -54,6 +54,16 @@
     "WELCOME_PREFIX": "Ton nouveau projet",
     "WELCOME_SUFFIX": "est prêt 🎉"
   },
+  "AUTH": {
+    "LOGIN": {
+      "TITLE": "Connexion",
+      "SUBTITLE": "Formulaire"
+    },
+    "REGISTER": {
+      "TITLE": "Créer un compte",
+      "SUBTITLE": "Formulaire"
+    }
+  },
   "ERROR_PAGE": {
     "TITLE": "Une erreur est survenue.",
     "LABEL": "Erreur",
@@ -77,6 +87,34 @@
       "CANCEL": {
         "LABEL": "Annuler",
         "ARIA": "Bouton pour annuler la saisie"
+      }
+    },
+    "FORM": {
+      "AUTH": {
+        "INPUT": {
+          "HIDE_PWD": "Cacher le mot de passe",
+          "AUTH.SHOW_PWD": "Montrer le mot de passe"
+        }
+      },
+      "EMAIL": {
+        "LABEL": "Email",
+        "PLACEHOLDER": "Email"
+      },
+      "PASSWORD": {
+        "LABEL": "Mot de passe",
+        "PLACEHOLDER": "Mot de passe"
+      },
+      "CONFIRM_PASSWORD": {
+        "LABEL": "Confirmer mot de passe",
+        "PLACEHOLDER": "Confirmer mot de passe"
+      },
+      "ERROR": {
+        "EMAIL": {
+          "INVALID": "L'email n'est pas valide."
+        },
+        "PASSWORD": {
+          "INVALID": "Le mot de passe n'est pas valide."
+        }
       }
     }
   }

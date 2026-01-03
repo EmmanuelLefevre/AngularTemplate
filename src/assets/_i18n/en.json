@@ -54,6 +54,16 @@
     "WELCOME_PREFIX": "Your new project ",
     "WELCOME_SUFFIX": " is ready 🎉"
   },
+  "AUTH": {
+    "LOGIN": {
+      "TITLE": "Login",
+      "SUBTITLE": "Form"
+    },
+    "REGISTER": {
+      "TITLE": "Create an account",
+      "SUBTITLE": "Form"
+    }
+  },
   "ERROR_PAGE": {
     "TITLE": "An error has occurred.",
     "LABEL": "Error",
@@ -77,6 +87,34 @@
       "CANCEL": {
         "LABEL": "Cancel",
         "ARIA": "Button to cancel entry"
+      }
+    },
+    "FORM": {
+      "AUTH": {
+        "INPUT": {
+          "HIDE_PWD": "Hide password",
+          "AUTH.SHOW_PWD": "Show password"
+        }
+      },
+      "EMAIL": {
+        "LABEL": "Email",
+        "PLACEHOLDER": "Email"
+      },
+      "PASSWORD": {
+        "LABEL": "Password",
+        "PLACEHOLDER": "Password"
+      },
+      "CONFIRM_PASSWORD": {
+        "LABEL": "Confirm password",
+        "PLACEHOLDER": "Confirm password"
+      },
+      "ERROR": {
+        "EMAIL": {
+          "INVALID": "The email address is invalid."
+        },
+        "PASSWORD": {
+          "INVALID": "The password is invalid."
+        }
       }
     }
   }
