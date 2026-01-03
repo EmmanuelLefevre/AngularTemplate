@@ -2,10 +2,10 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { MockAdminLoginButtonComponent } from '@app/shared/components/dev/mock-admin-login-button/mock-admin-login-button.component';
+import { HeaderNavComponent } from '@shared/components/header/header-nav.component';
+import { MainFooterComponent } from '@shared/components/footer/main-footer.component';
+import { MockAdminLoginButtonComponent } from '@shared/components/dev/mock-admin-login-button/mock-admin-login-button.component';
 import { ScrollToTopComponent } from '@shared/components/scroll-to-top/scroll-to-top.component';
-import { HeaderNavComponent } from '@app/shared/components/header/header-nav.component';
-import { MainFooterComponent } from '@app/shared/components/footer/main-footer.component';
 
 @Component({
   selector: 'public-layout',
