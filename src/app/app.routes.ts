@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 
-import { adminGuard } from './core/guard/admin/admin.guard';
+import { adminGuard } from '@core/guard/admin/admin.guard';
+import { authGuard } from '@core/guard/auth/auth.guard';
 
 export const ROUTES: Routes = [
   // --- PUBLIC AREA ---
@@ -26,6 +27,15 @@ export const ROUTES: Routes = [
         }
       },
       {
+        path: 'login',
+        loadComponent: () => import(
+          '@features/public/public-views/login/login-view.component')
+          .then(m => m.LoginViewComponent),
+        data: {
+          seo: { titleKey: 'SEO.LOGIN_TITLE', descriptionKey: 'SEO.LOGIN_DESCRIPTION' }
+        }
+      },
+      {
         path: 'contact',
         loadComponent: () => import(
           '@features/public/public-views/contact/contact-view.component')
@@ -34,6 +44,13 @@ export const ROUTES: Routes = [
           seo: { titleKey: 'SEO.CONTACT_TITLE', descriptionKey: 'SEO.CONTACT_DESCRIPTION' }
         }
       },
+      {
+        path: 'private',
+        loadComponent: () => import(
+          './features/private/private.component')
+          .then(m => m.PrivateComponent),
+        canActivate: [authGuard],
+      }
       // Add 'about', 'other views'...
     ]
   },
