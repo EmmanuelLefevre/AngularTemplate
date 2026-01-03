@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 Allow: /contact
 Allow: /home
-Allow: /settings
+Allow: /login
 
 #Sitemap
 Sitemap: https://www.angular-template/sitemap.xml

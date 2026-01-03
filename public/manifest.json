@@ -42,12 +42,12 @@
 
   "shortcuts": [
     {
-      "name": "Settings and Profile",
-      "short_name": "Settings",
-      "description": "Modify your preferences and account information.",
-      "url": "/settings",
+      "name": "Private Space",
+      "short_name": "Private",
+      "description": "Access my secure space",
+      "url": "/private",
       "icons": [{
-        "src": "/assets/icons/shortcut-settings.png",
+        "src": "/assets/icons/shortcut-private.png",
         "sizes": "96x96",
         "type": "image/png"
       }]
@@ -55,7 +55,7 @@
     {
       "name": "Contact Us",
       "short_name": "Contact",
-      "description": "Open contact form.",
+      "description": "Open contact form",
       "url": "/contact",
       "icons": [{
         "src": "/assets/icons/shortcut-contact.png",
