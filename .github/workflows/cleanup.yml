@@ -1,4 +1,4 @@
-name: 🧹 Cleanup Cancelled Runs
+name: 🧹 Cleanup Cancelled Runs & Failed Runs
 
 on:
   schedule:
@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  delete-cancelled:
+  delete-failed-or-cancelled:
     runs-on: ubuntu-latest
     permissions:
       actions: write
