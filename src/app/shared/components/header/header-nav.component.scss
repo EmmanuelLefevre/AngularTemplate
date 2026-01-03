@@ -143,13 +143,20 @@
   // --- ACTIONS IN NAV (JUST MOBILE VERSION) ---
   &__nav-actions {
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    padding-top: 30px;
-    margin: 0 40px;
-    border-top: 1px solid #eeeeee;
+    align-items: center;
+    width: 100%;
+    padding: 30px 0;
+    gap: 20px;
+    border-top: 1px solid var(--primary-color);
 
     @include respond-to('tablet') {
       display: none;
+    }
+
+    .header__login-btn {
+      width: 200px;
     }
   }
 
@@ -171,7 +178,7 @@
       height: 3px;
       border-radius: 10px;
       transition: all 0.3s ease;
-      background: #333;
+      background: var(--primary-color);
     }
 
     &.is-active {

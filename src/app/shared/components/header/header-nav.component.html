@@ -43,11 +43,23 @@
 
       <div class="header__nav-actions">
         <language-toggle />
+        <main-button
+          variant="primary"
+          [label]="'UI_COMPONENTS.BUTTON.LOGIN.LABEL' | translate"
+          [ariaLabel]="'UI_COMPONENTS.BUTTON.LOGIN.ARIA' | translate"
+          (clicked)="onLoginClick()"
+          class="header__login-btn" />
       </div>
     </nav>
 
     <div class="header__actions">
       <language-toggle />
+      <main-button
+        variant="primary"
+        [label]="'UI_COMPONENTS.BUTTON.LOGIN.LABEL' | translate"
+        [ariaLabel]="'UI_COMPONENTS.BUTTON.LOGIN.ARIA' | translate"
+        (clicked)="onLoginClick()"
+        class="header__login-btn" />
     </div>
   </div>
 </header>

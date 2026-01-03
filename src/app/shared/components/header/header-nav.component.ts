@@ -1,9 +1,10 @@
 import { ChangeDetectionStrategy, Component, effect, inject, Renderer2, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { LanguageToggleComponent } from '@shared/components/language-toggle/language-toggle.component';
+import { MainButtonComponent } from '@shared/shared';
 
 import { HEADER_NAV_LINKS } from '@core/_config/links/nav-links.constant';
 
@@ -11,6 +12,7 @@ import { HEADER_NAV_LINKS } from '@core/_config/links/nav-links.constant';
   selector: 'header-nav',
   imports: [
     CommonModule,
+    MainButtonComponent,
     RouterModule,
     TranslateModule,
     LanguageToggleComponent
@@ -21,8 +23,11 @@ import { HEADER_NAV_LINKS } from '@core/_config/links/nav-links.constant';
 })
 
 export class HeaderNavComponent {
+
   protected readonly navLinks = HEADER_NAV_LINKS;
   private readonly renderer = inject(Renderer2);
+
+  private readonly router = inject(Router);
 
   public isMenuOpen = signal(false);
 
@@ -32,12 +37,17 @@ export class HeaderNavComponent {
     });
   }
 
-  public toggleMenu(): void {
+  toggleMenu(): void {
     this.isMenuOpen.update(value => !value);
   }
 
-  public closeMenu(): void {
+  closeMenu(): void {
     this.isMenuOpen.set(false);
+  }
+
+  onLoginClick(): void {
+    this.closeMenu();
+    this.router.navigate(['/login']);
   }
 
   private updateScrollBlock(): void {
