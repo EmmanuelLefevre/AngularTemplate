@@ -15,11 +15,15 @@ jobs:
       - name: 📂 Get Code
         uses: actions/checkout@v4
 
-      - name: 🗑️ Delete Cancelled Runs
+      - name: 🗑️ Delete Cancelled and Failed Runs
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          # 1. Listing last 100 cancelled runs
-          # 2. Get only their IDs
-          # 3. Remove them one by one
-          gh run list --status cancelled --limit 100 --json databaseId -q '.[].databaseId' | xargs -r -I{} gh run delete {}
+          # Loop back on statuses we want to delete
+          for status in cancelled failure; do
+            echo "Processing status: $status"
+            # 1. Listing last 100 runs for the current status
+            # 2. Get only their IDs
+            # 3. Remove them one by one
+            gh run list --status "$status" --limit 100 --json databaseId -q '.[].databaseId' | xargs -r -I{} gh run delete {}
+          done
