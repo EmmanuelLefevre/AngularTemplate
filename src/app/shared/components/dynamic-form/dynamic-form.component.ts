@@ -52,6 +52,10 @@ export class DynamicFormComponent {
     });
   }
 
+  resetForm(): void {
+    this.form.reset();
+  }
+
   protected getControl(name: string): FormControl<FormValue> {
     return this.form.get(name) as FormControl<FormValue>;
   }
