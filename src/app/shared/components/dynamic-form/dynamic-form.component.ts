@@ -1,7 +1,7 @@
 import { Component, input, output, computed, inject, effect } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, FormGroup, FormControl } from '@angular/forms';
 
-import { FormFieldConfig } from '@core/_models/forms/form.model';
+import { DynamicFormRawValue, FormFieldConfig } from '@core/_models/forms/form.model';
 import { GenericInputComponent } from '@shared/components/generic-input/generic-input.component';
 import { MainButtonComponent } from '@shared/components/button/main-button.component';
 
@@ -22,13 +22,12 @@ export class DynamicFormComponent {
   readonly isRegisterMode = input<boolean>(false);
   readonly isLoading = input<boolean>(false);
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  readonly submitted = output<any>();
+  readonly submitted = output<DynamicFormRawValue>();
   readonly cancelled = output<void>();
 
   protected form: FormGroup = this.fb.group({});
 
-  // Logique : confirmPassword n'apparaît QUE si isRegisterMode est TRUE
+  // ConfirmPassword ONLY appears if isRegisterMode is TRUE
   visibleFields = computed(() => {
     return this.fields().filter(f =>
       f.name !== 'confirmPassword' || this.isRegisterMode()
@@ -36,7 +35,7 @@ export class DynamicFormComponent {
   });
 
   constructor() {
-    // Initialisation dynamique des contrôles
+    // Dynamic initialization of controls
     effect(() => {
       this.fields().forEach(f => {
         if (!this.form.contains(f.name)) {

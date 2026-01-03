@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/cor
 import { Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { FormFieldConfig } from '@core/_models/forms/form.model';
+import { DynamicFormRawValue, FormFieldConfig } from '@core/_models/forms/form.model';
 import { LoginCredentials } from '@core/_models/auth/auth.model';
 
 import { AuthService } from '@core/_services/auth/auth.service';
@@ -58,23 +58,22 @@ export class LoginViewComponent {
     this.isRegisterMode.update(v => !v);
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  onFormSubmit(data: any): void {
+  onFormSubmit(data: DynamicFormRawValue): void {
     this.isLoading.set(true);
 
-    // On peut imaginer un appel register() si isRegisterMode est true
-    const CREDENTIALS: LoginCredentials = {
-      email: data.email,
-      password: data.password
-    };
+    const { email: EMAIL, password: PASSWORD } = data;
 
-    this.authService.login(CREDENTIALS).subscribe({
-      next: () => {
-        this.isLoading.set(false);
-        this.router.navigate(['/private']);
-      },
-      error: () => this.isLoading.set(false)
-    });
+    if (typeof EMAIL === 'string' && typeof PASSWORD === 'string') {
+      const CREDENTIALS: LoginCredentials = { email: EMAIL, password: PASSWORD };
+
+      this.authService.login(CREDENTIALS).subscribe({
+        next: () => {
+          this.isLoading.set(false);
+          this.router.navigate(['/private']);
+        },
+        error: () => this.isLoading.set(false)
+      });
+    }
   }
 
   onCancel(): void {

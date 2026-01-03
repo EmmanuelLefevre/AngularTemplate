@@ -2,6 +2,8 @@ import { Component, input, signal, computed } from '@angular/core';
 import { ReactiveFormsModule, FormControl } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 
+import { FormFieldConfig } from '@core/_models/forms/form.model';
+
 @Component({
   selector: 'app-generic-input',
   imports: [
@@ -20,8 +22,7 @@ export class GenericInputComponent {
   readonly type = input<string>('text');
   readonly placeholder = input<string>('');
   readonly className = input<string>('');
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  readonly behaviors = input<any>();
+  readonly behaviors = input<FormFieldConfig['behaviors']>();
 
   protected showPassword = signal(false);
   protected isPassword = computed(() => this.type() === 'password');
