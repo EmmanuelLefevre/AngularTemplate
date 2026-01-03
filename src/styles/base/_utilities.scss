@@ -2,13 +2,14 @@
 // UTILITIES (Global utility classes)
 // ==========================================================================
 
-// --- SELECTION
+/* =========== SELECTION =========== */
 // Utility class for text content that user should be able to copy (blog posts, phone numbers...)
 .u-selectable {
   user-select: text !important;
   -webkit-user-select: text !important;
 }
-// --- ACCESSIBILITY
+
+/* =========== ACCESSIBILITY =========== */
 // Visually obscured but remains readable by screen readers
 .u-visually-hidden {
   position: absolute;
@@ -22,7 +23,7 @@
   border: 0;
 }
 
-// --- TYPOGRAPHIE
+/* =========== TYPOS =========== */
 // Cut off overly long text with ellipses (...)
 // Note: parent element must have a defined width (or be in flex-shrink mode).
 .u-text-truncate {
@@ -31,13 +32,13 @@
   white-space: nowrap;
 }
 
-// --- INTERACTION
+/* =========== INTERACTION =========== */
 // Prevents element from capturing clicks (clicks traverse to the parent)
 .u-pointer-none {
   pointer-events: none !important;
 }
 
-// --- LAYOUT
+/* =========== LAYOUT =========== */
 // Quick centering in Flexbox
 .u-flex-center {
   display: flex !important;
@@ -45,7 +46,7 @@
   justify-content: center !important;
 }
 
-// --- IMAGE
+/* =========== IMAGES =========== */
 // Enforces a modern aspect ratio (avatars...)
 .u-aspect-square {
   aspect-ratio: 1 / 1;

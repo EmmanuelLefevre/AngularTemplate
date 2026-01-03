@@ -1,0 +1,42 @@
+@use '../abstracts' as *;
+
+/* =========== DOCUMENT ROOT =========== */
+html {
+  scroll-behavior: smooth;
+}
+
+/* =========== BODY =========== */
+body {
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+
+/* =========== REACTIVATING SELECTION (UX CRITICAL) =========== */
+input,
+textarea,
+[contenteditable='true'] {
+  user-select: text;
+  -webkit-user-select: text;
+}
+
+/* =========== FORMS / INTERACTIVES ELEMENTS =========== */
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+  border: none;
+  background: none;
+}
+
+/* =========== TAGS =========== */
+button {
+  cursor: pointer;
+  width: fit-content;
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}

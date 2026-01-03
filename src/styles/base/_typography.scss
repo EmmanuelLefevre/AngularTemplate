@@ -1,29 +1,43 @@
 @use '../abstracts' as *;
 
+/* =========== BODY =========== */
 body {
   font-family: var(--font-main);
   font-optical-sizing: auto;
+  line-height: 1.5;
+  text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-nav {
-  font-family: var(--font-nav);
-}
-
+/* =========== TITLES =========== */
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-heading);
+  font-family: var(--font-title);
   letter-spacing: -0.02em;
 }
 
+/* =========== TAGS =========== */
+nav {
+  font-family: var(--font-nav);
+}
 footer {
   font-family: var(--font-footer);
 }
 
+/* =========== LINKS =========== */
+a {
+  display: inline-block;
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* =========== ADMIN =========== */
 code,
 pre,
 .admin-id {

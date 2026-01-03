@@ -4,37 +4,21 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  user-select: none;
-  -webkit-user-select: none;
-  -webkit-touch-callout: none;
 }
 
-// --- DOCUMENT ROOT ---
+/* =========== DOCUMENT ROOT =========== */
 html {
-  scroll-behavior: smooth;
-  -webkit-text-size-adjust: 100%;
   height: 100%;
+  -webkit-text-size-adjust: 100%;
 }
 
-// --- BODY ---
+/* =========== BODY =========== */
 body {
   height: 100%;
-  line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
   overflow-x: hidden;
 }
 
-// --- REACTIVATING SELECTION (UX CRITICAL) ---
-input,
-textarea,
-[contenteditable='true'] {
-  user-select: text;
-  -webkit-user-select: text;
-}
-
-// --- MEDIAS ---
+/* =========== MEDIAS =========== */
 img,
 picture,
 video,
@@ -45,33 +29,7 @@ svg {
   height: auto;
 }
 
-// --- FORMS / INTERACTIVES ELEMENTS ---
-button,
-input,
-select,
-textarea {
-  font: inherit;
-  color: inherit;
-  border: none;
-  background: none;
-}
-
-button {
-  cursor: pointer;
-  &:disabled {
-    cursor: not-allowed;
-  }
-}
-
-// --- LINKS / NAV ---
-a {
-  cursor: pointer;
-  text-decoration: none;
-  color: inherit;
-  display: inline-block;
-}
-
-// --- LISTS ---
+/* =========== LISTS =========== */
 ul,
 ol {
   list-style: none;
