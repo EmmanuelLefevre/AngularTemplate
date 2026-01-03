@@ -34,11 +34,12 @@ textarea {
 /* =========== TAGS =========== */
 a {
   text-decoration: none;
+  cursor: pointer;
 }
 
 button {
-  cursor: pointer;
   width: fit-content;
+  cursor: pointer;
 
   &:disabled {
     cursor: not-allowed;
