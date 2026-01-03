@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal, viewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -8,14 +8,14 @@ import { LoginCredentials } from '@core/_models/auth/auth.model';
 import { AuthService } from '@core/_services/auth/auth.service';
 
 import { DynamicFormComponent } from '@shared/components/dynamic-form/dynamic-form.component';
-import { MainButtonComponent } from '@shared/components/button/main-button.component';
+import { LinkComponent } from '@shared/components/link/link.component';
 
 @Component({
   selector: 'login-view',
   imports: [
-    TranslateModule,
     DynamicFormComponent,
-    MainButtonComponent
+    LinkComponent,
+    TranslateModule
   ],
   templateUrl: './login-view.component.html',
   styleUrl: './login-view.component.scss',
@@ -27,6 +27,8 @@ export class LoginViewComponent {
   private readonly authService = inject(AuthService);
   private readonly router = inject(Router);
 
+  private readonly dynamicForm = viewChild(DynamicFormComponent);
+
   readonly isRegisterMode = signal(false);
   readonly isLoading = signal(false);
 
@@ -35,8 +37,7 @@ export class LoginViewComponent {
       name: 'email',
       label: 'UI_COMPONENTS.FORM.EMAIL.LABEL',
       type: 'email',
-      placeholder: 'UI_COMPONENTS.FORM.EMAIL.PLACEHOLDER',
-      behaviors: { autofocus: true }
+      placeholder: 'UI_COMPONENTS.FORM.EMAIL.PLACEHOLDER'
     },
     {
       name: 'password',
@@ -77,6 +78,6 @@ export class LoginViewComponent {
   }
 
   onCancel(): void {
-    this.router.navigate(['/home']);
+    this.dynamicForm()?.resetForm();
   }
 }
