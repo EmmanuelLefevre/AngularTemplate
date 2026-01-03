@@ -1,0 +1,33 @@
+@use 'abstracts' as *;
+
+:host {
+  display: block;
+}
+
+.c-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  &__wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  &__input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--primary-color);
+    border-radius: 8px;
+  }
+
+  &__toggle {
+    position: absolute;
+    right: 1rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--primary-color);
+  }
+}
