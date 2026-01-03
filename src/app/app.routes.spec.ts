@@ -50,6 +50,15 @@ describe('App Routes', () => {
     expect(TestBed.inject(Router).url).toBe('/contact');
   });
 
+  it('should navigate to /login', async() => {
+    // --- ACT ---
+    const INSTANCE = await harness.navigateByUrl('/login');
+
+    // --- ASSERT ---
+    expect(INSTANCE).toBeTruthy();
+    expect(TestBed.inject(Router).url).toBe('/login');
+  });
+
   it('should redirect to home (via root) if adminGuard fails due to missing token', async() => {
     // --- ARRANGE ---
     AUTH_SERVICE_MOCK.isAdmin.mockReturnValue(false);
@@ -90,7 +99,7 @@ describe('App Routes', () => {
     expect(TestBed.inject(Router).url).toBe('/error/server-error');
   });
 
-  describe('Error Management Routes Coverage', () => {
+  describe('Error Management Routes', () => {
 
     const ERROR_CASES = [
       { path: '/error/unauthorized-error' },
