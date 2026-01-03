@@ -20,7 +20,7 @@ export class LanguageToggleComponent {
     this.langEvent()?.lang ?? this.translate.getFallbackLang() ?? 'fr'
   );
 
-  public switchLanguage(lang: string): void {
+  switchLanguage(lang: string): void {
     this.translate.use(lang);
   }
 }
