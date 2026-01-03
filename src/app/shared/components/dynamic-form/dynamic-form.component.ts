@@ -1,7 +1,7 @@
-import { Component, input, output, computed, inject, effect } from '@angular/core';
+import { Component, input, output, computed, inject, effect, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, FormGroup, FormControl } from '@angular/forms';
 
-import { DynamicFormRawValue, FormFieldConfig } from '@core/_models/forms/form.model';
+import { DynamicFormRawValue, FormFieldConfig, FormValue } from '@core/_models/forms/form.model';
 import { GenericInputComponent } from '@shared/components/generic-input/generic-input.component';
 import { MainButtonComponent } from '@shared/components/button/main-button.component';
 
@@ -12,10 +12,13 @@ import { MainButtonComponent } from '@shared/components/button/main-button.compo
     GenericInputComponent,
     MainButtonComponent
   ],
-  templateUrl: './dynamic-form.component.html'
+  templateUrl: './dynamic-form.component.html',
+  styleUrl: './dynamic-form.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class DynamicFormComponent {
+
   private readonly fb = inject(FormBuilder);
 
   readonly fields = input.required<FormFieldConfig[]>();
@@ -28,7 +31,7 @@ export class DynamicFormComponent {
   protected form: FormGroup = this.fb.group({});
 
   // ConfirmPassword ONLY appears if isRegisterMode is TRUE
-  visibleFields = computed(() => {
+  protected readonly visibleFields = computed(() => {
     return this.fields().filter(f =>
       f.name !== 'confirmPassword' || this.isRegisterMode()
     );
@@ -37,15 +40,28 @@ export class DynamicFormComponent {
   constructor() {
     // Dynamic initialization of controls
     effect(() => {
-      this.fields().forEach(f => {
+      const FIELDS = this.fields();
+      FIELDS.forEach(f => {
         if (!this.form.contains(f.name)) {
-          this.form.addControl(f.name, new FormControl(f.initialValue || ''));
+          // Apply the configuration validators
+          this.form.addControl(f.name, new FormControl(f.initialValue || '', {
+            validators: f.validators || []
+          }));
         }
       });
     });
   }
 
-  getControl(name: string): FormControl {
-    return this.form.get(name) as FormControl;
+  protected getControl(name: string): FormControl<FormValue> {
+    return this.form.get(name) as FormControl<FormValue>;
+  }
+
+  protected onSubmit(): void {
+    if (this.form.valid) {
+      this.submitted.emit(this.form.getRawValue() as DynamicFormRawValue);
+    }
+    else {
+      this.form.markAllAsTouched();
+    }
   }
 }
