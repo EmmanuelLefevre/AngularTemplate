@@ -15,10 +15,16 @@ import { UnknownErrorComponent } from './error-handler/error-views/unknown-error
 // --- Layout Components
 export { HeaderNavComponent } from './components/header/header-nav.component';
 import { HeaderNavComponent } from './components/header/header-nav.component';
+export { LoginViewComponent } from '@app/features/public/public-views/login/login-view.component';
+import { LoginViewComponent } from '@app/features/public/public-views/login/login-view.component';
 export { MainFooterComponent } from './components/footer/main-footer.component';
 import { MainFooterComponent } from './components/footer/main-footer.component';
 
 // --- UI
+export { DynamicFormComponent } from './components/dynamic-form/dynamic-form.component';
+import { DynamicFormComponent } from './components/dynamic-form/dynamic-form.component';
+export { GenericInputComponent } from './components/generic-input/generic-input.component';
+import { GenericInputComponent } from './components/generic-input/generic-input.component';
 export { LanguageToggleComponent } from './components/language-toggle/language-toggle.component';
 import { LanguageToggleComponent } from './components/language-toggle/language-toggle.component';
 export { MainButtonComponent } from './components/button/main-button.component';
@@ -61,10 +67,13 @@ export const SHARED_ERRORS_COMPONENTS = [
 
 export const SHARED_LAYOUT_COMPONENTS = [
   HeaderNavComponent,
+  LoginViewComponent,
   MainFooterComponent,
 ] as const;
 
 export const SHARED_UI_COMPONENTS = [
+  DynamicFormComponent,
+  GenericInputComponent,
   LanguageToggleComponent,
   MainButtonComponent,
   ScrollToTopComponent,
