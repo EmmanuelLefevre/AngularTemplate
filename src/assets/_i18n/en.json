@@ -6,7 +6,9 @@
     "HOME_TITLE": "Home",
     "HOME_DESCRIPTION": "Welcome to Angular Template",
     "CONTACT_TITLE": "Contact",
-    "CONTACT_DESCRIPTION": "Website contact page"
+    "CONTACT_DESCRIPTION": "Website contact page",
+    "LOGIN_TITLE": "Login",
+    "LOGIN_DESCRIPTION": "Website login page"
   },
   "HEADER": {
     "LOGO_LINK": "Back to home",
@@ -62,6 +64,20 @@
     "SCROLL_TO_TOP": {
       "ARIA": "Button to return to the top of the page",
       "TOOLTIP": "Scroll to top"
+    },
+    "BUTTON": {
+      "LOGIN": {
+        "LABEL": "Login",
+        "ARIA": "Button to open the login form"
+      },
+      "CONTINUE": {
+        "LABEL": "Continue",
+        "ARIA": "Button to login"
+      },
+      "CANCEL": {
+        "LABEL": "Cancel",
+        "ARIA": "Button to cancel entry"
+      }
     }
   }
 }

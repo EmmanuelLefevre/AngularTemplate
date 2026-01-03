@@ -6,7 +6,9 @@
     "HOME_TITLE": "Accueil",
     "HOME_DESCRIPTION": "Bienvenue sur Template Angular",
     "CONTACT_TITLE": "Contact",
-    "CONTACT_DESCRIPTION": "Page de contact du site"
+    "CONTACT_DESCRIPTION": "Page de contact du site",
+    "LOGIN_TITLE": "Connexion",
+    "LOGIN_DESCRIPTION": "Page de connexion du site"
   },
   "HEADER": {
     "LOGO_LINK": "Retour à l'accueil",
@@ -62,6 +64,20 @@
     "SCROLL_TO_TOP": {
       "ARIA": "Bouton pour revenir en haut de la page",
       "TOOLTIP": "Haut de page"
+    },
+    "BUTTON": {
+      "LOGIN": {
+        "LABEL": "Se connecter",
+        "ARIA": "Bouton pour ouvrir le formulaire de connexion"
+      },
+      "CONTINUE": {
+        "LABEL": "Continuer",
+        "ARIA": "Bouton pour se connecter"
+      },
+      "CANCEL": {
+        "LABEL": "Annuler",
+        "ARIA": "Bouton pour annuler la saisie"
+      }
     }
   }
 }
