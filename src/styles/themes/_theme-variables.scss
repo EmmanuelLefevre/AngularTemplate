@@ -1,39 +1,43 @@
 :root {
+  /* =========== COLORS =========== */
+  --black-color: oklch(0.3211 0 0);
+  --white-color: oklch(1 0 0);
+
+  --danger-color: oklch(0.7063 0.168157 58.5084);
+  --error-color: oklch(0.6311 0.2545 28.85);
+
   /* =========== BACKGROUNDS =========== */
   --bg-color: oklch(0.9736 0.0034 174.48);
+
   --bg-header-color: oklch(1 0 0);
   --bg-footer-color: oklch(1 0 0);
-  --bg-white-color: oklch(1 0 0);
 
-  /* =========== COLORS =========== */
+  --bg-white-color: var(--white-color);
+
+  /* =========== MAIN COLORS =========== */
   --primary-color: oklch(0.7116 0.1812 22.84);
   --secondary-color: oklch(0.65 0.12 210);
 
-  --primary-light: oklch(0.7116 0.1812 22.84 / 60%);
-  --secondary-light: oklch(0.65 0.12 210 / 60%);
-
-  --black-color: oklch(0.3211 0 0);
-  --white-color: oklch(1 0 0);
-  --error-color: oklch(0.6311 0.2545 28.85);
-  --danger-color: oklch(0.7063 0.168157 58.5084);
+  --primary-light: color-mix(in oklch, var(--primary-color), transparent 40%);
+  --secondary-light: color-mix(in oklch, var(--secondary-color), transparent 40%);
 
   /* =========== TEXT COLORS =========== */
   --text-black-color: var(--black-color);
   --text-white-color: var(--white-color);
 
   --text-primary-color: var(--primary-color);
-  --text-primary-color-light: var(--primary-light);
-
   --text-secondary-color: var(--secondary-color);
+
+  --text-primary-color-light: var(--primary-light);
   --text-secondary-color-light: var(--secondary-light);
 
   /* =========== FONTS =========== */
-  --font-main: 'Roboto', sans-serif;
+  --font-alt: 'Open Sans', sans-serif;
   --font-footer: 'Roboto', sans-serif;
   --font-header: 'Montserrat', sans-serif;
-  --font-nav: 'Roboto', sans-serif;
-  --font-title: 'Montserrat', sans-serif;
-  --font-alt: 'Open Sans', sans-serif;
+  --font-main: 'Roboto', sans-serif;
   --font-mono: 'Fira Code', monospace;
+  --font-nav: 'Roboto', sans-serif;
   --font-special: 'Inter', sans-serif;
+  --font-title: 'Montserrat', sans-serif;
 }
