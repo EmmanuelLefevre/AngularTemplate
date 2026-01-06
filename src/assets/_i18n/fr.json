@@ -90,6 +90,10 @@
       "CANCEL": {
         "LABEL": "Annuler",
         "ARIA": "Bouton pour annuler la saisie"
+      },
+      "CLOSE": {
+        "ARIA": "Fermer",
+        "TOOLTIP": "Fermer"
       }
     },
     "FORM": {

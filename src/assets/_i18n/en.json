@@ -90,6 +90,10 @@
       "CANCEL": {
         "LABEL": "Cancel",
         "ARIA": "Button to cancel entry"
+      },
+      "CLOSE": {
+        "ARIA": "Close",
+        "TOOLTIP": "Close"
       }
     },
     "FORM": {
