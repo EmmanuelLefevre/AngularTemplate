@@ -1,0 +1,14 @@
+<div class="c-close-form">
+  <button
+    (click)="goBack()"
+    type="button"
+    [attr.aria-label]="'UI_COMPONENTS.BUTTON.CLOSE.ARIA' | translate"
+    [matTooltip]="'UI_COMPONENTS.BUTTON.CLOSE.TOOLTIP' | translate"
+    matTooltipPosition="right"
+    matTooltipShowDelay="1000"
+    class="c-close-form__action">
+    <fa-icon
+      [icon]="faCircleXmark"
+      class="c-close-form__icon" />
+  </button>
+</div>

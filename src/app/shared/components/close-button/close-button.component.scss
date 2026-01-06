@@ -1,0 +1,48 @@
+@use 'abstracts' as *;
+
+:host {
+  display: block;
+}
+
+.c-close-form {
+  position: absolute;
+  top: -1.5rem;
+  right: 1rem;
+  z-index: 2;
+
+  &__action {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white-color);
+    font-size: 3rem;
+    width: 3.5rem;
+    height: 3.5rem;
+    padding: 0;
+    margin: 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 2px solid var(--primary-color);
+    border-radius: 50%;
+    background-color: transparent;
+    transition: all 0.3s ease;
+
+    &:hover {
+      color: var(--white-color);
+      border-color: var(--danger-color);
+      background-color: var(--danger-color);
+      animation: bounce 2.5s infinite;
+      transform-origin: center bottom;
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--primary-color);
+      outline-offset: 3px;
+    }
+  }
+
+  &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
