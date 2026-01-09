@@ -229,7 +229,7 @@ Exécuter simplement cette commande dans un terminal :
 npm install -g pnpm
 ```
 
-3. Audit de séxurité de PNPM
+3. Audit de sécurité de PNPM
 
 ```shell
 pnpm audit
