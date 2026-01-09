@@ -38,7 +38,7 @@
   border: 1px solid #e2e8f0;
 
   &--highlight {
-    background-color: #f0fdf4;
+    background-color: var(--bg-white-color);
     border-color: #bbf7d0;
 
     .stat-card__value {

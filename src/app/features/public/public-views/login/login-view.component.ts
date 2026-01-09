@@ -7,12 +7,14 @@ import { LoginCredentials } from '@core/_models/auth/auth.model';
 
 import { AuthService } from '@core/_services/auth/auth.service';
 
+import { CloseButtonComponent } from '@shared/components/close-button/close-button.component';
 import { DynamicFormComponent } from '@shared/components/dynamic-form/dynamic-form.component';
 import { LinkComponent } from '@shared/components/link/link.component';
 
 @Component({
   selector: 'login-view',
   imports: [
+    CloseButtonComponent,
     DynamicFormComponent,
     LinkComponent,
     TranslateModule

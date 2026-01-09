@@ -9,10 +9,11 @@
   align-items: center;
   justify-content: center;
   min-height: calc(100vh - 70px);
-  padding: 20px;
+  padding: 4rem 2rem 2rem 2rem;
   background-color: var(--bg-color);
 
   &__container {
+    position: relative;
     width: 100%;
     max-width: 480px;
     padding: 40px;

@@ -12,7 +12,7 @@
   text-align: center;
   border: 3px solid var(--primary-color);
   border-radius: 50%;
-  background-color: var(--white-color);
+  background-color: var(--bg-white-color);
   opacity: 0;
   transition: all 0.2s ease-in-out;
   z-index: 10000;
@@ -23,7 +23,7 @@
   }
 
   &:hover {
-    background-color: var(--primary-color);
+    background-color: var(--bg-primary-color);
 
     .scroll-top__icon {
       color: var(--white-color);
@@ -69,6 +69,6 @@
   }
 
   &__tooltip {
-    background-color: var(--white-color);
+    background-color: var(--bg-white-color);
   }
 }

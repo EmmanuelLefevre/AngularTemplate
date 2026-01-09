@@ -48,10 +48,10 @@
 
   &--primary {
     color: var(--text-primary-color);
-    background-color: var(--white-color);
+    background-color: var(--bg-white-color);
     &:hover:not(:disabled) {
       color: var(--white-color);
-      background-color: var(--primary-color);
+      background-color: var(--bg-primary-color);
     }
   }
 
@@ -59,7 +59,7 @@
     color: var(--text-primary-color);
     background-color: transparent;
     &:hover:not(:disabled) {
-      background-color: var(--primary-light);
+      background-color: var(--bg-primary-light);
     }
   }
 
