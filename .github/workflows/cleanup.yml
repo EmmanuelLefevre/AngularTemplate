@@ -19,7 +19,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          # Loop back on statuses we want to delete
+          # Loop back on runs 'cancelled' or 'failure' of all workflows
           for status in cancelled failure; do
             echo "Processing status: $status"
             # 1. Listing last 100 runs for the current status
@@ -27,3 +27,11 @@ jobs:
             # 3. Remove them one by one
             gh run list --status "$status" --limit 100 --json databaseId -q '.[].databaseId' | xargs -r -I{} gh run delete {}
           done
+
+          # Deletes the history of this specific workflow (even successes)
+          WORKFLOW_FILE="cleanup.yml"
+
+          echo "Cleaning up self history for $WORKFLOW_FILE..."
+
+          gh run list --workflow "$WORKFLOW_FILE" --status completed --json databaseId,number -q ".[] | select(.databaseId != $GITHUB_RUN_ID) | .databaseId" \
+          | xargs -r -I{} gh run delete {}
