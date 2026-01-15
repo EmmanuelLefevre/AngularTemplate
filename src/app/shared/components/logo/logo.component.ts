@@ -3,6 +3,7 @@ import { NgTemplateOutlet } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
 const DEFAULT_LOGO_WIDTH = 120;
+const DEFAULT_LOGO_HEIGHT = 'auto';
 
 @Component({
   selector: 'logo',
@@ -29,7 +30,7 @@ export class LogoComponent {
   isLink = computed(() => !!this.link());
 
   width = input<string | number>(DEFAULT_LOGO_WIDTH);
-  height = input<string | number>('auto');
+  height = input<string | number>(DEFAULT_LOGO_HEIGHT);
 
   priority = input<boolean>(false);
 
