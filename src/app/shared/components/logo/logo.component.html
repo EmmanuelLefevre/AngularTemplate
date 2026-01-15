@@ -1,0 +1,21 @@
+@if (link(); as path) {
+  <a
+    [routerLink]="path"
+    class="logo__wrapper"
+    [attr.aria-label]="alt()">
+    <ng-container *ngTemplateOutlet="logoImage" />
+  </a>
+} @else {
+  <div class="logo__wrapper">
+    <ng-container *ngTemplateOutlet="logoImage" />
+  </div>
+}
+
+<ng-template #logoImage>
+  <img
+    [src]="src()"
+    [alt]="alt()"
+    class="logo__image"
+    [attr.loading]="priority() ? 'eager' : 'lazy'"
+    [attr.fetchpriority]="priority() ? 'high' : 'auto'" />
+</ng-template>
