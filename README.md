@@ -725,22 +725,21 @@ pnpm add -D @angular-eslint/builder @eslint/js typescript-eslint
   HTMLHint
 </h2>
 
-### <span style="color: rgb(240, 0, 212);font-size: 24px;">Introduction :</span>
+### Introduction :
 
-Assurer la qualité et la cohérence des templates <span style="color: rgb(207, 120, 6);font-weight: bold;">HTML</span>  au sein d'un projet <span style="color: rgb(207, 120, 6);font-weight: bold;">Angular</span> est essentiel pour la maintenabilité et la robustesse d'une application. C'est précisément le rôle de <span style="color: rgb(207, 120, 6);font-weight: bold;">HTMLHint</span>, un analyseur de code statique (ou linter) dédié au <span style="color: rgb(207, 120, 6);font-weight: bold;">HTML</span>.
-En l'intégrant dans notre chaîne d'outils de développement, nous pouvons automatiser l'inspection de nos fichiers `.html` afin de détecter les erreurs courantes, les mauvaises pratiques et les incohérences de style.
-Grâce à un ensemble de règles configurables via un fichier `.htmlhintrc`, <span style="color: rgb(207, 120, 6);font-weight: bold;">HTMLHint</span> nous aide à renforcer les standards de code de notre équipe, prévenir des bugs liés aux balises et <span style="font-weight: bold;">PAR-DESSUS TOUT</span> améliorer l'accessibilité de nos applications (<span style="color: rgb(207, 120, 6);font-weight: bold;">A11y</span>) !!!
-
-[En savoir plus sur A11y en fin de documentation](#a11y)
+Assurer la qualité et la cohérence des templates **HTML** au sein d'un projet **Angular** est essentiel pour la maintenabilité et la robustesse d'une application.  
+C'est précisément le rôle de **HTMLHint**, un analyseur de code statique (ou linter) dédié au **HTML**.  
+En l'intégrant dans notre chaîne d'outils de développement, nous pouvons automatiser l'inspection de nos fichiers `.html` afin de détecter les erreurs courantes, les mauvaises pratiques et les incohérences de style.  
+Grâce à un ensemble de règles configurables via un fichier `.htmlhintrc`, **HTMLHint** nous aide à renforcer les standards de code de notre équipe, prévenir des bugs liés aux balises et **PAR-DESSUS TOUT** améliorer l'accessibilité de nos applications (**A11y**) !!!
 
 [En savoir plus sur l'accessibilité en fin de documentation](#accessibilite)
 
-[Consulter le cadre légal et juridique en fin de documentation](#Juridique)
+### Extension VSCode :
 
-### <span style="color: rgb(240, 0, 212);font-size: 24px;">Extension VSCode :</span>
-[HTMLHint VSCode Extension](https://marketplace.visualstudio.com/items/?itemName=HTMLHint.vscode-htmlhint) 
+[HTMLHint VSCode Extension](https://marketplace.visualstudio.com/items/?itemName=HTMLHint.vscode-htmlhint)  
 
-Si vous n'avez pas l'extension <span style="color: rgb(207, 120, 6);font-weight: bold;">VSCode</span> il faut ajouter cette configuration dans son `settings.json`, sinon le fichier de configuration ne sera pas reconnu par celui-ci. De plus cela activera l'autocomplétion et la validation du fichier `.htmlhintrc`.
+Si vous n'avez pas l'extension **VSCode** il faut ajouter cette configuration dans son `settings.json`, sinon le fichier de configuration ne sera pas reconnu par celui-ci.  
+De plus cela activera l'autocomplétion et la validation du fichier `.htmlhintrc`.  
 
 ```JSON
 {
@@ -752,7 +751,9 @@ Si vous n'avez pas l'extension <span style="color: rgb(207, 120, 6);font-weight:
   ]
 }
 ```
-### <span style="color: rgb(240, 0, 212);font-size: 24px;">Configuration :</span>
+
+### Configuration :
+
 Ouvrir le fichier `package.json`. Ajouter la commande suivante dans la partie `scripts`.
 
 ```JSON
@@ -761,12 +762,16 @@ Ouvrir le fichier `package.json`. Ajouter la commande suivante dans la partie `s
 }
 ```
 
-### <span style="color: rgb(240, 0, 212);font-size: 24px;">Execution :</span>
-Lancer le lint sur nos fichiers <span style="color: rgb(207, 120, 6);font-weight: bold;">HTML</span> =>
+### Execution :
+
+Lancer le lint sur nos fichiers **HTML** =>
+
 ```powershell
 npm run lint:html
 ```
+
 Si le script n'est pas défini dans le `package.json` =>
+
 ```powershell
 npx htmlhint "**/*.html"
 ```
@@ -1693,7 +1698,7 @@ pnpm add -D @typescript-eslint/parser eslint-plugin-rxjs
     width="34px"
     src="https://raw.githubusercontent.com/EmmanuelLefevre/GitHubProfileIcons/main/htmlhint.png"
   />
-  HTMLHint
+  HTMLHint Rules
 </h3>
 
 [HTMLHint Documentation](https://htmlhint.com/rules/)  
