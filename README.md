@@ -41,6 +41,7 @@
 - [HTMLHINT](#htmlhint)
 - [STYLELINT](#stylelint)
 - [HUSKY](#husky)
+- [GIT LEAKS](#git-leaks)
 - [TS CONFIG](#ts-config)
 - [TESTS](#tests)
 - [CI/CD](#ci-cd)
@@ -184,8 +185,10 @@
  ┗ 🧪test-setup.ts
 📄.....
 📄.gitignore
+📄.gitleaks.toml
 📄.npmrc
 📄.stylelintrc.json
+📄eslint-security.config.js
 📄eslint.config.js
 📄LICENSE
 📄package.json
@@ -650,13 +653,13 @@ Pour finir ouvrir le fichier `package.json` et ajouter la commande suivante dans
 
 Lancer le lint sur nos fichiers **HTML** =>
 
-```powershell
+```shell
 pnpm lint:html
 ```
 
 Si le script n'est pas défini dans le `package.json` =>
 
-```powershell
+```shell
 npx htmlhint "**/*.html"
 ```
 
@@ -682,7 +685,7 @@ Concrètement, **Stylelint** analyse vos fichiers de style et nous signale tout 
 ### Configuration :
 
 ```shell
-npm install -D stylelint stylelint-scss postcss-scss
+pnpm add -D stylelint stylelint-scss postcss-scss
 ```
 
 Il faut ensuite créer le fichier `.stylelintrc.json` à la racine et y coller la configuration présente dans le template.  
@@ -692,8 +695,8 @@ De plus il est nécessaire d'ajouter dans le fichier `package.json` le fix des f
 ```JSON
 {
   "*.scss": [
-      "stylelint --fix"
-    ],
+    "stylelint --fix"
+  ],
 }
 ```
 
@@ -704,6 +707,38 @@ ainsi que le script =>
 ```
 
 💡 Une documentation complète est disponible ici... [StyleLint Rules](#stylelint-rules)  
+
+<h2 id="git-leaks">
+  <img
+    alt="GitLeaks"
+    title="GitLeaks"
+    width="30px"
+    src="https://raw.githubusercontent.com/EmmanuelLefevre/GitHubProfileIcons/main/git-leaks.png"
+  />
+  GIT LEAKS
+</h2>
+
+**Gitleaks** est un outil de sécurité conçu pour détecter et prévenir l'introduction de secrets (mots de passe, clés API, jetons AWS, certificats) dans notre historique **Git**.  
+
+**Son rôle**  
+Il scanne chaque commit et chaque ligne de code pour identifier des signatures spécifiques (comme une **clé privée SSH**) ou des motifs suspects (comme une chaîne de caractères nommée `SECRET_KEY`).  
+
+**Pourquoi c'est top**  
+Une fois qu'un secret est "poussé" sur un dépôt (même privé), il est considéré comme compromis. Même si on supprime la ligne plus tard, le secret reste présent dans l'historique des commits. **Gitleaks** bloque l'action avant que le secret ne soit définitivement ancré dans l'historique et garantit que nos fichiers de configuration restent propres ainsi que nos secrets restent dans les coffres-forts prévus à cet effet (comme les **GitHub Secrets** ou **HashiCorp Vault**)..  
+
+```shell
+pnpm add -D gitleaks
+```
+
+```JSON
+"lint-staged": {
+  "*": [
+    "gitleaks protect --staged --verbose"
+  ],
+  "src/**/*.html": []
+}
+```
+Créer le fichier `.gitleaks.toml` et y coller la configuration présente dans le template.  
 
 <h2 id="husky">
   <img
@@ -768,7 +803,7 @@ Ouvrir le fichier `package.json`. Ajouter la configuration tout à la fin du fic
     "eslint --fix --max-warnings=50",
     "prettier --write"
   ],
-  "src/**/*.{css,scss,json,md}": [
+  "**/*.{css,scss,json,md}": [
     "prettier --write"
   ],
   "*.scss": [
@@ -800,7 +835,7 @@ pnpm test -- --run
 pnpm exec lint-staged
 ```
 
-**Etape 5 :** Ajouter la commande au `package.json` si ça n'a pas été fait automatiquement  
+**Etape 5 :** Ajouter la commande au `package.json` si ça n'a pas été fait automatiquement...  
 
 ```JSON
 "scripts": {
@@ -998,27 +1033,6 @@ Conséquence : Si le moindre warning subsiste (**HTML**, **TS** ou encore **SCSS
 
 Commande exécutée : `pnpm lint:ci` (ng lint --max-warnings=0).  
 
-3. 🛑 Ma **PR** est bloquée alors que mon commit est passé ?  
-
-C'est normal si vous aviez laissé des warnings. Votre commit est passé localement car il respectait la limite des 50, mais la CI exige la perfection.  
-
-Pour corriger :  
-
-- Regardez les logs de l'action GitHub pour voir les fichiers incriminés.
-- Lancez la vérification stricte en local pour les reproduire :
-
-```Bash
-pnpm lint:ci
-pnpm lint:html:ci
-pnpm lint:scss:ci
-```
-
-Corrigez les warnings restants, commitez et pushez.  
-
-4. **Double implémentation du linter**
-
-
-
 ### RIMRAF
 
 L'utilisation de **rimraf** permet de supprimer des dossiers de manière fiable que l'on soit sous **Windows**, **macOS** ou **Linux**. C'est essentiel pour éviter que d'anciens rapports de couverture ne viennent fausser les nouvelles analyses.  
@@ -1081,13 +1095,15 @@ C'est un outil de "chasseur de failles". Il est capable de trouver des erreurs d
 
 ### GITLEAKS
 
-**Gitleaks** est un outil de sécurité conçu pour détecter et prévenir l'introduction de secrets (mots de passe, clés API, jetons AWS, certificats) dans notre historique **Git**.  
+Bien que nous utilisions **Gitleaks** en local, son intégration dans la pipeline **CI/CD** est cruciale pour garantir une étanchéité totale du projet.  
 
-**Son rôle**  
-Il scanne chaque commit et chaque ligne de code pour identifier des signatures spécifiques (comme une **clé privée SSH**) ou des motifs suspects (comme une chaîne de caractères nommée `SECRET_KEY`).  
+**Pourquoi l'avoir aussi dans la CI ?**  
 
-**Pourquoi c'est top**  
-Une fois qu'un secret est "poussé" sur un dépôt (même privé), il est considéré comme compromis. Même si on supprime la ligne plus tard, le secret reste présent dans l'historique des commits. **Gitleaks** bloque l'action avant que le secret ne soit définitivement ancré dans l'historique.  
+- **Contournement des Hooks :** un développeur peut (volontairement ou non) bypasser les protections locales avec la commande git commit --no-verify. La CI, elle, ne peut pas être ignorée.
+- **Historique complet :** alors que le scan local se concentre sur les fichiers modifiés (--staged), la version **CI** peut être configurée pour scanner l'intégralité de l'historique de la branche pour s'assurer qu'aucun secret n'a été "glissé" dans un commit passé.
+- **Auditabilité :** elle génère un rapport officiel dans l'onglet **Security de GitHub**, permettant de garder une trace des tentatives d'introduction de données sensibles.
+
+Si **Gitleaks** trouve une faille, le job **Security** échoue immédiatement, bloquant ainsi toute tentative de fusion ou de déploiement.  
 
 ### CONFIGURATION DE LA PIPELINE
 
@@ -1334,7 +1350,58 @@ pnpm add @ngx-translate/core @ngx-translate/http-loader
   ⚠️ ERREURS FREQUENTES
 </h2>
 
-### 1. Warning lors du premier push !
+### 1. 🛑 Ma **PR** est bloquée alors que mon commit est passé ?
+
+C'est normal si vous aviez laissé des warnings. Votre commit est passé localement car il respectait la limite des 50, mais la CI exige la perfection.  
+
+Pour corriger :  
+
+- Regardez les logs de l'action GitHub pour voir les fichiers incriminés.
+- Lancez la vérification stricte en local pour les reproduire :
+
+```Bash
+pnpm lint:ci
+pnpm lint:html:ci
+pnpm lint:scss:ci
+```
+
+Corrigez les warnings restants, commitez et pushez.  
+
+### 2. 🛑 Que faire si Gitleaks lève une alerte ?
+
+Pas de panique ! Cela arrive aux meilleurs. Si un commit est bloqué en local ou si la **CI** échoue avec un message de **Gitleaks**, suivre ces étapes dans l'ordre :  
+
+1. **Identifier la nature de l'alerte**  
+
+Consulter le log de **Gitleaks**. Il indiquera le fichier, la ligne et le type de secret détecté (ex: Generic API Key).  
+
+2. **Cas A : C'est un "Vrai" Secret (Clé réelle, MDP...)**  
+
+Si un secret valide traîne réellement :  
+
+- **Révoquer le secret immédiatement :** changer le mot de passe ou désactiver la clé API sur la plateforme concernée (**AWS**, **Stripe**...). Une clé poussée sur **Git** doit être considérée comme compromise !!!
+- **Nettoyer le code :** remplacer le secret par une variable d'environnement ou une référence à un coffre-fort (**Secret Manager**).
+- **Supprimer le secret de l'historique :** si le commit est uniquement local : faire un `git commit --amend` ou un `git rebase`.
+
+Si le commit est déjà sur le serveur : il faudra utiliser un outil comme **BFG Repo-Cleaner** ou **git filter-repo**.  
+
+[Procédure Git Filter Repo](https://github.com/EmmanuelLefevre/Documentations/blob/main/Tutorials/github_tricks.md)
+
+3. **Cas B : C'est un "Faux Positif"**  
+
+Si **Gitleaks** s'est trompé (ex: il a pris un ID de test pour une clé API) :  
+
+- **Utiliser l'empreinte (Fingerprint) :** une empreinte unique pour cette détection est donnée par **Gitleaks**.
+- **Ajouter l'empreinte à l'allowlist :** copier cette empreinte dans le fichier `.gitleaks.toml` sous la section `[allowlist]`.
+
+**Gitleaks** ignorera cette valeur précise à l'avenir.  
+
+💡 **Rappel : La règle d'or**  
+
+Ne jamais utiliser `--no-verify` pour forcer un commit bloqué par **Gitleaks**. Si l'outil aboie, c'est qu'il y a une raison !!!  
+Prendre 2 minutes pour vérifier, cela peut éviter des heures de gestion de crise plus tard...  
+
+### 3. 🛑 Warning lors du premier push !
 
 <br>
 
@@ -1366,7 +1433,7 @@ Publier la branche et écraser le contenu sur **Github** avec la version locale 
 git push --force origin main
 ```
 
-### 2. Option 'baseUrl' is deprecated
+### 4. 🛑  Option 'baseUrl' is deprecated
 
 L'auteur "Andrew Branch" est membre de l'équipe **TypeScript** chez **Microsoft**, ce qui garantit la fiabilité et la pertinence de l'outil.  
 

@@ -114,6 +114,9 @@ importers:
       eslint-plugin-security:
         specifier: 3.0.1
         version: 3.0.1
+      gitleaks:
+        specifier: 1.0.0
+        version: 1.0.0
       htmlhint:
         specifier: 1.8.0
         version: 1.8.0
@@ -2716,6 +2719,9 @@ packages:
   get-proto@1.0.1:
     resolution: {integrity: sha512-sTSfBjoXBp89JvIKIefqw7U2CCebsc74kiY6awiGogKtoSGbgjYE/G/+l9sF3MWFPNc9IcoOC4ODfKHfxFmp0g==}
     engines: {node: '>= 0.4'}
+
+  gitleaks@1.0.0:
+    resolution: {integrity: sha512-mTtKkWCAeHnTiBmRzjKnot8D8zX/JVDuRffuvSCr+z93vuBXygeifGZ7lXOB8Hjxto+DikSoF0XXfxntd1BZSQ==}
 
   glob-parent@5.1.2:
     resolution: {integrity: sha512-AOIgSQCepiJYwP3ARnGx+5VnTu2HBYdzbGP45eLw1vr3zB3vZLeyed1sC9hnbcOc9/SrMyM5RPQrkGz4aS9Zow==}
@@ -6650,6 +6656,8 @@ snapshots:
     dependencies:
       dunder-proto: 1.0.1
       es-object-atoms: 1.1.1
+
+  gitleaks@1.0.0: {}
 
   glob-parent@5.1.2:
     dependencies:

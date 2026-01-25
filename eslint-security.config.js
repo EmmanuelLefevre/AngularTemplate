@@ -3,6 +3,12 @@ import tseslint from 'typescript-eslint';
 
 export default [
   {
+    // Ignore warnings about unnecessary comments
+    linterOptions: {
+      reportUnusedDisableDirectives: 'off'
+    }
+  },
+  {
     ignores: [
       '**/node_modules/**',
       '**/dist/**',
