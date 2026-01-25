@@ -38,7 +38,7 @@
 - [NPMRC](#npmrc)
 - [ESLINT / PRETTIER](#eslint-prettier)
 - [HTMLHint](#htmlhint)
-- [StyleLint](#stylelint)
+- [STYLELINT](#stylelint)
 - [HUSKY](#husky)
 - [TS CONFIG](#ts-config)
 - [TESTS](#tests)
@@ -779,14 +779,14 @@ npx htmlhint "**/*.html"
 
 💡 Une documentation complète est disponible ici... [HTMLHint Rules](#htmlhint-rules)  
 
-<h2 id="stylelint-rules">
+<h2 id="stylelint">
   <img
     alt="StyleLint"
     title="StyleLint"
     width="34px"
     src="https://raw.githubusercontent.com/EmmanuelLefevre/GitHubProfileIcons/main/stylelint.png"
   />
-  StyleLint
+  STYLELINT
 </h2>
 
 Pour la configuration des règles **SCSS** il faut ajouter **StyleLint**.  
