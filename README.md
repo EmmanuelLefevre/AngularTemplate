@@ -481,6 +481,7 @@ pnpm exec prettier --write .prettierrc.js
 *.ts
 .angular
 .git
+.htmlhintrc
 angular.json
 coverage/
 dist/

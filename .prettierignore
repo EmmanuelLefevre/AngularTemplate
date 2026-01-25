@@ -3,6 +3,7 @@
 *.ts
 .angular
 .git
+.htmlhintrc
 angular.json
 coverage/
 dist/
