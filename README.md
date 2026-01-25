@@ -1691,7 +1691,7 @@ Pour la configuration des règles RXJS il faut ajouter ces deux librairies:
 pnpm add -D @typescript-eslint/parser eslint-plugin-rxjs
 ```
 
-<h3 id="htmlint-rules">
+<h3 id="htmlhint-rules">
   <img
     alt="HTMLHint"
     title="HTMLHint"
