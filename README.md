@@ -1004,6 +1004,23 @@ pnpm test:coverage
   🤖 CI/CD
 </h2>
 
+### PROTECTION DES BRANCHES
+
+Pour garantir que la qualité et la sécurité du code ne soient jamais compromises, des règles de protection strictes ont été appliquées sur les branches vitales du projet.  
+
+🔒 **Configuration pour `main` et `develop`**  
+
+Voici les règles implémentées dans ce dépôt (Settings > Branches > Add rule) :  
+
+- **Require a pull request before merging :** interdiction totale de pousser directement du code sur ces branches. Tout changement doit passer par une **PR**.
+- **Require status checks to pass before merging :** une **PR** ne peut être fusionnée que si les jobs suivants sont au vert :  
+🛡️ Security Scans  
+✨ Quality & Tests  
+- **Require conversation resolution before merging :** toutes les remarques des relecteurs lors de la **PR** doivent être traitées.
+- **Restrict deletions & force pushes :** empêcher quiconque d'effacer l'historique ou de réécrire les branches stables.
+
+L'option **"Include administrators"** est également activée...  
+
 ### STRATEGIE DE QUALITE
 
 Pour maintenir une base de code saine sans ralentir le développement quotidien, une stratégie de validation stricte mais pragmatique est appliquée : **"Souple en local, Intransigeant en CI"** !!!  
