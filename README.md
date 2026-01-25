@@ -540,28 +540,58 @@ Voici à quoi cela devrait ressembler (simplifié) :
 **\* Note :** Prettier ne sera pas ajouté automatiquement il faut le faire manuellement comme indiqué ci dessous.  
 
 ```js
-const eslint = require('@eslint/js');
-const { defineConfig } = require('eslint/config');
-const tseslint = require('typescript-eslint');
-const angular = require('angular-eslint');
-const stylistic = require('@stylistic/eslint-plugin');
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-module.exports = defineConfig([
+import { defineConfig } from 'eslint/config';
+
+import angular from 'angular-eslint';
+import eslint from '@eslint/js';
+// @ts-expect-error
+import securityPlugin from 'eslint-plugin-security';
+import stylistic from '@stylistic/eslint-plugin';
+import tseslint from 'typescript-eslint';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+export default defineConfig([
+    // GLOBAL IGNORES ----------
+  {
+    ignores: [
+      '.angular/',
+      'dist/',
+      'node_modules/'
+    ]
+  },
   // TS ----------
   {
     files: ['**/*.ts'],
     plugins: {
-      '@stylistic': stylistic
+      '@stylistic': stylistic,
+      security: securityPlugin
+    },
+    languageOptions: {
+      parserOptions: {
+        projectService: {
+          allowDefaultProject: ['vitest.config.ts', 'eslint.config.js']
+        },
+        tsconfigRootDir: __dirname
+      }
     },
     extends: [
       eslint.configs.recommended,
       ...tseslint.configs.recommended,
       ...tseslint.configs.stylistic,
-      ...angular.configs.tsRecommended
+      ...angular.configs.tsRecommended,
+      securityPlugin.configs.recommended
     ],
     processor: angular.processInlineTemplates,
     rules: {
-      // Angular selectors configuration
+      // Security
+      'security/detect-object-injection': 'error',
+
+      // Angular
       '@angular-eslint/component-selector': [
         'error',
         {
@@ -579,7 +609,8 @@ module.exports = defineConfig([
         }
       ],
       '@angular-eslint/prefer-standalone': 'error',
-      // Stylistics selectors configuration
+
+      // Stylistic
       '@stylistic/brace-style': ['error', 'stroustrup'],
       '@stylistic/indent': ['error', 2],
       '@stylistic/padding-line-between-statements': [
@@ -592,18 +623,43 @@ module.exports = defineConfig([
       ],
       '@stylistic/semi': ['error', 'always'],
       '@stylistic/quotes': ['error', 'single'],
-      // Typescript selectors configuration
-      // Commons
-      // Disabling old rules to avoid duplicates
-      indent: 'off',
-      semi: 'off',
-      quotes: 'off'
+
+      // TypeScript
+      '@typescript-eslint/explicit-function-return-type': 'error',
+      '@typescript-eslint/naming-convention': [
+        'error',
+        {
+          selector: 'variable',
+          format: ['camelCase']
+        },
+        {
+          selector: 'variable',
+          modifiers: ['const', 'global'],
+          format: ['UPPER_CASE']
+        },
+        {
+          selector: 'variable',
+          modifiers: ['const'],
+          format: ['camelCase', 'UPPER_CASE']
+        },
+        {
+          selector: 'method',
+          format: ['camelCase']
+        },
+        {
+          selector: 'class',
+          format: ['PascalCase']
+        }
+      ],
     }
   },
   // HTML ----------
   {
     files: ['**/*.html'],
-    extends: [...angular.configs.templateRecommended, ...angular.configs.templateAccessibility],
+    extends: [
+      ...angular.configs.templateRecommended,
+      ...angular.configs.templateAccessibility
+    ],
     rules: {
       '@angular-eslint/template/component-selector': 'off',
       '@angular-eslint/template/directive-selector': 'off'
@@ -860,6 +916,7 @@ pnpm add -D vite-tsconfig-paths
 ```JSON
 "compilerOptions": {
   "outDir": "./out-tsc/spec",
+  "rootDir": "./src",
   "module": "ESNext",
   "moduleResolution": "Bundler",
   "types": [
