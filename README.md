@@ -45,12 +45,16 @@
 - [TS CONFIG](#ts-config)
 - [TESTS](#tests)
 - [CI/CD](#ci-cd)
+  - [Rimraf](#rimraf)
+  - [Sonar Cloud](#sonar-cloud)
+  - [Snyk](#snyk)
+  - [CodeQL](#codeql)
+  - [GitLeaks](#gitleaks)
 - [DEPENDENCIES](#dependencies)
 - [STYLES](#styles)
 - [SCHEMATICS](#schematics)
 - [CONFIGURATION DE BUILD](#configuration-de-build)
 - [MULTI LANGUES](#multi-langues)
-- [ERREURS FREQUENTES](#erreurs-frequentes)
 - [TOOLING DOCUMENTATIONS](#tooling-documentations)
   - [Prettier Rules](#prettier-rules)
   - [ESLint Rules](#eslint-rules)
@@ -58,6 +62,7 @@
   - [StyleLint Rules](#stylelint-rules)
   - [TS Config Rules](#ts-config-rules)
   - [Schematics Rules](#schematics-rules)
+- [ERREURS FREQUENTES](#erreurs-frequentes)
 
 ## 🏗 ARCHITECTURE
 
@@ -713,7 +718,7 @@ ainsi que le script =>
     alt="GitLeaks"
     title="GitLeaks"
     width="30px"
-    src="https://raw.githubusercontent.com/EmmanuelLefevre/GitHubProfileIcons/main/git-leaks.png"
+    src="https://raw.githubusercontent.com/EmmanuelLefevre/GitHubProfileIcons/main/git_leaks.png"
   />
   GIT LEAKS
 </h2>
@@ -1033,7 +1038,9 @@ Conséquence : Si le moindre warning subsiste (**HTML**, **TS** ou encore **SCSS
 
 Commande exécutée : `pnpm lint:ci` (ng lint --max-warnings=0).  
 
-### RIMRAF
+<h3 id="rimraf">
+  RIMRAF
+</h3>
 
 L'utilisation de **rimraf** permet de supprimer des dossiers de manière fiable que l'on soit sous **Windows**, **macOS** ou **Linux**. C'est essentiel pour éviter que d'anciens rapports de couverture ne viennent fausser les nouvelles analyses.  
 
@@ -1050,7 +1057,15 @@ Dans `package.json` ajouter les scripts `clean` et `test:coverage`
 }
 ```
 
-### SONAR CLOUD
+<h3 id="sonar-cloud">
+  <img
+    alt="SonarCloud"
+    title="SonarCloud"
+    width="34px"
+    src="https://raw.githubusercontent.com/EmmanuelLefevre/GitHubProfileIcons/main/sonar_cloud.png"
+  />
+  SONAR CLOUD
+</h3>
 
 **SonarCloud** est l'inspecteur de santé de ce projet. C'est l'outil de référence pour le **"Clean Code"**.  
 
@@ -1070,7 +1085,15 @@ Configurer son compte **SonarCloud** et son secret `SONAR_TOKEN`.
 
 Créer le fichier `sonar-project.properties` à la racine et y coller la configuration présente dans le template...  
 
-### SNYK
+<h3 id="snyk">
+  <img
+    alt="Snyk"
+    title="Snyk"
+    width="34px"
+    src="https://raw.githubusercontent.com/EmmanuelLefevre/GitHubProfileIcons/main/snyk.png"
+  />
+  SNYK
+</h3>
 
 **Snyk** est le spécialiste des dépendances externes. Dans un projet moderne, **80%** du code provient de bibliothèques tierces (via **npm** ou **pnpm**). **Snyk** s'assure que ces bibliothèques que nous importons ne sont pas empoisonnées.  
 
@@ -1083,7 +1106,15 @@ Il ne se contente pas de dire "c'est cassé", il propose souvent la version pré
 **Seuil**  
 Seules les vulnérabilités de niveau high bloquent le pipeline, évitant ainsi de stopper le projet pour des failles mineures ou sans correctif disponible.  
 
-### CODEQL
+<h3 id="codeql">
+  <img
+    alt="CodeQL"
+    title="CodeQL"
+    width="34px"
+    src="https://raw.githubusercontent.com/EmmanuelLefevre/GitHubProfileIcons/main/codeql.png"
+  />
+  CODEQL
+</h3>
 
 **CodeQL** est le moteur d'analyse sémantique de **GitHub**. Contrairement à un linter classique qui regarde la forme, **CodeQL** traite le code comme une base de données.  
 
@@ -1093,7 +1124,15 @@ Il exécute des requêtes complexes pour voir comment les données circulent dan
 **Pourquoi c'est top**  
 C'est un outil de "chasseur de failles". Il est capable de trouver des erreurs de logique ou des vulnérabilités critiques que personne n'a encore répertoriées ailleurs.  
 
-### GITLEAKS
+<h3 id="git-leaks">
+  <img
+    alt="GitLeaks"
+    title="GitLeaks"
+    width="30px"
+    src="https://raw.githubusercontent.com/EmmanuelLefevre/GitHubProfileIcons/main/git_leaks.png"
+  />
+  GIT LEAKS
+</h3>
 
 Bien que nous utilisions **Gitleaks** en local, son intégration dans la pipeline **CI/CD** est cruciale pour garantir une étanchéité totale du projet.  
 
@@ -1107,7 +1146,7 @@ Si **Gitleaks** trouve une faille, le job **Security** échoue immédiatement, b
 
 ### CONFIGURATION DE LA PIPELINE
 
-Créer `.github > workflows > pipeline.yml` et y coller la configuration présente dans le template.  
+Créer l'arborescence' `.github > workflows > pipeline.yml` et y coller la configuration présente dans le template.  
 
 ### MAINTENANCE : NETTOYAGE DES WORKFLOWS
 
@@ -1344,127 +1383,6 @@ Installer les librairies suivantes =>
 
 ```shell
 pnpm add @ngx-translate/core @ngx-translate/http-loader
-```
-
-<h2 id="erreurs-frequentes">
-  ⚠️ ERREURS FREQUENTES
-</h2>
-
-### 1. 🛑 Ma **PR** est bloquée alors que mon commit est passé ?
-
-C'est normal si vous aviez laissé des warnings. Votre commit est passé localement car il respectait la limite des 50, mais la CI exige la perfection.  
-
-Pour corriger :  
-
-- Regardez les logs de l'action GitHub pour voir les fichiers incriminés.
-- Lancez la vérification stricte en local pour les reproduire :
-
-```Bash
-pnpm lint:ci
-pnpm lint:html:ci
-pnpm lint:scss:ci
-```
-
-Corrigez les warnings restants, commitez et pushez.  
-
-### 2. 🛑 Que faire si Gitleaks lève une alerte ?
-
-Pas de panique ! Cela arrive aux meilleurs. Si un commit est bloqué en local ou si la **CI** échoue avec un message de **Gitleaks**, suivre ces étapes dans l'ordre :  
-
-1. **Identifier la nature de l'alerte**  
-
-Consulter le log de **Gitleaks**. Il indiquera le fichier, la ligne et le type de secret détecté (ex: Generic API Key).  
-
-2. **Cas A : C'est un "Vrai" Secret (Clé réelle, MDP...)**  
-
-Si un secret valide traîne réellement :  
-
-- **Révoquer le secret immédiatement :** changer le mot de passe ou désactiver la clé API sur la plateforme concernée (**AWS**, **Stripe**...). Une clé poussée sur **Git** doit être considérée comme compromise !!!
-- **Nettoyer le code :** remplacer le secret par une variable d'environnement ou une référence à un coffre-fort (**Secret Manager**).
-- **Supprimer le secret de l'historique :** si le commit est uniquement local : faire un `git commit --amend` ou un `git rebase`.
-
-Si le commit est déjà sur le serveur : il faudra utiliser un outil comme **BFG Repo-Cleaner** ou **git filter-repo**.  
-
-[Procédure Git Filter Repo](https://github.com/EmmanuelLefevre/Documentations/blob/main/Tutorials/github_tricks.md)
-
-3. **Cas B : C'est un "Faux Positif"**  
-
-Si **Gitleaks** s'est trompé (ex: il a pris un ID de test pour une clé API) :  
-
-- **Utiliser l'empreinte (Fingerprint) :** une empreinte unique pour cette détection est donnée par **Gitleaks**.
-- **Ajouter l'empreinte à l'allowlist :** copier cette empreinte dans le fichier `.gitleaks.toml` sous la section `[allowlist]`.
-
-**Gitleaks** ignorera cette valeur précise à l'avenir.  
-
-💡 **Rappel : La règle d'or**  
-
-Ne jamais utiliser `--no-verify` pour forcer un commit bloqué par **Gitleaks**. Si l'outil aboie, c'est qu'il y a une raison !!!  
-Prendre 2 minutes pour vérifier, cela peut éviter des heures de gestion de crise plus tard...  
-
-### 3. 🛑 Warning lors du premier push !
-
-<br>
-
-![Terminal Screen](https://github.com/EmmanuelLefevre/MarkdownImg/blob/main/template_angular_git_warning.png)
-
-<br>
-
-Créer le fichier `.gitattributes` à la racine du projet et coller ceci :  
-
-```shell
-# Force line endings to LV for everyone (Mac/Linux/Windows)
-* text=auto eol=lf
-
-# Except for Windows batch files (if you have any)
-*.cmd text eol=crlf
-*.ps1 text eol=crlf
-```
-
-Puis "renormaliser" la config **Git** en lançant ces commandes dans le projet :  
-
-```shell
-git add --renormalize .
-git commit -m "chore: enforce LF line endings" --no-verify
-```
-
-Publier la branche et écraser le contenu sur **Github** avec la version locale :
-
-```shell
-git push --force origin main
-```
-
-### 4. 🛑  Option 'baseUrl' is deprecated
-
-L'auteur "Andrew Branch" est membre de l'équipe **TypeScript** chez **Microsoft**, ce qui garantit la fiabilité et la pertinence de l'outil.  
-
-[andrewbranch/ts5to6 – Outil de migration TypeScript 5 vers 6](https://github.com/andrewbranch/ts5to6)
-
-- **BaseUrl**
-
-Pour le fichier de configuration de base du projet  
-
-```shell
-npx @andrewbranch/ts5to6 --fixBaseUrl ./tsconfig.json
-```
-
-Pour le fichier de configuration de l'application (où se trouvent les paths)  
-
-```shell
-npx @andrewbranch/ts5to6 --fixBaseUrl ./tsconfig.app.json
-```
-
-- **RootDir**
-
-Pour le fichier de configuration de base du projet  
-
-```shell
-npx @andrewbranch/ts5to6 --fixRootDir ./tsconfig.json
-```
-
-Pour le fichier de configuration de l'application  
-
-```shell
-npx @andrewbranch/ts5to6 --fixRootDir ./tsconfig.app.json
 ```
 
 <h2 id="tooling-documentations">
@@ -1794,3 +1712,124 @@ Configuration pour la gestion globale des services (`ng g s`).
 | :--- | :--- | :--- |
 | **`skipTests`** | `false` | Générer un fichier de test unitaire (`.spec.ts`) |
 | **`type`** | `"service"` | Ajouter le type à la classe et au fichier (`api.service.ts`) |
+
+<h2 id="erreurs-frequentes">
+  ⚠️ ERREURS FREQUENTES
+</h2>
+
+### 1. 🛑 Ma **PR** est bloquée alors que mon commit est passé ?
+
+C'est normal si vous aviez laissé des warnings. Votre commit est passé localement car il respectait la limite des 50, mais la CI exige la perfection.  
+
+Pour corriger :  
+
+- Regardez les logs de l'action GitHub pour voir les fichiers incriminés.
+- Lancez la vérification stricte en local pour les reproduire :
+
+```Bash
+pnpm lint:ci
+pnpm lint:html:ci
+pnpm lint:scss:ci
+```
+
+Corrigez les warnings restants, commitez et pushez.  
+
+### 2. 🛑 Que faire si Gitleaks lève une alerte ?
+
+Pas de panique ! Cela arrive aux meilleurs. Si un commit est bloqué en local ou si la **CI** échoue avec un message de **Gitleaks**, suivre ces étapes dans l'ordre :  
+
+1. **Identifier la nature de l'alerte**  
+
+Consulter le log de **Gitleaks**. Il indiquera le fichier, la ligne et le type de secret détecté (ex: Generic API Key).  
+
+2. **Cas A : C'est un "Vrai" Secret (Clé réelle, MDP...)**  
+
+Si un secret valide traîne réellement :  
+
+- **Révoquer le secret immédiatement :** changer le mot de passe ou désactiver la clé API sur la plateforme concernée (**AWS**, **Stripe**...). Une clé poussée sur **Git** doit être considérée comme compromise !!!
+- **Nettoyer le code :** remplacer le secret par une variable d'environnement ou une référence à un coffre-fort (**Secret Manager**).
+- **Supprimer le secret de l'historique :** si le commit est uniquement local : faire un `git commit --amend` ou un `git rebase`.
+
+Si le commit est déjà sur le serveur : il faudra utiliser un outil comme **BFG Repo-Cleaner** ou **git filter-repo**.  
+
+[Procédure Git Filter Repo](https://github.com/EmmanuelLefevre/Documentations/blob/main/Tutorials/github_tricks.md)
+
+3. **Cas B : C'est un "Faux Positif"**  
+
+Si **Gitleaks** s'est trompé (ex: il a pris un ID de test pour une clé API) :  
+
+- **Utiliser l'empreinte (Fingerprint) :** une empreinte unique pour cette détection est donnée par **Gitleaks**.
+- **Ajouter l'empreinte à l'allowlist :** copier cette empreinte dans le fichier `.gitleaks.toml` sous la section `[allowlist]`.
+
+**Gitleaks** ignorera cette valeur précise à l'avenir.  
+
+💡 **Rappel : La règle d'or**  
+
+Ne jamais utiliser `--no-verify` pour forcer un commit bloqué par **Gitleaks**. Si l'outil aboie, c'est qu'il y a une raison !!!  
+Prendre 2 minutes pour vérifier, cela peut éviter des heures de gestion de crise plus tard...  
+
+### 3. 🛑 Warning lors du premier push !
+
+<br>
+
+![Terminal Screen](https://github.com/EmmanuelLefevre/MarkdownImg/blob/main/template_angular_git_warning.png)
+
+<br>
+
+Créer le fichier `.gitattributes` à la racine du projet et coller ceci :  
+
+```shell
+# Force line endings to LV for everyone (Mac/Linux/Windows)
+* text=auto eol=lf
+
+# Except for Windows batch files (if you have any)
+*.cmd text eol=crlf
+*.ps1 text eol=crlf
+```
+
+Puis "renormaliser" la config **Git** en lançant ces commandes dans le projet :  
+
+```shell
+git add --renormalize .
+git commit -m "chore: enforce LF line endings" --no-verify
+```
+
+Publier la branche et écraser le contenu sur **Github** avec la version locale :
+
+```shell
+git push --force origin main
+```
+
+### 4. 🛑  Option 'baseUrl' is deprecated
+
+L'auteur "Andrew Branch" est membre de l'équipe **TypeScript** chez **Microsoft**, ce qui garantit la fiabilité et la pertinence de l'outil.  
+
+[andrewbranch/ts5to6 – Outil de migration TypeScript 5 vers 6](https://github.com/andrewbranch/ts5to6)
+
+- **BaseUrl**
+
+Pour le fichier de configuration de base du projet  
+
+```shell
+npx @andrewbranch/ts5to6 --fixBaseUrl ./tsconfig.json
+```
+
+Pour le fichier de configuration de l'application (où se trouvent les paths)  
+
+```shell
+npx @andrewbranch/ts5to6 --fixBaseUrl ./tsconfig.app.json
+```
+
+- **RootDir**
+
+Pour le fichier de configuration de base du projet  
+
+```shell
+npx @andrewbranch/ts5to6 --fixRootDir ./tsconfig.json
+```
+
+Pour le fichier de configuration de l'application  
+
+```shell
+npx @andrewbranch/ts5to6 --fixRootDir ./tsconfig.app.json
+```
