@@ -38,6 +38,7 @@
 - [NPMRC](#npmrc)
 - [ESLINT / PRETTIER](#eslint-prettier)
 - [HTMLHint](#htmlhint)
+- [StyleLint](#stylelint)
 - [HUSKY](#husky)
 - [TS CONFIG](#ts-config)
 - [TESTS](#tests)
@@ -777,6 +778,72 @@ npx htmlhint "**/*.html"
 ```
 
 💡 Une documentation complète est disponible ici... [HTMLHint Rules](#htmlhint-rules)  
+
+<h2 id="stylelint-rules">
+  <img
+    alt="StyleLint"
+    title="StyleLint"
+    width="34px"
+    src="https://raw.githubusercontent.com/EmmanuelLefevre/GitHubProfileIcons/main/stylelint.png"
+  />
+  StyleLint
+</h2>
+
+Pour la configuration des règles **SCSS** il faut ajouter **StyleLint**.  
+
+### Introduction :
+
+**Stylelint** est un linter **CSS** moderne et puissant, il vérifie votre code source pour y déceler des erreurs, des fautes de style ou encore des codes hexa incorrectes, sans avoir à l'exécuter.  
+Concrètement, **Stylelint** analyse vos fichiers de style et nous signale tout ce qui ne respecte pas un ensemble de règles que nous avons définies au préalable.  
+
+### Configuration :
+
+```shell
+npm install -D stylelint stylelint-scss postcss-scss
+```
+
+Il faut ensuite créer le fichier `.stylelintrc.json` à la racine du projet  
+
+```JSON
+{
+  "plugins": ["stylelint-scss"],
+  "customSyntax": "postcss-scss",
+  "rules": {
+    "block-no-empty": true,
+    "color-no-invalid-hex": true,
+    "scss/at-extend-no-missing-placeholder": true,
+    "scss/at-if-no-null": true,
+    "max-nesting-depth": [
+      3,
+      {
+        "ignore": ["blockless-at-rules"]
+      }
+    ],
+    "at-rule-no-unknown": null,
+    "scss/at-rule-no-unknown": true,
+    "comment-no-empty": null,
+    "scss/comment-no-empty": true
+  }
+}
+```
+
+De plus il est nécessaire d'ajouter dans le fichier `package.json` le fix des fichiers dans le `lint-staged`.
+
+```JSON
+{
+  "*.scss": [
+      "stylelint --fix"
+    ],
+}
+```
+
+ainsi que le script =>  
+
+```JSON
+"lint:scss": "stylelint \"src/**/*.scss\"",
+```
+
+💡 Une documentation complète est disponible ici... [StyleLint Rules](#stylelint-rules)  
 
 <h2 id="husky">
   <img
@@ -1746,38 +1813,19 @@ pnpm add -D @typescript-eslint/parser eslint-plugin-rxjs
   StyleLint Rules
 </h3>
 
-Pour la configuration des règles SCSS il faut ajouter StyleLint  
-
 [StyleLint SCSS Documentation](https://stylelint.io/user-guide/rules)  
 
-```shell
-pnpm add -D stylelint stylelint-scss postcss-scss
-```
-
-Il faut ensuite créer le fichier `.stylelintrc.json` à la racine du projet  
-
-```JSON
-{
-  "plugins": ["stylelint-scss"],
-  "customSyntax": "postcss-scss",
-  "rules": {
-    "block-no-empty": true,
-    "color-no-invalid-hex": true,
-    "scss/at-extend-no-missing-placeholder": true,
-    "scss/at-if-no-null": true,
-    "max-nesting-depth": [
-      3,
-      {
-        "ignore": ["blockless-at-rules"]
-      }
-    ],
-    "at-rule-no-unknown": null,
-    "scss/at-rule-no-unknown": true,
-    "comment-no-empty": null,
-    "scss/comment-no-empty": true
-  }
-}
-```
+| Option | Valeur | Description |
+| :--- | :--- | :--- |
+| **`plugins`** | `["stylelint-scss"]` | Charge le plugin nécessaire pour supporter les règles spécifiques au SCSS |
+| **`customSyntax`** | `"postcss-scss"` | Définit l'analyseur syntaxique (parser) approprié pour les fichiers SCSS |
+| **`block-no-empty`** | `true` | Interdit les blocs de déclaration vides (ex: `a { }`) pour garder le code propre |
+| **`color-no-invalid-hex`** | `true` | Signale les codes couleurs hexadécimaux invalides (ex: `#12345z`) |
+| **`scss/at-extend-no-missing-placeholder`** | `true` | Impose que l'instruction `@extend` ne cible que des placeholders (sélecteurs `%`), ce qui évite de gonfler la taille du CSS final inutilement |
+| **`scss/at-if-no-null`** | `true` | Interdit la comparaison explicite avec `null` dans les boucles `@if` (car en Sass, `null` est déjà évalué comme faux) |
+| **`max-nesting-depth`** | `ARRAY` | Contrôle la complexité du CSS en limitant l'imbrication :<br><br>**Limite :** 3 niveaux de profondeur maximum<br><br>**Exception :** Les "at-rules" sans bloc (comme les `@import` ou `@include` simples) sont ignorées via `["blockless-at-rules"]` |
+| **`scss/at-rule-no-unknown`** | `true` | Remplace la règle standard `at-rule-no-unknown` (qui est mise à `null`).<br><br>Vérifie la validité des directives (`@`), tout en autorisant celles spécifiques au SCSS comme `@mixin`, `@include` ou `@content` |
+| **`scss/comment-no-empty`** | `true` | Remplace la règle standard `comment-no-empty` (qui est mise à `null`).<br><br>Interdit les commentaires vides, tout en supportant la syntaxe de commentaire double slash `//` du SCSS |
 
 <h3 id="ts-config-rules">
   <img
