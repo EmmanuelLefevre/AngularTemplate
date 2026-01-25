@@ -22,6 +22,7 @@ export default [
     },
     plugins: {
       security: securityPlugin,
+      '@typescript-eslint': tseslint.plugin
     },
     rules: {
       ...securityPlugin.configs.recommended.rules,
