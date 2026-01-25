@@ -717,7 +717,7 @@ ainsi que le script =>
   <img
     alt="GitLeaks"
     title="GitLeaks"
-    width="80px"
+    width="100px"
     src="https://raw.githubusercontent.com/EmmanuelLefevre/GitHubProfileIcons/main/git_leaks.png"
   />
   GIT LEAKS
@@ -1089,7 +1089,7 @@ Créer le fichier `sonar-project.properties` à la racine et y coller la configu
   <img
     alt="Snyk"
     title="Snyk"
-    width="72px"
+    width="88px"
     src="https://raw.githubusercontent.com/EmmanuelLefevre/GitHubProfileIcons/main/snyk.png"
   />
   SNYK
@@ -1110,7 +1110,7 @@ Seules les vulnérabilités de niveau high bloquent le pipeline, évitant ainsi 
   <img
     alt="CodeQL"
     title="CodeQL"
-    width="50px"
+    width="60px"
     src="https://raw.githubusercontent.com/EmmanuelLefevre/GitHubProfileIcons/main/codeql.png"
   />
   CODEQL
@@ -1128,7 +1128,7 @@ C'est un outil de "chasseur de failles". Il est capable de trouver des erreurs d
   <img
     alt="GitLeaks"
     title="GitLeaks"
-    width="80px"
+    width="100px"
     src="https://raw.githubusercontent.com/EmmanuelLefevre/GitHubProfileIcons/main/git_leaks.png"
   />
   GIT LEAKS
