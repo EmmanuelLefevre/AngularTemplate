@@ -9,9 +9,11 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "lint": "ng lint",
-    "lint:ci": "ng lint --max-warnings=0",
     "lint:html": "htmlhint \"src/**/*.html\"",
     "lint:scss": "stylelint \"src/**/*.scss\"",
+    "lint:ci": "ng lint --max-warnings=0",
+    "lint:html:ci": "htmlhint \"src/**/*.html\"",
+    "lint:scss:ci": "stylelint \"src/**/*.scss\" --max-warnings=0",
     "prepare": "husky",
     "start": "ng serve",
     "test": "ng test",
@@ -82,11 +84,13 @@
   },
   "lint-staged": {
     "src/**/*.html": [
-      "eslint --fix --max-warnings=0",
+      "htmlhint",
+      "eslint --fix --max-warnings=50",
       "prettier --write"
+
     ],
     "src/**/*.ts": [
-      "eslint --fix --max-warnings=0",
+      "eslint --fix --max-warnings=50",
       "prettier --write"
     ],
     "src/**/*.{css,scss,json,md}": [
@@ -96,7 +100,7 @@
       "stylelint --fix"
     ],
     "*.{js,cjs,mjs}": [
-      "eslint --fix --max-warnings=0",
+      "eslint --fix --max-warnings=50",
       "prettier --write"
     ],
     "*.{yaml,yml}": [

@@ -275,11 +275,6 @@ export default defineConfig([
   // OVERRIDES ----------
   {
     files: ['**/*.spec.ts'],
-    rules: {
-      '@typescript-eslint/no-magic-numbers': 'off',
-      '@typescript-eslint/explicit-function-return-type': 'off',
-      '@typescript-eslint/no-empty-function': 'off',
-      '@angular-eslint/no-empty-lifecycle-method': 'off'
-    }
+    rules: {}
   }
 ]);

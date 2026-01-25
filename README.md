@@ -1030,11 +1030,12 @@ Ouvrir le fichier `package.json`. Ajouter la configuration tout à la fin du fic
 ```JSON
 "lint-staged": {
   "src/**/*.html": [
-    "eslint --fix --max-warnings=0",
+    "htmlhint",
+    "eslint --fix --max-warnings=50",
     "prettier --write"
   ],
   "src/**/*.ts": [
-    "eslint --fix --max-warnings=0",
+    "eslint --fix --max-warnings=50",
     "prettier --write"
   ],
   "src/**/*.{css,scss,json,md}": [
@@ -1044,7 +1045,7 @@ Ouvrir le fichier `package.json`. Ajouter la configuration tout à la fin du fic
     "stylelint --fix"
   ],
   "*.{js,cjs,mjs}": [
-    "eslint --fix --max-warnings=0",
+    "eslint --fix --max-warnings=50",
     "prettier --write"
   ],
   "*.{yaml,yml}": [
@@ -1337,13 +1338,70 @@ pnpm test:coverage
   🤖 CI/CD
 </h2>
 
-1. L'utilisation de **rimraf** permet de supprimer des dossiers de manière fiable que l'on soit sous **Windows**, **macOS** ou **Linux**. C'est essentiel pour éviter que d'anciens rapports de couverture ne viennent fausser les nouvelles analyses.  
+### STRATEGIE DE QUALITE
+
+Pour maintenir une base de code saine sans ralentir le développement quotidien, une stratégie de validation stricte mais pragmatique est appliquée : **"Souple en local, Intransigeant en CI"** !!!  
+
+1. **En Local (Commit) :** Tolérance Partielle 🚧
+
+Lors des commits, **Husky** et **lint-staged** analysent uniquement les fichiers modifiés.  
+
+**Philosophie**  
+
+Le développement est un processus itératif. Il est acceptable d'avoir quelques imperfections mineures (warnings) pendant que l'on travaille sur une fonctionnalité.  
+
+**Seuil de tolérance : Max 50 warnings**
+
+- Si erreurs (errors), le commit est bloqué.
+- Si moins de 50 warnings, le commit passe.
+- Si plus de 50 warnings, le commit est bloqué.
+
+Commande exécutée : `eslint --fix --max-warnings=50`
+
+2. **En CI/CD (Pull Request) :** Tolérance Zéro ⛔
+
+Lorsqu'une Pull Request est ouverte vers `develop` ou `main`, le pipeline **GitHub Actions** analyse l'intégralité du projet.  
+
+**Philosophie**  
+
+Le code qui entre dans les branches principales doit être irréprochable. La dette technique ne doit pas s'accumuler silencieusement via des warnings ignorés.  
+
+**Seuil de tolérance : Max 0 warnings**
+
+Conséquence : Si le moindre warning subsiste (**HTML**, **TS** ou encore **SCSS**), le job ✨ Quality & Tests échoue et le merge est bloqué par **GitHub**.  
+
+Commande exécutée : `pnpm lint:ci` (ng lint --max-warnings=0).  
+
+3. 🛑 Ma **PR** est bloquée alors que mon commit est passé ?  
+
+C'est normal si vous aviez laissé des warnings. Votre commit est passé localement car il respectait la limite des 50, mais la CI exige la perfection.  
+
+Pour corriger :  
+
+- Regardez les logs de l'action GitHub pour voir les fichiers incriminés.
+- Lancez la vérification stricte en local pour les reproduire :
+
+```Bash
+pnpm lint:ci
+pnpm lint:html:ci
+pnpm lint:scss:ci
+```
+
+Corrigez les warnings restants, commitez et pushez.  
+
+4. **Double implémentation du linter**
+
+
+
+### RIMRAF
+
+L'utilisation de **rimraf** permet de supprimer des dossiers de manière fiable que l'on soit sous **Windows**, **macOS** ou **Linux**. C'est essentiel pour éviter que d'anciens rapports de couverture ne viennent fausser les nouvelles analyses.  
 
 ```shell
 pnpm add -D rimraf
 ```
 
-2. Dans `package.json` ajouter les scripts `clean` et `test:coverage`  
+Dans `package.json` ajouter les scripts `clean` et `test:coverage`  
 
 ```JSON
 "scripts": {
@@ -1352,9 +1410,25 @@ pnpm add -D rimraf
 }
 ```
 
-3. Configurer son compte **SonarCloud** et son secret `SONAR_TOKEN`
+### SONAR CLOUD
 
-4. Créer fichier `sonar-project.properties` à la racine
+**SonarCloud** est l'inspecteur de santé de ce projet. C'est l'outil de référence pour le **"Clean Code"**.  
+
+**Son rôle**  
+Il analyse la qualité globale. Il traque :  
+
+- **Bugs :** code qui va probablement planter.
+- **"Code Smells" :** code mal écrit, difficile à maintenir (dette technique).
+- **Couverture de test :** s'assure que tu as bien testé ce que tu as écrit.
+- **Hotspots de sécurité :** zones du code qui demandent une révision manuelle.
+
+**Pourquoi c'est top**  
+
+Son concept de **Quality Gate** (Porte de Qualité) est génial : si du nouveau code ne respecte pas les standards (ex : **moins** de **80%** de tests), il bloque la fusion de la **PR**.  
+
+Configurer son compte **SonarCloud** et son secret `SONAR_TOKEN`.  
+
+Créer le fichier `sonar-project.properties` à la racine...  
 
 ```shell
 sonar.host.url=https://sonarcloud.io
@@ -1365,10 +1439,50 @@ sonar.sources=src
 sonar.tests=src
 sonar.test.inclusions=**/*.spec.ts
 sonar.javascript.lcov.reportPaths=coverage/lcov.info
-sonar.coverage.exclusions=src/test-setup.ts, src/main.ts
+sonar.coverage.exclusions=\
+  src/_environments/environment.prod.sample.ts,\
+  src/_environments/environment.ts,\
+  src/app/app.config.ts,\
+  src/main.ts,\
+  src/test-setup.ts,\
 ```
 
-5. Créer `.github > workflows > pipeline.yml`
+### SNYK
+
+**Snyk** est le spécialiste des dépendances externes. Dans un projet moderne, **80%** du code provient de bibliothèques tierces (via **npm** ou **pnpm**). **Snyk** s'assure que ces bibliothèques que nous importons ne sont pas empoisonnées.  
+
+**Son rôle**  
+Il parcourt le fichier `package.json` et le `pnpm-lock.yaml` pour les comparer à une base de données géante de vulnérabilités connues (**CVE**).  
+
+**Pourquoi c'est top**  
+Il ne se contente pas de dire "c'est cassé", il propose souvent la version précise à laquelle l'on doit mettre à jour pour corriger la faille.  
+
+**Seuil**  
+Seules les vulnérabilités de niveau high bloquent le pipeline, évitant ainsi de stopper le projet pour des failles mineures ou sans correctif disponible.  
+
+### CODEQL
+
+**CodeQL** est le moteur d'analyse sémantique de **GitHub**. Contrairement à un linter classique qui regarde la forme, **CodeQL** traite le code comme une base de données.  
+
+**Son rôle**  
+Il exécute des requêtes complexes pour voir comment les données circulent dans l'application. Il peut détecter si une entrée utilisateur non sécurisée finit par être exécutée par une fonction sensible (prévenant ainsi les injections).  
+
+**Pourquoi c'est top**  
+C'est un outil de "chasseur de failles". Il est capable de trouver des erreurs de logique ou des vulnérabilités critiques que personne n'a encore répertoriées ailleurs.  
+
+### GITLEAKS
+
+**Gitleaks** est un outil de sécurité conçu pour détecter et prévenir l'introduction de secrets (mots de passe, clés API, jetons AWS, certificats) dans notre historique **Git**.  
+
+**Son rôle**  
+Il scanne chaque commit et chaque ligne de code pour identifier des signatures spécifiques (comme une **clé privée SSH**) ou des motifs suspects (comme une chaîne de caractères nommée `SECRET_KEY`).  
+
+**Pourquoi c'est top**  
+Une fois qu'un secret est "poussé" sur un dépôt (même privé), il est considéré comme compromis. Même si tu supprimes la ligne plus tard, le secret reste présent dans l'historique des commits. **Gitleaks** bloque l'action avant que le secret ne soit définitivement ancré dans l'historique.  
+
+### CONFIGURATION DE LA PIPELINE
+
+Créer `.github > workflows > pipeline.yml`
 
 ```yml
 name: CI/CD Pipeline
@@ -1379,23 +1493,66 @@ on:
   pull_request:
     branches: [main, develop]
 
+# Cancel current execution for this workflow and branch if a new push is detected
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   security:
-    name: 🛡️ Security Scan
+    name: 🛡️ Security Scans
     runs-on: ubuntu-latest
     permissions:
       security-events: write
       contents: read
+
     steps:
       - name: 📂 Get Code
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
+      - name: 🔑 Check Leaked Secrets
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 📦 Install PNPM
+        uses: pnpm/action-setup@v4
+
+      - name: 🏗️ Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'pnpm'
+
+      - name: ⚙️ Install Dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: 🛡️ PNPM Audit
+        run: pnpm audit --audit-level=high
+
+      - name: 🧪 Security Linting
+        run: pnpm lint
+
+      - name: 🕵️ Snyk Packages Analysis
+        uses: snyk/actions/node@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          # 🚩 Only blocks if a 'high' vulnerability is found
+          command: test
+          args: --severity-threshold=high
+
       - name: 🏗️ Initialize CodeQL
         uses: github/codeql-action/init@v4
         with:
           languages: javascript-typescript
+          queries: security-extended,security-and-quality
+          config: |
+            paths-ignore:
+              - 'src/**/*.spec.ts'
+              - 'src/test-setup.ts'
 
       - name: 🔍 Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v4
@@ -1403,6 +1560,7 @@ jobs:
   quality:
     name: ✨ Quality & Tests
     runs-on: ubuntu-latest
+
     steps:
       - name: 📂 Get Code
         uses: actions/checkout@v4
@@ -1410,9 +1568,7 @@ jobs:
           fetch-depth: 0
 
       - name: 📦 Install PNPM
-        uses: pnpm/action-setup@v2
-        with:
-          version: latest
+        uses: pnpm/action-setup@v4
 
       - name: 🏗️ Setup Node
         uses: actions/setup-node@v4
@@ -1423,10 +1579,31 @@ jobs:
       - name: ⚙️ Install Dependencies
         run: pnpm install
 
-      - name: 🧪 Run Tests & Coverage
+      - name: 💄 Prettier Formatting
+        run: pnpm format:check
+
+      - name: 🧹 ESLint Linting
+        run: pnpm lint:ci
+
+      - name: 🔍 HTMLHint Linting
+        run: pnpm lint:html:ci
+
+      - name: 🎨 Stylelint SCSS
+        run: pnpm lint:scss:ci
+
+      - name: 🧪 Run Vitest Tests & Coverage
+        id: vitest
         run: pnpm test:coverage
 
+      - name: 📢 Failure Notification
+        if: failure() && steps.vitest.outcome == 'failure'
+        run: |
+          echo "### ❌ Pipeline failed because test coverage is less than 80% !" >> $GITHUB_STEP_SUMMARY
+          echo "Hey ${{ github.actor }}, please work harder ! 🤣🤣🤣" >> $GITHUB_STEP_SUMMARY
+          exit 1
+
       - name: 🚀 SonarQube Scan
+        if: success()
         uses: SonarSource/sonarqube-scan-action@v6
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
@@ -1437,20 +1614,42 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
+      - name: 📝 Fake Prod Environment File
+        run: |
+          mkdir -p src/_environments
+          echo "export const ENVIRONMENT = {
+            production: true,
+            useMocks: false,
+            apiUrl: 'https://api.your-domain.com/api',
+            logLevel: 'error',
+            mockAdminPassword: '${{ secrets.MOCK_ADMIN_PWD }}',
+            application: {
+              name: 'AngularTemplate',
+              author: 'Emmanuel Lefevre',
+              mainDescription: 'Template Angular 21 avec CI/CD, SEO, i18n et plus',
+              keywords: 'angular, template, seo, i18n, vitest, pnpm',
+              themeColor: '#ff6b6b',
+              defaultShareImage: 'https://angulartemplate.emmanuellefevre.com/assets/logos/logo.png'
+            }
+          };" > src/_environments/environment.prod.ts
+
+      - name: 🧱 Build Check
+        run: pnpm build --configuration=production
+
   deploy:
     name: 🎯 Deploy to Production
     needs: [security, quality]
     # 🚩 Temporarily disabled (will never launch)
-    if: false
+    # if: github.ref == 'refs/heads/main' && false
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
+
     steps:
       - name: 📂 Get Code
         uses: actions/checkout@v4
 
       - name: 📦 Install PNPM
-        uses: pnpm/action-setup@v2
-        with:
-          version: latest
+        uses: pnpm/action-setup@v4
 
       - name: 🏗️ Setup Node
         uses: actions/setup-node@v4
@@ -1461,34 +1660,117 @@ jobs:
       - name: ⚙️ Install Dependencies
         run: pnpm install
 
-      - name: 🧱 Build Project (Production)
+      - name: 📝 Create Prod Environment File
+        run: |
+          mkdir -p src/_environments
+          echo "export const ENVIRONMENT = {
+            production: true,
+            useMocks: false,
+            apiUrl: 'https://api.your-domain.com/api',
+            logLevel: 'error',
+            mockAdminPassword: '${{ secrets.MOCK_ADMIN_PWD }}',
+            application: {
+              name: 'AngularTemplate',
+              author: 'Emmanuel Lefevre',
+              mainDescription: 'Template Angular 21 avec CI/CD, SEO, i18n et plus',
+              keywords: 'angular, template, seo, i18n, vitest, pnpm',
+              themeColor: '#ff6b6b',
+              defaultShareImage: 'https://angulartemplate.emmanuellefevre.com/assets/logos/logo.png'
+            }
+          };" > src/_environments/environment.prod.ts
+
+      - name: 🧱 Build Project
         run: pnpm build --configuration=production
+
+      - name: 📝 Create .htaccess
+        run: |
+          cat <<EOF > dist/AngularTemplate/browser/.htaccess
+          <IfModule mod_rewrite.c>
+            RewriteEngine On
+            RewriteBase /
+
+            # Force HTTPS
+            RewriteCond %{HTTPS} off
+            RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+            # Angular Router Management
+            RewriteRule ^index\.html$ - [L]
+            RewriteCond %{REQUEST_FILENAME} !-f
+            RewriteCond %{REQUEST_FILENAME} !-d
+            RewriteRule . /index.html [L]
+          </IfModule>
+
+          <IfModule mod_headers.c>
+            # Tell browser to only communicate via HTTPS
+            Header set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+
+            # Prevent your site from being displayed in an iframe (anti-clickjacking)
+            Header set X-Frame-Options "SAMEORIGIN"
+
+            # Prevents the browser from interpreting a file other than by its MIME type
+            Header set X-Content-Type-Options "nosniff"
+
+            # Limit the information sent to other sites when a link is clicked
+            Header set Referrer-Policy "strict-origin-when-cross-origin"
+
+            # ONLY allow scripts from your own site
+            # Note : If you are using Google fonts or external APIs, you will need to add them here.
+            Header set Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self'; connect-src 'self' https://api.votre-domaine.com; object-src 'none'; base-uri 'self';"
+          </IfModule>
+          EOF
 
       - name: 🚀 Sync Files to Server
         uses: easingthemes/ssh-deploy@main
         with:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          ARGS: '-rlgoDzvc -i --delete'
-          # ⚠️ Double-check folder name in /dist directory after build (pnpm build).
+          # Delete from the server the files that are no longer in your code (cleanup)
+          ARGS: '-rlgoDazvc -i --delete'
+          # ⚠️ Double-check folder name in /dist directory after build (pnpm build)
           SOURCE: 'dist/AngularTemplate/browser/'
-          REMOTE_HOST: ${{ secrets.SSH_HOST }}
-          REMOTE_USER: ${{ secrets.SSH_USER }}
-          TARGET: ${{ secrets.SSH_TARGET }}
-          EXCLUDE: '/node_modules/'
+          # Server IP address
+          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+          REMOTE_USER: ${{ secrets.REMOTE_USER }}
+          REMOTE_PORT: ${{ secrets.SSH_PORT }}
+          # Exact location to place code (/home/<your_user>/public_html)
+          TARGET: ${{ secrets.TARGET_PATH }}
+          # Avoids sending git configuration files on server
+          EXCLUDE: '/node_modules/, /.github/, /.git/'
 
-      - name: 📡 Post-Deployment Commands
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
-            echo "Restarting Nginx or clearing the cache..."
-            # sudo systemctl reload nginx
-
-      - name: 🚩 Deployment Task
-        run: echo "Deployment is underway following security and quality validation."
+      - name: 🎯 Deployment
+        run: echo "Deployment is underway following security and quality validation..."
 ```
+
+### MAINTENANCE : NETTOYAGE DES WORKFLOWS
+
+Ce workflow utilitaire `cleanup.yml` est conçu pour maintenir la propreté de l'onglet **GitHub Actions** en supprimant automatiquement les anciennes éxécutions inutiles.  
+
+#### 🕒 Déclenchement
+
+**Automatique :** tous les jours à 05h00 UTC.  
+**Manuel :** peut être lancé à la demande via l'onglet Actions.  
+
+#### ⚙️ Fonctionnement
+
+Le script utilise la **GitHub CLI** (gh) pour effectuer deux types de nettoyage :  
+
+1. **Suppression des échecs et annulations :**
+
+- Il scanne tous les workflows du projet.
+- Il identifie les 100 dernières exécutions ayant le statut failure (échec) ou cancelled (annulé).
+- Il les supprime une par une.
+
+Objectif : ne garder que l'historique des builds réussis pour une meilleure lisibilité.  
+
+2. **Auto-nettoyage (Self-Cleanup) :**
+
+- Il cible spécifiquement l'historique du fichier `cleanup.yml`.
+- Il supprime les anciennes exécutions réussies (completed) de ce workflow de nettoyage.
+
+Note : Il exclut l'exécution en cours ($GITHUB_RUN_ID).
+
+**Éviter que l'historique ne soit pollué par des centaines de logs disant simplement "Nettoyage réussi".**
+
+⚠️ **Important =>** si vous renommez le fichier `cleanup.yml`, mettre impérativement à jour la variable `WORKFLOW_FILE="cleanup.yml"` du script, sinon l'auto-nettoyage ne fonctionnera plus !  
 
 <h2 id="dependencies">
   📦 DEPENDENCIES
@@ -1773,7 +2055,7 @@ pnpm add @ngx-translate/core @ngx-translate/http-loader
   ⚠️ ERREURS FREQUENTES
 </h2>
 
-### 1. Warning lors du premier push !  
+### 1. Warning lors du premier push !
 
 <br>
 

@@ -99,10 +99,10 @@ jobs:
         run: pnpm lint:ci
 
       - name: 🔍 HTMLHint Linting
-        run: pnpm lint:html
+        run: pnpm lint:html:ci
 
       - name: 🎨 Stylelint SCSS
-        run: pnpm lint:scss
+        run: pnpm lint:scss:ci
 
       - name: 🧪 Run Vitest Tests & Coverage
         id: vitest
