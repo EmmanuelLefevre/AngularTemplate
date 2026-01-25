@@ -14,6 +14,7 @@
     "lint:ci": "ng lint --max-warnings=0",
     "lint:html:ci": "htmlhint \"src/**/*.html\"",
     "lint:scss:ci": "stylelint \"src/**/*.scss\" --max-warnings=0",
+    "lint:security:ci": "eslint \"src/**/*.{ts,js}\" --config eslint-security.config.js",
     "prepare": "husky",
     "start": "ng serve",
     "test": "ng test",

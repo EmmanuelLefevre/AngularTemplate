@@ -411,49 +411,7 @@ Bien qu'il y ait une configuration dans `package.json`, il est préférable (Bes
 pnpm add -D prettier
 ```
 
-2. Créer un fichier `.prettierrc.js` à la racine et coller cette config  
-
-```js
-export default {
-  arrowParens: 'always',
-  bracketSameLine: true,
-  bracketSpacing: true,
-  embeddedLanguageFormatting: 'auto',
-  endOfLine: 'lf',
-  experimentalTernaries: false,
-  htmlWhitespaceSensitivity: 'css',
-  importOrder: ['^@angular/(.*)$', '^rxjs', '<THIRD_PARTY_MODULES>', '^@core/(.*)$', '^@shared/(.*)$', '^[./]'],
-  importOrderParserPlugins: ['typescript', 'classProperties', 'decorators-legacy'],
-  importOrderSeparation: true,
-  importOrderSortSpecifiers: true,
-  insertPragma: false,
-  overrides: [
-    {
-      files: '*.html',
-      options: {
-        parser: 'angular'
-      }
-    },
-    {
-      files: ['*.ts', '**/*.ts'],
-      options: {
-        parser: 'typescript'
-      }
-    }
-  ],
-  plugins: ['@trivago/prettier-plugin-sort-imports'],
-  printWidth: 120,
-  proseWrap: 'preserve',
-  quoteProps: 'as-needed',
-  requirePragma: false,
-  semi: true,
-  singleAttributePerLine: true,
-  singleQuote: true,
-  tabWidth: 2,
-  trailingComma: 'none',
-  useTabs: false
-};
-```
+2. Créer un fichier `.prettierrc.js` à la racine et y coller la configuration présente dans le template.  
 
 💡 Une documentation complète est disponible dans le fichier `.prettierrc.js` et ici... [Prettier Rules](#prettier-rules)  
 
@@ -484,27 +442,7 @@ pnpm exec prettier --write .prettierrc.js
 }
 ```
 
-4. Créer un fichier `.prettierignore` pour éviter de formater des fichiers inutiles  
-
-```text
-**/.git
-**/node_modules
-*.ts
-.angular
-.git
-.htmlhintrc
-angular.json
-coverage/
-dist/
-eslint.config.js
-package-lock.json
-pnpm-lock.yaml
-public/manifest.json
-README.md
-tsconfig.json
-tsconfig.spec.json
-yarn.lock
-```
+4. Créer un fichier `.prettierignore` pour éviter de formater des fichiers inutiles et y coller la configuration présente dans le template.  
 
 <h2 id="eslint">
   <img
@@ -601,135 +539,7 @@ Ouvrir le fichier `eslint.config.js` (qui vient d'être créé à la racine).
 Voici à quoi cela devrait ressembler (simplifié) :  
 
 **\* Note :** Prettier ne sera pas ajouté automatiquement il faut le faire manuellement comme indiqué ci dessous.  
-
-```js
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
-
-import { defineConfig } from 'eslint/config';
-
-import angular from 'angular-eslint';
-import eslint from '@eslint/js';
-// @ts-expect-error
-import securityPlugin from 'eslint-plugin-security';
-import stylistic from '@stylistic/eslint-plugin';
-import tseslint from 'typescript-eslint';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-export default defineConfig([
-    // GLOBAL IGNORES ----------
-  {
-    ignores: [
-      '.angular/',
-      'dist/',
-      'node_modules/'
-    ]
-  },
-  // TS ----------
-  {
-    files: ['**/*.ts'],
-    plugins: {
-      '@stylistic': stylistic,
-      security: securityPlugin
-    },
-    languageOptions: {
-      parserOptions: {
-        projectService: {
-          allowDefaultProject: ['vitest.config.ts', 'eslint.config.js']
-        },
-        tsconfigRootDir: __dirname
-      }
-    },
-    extends: [
-      eslint.configs.recommended,
-      ...tseslint.configs.recommended,
-      ...tseslint.configs.stylistic,
-      ...angular.configs.tsRecommended,
-      securityPlugin.configs.recommended
-    ],
-    processor: angular.processInlineTemplates,
-    rules: {
-      // Security
-      'security/detect-object-injection': 'error',
-
-      // Angular
-      '@angular-eslint/component-selector': [
-        'error',
-        {
-          prefix: '',
-          type: 'element',
-          style: 'kebab-case'
-        }
-      ],
-      '@angular-eslint/directive-selector': [
-        'error',
-        {
-          prefix: '',
-          type: 'attribute',
-          style: 'camelCase'
-        }
-      ],
-      '@angular-eslint/prefer-standalone': 'error',
-
-      // Stylistic
-      '@stylistic/brace-style': ['error', 'stroustrup'],
-      '@stylistic/indent': ['error', 2],
-      '@stylistic/padding-line-between-statements': [
-        'error',
-        {
-          blankLine: 'always',
-          prev: '*',
-          next: 'class'
-        }
-      ],
-      '@stylistic/semi': ['error', 'always'],
-      '@stylistic/quotes': ['error', 'single'],
-
-      // TypeScript
-      '@typescript-eslint/explicit-function-return-type': 'error',
-      '@typescript-eslint/naming-convention': [
-        'error',
-        {
-          selector: 'variable',
-          format: ['camelCase']
-        },
-        {
-          selector: 'variable',
-          modifiers: ['const', 'global'],
-          format: ['UPPER_CASE']
-        },
-        {
-          selector: 'variable',
-          modifiers: ['const'],
-          format: ['camelCase', 'UPPER_CASE']
-        },
-        {
-          selector: 'method',
-          format: ['camelCase']
-        },
-        {
-          selector: 'class',
-          format: ['PascalCase']
-        }
-      ],
-    }
-  },
-  // HTML ----------
-  {
-    files: ['**/*.html'],
-    extends: [
-      ...angular.configs.templateRecommended,
-      ...angular.configs.templateAccessibility
-    ],
-    rules: {
-      '@angular-eslint/template/component-selector': 'off',
-      '@angular-eslint/template/directive-selector': 'off'
-    }
-  }
-]);
-```
+Coller la configuration présente dans le template.  
 
 **Etape 3 :** Overrides
 
@@ -756,25 +566,7 @@ Cela est particulièrement utile pour les fichiers de directives, pipes ou d'env
 
 **Etape 4 :** Ajouter les scripts pratiques  
 
-Mettre à jour la section "scripts" du `package.json` pour faciliter l'utilisation :
-
-```JSON
-"scripts": {
-  "ng": "ng",
-  "clean": "rimraf coverage .angular",
-  "build": "pnpm clean && ng build",
-  "format": "prettier --write .",
-  "format:check": "prettier --check .",
-  "lint": "ng lint",
-  "lint:ci": "ng lint --max-warnings=0",
-  "prepare": "husky",
-  "start": "ng serve",
-  "test": "ng test",
-  "test:ui": "ng test --ui",
-  "test:coverage": "ng test --coverage --watch=false",
-  "watch": "ng build --watch --configuration development"
-}
-```
+Mettre à jour la section "scripts" du `package.json` pour faciliter l'utilisation en collant la configuration présente dans le template.  
 
 **Etape 5 :** Tester la commande  
 
@@ -841,49 +633,7 @@ De plus cela activera l'autocomplétion et la validation du fichier `.htmlhintrc
 
 **Etape 2 :**  Configuration :
 
-Il faut créer le fichier `.htmlhintrc` à la racine du projet  
-
-```JSON
-{
-  "alt-require": true,
-  "attr-lowercase": [
-    "(ngSubmit)",
-    "[formControl]",
-    "[ngClass]",
-    "routerLink",
-    "routerLinkActive",
-    ".........."
-  ],
-  "attr-no-duplication": true,
-  "attr-no-unnecessary-whitespace": true,
-  "attr-sorted": false,
-  "attr-value-double-quotes": true,
-  "attr-value-no-duplication": true,
-  "attr-whitespace": true,
-  "button-type-require": true,
-  "doctype-first": false,
-  "doctype-html5": false,
-  "frame-title-require": true,
-  "h1-require": false,
-  "html-lang-require": true,
-  "id-class-value": false,
-  "id-unique": true,
-  "inline-script-disabled": true,
-  "inline-style": true,
-  "input-requires-label": false,
-  "main-require": false,
-  "meta-charset-require": true,
-  "meta-description-require": false,
-  "meta-viewport-require": true,
-  "spec-char-escape": true,
-  "src-not-empty": true,
-  "tag-no-obsolete": true,
-  "tag-pair": true,
-  "tag-self-close": true,
-  "tagname-lowercase": true,
-  "title-require": true
-}
-```
+Il faut créer le fichier `.htmlhintrc` à la racine du projet et y coller la configuration présente dans le template.  
 
 Pour finir ouvrir le fichier `package.json` et ajouter la commande suivante dans la partie `scripts` =>  
 
@@ -932,30 +682,7 @@ Concrètement, **Stylelint** analyse vos fichiers de style et nous signale tout 
 npm install -D stylelint stylelint-scss postcss-scss
 ```
 
-Il faut ensuite créer le fichier `.stylelintrc.json` à la racine du projet  
-
-```JSON
-{
-  "plugins": ["stylelint-scss"],
-  "customSyntax": "postcss-scss",
-  "rules": {
-    "block-no-empty": true,
-    "color-no-invalid-hex": true,
-    "scss/at-extend-no-missing-placeholder": true,
-    "scss/at-if-no-null": true,
-    "max-nesting-depth": [
-      3,
-      {
-        "ignore": ["blockless-at-rules"]
-      }
-    ],
-    "at-rule-no-unknown": null,
-    "scss/at-rule-no-unknown": true,
-    "comment-no-empty": null,
-    "scss/comment-no-empty": true
-  }
-}
-```
+Il faut ensuite créer le fichier `.stylelintrc.json` à la racine et y coller la configuration présente dans le template.  
 
 De plus il est nécessaire d'ajouter dans le fichier `package.json` le fix des fichiers dans le `lint-staged`.
 
@@ -1090,63 +817,9 @@ pnpm exec lint-staged
 
 **`tsconfig.json`**
 
-Ce fichier contient les paramètres fondamentaux du compilateur **TypeScript** (`compilerOptions`) et du compilateur **Angular** (`angularCompilerOptions`) qui sont hérités par tous les autres fichiers de configuration de l'espace de travail.
+Ce fichier contient les paramètres fondamentaux du compilateur **TypeScript** (`compilerOptions`) et du compilateur **Angular** (`angularCompilerOptions`) qui sont hérités par tous les autres fichiers de configuration de l'espace de travail.  
 
-```JSON
-{
-  "compileOnSave": false,
-  "compilerOptions": {
-    "paths": {
-      "@app/*": ["./src/app/*"],
-      "@assets/*": ["./src/assets/*"],
-      "@core/*": ["./src/app/core/*"],
-      "@env/*": ["./src/_environments/*"],
-      "@features/*": ["./src/app/features/*"],
-      "@shared": ["./src/app/shared/shared.ts"],
-      "@shared/*": ["./src/app/shared/*"],
-      "@styles/*": ["./src/styles/*"]
-    },
-    "declaration": false,
-    "esModuleInterop": true,
-    "experimentalDecorators": true,
-    "forceConsistentCasingInFileNames": true,
-    "importHelpers": true,
-    "isolatedModules": true,
-    "lib": [
-      "ES2022",
-      "DOM"
-    ],
-    "module": "preserve",
-    "moduleResolution": "bundler",
-    "noImplicitOverride": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    "noPropertyAccessFromIndexSignature": true,
-    "resolveJsonModule": true,
-    "skipLibCheck": true,
-    "sourceMap": false,
-    "strict": true,
-    "target": "ES2022",
-    "useDefineForClassFields": false
-  },
-  "angularCompilerOptions": {
-    "enableI18nLegacyMessageIdFormat": false,
-    "strictInjectionParameters": true,
-    "strictInputAccessModifiers": true,
-    "strictStandalone": true,
-    "strictTemplates": true
-  },
-  "files": [],
-  "references": [
-    {
-      "path": "./tsconfig.app.json"
-    },
-    {
-      "path": "./tsconfig.spec.json"
-    }
-  ]
-}
-```
+Copier/coller la configuration présente dans le template.  
 
 💡 Une documentation complète est disponible dans le fichier `tsconfig.json` et ici... [TS Config Rules](#ts-config-rules)  
 
@@ -1265,57 +938,7 @@ getTestBed().initTestEnvironment(
 );
 ```
 
-8. Créer le fichier `vitest.config.ts`  
-
-```typescript
-import { defineConfig } from 'vitest/config';
-import angular from '@analogjs/vite-plugin-angular';
-import tsconfigPaths from 'vite-tsconfig-paths';
-import { fileURLToPath } from 'node:url';
-import { dirname, resolve } from 'node:path';
-
-const __dirname = dirname(fileURLToPath(import.meta.url));
-
-export default defineConfig({
-  plugins: [
-    angular(),
-    tsconfigPaths({
-      projects: [resolve(__dirname, 'tsconfig.json')]
-    })
-  ],
-  css: {
-    preprocessorOptions: {
-      scss: {
-        additionalData: '@use "src/styles/abstracts/_index.scss" as *;'
-      },
-    },
-  },
-  test: {
-    globals: true,
-    environment: 'jsdom',
-    setupFiles: [resolve(__dirname, 'src/test-setup.ts')],
-    reporters: ['default'],
-    coverage: {
-      provider: 'v8',
-      enabled: true,
-      reporter: ['text', 'lcov', 'html'],
-      reportsDirectory: './coverage',
-      exclude: [
-        '**/index.ts',
-        '.angular/**',
-        'coverage/**',
-        'dist/**',
-        'eslint.config.js',
-        'src/_environments/environment.prod.sample.ts',
-        'src/_environments/environment.ts',
-        'src/app/app.config.ts',
-        'src/main.ts',
-      ],
-      clean: true
-    },
-  }
-});
-```
+8. Créer le fichier `vitest.config.ts` et y coller la configuration présente dans le template.  
 
 Dans `angular.json` ajouter la propriété `coverage` à l'objet `test`  
 
@@ -1428,24 +1051,7 @@ Son concept de **Quality Gate** (Porte de Qualité) est génial : si du nouveau 
 
 Configurer son compte **SonarCloud** et son secret `SONAR_TOKEN`.  
 
-Créer le fichier `sonar-project.properties` à la racine...  
-
-```shell
-sonar.host.url=https://sonarcloud.io
-sonar.projectKey=emmanuel-lefevre_angular-template
-sonar.organization=emmanuel-lefevre
-sonar.projectName=AngularTemplate
-sonar.sources=src
-sonar.tests=src
-sonar.test.inclusions=**/*.spec.ts
-sonar.javascript.lcov.reportPaths=coverage/lcov.info
-sonar.coverage.exclusions=\
-  src/_environments/environment.prod.sample.ts,\
-  src/_environments/environment.ts,\
-  src/app/app.config.ts,\
-  src/main.ts,\
-  src/test-setup.ts,\
-```
+Créer le fichier `sonar-project.properties` à la racine et y coller la configuration présente dans le template...  
 
 ### SNYK
 
@@ -1478,267 +1084,11 @@ C'est un outil de "chasseur de failles". Il est capable de trouver des erreurs d
 Il scanne chaque commit et chaque ligne de code pour identifier des signatures spécifiques (comme une **clé privée SSH**) ou des motifs suspects (comme une chaîne de caractères nommée `SECRET_KEY`).  
 
 **Pourquoi c'est top**  
-Une fois qu'un secret est "poussé" sur un dépôt (même privé), il est considéré comme compromis. Même si tu supprimes la ligne plus tard, le secret reste présent dans l'historique des commits. **Gitleaks** bloque l'action avant que le secret ne soit définitivement ancré dans l'historique.  
+Une fois qu'un secret est "poussé" sur un dépôt (même privé), il est considéré comme compromis. Même si on supprime la ligne plus tard, le secret reste présent dans l'historique des commits. **Gitleaks** bloque l'action avant que le secret ne soit définitivement ancré dans l'historique.  
 
 ### CONFIGURATION DE LA PIPELINE
 
-Créer `.github > workflows > pipeline.yml`
-
-```yml
-name: CI/CD Pipeline
-
-on:
-  push:
-    branches: [main, develop, 'feature/**']
-  pull_request:
-    branches: [main, develop]
-
-# Cancel current execution for this workflow and branch if a new push is detected
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
-
-jobs:
-  security:
-    name: 🛡️ Security Scans
-    runs-on: ubuntu-latest
-    permissions:
-      security-events: write
-      contents: read
-
-    steps:
-      - name: 📂 Get Code
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: 🔑 Check Leaked Secrets
-        uses: gitleaks/gitleaks-action@v2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: 📦 Install PNPM
-        uses: pnpm/action-setup@v4
-
-      - name: 🏗️ Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: 'pnpm'
-
-      - name: ⚙️ Install Dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: 🛡️ PNPM Audit
-        run: pnpm audit --audit-level=high
-
-      - name: 🧪 Security Linting
-        run: pnpm lint
-
-      - name: 🕵️ Snyk Packages Analysis
-        uses: snyk/actions/node@master
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        with:
-          # 🚩 Only blocks if a 'high' vulnerability is found
-          command: test
-          args: --severity-threshold=high
-
-      - name: 🏗️ Initialize CodeQL
-        uses: github/codeql-action/init@v4
-        with:
-          languages: javascript-typescript
-          queries: security-extended,security-and-quality
-          config: |
-            paths-ignore:
-              - 'src/**/*.spec.ts'
-              - 'src/test-setup.ts'
-
-      - name: 🔍 Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@v4
-
-  quality:
-    name: ✨ Quality & Tests
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: 📂 Get Code
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: 📦 Install PNPM
-        uses: pnpm/action-setup@v4
-
-      - name: 🏗️ Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: 'pnpm'
-
-      - name: ⚙️ Install Dependencies
-        run: pnpm install
-
-      - name: 💄 Prettier Formatting
-        run: pnpm format:check
-
-      - name: 🧹 ESLint Linting
-        run: pnpm lint:ci
-
-      - name: 🔍 HTMLHint Linting
-        run: pnpm lint:html:ci
-
-      - name: 🎨 Stylelint SCSS
-        run: pnpm lint:scss:ci
-
-      - name: 🧪 Run Vitest Tests & Coverage
-        id: vitest
-        run: pnpm test:coverage
-
-      - name: 📢 Failure Notification
-        if: failure() && steps.vitest.outcome == 'failure'
-        run: |
-          echo "### ❌ Pipeline failed because test coverage is less than 80% !" >> $GITHUB_STEP_SUMMARY
-          echo "Hey ${{ github.actor }}, please work harder ! 🤣🤣🤣" >> $GITHUB_STEP_SUMMARY
-          exit 1
-
-      - name: 🚀 SonarQube Scan
-        if: success()
-        uses: SonarSource/sonarqube-scan-action@v6
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-
-      - name: 📊 SonarQube Quality Gate
-        uses: SonarSource/sonarqube-quality-gate-action@v1
-        timeout-minutes: 5
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-
-      - name: 📝 Fake Prod Environment File
-        run: |
-          mkdir -p src/_environments
-          echo "export const ENVIRONMENT = {
-            production: true,
-            useMocks: false,
-            apiUrl: 'https://api.your-domain.com/api',
-            logLevel: 'error',
-            mockAdminPassword: '${{ secrets.MOCK_ADMIN_PWD }}',
-            application: {
-              name: 'AngularTemplate',
-              author: 'Emmanuel Lefevre',
-              mainDescription: 'Template Angular 21 avec CI/CD, SEO, i18n et plus',
-              keywords: 'angular, template, seo, i18n, vitest, pnpm',
-              themeColor: '#ff6b6b',
-              defaultShareImage: 'https://angulartemplate.emmanuellefevre.com/assets/logos/logo.png'
-            }
-          };" > src/_environments/environment.prod.ts
-
-      - name: 🧱 Build Check
-        run: pnpm build --configuration=production
-
-  deploy:
-    name: 🎯 Deploy to Production
-    needs: [security, quality]
-    # 🚩 Temporarily disabled (will never launch)
-    # if: github.ref == 'refs/heads/main' && false
-    if: github.ref == 'refs/heads/main'
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: 📂 Get Code
-        uses: actions/checkout@v4
-
-      - name: 📦 Install PNPM
-        uses: pnpm/action-setup@v4
-
-      - name: 🏗️ Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: 'pnpm'
-
-      - name: ⚙️ Install Dependencies
-        run: pnpm install
-
-      - name: 📝 Create Prod Environment File
-        run: |
-          mkdir -p src/_environments
-          echo "export const ENVIRONMENT = {
-            production: true,
-            useMocks: false,
-            apiUrl: 'https://api.your-domain.com/api',
-            logLevel: 'error',
-            mockAdminPassword: '${{ secrets.MOCK_ADMIN_PWD }}',
-            application: {
-              name: 'AngularTemplate',
-              author: 'Emmanuel Lefevre',
-              mainDescription: 'Template Angular 21 avec CI/CD, SEO, i18n et plus',
-              keywords: 'angular, template, seo, i18n, vitest, pnpm',
-              themeColor: '#ff6b6b',
-              defaultShareImage: 'https://angulartemplate.emmanuellefevre.com/assets/logos/logo.png'
-            }
-          };" > src/_environments/environment.prod.ts
-
-      - name: 🧱 Build Project
-        run: pnpm build --configuration=production
-
-      - name: 📝 Create .htaccess
-        run: |
-          cat <<EOF > dist/AngularTemplate/browser/.htaccess
-          <IfModule mod_rewrite.c>
-            RewriteEngine On
-            RewriteBase /
-
-            # Force HTTPS
-            RewriteCond %{HTTPS} off
-            RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
-
-            # Angular Router Management
-            RewriteRule ^index\.html$ - [L]
-            RewriteCond %{REQUEST_FILENAME} !-f
-            RewriteCond %{REQUEST_FILENAME} !-d
-            RewriteRule . /index.html [L]
-          </IfModule>
-
-          <IfModule mod_headers.c>
-            # Tell browser to only communicate via HTTPS
-            Header set Strict-Transport-Security "max-age=31536000; includeSubDomains"
-
-            # Prevent your site from being displayed in an iframe (anti-clickjacking)
-            Header set X-Frame-Options "SAMEORIGIN"
-
-            # Prevents the browser from interpreting a file other than by its MIME type
-            Header set X-Content-Type-Options "nosniff"
-
-            # Limit the information sent to other sites when a link is clicked
-            Header set Referrer-Policy "strict-origin-when-cross-origin"
-
-            # ONLY allow scripts from your own site
-            # Note : If you are using Google fonts or external APIs, you will need to add them here.
-            Header set Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self'; connect-src 'self' https://api.votre-domaine.com; object-src 'none'; base-uri 'self';"
-          </IfModule>
-          EOF
-
-      - name: 🚀 Sync Files to Server
-        uses: easingthemes/ssh-deploy@main
-        with:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          # Delete from the server the files that are no longer in your code (cleanup)
-          ARGS: '-rlgoDazvc -i --delete'
-          # ⚠️ Double-check folder name in /dist directory after build (pnpm build)
-          SOURCE: 'dist/AngularTemplate/browser/'
-          # Server IP address
-          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
-          REMOTE_USER: ${{ secrets.REMOTE_USER }}
-          REMOTE_PORT: ${{ secrets.SSH_PORT }}
-          # Exact location to place code (/home/<your_user>/public_html)
-          TARGET: ${{ secrets.TARGET_PATH }}
-          # Avoids sending git configuration files on server
-          EXCLUDE: '/node_modules/, /.github/, /.git/'
-
-      - name: 🎯 Deployment
-        run: echo "Deployment is underway following security and quality validation..."
-```
+Créer `.github > workflows > pipeline.yml` et y coller la configuration présente dans le template.  
 
 ### MAINTENANCE : NETTOYAGE DES WORKFLOWS
 
@@ -1829,81 +1179,7 @@ Ils permettent aux développeurs de créer des composants, des services, des mod
 
 Les **schematics** utilisent des règles pour définir comment le code doit être généré. De plus cela garantit la cohérence et le respect des bonnes pratiques architecturales dans l'ensemble du projet lors de la création de nouveaux fichiers (composants, services, gardes...).  
 
-**`angular.json`**
-
-```JSON
-"schematics": {
-  "@schematics/angular:application": {
-    "fileNameStyleGuide": "2016",
-    "inlineStyle": false,
-    "inlineTemplate": false,
-    "routing": true,
-    "skipTests": true,
-    "ssr": true,
-    "standalone": true,
-    "strict": true,
-    "style": "scss",
-    "zoneless": false
-  },
-  "@schematics/angular:class": {
-    "skipTests": true
-  },
-  "@schematics/angular:component": {
-    "changeDetection": "OnPush",
-    "displayBlock": true,
-    "inlineStyle": false,
-    "inlineTemplate": false,
-    "prefix": "",
-    "skipTests": false,
-    "standalone": true,
-    "style": "scss",
-    "type": "component"
-  },
-  "@schematics/angular:directive": {
-    "prefix": "",
-    "skipTests": false,
-    "standalone": true,
-    "type": "directive"
-  },
-  "@schematics/angular:enum": {
-    "type": "enum"
-  },
-  "@schematics/angular:guard": {
-    "functional": false,
-    "implements": [
-      "CanActivate",
-      "CanActivateChild",
-      "CanDeactivate",
-      "CanMatch"
-    ],
-    "skipTests": true,
-    "typeSeparator": "."
-  },
-  "@schematics/angular:interceptor": {
-    "skipTests": true,
-    "typeSeparator": "."
-  },
-  "@schematics/angular:interface": {
-    "type": "model"
-  },
-  "@schematics/angular:module": {
-    "typeSeparator": "."
-  },
-  "@schematics/angular:pipe": {
-    "skipTests": false,
-    "standalone": true,
-    "typeSeparator": "."
-  },
-  "@schematics/angular:resolver": {
-    "skipTests": true,
-    "typeSeparator": "."
-  },
-  "@schematics/angular:service": {
-    "skipTests": false,
-    "type": "service"
-  }
-},
-```
+La configuration se trouve dans le fichier `angular.json`.  
 
 💡 Une documentation complète est disponible dans le fichier `angular.json` et ici... [Schematics Rules](#schematics-rules)  
 

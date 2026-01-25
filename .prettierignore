@@ -8,6 +8,7 @@ angular.json
 coverage/
 dist/
 eslint.config.js
+eslint-security.config.js
 package-lock.json
 pnpm-lock.yaml
 public/manifest.json

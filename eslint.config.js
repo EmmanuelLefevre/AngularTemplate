@@ -5,8 +5,6 @@ import { defineConfig } from 'eslint/config';
 
 import angular from 'angular-eslint';
 import eslint from '@eslint/js';
-// @ts-expect-error
-import securityPlugin from 'eslint-plugin-security';
 import stylistic from '@stylistic/eslint-plugin';
 import tseslint from 'typescript-eslint';
 
@@ -26,8 +24,7 @@ export default defineConfig([
   {
     files: ['**/*.ts'],
     plugins: {
-      '@stylistic': stylistic,
-      security: securityPlugin
+      '@stylistic': stylistic
     },
     languageOptions: {
       parserOptions: {
@@ -41,14 +38,10 @@ export default defineConfig([
       eslint.configs.recommended,
       ...tseslint.configs.recommended,
       ...tseslint.configs.stylistic,
-      ...angular.configs.tsRecommended,
-      securityPlugin.configs.recommended
+      ...angular.configs.tsRecommended
     ],
     processor: angular.processInlineTemplates,
     rules: {
-      // Security
-      'security/detect-object-injection': 'error',
-
       // Angular
       '@angular-eslint/component-selector': [
         'error',

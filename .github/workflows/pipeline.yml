@@ -46,7 +46,7 @@ jobs:
         run: pnpm audit --audit-level=high
 
       - name: 🧪 Security Linting
-        run: pnpm lint
+        run: pnpm lint:security:ci
 
       - name: 🕵️ Snyk Packages Analysis
         uses: snyk/actions/node@master
