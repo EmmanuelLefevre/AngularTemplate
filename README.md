@@ -52,6 +52,7 @@
 - [TOOLING DOCUMENTATIONS](#tooling-documentations)
   - [Prettier Rules](#prettier-rules)
   - [ESLint Rules](#eslint-rules)
+  - [HTMLHint Rules](#htmlhint-rules)
   - [StyleLint Rules](#stylelint-rules)
   - [TS Config Rules](#ts-config-rules)
   - [Schematics Rules](#schematics-rules)
@@ -204,34 +205,34 @@
   PNPM
 </h2>
 
-Installer PNPM.
+Installer **PNPM**.
 
 1. Via le script d'installation (recommandé)  
 
-Cette méthode est recommandée car elle permet d'installer pnpm sans dépendre d'une installation spécifique de Node.js ce qui facilite les mises à jour.
+Cette méthode est recommandée car elle permet d'installer **pnpm** sans dépendre d'une installation spécifique de **Node.js** ce qui facilite les mises à jour.
 
-- Pour Windows (PowerShell) :
+- Pour **Windows** (**PowerShell**) :
 
 ```shell
 iwr https://get.pnpm.io/install.ps1 -useb | iex
 ```
 
-- Pour macOS et Linux :
+- Pour **macOS** et **Linux** :
 
 ```shell
 curl -fsSL https://get.pnpm.io/install.sh | sh -
 ```
 
-2. Via NPM (méthode classique)  
+2. Via **NPM** (méthode classique)  
 
-Si Node.js est déjà installé, c'est souvent la méthode la plus simple et la plus rapide.  
+Si **Node.js** est déjà installé, c'est souvent la méthode la plus simple et la plus rapide.  
 Exécuter simplement cette commande dans un terminal :  
 
 ```shell
 npm install -g pnpm
 ```
 
-3. Audit de sécurité de PNPM
+3. Audit de sécurité de **PNPM**
 
 ```shell
 pnpm audit
@@ -261,7 +262,7 @@ Si problème avec un package, ajouter sa version patchée dans `package.json` =>
   ANGULAR
 </h2>
 
-1. Vérifier les versions de la CLI
+1. Vérifier les versions de la **CLI**
 
 **\* Global :**  (se placer hors projet)
 
@@ -291,7 +292,7 @@ pnpm view @angular/cli versions
 pnpm view @angular/cli version
 ```
 
-3. Mettre à jour la CLI Angular globalement  
+3. Mettre à jour la **CLI Angular** globalement  
 
 ```shell
 pnpm add -g @angular/cli@21
@@ -299,7 +300,7 @@ pnpm add -g @angular/cli@21
 
 4. Créer le projet  
 
-Lancer la commande suivante. L'option `--package-manager=pnpm` est importante, elle configure directement le projet pour utiliser pnpm au lieu de npm par défaut.
+Lancer la commande suivante. L'option `--package-manager=pnpm` est importante, elle configure directement le projet pour utiliser **pnpm** au lieu de **npm** par défaut.
 
 ```shell
 ng new mon-projet-angular --style=scss --ssr=true --package-manager=pnpm
@@ -311,7 +312,7 @@ ng new mon-projet-angular --style=scss --ssr=true --package-manager=pnpm
 | :--- | :--- | :--- | :--- |
 | **21.0.x** | `^20.19.0` \|\| `^22.12.0` \|\| `^24.0.0` | `>=5.9.0 <6.0.0` | `^6.5.3` \|\| `^7.4.0` |
 
-6. Fixer les dépendances des librairies sauf les correctifs de bugs d'Angular  
+6. Fixer les dépendances des librairies sauf les correctifs de bugs d'**Angular**  
 
 ```shell
 pnpm list --depth 0
@@ -385,8 +386,8 @@ Désormais, si on lance `pnpm add rxjs`, il installera **`"rxjs"`: `"7.8.0"`** a
     title="ESLint"
     width="34px"
     src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/eslint/eslint-original.svg"
-  /> 
-    ESLINT / PRETTIER 
+  />
+    ESLINT / PRETTIER
   <img
     alt="Prettier"
     title="Prettier"
@@ -395,12 +396,12 @@ Désormais, si on lance `pnpm add rxjs`, il installera **`"rxjs"`: `"7.8.0"`** a
   />
 </h2>
 
-Pour un projet Angular moderne, la combinaison standard de l'industrie est ESLint (pour la qualité du code et les erreurs) et Prettier (pour le style et le formatage).  
+Pour un projet **Angular** moderne, la combinaison standard de l'industrie est **ESLint** (pour la qualité du code et les erreurs) et **Prettier** (pour le style et le formatage).  
 
-**Etape 1 :** Externaliser et installer Prettier  
+**Etape 1 :** Externaliser et installer **Prettier**  
 Bien qu'il y ait une configuration dans `package.json`, il est préférable (Best Practice) d'avoir un fichier de configuration dédié `.prettierrc`.
 
-1. Installer Prettier  
+1. Installer **Prettier**  
 
 ```shell
 pnpm add -D prettier
@@ -452,7 +453,7 @@ export default {
 
 💡 Une documentation complète est disponible dans le fichier `.prettierrc.js` et ici... [Prettier Rules](#prettier-rules)  
 
-Installer l'extension Trivago pour le tri des imports.  
+Installer l'extension **Trivago** pour le tri des imports.  
 
 ```shell
 pnpm add -D @trivago/prettier-plugin-sort-imports
@@ -493,20 +494,20 @@ tsconfig.spec.json
 yarn.lock
 ```
 
-**Etape 2 :** Installer ESLint  
+**Etape 2 :** Installer **ESLint**  
 
-La méthode officielle et la plus sûre pour Angular est d'utiliser les "Schematics". Cela va générer la configuration adaptée à la version 21.  
+La méthode officielle et la plus sûre pour **Angular** est d'utiliser les "Schematics". Cela va générer la configuration adaptée à la version 21.  
 Pour être sûr à 100%, on peut même ajouter un "flag" pour forcer le gestionnaire.
 
 ```shell
 ng add @angular-eslint/schematics --package-manager=pnpm
 ```
 
-**\* Note :** Si on demande quel gestionnaire utiliser, confirmer celui déjà choisi (PNPM, Yarn...). Ici PNPM. Cette commande va ajouter les dépendances eslint et créer un fichier de configuration (`eslint.config.js` pour les versions modernes utilisant le "Flat Config").
+**\* Note :** Si on demande quel gestionnaire utiliser, confirmer celui déjà choisi (**PNPM**, **Yarn**...). Ici **PNPM**. Cette commande va ajouter les dépendances eslint et créer un fichier de configuration (`eslint.config.js` pour les versions modernes utilisant le "Flat Config").
 
-**Etape 3 :** Empêcher les conflits (ESLint vs Prettier)  
+**Etape 3 :** Empêcher les conflits (**ESLint** vs **Prettier**)  
 
-ESLint a aussi des règles de formatage qui peuvent contredire Prettier. Il faut désactiver ces règles côté ESLint.
+**ESLint** a aussi des règles de formatage qui peuvent contredire **Prettier**. Il faut désactiver ces règles côté **ESLint**.
 
 1. Installer la config de compatibilité  
 
@@ -514,7 +515,7 @@ ESLint a aussi des règles de formatage qui peuvent contredire Prettier. Il faut
 pnpm add -D eslint-config-prettier
 ```
 
-2. Installer `ESLint` et `Angular ESLint`  
+2. Installer **ESLint** et **Angular ESLint**  
 
 ```shell
 pnpm add -D eslint angular-eslint
@@ -534,7 +535,7 @@ pnpm add -D @stylistic/eslint-plugin
 pnpm add -D eslint-plugin-security
 ```
 
-5. Configurer ESLint  
+5. Configurer **ESLint**  
 
 Ouvrir le fichier `eslint.config.js` (qui vient d'être créé à la racine).  
 
@@ -710,7 +711,7 @@ Vous devriez voir s'afficher =>
 
 <br>
 
-**Etape 6 :** Ajouter les autres packages `ESLint`  
+**Etape 6 :** Ajouter les autres packages **ESLint**  
 
 ```shell
 pnpm add -D @angular-eslint/builder @eslint/js typescript-eslint
@@ -735,7 +736,13 @@ Grâce à un ensemble de règles configurables via un fichier `.htmlhintrc`, **H
 
 [En savoir plus sur l'accessibilité](#accessibilite)
 
-### Extension VSCode :
+**Etape 1 :** Ajouter le package **HTMLLint**  
+
+```shell
+pnpm add -D htmlhint
+```
+
+**Etape 2 :** Ajouter l'extension **VSCode** :
 
 [HTMLHint VSCode Extension](https://marketplace.visualstudio.com/items/?itemName=HTMLHint.vscode-htmlhint)  
 
@@ -753,7 +760,7 @@ De plus cela activera l'autocomplétion et la validation du fichier `.htmlhintrc
 }
 ```
 
-### Configuration :
+**Etape 2 :**  Configuration :
 
 Ouvrir le fichier `package.json`. Ajouter la commande suivante dans la partie `scripts`.
 
@@ -763,12 +770,12 @@ Ouvrir le fichier `package.json`. Ajouter la commande suivante dans la partie `s
 }
 ```
 
-### Execution :
+**Etape 3 :** Tester la commande  
 
 Lancer le lint sur nos fichiers **HTML** =>
 
 ```powershell
-npm run lint:html
+pnpm run lint:html
 ```
 
 Si le script n'est pas défini dans le `package.json` =>
@@ -855,17 +862,17 @@ ainsi que le script =>
   HUSKY
 </h2>
 
-Nous allons utiliser Husky couplé à Lint-staged.  
-Pourquoi Lint-staged ? Lancer `pnpm lint` sur tout le projet prend du temps (10s... 30s... 1min). Si l'on doit attendre 1 minute à chaque commit, nous allons finir par désactiver Husky.  
-Lint-staged permet de lancer l'analyse uniquement sur les fichiers que nous sommes en train de modifier. C'est instantané.  
+Nous allons utiliser **Husky** couplé à `lint-staged`.  
+Pourquoi `lint-staged` ? Lancer `pnpm lint` sur tout le projet prend du temps (10s... 30s... 1min). Si l'on doit attendre 1 minute à chaque commit, nous allons finir par désactiver **Husky**.  
+`lint-staged` permet de lancer l'analyse uniquement sur les fichiers que nous sommes en train de modifier. C'est instantané.  
 
-**Etape 1 :** Installer Husky et Lint-staged  
+**Etape 1 :** Installer **Husky** et `lint-staged`  
 
 ```shell
 pnpm add -D husky lint-staged
 ```
 
-**Etape 2 :** Initialiser Husky  
+**Etape 2 :** Initialiser **Husky**  
 
 Cette commande va créer le dossier `.husky` et configurer le script prepare dans notre `package.json`.
 
@@ -873,7 +880,7 @@ Cette commande va créer le dossier `.husky` et configurer le script prepare dan
 pnpm exec husky init
 ```
 
-**Etape 3 :** Configurer Lint-staged  
+**Etape 3 :** Configurer `lint-staged`  
 Ouvrir le fichier `package.json`. Ajouter la configuration tout à la fin du fichier (après devDependencies).  
 
 ```JSON
@@ -902,7 +909,7 @@ Ouvrir le fichier `package.json`. Ajouter la configuration tout à la fin du fic
 }
 ```
 
-**Etape 4 :** Dire à Husky d'utiliser Lint-staged  
+**Etape 4 :** Dire à **Husky** d'utiliser `lint-staged`  
 Aller dans le dossier `.husky` qui a été créé à la racine du projet. Trouver le fichier nommé `pre-commit`.
 
 - Simple linting  
@@ -938,7 +945,7 @@ pnpm exec lint-staged
 
 **`tsconfig.json`**
 
-Ce fichier contient les paramètres fondamentaux du compilateur TypeScript (`compilerOptions`) et du compilateur Angular (`angularCompilerOptions`) qui sont hérités par tous les autres fichiers de configuration de l'espace de travail.
+Ce fichier contient les paramètres fondamentaux du compilateur **TypeScript** (`compilerOptions`) et du compilateur **Angular** (`angularCompilerOptions`) qui sont hérités par tous les autres fichiers de configuration de l'espace de travail.
 
 ```JSON
 {
@@ -1019,7 +1026,7 @@ Configuration des alias
   🧪 TESTS
 </h2>
 
-Activer le nouveau système de tests unitaires natif d'Angular. Ce builder moderne remplace l'ancienne stack (basée sur Karma) pour offrir une exécution nettement plus rapide et légère, tout en s'alignant sur l'architecture de build actuelle (esbuild). Il isole la compilation des tests via le fichier `tsconfig.spec.json`.  
+Activer le nouveau système de tests unitaires natif d'**Angular**. Ce builder moderne remplace l'ancienne stack (basée sur **Karma**) pour offrir une exécution nettement plus rapide et légère, tout en s'alignant sur l'architecture de build actuelle (`esbuild`). Il isole la compilation des tests via le fichier `tsconfig.spec.json`.  
 
 1. Installer les librairies requises  
 
@@ -1072,8 +1079,8 @@ pnpm add -D vite-tsconfig-paths
 },
 ```
 
-4. Optionnel : installer l'interface graphique de Vitest.  
-Vitest possède une interface web agréable pour visualiser les tests, voir le code et les logs. C'est bien plus pratique que le terminal.  
+4. Optionnel : installer l'interface graphique de **Vitest**.  
+**Vitest** possède une interface web agréable pour visualiser les tests, voir le code et les logs. C'est bien plus pratique que le terminal.  
 
 ```shell
 pnpm add -D @vitest/ui
@@ -1186,7 +1193,7 @@ pnpm test:coverage
   🤖 CI/CD
 </h2>
 
-1. L'utilisation de rimraf permet de supprimer des dossiers de manière fiable que l'on soit sous Windows, macOS ou Linux. C'est essentiel pour éviter que d'anciens rapports de couverture ne viennent fausser les nouvelles analyses.  
+1. L'utilisation de **rimraf** permet de supprimer des dossiers de manière fiable que l'on soit sous **Windows**, **macOS** ou **Linux**. C'est essentiel pour éviter que d'anciens rapports de couverture ne viennent fausser les nouvelles analyses.  
 
 ```shell
 pnpm add -D rimraf
@@ -1201,7 +1208,7 @@ pnpm add -D rimraf
 }
 ```
 
-3. Configurer son compte SonarCloud et son secret SONAR_TOKEN
+3. Configurer son compte **SonarCloud** et son secret `SONAR_TOKEN`
 
 4. Créer fichier `sonar-project.properties` à la racine
 
@@ -1343,13 +1350,13 @@ jobs:
   📦 DEPENDENCIES
 </h2>
 
-1. Ajouter `Angular Material`  
+1. Ajouter **Angular Material**  
 
 ```shell
 pnpm add @angular/material @angular/cdk
 ```
 
-2. Ajouter `Font Awesome`  
+2. Ajouter **Font Awesome**  
 
 ```shell
 pnpm add @fortawesome/fontawesome-svg-core @fortawesome/angular-fontawesome
@@ -1364,7 +1371,7 @@ pnpm add @fortawesome/free-solid-svg-icons @fortawesome/free-brands-svg-icons @f
   🎨 STYLES
 </h2>
 
-Simplifie la gestion des imports Sass en définissant `src/styles` comme racine de résolution. Cela permet d'importer le Barrel File abstracts (ou autre fichier global) depuis n'importe quel composant via un chemin absolu et propre (ex: `@use 'abstracts'`), éliminant définitivement les chemins relatifs complexes et fragiles (ex: `../../../../styles/abstracts`)."  
+Simplifie la gestion des imports **Sass** en définissant `src/styles` comme racine de résolution. Cela permet d'importer le Barrel File abstracts (ou autre fichier global) depuis n'importe quel composant via un chemin absolu et propre (ex: `@use 'abstracts'`), éliminant définitivement les chemins relatifs complexes et fragiles (ex: `../../../../styles/abstracts`)."  
 
 Dans `angular.json` ajouter la propriété `stylePreprocessorOptions` dans `@architect.build.options`.  
 
@@ -1387,7 +1394,7 @@ Dans `angular.json` ajouter la propriété `stylePreprocessorOptions` dans `@arc
   SCHEMATICS
 </h2>
 
-La section de configuration des schematics définit les paramètres par défaut de la commande `ng generate` de l'interface de la CLI d'Angular.  
+La section de configuration des **schematics** définit les paramètres par défaut de la commande `ng generate` de l'interface de la **CLI d'Angular**.  
 
 Ceci garantit la cohérence et le respect des bonnes pratiques architecturales dans l'ensemble du projet lors de la création de nouveaux fichiers (composants, services, gardes...).  
 
@@ -1485,7 +1492,7 @@ Cette section (`architect.build.configurations.production`) définit les paramè
 
 L'option `fileReplacements` est cruciale pour gérer les configurations spécifiques à l'environnement de production. L'option `budgets` est quand à elle un mécanisme essentiel pour basculer les variables d'environnement (API endpoints, clés) vers leurs valeurs de production sans nécessiter de modification manuelle du code source.  
 
-Renseigner le chemin des fichiers d'environnement et définir des budgets de performance pour garantir que la taille de l'application reste sous contrôle  
+Renseigner le chemin des fichiers d'environnement et définir des budgets de performance pour garantir que la taille de l'application reste sous contrôle.  
 
 De plus il faut ajouter le favicon, les scripts, le browser et l'index dans l'objet `options`  
 
@@ -1636,14 +1643,14 @@ Créer le fichier `.gitattributes` à la racine du projet et coller ceci :
 *.ps1 text eol=crlf
 ```
 
-Puis "renormaliser" la config Git en lançant ces commandes dans le projet :  
+Puis "renormaliser" la config **Git** en lançant ces commandes dans le projet :  
 
 ```shell
 git add --renormalize .
 git commit -m "chore: enforce LF line endings" --no-verify
 ```
 
-Publier la branche et écraser le contenu sur Github avec la version locale :
+Publier la branche et écraser le contenu sur **Github** avec la version locale :
 
 ```shell
 git push --force origin main
@@ -1651,7 +1658,7 @@ git push --force origin main
 
 ### 2. Option 'baseUrl' is deprecated
 
-L'auteur "Andrew Branch" est membre de l'équipe TypeScript chez Microsoft, ce qui garantit la fiabilité et la pertinence de l'outil.  
+L'auteur "Andrew Branch" est membre de l'équipe **TypeScript** chez **Microsoft**, ce qui garantit la fiabilité et la pertinence de l'outil.  
 
 [andrewbranch/ts5to6 – Outil de migration TypeScript 5 vers 6](https://github.com/andrewbranch/ts5to6)
 
@@ -1786,7 +1793,7 @@ pnpm add -D @typescript-eslint/parser eslint-plugin-rxjs
 | **`frame-title-require`** | `true` | Requiert un attribut `title` sur les `<iframe>` et `<frame>` pour l'accessibilité |
 | **`h1-require`** | `true` | Impose la présence d'au moins une balise `<h1>` pour la structure sémantique et le SEO. |
 | **`html-lang-require`** | `true` | Exige que la balise `<html>` possède un attribut `lang` pour spécifier la langue du document (accessibilité et SEO) |
-| **`id-class-value`** | `true` | L'identifiant et la valeur de classe doivent respecter certaines règles :<br><br>**1. `underline`:** id="wrapper_container"<br><br>**2. `dash`:** id="wrapper-container"<br><br>**3. `hump`:** id="wrapperContainer" |
+| **`id-class-value`** | `dash` | L'identifiant et la valeur de classe doivent respecter la règle : `dash`:** id="wrapper-container" |
 | **`id-unique`** | `true` | Garantit que tous les attributs `id` sur la page sont uniques |
 | **`input-requires-label`** | `true` | Vérifie que chaque `<input>` est associé à une balise `<label>` pour l'accessibilité |
 | **`inline-script-disabled`** | `true` | L'utilisation des inline scripts est impossible |

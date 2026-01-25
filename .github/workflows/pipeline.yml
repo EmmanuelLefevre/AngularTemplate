@@ -98,6 +98,9 @@ jobs:
       - name: 🧹 ESLint Linting
         run: pnpm lint:ci
 
+      - name: 🔍 HTMLHint Linting
+        run: pnpm lint:html
+
       - name: 🎨 Stylelint SCSS
         run: pnpm lint:scss
 
