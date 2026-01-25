@@ -1,11 +1,27 @@
-const eslint = require('@eslint/js');
-const { defineConfig } = require('eslint/config');
-const tseslint = require('typescript-eslint');
-const angular = require('angular-eslint');
-const stylistic = require('@stylistic/eslint-plugin');
-const securityPlugin = require('eslint-plugin-security');
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-module.exports = defineConfig([
+import { defineConfig } from 'eslint/config';
+
+import angular from 'angular-eslint';
+import eslint from '@eslint/js';
+// @ts-expect-error
+import securityPlugin from 'eslint-plugin-security';
+import stylistic from '@stylistic/eslint-plugin';
+import tseslint from 'typescript-eslint';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+export default defineConfig([
+  // GLOBAL IGNORES ----------
+  {
+    ignores: [
+      '.angular/',
+      'dist/',
+      'node_modules/'
+    ]
+  },
   // TS ----------
   {
     files: ['**/*.ts'],
@@ -33,7 +49,7 @@ module.exports = defineConfig([
       // Security
       'security/detect-object-injection': 'error',
 
-      // Angular selectors configuration
+      // Angular
       '@angular-eslint/component-selector': [
         'error',
         {
@@ -59,15 +75,7 @@ module.exports = defineConfig([
       '@angular-eslint/sort-keys-in-type-decorator': 'error',
       '@angular-eslint/sort-lifecycle-methods': 'error',
 
-      // RXJS
-      // 'rxjs/no-async-subscribe': 'error',
-      // 'rxjs/no-ignored-observable': 'error',
-      // 'rxjs/no-ignored-subscription': 'error',
-      // 'rxjs/no-nested-subscribe': 'error',
-      // 'rxjs/no-unbound-methods': 'error',
-      // 'rxjs/throw-error': 'error',
-
-      // Stylistics selectors configuration
+      // Stylistic
       '@stylistic/arrow-spacing': [
         'error',
         {
@@ -171,7 +179,7 @@ module.exports = defineConfig([
       ],
       '@stylistic/quotes': ['error', 'single'],
 
-      // Typescript selectors configuration
+      // TypeScript
       '@typescript-eslint/explicit-function-return-type': 'error',
       '@typescript-eslint/naming-convention': [
         'error',
@@ -181,8 +189,13 @@ module.exports = defineConfig([
         },
         {
           selector: 'variable',
-          modifiers: ['const'],
+          modifiers: ['const', 'global'],
           format: ['UPPER_CASE']
+        },
+        {
+          selector: 'variable',
+          modifiers: ['const'],
+          format: ['camelCase', 'UPPER_CASE']
         },
         {
           selector: 'method',
@@ -200,17 +213,15 @@ module.exports = defineConfig([
       '@typescript-eslint/no-unsafe-return': 'error',
       '@typescript-eslint/no-unused-vars': 'error',
       '@typescript-eslint/prefer-readonly': 'error',
-
-      // Disabling old rules to avoid duplicates
-      indent: 'off',
-      semi: 'off',
-      quotes: 'off'
     }
   },
   // HTML ----------
   {
     files: ['**/*.html'],
-    extends: [...angular.configs.templateRecommended, ...angular.configs.templateAccessibility],
+    extends: [
+      ...angular.configs.templateRecommended,
+      ...angular.configs.templateAccessibility
+    ],
     rules: {
       '@angular-eslint/template/alt-text': 'error',
       '@angular-eslint/template/attributes-order': [
