@@ -36,7 +36,8 @@
 - [PNPM](#pnpm)
 - [ANGULAR](#angular)
 - [NPMRC](#npmrc)
-- [ESLINT / PRETTIER](#eslint-prettier)
+- [PRETTIER](#prettier)
+- [ESLINT](#eslint)
 - [HTMLHINT](#htmlhint)
 - [STYLELINT](#stylelint)
 - [HUSKY](#husky)
@@ -380,20 +381,14 @@ save-exact=true
 
 Désormais, si on lance `pnpm add rxjs`, il installera **`"rxjs"`: `"7.8.0"`** au lieu de **`"^7.8.0"`**.
 
-<h2 id="eslint-prettier">
-  <img
-    alt="ESLint"
-    title="ESLint"
-    width="34px"
-    src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/eslint/eslint-original.svg"
-  />
-    ESLINT / PRETTIER
+<h2 id="prettier">
   <img
     alt="Prettier"
     title="Prettier"
     width="30px"
     src="https://raw.githubusercontent.com/EmmanuelLefevre/GitHubProfileIcons/main/prettier.png"
   />
+  PRETTIER
 </h2>
 
 Pour un projet **Angular** moderne, la combinaison standard de l'industrie est **ESLint** (pour la qualité du code et les erreurs) et **Prettier** (pour le style et le formatage).  
@@ -494,6 +489,16 @@ tsconfig.json
 tsconfig.spec.json
 yarn.lock
 ```
+
+<h2 id="eslint">
+  <img
+    alt="ESLint"
+    title="ESLint"
+    width="34px"
+    src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/eslint/eslint-original.svg"
+  />
+  ESLINT
+</h2>
 
 **Etape 2 :** Installer **ESLint**  
 
@@ -763,7 +768,51 @@ De plus cela activera l'autocomplétion et la validation du fichier `.htmlhintrc
 
 **Etape 2 :**  Configuration :
 
-Ouvrir le fichier `package.json`. Ajouter la commande suivante dans la partie `scripts`.
+Il faut créer le fichier `.htmlhintrc` à la racine du projet  
+
+```JSON
+{
+  "alt-require": true,
+  "attr-lowercase": [
+    "(ngSubmit)",
+    "[formControl]",
+    "[ngClass]",
+    "routerLink",
+    "routerLinkActive",
+    ".........."
+  ],
+  "attr-no-duplication": true,
+  "attr-no-unnecessary-whitespace": true,
+  "attr-sorted": false,
+  "attr-value-double-quotes": true,
+  "attr-value-no-duplication": true,
+  "attr-whitespace": true,
+  "button-type-require": true,
+  "doctype-first": false,
+  "doctype-html5": false,
+  "frame-title-require": true,
+  "h1-require": false,
+  "html-lang-require": true,
+  "id-class-value": false,
+  "id-unique": true,
+  "inline-script-disabled": true,
+  "inline-style": true,
+  "input-requires-label": false,
+  "main-require": false,
+  "meta-charset-require": true,
+  "meta-description-require": false,
+  "meta-viewport-require": true,
+  "spec-char-escape": true,
+  "src-not-empty": true,
+  "tag-no-obsolete": true,
+  "tag-pair": true,
+  "tag-self-close": true,
+  "tagname-lowercase": true,
+  "title-require": true
+}
+```
+
+Pour finir ouvrir le fichier `package.json` et ajouter la commande suivante dans la partie `scripts` =>  
 
 ```JSON
 "scripts": {
