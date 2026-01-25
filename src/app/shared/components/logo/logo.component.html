@@ -13,8 +13,8 @@
 
 <ng-template #logoImage>
   <img
-    [src]="src()"
-    [alt]="alt()"
+    src="{{ src() }}"
+    alt="{{ alt() }}"
     class="logo__image"
     [attr.loading]="priority() ? 'eager' : 'lazy'"
     [attr.fetchpriority]="priority() ? 'high' : 'auto'" />

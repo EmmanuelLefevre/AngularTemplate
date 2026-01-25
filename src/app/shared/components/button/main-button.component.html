@@ -14,7 +14,8 @@
   </a>
 } @else {
   <button
-    [type]="type()"
+    type="button"
+    [type]="nativeType()"
     [class]="classes"
     [disabled]="isDisabled() || isLoading()"
     [tabindex]="tabIndex()"

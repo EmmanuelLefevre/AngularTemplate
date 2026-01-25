@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
@@ -23,7 +23,13 @@ const FIRST_TAB_INDEX = 0;
 export class MainButtonComponent {
   // --- INPUTS ---
   readonly label = input<string>('');
+
   readonly type = input<ButtonType>('button');
+  readonly nativeType = computed(() => {
+    const currentType = this.type();
+    return currentType === 'link' ? 'button' : currentType;
+  });
+
   readonly variant = input<ButtonVariant>('primary');
   readonly link = input<string | (string | number)[] | null>(null);
   readonly isDisabled = input<boolean>(false);

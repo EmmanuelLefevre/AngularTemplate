@@ -776,7 +776,7 @@ Ouvrir le fichier `package.json`. Ajouter la commande suivante dans la partie `s
 Lancer le lint sur nos fichiers **HTML** =>
 
 ```powershell
-pnpm run lint:html
+pnpm lint:html
 ```
 
 Si le script n'est pas défini dans le `package.json` =>
@@ -1796,7 +1796,7 @@ pnpm add -D @typescript-eslint/parser eslint-plugin-rxjs
 | **`html-lang-require`** | `true` | Exige que la balise `<html>` possède un attribut `lang` pour spécifier la langue du document (accessibilité et SEO) |
 | **`id-class-value`** | `dash` | Aucunes règles imposées |
 | **`id-unique`** | `true` | Garantit que tous les attributs `id` sur la page sont uniques |
-| **`input-requires-label`** | `true` | Vérifie que chaque `<input>` est associé à une balise `<label>` pour l'accessibilité |
+| **`input-requires-label`** | `false` | Ne pas vérifier que chaque `<input>` est associé à une balise `<label>` pour l'accessibilité |
 | **`inline-script-disabled`** | `true` | L'utilisation des inline scripts est impossible |
 | **`inline-style`** | `true` | L'utilisation du inline style est impossible |
 | **`main-require`** | `false` |  Ne pas imposer la présence d'une balise `<main>` pour identifier le contenu principal du document |

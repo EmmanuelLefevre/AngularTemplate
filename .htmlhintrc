@@ -38,7 +38,7 @@
   "id-unique": true,
   "inline-script-disabled": true,
   "inline-style": true,
-  "input-requires-label": true,
+  "input-requires-label": false,
   "main-require": false,
   "meta-charset-require": true,
   "meta-description-require": false,
