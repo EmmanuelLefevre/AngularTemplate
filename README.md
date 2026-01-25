@@ -393,10 +393,19 @@ Désormais, si on lance `pnpm add rxjs`, il installera **`"rxjs"`: `"7.8.0"`** a
 
 Pour un projet **Angular** moderne, la combinaison standard de l'industrie est **ESLint** (pour la qualité du code et les erreurs) et **Prettier** (pour le style et le formatage).  
 
-**Etape 1 :** Externaliser et installer **Prettier**  
-Bien qu'il y ait une configuration dans `package.json`, il est préférable (Best Practice) d'avoir un fichier de configuration dédié `.prettierrc`.
+### Introduction :
+
+**Prettier** est un formateur de code qui garantit des styles de code cohérents dans un projet.  
+En l'intégrant, les développeurs peuvent automatiser le formatage des fichiers **JavaScript**, **TypeScript**, **HTML** et autres, ce qui uniformise le style du code au sein de l'équipe.  
+L'utilisation de **Prettier** permet d'améliorer la lisibilité et la maintenabilité du code, tout en minimisant les erreurs de syntaxe liées aux différents styles de codage. Cette approche assure que tout le code du projet respecte le même format.  
+
+Un hook de `pre-commit` via **Husky** étant implémenté et utilisant `lint-staged` dans le `package.json`, **Prettier** ne formattera que les fichiers nécessaires lors d’un commit et ce de manière automatique et transparente pour le développeur.  
+
+Cela garantit que tous les fichiers commits respectent les normes de formatage définies par l'équipe. Cette automatisation rend le workflow de développement plus fluide et aide à maintenir un code uniforme sans nécessiter d'interventions manuelles.  
 
 1. Installer **Prettier**  
+
+Bien qu'il y ait une configuration dans `package.json`, il est préférable (Best Practice) d'avoir un fichier de configuration dédié `.prettierrc`.
 
 ```shell
 pnpm add -D prettier
@@ -466,7 +475,14 @@ Formater un fichier précis :
 pnpm exec prettier --write .prettierrc.js
 ```
 
-3. Nettoyage : Supprimer le bloc "prettier": { ... } du fichier `package.json` pour éviter les doublons  
+3. Nettoyage : Supprimer le bloc "prettier": { ... } du fichier `package.json` pour éviter les doublons et y inclure les scripts =>  
+
+```JSON
+"scripts": {
+  "format": "prettier --write .",
+  "format:check": "prettier --check .",
+}
+```
 
 4. Créer un fichier `.prettierignore` pour éviter de formater des fichiers inutiles  
 
@@ -500,7 +516,44 @@ yarn.lock
   ESLINT
 </h2>
 
-**Etape 2 :** Installer **ESLint**  
+### Introduction :
+
+**ESLint** est un outil de linting pour **JavaScript** et **TypeScript** qui permet d'analyser le code afin d'identifier et de signaler des schémas de code potentiellement problématiques.  
+Son principal objectif est d'améliorer la qualité du code et de garantir des pratiques de codage cohérentes au sein d'une équipe de développement. Grâce à un large éventail de règles configurables **ESLint permet**, avant même l'exécution du code, aux développeurs de =>  
+
+- définir des normes spécifiques à un projet
+- définir des règles de nommage
+- détecter les erreurs syntaxiques
+- détecter les problèmes de style
+
+En plus de ces fonctionnalités, **ESLint** permet des vérifications automatiques en temps réel dans l'environnement de développement, fournissant un retour immédiat lors de la rédaction de code.  
+
+```powershell
+ng lint
+```
+
+**ESLint** a aussi une fonctionnalité de correction automatique des erreurs détectées.  
+Lors de l'exécution de cette commande, **ESLint** analyse le code source à la recherche de problèmes qui peuvent être corrigés automatiquement.  
+
+```powershell
+ng lint --fix
+```
+
+Pour finir, **ESLint** s'intègre parfaitement dans les pipelines d'intégration continue (**CI**). En exécutant les règles de linting lors des builds, la pipeline s'assure que tout le code soumis respecte les normes définies, empêchant ainsi le déploiement de code non conforme.  
+
+### Extension VSCode :
+
+[ESLint VSCode Extension](https://marketplace.visualstudio.com/items/?itemName=dbaeumer.vscode-eslint)  
+
+⚠️ Pensez à recharger le server ESLint dans votre VSCode !!!  
+
+`CTRL + SHIFT + P`
+
+```powershell
+Restart ESLint Server
+```
+
+**Etape 1 :** Installer **ESLint**  
 
 La méthode officielle et la plus sûre pour **Angular** est d'utiliser les "Schematics". Cela va générer la configuration adaptée à la version 21.  
 Pour être sûr à 100%, on peut même ajouter un "flag" pour forcer le gestionnaire.
@@ -511,7 +564,7 @@ ng add @angular-eslint/schematics --package-manager=pnpm
 
 **\* Note :** Si on demande quel gestionnaire utiliser, confirmer celui déjà choisi (**PNPM**, **Yarn**...). Ici **PNPM**. Cette commande va ajouter les dépendances eslint et créer un fichier de configuration (`eslint.config.js` pour les versions modernes utilisant le "Flat Config").
 
-**Etape 3 :** Empêcher les conflits (**ESLint** vs **Prettier**)  
+**Etape 2 :** Empêcher les conflits (**ESLint** vs **Prettier**)  
 
 **ESLint** a aussi des règles de formatage qui peuvent contredire **Prettier**. Il faut désactiver ces règles côté **ESLint**.
 
@@ -678,7 +731,28 @@ export default defineConfig([
 ]);
 ```
 
-💡 Une documentation complète est disponible ici... [ESLint Rules](#eslint-rules)  
+**Etape 3 :** Overrides
+
+Dans la nouvelle Flat Config d'**ESLint**, la propriété overrides (telle qu'elle existait dans l'ancien format `.eslintrc`) n'existe plus.  
+
+Le concept est maintenant le suivant : **TOUT** est "override". Pour créer des exceptions, il suffit d'ajouter un nouvel objet à la fin du tableau `defineConfig`. Comme **ESLint** lit la configuration de haut en bas, les règles définies à la fin écrasent celles du début pour les fichiers correspondants.  
+
+```js
+export default defineConfig([
+  {
+    files: ['**/*.spec.ts'],
+    rules: {
+      '@typescript-eslint/no-magic-numbers': 'off',
+      '@typescript-eslint/explicit-function-return-type': 'off',
+      '@typescript-eslint/no-empty-function': 'off',
+      '@angular-eslint/no-empty-lifecycle-method': 'off'
+    }
+  }
+]);
+```
+
+Cette section `overrides` de la configuration **ESLint**> permet de désactiver certaines règles pour des fichiers spécifiques où l'on ne souhaite pas appliquer certaines règles.  
+Cela est particulièrement utile pour les fichiers de directives, pipes ou d'environnements qui peuvent avoir des conventions ainsi que des besoins différents par rapport au reste du code.  
 
 **Etape 4 :** Ajouter les scripts pratiques  
 
@@ -693,7 +767,6 @@ Mettre à jour la section "scripts" du `package.json` pour faciliter l'utilisati
   "format:check": "prettier --check .",
   "lint": "ng lint",
   "lint:ci": "ng lint --max-warnings=0",
-  "lint:scss": "stylelint \"src/**/*.scss\"",
   "prepare": "husky",
   "start": "ng serve",
   "test": "ng test",
@@ -912,9 +985,30 @@ ainsi que le script =>
   HUSKY
 </h2>
 
-Nous allons utiliser **Husky** couplé à `lint-staged`.  
-Pourquoi `lint-staged` ? Lancer `pnpm lint` sur tout le projet prend du temps (10s... 30s... 1min). Si l'on doit attendre 1 minute à chaque commit, nous allons finir par désactiver **Husky**.  
-`lint-staged` permet de lancer l'analyse uniquement sur les fichiers que nous sommes en train de modifier. C'est instantané.  
+### Introduction :
+
+Imaginez un gardien de la qualité automatique à l'entrée de votre code base. Son travail est de s'assurer que chaque nouvelle contribution respecte les règles de style et de qualité établies par l'équipe, sans que personne n'ait à y penser.  
+C'est pourquoi nous allons utiliser **Husky** couplé à `pre-commit` et `lint-staged`. Ensemble, ils créent une chaîne d'automatisation puissante qui s'exécute avant chaque commit. Décortiquons ensemble les rôles de chaque acteur...  
+
+#### 1. Le Hook de pre-commit (le déclencheur) :
+
+Au coeur du système se trouve une fonctionnalité native de **Git** : les hooks. Un hook est simplement un script que **Git** exécute automatiquement à des moments clés de son cycle de vie. Le hook de `pre-commit` se déclenche juste après que l'on ait tapé `git commit` et avant même que l'éditeur de message de commit ne s'ouvre.  
+
+C'est le point de départ de notre processus de vérification. Il nous donne une opportunité parfaite pour analyser le code et, si nécessaire, bloquer le commit s'il n'est pas conforme.  
+
+#### 2. Husky (le gestionnaire de hooks) :
+
+Gérer les hooks **Git** manuellement peut être complexe, car ils doivent être placés dans le dossier `.git/hooks`, qui n'est pas versionné avec le reste du projet. Il est donc difficile de les partager au sein d'une équipe.  
+
+**Husky** résout ce problème avec brio. C'est un outil qui permet de configurer les hooks **Git** très simplement, directement dans notre fichier `package.json`. **Husky** agit comme un "manager" : il s'assure que nos scripts personnalisés (comme le formatage du code) sont bien exécutés lorsque le hook de `pre-commit` est déclenché par **Git**.  
+
+#### 3. Lint-Staged (l'optimiseur intelligent) :
+
+Pourquoi `lint-staged` ? Lancer `npm run lint` sur un gros projet prend du temps (10s... 30s... 1min). Si l'on doit attendre 1 minute à chaque commit, nous allons finir par désactiver **Husky**.  
+
+C'est là que `lint-staged` entre en jeu. C'est un outil intelligent qui exécute des commandes uniquement sur les fichiers qui sont "staged". Au lieu de formater les 5000 fichiers du projet, il ne formatera que les 3 que vous venez de modifier et l'opération devient quasiment instantanée.  
+
+### Configuration :
 
 **Etape 1 :** Installer **Husky** et `lint-staged`  
 
@@ -1444,9 +1538,14 @@ Dans `angular.json` ajouter la propriété `stylePreprocessorOptions` dans `@arc
   SCHEMATICS
 </h2>
 
-La section de configuration des **schematics** définit les paramètres par défaut de la commande `ng generate` de l'interface de la **CLI d'Angular**.  
+### Introduction :
 
-Ceci garantit la cohérence et le respect des bonnes pratiques architecturales dans l'ensemble du projet lors de la création de nouveaux fichiers (composants, services, gardes...).  
+Les schematics d'**Angular** sont un puissant outil qui facilite le développement en automatisant la génération et la modification de code. Cela permet de personnaliser et d'étendre les fonctionnalités de la **CLI**.  
+La section de configuration des **schematics** définit les paramètres par défaut de la commande `ng generate` de l'interface de la **CLI** d'****Angular**.  
+
+Ils permettent aux développeurs de créer des composants, des services, des modules et d'autres éléments de manière standardisée (tout en réduisant les tâches répétitives et en minimisant les erreurs) grâce à la ligne de commande.  
+
+Les **schematics** utilisent des règles pour définir comment le code doit être généré. De plus cela garantit la cohérence et le respect des bonnes pratiques architecturales dans l'ensemble du projet lors de la création de nouveaux fichiers (composants, services, gardes...).  
 
 **`angular.json`**
 
@@ -1902,21 +2001,21 @@ Cette configuration (`tsconfig.json`) sert de **base stricte** pour l'ensemble d
 
 | Option | Valeur | Description & Justification |
 | :--- | :--- | :--- |
-| **`declaration`**| `false` | Ne pas générer de fichiers de déclaration TypeScript (`.d.ts`). N'est généralement pas nécessaire pour les applications, mais l'est pour les bibliothèques. |
-| **`esModuleInterop`**| `true` | Améliore la compatibilité entre les modules CommonJS (Node/Legacy) et les modules ES (Modern JS) pour les imports |
+| **`declaration`** | `false` | Ne pas générer de fichiers de déclaration TypeScript (`.d.ts`). N'est généralement pas nécessaire pour les applications, mais l'est pour les bibliothèques. |
+| **`esModuleInterop`** | `true` | Améliore la compatibilité entre les modules CommonJS (Node/Legacy) et les modules ES (Modern JS) pour les imports |
 | **`experimentalDecorators`** | `true` | Active le support de la syntaxe des décorateurs, massivement utilisée par Angular (`@Component`, `@Injectable`) |
 | **`forceConsistentCasing...`** | `true` | Interdire les références de fichiers avec une casse incohérente (éviter bugs entre Windows / Linux/Mac) |
 | **`importHelpers`** | `true` | Importer les fonctions utilitaires depuis `tslib` au lieu de générer du code dupliqué dans chaque fichier |
 | **`isolatedModules`** | `true` | Garantit que chaque fichier peut être transpilé individuellement, ce qui est requis pour les outils ultra-rapides comme Vite ou Esbuild |
-| **`lib`**| `[Array]` | **1. `"ES2022"`** : inclure les types de JavaScript moderne au navigateur<br><br>**2. `"DOM"`** : inclure les types spécifiques au navigateur.<br><br> |
+| **`lib`** | `[Array]` | **1. `"ES2022"`** : inclure les types de JavaScript moderne au navigateur<br><br>**2. `"DOM"`** : inclure les types spécifiques au navigateur.<br><br> |
 | **`module`** | `"preserve"` | Laisser les instructions d'import/export intactes. Permet au bundler (Vite/Webpack) de gérer le chargement des modules le plus efficacement possible |
-| **`moduleResolution`**| `"bundler"` | Indique à TypeScript d'utiliser une stratégie de résolution optimisée pour les bundlers modernes (Vite, Esbuild). Ceci est requis par Angular 17+ pour le support correct des exports conditionnels (customConditions) et garantit un build rapide et correct |
+| **`moduleResolution`** | `"bundler"` | Indique à TypeScript d'utiliser une stratégie de résolution optimisée pour les bundlers modernes (Vite, Esbuild). Ceci est requis par Angular 17+ pour le support correct des exports conditionnels (customConditions) et garantit un build rapide et correct |
 | **`noImplicitOverride`** | `true` | Forcer l'utilisation du mot-clé `override` lorsqu'une méthode écrase celle d'une classe parente et sécurise l'héritage |
 | **`noImplicitReturns`** | `true` | Vérifier que tous les chemins d'exécution d'une fonction retournent bien une valeur |
-| **`noFallthroughCasesInSwitch`**| `true` | Empêche de passer accidentellement d'un `case` à un autre dans un `switch` (oubli du `break`) |
-| **`resolveJsonModule...`**| `true` | Permettre d'importer directement des fichiers `.json` comme des modules TypeScript (`import data from './data.json'`) |
+| **`noFallthroughCasesInSwitch`** | `true` | Empêche de passer accidentellement d'un `case` à un autre dans un `switch` (oubli du `break`) |
+| **`resolveJsonModule...`** | `true` | Permettre d'importer directement des fichiers `.json` comme des modules TypeScript (`import data from './data.json'`) |
 | **`skipLibCheck`** | `true` | Ignorer la vérification des types à l'intérieur de `node_modules` pour accélérer considérablement la compilation |
-| **`sourceMap`**| `false` | Indiquer au compilateur de ne pas générer de fichiers `.map` pour le débogage (souvent géré par les outils de build dans les fichiers spécifiques comme `tsconfig.app.json`) |
+| **`sourceMap`** | `false` | Indiquer au compilateur de ne pas générer de fichiers `.map` pour le débogage (souvent géré par les outils de build dans les fichiers spécifiques comme `tsconfig.app.json`) |
 | **`strict`** | `true` | Activer toutes les options de vérification de type strictes (pas de `any` implicite, gestion stricte du `null`, etc.) |
 | **`target`** | `"ES2022"` | Compiler le code vers ECMAScript 2022 moderne, permettant l'usage natif de `async/await` et des fonctionnalités de classes récentes |
 | **`useDefineForClassFields`** | `false` | Maintenir le comportement historique d'initialisation des champs de classe pour assurer une compatibilité totale avec les décorateurs Angular |
@@ -1929,7 +2028,7 @@ Ces paramètres contrôlent le compilateur AOT (Ahead-of-Time) d'Angular, spéci
 | :--- | :--- | :--- |
 | **`enableI18nLegacy...`** | `false` | Indiquer au compilateur Angular de ne pas utiliser le format d'identifiant de message hérité (legacy) pour l'internationalisation |
 | **`strictInjectionParameters`** | `true` | Signaler une erreur si un paramètre injecté n'est pas compatible avec le type d'injection attendu |
-| **`strictInputAccessModifiers`**| `true` | Respecter les modificateurs d'accès (`private`, `protected`) lors de l'accès aux propriétés depuis les templates HTML |
+| **`strictInputAccessModifiers`** | `true` | Respecter les modificateurs d'accès (`private`, `protected`) lors de l'accès aux propriétés depuis les templates HTML |
 | **`strictStandalone`** | `true` | Appliquer des règles de validation plus strictes pour les composants, directives et pipes Standalone |
 | **`strictTemplates`** | `true` | Activer la vérification stricte des types dans les templates Angular (`.html`). Détecte les erreurs de liaison de données à la compilation |
 
@@ -1978,7 +2077,7 @@ Configuration pour la génération des composants (`ng g c`).
 | :--- | :--- | :--- |
 | **`changeDetection`** | `"OnPush"` | Définir la stratégie de détection des changements sur `OnPush` |
 | **`displayBlock`** | `true` | Ajoute automatiquement `:host { display: block; }` au SCSS du composant |
-| **`inlineStyle/inlineTemplate`**| `false` | Force la séparation des fichiers `.html` et `.scss` |
+| **`inlineStyle/inlineTemplate`** | `false` | Force la séparation des fichiers `.html` et `.scss` |
 | **`prefix`** | `""` | Le préfixe du sélecteur est explicitement vide |
 | **`skipTests`** | `false` | Générer un fichier de test unitaire (`.spec.ts`) |
 | **`standalone`** | `true` | Utiliser le STANDALONE pour les composants |
@@ -2046,7 +2145,7 @@ Configuration pour la gestion globale des pipes (`ng g p`).
 
 | Option | Valeur | Description |
 | :--- | :--- | :--- |
-| **`skipTests`** | `false` | Les résolveurs sont étroitement liés au routage et sont généralement testés via E2E |
+| **`skipTests`** | `true` | Générer un fichier de test unitaire (`.spec.ts`) |
 | **`standalone`** | `true` | Utiliser le STANDALONE pour les pipes |
 | **`typeSeparator`** | `.` | Définir le séparateur `pipe` (`date.pipe.ts`) |
 
@@ -2056,7 +2155,7 @@ Configuration pour la gestion globale des resolvers (`ng g r`).
 
 | Option | Valeur | Description |
 | :--- | :--- | :--- |
-| **`skipTests`** | `false` | Générer un fichier de test unitaire (`.spec.ts`). |
+| **`skipTests`** | `false` | Générer un fichier de test unitaire (`.spec.ts`) |
 | **`type`** | `"service"` | Ajouter le type à la classe et au fichier (`api.service.ts`) |
 
 #### 12. @schematics/angular:service (`Services`)
@@ -2065,5 +2164,5 @@ Configuration pour la gestion globale des services (`ng g s`).
 
 | Option | Valeur | Description |
 | :--- | :--- | :--- |
-| **`skipTests`** | `false` | Générer un fichier de test unitaire (`.spec.ts`). |
+| **`skipTests`** | `false` | Générer un fichier de test unitaire (`.spec.ts`) |
 | **`type`** | `"service"` | Ajouter le type à la classe et au fichier (`api.service.ts`) |
