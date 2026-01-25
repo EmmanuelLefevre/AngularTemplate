@@ -1124,7 +1124,7 @@ Il exécute des requêtes complexes pour voir comment les données circulent dan
 **Pourquoi c'est top**  
 C'est un outil de "chasseur de failles". Il est capable de trouver des erreurs de logique ou des vulnérabilités critiques que personne n'a encore répertoriées ailleurs.  
 
-<h3 id="git-leaks">
+<h3 id="gitleaks">
   <img
     alt="GitLeaks"
     title="GitLeaks"
