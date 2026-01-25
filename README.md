@@ -37,6 +37,7 @@
 - [ANGULAR](#angular)
 - [NPMRC](#npmrc)
 - [ESLINT / PRETTIER](#eslint-prettier)
+- [HTMLHint](#htmlhint)
 - [HUSKY](#husky)
 - [TS CONFIG](#ts-config)
 - [TESTS](#tests)
@@ -407,7 +408,7 @@ pnpm add -D prettier
 2. Créer un fichier `.prettierrc.js` à la racine et coller cette config  
 
 ```js
-module.exports = {
+export default {
   arrowParens: 'always',
   bracketSameLine: true,
   bracketSpacing: true,
@@ -448,7 +449,7 @@ module.exports = {
 };
 ```
 
-💡 A full documentation have been added in `.prettierrc.js` and here too... [Prettier Rules](#prettier-rules)  
+💡 Une documentation complète est disponible dans le fichier `.prettierrc.js` et ici... [Prettier Rules](#prettier-rules)  
 
 Installer l'extension Trivago pour le tri des imports.  
 
@@ -481,6 +482,7 @@ pnpm exec prettier --write .prettierrc.js
 angular.json
 coverage/
 dist/
+eslint.config.js
 package-lock.json
 pnpm-lock.yaml
 public/manifest.json
@@ -668,7 +670,7 @@ export default defineConfig([
 ]);
 ```
 
-💡 A full documentation have been added in `eslint.config.js` and here too... [ESLint Rules](#eslint-rules)  
+💡 Une documentation complète est disponible ici... [ESLint Rules](#eslint-rules)  
 
 **Etape 4 :** Ajouter les scripts pratiques  
 
@@ -712,6 +714,64 @@ Vous devriez voir s'afficher =>
 ```shell
 pnpm add -D @angular-eslint/builder @eslint/js typescript-eslint
 ```
+
+<h2 id="htmlhint">
+  <img
+    alt="HTMLHint"
+    title="HTMLHint"
+    width="34px"
+    src="https://raw.githubusercontent.com/EmmanuelLefevre/GitHubProfileIcons/main/htmlhint.png"
+  />
+  HTMLHint
+</h2>
+
+### <span style="color: rgb(240, 0, 212);font-size: 24px;">Introduction :</span>
+
+Assurer la qualité et la cohérence des templates <span style="color: rgb(207, 120, 6);font-weight: bold;">HTML</span>  au sein d'un projet <span style="color: rgb(207, 120, 6);font-weight: bold;">Angular</span> est essentiel pour la maintenabilité et la robustesse d'une application. C'est précisément le rôle de <span style="color: rgb(207, 120, 6);font-weight: bold;">HTMLHint</span>, un analyseur de code statique (ou linter) dédié au <span style="color: rgb(207, 120, 6);font-weight: bold;">HTML</span>.
+En l'intégrant dans notre chaîne d'outils de développement, nous pouvons automatiser l'inspection de nos fichiers `.html` afin de détecter les erreurs courantes, les mauvaises pratiques et les incohérences de style.
+Grâce à un ensemble de règles configurables via un fichier `.htmlhintrc`, <span style="color: rgb(207, 120, 6);font-weight: bold;">HTMLHint</span> nous aide à renforcer les standards de code de notre équipe, prévenir des bugs liés aux balises et <span style="font-weight: bold;">PAR-DESSUS TOUT</span> améliorer l'accessibilité de nos applications (<span style="color: rgb(207, 120, 6);font-weight: bold;">A11y</span>) !!!
+
+[En savoir plus sur A11y en fin de documentation](#a11y)
+
+[En savoir plus sur l'accessibilité en fin de documentation](#accessibilite)
+
+[Consulter le cadre légal et juridique en fin de documentation](#Juridique)
+
+### <span style="color: rgb(240, 0, 212);font-size: 24px;">Extension VSCode :</span>
+[HTMLHint VSCode Extension](https://marketplace.visualstudio.com/items/?itemName=HTMLHint.vscode-htmlhint) 
+
+Si vous n'avez pas l'extension <span style="color: rgb(207, 120, 6);font-weight: bold;">VSCode</span> il faut ajouter cette configuration dans son `settings.json`, sinon le fichier de configuration ne sera pas reconnu par celui-ci. De plus cela activera l'autocomplétion et la validation du fichier `.htmlhintrc`.
+
+```JSON
+{
+  "json.schemas": [
+    {
+      "fileMatch": ["/.htmlhintrc"],
+      "url": "https://json.schemastore.org/htmlhint.json"
+    }
+  ]
+}
+```
+### <span style="color: rgb(240, 0, 212);font-size: 24px;">Configuration :</span>
+Ouvrir le fichier `package.json`. Ajouter la commande suivante dans la partie `scripts`.
+
+```JSON
+"scripts": {
+  "lint:html": "htmlhint \"src/**/*.html\""
+}
+```
+
+### <span style="color: rgb(240, 0, 212);font-size: 24px;">Execution :</span>
+Lancer le lint sur nos fichiers <span style="color: rgb(207, 120, 6);font-weight: bold;">HTML</span> =>
+```powershell
+npm run lint:html
+```
+Si le script n'est pas défini dans le `package.json` =>
+```powershell
+npx htmlhint "**/*.html"
+```
+
+💡 Une documentation complète est disponible ici... [HTMLHint Rules](#htmlhint-rules)  
 
 <h2 id="husky">
   <img
@@ -864,7 +924,7 @@ Ce fichier contient les paramètres fondamentaux du compilateur TypeScript (`com
 }
 ```
 
-💡 A full documentation have been added in `tsconfig.json` and here too... [TS Config Rules](#ts-config-rules)  
+💡 Une documentation complète est disponible dans le fichier `tsconfig.json` et ici... [TS Config Rules](#ts-config-rules)  
 
 **`tsconfig.app.json`**
 
@@ -1335,7 +1395,7 @@ Ceci garantit la cohérence et le respect des bonnes pratiques architecturales d
 },
 ```
 
-💡 A full documentation have been added in `angular.json` and here too... [Schematics Rules](#schematics-rules)  
+💡 Une documentation complète est disponible dans le fichier `angular.json` et ici... [Schematics Rules](#schematics-rules)  
 
 <h2 id="configuration-de-build">
   <img
@@ -1625,6 +1685,51 @@ Pour la configuration des règles RXJS il faut ajouter ces deux librairies:
 ```shell
 pnpm add -D @typescript-eslint/parser eslint-plugin-rxjs
 ```
+
+<h3 id="htmllint-rules">
+  <img
+    alt="HTMLHint"
+    title="HTMLHint"
+    width="34px"
+    src="https://raw.githubusercontent.com/EmmanuelLefevre/GitHubProfileIcons/main/htmlhint.png"
+  />
+  HTMLHint
+</h3>
+
+[HTMLHint Documentation](https://htmlhint.com/rules/)  
+
+| Option | Valeur | Description |
+| :--- | :--- | :--- |
+| **`alt-require`** | `true` | Impose que toutes les balises `<img>` possèdent un attribut `alt`, ce qui est crucial pour l'accessibilité web |
+| **`attr-lowercase`** | `ARRAY` | Applique l'utilisation de minuscules pour tous les noms d'attributs HTML pour la cohérence du code<br><br>**Exception :** Il est possible de fournir un tableau pour ignorer certains attributs, notamment ceux en `camelCase` issus de notre bibliothèque NEO (`["neoCard", "paddingSize"]`) |
+| **`attr-no-duplication`** | `true` | Interdit la duplication d'attributs sur un même élément (`<div class="a" class="b">`) |
+| **`attr-no-unnecessary-whitespace`** | `true` | Aucun espace entre les noms et les valeurs des attributs |
+| **`attr-sorted`** | `true` | Les attributs doivent être triés dans l'ordre suivant :<br><br>**1. `class`**<br><br>**2. `id`**<br><br>**3. `name`**<br><br>**4. `src`**<br><br>**5. `for`**<br><br>**6. `type`**<br><br>**7. `href`**<br><br>**8. `value`**<br><br>**9. `title`**<br><br>**10. `alt`**<br><br>**11. `role`** |
+| **`attr-value-double-quotes`** | `true` | Force l'utilisation des guillemets doubles pour toutes les valeurs d'attributs |
+| **`attr-value-no-duplication`** | `true`| Vérifie que les valeurs au sein d'un même attribut (`class`) ne sont pas dupliquées |
+| **`attr-whitespace`** | `true` | Aucun espace en début ou en fin de valeur d'attribut |
+| **`button-type-require`** | `true` | Exige que chaque balise `<button>` ait un attribut `type` (`button`, `submit`, `reset`) pour éviter les soumissions de formulaire inattendues |
+| **`doctype-first`** | `false` | S'assure que le document commence par une déclaration `<!DOCTYPE>` |
+| **`doctype-html5`** | `false` | Vérifie que le Doctype est bien celui de HTML5 (`<!DOCTYPE html>`) |
+| **`frame-title-require`** | `true` | Requiert un attribut `title` sur les `<iframe>` et `<frame>` pour l'accessibilité |
+| **`h1-require`** | `true` | Impose la présence d'au moins une balise `<h1>` pour la structure sémantique et le SEO. |
+| **`html-lang-require`** | `true` | Exige que la balise `<html>` possède un attribut `lang` pour spécifier la langue du document (accessibilité et SEO) |
+| **`id-class-value`** | `true` | L'identifiant et la valeur de classe doivent respecter certaines règles :<br><br>**1. `underline`:** id="wrapper_container"<br><br>**2. `dash`:** id="wrapper-container"<br><br>**3. `hump`:** id="wrapperContainer" |
+| **`id-unique`** | `true` | Garantit que tous les attributs `id` sur la page sont uniques |
+| **`input-requires-label`** | `true` | Vérifie que chaque `<input>` est associé à une balise `<label>` pour l'accessibilité |
+| **`inline-script-disabled`** | `true` | L'utilisation des inline scripts est impossible |
+| **`inline-style`** | `true` | L'utilisation du inline style est impossible |
+| **`main-require`** | `true` | Impose la présence d'une balise `<main>` pour identifier le contenu principal du document |
+| **`meta-charset-require`** | `true` | Requiert la déclaration de l'encodage des caractères via `<meta charset="...">` |
+| **`meta-description-require`** | `true` | Exige la présence d'une balise `<meta name="description" ...>` pour le SEO |
+| **`meta-viewport-require`** | `true` | Impose la présence de la balise `<meta name="viewport" ...>` pour un affichage correct sur les mobiles |
+| **`spec-char-escape`** | `true` | Vérifie que les caractères spéciaux HTML (`<`, `>`, `&`) sont correctement échappés |
+| **`src-not-empty`** | `true` | Interdit les attributs `src` vides sur les scripts et les images pour éviter des requêtes inutiles |
+| **`tag-no-obsolete`** | `true` | Interdit l'utilisation de balises HTML obsolètes (`<font>`, `<center>`) |
+| **`tag-pair`** | `true` | S'assure que toutes les balises sont correctement ouvertes et fermées, une règle fondamentale pour un HTML valide |
+| **`tag-self-close`** | `true` | Les balises auto-fermantes, également appelées éléments vides, sont des éléments HTML qui ne nécessitent pas de balise de fermeture distincte (ceinture/bretelle avec notre ESlint) |
+| **`tagname-lowercase`** | `true` | Impose que tous les noms de balises soient en minuscules |
+| **`title-require`** | `true` | Requiert la présence d'une balise `<title>` dans l'en-tête `<head>` de la page |
 
 <h3 id="stylelint-rules">
   <img
