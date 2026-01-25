@@ -1,18 +1,27 @@
-// @ts-expect-error
 import securityPlugin from 'eslint-plugin-security';
-import tsParser from '@typescript-eslint/parser';
+import tseslint from 'typescript-eslint';
 
 export default [
+  {
+    ignores: [
+      '**/node_modules/**',
+      '**/dist/**',
+      'src/**/*.spec.ts',
+      'src/test-setup.ts'
+    ]
+  },
   {
     files: [
       'src/**/*.ts',
       'src/**/*.js'
     ],
+    languageOptions: {
+      parser: tseslint.parser,
+      sourceType: 'module',
+      ecmaVersion: 'latest',
+    },
     plugins: {
       security: securityPlugin,
-    },
-    languageOptions: {
-      parser: tsParser,
     },
     rules: {
       ...securityPlugin.configs.recommended.rules,

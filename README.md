@@ -532,6 +532,9 @@ pnpm add -D @stylistic/eslint-plugin
 pnpm add -D eslint-plugin-security
 ```
 
+Créer un fichier `eslint-security.config.js` et y coller la configuration présente dans le template.  
+Cette configuration de sécurité a été séparée dans un autre fichier afin de l'éxécuter dans le job 🛡️ Security Scans.  
+
 5. Configurer **ESLint**  
 
 Ouvrir le fichier `eslint.config.js` (qui vient d'être créé à la racine).  
