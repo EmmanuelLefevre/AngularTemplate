@@ -220,4 +220,28 @@ describe('MainButtonComponent', () => {
       expect(SPY_SPACED).not.toHaveBeenCalled();
     });
   });
+
+  describe('Native Type', () => {
+    it('should transform type "link" to "button" for the native attribute', () => {
+      // --- ARRANGE ---
+      fixture.componentRef.setInput('type', 'link');
+
+      // --- ACT ---
+      fixture.detectChanges();
+
+      // --- ASSERT ---
+      expect(component.nativeType()).toBe('button');
+    });
+
+    it('should keep original type when it is NOT "link" (ex : "submit")', () => {
+      // --- ARRANGE ---
+      fixture.componentRef.setInput('type', 'submit');
+
+      // --- ACT ---
+      fixture.detectChanges();
+
+      // --- ASSERT ---
+      expect(component.nativeType()).toBe('submit');
+    });
+  });
 });
