@@ -1824,8 +1824,8 @@ pnpm add -D @typescript-eslint/parser eslint-plugin-rxjs
 | **`scss/at-extend-no-missing-placeholder`** | `true` | Impose que l'instruction `@extend` ne cible que des placeholders (sélecteurs `%`), ce qui évite de gonfler la taille du CSS final inutilement |
 | **`scss/at-if-no-null`** | `true` | Interdit la comparaison explicite avec `null` dans les boucles `@if` (car en Sass, `null` est déjà évalué comme faux) |
 | **`max-nesting-depth`** | `ARRAY` | Contrôle la complexité du CSS en limitant l'imbrication :<br><br>**Limite :** 3 niveaux de profondeur maximum<br><br>**Exception :** Les "at-rules" sans bloc (comme les `@import` ou `@include` simples) sont ignorées via `["blockless-at-rules"]` |
-| **`scss/at-rule-no-unknown`** | `true` | Remplace la règle standard `at-rule-no-unknown` (qui est mise à `null`).<br><br>Vérifie la validité des directives (`@`), tout en autorisant celles spécifiques au SCSS comme `@mixin`, `@include` ou `@content` |
-| **`scss/comment-no-empty`** | `true` | Remplace la règle standard `comment-no-empty` (qui est mise à `null`).<br><br>Interdit les commentaires vides, tout en supportant la syntaxe de commentaire double slash `//` du SCSS |
+| **`scss/at-rule-no-unknown`** | `true` | Remplace la règle standard `at-rule-no-unknown` (qui est mise à `null`)<br><br>Vérifie la validité des directives (`@`), tout en autorisant celles spécifiques au SCSS comme `@mixin`, `@include` ou `@content` |
+| **`scss/comment-no-empty`** | `true` | Remplace la règle standard `comment-no-empty` (qui est mise à `null`)<br><br>Interdit les commentaires vides, tout en supportant la syntaxe de commentaire double slash `//` du SCSS |
 
 <h3 id="ts-config-rules">
   <img
