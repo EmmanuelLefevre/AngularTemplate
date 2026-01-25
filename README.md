@@ -1781,7 +1781,7 @@ pnpm add -D @typescript-eslint/parser eslint-plugin-rxjs
 | Option | Valeur | Description |
 | :--- | :--- | :--- |
 | **`alt-require`** | `true` | Impose que toutes les balises `<img>` possèdent un attribut `alt`, ce qui est crucial pour l'accessibilité web |
-| **`attr-lowercase`** | `ARRAY` | Applique l'utilisation de minuscules pour tous les noms d'attributs HTML pour la cohérence du code<br><br>**Exception :** Il est possible de fournir un tableau pour ignorer certains attributs, notamment ceux en `camelCase` issus de notre bibliothèque NEO (`["neoCard", "paddingSize"]`) |
+| **`attr-lowercase`** | `ARRAY` | Applique l'utilisation de minuscules pour tous les noms d'attributs HTML pour la cohérence du code<br><br>**Exception :** Il est possible de fournir un tableau pour ignorer certains attributs, notamment ceux en `camelCase` issus de Angular (`["(ngSubmit)"], "[formControl]", "[ngClass]"], "[routerLink]"`...) |
 | **`attr-no-duplication`** | `true` | Interdit la duplication d'attributs sur un même élément (`<div class="a" class="b">`) |
 | **`attr-no-unnecessary-whitespace`** | `true` | Aucun espace entre les noms et les valeurs des attributs |
 | **`attr-sorted`** | `true` | Les attributs doivent être triés dans l'ordre suivant :<br><br>**1. `class`**<br><br>**2. `id`**<br><br>**3. `name`**<br><br>**4. `src`**<br><br>**5. `for`**<br><br>**6. `type`**<br><br>**7. `href`**<br><br>**8. `value`**<br><br>**9. `title`**<br><br>**10. `alt`**<br><br>**11. `role`** |
@@ -1792,16 +1792,16 @@ pnpm add -D @typescript-eslint/parser eslint-plugin-rxjs
 | **`doctype-first`** | `false` | S'assure que le document commence par une déclaration `<!DOCTYPE>` |
 | **`doctype-html5`** | `false` | Vérifie que le Doctype est bien celui de HTML5 (`<!DOCTYPE html>`) |
 | **`frame-title-require`** | `true` | Requiert un attribut `title` sur les `<iframe>` et `<frame>` pour l'accessibilité |
-| **`h1-require`** | `true` | Impose la présence d'au moins une balise `<h1>` pour la structure sémantique et le SEO. |
+| **`h1-require`** | `false` | Ne pas imposer la présence d'au moins une balise `<h1>` pour la structure sémantique et le SEO |
 | **`html-lang-require`** | `true` | Exige que la balise `<html>` possède un attribut `lang` pour spécifier la langue du document (accessibilité et SEO) |
-| **`id-class-value`** | `dash` | L'identifiant et la valeur de classe doivent respecter la règle : `dash`:** id="wrapper-container" |
+| **`id-class-value`** | `dash` | Aucunes règles imposées |
 | **`id-unique`** | `true` | Garantit que tous les attributs `id` sur la page sont uniques |
 | **`input-requires-label`** | `true` | Vérifie que chaque `<input>` est associé à une balise `<label>` pour l'accessibilité |
 | **`inline-script-disabled`** | `true` | L'utilisation des inline scripts est impossible |
 | **`inline-style`** | `true` | L'utilisation du inline style est impossible |
-| **`main-require`** | `true` | Impose la présence d'une balise `<main>` pour identifier le contenu principal du document |
+| **`main-require`** | `false` |  Ne pas imposer la présence d'une balise `<main>` pour identifier le contenu principal du document |
 | **`meta-charset-require`** | `true` | Requiert la déclaration de l'encodage des caractères via `<meta charset="...">` |
-| **`meta-description-require`** | `true` | Exige la présence d'une balise `<meta name="description" ...>` pour le SEO |
+| **`meta-description-require`** | `false` | Ne pas exiger la présence d'une balise `<meta name="description" ...>` pour le SEO |
 | **`meta-viewport-require`** | `true` | Impose la présence de la balise `<meta name="viewport" ...>` pour un affichage correct sur les mobiles |
 | **`spec-char-escape`** | `true` | Vérifie que les caractères spéciaux HTML (`<`, `>`, `&`) sont correctement échappés |
 | **`src-not-empty`** | `true` | Interdit les attributs `src` vides sur les scripts et les images pour éviter des requêtes inutiles |
