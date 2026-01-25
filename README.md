@@ -45,6 +45,8 @@
 - [TS CONFIG](#ts-config)
 - [TESTS](#tests)
 - [CI/CD](#ci-cd)
+  - [Protection des branches](#protection-des-branches)
+  - [Stratégie de qualité](#strategie-de-qualite)
   - [Rimraf](#rimraf)
   - [Sonar Cloud](#sonar-cloud)
   - [Snyk](#snyk)
@@ -1004,7 +1006,9 @@ pnpm test:coverage
   🤖 CI/CD
 </h2>
 
-### PROTECTION DES BRANCHES
+<h3 id="protection-des-branches">
+  PROTECTION DES BRANCHES
+</h3>
 
 Pour garantir que la qualité et la sécurité du code ne soient jamais compromises, des règles de protection strictes ont été appliquées sur les branches vitales du projet.  
 
@@ -1021,7 +1025,9 @@ Voici les règles implémentées dans ce dépôt (Settings > Branches > Add rule
 
 L'option **"Include administrators"** est également activée...  
 
-### STRATEGIE DE QUALITE
+<h3 id="strategie-de-qualite">
+  STRATEGIE DE QUALITE
+</h3>
 
 Pour maintenir une base de code saine sans ralentir le développement quotidien, une stratégie de validation stricte mais pragmatique est appliquée : **"Souple en local, Intransigeant en CI"** !!!  
 
