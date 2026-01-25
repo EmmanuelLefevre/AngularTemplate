@@ -37,7 +37,7 @@
 - [ANGULAR](#angular)
 - [NPMRC](#npmrc)
 - [ESLINT / PRETTIER](#eslint-prettier)
-- [HTMLHint](#htmlhint)
+- [HTMLHINT](#htmlhint)
 - [STYLELINT](#stylelint)
 - [HUSKY](#husky)
 - [TS CONFIG](#ts-config)
@@ -723,7 +723,7 @@ pnpm add -D @angular-eslint/builder @eslint/js typescript-eslint
     width="34px"
     src="https://raw.githubusercontent.com/EmmanuelLefevre/GitHubProfileIcons/main/htmlhint.png"
   />
-  HTMLHint
+  HTMLHINT
 </h2>
 
 ### Introduction :
