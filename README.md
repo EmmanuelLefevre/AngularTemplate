@@ -1138,9 +1138,9 @@ Bien que nous utilisions **Gitleaks** en local, son intégration dans la pipelin
 
 **Pourquoi l'avoir aussi dans la CI ?**  
 
-- **Contournement des Hooks :** un développeur peut (volontairement ou non) bypasser les protections locales avec la commande git commit --no-verify. La CI, elle, ne peut pas être ignorée.
-- **Historique complet :** alors que le scan local se concentre sur les fichiers modifiés (--staged), la version **CI** peut être configurée pour scanner l'intégralité de l'historique de la branche pour s'assurer qu'aucun secret n'a été "glissé" dans un commit passé.
-- **Auditabilité :** elle génère un rapport officiel dans l'onglet **Security de GitHub**, permettant de garder une trace des tentatives d'introduction de données sensibles.
+- **Contournement des Hooks :** un développeur peut (volontairement ou non) bypasser les protections locales avec la commande `git commit --no-verify`. La **CI**, elle, ne peut pas être ignorée.
+- **Historique complet :** alors que le scan local se concentre sur les fichiers modifiés (`--staged`), la version **CI** peut être configurée pour scanner l'intégralité de l'historique de la branche pour s'assurer qu'aucun secret n'a été "glissé" dans un commit passé.
+- **Auditabilité :** elle génère un rapport officiel dans l'onglet **Security** de **GitHub**, permettant de garder une trace des tentatives d'introduction de données sensibles.
 
 Si **Gitleaks** trouve une faille, le job **Security** échoue immédiatement, bloquant ainsi toute tentative de fusion ou de déploiement.  
 
@@ -1155,7 +1155,7 @@ Ce workflow utilitaire `cleanup.yml` est conçu pour maintenir la propreté de l
 #### 🕒 Déclenchement
 
 **Automatique :** tous les jours à 05h00 UTC.  
-**Manuel :** peut être lancé à la demande via l'onglet Actions.  
+**Manuel :** peut être lancé à la demande via l'onglet **Actions**.  
 
 #### ⚙️ Fonctionnement
 
@@ -1176,7 +1176,7 @@ Objectif : ne garder que l'historique des builds réussis pour une meilleure lis
 
 Note : Il exclut l'exécution en cours ($GITHUB_RUN_ID).
 
-**Eviter que l'historique ne soit pollué par des centaines de logs disant simplement "Nettoyage réussi".**
+**Eviter que l'historique ne soit pollué par des centaines de logs inutiles.**
 
 ⚠️ **Important !!!**  
 Si vous renommez le fichier `cleanup.yml`, mettre impérativement à jour la variable `WORKFLOW_FILE="cleanup.yml"` du script, sinon l'auto-nettoyage ne fonctionnera plus !  
@@ -1185,13 +1185,20 @@ Si vous renommez le fichier `cleanup.yml`, mettre impérativement à jour la var
   📦 DEPENDENCIES
 </h2>
 
-1. Ajouter **Angular Material**  
+1. **Angular Material**  
+
+**Angular Material** est la bibliothèque de composants officielle basée sur les principes du **Material Design**. Elle offre une collection de composants UI testés, accessibles et performants.  
 
 ```shell
 pnpm add @angular/material @angular/cdk
 ```
 
-2. Ajouter **Font Awesome**  
+2. **Font Awesome**  
+
+Pour l'iconographie, **Font Awesome** est le standard de l'industrie. Plutôt que d'utiliser des polices de caractères, l'intégration via les composants **Angular** sera privilégiée, cela permet une gestion optimale des **SVG** et du **Tree-shaking** (seules les icônes utilisées sont incluses dans le build final).  
+
+- **Scalabilité :** les icônes vectorielles garantissent une netteté parfaite sur tous les écrans.
+- **Modularité :** possibilité d'importer uniquement les packs nécessaires (Solid, Regular, Brands).
 
 ```shell
 pnpm add @fortawesome/fontawesome-svg-core @fortawesome/angular-fontawesome
