@@ -29,9 +29,9 @@ jobs:
           done
 
           # 2. Deletes all workflows which name are "maj", "maj doc", "fix" or "fix pipeline"
-          for wf in "maj" "maj doc" "fix" "fix pipeline"; do
-            gh run list --workflow "$wf" --limit 100 --json databaseId -q '.[].databaseId' | xargs -r -I{} gh run delete {}
-          done
+          gh run list --limit 100 --json databaseId,displayTitle --state completed \
+          -q '.[] | select(.displayTitle | test("maj|maj doc|fix|fix"; "i")) | .databaseId' \
+          | xargs -r -t -I{} gh run delete {}
 
           # 3. Deletes the history of this specific workflow (even successes)
           WORKFLOW_FILE="cleanup.yml"
