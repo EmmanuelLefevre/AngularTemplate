@@ -7,7 +7,7 @@
 
 - [INTRODUCTION](#introduction)
 - [A11Y](#a11y)
-- [NORME](#norme)
+- [NORME WCAG](#wcag)
 - [QUELQUES CHIFFRES](#quelques-chiffres)
 - [JURIDIQUE](#juridique)
 
@@ -43,8 +43,6 @@ Il est crucial de comprendre que le handicap n'est pas toujours un état permane
 
 En rendant votre site accessible pour le cas "permanent", vous résolvez automatiquement les problèmes des cas "temporaires" et "situationnels".
 
-## A11Y
-
 <h2 id="a11y">
   <img
     alt="A11Y"
@@ -73,7 +71,15 @@ On le prononce souvent "Al-li" (comme le prénom Allie en anglais) ou simplement
 
 Au-delà du raccourci d'écriture, le terme **A11y** est devenu le symbole de la communauté des développeurs et designers engagés pour un web inclusif. Voir ce terme dans un projet indique généralement que l'équipe technique a pris en compte les normes d'accessibilité dès la conception.
 
-## NORME
+<h2 id="wcag">
+  <img
+    alt="WCAG"
+    title="WCAG"
+    width="34px"
+    src="https://raw.githubusercontent.com/EmmanuelLefevre/GitHubProfileIcons/main/wcag.jpg"
+  />
+  NORME WCAG
+</h2>
 
 Si le numéronyme **A11y** est une convention, les règles techniques à respecter sont quand à elles des normes internationales strictes. On ne fait pas de l'accessibilité "au feeling".
 

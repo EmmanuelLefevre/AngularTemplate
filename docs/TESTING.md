@@ -3,6 +3,16 @@
 <br>
 <br>
 
+<h2>
+  <img
+    alt="VITEST"
+    title="VITEST"
+    width="34px"
+    src="https://raw.githubusercontent.com/EmmanuelLefevre/GitHubProfileIcons/main/vitest.png"
+  />
+  VITEST
+</h2>
+
 Activer le nouveau système de tests unitaires natif d'**Angular**. Ce builder moderne remplace l'ancienne stack (basée sur **Karma**) pour offrir une exécution nettement plus rapide et légère, tout en s'alignant sur l'architecture de build actuelle (`esbuild`). Il isole la compilation des tests via le fichier `tsconfig.spec.json`.  
 
 **Etape 1 :** Installer les librairies requises  

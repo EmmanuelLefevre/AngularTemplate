@@ -74,6 +74,9 @@ Prendre 2 minutes pour vérifier, cela peut éviter des heures de gestion de cri
 
 </details>
 
+<br>
+<br>
+
 ### 🛑 Le job "check-integrity" de la pipeline plante !
 
 <details>
@@ -101,6 +104,9 @@ pnpm install
 Push again 😜
 
 </details>
+
+<br>
+<br>
 
 ### 🛑 Le step "🛡️ PNPM Audit" du job "security" de la pipeline plante !
 
@@ -142,6 +148,9 @@ Push again 😜
 
 </details>
 
+<br>
+<br>
+
 ### 🛑 Warning lors du premier push !
 
 <details>
@@ -179,6 +188,9 @@ git push --force origin main
 ```
 
 </details>
+
+<br>
+<br>
 
 ### 6. 🛑 Option 'baseUrl' is deprecated
 

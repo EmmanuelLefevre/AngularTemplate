@@ -3,6 +3,16 @@
 <br>
 <br>
 
+<h2>
+  <img
+    alt="I18N"
+    title="I18N"
+    width="34px"
+    src="https://raw.githubusercontent.com/EmmanuelLefevre/GitHubProfileIcons/main/i18n.svg"
+  />
+  I18N
+</h2>
+
 Pour offrir une expérience utilisateur de premier plan, l'internationalisation (**i18n**) est une étape incontournable. Elle permet non seulement de toucher un public mondial, mais aussi de séparer proprement le contenu textuel de la logique métier.  
 
 Installer les librairies suivantes =>  

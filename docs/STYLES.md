@@ -120,7 +120,7 @@ Permet la gestion facile des thèmes (Dark/Light mode).
   <img
     alt="BEM"
     title="BEM"
-    width="34px"
+    width="54px"
     src="https://raw.githubusercontent.com/EmmanuelLefevre/GitHubProfileIcons/main/bem.png"
   />
   BEM

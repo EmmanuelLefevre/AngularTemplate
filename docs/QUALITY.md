@@ -492,7 +492,7 @@ pnpm exec lint-staged
   <img
     alt="SECRETLINT"
     title="SECRETLINT"
-    width="100px"
+    width="34px"
     src="https://raw.githubusercontent.com/EmmanuelLefevre/GitHubProfileIcons/main/secretlint.png"
   />
   SECRETLINT
