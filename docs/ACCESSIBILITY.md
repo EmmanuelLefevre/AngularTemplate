@@ -75,7 +75,7 @@ Au-delà du raccourci d'écriture, le terme **A11y** est devenu le symbole de la
   <img
     alt="WCAG"
     title="WCAG"
-    width="34px"
+    width="84px"
     src="https://raw.githubusercontent.com/EmmanuelLefevre/GitHubProfileIcons/main/wcag.jpg"
   />
   NORME WCAG

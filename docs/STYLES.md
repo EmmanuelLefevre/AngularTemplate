@@ -10,7 +10,7 @@
 - [ARCHITECTURE SCSS](#-architecture-scss)
 - [BEM](#bem)
 - [ANGULAR MATERIAL](#angular-material)
-- [Font Awesome](#fontawesome)
+- [FONTAWESOME](#fontawesome)
 
 <h2 id="styles">
   🎨 STYLES

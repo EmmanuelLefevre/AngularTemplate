@@ -32,6 +32,8 @@ Corrigez les warnings restants, commitez et pushez.
 
 </details>
 
+<br>
+
 ### 🛑 Que faire si Gitleaks lève une alerte ?
 
 <details>
@@ -75,7 +77,6 @@ Prendre 2 minutes pour vérifier, cela peut éviter des heures de gestion de cri
 </details>
 
 <br>
-<br>
 
 ### 🛑 Le job "check-integrity" de la pipeline plante !
 
@@ -105,7 +106,6 @@ Push again 😜
 
 </details>
 
-<br>
 <br>
 
 ### 🛑 Le step "🛡️ PNPM Audit" du job "security" de la pipeline plante !
@@ -149,7 +149,6 @@ Push again 😜
 </details>
 
 <br>
-<br>
 
 ### 🛑 Warning lors du premier push !
 
@@ -190,9 +189,8 @@ git push --force origin main
 </details>
 
 <br>
-<br>
 
-### 6. 🛑 Option 'baseUrl' is deprecated
+### 🛑 Option 'baseUrl' is deprecated
 
 <details>
 
