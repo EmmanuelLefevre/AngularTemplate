@@ -127,6 +127,7 @@
  ┣ 🎨styles.scss
  ┗ 🧪test-setup.ts
 📄.....
+📄.compodocrc.json
 📄.gitignore
 📄.npmrc
 📄.secretlintrc.json
@@ -138,6 +139,7 @@
 📄pnpm-lock.yaml
 📄README.md
 🛡️sonar-project.properties
-🧪.vitest.config.ts
+📄tsconfig.doc.json
+🧪vitest.config.ts
 📄.....
 ```
