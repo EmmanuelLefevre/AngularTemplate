@@ -107,11 +107,10 @@ La documentation détaillée est disponible ici :
 - 💎 [Quality](./docs/QUALITY.md)
 - 🧪 [Tests](./docs/TESTING.md)
 - ⚙️ [Configuration](./docs/CONFIGURATION.md)
-- 🏷️ [Packaging](./docs/PACKAGING.md)
+- 🏷️ [Build & Packaging](./docs/BUILD_PACKAGING.md)
 - 🤖 [CICD](./docs/CICD.md)
 - 🎨 [Styles](./docs/STYLES.md)
 - 🗣️ [Multi Langues](./docs/MULTI_LANGUAGES.md)
-- 📦 [Other Dependencies](./docs/OTHER_DEPENDENCIES.md)
 - ♿ [Accessibilité](./docs/ACCESSIBILITY.md)
 - 📘 [Documentation](./docs/DOCUMENTATION.md)
 - 🔧 [Rules Reference](./docs/RULES_REFERENCE.md)
@@ -125,9 +124,9 @@ La documentation détaillée est disponible ici :
 
 ### Requirements
 
-| Angular    | Node.js                                   | TypeScript        | RxJS                   |
-| :--------- | :---------------------------------------- | :---------------- | :--------------------- |
-| **21.0.x** | `^20.19.0` \|\| `^22.12.0` \|\| `^24.0.0` | `>=5.9.0 <=6.0.0` | `^6.5.3` \|\| `^7.4.0` |
+|   Angular  |                  Node.js                  |        TypeScript      |           RxJS         |
+| :--------- | :---------------------------------------- | :--------------------- | :--------------------- |
+| **21.0.x** | `^20.19.0` \|\| `^22.12.0` \|\| `^24.0.0` | `>=5.9.0 \|\| <=6.0.0` | `^6.5.3` \|\| `^7.4.0` |
 
 - Installer la version requise de **NodeJS** via **NVM**  
 
@@ -145,9 +144,7 @@ nvm use 22.12.0
 
 - Installer en global la version requise de **PNPM**  
 
-```shell
-npm install -g pnpm
-```
+[Setup](./docs/SETUP.md#pnpm)
 
 ### Installation
 

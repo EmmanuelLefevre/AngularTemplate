@@ -7,7 +7,7 @@
   ⚠️ ERREURS FREQUENTES
 </h2>
 
-### 1. 🛑 Ma **PR/MR** est bloquée alors que mon commit est passé ?
+### 🛑 Ma **PR/MR** est bloquée alors que mon commit est passé ?
 
 <details>
 
@@ -32,7 +32,7 @@ Corrigez les warnings restants, commitez et pushez.
 
 </details>
 
-### 2. 🛑 Que faire si Gitleaks lève une alerte ?
+### 🛑 Que faire si Gitleaks lève une alerte ?
 
 <details>
 
@@ -74,7 +74,7 @@ Prendre 2 minutes pour vérifier, cela peut éviter des heures de gestion de cri
 
 </details>
 
-### 3. 🛑 Le job "check-integrity" de la pipeline plante !
+### 🛑 Le job "check-integrity" de la pipeline plante !
 
 <details>
 
@@ -102,7 +102,7 @@ Push again 😜
 
 </details>
 
-### 4. 🛑 Le step "🛡️ PNPM Audit" du job "security" de la pipeline plante !
+### 🛑 Le step "🛡️ PNPM Audit" du job "security" de la pipeline plante !
 
 <details>
 
@@ -142,7 +142,7 @@ Push again 😜
 
 </details>
 
-### 5. 🛑 Warning lors du premier push !
+### 🛑 Warning lors du premier push !
 
 <details>
 
