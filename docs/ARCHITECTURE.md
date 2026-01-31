@@ -1,4 +1,4 @@
-<h1 id="angular-template" align="center">🏗 ARCHITECTURE 🏗</h1>
+<h1 align="center">🏗 ARCHITECTURE 🏗</h1>
 
 ```plaintext
 🏗️.github
@@ -6,7 +6,7 @@
    ┗ pipeline.yml
 🐶.husky
 💻.vscode
-📖docs
+📘docs
 🌍public
  ┣ 🛠️manifest.json
  ┣ 🤖robots.txt
