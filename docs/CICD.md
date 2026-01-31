@@ -11,7 +11,8 @@
 - [Snyk](#snyk)
 - [CodeQL](#codeql)
 - [GitLeaks](#gitleaks)
-- [Rimraf](#rimraf)
+- [Rimraf](#-rimraf)
+- [CLEAN UP WORKFLOW](#-rimraf)
 
 <h2 id="protection-des-branches">
   PROTECTION DES BRANCHES
@@ -145,55 +146,18 @@ C'est un outil de "chasseur de failles". Il est capable de trouver des erreurs d
   GIT LEAKS
 </h2>
 
-Bien que nous utilisions **Gitleaks** en local, son intégration dans la pipeline **CI/CD** est cruciale pour garantir une étanchéité totale du projet.
+Bien que nous utilisions **Gitleaks** en local, son intégration dans la pipeline **CI/CD** est cruciale pour garantir une étanchéité totale du projet.  
 
-**Pourquoi l'avoir aussi dans la CI ?**
+**Pourquoi l'avoir aussi dans la CI ?**  
 
 - **Contournement des Hooks :** un développeur peut (volontairement ou non) bypasser les protections locales avec la commande `git commit --no-verify`. La **CI**, elle, ne peut pas être ignorée.
 - **Historique complet :** alors que le scan local se concentre sur les fichiers modifiés (`--staged`), la version **CI** peut être configurée pour scanner l'intégralité de l'historique de la branche pour s'assurer qu'aucun secret n'a été "glissé" dans un commit passé.
 - **Auditabilité :** elle génère un rapport officiel dans l'onglet **Security** de **GitHub**, permettant de garder une trace des tentatives d'introduction de données sensibles.
 
-Si **Gitleaks** trouve une faille, le job **Security** échoue immédiatement, bloquant ainsi toute tentative de fusion ou de déploiement.
-
-### CONFIGURATION DE LA PIPELINE
-
-Créer l'arborescence' `.github > workflows > pipeline.yml` et y coller la configuration présente dans le template.
-
-### MAINTENANCE : NETTOYAGE DES WORKFLOWS
-
-Ce workflow utilitaire `cleanup.yml` est conçu pour maintenir la propreté de l'onglet **GitHub Actions** en supprimant automatiquement les anciennes éxécutions inutiles.
-
-#### 🕒 Déclenchement
-
-**Automatique :** tous les jours à 05h00 UTC.  
-**Manuel :** peut être lancé à la demande via l'onglet **Actions**.
-
-#### ⚙️ Fonctionnement
-
-Le script utilise la **GitHub CLI** (gh) pour effectuer deux types de nettoyage :
-
-1. **Suppression des échecs et annulations :**
-
-- Il scanne tous les workflows du projet.
-- Il identifie les 100 dernières exécutions ayant le statut failure (échec) ou cancelled (annulé).
-- Il les supprime une par une.
-
-Objectif : ne garder que l'historique des builds réussis pour une meilleure lisibilité.
-
-2. **Auto-nettoyage (Self-Cleanup) :**
-
-- Il cible spécifiquement l'historique du fichier `cleanup.yml`.
-- Il supprime les anciennes exécutions réussies (completed) de ce workflow de nettoyage.
-
-Note : Il exclut l'exécution en cours ($GITHUB_RUN_ID).
-
-**Eviter que l'historique ne soit pollué par des centaines de logs inutiles.**
-
-⚠️ **Important !!!**  
-Si vous renommez le fichier `cleanup.yml`, mettre impérativement à jour la variable `WORKFLOW_FILE="cleanup.yml"` du script, sinon l'auto-nettoyage ne fonctionnera plus !
+Si **Gitleaks** trouve une faille, le job **Security** échoue immédiatement, bloquant ainsi toute tentative de fusion ou de déploiement.  
 
 <h2 id="rimraf">
-  RIMRAF
+  🧹 RIMRAF
 </h2>
 
 L'utilisation de **rimraf** permet de supprimer des dossiers de manière fiable que l'on soit sous **Windows**, **macOS** ou **Linux**. C'est essentiel pour éviter que d'anciens rapports de couverture ne viennent fausser les nouvelles analyses.
@@ -210,3 +174,47 @@ Dans `package.json` ajouter les scripts `clean` et `test:coverage`
   "test:coverage": "ng test --coverage --watch=false",
 }
 ```
+
+<h2 id="clean-up-workflow">
+  <img
+    alt="GitHub Actions"
+    title="GitHub Actions"
+    width="34px"
+    src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/githubactions/githubactions-original.svg"
+  />
+  CLEAN UP WORKFLOW
+</h2>
+
+
+### MAINTENANCE : NETTOYAGE DES WORKFLOWS
+
+Ce workflow utilitaire `cleanup.yml` est conçu pour maintenir la propreté de l'onglet **GitHub Actions** en supprimant automatiquement les anciennes éxécutions inutiles.  
+
+#### 🕒 Déclenchement
+
+**Automatique :** tous les jours à 05h00 UTC.  
+**Manuel :** peut être lancé à la demande via l'onglet **Actions**.  
+
+#### ⚙️ Fonctionnement
+
+Le script utilise la **GitHub CLI** (gh) pour effectuer deux types de nettoyage :  
+
+1. **Suppression des échecs et annulations :**
+
+- Il scanne tous les workflows du projet.
+- Il identifie les 100 dernières exécutions ayant le statut failure (échec) ou cancelled (annulé).
+- Il les supprime une par une.
+
+Objectif : ne garder que l'historique des builds réussis pour une meilleure lisibilité.  
+
+2. **Auto-nettoyage (Self-Cleanup) :**
+
+- Il cible spécifiquement l'historique du fichier `cleanup.yml`.
+- Il supprime les anciennes exécutions réussies (completed) de ce workflow de nettoyage.
+
+💡 **Note :** Il exclut l'exécution en cours ($GITHUB_RUN_ID).  
+
+**Eviter que l'historique ne soit pollué par des centaines de logs inutiles.**
+
+⚠️ **Important !!!**  
+Si vous renommez le fichier `cleanup.yml`, mettre impérativement à jour la variable `WORKFLOW_FILE="cleanup.yml"` du script, sinon l'auto-nettoyage ne fonctionnera plus !  

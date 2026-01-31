@@ -128,8 +128,8 @@
  ┗ 🧪test-setup.ts
 📄.....
 📄.gitignore
-📄.gitleaks.toml
 📄.npmrc
+📄.secretlintrc.json
 📄.stylelintrc.json
 📄eslint-security.config.js
 📄eslint.config.js

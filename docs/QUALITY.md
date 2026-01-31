@@ -9,8 +9,8 @@
 - [PRETTIER](#prettier)
 - [HTMLHINT](#htmlhint)
 - [STYLELINT](#stylelint)
+- [SECRETLINT](#secretlint)
 - [HUSKY](#husky)
-- [GIT LEAKS](#git-leaks)
 
 <h2 id="eslint">
   <img
@@ -377,45 +377,6 @@ ainsi que le script =>
 
 💡 Une documentation complète est disponible ici... [StyleLint Rules](./docs/RULES_REFERENCE.md#stylelint-rules)  
 
-<h2 id="git-leaks">
-  <img
-    alt="GitLeaks"
-    title="GitLeaks"
-    width="100px"
-    src="https://raw.githubusercontent.com/EmmanuelLefevre/GitHubProfileIcons/main/git_leaks.png"
-  />
-  GIT LEAKS
-</h2>
-
-**Gitleaks** est un outil de sécurité conçu pour détecter et prévenir l'introduction de secrets (mots de passe, clés API, jetons AWS, certificats) dans notre historique **Git**.  
-
-**Son rôle**  
-Il scanne chaque commit et chaque ligne de code pour identifier des signatures spécifiques (comme une **clé privée SSH**) ou des motifs suspects (comme une chaîne de caractères nommée `SECRET_KEY`).  
-
-**Pourquoi c'est top**  
-Une fois qu'un secret est "poussé" sur un dépôt (même privé), il est considéré comme compromis. Même si on supprime la ligne plus tard, le secret reste présent dans l'historique des commits.  
-**Gitleaks** bloque l'action avant que le secret ne soit définitivement ancré dans l'historique et garantit que nos fichiers de configuration restent propres ainsi que nos secrets restent dans les coffres-forts prévus à cet effet (comme les **GitHub Secrets** ou **HashiCorp Vault**)..  
-
-```shell
-pnpm add -D gitleaks
-```
-
-De plus il est nécessaire d'ajouter dans le fichier `package.json` le check de **Gitleaks** sur toute les fichiers de l'application.  
-
-```JSON
-{
-  "lint-staged": {
-    "*": [
-      "gitleaks protect --staged --verbose"
-    ]
-  }
-}
-```
-
-Créer le fichier `.gitleaks.toml` et y coller la configuration présente dans le template.  
-
-> [Consulter la configuration](./.gitleaks.toml)  
-
 <h2 id="husky">
   <img
     alt="Husky"
@@ -526,3 +487,55 @@ pnpm exec lint-staged
 ```
 
 > [Consulter les scripts](./package.json)  
+
+<h2 id="secretlint">
+  <img
+    alt="SECRETLINT"
+    title="SECRETLINT"
+    width="100px"
+    src="https://raw.githubusercontent.com/EmmanuelLefevre/GitHubProfileIcons/main/secretlint.png"
+  />
+  SECRETLINT
+</h2>
+
+**Secretlint** est un outil d'analyse statique enfichable ("pluggable") conçu pour empêcher l'inclusion accidentelle de secrets et d'informations sensibles dans le code source.  
+
+**Son rôle**  
+Il analyse les fichiers modifiés en temps réel pour détecter des informations d'identification (**clé privée SSH**, **clé API**, **tokens AWS**, clés privées, **mdp** ou des motifs suspects = chaîne de caractères nommée `SECRET_KEY`) avant même qu'elles ne soient ajoutées à l'index **Git**.  
+
+Contrairement à d'autres outils qui scannent l'historique, **Secretlint** se concentre sur la prévention immédiate via des hooks `pre-commit`.  
+
+**Pourquoi c'est top**  
+Une fois qu'un secret est "poussé" sur un dépôt (même privé), il est considéré comme compromis. Même si on supprime la ligne plus tard, le secret reste présent dans l'historique des commits.  
+
+Il évite la pollution de l'historique **Git**. Une fois qu'un secret est commité, il est techniquement compromis et difficile à effacer totalement. **Secretlint** bloque le processus dès la détection, forçant le développeur à placer ses secrets dans des variables d'environnement (`.env`) ou des gestionnaires de secrets sécurisés (comme les **GitHub Secrets** ou **HashiCorp Vault**) garantissant ainsi que le code partagé reste sain.  
+
+```shell
+pnpm add -D secretlint @secretlint/secretlint-rule-preset-recommend
+```
+
+De plus il est nécessaire d'ajouter dans le fichier `package.json` l'exécution de **Secretlint** sur les fichiers en `pre-commit` via `lint-staged`.  
+
+```JSON
+{
+  "lint-staged": {
+    "*": [
+      "secretlint --maskSecrets"
+    ]
+  }
+}
+```
+
+Ainsi que le script suivant dans le `package.json` =>
+
+```JSON
+{
+  "scripts": {
+    "lint:secrets": "secretlint \"**/*\""
+  }
+}
+```
+
+Créer le fichier `.secretlintrc.json` (via la commande `npx secretlint --init` ou manuellement) et y coller la configuration présente dans le template.  
+
+> [Consulter la configuration](./.secretlintrc.json)  

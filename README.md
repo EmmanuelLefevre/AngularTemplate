@@ -54,7 +54,7 @@ Tout a été pré-configuré avec certains des outils les plus stricts du march�
 ### 🔥 Pourquoi ce template ?
 
 ✨ **Qualité :**  
-Une config **ESLint** (flat-config) & **Prettier** stricte (mais aussi **HTMLHint**, **StyleLint**), couplée à **SonarCloud** pour un code propre, uniforme et maintenable.  
+Une config **ESLint** (flat-config) & **Prettier** stricte (mais aussi **HTMLHint**, **StyleLint**, **SecretLint**), couplée à **SonarCloud** pour un code propre, uniforme et maintenable.  
 
 🛡️ **Sécurité :**  
 Scans automatiques de vulnérabilités (**Snyk**), détection de secrets (**GitLeaks**) et analyse statique avancée (**CodeQL**).  
