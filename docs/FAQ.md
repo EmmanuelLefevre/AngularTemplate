@@ -162,16 +162,9 @@ Push again 😜
 
 <br>
 
-Créer le fichier `.gitattributes` à la racine du projet et coller ceci :
+Créer le fichier `.gitattributes` à la racine du projet...  
 
-```shell
-# Force line endings to LV for everyone (Mac/Linux/Windows)
-* text=auto eol=lf
-
-# Except for Windows batch files (if you have any)
-*.cmd text eol=crlf
-*.ps1 text eol=crlf
-```
+> [Consulter la configuration](./.gitattributes)  
 
 Puis "renormaliser" la config **Git** en lançant ces commandes dans le projet :
 
