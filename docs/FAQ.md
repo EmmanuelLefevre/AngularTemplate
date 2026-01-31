@@ -1,12 +1,17 @@
 <h1 align="center">💡 FAQ 💡</h1>
 
 <br>
+<br>
 
 <h2 id="erreurs-frequentes">
   ⚠️ ERREURS FREQUENTES
 </h2>
 
 ### 1. 🛑 Ma **PR** est bloquée alors que mon commit est passé ?
+
+<details>
+
+  <summary>👁️ Consulter la méthode de résolution du problème</summary>
 
 C'est normal si vous aviez laissé des warnings. Votre commit est passé localement car il respectait la limite des 50, mais la CI exige la perfection.
 
@@ -23,7 +28,13 @@ pnpm lint:scss:ci
 
 Corrigez les warnings restants, commitez et pushez.
 
+</details>
+
 ### 2. 🛑 Que faire si Gitleaks lève une alerte ?
+
+<details>
+
+  <summary>👁️ Consulter la méthode de résolution du problème</summary>
 
 Pas de panique ! Cela arrive aux meilleurs. Si un commit est bloqué en local ou si la **CI** échoue avec un message de **Gitleaks**, suivre ces étapes dans l'ordre :
 
@@ -57,7 +68,13 @@ Si **Gitleaks** s'est trompé (ex: il a pris un ID de test pour une clé API) :
 Ne jamais utiliser `--no-verify` pour forcer un commit bloqué par **Gitleaks**. Si l'outil aboie, c'est qu'il y a une raison !!!  
 Prendre 2 minutes pour vérifier, cela peut éviter des heures de gestion de crise plus tard...
 
+</details>
+
 ### 3. 🛑 ERR_PNPM_OUTDATED_LOCKFILE !
+
+<details>
+
+  <summary>👁️ Consulter la méthode de résolution du problème</summary>
 
 Le fichier `pnpm-lock.yaml` n'est pas synchronisé avec le `package.json`. Cela arrive typiquement quand :
 
@@ -75,7 +92,13 @@ pnpm install
 
 Push again 😜
 
+</details>
+
 ### 4. 🛑 Warning lors du premier push !
+
+<details>
+
+  <summary>👁️ Consulter la méthode de résolution du problème</summary>
 
 <br>
 
@@ -107,7 +130,13 @@ Publier la branche et écraser le contenu sur **Github** avec la version locale 
 git push --force origin main
 ```
 
+</details>
+
 ### 5. 🛑 Option 'baseUrl' is deprecated
+
+<details>
+
+  <summary>👁️ Consulter la méthode de résolution du problème</summary>
 
 L'auteur "Andrew Branch" est membre de l'équipe **TypeScript** chez **Microsoft**, ce qui garantit la fiabilité et la pertinence de l'outil.
 
@@ -140,3 +169,5 @@ Pour le fichier de configuration de l'application
 ```shell
 npx @andrewbranch/ts5to6 --fixRootDir ./tsconfig.app.json
 ```
+
+</details>

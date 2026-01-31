@@ -1,5 +1,8 @@
 <h1 align="center">🔧 RULES_REFERENCE 🔧</h1>
 
+<br>
+<br>
+
 ## SOMMAIRE
 
 - [Prettier Rules](#prettier-rules)
