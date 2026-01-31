@@ -186,7 +186,11 @@ pnpm add -D @typescript-eslint/parser eslint-plugin-rxjs
 
 Cette configuration (`tsconfig.json`) sert de **base stricte** pour l'ensemble de l'espace de travail. Elle utilise l'approche **"Solution Style"**, déléguant la compilation effective aux fichiers `tsconfig.app.json` (pour l'application) et `tsconfig.spec.json` (pour les tests).  
 
-### 1. Options du Compilateur (`compilerOptions`)
+<details>
+
+  <summary>👁️ Consulter les configurations</summary>
+
+#### 1. Options du Compilateur (`compilerOptions`)
 
 <details>
 
@@ -215,7 +219,7 @@ Cette configuration (`tsconfig.json`) sert de **base stricte** pour l'ensemble d
 
 </details>
 
-### 2. Options du Compilateur Angular (`angularCompilerOptions`)
+#### 2. Options du Compilateur Angular (`angularCompilerOptions`)
 
 Ces paramètres contrôlent le compilateur AOT (Ahead-of-Time) d'Angular, spécifiquement pour la vérification des types dans les templates HTML.  
 
@@ -233,6 +237,8 @@ Ces paramètres contrôlent le compilateur AOT (Ahead-of-Time) d'Angular, spéci
 
 </details>
 
+</details>
+
 <h3 id="schematics-rules">
   <img
     alt="Schematics"
@@ -244,6 +250,10 @@ Ces paramètres contrôlent le compilateur AOT (Ahead-of-Time) d'Angular, spéci
 </h3>
 
 [Angular Documentation](https://github.com/angular/angular-cli/tree/main/packages/schematics/angular)
+
+<details>
+
+  <summary>👁️ Consulter les configurations</summary>
 
 #### 1. @schematics/angular:application (`Project Initialization`)
 
@@ -437,5 +447,7 @@ Configuration pour la gestion globale des services (`ng g s`).
 | :--- | :--- | :--- |
 | **`skipTests`** | `false` | Générer un fichier de test unitaire (`.spec.ts`) |
 | **`type`** | `"service"` | Ajouter le type à la classe et au fichier (`api.service.ts`) |
+
+</details>
 
 </details>
