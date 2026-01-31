@@ -25,7 +25,7 @@
 
 <details>
 
-  <summary>**👁️ Voir la configuration mise en place**</summary>
+  <summary>👁️ Consulter la configuration détaillée</summary>
 
 | Option                           | Valeur            | Description / Justification                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | :------------------------------- | :---------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -100,6 +100,10 @@ pnpm add -D @typescript-eslint/parser eslint-plugin-rxjs
 
 [HTMLHint Documentation](https://htmlhint.com/rules/)
 
+<details>
+
+  <summary>👁️ Consulter la configuration détaillée</summary>
+
 | Option                               | Valeur  | Description                                                                                                                                                                                                                                                                                                          |
 | :----------------------------------- | :------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **`alt-require`**                    | `true`  | Impose que toutes les balises `<img>` possèdent un attribut `alt`, ce qui est crucial pour l'accessibilité web                                                                                                                                                                                                       |
@@ -133,6 +137,8 @@ pnpm add -D @typescript-eslint/parser eslint-plugin-rxjs
 | **`tagname-lowercase`**              | `true`  | Impose que tous les noms de balises soient en minuscules                                                                                                                                                                                                                                                             |
 | **`title-require`**                  | `true`  | Requiert la présence d'une balise `<title>` dans l'en-tête `<head>` de la page                                                                                                                                                                                                                                       |
 
+</details>
+
 <h3 id="stylelint-rules">
   <img
     alt="StyleLint"
@@ -145,6 +151,10 @@ pnpm add -D @typescript-eslint/parser eslint-plugin-rxjs
 
 [StyleLint SCSS Documentation](https://stylelint.io/user-guide/rules)
 
+<details>
+
+  <summary>👁️ Consulter la configuration détaillée</summary>
+
 | Option                                      | Valeur               | Description                                                                                                                                                                                                                                          |
 | :------------------------------------------ | :------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **`plugins`**                               | `["stylelint-scss"]` | Charge le plugin nécessaire pour supporter les règles spécifiques au SCSS                                                                                                                                                                            |
@@ -156,6 +166,8 @@ pnpm add -D @typescript-eslint/parser eslint-plugin-rxjs
 | **`max-nesting-depth`**                     | `ARRAY`              | Contrôle la complexité du CSS en limitant l'imbrication :<br><br>**Limite :** 3 niveaux de profondeur maximum<br><br>**Exception :** Les "at-rules" sans bloc (comme les `@import` ou `@include` simples) sont ignorées via `["blockless-at-rules"]` |
 | **`scss/at-rule-no-unknown`**               | `true`               | Remplace la règle standard `at-rule-no-unknown` (qui est mise à `null`)<br><br>Vérifie la validité des directives (`@`), tout en autorisant celles spécifiques au SCSS comme `@mixin`, `@include` ou `@content`                                      |
 | **`scss/comment-no-empty`**                 | `true`               | Remplace la règle standard `comment-no-empty` (qui est mise à `null`)<br><br>Interdit les commentaires vides, tout en supportant la syntaxe de commentaire double slash `//` du SCSS                                                                 |
+
+</details>
 
 <h3 id="ts-config-rules">
   <img
@@ -172,6 +184,10 @@ pnpm add -D @typescript-eslint/parser eslint-plugin-rxjs
 Cette configuration (`tsconfig.json`) sert de **base stricte** pour l'ensemble de l'espace de travail. Elle utilise l'approche **"Solution Style"**, déléguant la compilation effective aux fichiers `tsconfig.app.json` (pour l'application) et `tsconfig.spec.json` (pour les tests).
 
 ### 1. Options du Compilateur (`compilerOptions`)
+
+<details>
+
+  <summary>👁️ Consulter la configuration détaillée</summary>
 
 | Option                           | Valeur       | Description & Justification                                                                                                                                                                                                                                   |
 | :------------------------------- | :----------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -194,9 +210,15 @@ Cette configuration (`tsconfig.json`) sert de **base stricte** pour l'ensemble d
 | **`target`**                     | `"ES2022"`   | Compiler le code vers ECMAScript 2022 moderne, permettant l'usage natif de `async/await` et des fonctionnalités de classes récentes                                                                                                                           |
 | **`useDefineForClassFields`**    | `false`      | Maintenir le comportement historique d'initialisation des champs de classe pour assurer une compatibilité totale avec les décorateurs Angular                                                                                                                 |
 
+<details>
+
 ### 2. Options du Compilateur Angular (`angularCompilerOptions`)
 
 Ces paramètres contrôlent le compilateur AOT (Ahead-of-Time) d'Angular, spécifiquement pour la vérification des types dans les templates HTML.
+
+<details>
+
+  <summary>👁️ Consulter la configuration détaillée</summary>
 
 | Option                           | Valeur  | Description                                                                                                                                |
 | :------------------------------- | :------ | :----------------------------------------------------------------------------------------------------------------------------------------- |
@@ -205,6 +227,8 @@ Ces paramètres contrôlent le compilateur AOT (Ahead-of-Time) d'Angular, spéci
 | **`strictInputAccessModifiers`** | `true`  | Respecter les modificateurs d'accès (`private`, `protected`) lors de l'accès aux propriétés depuis les templates HTML                      |
 | **`strictStandalone`**           | `true`  | Appliquer des règles de validation plus strictes pour les composants, directives et pipes Standalone                                       |
 | **`strictTemplates`**            | `true`  | Activer la vérification stricte des types dans les templates Angular (`.html`). Détecte les erreurs de liaison de données à la compilation |
+
+</details>
 
 <h3 id="schematics-rules">
   <img
@@ -222,6 +246,10 @@ Ces paramètres contrôlent le compilateur AOT (Ahead-of-Time) d'Angular, spéci
 
 Définit les caractéristiques fondamentales de l'application, principalement utilisées lors de la création du projet.
 
+<details>
+
+  <summary>👁️ Consulter la configuration détaillée</summary>
+
 | Option                   | Valeur   | Description                                                                                  |
 | :----------------------- | :------- | :------------------------------------------------------------------------------------------- |
 | **`fileNameStyleGuide`** | `"2016"` | Utiliser l'ancienne convention de nommage (`app.component.ts`)                               |
@@ -235,17 +263,29 @@ Définit les caractéristiques fondamentales de l'application, principalement ut
 | **`style`**              | `"scss"` | Définir SCSS par défaut                                                                      |
 | **`zoneless`**           | `false`  | Maintenir `zone.js` activé pour la détection des changements                                 |
 
+</details>
+
 #### 2. @schematics/angular:class (`Class`)
 
 Configuration pour la génération des classes (`ng g cl`).
+
+<details>
+
+  <summary>👁️ Consulter la configuration détaillée</summary>
 
 | Option          | Valeur | Description                                                                                      |
 | :-------------- | :----- | :----------------------------------------------------------------------------------------------- |
 | **`skipTests`** | `true` | Les classes (souvent des DTO ou des wrappers utilitaires) n'ont généralement pas besoin de tests |
 
+</details>
+
 #### 3. @schematics/angular:component (`Components`)
 
 Configuration pour la génération des composants (`ng g c`).
+
+<details>
+
+  <summary>👁️ Consulter la configuration détaillée</summary>
 
 | Option                           | Valeur        | Description                                                             |
 | :------------------------------- | :------------ | :---------------------------------------------------------------------- |
@@ -258,9 +298,15 @@ Configuration pour la génération des composants (`ng g c`).
 | **`style`**                      | `"scss"`      | Définir SCSS par défaut                                                 |
 | **`type`**                       | `"component"` | Ajouter le type à la classe et au fichier (`my-feature.component.ts`)   |
 
+</details>
+
 #### 4. @schematics/angular:directive (`Directives`)
 
 Configuration pour la génération des directives (`ng g d`).
+
+<details>
+
+  <summary>👁️ Consulter la configuration détaillée</summary>
 
 | Option           | Valeur        | Description                                                             |
 | :--------------- | :------------ | :---------------------------------------------------------------------- |
@@ -269,17 +315,29 @@ Configuration pour la génération des directives (`ng g d`).
 | **`standalone`** | `true`        | Utiliser le STANDALONE pour les directives                              |
 | **`type`**       | `"directive"` | Ajouter le type à la classe et au fichier (`my-highlight.directive.ts`) |
 
+</details>
+
 #### 5. @schematics/angular:enum (`Enum`)
 
 Configuration pour la génération des enums (`ng g e`).
+
+<details>
+
+  <summary>👁️ Consulter la configuration détaillée</summary>
 
 | Option     | Valeur   | Description                                          |
 | :--------- | :------- | :--------------------------------------------------- |
 | **`type`** | `"enum"` | Ajouter le type à la classe et au fichier `.enum.ts` |
 
+</details>
+
 #### 6. @schematics/angular:guard (`Guards`)
 
 Configuration pour le routage des guards (`ng g guard`).
+
+<details>
+
+  <summary>👁️ Consulter la configuration détaillée</summary>
 
 | Option              | Valeur    | Description                                                            |
 | :------------------ | :-------- | :--------------------------------------------------------------------- |
@@ -288,34 +346,58 @@ Configuration pour le routage des guards (`ng g guard`).
 | **`skipTests`**     | `true`    | Ne pas générer de fichiers de tests unitaires                          |
 | **`typeSeparator`** | `.`       | Définir le séparateur `guard` (`auth.guard.ts`)                        |
 
+</details>
+
 #### 7. @schematics/angular:interceptor (`HTTP Interceptors`)
 
 Configuration pour la gestion des interceptors (`ng g interceptor`).
+
+<details>
+
+  <summary>👁️ Consulter la configuration détaillée</summary>
 
 | Option              | Valeur | Description                                                 |
 | :------------------ | :----- | :---------------------------------------------------------- |
 | **`skipTests`**     | `true` | Ne pas générer de fichiers de tests unitaires               |
 | **`typeSeparator`** | `.`    | Définir le séparateur `interceptor` (`auth.interceptor.ts`) |
 
+</details>
+
 #### 8. @schematics/angular:interface (`Interfaces`)
 
 Configuration pour la gestion globale des interfaces (`ng g i`).
+
+<details>
+
+  <summary>👁️ Consulter la configuration détaillée</summary>
 
 | Option     | Valeur    | Description                                           |
 | :--------- | :-------- | :---------------------------------------------------- |
 | **`type`** | `"model"` | Ajouter le type à la classe et au fichier `.model.ts` |
 
+</details>
+
 #### 9. @schematics/angular:module (`Modules`)
 
 Configuration pour la gestion globale des modules (`ng g m`).
+
+<details>
+
+  <summary>👁️ Consulter la configuration détaillée</summary>
 
 | Option              | Valeur | Description                                                             |
 | :------------------ | :----- | :---------------------------------------------------------------------- |
 | **`typeSeparator`** | `.`    | Définit le séparateur `module` (uniquement si STANDALONE est désactivé) |
 
+</details>
+
 #### 10. @schematics/angular:pipe (`Pipes`)
 
 Configuration pour la gestion globale des pipes (`ng g p`).
+
+<details>
+
+  <summary>👁️ Consulter la configuration détaillée</summary>
 
 | Option              | Valeur | Description                                      |
 | :------------------ | :----- | :----------------------------------------------- |
@@ -323,20 +405,34 @@ Configuration pour la gestion globale des pipes (`ng g p`).
 | **`standalone`**    | `true` | Utiliser le STANDALONE pour les pipes            |
 | **`typeSeparator`** | `.`    | Définir le séparateur `pipe` (`date.pipe.ts`)    |
 
+</details>
+
 #### 11. @schematics/angular:resolver (`Resolvers`)
 
 Configuration pour la gestion globale des resolvers (`ng g r`).
+
+<details>
+
+  <summary>👁️ Consulter la configuration détaillée</summary>
 
 | Option          | Valeur      | Description                                                  |
 | :-------------- | :---------- | :----------------------------------------------------------- |
 | **`skipTests`** | `false`     | Générer un fichier de test unitaire (`.spec.ts`)             |
 | **`type`**      | `"service"` | Ajouter le type à la classe et au fichier (`api.service.ts`) |
+
+</details>
 
 #### 12. @schematics/angular:service (`Services`)
 
 Configuration pour la gestion globale des services (`ng g s`).
 
+<details>
+
+  <summary>👁️ Consulter la configuration détaillée</summary>
+
 | Option          | Valeur      | Description                                                  |
 | :-------------- | :---------- | :----------------------------------------------------------- |
 | **`skipTests`** | `false`     | Générer un fichier de test unitaire (`.spec.ts`)             |
 | **`type`**      | `"service"` | Ajouter le type à la classe et au fichier (`api.service.ts`) |
+
+</details>

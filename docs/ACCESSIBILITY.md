@@ -1,5 +1,7 @@
 <h1 align="center">♿ ACCESSIBILITÉ ♿</h1>
 
+<br>
+
 ## SOMMAIRE
 
 - [INTRODUCTION](#introduction)

@@ -1,5 +1,7 @@
 <h1 align="center">💡 FAQ 💡</h1>
 
+<br>
+
 <h2 id="erreurs-frequentes">
   ⚠️ ERREURS FREQUENTES
 </h2>

@@ -68,7 +68,7 @@ Il incarne une philosophie **"Zéro Config, Maximum Quality"** : cloné le matin
 
 La documentation détaillée est disponible ici :  
 
-- 🏗 [Architecture](./docs/ARCHITECTURE.md)
+- 🏗 [Architecture de dossier](./docs/FOLDER_ARCHITECTURE.md)
 - 🚀 [Setup](./docs/SETUP.md)
 - 💎 [Quality](./docs/QUALITY.md)
 - 🧪 [Testing](./docs/TESTING.md)
@@ -83,11 +83,9 @@ La documentation détaillée est disponible ici :
 - 🔧 [Rules Reference](./docs/RULES_REFERENCE.md)
 - 💡 [FAQ](./docs/FAQ.md)
 
-> Voir la [Documentation GitHub Pages](https://gg.com)  
+> [Lien vers la documentation GitHub Pages](https://gg.com)  
 
-</br>
-
-> Voir la [Documentation Compodoc locale](https://EmmanuelLefevre.github.io/AngularTemplate/)  
+> [Lien vers la documentation Compodoc locale](https://EmmanuelLefevre.github.io/AngularTemplate/)  
 
 ## ⚡ QUICK START
 
