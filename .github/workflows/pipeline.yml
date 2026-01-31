@@ -2,7 +2,7 @@ name: CI/CD Pipeline
 
 on:
   push:
-    branches: [main, develop, 'feature/**']
+    branches: [main, develop, 'feature/**', 'hotfix/**', 'release/**']
   pull_request:
     branches: [main, develop]
 
@@ -12,9 +12,40 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  check-integrity:
+    name: 👮 Check Integrity (Lockfile)
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📂 Get Code
+        uses: actions/checkout@v4
+
+      - name: 📦 Install PNPM
+        uses: pnpm/action-setup@v4
+
+      - name: 🏗️ Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'pnpm'
+
+      - name: ⚙️ Verify Lockfile Sync
+        id: install
+        run: pnpm install --frozen-lockfile
+
+      - name: 📢 Lockfile Police (Troll Message)
+        if: failure() && steps.install.outcome == 'failure'
+        run: |
+          echo "### 🚨 CRIMINAL ACTIVITY DETECTED !" >> $GITHUB_STEP_SUMMARY
+          echo "CI refuses to work with untracked dependencies 😤" >> $GITHUB_STEP_SUMMARY
+          echo "Hey ${{ github.actor }}, you modified 'package.json' without updating 'pnpm-lock.yaml' !" >> $GITHUB_STEP_SUMMARY
+          echo "👉 Run 'pnpm install' locally and push your updated lockfile plz..." >> $GITHUB_STEP_SUMMARY
+          exit 1
+
   security:
     name: 🛡️ Security Scans
+    needs: [check-integrity]
     runs-on: ubuntu-latest
+
     permissions:
       security-events: write
       contents: read
@@ -72,6 +103,7 @@ jobs:
 
   quality:
     name: ✨ Quality & Tests
+    needs: [check-integrity]
     runs-on: ubuntu-latest
 
     steps:
@@ -90,7 +122,7 @@ jobs:
           cache: 'pnpm'
 
       - name: ⚙️ Install Dependencies
-        run: pnpm install
+        run: pnpm install --frozen-lockfile
 
       - name: 💄 Prettier Formatting
         run: pnpm format:check
@@ -111,8 +143,9 @@ jobs:
       - name: 📢 Failure Notification
         if: failure() && steps.vitest.outcome == 'failure'
         run: |
+          echo "### 🚨 CRIMINAL ACTIVITY DETECTED !" >> $GITHUB_STEP_SUMMARY
           echo "### ❌ Pipeline failed because test coverage is less than 80% !" >> $GITHUB_STEP_SUMMARY
-          echo "Hey ${{ github.actor }}, please work harder ! 🤣🤣🤣" >> $GITHUB_STEP_SUMMARY
+          echo "Hey ${{ github.actor }}, please work harder on your coverage ! 🤣🤣🤣" >> $GITHUB_STEP_SUMMARY
           exit 1
 
       - name: 🚀 SonarQube Scan
@@ -127,7 +160,7 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
-      - name: 📝 Fake Prod Environment File
+      - name: 📝 Fake Environment File
         run: |
           mkdir -p src/_environments
           echo "export const ENVIRONMENT = {
@@ -171,7 +204,7 @@ jobs:
           cache: 'pnpm'
 
       - name: ⚙️ Install Dependencies
-        run: pnpm install
+        run: pnpm install --frozen-lockfile
 
       - name: 📝 Create Prod Environment File
         run: |
@@ -236,16 +269,21 @@ jobs:
         uses: easingthemes/ssh-deploy@main
         with:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+
           # Delete from the server the files that are no longer in your code (cleanup)
           ARGS: '-rlgoDazvc -i --delete'
+
           # ⚠️ Double-check folder name in /dist directory after build (pnpm build)
           SOURCE: 'dist/AngularTemplate/browser/'
+
           # Server IP address
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
           REMOTE_PORT: ${{ secrets.SSH_PORT }}
+
           # Exact location to place code (/home/<your_user>/public_html)
           TARGET: ${{ secrets.TARGET_PATH }}
+
           # Avoids sending git configuration files on server
           EXCLUDE: '/node_modules/, /.github/, /.git/'
 

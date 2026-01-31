@@ -382,8 +382,24 @@ pnpm install
   NPMRC
 </h2>
 
+Pour garantir la stabilité du projet et éviter les différences entre les environnements (`local`, `CI`, `DEV`, `PROD`), nous utiliserons un fichier `.npmrc` à la racine.  
+
+1. **Garantir l'intégrité du Lockfile** (`frozen-lockfile`)
+
+Le `pnpm-lock.yaml` est la source de vérité absolue de toutes les dépendances (y compris les dépendances de nos dépendances).  
+Si le `package.json` et le lockfile ne correspondent pas, l'installation échoue au lieu de mettre à jour le fichier lockfile.  
+
+En résumé cette option interdit à **PNPM** la modification silencieuse du `pnpm-lock.yaml` lors de l'installation.  
+
+```shell
+frozen-lockfile=true
+```
+
+2. **Fixer les versions à l'installation** (`save-exact`)
+
+Par défaut, **PNPM** ajoute un prefixe (ex: ^7.8.0) qui autorise les mises à jour mineures automatiques.  
+
 Pour éviter d'avoir à retirer manuellement les "^" à chaque installation d'une nouvelle librairie, il est possible de configurer le projet pour qu'il sauvegarde toujours la version exacte de la librairie installée.  
-Créer un fichier nommé `.npmrc` à la racine du projet et ajouter cette ligne :  
 
 ```shell
 save-exact=true
@@ -1811,7 +1827,25 @@ Si **Gitleaks** s'est trompé (ex: il a pris un ID de test pour une clé API) :
 Ne jamais utiliser `--no-verify` pour forcer un commit bloqué par **Gitleaks**. Si l'outil aboie, c'est qu'il y a une raison !!!  
 Prendre 2 minutes pour vérifier, cela peut éviter des heures de gestion de crise plus tard...  
 
-### 3. 🛑 Warning lors du premier push !
+### 3. 🛑 ERR_PNPM_OUTDATED_LOCKFILE !
+
+Le fichier `pnpm-lock.yaml` n'est pas synchronisé avec le `package.json`. Cela arrive typiquement quand :  
+
+- Vous avez modifié une version manuellement dans `package.json`.
+- Vous avez résolu un conflit de fusion (merge conflict) dans `package.json` sans mettre à jour le lockfile.
+- Vous avez oublié de commit le lockfile après une installation.
+
+La **CI** est configurée en mode **STRICT** (`frozen-lockfile`) : elle refuse d'installer des dépendances si le "contrat" (lockfile) n'est pas clair, afin d'éviter d'installer des versions non testées en production.  
+
+Pour corriger :  
+
+```Bash
+pnpm install
+```
+
+Push again 😜
+
+### 4. 🛑 Warning lors du premier push !
 
 <br>
 
@@ -1843,7 +1877,7 @@ Publier la branche et écraser le contenu sur **Github** avec la version locale 
 git push --force origin main
 ```
 
-### 4. 🛑  Option 'baseUrl' is deprecated
+### 5. 🛑  Option 'baseUrl' is deprecated
 
 L'auteur "Andrew Branch" est membre de l'équipe **TypeScript** chez **Microsoft**, ce qui garantit la fiabilité et la pertinence de l'outil.  
 
