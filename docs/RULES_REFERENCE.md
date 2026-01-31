@@ -30,8 +30,6 @@
 
   <summary>🧐 Consulter la configuration détaillée</summary>
 
-  <br>
-
 | Option | Valeur | Description / Justification |
 | :--- | :--- | :--- |
 | **`arrowParens`** | `"always"` | Forcer les parenthèses autour des arguments des fonctions fléchées |
@@ -109,8 +107,6 @@ pnpm add -D @typescript-eslint/parser eslint-plugin-rxjs
 
   <summary>🧐 Consulter la configuration détaillée</summary>
 
-  <br>
-
 | Option | Valeur | Description |
 | :--- | :--- | :--- |
 | **`alt-require`** | `true` | Impose que toutes les balises `<img>` possèdent un attribut `alt`, ce qui est crucial pour l'accessibilité web |
@@ -162,8 +158,6 @@ pnpm add -D @typescript-eslint/parser eslint-plugin-rxjs
 
   <summary>🧐 Consulter la configuration détaillée</summary>
 
-  <br>
-
 | Option | Valeur | Description |
 | :--- | :--- | :--- |
 | **`plugins`** | `["stylelint-scss"]` | Charge le plugin nécessaire pour supporter les règles spécifiques au SCSS |
@@ -196,15 +190,11 @@ Cette configuration (`tsconfig.json`) sert de **base stricte** pour l'ensemble d
 
   <summary>👁️ Tout voir</summary>
 
-  <br>
-
 #### 1. Options du Compilateur (`compilerOptions`)
 
 <details>
 
   <summary>🧐 Consulter la configuration détaillée</summary>
-
-  <br>
 
 | Option | Valeur | Description & Justification |
 | :--- | :--- | :--- |
@@ -237,8 +227,6 @@ Ces paramètres contrôlent le compilateur AOT (Ahead-of-Time) d'Angular, spéci
 
   <summary>🧐 Consulter la configuration détaillée</summary>
 
-  <br>
-
 | Option | Valeur | Description |
 | :--- | :--- | :--- |
 | **`enableI18nLegacy...`** | `false` | Indiquer au compilateur Angular de ne pas utiliser le format d'identifiant de message hérité (legacy) pour l'internationalisation |
@@ -267,8 +255,6 @@ Ces paramètres contrôlent le compilateur AOT (Ahead-of-Time) d'Angular, spéci
 
   <summary>👁️ Tout voir</summary>
 
-  <br>
-
 #### 1. @schematics/angular:application (`Project Initialization`)
 
 Définit les caractéristiques fondamentales de l'application, principalement utilisées lors de la création du projet.  
@@ -276,8 +262,6 @@ Définit les caractéristiques fondamentales de l'application, principalement ut
 <details>
 
   <summary>🧐 Consulter la configuration détaillée</summary>
-
-  <br>
 
 | Option | Valeur | Description |
 | :--- | :--- | :--- |
@@ -302,8 +286,6 @@ Configuration pour la génération des classes (`ng g cl`).
 
   <summary>🧐 Consulter la configuration détaillée</summary>
 
-  <br>
-
 | Option | Valeur | Description |
 | :--- | :--- | :--- |
 | **`skipTests`** | `true` | Les classes (souvent des DTO ou des wrappers utilitaires) n'ont généralement pas besoin de tests |
@@ -317,8 +299,6 @@ Configuration pour la génération des composants (`ng g c`).
 <details>
 
   <summary>🧐 Consulter la configuration détaillée</summary>
-
-  <br>
 
 | Option | Valeur | Description |
 | :--- | :--- | :--- |
@@ -341,8 +321,6 @@ Configuration pour la génération des directives (`ng g d`).
 
   <summary>🧐 Consulter la configuration détaillée</summary>
 
-  <br>
-
 | Option | Valeur | Description |
 | :--- | :--- | :--- |
 | **`prefix`** | `""` | Le préfixe du sélecteur est explicitement vide |
@@ -360,8 +338,6 @@ Configuration pour la génération des enums (`ng g e`).
 
   <summary>🧐 Consulter la configuration détaillée</summary>
 
-  <br>
-
 | Option | Valeur | Description |
 | :--- | :--- | :--- |
 | **`type`** | `"enum"` | Ajouter le type à la classe et au fichier `.enum.ts` |
@@ -375,8 +351,6 @@ Configuration pour le routage des guards (`ng g guard`).
 <details>
 
   <summary>🧐 Consulter la configuration détaillée</summary>
-
-  <br>
 
 | Option | Valeur | Description |
 | :--- | :--- | :--- |
@@ -395,8 +369,6 @@ Configuration pour la gestion des interceptors (`ng g interceptor`).
 
   <summary>🧐 Consulter la configuration détaillée</summary>
 
-  <br>
-
 | Option | Valeur | Description |
 | :--- | :--- | :--- |
 | **`skipTests`** | `true` | Ne pas générer de fichiers de tests unitaires |
@@ -412,8 +384,6 @@ Configuration pour la gestion globale des interfaces (`ng g i`).
 
   <summary>🧐 Consulter la configuration détaillée</summary>
 
-  <br>
-
 | Option | Valeur | Description |
 | :--- | :--- | :--- |
 | **`type`** | `"model"` | Ajouter le type à la classe et au fichier `.model.ts` |
@@ -428,8 +398,6 @@ Configuration pour la gestion globale des modules (`ng g m`).
 
   <summary>🧐 Consulter la configuration détaillée</summary>
 
-  <br>
-
 | Option | Valeur | Description |
 | :--- | :--- | :--- |
 | **`typeSeparator`** | `.` | Définit le séparateur `module` (uniquement si STANDALONE est désactivé) |
@@ -443,8 +411,6 @@ Configuration pour la gestion globale des pipes (`ng g p`).
 <details>
 
   <summary>🧐 Consulter la configuration détaillée</summary>
-
-  <br>
 
 | Option | Valeur | Description |
 | :--- | :--- | :--- |
@@ -462,8 +428,6 @@ Configuration pour la gestion globale des resolvers (`ng g r`).
 
   <summary>🧐 Consulter la configuration détaillée</summary>
 
-  <br>
-
 | Option | Valeur | Description |
 | :--- | :--- | :--- |
 | **`skipTests`** | `false` | Générer un fichier de test unitaire (`.spec.ts`) |
@@ -479,7 +443,7 @@ Configuration pour la gestion globale des services (`ng g s`).
 
   <summary>🧐 Consulter la configuration détaillée</summary>
 
-  <br>
+&nbsp;
 
 | Option | Valeur | Description |
 | :--- | :--- | :--- |

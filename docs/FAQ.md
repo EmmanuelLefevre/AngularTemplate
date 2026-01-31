@@ -13,8 +13,6 @@
 
   <summary>🧐 Consulter la méthode de résolution du problème</summary>
 
-  <br>
-
 C'est normal si vous aviez laissé des warnings. Votre commit est passé localement car il respectait la limite des 50, mais la CI exige la perfection.
 
 Pour corriger :
@@ -37,8 +35,6 @@ Corrigez les warnings restants, commitez et pushez.
 <details>
 
   <summary>🧐 Consulter la méthode de résolution du problème</summary>
-
-  <br>
 
 Pas de panique ! Cela arrive aux meilleurs. Si un commit est bloqué en local ou si la **CI** échoue avec un message de **Gitleaks**, suivre ces étapes dans l'ordre :
 
@@ -80,8 +76,6 @@ Prendre 2 minutes pour vérifier, cela peut éviter des heures de gestion de cri
 
   <summary>🧐 Consulter la méthode de résolution du problème</summary>
 
-  <br>
-
 Le fichier `pnpm-lock.yaml` n'est pas synchronisé avec le `package.json`. Cela arrive typiquement quand :
 
 - Vous avez modifié une version manuellement dans `package.json`.
@@ -105,8 +99,6 @@ Push again 😜
 <details>
 
   <summary>🧐 Consulter la méthode de résolution du problème</summary>
-
-  <br>
 
 <br>
 
@@ -145,8 +137,6 @@ git push --force origin main
 <details>
 
   <summary>🧐 Consulter la méthode de résolution du problème</summary>
-
-  <br>
 
 L'auteur "Andrew Branch" est membre de l'équipe **TypeScript** chez **Microsoft**, ce qui garantit la fiabilité et la pertinence de l'outil.
 
