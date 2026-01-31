@@ -28,7 +28,7 @@
 
 <details>
 
-  <summary>👁️ Consulter la configuration détaillée</summary>
+  <summary>🧐 Consulter la configuration détaillée</summary>
 
 | Option | Valeur | Description / Justification |
 | :--- | :--- | :--- |
@@ -83,7 +83,7 @@
 
 [ESLint Recommanded Documentation](https://eslint.org/docs/latest/rules/)  
 
-Pour la configuration des règles RXJS il faut ajouter ces deux librairies:  
+Pour la configuration des règles RXJS il faut ajouter ces deux librairies =>  
 
 [ESLint RXJS Documentation](https://github.com/cartant/eslint-plugin-rxjs)  
 
@@ -105,7 +105,7 @@ pnpm add -D @typescript-eslint/parser eslint-plugin-rxjs
 
 <details>
 
-  <summary>👁️ Consulter la configuration détaillée</summary>
+  <summary>🧐 Consulter la configuration détaillée</summary>
 
 | Option | Valeur | Description |
 | :--- | :--- | :--- |
@@ -156,7 +156,7 @@ pnpm add -D @typescript-eslint/parser eslint-plugin-rxjs
 
 <details>
 
-  <summary>👁️ Consulter la configuration détaillée</summary>
+  <summary>🧐 Consulter la configuration détaillée</summary>
 
 | Option | Valeur | Description |
 | :--- | :--- | :--- |
@@ -188,13 +188,13 @@ Cette configuration (`tsconfig.json`) sert de **base stricte** pour l'ensemble d
 
 <details>
 
-  <summary>👁️ Consulter les configurations</summary>
+  <summary>👁️ Tout voir</summary>
 
 #### 1. Options du Compilateur (`compilerOptions`)
 
 <details>
 
-  <summary>👁️ Consulter la configuration détaillée</summary>
+  <summary>🧐 Consulter la configuration détaillée</summary>
 
 | Option | Valeur | Description & Justification |
 | :--- | :--- | :--- |
@@ -225,7 +225,7 @@ Ces paramètres contrôlent le compilateur AOT (Ahead-of-Time) d'Angular, spéci
 
 <details>
 
-  <summary>👁️ Consulter la configuration détaillée</summary>
+  <summary>🧐 Consulter la configuration détaillée</summary>
 
 | Option | Valeur | Description |
 | :--- | :--- | :--- |
@@ -253,7 +253,7 @@ Ces paramètres contrôlent le compilateur AOT (Ahead-of-Time) d'Angular, spéci
 
 <details>
 
-  <summary>👁️ Consulter les configurations</summary>
+  <summary>👁️ Tout voir</summary>
 
 #### 1. @schematics/angular:application (`Project Initialization`)
 
@@ -261,7 +261,7 @@ Définit les caractéristiques fondamentales de l'application, principalement ut
 
 <details>
 
-  <summary>👁️ Consulter la configuration détaillée</summary>
+  <summary>🧐 Consulter la configuration détaillée</summary>
 
 | Option | Valeur | Description |
 | :--- | :--- | :--- |
@@ -284,7 +284,7 @@ Configuration pour la génération des classes (`ng g cl`).
 
 <details>
 
-  <summary>👁️ Consulter la configuration détaillée</summary>
+  <summary>🧐 Consulter la configuration détaillée</summary>
 
 | Option | Valeur | Description |
 | :--- | :--- | :--- |
@@ -298,7 +298,7 @@ Configuration pour la génération des composants (`ng g c`).
 
 <details>
 
-  <summary>👁️ Consulter la configuration détaillée</summary>
+  <summary>🧐 Consulter la configuration détaillée</summary>
 
 | Option | Valeur | Description |
 | :--- | :--- | :--- |
@@ -319,7 +319,7 @@ Configuration pour la génération des directives (`ng g d`).
 
 <details>
 
-  <summary>👁️ Consulter la configuration détaillée</summary>
+  <summary>🧐 Consulter la configuration détaillée</summary>
 
 | Option | Valeur | Description |
 | :--- | :--- | :--- |
@@ -336,7 +336,7 @@ Configuration pour la génération des enums (`ng g e`).
 
 <details>
 
-  <summary>👁️ Consulter la configuration détaillée</summary>
+  <summary>🧐 Consulter la configuration détaillée</summary>
 
 | Option | Valeur | Description |
 | :--- | :--- | :--- |
@@ -350,7 +350,7 @@ Configuration pour le routage des guards (`ng g guard`).
 
 <details>
 
-  <summary>👁️ Consulter la configuration détaillée</summary>
+  <summary>🧐 Consulter la configuration détaillée</summary>
 
 | Option | Valeur | Description |
 | :--- | :--- | :--- |
@@ -367,7 +367,7 @@ Configuration pour la gestion des interceptors (`ng g interceptor`).
 
 <details>
 
-  <summary>👁️ Consulter la configuration détaillée</summary>
+  <summary>🧐 Consulter la configuration détaillée</summary>
 
 | Option | Valeur | Description |
 | :--- | :--- | :--- |
@@ -382,7 +382,7 @@ Configuration pour la gestion globale des interfaces (`ng g i`).
 
 <details>
 
-  <summary>👁️ Consulter la configuration détaillée</summary>
+  <summary>🧐 Consulter la configuration détaillée</summary>
 
 | Option | Valeur | Description |
 | :--- | :--- | :--- |
@@ -396,7 +396,7 @@ Configuration pour la gestion globale des modules (`ng g m`).
 
 <details>
 
-  <summary>👁️ Consulter la configuration détaillée</summary>
+  <summary>🧐 Consulter la configuration détaillée</summary>
 
 | Option | Valeur | Description |
 | :--- | :--- | :--- |
@@ -410,7 +410,7 @@ Configuration pour la gestion globale des pipes (`ng g p`).
 
 <details>
 
-  <summary>👁️ Consulter la configuration détaillée</summary>
+  <summary>🧐 Consulter la configuration détaillée</summary>
 
 | Option | Valeur | Description |
 | :--- | :--- | :--- |
@@ -426,7 +426,7 @@ Configuration pour la gestion globale des resolvers (`ng g r`).
 
 <details>
 
-  <summary>👁️ Consulter la configuration détaillée</summary>
+  <summary>🧐 Consulter la configuration détaillée</summary>
 
 | Option | Valeur | Description |
 | :--- | :--- | :--- |
@@ -441,7 +441,7 @@ Configuration pour la gestion globale des services (`ng g s`).
 
 <details>
 
-  <summary>👁️ Consulter la configuration détaillée</summary>
+  <summary>🧐 Consulter la configuration détaillée</summary>
 
 | Option | Valeur | Description |
 | :--- | :--- | :--- |
