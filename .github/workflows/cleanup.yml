@@ -28,9 +28,9 @@ jobs:
             gh run list --status "$status" --limit 100 --json databaseId -q '.[].databaseId' | xargs -r -I{} gh run delete {}
           done
 
-          # 2. Deletes all workflows which name are "maj", "maj doc", "fix" or "fix pipeline"
-          gh run list --limit 100 --json databaseId,displayTitle --state completed \
-          -q '.[] | select(.displayTitle | test("maj|maj doc|fix|fix"; "i")) | .databaseId' \
+          # 2. Deletes workflows containing "fix", "maj" or "test" (case insensitive)
+          gh run list --limit 100 --status completed --json databaseId,displayTitle \
+          -q '.[] | select(.displayTitle | test("fix|maj|test"; "i")) | .databaseId' \
           | xargs -r -t -I{} gh run delete {}
 
           # 3. Deletes the history of this specific workflow (even successes)
