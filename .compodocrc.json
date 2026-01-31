@@ -1,0 +1,13 @@
+{
+  "title": "AngularTemplate Documentation",
+  "tsconfig": "tsconfig.doc.json",
+  "output": ".documentation-output",
+  "includes": "./docs",
+  "assetsFolder": "public",
+  "port": 8080,
+  "disableCoverage": true,
+  "disablePrivate": true,
+  "disableInternal": true,
+  "hideGenerator": true,
+  "disableGraph": false
+}
