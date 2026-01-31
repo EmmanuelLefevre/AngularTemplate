@@ -105,10 +105,10 @@ Architecture documentée en temps réel. **Compodoc** génère une documentation
 
 La documentation détaillée est disponible ici :  
 
-- 🏗 [Architecture de dossier](./docs/FOLDER_ARCHITECTURE.md)
+- 🏗 [Architecture](./docs/ARCHITECTURE.md)
 - 🚀 [Setup](./docs/SETUP.md)
 - 💎 [Quality](./docs/QUALITY.md)
-- 🧪 [Tests](./docs/TESTING.md)
+- 🧪 [Tests](./docs/TESTS.md)
 - ⚙️ [Configuration](./docs/CONFIGURATION.md)
 - 🏷️ [Build & Packaging](./docs/BUILD_PACKAGING.md)
 - 🤖 [CICD](./docs/CICD.md)
@@ -118,7 +118,7 @@ La documentation détaillée est disponible ici :
 - 📈 [SEO](./docs/SEO.md)
 - 📘 [Documentation](./docs/DOCUMENTATION.md)
 - 🔧 [Rules Reference](./docs/RULES_REFERENCE.md)
-- 💡 [FAQ](./docs/FAQ.md)
+- 💡 [FAQ & Erreurs](./docs/FAQ_ERRORS.md)
 
 > [Lien vers la documentation GitHub Pages](https://EmmanuelLefevre.github.io/AngularTemplate/)  
 

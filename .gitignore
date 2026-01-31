@@ -4,6 +4,9 @@
 /out-tsc
 /bazel-out
 
+# Compodoc output
+.documentation-output
+
 # Environments Files
 src/_environments/environment.prod.ts
 .env.local

@@ -1,4 +1,4 @@
-<h1 align="center">💡 FAQ 💡</h1>
+<h1 align="center">💡 FAQ & ERREURS 💡</h1>
 
 <br>
 <br>
