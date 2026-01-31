@@ -288,4 +288,4 @@ jobs:
           EXCLUDE: '/node_modules/, /.github/, /.git/'
 
       - name: 🎯 Deployment
-        run: echo "Deployment is underway following security and quality validation..."
+        run: echo "Deployment is underway following security and quality validations..."
