@@ -80,6 +80,9 @@ Onboarding immédiat. Grâce à **Corepack**, le projet installe et utilise auto
 ♿ **Accessibilité Native :**  
 Conformité **RGAA / WCAG** intégrée dès le départ. Structure sémantique stricte, navigation au clavier et gestion du focus testées pour une inclusion totale.  
 
+📈 **SEO & PWA Ready :**  
+Maximisez votre visibilité. Un **Service Meta** dynamique gère vos balises `<head>` en temps réel selon les routes. Le tout est épaulé par une configuration native des fichiers **`sitemap.xml`**, **`robots.txt`** et **`manifest.json`** pour une indexation parfaite et une compatibilité mobile.  
+
 🗣️ **Multi-langues :**  
 **I18n** intégré par défaut via **NGX-Translate** permettant de gérer facilement les traductions et de séparer le contenu de la logique métier.  
 
@@ -112,13 +115,12 @@ La documentation détaillée est disponible ici :
 - 🎨 [Styles](./docs/STYLES.md)
 - 🗣️ [Multi Langues](./docs/MULTI_LANGUAGES.md)
 - ♿ [Accessibilité](./docs/ACCESSIBILITY.md)
+- 📈 [SEO](./docs/SEO.md)
 - 📘 [Documentation](./docs/DOCUMENTATION.md)
 - 🔧 [Rules Reference](./docs/RULES_REFERENCE.md)
 - 💡 [FAQ](./docs/FAQ.md)
 
-> [Lien vers la documentation GitHub Pages](https://gg.com)  
-
-> [Lien vers la documentation Compodoc locale](https://EmmanuelLefevre.github.io/AngularTemplate/)  
+> [Lien vers la documentation GitHub Pages](https://EmmanuelLefevre.github.io/AngularTemplate/)  
 
 ## ⚡ QUICK START
 
@@ -126,7 +128,7 @@ La documentation détaillée est disponible ici :
 
 |   Angular  |                  Node.js                  |         TypeScript       |           RxJS         |
 | :--------- | :---------------------------------------- | :----------------------- | :--------------------- |
-| **21.0.x** | `^20.19.0` \|\| `^22.12.0` \|\| `^24.0.0` | `>=5.9.0` \|\| `<=6.0.0` | `^6.5.3` \|\| `^7.4.0` |
+|  `21.0.x`  | `^20.19.0` \|\| `^22.12.0` \|\| `^24.0.0` | `>=5.9.0` \|\| `<=6.0.0` | `^6.5.3` \|\| `^7.4.0` |
 
 - Installer la version requise de **NodeJS** via **NVM**  
 
