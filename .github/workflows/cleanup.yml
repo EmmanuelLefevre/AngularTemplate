@@ -1,4 +1,4 @@
-name: 🧹 Cleanup Cancelled Runs & Failed Runs
+name: 🧹 Cleanup Workflow
 
 on:
   schedule:
@@ -6,35 +6,51 @@ on:
   workflow_dispatch:
 
 jobs:
-  delete-failed-or-cancelled:
+  cleanup:
+    name: 🧹 Run Cleanup
     runs-on: ubuntu-latest
     permissions:
       actions: write
+
+    env:
+      GH_TOKEN: ${{ github.token }}
 
     steps:
       - name: 📂 Get Code
         uses: actions/checkout@v4
 
       - name: 🗑️ Delete Cancelled and Failed Runs
-        env:
-          GH_TOKEN: ${{ github.token }}
+        continue-on-error: true
         run: |
-          # 1. Loop back on runs 'cancelled' or 'failure' of all workflows
+          # Loop back on runs 'cancelled' or 'failure' for whole workflows
+
           for status in cancelled failure; do
-            echo "Processing status: $status"
+            echo "Processing status : $status"
+
             # 1. Listing last 100 runs for the current status
             # 2. Get only their IDs
             # 3. Remove them one by one
-            gh run list --status "$status" --limit 100 --json databaseId -q '.[].databaseId' | xargs -r -I{} gh run delete {}
+
+            gh run list --status "$status" --limit 100 --json databaseId -q '.[].databaseId' \
+            | xargs -r -I{} gh run delete {}
           done
 
-          # 2. Deletes workflows containing "fix", "maj" or "test" (case insensitive)
+      - name: 🧹 Delete Useless Workflows
+        continue-on-error: true
+        run: |
+          # Deletes workflows containing "fix", "maj" or "test" (case insensitive)
+
           gh run list --limit 100 --status completed --json databaseId,displayTitle \
           -q '.[] | select(.displayTitle | test("fix|maj|test"; "i")) | .databaseId' \
           | xargs -r -t -I{} gh run delete {}
 
-          # 3. Deletes the history of this specific workflow (even successes)
+      - name: 🧼 Cleanup Self History
+        if: always()
+        run: |
+          # Deletes the history of this specific workflow (even successes)
+
           WORKFLOW_FILE="cleanup.yml"
 
-          gh run list --workflow "$WORKFLOW_FILE" --status completed --json databaseId,number -q ".[] | select(.databaseId != $GITHUB_RUN_ID) | .databaseId" \
+          gh run list --workflow "$WORKFLOW_FILE" --status completed \
+          --json databaseId,number -q ".[] | select(.databaseId != $GITHUB_RUN_ID) | .databaseId" \
           | xargs -r -I{} gh run delete {}
