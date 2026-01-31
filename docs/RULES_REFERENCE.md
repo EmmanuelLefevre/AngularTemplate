@@ -24,7 +24,7 @@
   Prettier Rules
 </h3>
 
-[Prettier Documentation](https://prettier.io/docs/options)  
+> [Prettier Documentation](https://prettier.io/docs/options)  
 
 <details>
 
@@ -71,23 +71,23 @@
   ESLint Rules
 </h3>
 
-[ESLint Documentation](https://eslint.org/docs/latest/use/getting-started)  
+> [ESLint Documentation](https://eslint.org/docs/latest/use/getting-started)  
 
-[ESLint Security Documentation](https://www.npmjs.com/package/eslint-plugin-security)  
+> [ESLint Security Documentation](https://www.npmjs.com/package/eslint-plugin-security)  
 
-[ESLint Angular Documentation](https://www.npmjs.com/package/@angular-eslint/eslint-plugin)  
+> [ESLint Angular Documentation](https://www.npmjs.com/package/@angular-eslint/eslint-plugin)  
 
-[ESLint Angular Template Documentation](https://www.npmjs.com/package/@angular-eslint/eslint-plugin-template)  
+> [ESLint Angular Template Documentation](https://www.npmjs.com/package/@angular-eslint/eslint-plugin-template)  
 
-[ESLint TypeScript Documentation](https://typescript-eslint.io/rules/)  
+> [ESLint TypeScript Documentation](https://typescript-eslint.io/rules/)  
 
-[ESLint Stylistics Documentation](https://eslint.style/rules)  
+> [ESLint Stylistics Documentation](https://eslint.style/rules)  
 
-[ESLint Recommanded Documentation](https://eslint.org/docs/latest/rules/)  
+> [ESLint Recommanded Documentation](https://eslint.org/docs/latest/rules/)  
 
 Pour la configuration des règles RXJS il faut ajouter ces deux librairies =>  
 
-[ESLint RXJS Documentation](https://github.com/cartant/eslint-plugin-rxjs)  
+> [ESLint RXJS Documentation](https://github.com/cartant/eslint-plugin-rxjs)  
 
 ```shell
 pnpm add -D @typescript-eslint/parser eslint-plugin-rxjs
@@ -103,7 +103,7 @@ pnpm add -D @typescript-eslint/parser eslint-plugin-rxjs
   HTMLHint Rules
 </h3>
 
-[HTMLHint Documentation](https://htmlhint.com/rules/)  
+> [HTMLHint Documentation](https://htmlhint.com/rules/)  
 
 <details>
 
@@ -156,7 +156,7 @@ pnpm add -D @typescript-eslint/parser eslint-plugin-rxjs
   StyleLint Rules
 </h3>
 
-[StyleLint SCSS Documentation](https://stylelint.io/user-guide/rules)  
+> [StyleLint SCSS Documentation](https://stylelint.io/user-guide/rules)  
 
 <details>
 
@@ -188,7 +188,7 @@ pnpm add -D @typescript-eslint/parser eslint-plugin-rxjs
   TS Config Rules
 </h3>
 
-[TS Config Documentation](https://www.typescriptlang.org/tsconfig/)  
+> [TS Config Documentation](https://www.typescriptlang.org/tsconfig/)  
 
 Cette configuration (`tsconfig.json`) sert de **base stricte** pour l'ensemble de l'espace de travail. Elle utilise l'approche **"Solution Style"**, déléguant la compilation effective aux fichiers `tsconfig.app.json` (pour l'application) et `tsconfig.spec.json` (pour les tests).  
 
@@ -261,7 +261,7 @@ Ces paramètres contrôlent le compilateur AOT (Ahead-of-Time) d'Angular, spéci
   Schematics Rules
 </h3>
 
-[Angular Documentation](https://github.com/angular/angular-cli/tree/main/packages/schematics/angular)
+> [Angular Documentation](https://github.com/angular/angular-cli/tree/main/packages/schematics/angular)
 
 <details>
 

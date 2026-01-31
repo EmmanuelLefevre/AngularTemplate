@@ -7,7 +7,7 @@
   ⚠️ ERREURS FREQUENTES
 </h2>
 
-### 1. 🛑 Ma **PR** est bloquée alors que mon commit est passé ?
+### 1. 🛑 Ma **PR/MR** est bloquée alors que mon commit est passé ?
 
 <details>
 
@@ -56,7 +56,7 @@ Si un secret valide traîne réellement :
 
 Si le commit est déjà sur le serveur : il faudra utiliser un outil comme **BFG Repo-Cleaner** ou **git filter-repo**.
 
-[Procédure Git Filter Repo](https://github.com/EmmanuelLefevre/Documentations/blob/main/Tutorials/github_tricks.md)
+> [Procédure Git Filter Repo](https://github.com/EmmanuelLefevre/Documentations/blob/main/Tutorials/github_tricks.md)
 
 3. **Cas B : C'est un "Faux Positif"**
 
@@ -74,13 +74,15 @@ Prendre 2 minutes pour vérifier, cela peut éviter des heures de gestion de cri
 
 </details>
 
-### 3. 🛑 ERR_PNPM_OUTDATED_LOCKFILE !
+### 3. 🛑 Le job "check-integrity" de la pipeline plante !
 
 <details>
 
   <summary>🧐 Consulter la méthode de résolution du problème</summary>
 
 &nbsp;
+
+> Message : "ERR_PNPM_OUTDATED_LOCKFILE"
 
 Le fichier `pnpm-lock.yaml` n'est pas synchronisé avec le `package.json`. Cela arrive typiquement quand :
 
@@ -100,7 +102,47 @@ Push again 😜
 
 </details>
 
-### 4. 🛑 Warning lors du premier push !
+### 4. 🛑 Le step "🛡️ PNPM Audit" du job "security" de la pipeline plante !
+
+<details>
+
+  <summary>🧐 Consulter la méthode de résolution du problème</summary>
+
+&nbsp;
+
+> Message : "Critical vulnerability found in qs"
+
+```shell
+Critical vulnerability found in qs
+  Package: qs
+  Vulnerability: Uncontrolled Resource Consumption
+  Severity: critical
+  Installed version: 6.5.2
+  Path: your-project > some-dependency > qs
+  Fixed in: >=6.14.1
+```
+
+Ajouter sa version patchée dans `package.json` =>
+
+```JSON
+"pnpm": {
+  "overrides": {
+    "qs": ">=6.14.1"
+  }
+}
+```
+
+Refaire une installation du package :  
+
+```Bash
+pnpm install
+```
+
+Push again 😜
+
+</details>
+
+### 5. 🛑 Warning lors du premier push !
 
 <details>
 
@@ -138,7 +180,7 @@ git push --force origin main
 
 </details>
 
-### 5. 🛑 Option 'baseUrl' is deprecated
+### 6. 🛑 Option 'baseUrl' is deprecated
 
 <details>
 
@@ -148,7 +190,7 @@ git push --force origin main
 
 L'auteur "Andrew Branch" est membre de l'équipe **TypeScript** chez **Microsoft**, ce qui garantit la fiabilité et la pertinence de l'outil.
 
-[andrewbranch/ts5to6 – Outil de migration TypeScript 5 vers 6](https://github.com/andrewbranch/ts5to6)
+> [andrewbranch/ts5to6 – Outil de migration TypeScript 5 vers 6](https://github.com/andrewbranch/ts5to6)
 
 - **BaseUrl**
 

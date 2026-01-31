@@ -1,6 +1,5 @@
 ## SOMMAIRE
 
-- [ARCHITECTURE](#-architecture)
 - [PNPM](#pnpm)
 - [ANGULAR](#angular)
 - [NPMRC](#npmrc)
@@ -24,7 +23,6 @@
 - [STYLES](#styles)
 - [SCHEMATICS](#schematics)
 - [CONFIGURATION DE BUILD](#configuration-de-build)
-- [MULTI LANGUES](#multi-langues)
 
 <h2 id="pnpm">
   <img
@@ -71,16 +69,6 @@ pnpm audit
 
 ```shell
 pnpm audit --audit-level=high
-```
-
-Si problème avec un package, ajouter sa version patchée dans `package.json` =>
-
-```JSON
-"pnpm": {
-  "overrides": {
-    "qs": ">=6.14.1"
-  }
-}
 ```
 
 <h2 id="angular">
