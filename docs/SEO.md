@@ -14,7 +14,7 @@
   CUSTOM SERVICE
 </h2>
 
-> [Consulter le service](./src/app/core/_services/seo/seo.service.ts)  
+> [Consulter le SEO service](./src/app/core/_services/seo/seo.service.ts)  
 
 <h2 id="sitemap">
   <img
@@ -26,7 +26,7 @@
   SITEMAP
 </h2>
 
-> [Consulter le sitemap](./public/sitemap.xml)  
+> [Consulter le sitemap.xml](./public/sitemap.xml)  
 
 <h2 id="robots">
   <img
