@@ -6,6 +6,11 @@
 ## SOMMAIRE
 
 - [ESLint Rules](#eslint-rules)
+  - [Angular](#angular)
+  - [TypeScript](#typescript)
+  - [Angular Template](#angular-template)
+  - [Stylistics](#stylistics)
+  - [Security](#security)
 - [Prettier Rules](#prettier-rules)
 - [HTMLHint Rules](#htmlhint-rules)
 - [StyleLint Rules](#stylelint-rules)
@@ -29,26 +34,140 @@
 </h2>
 
 > [ESLint Documentation](https://eslint.org/docs/latest/use/getting-started)  
+> [ESLint Recommanded Documentation](https://eslint.org/docs/latest/rules/)  
 
-> [ESLint Security Documentation](https://www.npmjs.com/package/eslint-plugin-security)  
+<details>
+
+  <summary>👁️ Tout voir</summary>
+
+&nbsp;
+
+<h3 id="angular">Angular</h3>
 
 > [ESLint Angular Documentation](https://www.npmjs.com/package/@angular-eslint/eslint-plugin)  
 
-> [ESLint Angular Template Documentation](https://www.npmjs.com/package/@angular-eslint/eslint-plugin-template)  
+<details>
+
+  <summary>🧐 Consulter la configuration détaillée</summary>
+
+&nbsp;
+
+Cette section regroupe les règles spécifiques au framework **Angular**. Elles visent à faire respecter les bonnes pratiques architecturales, les conventions de nommage propres à l'écosystème (comme le `kebab-case` pour les sélecteurs de composants) et à prévenir des erreurs courantes impactant les performances (comme les **Pipes** impurs).  
+
+| Option | Valeur | Description  |
+| :--- | :--- | :--- |
+| **`component-selector`** | `[Object]` | **1. `type: 'element'`** : Forcer l'utilisation des composants comme éléments **HTML** (ex: `<app-home>`)<br><br>**2. `style: 'kebab-case'`** : Imposer le nommage en minuscules séparées par des tirets |
+| **`directive-selector`** | `[Object]` | **1. `type: 'attribute'`** : Forcer l'utilisation des **Directives** comme attributs (ex: `<div myDir>`)<br><br>**2. `style: 'camelCase'`** : Imposer le nommage en `camelCase` |
+| **`no-empty-lifecycle-method`** | `'error'` | Interdire les méthodes de cycle de vie vides (`ngOnInit`) qui polluent le code inutilement |
+| **`no-pipe-impure`** | `'error'` | Interdire les **Pipes** impurs qui sont recalculés à chaque cycle de détection, causant de graves problèmes de performance |
+| **`prefer-output-readonly`** | `'error'` | Garantir que les `Output` (`EventEmitter`) ne sont pas écrasés après leur initialisation |
+| **`pipe-prefix`** | `'error'` | Imposer un préfixe cohérent pour tous les **Pipes** de l'application |
+| **`prefer-standalone`** | `'error'` | Pousser vers l'architecture moderne **Angular** en forçant les composants `standalone` |
+| **`sort-keys-in-type-decorator`** | `'error'` | Trier les propriétés dans les **Décorateurs** (`@Component`) par ordre alphabétique pour la lisibilité |
+| **`sort-lifecycle-methods`** | `'error'` | Imposer un ordre strict des méthodes de cycle de vie (`ngOnChanges` -> `ngOnInit` -> `ngOnDestroy`) |
+
+</details>
+
+<h3 id="typescript">TypeScript</h3>
 
 > [ESLint TypeScript Documentation](https://typescript-eslint.io/rules/)  
 
+<details>
+
+  <summary>🧐 Consulter la configuration détaillée</summary>
+
+&nbsp;
+
+Ces règles étendent les capacités d'**ESLint** pour comprendre la syntaxe **TypeScript**. Elles se concentrent sur la sûreté du typage (`type safety`), la lisibilité et la prévention de bugs subtils liés à la gestion des types (comme l'usage de `any` ou les `magic numbers`).  
+
+| Option | Valeur | Description |
+| :--- | :--- | :--- |
+| **`explicit-function-return-type`** | `'error'` | Obliger à typer le retour de chaque fonction pour rendre le code autodocumenté et éviter les retours accidentels |
+| **`naming-convention`** | `[Array]` | **1. Variables** : `camelCase` (standard) ou `UPPER_CASE` (constantes globales)<br><br>**2. Méthodes** : `camelCase`<br><br>**3. Classes** : `PascalCase` |
+| **`no-empty-function`** | `'error'` | Signaler les fonctions sans corps, souvent signe d'un code oublié ou inachevé |
+| **`no-empty-interface`** | `'error'` | Une interface vide est inutile. Utiliser un **Type** si c'est un simple `alias` |
+| **`no-magic-numbers`** | `'error'` | Interdire l'usage de nombres bruts sans contexte. Il faut utiliser des constantes nommées |
+| **`no-shadow`** | `'error'` | Empêcher de nommer une variable locale comme une variable de portée supérieure (risque de confusion) |
+| **`no-unsafe-return`** | `'error'` | Interdire de retourner `any` dans une fonction qui attend un **Type** précis |
+| **`no-unused-vars`** | `'error'` | Nettoier le code en signalant les variables déclarées mais jamais utilisées |
+| **`prefer-readonly`** | `'error'` | Marquer automatiquement comme `readonly` les propriétés privées qui ne sont jamais modifiées après le constructeur |
+
+</details>
+
+<h3 id="angular-template">Angular Template</h3>
+
+> [ESLint Angular Template Documentation](https://www.npmjs.com/package/@angular-eslint/eslint-plugin-template)  
+
+<details>
+
+  <summary>🧐 Consulter la configuration détaillée</summary>
+
+&nbsp;
+
+Ce linter analyse spécifiquement les fichiers **HTML** (`.html`). Il est crucial pour garantir l'accessibilité (**A11y**) de l'application, éviter des erreurs de syntaxe **Angular** complexes et limiter la complexité logique directement dans les vues.  
+
+| Option | Valeur | Description |
+| :--- | :--- | :--- |
+| **`alt-text`** | `'error'` | Obliger, pour l'accessibilité, les images à avoir un texte alternatif |
+| **`banana-in-box`** | `'error'` | Vérifier la syntaxe `[(ngModel)]` et alerte si on écrit l'inverse `([ngModel])` |
+| **`button-has-type`** | `'error'` | Tout bouton doit avoir un `type` explicite (`submit`, `button`, `reset`) pour éviter les soumissions involontaires |
+| **`click-events-have-key-events`** | `'error'` | Accessibilité : un élément cliquable doit aussi être utilisable au clavier |
+| **`conditional-complexity`** | `5` | Limiter la complexité logique dans le **HTML**. Si trop complexe, déplacer la logique dans le **TS** |
+| **`cyclomatic-complexity`** | `15` | Alerter si un template contient trop de boucles/conditions imbriquées (indigeste) |
+| **`eqeqeq`** | `'error'` | Forcer l'égalité stricte `===` dans les templates |
+| **`interactive-supports-focus`** | `'error'` | Les éléments interactifs doivent être "focusables" (`tabindex`) pour la navigation clavier |
+| **`no-any`** | `'error'` | Interdire `$any(...)` dans le **HTML** qui désactive le typage fort |
+| **`no-distracting-elements`** | `'error'` | Bannir les balises obsolètes (`<marquee>`, `<blink>`). |
+| **`no-inline-styles`** | `'error'` | Le **SCSS** doit être dans les fichiers de style, pas dans l'attribut `style="..."` |
+| **`prefer-built-in-pipes`** | `'error'` | Préférer les **Pipes**** natifs (`DatePipe`, `AsyncPipe`) aux solutions manuelles |
+| **`prefer-self-closing-tags`** | `'error'` | Nettoyer le code : `<app-comp />` au lieu de `<app-comp></app-comp>` si vide |
+
+</details>
+
+<h3 id="stylistics">Stylistics</h3>
+
 > [ESLint Stylistics Documentation](https://eslint.style/rules)  
 
-> [ESLint Recommanded Documentation](https://eslint.org/docs/latest/rules/)  
+<details>
 
-Pour la configuration des règles RXJS il faut ajouter ces deux librairies =>  
+  <summary>🧐 Consulter la configuration détaillée</summary>
 
-> [ESLint RXJS Documentation](https://github.com/cartant/eslint-plugin-rxjs)  
+&nbsp;
 
-```shell
-pnpm add -D @typescript-eslint/parser eslint-plugin-rxjs
-```
+Depuis la dépréciation des règles de formatage dans **ESLint core**, ce plugin (`@stylistic`) prend le relais. Il assure une uniformité visuelle stricte (espaces, virgules, points-virgules) qui n'impacte pas la logique mais rend le code agréable à lire et évite les `Git diff` inutiles.  
+
+| Option | Valeur | Description |
+| :--- | :--- | :--- |
+| **`arrow-spacing`** | `true` | Espace avant et après la flèche `=>` des fonctions fléchées |
+| **`block-spacing`** | `'always'` | Espace à l'intérieur des accolades `{ code }` |
+| **`brace-style`** | `'stroustrup'` | Le `else` doit être sur sa propre ligne |
+| **`comma-spacing`** | `[Object]` | Espace après la virgule, jamais avant |
+| **`indent`** | `2` | Indentation standard de 2 espaces |
+| **`max-len`** | `120` | Limiter la longueur des lignes de code (500 pour les commentaires) |
+| **`member-delimiter-style`** | `'semi'` | Utilisation de points-virgules dans les interfaces/types |
+| **`no-multiple-empty-lines`** | `2` | Maximum 2 lignes vides consécutives pour aérer sans trop espacer |
+| **`padding-line-between-statements`** | `[Object]` | Force une ligne vide avant toute déclaration de `class` |
+| **`quotes`** | `'single'` | Utilisation exclusive des guillemets simples `'` (sauf échappement) |
+| **`semi`** | `'always'` | Point-virgule obligatoire à la fin des instructions |
+| **`spaced-comment`** | `'always'` | Espace obligatoire au début d'un commentaire `// Texte` |
+
+</details>
+
+<h3 id="security">Security</h3>
+
+> [ESLint Security Documentation](https://www.npmjs.com/package/eslint-plugin-security)  
+
+<details>
+
+  <summary>🧐 Consulter la configuration détaillée</summary>
+
+&nbsp;
+
+Le plugin (**eslint-plugin-security**) ajoute une couche de sécurité statique. Il scanne le code pour détecter des modèles susceptibles de créer des vulnérabilités, comme les attaques par déni de service via **RegEx** (`ReDoS`) ou l'injection d'objets non sécurisés. Nous utilisons ici la configuration recommended standard.  
+
+</details>
+
+</details>
 
 <h2 id="prettier-rules">
   <img
