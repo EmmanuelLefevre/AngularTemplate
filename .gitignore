@@ -4,8 +4,9 @@
 /out-tsc
 /bazel-out
 
-# Compodoc output
+# Compodoc
 .documentation-output
+README_DOC_TEMP.md
 
 # Environments Files
 src/_environments/environment.prod.ts
