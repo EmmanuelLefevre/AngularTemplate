@@ -276,6 +276,9 @@ jobs:
           # ⚠️ Double-check folder name in /dist directory after build (pnpm build)
           SOURCE: 'dist/AngularTemplate/browser/'
 
+          # Avoids sending git configuration files on server
+          EXCLUDE: '/node_modules/, /.github/, /.git/'
+
           # Server IP address
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
@@ -283,9 +286,6 @@ jobs:
 
           # Exact location to place code (/home/<your_user>/public_html)
           TARGET: ${{ secrets.TARGET_PATH }}
-
-          # Avoids sending git configuration files on server
-          EXCLUDE: '/node_modules/, /.github/, /.git/'
 
       - name: 🎯 Deployment
         run: echo "Deployment is underway following security and quality validations..."

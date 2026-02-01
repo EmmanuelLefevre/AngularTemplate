@@ -4,10 +4,10 @@
   "type": "module",
   "scripts": {
     "ng": "ng",
-    "clean": "rimraf coverage .angular",
+    "clean": "rimraf coverage .angular .documentation-output",
     "build": "pnpm clean && ng build",
-    "doc": "compodoc -s -w",
-    "doc:build": "compodoc",
+    "doc": "node docs/_manage-doc.js serve",
+    "doc:build": "node docs/_manage-doc.js build",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "lint": "ng lint",

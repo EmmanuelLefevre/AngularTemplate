@@ -5,6 +5,7 @@
   "includes": "./docs",
   "assetsFolder": "public",
   "port": 8080,
+  "open": true,
   "disableCoverage": true,
   "disablePrivate": true,
   "disableInternal": true,
