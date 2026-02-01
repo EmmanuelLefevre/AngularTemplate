@@ -15,6 +15,7 @@ jobs:
   check-integrity:
     name: 👮 Check Integrity (Lockfile)
     runs-on: ubuntu-latest
+
     steps:
       - name: 📂 Get Code
         uses: actions/checkout@v4
@@ -32,7 +33,7 @@ jobs:
         id: install
         run: pnpm install --frozen-lockfile
 
-      - name: 📢 Lockfile Police (Troll Message)
+      - name: 📢 Failure Notification
         if: failure() && steps.install.outcome == 'failure'
         run: |
           echo "### 🚨 CRIMINAL ACTIVITY DETECTED !" >> $GITHUB_STEP_SUMMARY
@@ -57,9 +58,20 @@ jobs:
           fetch-depth: 0
 
       - name: 🔑 Check Leaked Secrets
+        id: gitleaks
         uses: gitleaks/gitleaks-action@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 📢 Failure Notification
+        if: failure() && steps.gitleaks.outcome == 'failure'
+        run: |
+          echo "### 🚨 SECURITY BREACH DETECTED !" >> $GITHUB_STEP_SUMMARY
+          echo "### 😱 Are you trying to offer our API Keys to the hackers ?" >> $GITHUB_STEP_SUMMARY
+          echo "Hey ${{ github.actor }}, Gitleaks found a secret in your code !" >> $GITHUB_STEP_SUMMARY
+          echo "We appreciate your generosity, but please revoke it immediately and remove it from git history." >> $GITHUB_STEP_SUMMARY
+          echo "👉 Check the logs above to find the leak." >> $GITHUB_STEP_SUMMARY
+          exit 1
 
       - name: 📦 Install PNPM
         uses: pnpm/action-setup@v4
@@ -181,6 +193,40 @@ jobs:
 
       - name: 🧱 Build Check
         run: pnpm build --configuration=production
+
+  documentation:
+    name: 📚 Documentation (GH Pages)
+    needs: [security, quality]
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: 📂 Get Code
+        uses: actions/checkout@v4
+
+      - name: 📦 Install PNPM
+        uses: pnpm/action-setup@v4
+
+      - name: 🏗️ Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'pnpm'
+
+      - name: ⚙️ Install Dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: 📚 Build Documentation
+        run: pnpm doc:ci --base-href /${{ github.event.repository.name }}/
+
+      - name: 🚀 Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./.documentation-output
 
   deploy:
     name: 🎯 Deploy to Production

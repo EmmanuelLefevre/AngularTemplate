@@ -8,6 +8,7 @@
     "build": "pnpm clean && ng build",
     "doc": "node docs/_manage-doc.js serve",
     "doc:build": "node docs/_manage-doc.js build",
+    "doc:ci": "node docs/_manage-doc.js build --keep",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "lint": "ng lint",

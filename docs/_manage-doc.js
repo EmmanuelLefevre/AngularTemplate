@@ -13,6 +13,8 @@ const readmePath = path.join(rootDir, 'README.md');
 const backupPath = path.join(rootDir, 'README_BACKUP.md');
 const outputDir = path.join(rootDir, '.documentation-output');
 
+const keepFiles = process.argv.includes('--keep');
+
 // --- GIT UTILITIES FUNCTIONS ---
 function gitIgnoreFile() {
   try {
@@ -129,10 +131,14 @@ function restoreAndExit(code = 0) {
     gitTrackFile();
 
     // Delete output folder
-    if (fs.existsSync(outputDir)) {
+    // ONLY delete if the --keep option is NOT enabled
+    if (!keepFiles && fs.existsSync(outputDir)) {
       fs.rmSync(outputDir, { recursive: true, force: true });
 
       console.log('🧹 Documentation output directory cleaned.');
+    }
+    else if (keepFiles) {
+      console.log('💾 "--keep" flag detected: Output directory preserved.');
     }
   }
   catch (e) {
