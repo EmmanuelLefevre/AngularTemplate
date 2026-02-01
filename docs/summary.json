@@ -1,7 +1,7 @@
 [
   {
     "title": "Architecture",
-    "file": "ARCHITECTURE.md"
+    "file": "ARCHI.md"
   },
   {
     "title": "Setup",
@@ -17,7 +17,7 @@
   },
   {
     "title": "Configuration",
-    "file": "CONFIGURATION.md"
+    "file": "CONFIG.md"
   },
   {
     "title": "Build & Packaging",
@@ -45,7 +45,7 @@
   },
   {
     "title": "Documentation",
-    "file": "DOCUMENTATION.md"
+    "file": "DOC.md"
   },
   {
     "title": "Rules Reference",
