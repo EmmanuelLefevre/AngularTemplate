@@ -1,5 +1,5 @@
 {
-  "languages": "./src/assets/_i18n/*.json",
+  "languages": "./src/assets/i18n/*.json",
   "project": "./src/**/*.{html,ts}",
   "rules": {
     "deepSearch": "disable",

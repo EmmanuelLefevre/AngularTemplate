@@ -15,7 +15,7 @@ export class CustomTranslateLoader implements TranslateLoader {
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   getTranslation(lang: string): Observable<any> {
-    return this.http.get(`./assets/_i18n/${lang}.json`);
+    return this.http.get(`./assets/i18n/${lang}.json`);
   }
 }
 

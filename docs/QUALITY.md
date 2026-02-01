@@ -463,7 +463,7 @@ pnpm add -D @bartholomej/ngx-translate-extract
 ```JSON
 {
   "scripts": {
-    "i18n:extract": "ngx-translate-extract --input ./src --output ./src/assets/_i18n/en.json ./src/assets/_i18n/fr.json --clean --sort --format namespaced-json",
+    "i18n:extract": "ngx-translate-extract --input ./src --output ./src/assets/i18n/en.json ./src/assets/i18n/fr.json --clean --sort --format namespaced-json",
   }
 }
 ```
@@ -479,7 +479,7 @@ Toujours dans le fichier `package.json`.
   "lint-staged": {
     "src/**/*.{ts,html}": [
       "pnpm i18n:extract",
-      "git add src/assets/_i18n/*.json"
+      "git add src/assets/i18n/*.json"
     ]
   }
 }
