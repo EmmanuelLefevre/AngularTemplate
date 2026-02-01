@@ -21,7 +21,7 @@
   },
   {
     "title": "Build & Packaging",
-    "file": "BUILD_PACKAGING.md"
+    "file": "BUILD.md"
   },
   {
     "title": "CICD",
@@ -33,7 +33,7 @@
   },
   {
     "title": "Multi Langues",
-    "file": "MULTI_LANGUAGES.md"
+    "file": "LANGUAGES.md"
   },
   {
     "title": "Accessibilité",
@@ -49,10 +49,10 @@
   },
   {
     "title": "Rules Reference",
-    "file": "RULES_REFERENCE.md"
+    "file": "RULES.md"
   },
   {
     "title": "FAQ & Erreurs",
-    "file": "FAQ_ERRORS.md"
+    "file": "FAQ.md"
   }
 ]

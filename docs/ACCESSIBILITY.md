@@ -83,7 +83,7 @@ Au-delà du raccourci d'écriture, le terme **A11y** est devenu le symbole de la
 
 Si le numéronyme **A11y** est une convention, les règles techniques à respecter sont quand à elles des normes internationales strictes. On ne fait pas de l'accessibilité "au feeling".
 
-Tout repose sur le **WCAG** (Web Content Accessibility Guidelines), édicté par le **W3C** (l'organisme qui standardise le **Web** comme le **HTML** ou le **CSS**).
+Tout repose sur le **WCAG** (**Web Content Accessibility Guidelines**), édicté par le **W3C** (l'organisme qui standardise le **Web** comme le **HTML** ou le **CSS**).
 
 > [WCAG Documentation](https://www.accessiway.com/economies-sanctions-accessibilite?adgroupid=189936695924&utm_campaign=TA_SRC_2_Des+Mob_FR_Generic_Exact&utm_source=google&utm_medium=cpc&utm_content=783031921168&utm_term=p_wcag&hsa_acc=9218225427&hsa_cam=23095677526&hsa_grp=189936695924&hsa_ad=783031921168&hsa_src=g&hsa_tgt=kwd-387224701&hsa_kw=wcag&hsa_mt=p&hsa_net=adwords&hsa_ver=3&gad_source=1&gad_campaignid=23095677526&gbraid=0AAAAApYqMe7DLm4ytvmfzg6EIeP0cZ-0O&gclid=Cj0KCQiA7fbLBhDJARIsAOAqhscZfe_t_2GQs19eI41fuSBJ5AaMb53iXL-pqTJkhjfAUF-C01cpox0aAuqwEALw_wcB)  
 
