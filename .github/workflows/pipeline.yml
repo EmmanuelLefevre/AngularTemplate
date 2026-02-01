@@ -13,7 +13,7 @@ concurrency:
 
 jobs:
   check-integrity:
-    name: 👮 Check Integrity (Lockfile)
+    name: 👮 Check Lockfile Integrity
     runs-on: ubuntu-latest
 
     steps:
@@ -70,7 +70,7 @@ jobs:
           echo "### 😱 Are you trying to offer our API Keys to the hackers ?" >> $GITHUB_STEP_SUMMARY
           echo "Hey ${{ github.actor }}, Gitleaks found a secret in your code !" >> $GITHUB_STEP_SUMMARY
           echo "We appreciate your generosity, but please revoke it immediately and remove it from git history." >> $GITHUB_STEP_SUMMARY
-          echo "👉 Check the logs above to find the leak." >> $GITHUB_STEP_SUMMARY
+          echo "👉 Check the logs in the "🔑 Check Leaked Secrets" step to find the leak..." >> $GITHUB_STEP_SUMMARY
           exit 1
 
       - name: 📦 Install PNPM
@@ -195,7 +195,7 @@ jobs:
         run: pnpm build --configuration=production
 
   documentation:
-    name: 📚 Documentation (GH Pages)
+    name: 📚 GitHub Pages Documentation
     needs: [security, quality]
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest

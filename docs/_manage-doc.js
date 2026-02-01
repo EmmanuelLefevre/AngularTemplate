@@ -76,7 +76,14 @@ try {
     return `](additional-documentation/${filename.toLowerCase()}.html)`;
   });
 
-  fs.writeFileSync(readmePath, content);
+  // "Time-of-check to time-of-use" safety: use file descriptor to write file
+  const fd = fs.openSync(readmePath, 'w');
+  try {
+    fs.writeSync(fd, content);
+  }
+  finally {
+    fs.closeSync(fd);
+  }
 
   console.log('🔄 README.md prepared for Compodoc (Corrected links).');
 }
