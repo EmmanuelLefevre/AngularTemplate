@@ -31,7 +31,7 @@ Ce fichier contient les paramètres fondamentaux du compilateur **TypeScript** (
 
 Il définit le niveau de rigueur du typage (**Strict Mode**) et la compatibilité du code généré.  
 
-💡 Une documentation complète est disponible dans le fichier `tsconfig.json` et ici... [TypeScript Base Config Rules](./docs/RULES_REFERENCE.md#ts-base-config-rules)  
+💡 Une documentation complète est disponible dans le fichier `tsconfig.json` et ici... [TypeScript Base Config Rules](./docs/RULES.md#ts-base-config-rules)  
 
 > [Consulter la configuration](./tsconfig.json)  
 
@@ -40,13 +40,13 @@ Il définit le niveau de rigueur du typage (**Strict Mode**) et la compatibilit�
 Pour éviter les imports relatifs illisibles comme `../../../../core/services/auth.service`, nous utilisons des **Alias**.  
 Ces raccourcis sont définis dans `compilerOptions.paths` du `tsconfig.json`.  
 
-💡 Une documentation complète est disponible dans le fichier `tsconfig.app.json` et ici... [TypeScript Alias Config Rules](./docs/RULES_REFERENCE.md#ts-alias-config-rules)  
+💡 Une documentation complète est disponible dans le fichier `tsconfig.app.json` et ici... [TypeScript Alias Config Rules](./docs/RULES.md#ts-alias-config-rules)  
 
 <h3 id="app-config">Configuration applicative</h3>
 
 **`tsconfig.app.json`**  
 
-💡 Une documentation complète est disponible dans le fichier `tsconfig.app.json` et ici... [TypeScript App Config Rules](./docs/RULES_REFERENCE.md#ts-app-config-rules)  
+💡 Une documentation complète est disponible dans le fichier `tsconfig.app.json` et ici... [TypeScript App Config Rules](./docs/RULES.md#ts-app-config-rules)  
 
 > [Consulter la configuration](./tsconfig.app.json)  
 
@@ -73,4 +73,4 @@ La configuration se trouve dans le fichier `angular.json`.
 
 > [Consulter la configuration](./angular.json)  
 
-💡 Une documentation complète est disponible ici... [Schematics Rules](./docs/RULES_REFERENCE.md#schematics-rules)  
+💡 Une documentation complète est disponible ici... [Schematics Rules](./docs/RULES.md#schematics-rules)  

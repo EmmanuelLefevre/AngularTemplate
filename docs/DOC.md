@@ -60,7 +60,7 @@ C'est la configuration principale de **Compodoc** (dossier de sortie, port, thè
 
 > [Consulter la configuration](./.compodocrc.json)  
 
-💡 Une documentation complète est disponible ici... [Compodoc Rules](./docs/RULES_REFERENCE.md#compodoc)  
+💡 Une documentation complète est disponible ici... [Compodoc Rules](./docs/RULES.md#compodoc)  
 
 3. Créer le fichier `summary.json` dans un dossier `docs` à la racine =>  
 

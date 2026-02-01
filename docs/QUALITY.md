@@ -107,7 +107,7 @@ Cette configuration de sécurité a été séparée dans un autre fichier afin d
 
 Ouvrir le fichier `eslint.config.js` (qui vient d'être créé à la racine).  
 
-💡 Une documentation complète est disponible ici... [ESLint Rules](./docs/RULES_REFERENCE.md#eslint-rules)  
+💡 Une documentation complète est disponible ici... [ESLint Rules](./docs/RULES.md#eslint-rules)  
 
 **\* Note :** Prettier ne sera pas ajouté automatiquement il faut le faire manuellement.  
 
@@ -206,7 +206,7 @@ pnpm add -D prettier
 
 > [Consulter la configuration](./.prettierrc.js)  
 
-💡 Une documentation complète est disponible dans le fichier `.prettierrc.js` et ici... [Prettier Rules](./docs/RULES_REFERENCE.md#prettier-rules)  
+💡 Une documentation complète est disponible dans le fichier `.prettierrc.js` et ici... [Prettier Rules](./docs/RULES.md#prettier-rules)  
 
 Installer l'extension **Trivago** pour le tri des imports.  
 
@@ -294,7 +294,7 @@ De plus cela activera l'autocomplétion et la validation du fichier `.htmlhintrc
 
 Il faut créer le fichier `.htmlhintrc` à la racine du projet et y coller la configuration présente dans le template.  
 
-💡 Une documentation complète est disponible ici... [HTMLLint Rules](./docs/RULES_REFERENCE.md#htmlhint-rules)  
+💡 Une documentation complète est disponible ici... [HTMLLint Rules](./docs/RULES.md#htmlhint-rules)  
 
 Pour finir ouvrir le fichier `package.json` et ajouter la commande suivante dans la partie `scripts` =>  
 
@@ -323,7 +323,7 @@ Si le script n'est pas défini dans le `package.json` =>
 npx htmlhint "**/*.html"
 ```
 
-💡 Une documentation complète est disponible ici... [HTMLHint Rules](./docs/RULES_REFERENCE.md#htmlhint-rules)  
+💡 Une documentation complète est disponible ici... [HTMLHint Rules](./docs/RULES.md#htmlhint-rules)  
 
 <h2 id="stylelint">
   <img
@@ -375,7 +375,7 @@ ainsi que le script =>
 
 > [Consulter les scripts](./package.json)  
 
-💡 Une documentation complète est disponible ici... [StyleLint Rules](./docs/RULES_REFERENCE.md#stylelint-rules)  
+💡 Une documentation complète est disponible ici... [StyleLint Rules](./docs/RULES.md#stylelint-rules)  
 
 <h2 id="husky">
   <img
