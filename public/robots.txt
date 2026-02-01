@@ -4,5 +4,5 @@ Allow: /contact
 Allow: /home
 Allow: /login
 
-#Sitemap
+# Sitemap
 Sitemap: https://www.angular-template/sitemap.xml
