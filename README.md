@@ -36,7 +36,7 @@
 ## SOMMAIRE
 
 - [PRÉSENTATION](#-présentation)
-- [DOCUMENTATION COMPLÈTE](#-documentation-complète)
+- [DOCUMENTATION](#-documentation)
 - [QUICK START](#-quick-start)
   - [Requirements](#requirements)
   - [Installation](#installation)
@@ -99,9 +99,9 @@ Une bibliothèque de composants internes (Custom Form, Generic Input, Button, Li
 Des outils essentiels comme des **Directives** (`input-focus`, `input-trim`, `input-uppercase`...) et des **Pipes** (`date-format`...) sont inclus et **testés à 100%**.  
 
 📘 **Documentation :**  
-Architecture documentée en temps réel. **Compodoc** génère une documentation technique complète, automatiquement déployée et hébergée sur **GitHub Pages** à chaque merge.
+Architecture documentée en temps réel. **Compodoc** génère une documentation technique complète, automatiquement déployée et hébergée sur **GitHub Pages** à chaque merge. Cette **Compodoc** est évidemment aussi disponible en local !
 
-## 📚 DOCUMENTATION COMPLÈTE
+## 📚 DOCUMENTATION
 
 La documentation détaillée est disponible ici :  
 
@@ -109,7 +109,7 @@ La documentation détaillée est disponible ici :
 - 🚀 [Setup](./docs/SETUP.md)
 - 💎 [Quality](./docs/QUALITY.md)
 - 🧪 [Tests](./docs/TESTS.md)
-- ⚙️ [Configuration](./docs/CONFIGURATION.md)
+- ⚙️ [Configuration](./docs/CONFIG.md)
 - 🏷️ [Build & Packaging](./docs/BUILD.md)
 - 🤖 [CICD](./docs/CICD.md)
 - 🎨 [Styles](./docs/STYLES.md)
@@ -120,7 +120,7 @@ La documentation détaillée est disponible ici :
 - 🔧 [Rules Reference](./docs/RULES.md)
 - 💡 [FAQ & Erreurs](./docs/FAQ.md)
 
-> [Lien vers la documentation GitHub Pages](https://EmmanuelLefevre.github.io/AngularTemplate/)  
+> [Lien vers la documentation GitHub Pages](https://emmanuellefevre.github.io/AngularTemplate/)  
 
 ## ⚡ QUICK START
 

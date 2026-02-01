@@ -5,7 +5,10 @@
 
 ## SOMMAIRE
 
-- [TS CONFIG](#ts-config)
+- [TYPESCRIPT CONFIGURATION](#ts-config)
+  - [Configuration de base](#base-config)
+  - [Alias & Chemins)](#paths-aliases)
+  - [Configuration applicative](#app-config)
 - [SCHEMATICS](#schematics)
 
 <h2 id="ts-config">
@@ -15,35 +18,35 @@
     width="34px"
     src="https://raw.githubusercontent.com/EmmanuelLefevre/GitHubProfileIcons/main/ts_config.png"
   />
-  TS CONFIG
+  TYPESCRIPT CONFIGURATION
 </h2>
+
+La configuration **TypeScript** est divisée en plusieurs fichiers pour séparer les règles globales, celles de l'application et celles des tests.  
+
+<h3 id="base-config">Configuration de Base</h3>
 
 **`tsconfig.json`**  
 
 Ce fichier contient les paramètres fondamentaux du compilateur **TypeScript** (`compilerOptions`) et du compilateur **Angular** (`angularCompilerOptions`) qui sont hérités par tous les autres fichiers de configuration de l'espace de travail.  
 
-Copier/coller la configuration présente dans le template.  
+Il définit le niveau de rigueur du typage (**Strict Mode**) et la compatibilité du code généré.  
 
-💡 Une documentation complète est disponible dans le fichier `tsconfig.json` et ici... [TS Config Rules](./docs/RULES_REFERENCE.md#ts-config-rules)  
+💡 Une documentation complète est disponible dans le fichier `tsconfig.json` et ici... [TypeScript Base Config Rules](./docs/RULES_REFERENCE.md#ts-base-config-rules)  
 
 > [Consulter la configuration](./tsconfig.json)  
 
+<h3 id="paths-aliases">Alias & Chemins</h3>
+
+Pour éviter les imports relatifs illisibles comme `../../../../core/services/auth.service`, nous utilisons des **Alias**.  
+Ces raccourcis sont définis dans `compilerOptions.paths` du `tsconfig.json`.  
+
+💡 Une documentation complète est disponible dans le fichier `tsconfig.app.json` et ici... [TypeScript Alias Config Rules](./docs/RULES_REFERENCE.md#ts-alias-config-rules)  
+
+<h3 id="app-config">Configuration applicative</h3>
+
 **`tsconfig.app.json`**  
 
-Configuration des alias  
-
-```JSON
-{
-  "extends": "./tsconfig.json",
-  "compilerOptions": {
-    "outDir": "./out-tsc/app",
-    "types": ["vite/client"],
-    "rootDir": "./src"
-  },
-  "include": ["src/**/*.ts"],
-  "exclude": ["src/**/*.spec.ts"]
-}
-```
+💡 Une documentation complète est disponible dans le fichier `tsconfig.app.json` et ici... [TypeScript App Config Rules](./docs/RULES_REFERENCE.md#ts-app-config-rules)  
 
 > [Consulter la configuration](./tsconfig.app.json)  
 

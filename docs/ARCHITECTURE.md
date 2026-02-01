@@ -6,6 +6,7 @@
 ```plaintext
 🏗️.github
  ┗ 🤖workflows
+   ┣ cleanup.yml
    ┗ pipeline.yml
 🐶.husky
 💻.vscode
@@ -128,8 +129,11 @@
  ┗ 🧪test-setup.ts
 📄.....
 📄.compodocrc.json
+📄.gitattributes
 📄.gitignore
+📄.htmlhintrc
 📄.npmrc
+📄.prettier.js
 📄.secretlintrc.json
 📄.stylelintrc.json
 📄eslint-security.config.js
@@ -139,7 +143,9 @@
 📄pnpm-lock.yaml
 📄README.md
 🛡️sonar-project.properties
+📄tsconfig.app.json
 📄tsconfig.doc.json
+📄tsconfig.json
+📄tsconfig.spec.json
 🧪vitest.config.ts
-📄.....
 ```
