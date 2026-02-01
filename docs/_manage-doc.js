@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 import { fileURLToPath } from 'node:url';
-import { spawn } from 'node:child_process';
+import { spawn, execSync } from 'node:child_process';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -11,13 +11,39 @@ const rootDir = path.join(__dirname, '../');
 
 const readmePath = path.join(rootDir, 'README.md');
 const backupPath = path.join(rootDir, 'README_BACKUP.md');
+const outputDir = path.join(rootDir, '.documentation-output');
+
+// --- GIT UTILITIES FUNCTIONS ---
+function gitIgnoreFile() {
+  try {
+    // Tells Git to temporarily ignore changes to this file
+    execSync('git update-index --assume-unchanged README.md', { cwd: rootDir, stdio: 'ignore' });
+    console.log('🙈 Git is strictly ignoring README.md changes during generation.');
+  }
+  catch (e) {
+    console.error(e);
+  }
+}
+
+function gitTrackFile() {
+  try {
+    // Tell Git to start tracking the file normally again
+    execSync('git update-index --no-assume-unchanged README.md', { cwd: rootDir, stdio: 'ignore' });
+    console.log('👀 Git is tracking README.md again.');
+  }
+  catch (e) {
+    console.error(e);
+  }
+}
 
 // 1. Saving original README.md
-// First we check that a backup not already exist
 if (fs.existsSync(backupPath)) {
   console.log('⚠️ A backup already exists. Forced restore before starting.');
   try {
+    // Restore original file
     fs.copyFileSync(backupPath, readmePath);
+    // Delete old corrupted backup
+    fs.unlinkSync(backupPath);
   }
   catch(e) {
     console.error('❌ CRITICAL : Unable to restore the previous backup !');
@@ -28,12 +54,16 @@ if (fs.existsSync(backupPath)) {
   }
 }
 
+// Create a fresh backup for this session
 if (fs.existsSync(readmePath)) {
   fs.copyFileSync(readmePath, backupPath);
 }
 
-// 2. Link transformation for Compodoc
+// 2. Link transformation for Compodoc and Git Lockdown
 try {
+  // Lock Git BEFORE modifying the file
+  gitIgnoreFile();
+
   let content = fs.readFileSync(readmePath, 'utf8');
 
   // Transform [Title](./docs/XXX.md) into [Title](additional-documentation/xxx.html)
@@ -60,8 +90,7 @@ if (isServe) {
   args.push('-s', '-w');
 }
 
-// 4. Launch of the Compodoc process
-// shell: true is essential on Windows to execute NPM/PNPM commands
+// 4. Launch Compodoc process
 const child = spawn('npx', ['compodoc', ...args], {
   stdio: 'inherit',
   cwd: rootDir,
@@ -84,14 +113,25 @@ process.on('SIGINT', () => {
 
 function restoreAndExit(code = 0) {
   try {
+    // Restore original README.md
     if (fs.existsSync(backupPath)) {
       fs.copyFileSync(backupPath, readmePath);
       fs.unlinkSync(backupPath);
       console.log('✅ Original README.md restored.');
     }
+
+    // Reactivating Git tracking
+    gitTrackFile();
+
+    // Delete output folder
+    if (fs.existsSync(outputDir)) {
+      fs.rmSync(outputDir, { recursive: true, force: true });
+      console.log('🧹 Documentation output directory cleaned.');
+    }
   }
   catch (e) {
     console.error('⚠️ Error during restoration : ', e);
+    gitTrackFile();
   }
   process.exit(code);
 }
