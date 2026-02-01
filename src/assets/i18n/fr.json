@@ -1,0 +1,73 @@
+{
+  "PROJECT_NAME": "AngularTemplate",
+  "SEO": {},
+  "HEADER": {
+    "LOGO_LINK": "Retour à l'accueil",
+    "CLOSE_MENU": "Fermer le menu",
+    "OPEN_MENU": "Ouvrir le menu"
+  },
+  "FOOTER": {
+    "COPYRIGHT": "©{{year}}",
+    "RIGHTS_RESERVED": "Tous droits réservés.",
+    "PROJECT": "AngularTemplate",
+    "LINKS": {
+      "LINKEDIN": {},
+      "GITHUB": {},
+      "CONTACT": {},
+      "PORTFOLIO": {
+        "TOOLTIP": "Portfolio Emmanuel Lefevre",
+        "ARIA": "Lien vers le portfolio du développeur du site"
+      },
+      "HOST": {
+        "ARIA": "Lien vers l'hébergeur du site"
+      }
+    }
+  },
+  "HOME": {
+    "TITLE": "Bonjour l'ami !",
+    "WELCOME_PREFIX": "Ton nouveau projet",
+    "WELCOME_SUFFIX": "est prêt 🎉"
+  },
+  "AUTH": {
+    "LOGIN": {},
+    "REGISTER": {}
+  },
+  "ERROR_PAGE": {
+    "TITLE": "Une erreur est survenue.",
+    "LABEL": "Erreur",
+    "BUTTON_BACK": "Retour à l'accueil"
+  },
+  "UI_COMPONENTS": {
+    "LANGUAGE_TOGGLE": "Changer la langue en Français",
+    "SCROLL_TO_TOP": {
+      "ARIA": "Bouton pour revenir en haut de la page",
+      "TOOLTIP": "Haut de page"
+    },
+    "BUTTON": {
+      "LOGIN": {
+        "LABEL": "Se connecter",
+        "ARIA": "Bouton pour ouvrir le formulaire de connexion"
+      },
+      "CONTINUE": {},
+      "CANCEL": {},
+      "CLOSE": {
+        "ARIA": "Fermer",
+        "TOOLTIP": "Fermer"
+      }
+    },
+    "FORM": {
+      "AUTH": {
+        "INPUT": {
+          "AUTH.SHOW_PWD": "Montrer le mot de passe"
+        }
+      },
+      "EMAIL": {},
+      "PASSWORD": {},
+      "CONFIRM_PASSWORD": {},
+      "ERROR": {
+        "EMAIL": {},
+        "PASSWORD": {}
+      }
+    }
+  }
+}

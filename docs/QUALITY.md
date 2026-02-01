@@ -10,6 +10,9 @@
 - [HTMLHINT](#htmlhint)
 - [STYLELINT](#stylelint)
 - [SECRETLINT](#secretlint)
+- [NGX TRANSLATE](#translate)
+  - [NGX TRANSLATE LINT](#translate-lint)
+  - [NGX TRANSLATE EXTRACT](#translate-extract)
 - [HUSKY](#husky)
 
 <h2 id="eslint">
@@ -377,6 +380,117 @@ ainsi que le script =>
 
 💡 Une documentation complète est disponible ici... [StyleLint Rules](./docs/RULES.md#stylelint-rules)  
 
+<h2 id="translate">
+  <img
+    alt="NGX TRANSLATE"
+    title="NGX TRANSLATE"
+    width="30px"
+    src="https://raw.githubusercontent.com/EmmanuelLefevre/GitHubProfileIcons/main/ngx_translate.png"
+  />
+  NGX TRANSLATE
+</h2>
+
+<h3 id="translate-lint">NGX TRANSLATE LINTER</h3>
+
+### Introduction :
+
+> [Consulter la documentation du projet](./docs/LANGUAGES.md#ngx-translate-linter)  
+
+### Configuration :
+
+**Etape 1 :** Installer **Ngx Translate Lint**  
+
+```shell
+pnpm add -D ngx-translate-lint
+```
+
+**Etape 2 :** Configurer le script dans `package.json`  
+
+```JSON
+{
+  "scripts": {
+    "i18n:lint": "ngx-translate-lint -c ./translate-lint.json",
+  }
+}
+```
+
+> [Consulter le script](./package.json)  
+
+**Etape 3 :** Créer le fichier `translate-lint.json`  
+
+> [Consulter la configuration](translate-lint.json)  
+
+💡 Une documentation complète est disponible ici... [Ngx Translate Linter Rules](./docs/RULES.md#i18n-lint-rules)  
+
+**Etape 4 :** Configurer `lint-staged`  
+
+Toujours dans le fichier `package.json`.  
+
+```JSON
+{
+  "lint-staged": {
+    "src/**/*.{ts,html}": [
+      "pnpm i18n:lint"
+    ]
+  }
+}
+```
+
+> [Consulter le script](./package.json)  
+
+**Etape 5 :** Vérifier le fonctionnement  
+
+```shell
+pnpm run i18n:lint
+```
+
+<h3 id="translate-extract">NGX TRANSLATE EXTRACT</h3>
+
+### Introduction :
+
+> [Consulter la documentation du projet](./docs/LANGUAGES.md#ngx-translate-extract)  
+
+### Configuration :
+
+**Etape 1 :** Installer **Ngx Translate Extract**  
+
+```shell
+pnpm add -D @bartholomej/ngx-translate-extract
+```
+
+**Etape 2 :** Configurer le script dans `package.json`  
+
+```JSON
+{
+  "scripts": {
+    "i18n:extract": "ngx-translate-extract --input ./src --output ./src/assets/_i18n/en.json ./src/assets/_i18n/fr.json --clean --sort --format namespaced-json",
+  }
+}
+```
+
+> [Consulter le script](./package.json)  
+
+**Etape 3 :** Configurer `lint-staged`  
+
+Toujours dans le fichier `package.json`.  
+
+```JSON
+{
+  "lint-staged": {
+    "src/**/*.{ts,html}": [
+      "pnpm i18n:extract",
+      "git add src/assets/_i18n/*.json"
+    ]
+  }
+}
+```
+
+**Etape 4 :** Vérifier le fonctionnement  
+
+```shell
+pnpm i18n:extract
+```
+
 <h2 id="husky">
   <img
     alt="Husky"
@@ -431,29 +545,31 @@ pnpm exec husky init
 Ouvrir le fichier `package.json`. Ajouter la configuration tout à la fin du fichier (après devDependencies).  
 
 ```JSON
-"lint-staged": {
-  "src/**/*.html": [
-    "htmlhint",
-    "eslint --fix --max-warnings=50",
-    "prettier --write"
-  ],
-  "src/**/*.ts": [
-    "eslint --fix --max-warnings=50",
-    "prettier --write"
-  ],
-  "**/*.{css,scss,json,md}": [
-    "prettier --write"
-  ],
-  "*.scss": [
-    "stylelint --fix"
-  ],
-  "*.{js,cjs,mjs}": [
-    "eslint --fix --max-warnings=50",
-    "prettier --write"
-  ],
-  "*.{yaml,yml}": [
-    "prettier --write"
-  ]
+{
+  "lint-staged": {
+    "src/**/*.html": [
+      "htmlhint",
+      "eslint --fix --max-warnings=50",
+      "prettier --write"
+    ],
+    "src/**/*.ts": [
+      "eslint --fix --max-warnings=50",
+      "prettier --write"
+    ],
+    "**/*.{css,scss,json,md}": [
+      "prettier --write"
+    ],
+    "*.scss": [
+      "stylelint --fix"
+    ],
+    "*.{js,cjs,mjs}": [
+      "eslint --fix --max-warnings=50",
+      "prettier --write"
+    ],
+    "*.{yaml,yml}": [
+      "prettier --write"
+    ]
+  }
 }
 ```
 

@@ -85,6 +85,10 @@ Maximisez votre visibilité. Un **Service Meta** dynamique gère vos balises `<h
 
 🗣️ **Multi-langues :**  
 **I18n** intégré par défaut via **NGX-Translate** permettant de gérer facilement les traductions et de séparer le contenu de la logique métier.  
+L'intégrité des traductions est garantie par un outillage automatisé :  
+
+- 🕵️‍♂️ **Extraction automatique :** `pnpm i18n:extract` => scanne le code pour générer et mettre à jour les fichiers **JSON** sans effort manuel.
+- 👮 **Validation stricte :** `pnpm i18n:lint` un garde-fou **CI/CD** qui bloque le déploiement si une clé est manquante ou inutilisée.
 
 🎨 **Design System & Mobile-First :**  
 Conception intégralement pensée pour le mobile. Le Design System est entièrement variabilisé (mixins, couleurs, polices, espacements...) pour une personnalisation sans douleur.  
@@ -119,6 +123,8 @@ La documentation détaillée est disponible ici :
 - 📘 [Documentation](./docs/DOC.md)
 - 🔧 [Rules Reference](./docs/RULES.md)
 - 💡 [FAQ & Erreurs](./docs/FAQ.md)
+
+<br>
 
 > [Lien vers la documentation GitHub Pages](https://emmanuellefevre.github.io/AngularTemplate/)  
 

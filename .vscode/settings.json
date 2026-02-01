@@ -3,28 +3,65 @@
     "*.json": "jsonc",
     "tsconfig.json": "jsonc",
     "tsconfig.app.json": "jsonc"
-  }
+  },
+  "i18n-ally.displayLanguage": "fr",
+  "i18n-ally.enabledParsers": ["json"],
+  "i18n-ally.extract.autoDetect": true,
+  "i18n-ally.keystyle": "nested",
+  "i18n-ally.localesPaths": ["src/assets/i18n"],
+  "i18n-ally.sortKeys": true,
+  "i18n-ally.sourceLanguage": "en"
 }
 
-/* =========================================================================
+/* ========================================================================
   VS CODE WORKSPACE SETTINGS (settings.json)
 
   These settings are specific to the Visual Studio Code editor (IDE)
   and do NOT affect the compilation, build, or deployment of the project.
 
   Their primary purpose is to enhance the development experience (DX)
-  within this specific IDE instance.
+  within this specific IDE instance, particularly for translations.
   =========================================================================
 
-  files.associations: { ... }
+  --- FILE ASSOCIATIONS --------------------------------------------------
+
+  * files.associations
     Defines language associations for specific file names or extensions.
 
-    "*.json": "jsonc"
-      Treats all generic JSON files as JSON with Comments (JSONC).
+  * "*.json": "jsonc"
+    Treats all generic JSON files as JSON with Comments (JSONC).
+    Allows adding documentation comments (like this block) without syntax errors.
 
-    "tsconfig.json": "jsonc"
-    "tsconfig.app.json": "jsonc"
-      Forces TypeScript configuration files to be treated as JSONC.
-      This is necessary to allow comments (e.g., documentation) within
-      these files without VS Code signaling a syntax error.
+  * "tsconfig.json" / "tsconfig.app.json": "jsonc"
+    Explicitly forces TypeScript configuration files to be treated as JSONC.
+
+  --- I18N ALLY CONFIGURATION --------------------------------------------
+
+  Settings for the "i18n Ally" extension, used to manage translation files.
+
+  * i18n-ally.displayLanguage: "fr"
+    Sets the language displayed in the IDE annotations (tooltips).
+    Allows the developer to see the French translation directly inline in the code.
+
+  * i18n-ally.enabledParsers: ["json"]
+    Restricts the extension to parse only JSON files for translations.
+
+  * i18n-ally.extract.autoDetect: true
+    Enables automatic detection of hardcoded strings in the source code.
+    Facilitates the extraction of text into translation keys directly from the editor.
+
+  * i18n-ally.keystyle: "nested"
+    Specifies the structure of the translation JSON files.
+    "nested" means using objects (e.g., { "HOME": { "TITLE": "..." } }) rather than flat keys.
+
+  * i18n-ally.localesPaths: ["src/assets/i18n"]
+    Defines the directory where translation files (en.json, fr.json) are located.
+
+  * i18n-ally.sortKeys: true
+    Automatically sorts translation keys alphabetically upon saving.
+    Keeps translation files clean, organized, and reduces merge conflicts.
+
+  * i18n-ally.sourceLanguage: "en"
+    Sets English as the source of truth for translations.
+    Used by the extension to identify missing keys in other languages.
 */

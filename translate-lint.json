@@ -1,0 +1,13 @@
+{
+  "languages": "./src/assets/_i18n/*.json",
+  "project": "./src/**/*.{html,ts}",
+  "rules": {
+    "deepSearch": "disable",
+    "emptyKeys": "error",
+    "ignoredKeys": ["\\.(.*)", "(.*).mock", "COMMON.LOADING", "ngIf", "ngFor", "TEST.(.*)"],
+    "keysOnViews": "error",
+    "maxWarning": "0",
+    "misprintKeys": "disable",
+    "zombieKeys": "warning"
+  }
+}

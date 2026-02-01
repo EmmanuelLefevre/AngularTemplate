@@ -99,8 +99,8 @@
  ┣ 🖼️assets
  ┃ ┣ ⚙️_config
  ┃ ┣ 💾_data
- ┃ ┣ 🗣️_i18n
  ┃ ┣ 🔡fonts
+ ┃ ┣ 🗣️i18n
  ┃ ┣ ✨icons
  ┃ ┣ 📷img
  ┃ ┗ 🏢logos
@@ -143,6 +143,7 @@
 📄pnpm-lock.yaml
 📄README.md
 🛡️sonar-project.properties
+📄translate-lint.json
 📄tsconfig.app.json
 📄tsconfig.doc.json
 📄tsconfig.json

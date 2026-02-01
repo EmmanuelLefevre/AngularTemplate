@@ -11,6 +11,8 @@
     "doc:ci": "node docs/_manage-doc.js build --keep",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
+    "i18n:extract": "ngx-translate-extract --input ./src --output ./src/assets/_i18n/en.json ./src/assets/_i18n/fr.json --clean --sort --format namespaced-json",
+    "i18n:lint": "ngx-translate-lint -c ./translate-lint.json",
     "lint": "ng lint",
     "lint:html": "htmlhint \"src/**/*.html\"",
     "lint:scss": "stylelint \"src/**/*.scss\"",
@@ -62,6 +64,7 @@
     "@angular/cli": "21.0.5",
     "@angular/compiler-cli": "21.0.8",
     "@angular/platform-browser-dynamic": "21.0.8",
+    "@bartholomej/ngx-translate-extract": "8.0.2",
     "@compodoc/compodoc": "1.2.1",
     "@eslint/js": "9.39.1",
     "@secretlint/secretlint-rule-preset-recommend": "11.3.1",
@@ -78,6 +81,7 @@
     "husky": "9.1.7",
     "jsdom": "27.4.0",
     "lint-staged": "16.2.7",
+    "ngx-translate-lint": "1.26.5",
     "postcss-scss": "4.0.9",
     "prettier": "3.7.4",
     "rimraf": "6.1.2",
@@ -102,6 +106,9 @@
     "src/**/*.ts": [
       "eslint --fix --max-warnings=50",
       "prettier --write"
+    ],
+    "src/**/*.{ts,html}": [
+      "pnpm i18n:lint"
     ],
     "**/*.{css,scss,json,md}": [
       "prettier --write"

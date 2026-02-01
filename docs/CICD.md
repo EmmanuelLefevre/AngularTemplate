@@ -11,8 +11,9 @@
 - [Snyk](#snyk)
 - [CodeQL](#codeql)
 - [GitLeaks](#gitleaks)
-- [Rimraf](#-rimraf)
-- [CLEAN UP WORKFLOW](#-rimraf)
+- [Linters](#linters)
+- [Rimraf](#rimraf)
+- [clean up workflow](#clean-up-workflow)
 
 <h2 id="protection-des-branches">
   PROTECTION DES BRANCHES
@@ -97,6 +98,8 @@ Configurer son compte **SonarCloud** et son secret `SONAR_TOKEN`.
 
 Créer le fichier `sonar-project.properties` à la racine et y coller la configuration présente dans le template...  
 
+> [Consulter la configuration](./sonar-project.properties)  
+
 <h2 id="snyk">
   <img
     alt="Snyk"
@@ -155,6 +158,18 @@ Bien que nous utilisions **Gitleaks** en local, son intégration dans la pipelin
 - **Auditabilité :** elle génère un rapport officiel dans l'onglet **Security** de **GitHub**, permettant de garder une trace des tentatives d'introduction de données sensibles.
 
 Si **Gitleaks** trouve une faille, le job **Security** échoue immédiatement, bloquant ainsi toute tentative de fusion ou de déploiement.  
+
+<h2 id="linters">
+  💎 Linters
+</h2>
+
+**TOUS** les linters suivants sont de nouveau éxécutés dans le **Job** `quality` :  
+
+- **ESLINT**  
+- **Prettier**  
+- **HTMLHint**  
+- **Stylelint**  
+- **NgxTranslateLint**  
 
 <h2 id="rimraf">
   🧹 RIMRAF

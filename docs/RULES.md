@@ -14,12 +14,16 @@
 - [Prettier Rules](#prettier-rules)
 - [HTMLHint Rules](#htmlhint-rules)
 - [StyleLint Rules](#stylelint-rules)
+- [I18n Lint Rules](#i18n-lint-rules)
 - [TypeScript Config Rules](#ts-config-rules)
   - [TypeScript Base Config Rules](#ts-base-config-rules)
   - [TypeScript Alias Config Rules](#ts-alias-config-rules)
   - [TypeScript App Config Rules](#ts-app-config-rules)
 - [Compodoc Rules](#compodoc)
 - [Schematics Rules](#schematics-rules)
+- [VSCode Rules](#vscode-rules)
+  - [Files Association](#files-association)
+  - [I18n Ally](#i18n-ally)
 
 ## RULES
 
@@ -298,6 +302,29 @@ Le plugin (**eslint-plugin-security**) ajoute une couche de sécurité statique.
 | **`max-nesting-depth`** | `ARRAY` | Contrôle la complexité du CSS en limitant l'imbrication :<br><br>**Limite :** 3 niveaux de profondeur maximum<br><br>**Exception :** Les "at-rules" sans bloc (comme les `@import` ou `@include` simples) sont ignorées via `["blockless-at-rules"]` |
 | **`scss/at-rule-no-unknown`** | `true` | Remplace la règle standard `at-rule-no-unknown` (qui est mise à `null`)<br><br>Vérifie la validité des directives (`@`), tout en autorisant celles spécifiques au SCSS comme `@mixin`, `@include` ou `@content` |
 | **`scss/comment-no-empty`** | `true` | Remplace la règle standard `comment-no-empty` (qui est mise à `null`)<br><br>Interdit les commentaires vides, tout en supportant la syntaxe de commentaire double slash `//` du SCSS |
+
+</details>
+
+<h2 id="i18n-lint-rules">
+  <img
+    alt="I18NLINT"
+    title="I18NLINT"
+    width="34px"
+    src="https://raw.githubusercontent.com/EmmanuelLefevre/GitHubProfileIcons/main/i18n.svg"
+  />
+  I18n Lint Rules
+</h2>
+
+> [Ngx Translate Linter Documentation](https://www.npmjs.com/package/ngx-translate-lint)  
+
+<details>
+
+  <summary>🧐 Consulter la configuration détaillée</summary>
+
+&nbsp;
+
+| Option | Valeur | Description |
+| :--- | :--- | :--- |
 
 </details>
 
@@ -685,6 +712,48 @@ Configuration pour la gestion globale des services (`ng g s`).
 | :--- | :--- | :--- |
 | **`skipTests`** | `false` | Générer un fichier de test unitaire (`.spec.ts`) |
 | **`type`** | `"service"` | Ajouter le type à la classe et au fichier (`api.service.ts`) |
+
+</details>
+
+</details>
+
+<h2 id="vscode-rules">
+  <img
+    alt="VSCODE"
+    title="VSCODE"
+    width="34px"
+    src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg"
+  />
+  VSCode Rules
+</h2>
+
+<details>
+
+  <summary>👁️ Tout voir</summary>
+
+<h3 id="files-association">Files Association</h3>
+
+<details>
+
+  <summary>🧐 Consulter la configuration détaillée</summary>
+
+&nbsp;
+
+| Option | Valeur | Description |
+| :--- | :--- | :--- |
+
+</details>
+
+<h3 id="i18n-ally">I18n Ally</h3>
+
+<details>
+
+  <summary>🧐 Consulter la configuration détaillée</summary>
+
+&nbsp;
+
+| Option | Valeur | Description |
+| :--- | :--- | :--- |
 
 </details>
 
