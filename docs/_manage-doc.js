@@ -18,6 +18,7 @@ function gitIgnoreFile() {
   try {
     // Tells Git to temporarily ignore changes to this file
     execSync('git update-index --assume-unchanged README.md', { cwd: rootDir, stdio: 'ignore' });
+
     console.log('🙈 Git is strictly ignoring README.md changes during generation.');
   }
   catch (e) {
@@ -29,7 +30,8 @@ function gitTrackFile() {
   try {
     // Tell Git to start tracking the file normally again
     execSync('git update-index --no-assume-unchanged README.md', { cwd: rootDir, stdio: 'ignore' });
-    console.log('👀 Git is tracking README.md again.');
+
+    console.log('👀 Git is tracking README.md again...');
   }
   catch (e) {
     console.error(e);
@@ -39,6 +41,7 @@ function gitTrackFile() {
 // 1. Saving original README.md
 if (fs.existsSync(backupPath)) {
   console.log('⚠️ A backup already exists. Forced restore before starting.');
+
   try {
     // Restore original file
     fs.copyFileSync(backupPath, readmePath);
@@ -46,8 +49,8 @@ if (fs.existsSync(backupPath)) {
     fs.unlinkSync(backupPath);
   }
   catch(e) {
-    console.error('❌ CRITICAL : Unable to restore the previous backup !');
-    console.error('To prevent data loss process has been stopped.');
+    console.error('❌ CRITICAL : Unable to restore previous backup !');
+    console.error('To prevent data loss, process has been stopped.');
     console.error('👉 Please manually check README.md and delete README_BACKUP.md');
     console.error(e);
     process.exit(1);
@@ -72,6 +75,7 @@ try {
   });
 
   fs.writeFileSync(readmePath, content);
+
   console.log('🔄 README.md prepared for Compodoc (Corrected links).');
 }
 catch (err) {
@@ -117,6 +121,7 @@ function restoreAndExit(code = 0) {
     if (fs.existsSync(backupPath)) {
       fs.copyFileSync(backupPath, readmePath);
       fs.unlinkSync(backupPath);
+
       console.log('✅ Original README.md restored.');
     }
 
@@ -126,6 +131,7 @@ function restoreAndExit(code = 0) {
     // Delete output folder
     if (fs.existsSync(outputDir)) {
       fs.rmSync(outputDir, { recursive: true, force: true });
+
       console.log('🧹 Documentation output directory cleaned.');
     }
   }
