@@ -105,7 +105,7 @@ Architecture documentée en temps réel. **Compodoc** génère une documentation
 
 La documentation détaillée est disponible ici :  
 
-- 🏗 [Architecture](./docs/ARCHITECTURE.md)
+- 🏗 [Architecture](./docs/ARCHI.md)
 - 🚀 [Setup](./docs/SETUP.md)
 - 💎 [Quality](./docs/QUALITY.md)
 - 🧪 [Tests](./docs/TESTS.md)
@@ -116,7 +116,7 @@ La documentation détaillée est disponible ici :
 - 🗣️ [Multi Langues](./docs/LANGUAGES.md)
 - ♿ [Accessibilité](./docs/ACCESSIBILITY.md)
 - 📈 [SEO](./docs/SEO.md)
-- 📘 [Documentation](./docs/DOCUMENTATION.md)
+- 📘 [Documentation](./docs/DOC.md)
 - 🔧 [Rules Reference](./docs/RULES.md)
 - 💡 [FAQ & Erreurs](./docs/FAQ.md)
 
