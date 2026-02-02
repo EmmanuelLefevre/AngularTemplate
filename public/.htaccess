@@ -26,6 +26,9 @@
   # Limit the information sent to other sites when a link is clicked
   Header set Referrer-Policy "strict-origin-when-cross-origin"
 
+  # Disables sensitive functions by default
+  Header set Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=(), usb=(), magnetometer=()"
+
   # ONLY allow scripts from your own site
   # Note : If you are using Google fonts or external APIs, you will need to add them here.
   Header set Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self'; connect-src 'self' https://api.votre-domaine.com; object-src 'none'; base-uri 'self';"

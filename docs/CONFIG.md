@@ -97,6 +97,11 @@ Le fichier assure trois rôles critiques pour la sécurité et la navigation :
 | **🔀 URL Rewriting** | **SPA Fallback** : Rediriger toutes les requêtes inconnues vers `index.html` pour que le **Router Angular** prenne le relais (évite les erreurs 404 au rechargement) |
 | **🔒 Force HTTPS** | Rediriger automatiquement tout le trafic **HTTP** (Port 80) vers **HTTPS** (Port 443) pour chiffrer les échanges |
 | **🛡️ Security Headers** | Injecter des en-têtes **HTTP** stricts pour protéger l'application contre les attaques courantes <br> - `Strict-Transport-Security` (**HSTS**) <br> - `Content-Security-Policy` (**XSS**) <br> - `X-Frame-Options` (**Clickjacking**) |
+| **🛂 Permissions-Policy** | **Contrôle des API Navigateur.** <br> Permet de désactiver complètement l'accès aux fonctionnalités sensibles du matériel (Caméra, Micro, Géolocalisation, USB, Paiement) pour renforcer la vie privée de l'utilisateur |
+
+> [🔗 Security Headers Scan](https://securityheaders.com/)  
+
+![Security Headers Scan Result](https://github.com/EmmanuelLefevre/MarkdownImg/blob/main/.png)  
 
 <h2 id="schematics">
   <img
