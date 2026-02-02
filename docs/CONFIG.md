@@ -101,7 +101,7 @@ Le fichier assure trois rôles critiques pour la sécurité et la navigation :
 
 > [🔗 Security Headers Scan](https://securityheaders.com/)  
 
-![Security Headers Scan Result](https://github.com/EmmanuelLefevre/MarkdownImg/blob/main/.png)  
+![Security Headers Scan Result](https://github.com/EmmanuelLefevre/MarkdownImg/blob/main/snyk_security_headers.png)  
 
 <h2 id="schematics">
   <img
