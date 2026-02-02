@@ -98,7 +98,7 @@ Configurer son compte **SonarCloud** et son secret `SONAR_TOKEN`.
 
 Créer le fichier `sonar-project.properties` à la racine et y coller la configuration présente dans le template...  
 
-> [Consulter la configuration](./sonar-project.properties)  
+> [📄 Consulter la configuration](./sonar-project.properties)  
 
 <h2 id="snyk">
   <img

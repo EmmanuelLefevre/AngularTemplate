@@ -34,7 +34,7 @@ Dans `angular.json` ajouter la propriété `stylePreprocessorOptions` dans `@arc
 }
 ```
 
-> [Consulter la configuration](./angular.json)  
+> [📄 Consulter la configuration](./angular.json)  
 
 <h2 id="sass">
   <img
@@ -46,7 +46,7 @@ Dans `angular.json` ajouter la propriété `stylePreprocessorOptions` dans `@arc
   SASS
 </h2>
 
-> [SASS Documentation](https://sass-lang.com/documentation/)  
+> [🔗 SASS Documentation](https://sass-lang.com/documentation/)  
 
 **SASS** (Syntactically Awesome Style Sheets)  
 
@@ -126,7 +126,7 @@ Permet la gestion facile des thèmes (Dark/Light mode).
   BEM
 </h2>
 
-> [BEM Documentation](https://en.bem.info/methodology/)  
+> [🔗 BEM Documentation](https://en.bem.info/methodology/)  
 
 **Méthodologie BEM** (Block Element Modifier)  
 
@@ -186,7 +186,7 @@ En **SCSS** avec **BEM**, évitez d'imbriquer plus de 1 niveau de profondeur (le
   ANGULAR MATERIAL
 </h2>
 
-> [Angular Material Documentation](https://material.angular.dev/components/categories)
+> [🔗 Angular Material Documentation](https://material.angular.dev/components/categories)
 
 **Angular Material** est la bibliothèque de composants officielle basée sur les principes du **Material Design**. Elle offre une collection de composants UI testés, accessibles et performants.  
 
@@ -206,7 +206,7 @@ pnpm add @angular/material @angular/cdk
   FONTAWESOME
 </h2>
 
-> [Fontawesome Documentation](https://docs.fontawesome.com/)
+> [🔗 Fontawesome Documentation](https://docs.fontawesome.com/)
 
 Pour l'iconographie, **Font Awesome** est le standard de l'industrie. Plutôt que d'utiliser des polices de caractères, l'intégration via les composants **Angular** sera privilégiée, cela permet une gestion optimale des **SVG** et du **Tree-shaking** (seules les icônes utilisées sont incluses dans le build final).  
 

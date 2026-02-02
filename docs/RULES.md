@@ -37,8 +37,8 @@
   ESLint Rules
 </h2>
 
-> [ESLint Documentation](https://eslint.org/docs/latest/use/getting-started)  
-> [ESLint Recommanded Documentation](https://eslint.org/docs/latest/rules/)  
+> [🔗 ESLint Documentation](https://eslint.org/docs/latest/use/getting-started)  
+> [🔗 ESLint Recommanded Documentation](https://eslint.org/docs/latest/rules/)  
 
 <details>
 
@@ -48,7 +48,7 @@
 
 <h3 id="angular">Angular</h3>
 
-> [ESLint Angular Documentation](https://www.npmjs.com/package/@angular-eslint/eslint-plugin)  
+> [🔗 ESLint Angular Documentation](https://www.npmjs.com/package/@angular-eslint/eslint-plugin)  
 
 <details>
 
@@ -74,7 +74,7 @@ Cette section regroupe les règles spécifiques au framework **Angular**. Elles 
 
 <h3 id="typescript">TypeScript</h3>
 
-> [ESLint TypeScript Documentation](https://typescript-eslint.io/rules/)  
+> [🔗 ESLint TypeScript Documentation](https://typescript-eslint.io/rules/)  
 
 <details>
 
@@ -100,7 +100,7 @@ Ces règles étendent les capacités d'**ESLint** pour comprendre la syntaxe **T
 
 <h3 id="angular-template">Angular Template</h3>
 
-> [ESLint Angular Template Documentation](https://www.npmjs.com/package/@angular-eslint/eslint-plugin-template)  
+> [🔗 ESLint Angular Template Documentation](https://www.npmjs.com/package/@angular-eslint/eslint-plugin-template)  
 
 <details>
 
@@ -130,7 +130,7 @@ Ce linter analyse spécifiquement les fichiers **HTML** (`.html`). Il est crucia
 
 <h3 id="stylistics">Stylistics</h3>
 
-> [ESLint Stylistics Documentation](https://eslint.style/rules)  
+> [🔗 ESLint Stylistics Documentation](https://eslint.style/rules)  
 
 <details>
 
@@ -159,7 +159,7 @@ Depuis la dépréciation des règles de formatage dans **ESLint core**, ce plugi
 
 <h3 id="security">Security</h3>
 
-> [ESLint Security Documentation](https://www.npmjs.com/package/eslint-plugin-security)  
+> [🔗 ESLint Security Documentation](https://www.npmjs.com/package/eslint-plugin-security)  
 
 <details>
 
@@ -183,7 +183,7 @@ Le plugin (**eslint-plugin-security**) ajoute une couche de sécurité statique.
   Prettier Rules
 </h2>
 
-> [Prettier Documentation](https://prettier.io/docs/options)  
+> [🔗 Prettier Documentation](https://prettier.io/docs/options)  
 
 <details>
 
@@ -230,7 +230,7 @@ Le plugin (**eslint-plugin-security**) ajoute une couche de sécurité statique.
   HTMLHint Rules
 </h2>
 
-> [HTMLHint Documentation](https://htmlhint.com/rules/)  
+> [🔗 HTMLHint Documentation](https://htmlhint.com/rules/)  
 
 <details>
 
@@ -283,7 +283,7 @@ Le plugin (**eslint-plugin-security**) ajoute une couche de sécurité statique.
   StyleLint Rules
 </h2>
 
-> [StyleLint SCSS Documentation](https://stylelint.io/user-guide/rules)  
+> [🔗 StyleLint SCSS Documentation](https://stylelint.io/user-guide/rules)  
 
 <details>
 
@@ -315,7 +315,7 @@ Le plugin (**eslint-plugin-security**) ajoute une couche de sécurité statique.
   I18n Lint Rules
 </h2>
 
-> [Ngx Translate Linter Documentation](https://www.npmjs.com/package/ngx-translate-lint)  
+> [🔗 Ngx Translate Linter Documentation](https://www.npmjs.com/package/ngx-translate-lint)  
 
 <details>
 
@@ -338,7 +338,7 @@ Le plugin (**eslint-plugin-security**) ajoute une couche de sécurité statique.
   TypeScript Config Rules
 </h2>
 
-> [TypeScript Config Documentation](https://www.typescriptlang.org/tsconfig/)  
+> [🔗 TypeScript Config Documentation](https://www.typescriptlang.org/tsconfig/)  
 
 <h3 id="ts-base-config-rules">TypeScript Base Config Rules</h3>
 
@@ -488,7 +488,7 @@ Ces paramètres contrôlent le compilateur AOT (Ahead-of-Time) d'Angular, spéci
   Schematics Rules
 </h2>
 
-> [Angular Documentation](https://github.com/angular/angular-cli/tree/main/packages/schematics/angular)
+> [🔗 Angular Documentation](https://github.com/angular/angular-cli/tree/main/packages/schematics/angular)
 
 <details>
 

@@ -58,7 +58,7 @@ Si un secret valide traîne réellement :
 
 Si le commit est déjà sur le serveur : il faudra utiliser un outil comme **BFG Repo-Cleaner** ou **git filter-repo**.
 
-> [Procédure Git Filter Repo](https://github.com/EmmanuelLefevre/Documentations/blob/main/Tutorials/github_tricks.md)
+> [🔗 Procédure Git Filter Repo](https://github.com/EmmanuelLefevre/Documentations/blob/main/Tutorials/github_tricks.md)
 
 3. **Cas B : C'est un "Faux Positif"**
 
@@ -164,7 +164,7 @@ Push again 😜
 
 Créer le fichier `.gitattributes` à la racine du projet...  
 
-> [Consulter la configuration](./.gitattributes)  
+> [📄 Consulter la configuration](./.gitattributes)  
 
 Puis "renormaliser" la config **Git** en lançant ces commandes dans le projet :
 
@@ -193,7 +193,7 @@ git push --force origin main
 
 L'auteur "Andrew Branch" est membre de l'équipe **TypeScript** chez **Microsoft**, ce qui garantit la fiabilité et la pertinence de l'outil.
 
-> [andrewbranch/ts5to6 – Outil de migration TypeScript 5 vers 6](https://github.com/andrewbranch/ts5to6)
+> [🔗 andrewbranch/ts5to6 – Outil de migration TypeScript 5 vers 6](https://github.com/andrewbranch/ts5to6)
 
 - **BaseUrl**
 

@@ -33,7 +33,7 @@ Il définit le niveau de rigueur du typage (**Strict Mode**) et la compatibilit�
 
 💡 Une documentation complète est disponible dans le fichier `tsconfig.json` et ici... [TypeScript Base Config Rules](./docs/RULES.md#ts-base-config-rules)  
 
-> [Consulter la configuration](./tsconfig.json)  
+📄 Consulter la configuration](./tsconfig.json)  
 
 <h3 id="paths-aliases">Alias & Chemins</h3>
 
@@ -48,7 +48,7 @@ Ces raccourcis sont définis dans `compilerOptions.paths` du `tsconfig.json`.
 
 💡 Une documentation complète est disponible dans le fichier `tsconfig.app.json` et ici... [TypeScript App Config Rules](./docs/RULES.md#ts-app-config-rules)  
 
-> [Consulter la configuration](./tsconfig.app.json)  
+> [📄 Consulter la configuration](./tsconfig.app.json)  
 
 <h2 id="schematics">
   <img
@@ -71,6 +71,6 @@ Les **schematics** utilisent des règles pour définir comment le code doit êtr
 
 La configuration se trouve dans le fichier `angular.json`.  
 
-> [Consulter la configuration](./angular.json)  
+> [📄 Consulter la configuration](./angular.json)  
 
 💡 Une documentation complète est disponible ici... [Schematics Rules](./docs/RULES.md#schematics-rules)  

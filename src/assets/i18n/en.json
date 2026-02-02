@@ -1,19 +1,45 @@
 {
   "PROJECT_NAME": "AngularTemplate",
-  "SEO": {},
+  "SEO": {
+    "DEFAULT_TITLE": "AngularTemplate",
+    "DEFAULT_DESCRIPTION": "Angular 21 template with CI/CD, SEO, i18n and more",
+    "HOME_TITLE": "Home",
+    "HOME_DESCRIPTION": "Welcome to Angular Template",
+    "CONTACT_TITLE": "Contact",
+    "CONTACT_DESCRIPTION": "Website contact page",
+    "LOGIN_TITLE": "Login",
+    "LOGIN_DESCRIPTION": "Website login page"
+  },
   "HEADER": {
     "LOGO_LINK": "Back to home",
+    "WELCOME": "Welcome",
+    "CONTACT": "Contact",
     "CLOSE_MENU": "Close menu",
     "OPEN_MENU": "Open menu"
   },
   "FOOTER": {
     "COPYRIGHT": "©{{year}}",
+    "DEVELOPPER": "Site developped by",
+    "DEVELOPPER_NAME": "Emmanuel Lefevre ",
+    "HOST": "and hosted on",
+    "HOST_ADDRESS": "10, Rue de la Paix 75000 Paris",
+    "HOST_NAME": "Planet Hoster ",
+    "HOST_PHONE": "0 800 123 456",
     "RIGHTS_RESERVED": "All rights reserved.",
     "PROJECT": "AngularTemplate",
     "LINKS": {
-      "LINKEDIN": {},
-      "GITHUB": {},
-      "CONTACT": {},
+      "LINKEDIN": {
+        "TOOLTIP": "LinkedIn Link",
+        "ARIA": "Link to Emmanuel Lefevre's LinkedIn profile"
+      },
+      "GITHUB": {
+        "TOOLTIP": "GitHub Link",
+        "ARIA": "Link to Emmanuel Lefevre's GitHub profile"
+      },
+      "CONTACT": {
+        "TOOLTIP": "Contact Form",
+        "ARIA": "Link to the website's contact form"
+      },
       "PORTFOLIO": {
         "TOOLTIP": "Portfolio Emmanuel Lefevre",
         "ARIA": "Link to the website developer's portfolio"
@@ -29,8 +55,17 @@
     "WELCOME_SUFFIX": " is ready 🎉"
   },
   "AUTH": {
-    "LOGIN": {},
-    "REGISTER": {}
+    "LOGIN": {
+      "TITLE": "Great to see you again !",
+      "SUBTITLE": "Login to access your private area.",
+      "SWITCH_LINK": "Already have an account? Login"
+    },
+    "REGISTER": {
+      "TITLE": "Create an account",
+      "SUBTITLE": "Join us in just a few clicks.",
+      "SWITCH_LINK": "Don't have an account yet? Sign up"
+    },
+    "SWITCH_MODE_ARIA": "Switch between the login form and the registration form"
   },
   "ERROR_PAGE": {
     "TITLE": "An error has occurred.",
@@ -48,8 +83,14 @@
         "LABEL": "Login",
         "ARIA": "Button to open the login form"
       },
-      "CONTINUE": {},
-      "CANCEL": {},
+      "CONTINUE": {
+        "LABEL": "Continue",
+        "ARIA": "Button to login"
+      },
+      "CANCEL": {
+        "LABEL": "Cancel",
+        "ARIA": "Button to cancel entry"
+      },
       "CLOSE": {
         "ARIA": "Close",
         "TOOLTIP": "Close"
@@ -58,15 +99,29 @@
     "FORM": {
       "AUTH": {
         "INPUT": {
+          "HIDE_PWD": "Hide password",
           "AUTH.SHOW_PWD": "Show password"
         }
       },
-      "EMAIL": {},
-      "PASSWORD": {},
-      "CONFIRM_PASSWORD": {},
+      "EMAIL": {
+        "LABEL": "Email",
+        "PLACEHOLDER": "Email"
+      },
+      "PASSWORD": {
+        "LABEL": "Password",
+        "PLACEHOLDER": "Password"
+      },
+      "CONFIRM_PASSWORD": {
+        "LABEL": "Confirm password",
+        "PLACEHOLDER": "Confirm password"
+      },
       "ERROR": {
-        "EMAIL": {},
-        "PASSWORD": {}
+        "EMAIL": {
+          "INVALID": "The email address is invalid."
+        },
+        "PASSWORD": {
+          "INVALID": "The password is invalid."
+        }
       }
     }
   }

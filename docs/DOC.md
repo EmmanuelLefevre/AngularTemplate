@@ -25,14 +25,14 @@
 
 **Compodoc** est un outil de génération de documentation pour les applications **Angular**. **Compodoc** est le moteur utilisé pour analyser le code **TypeScript** (`Modules`, `Components`, `Injectables`, `Routes`, `Interfaces`...) et générer un site web statique complet avec des graphiques de dépendances et une navigation fluide.  
 
-> [Compodoc Documentation](https://compodoc.app/)  
+> [🔗 Compodoc Documentation](https://compodoc.app/)  
 
 Dans ce projet, nous avons poussé l'intégration plus loin pour permettre une double navigation fluide :  
 
 - Via les fichiers **Markdown** sur **GitHub**.  
 - Via le site généré **Compodoc**.  
 
-> [Lien vers la documentation GitHub Pages](https://emmanuellefevre.github.io/AngularTemplate/)  
+> [🔗 Lien vers la documentation GitHub Pages](https://emmanuellefevre.github.io/AngularTemplate/)  
 
 ### CONFIGURATION
 
@@ -52,13 +52,13 @@ pnpm add -D @compodoc/compodoc
 
 1. Créer `tsconfig.doc.json` (à la racine), afin que **Compodoc** exclu les fichiers de tests (`.spec.ts`) de la documentation....  
 
-> [Consulter la configuration](./tsconfig.doc.json)  
+> [📄 Consulter la configuration](./tsconfig.doc.json)  
 
 2. Créer le fichier `.compodocrc.json` =>  
 
 C'est la configuration principale de **Compodoc** (dossier de sortie, port, thème...)  
 
-> [Consulter la configuration](./.compodocrc.json)  
+> [📄 Consulter la configuration](./.compodocrc.json)  
 
 💡 Une documentation complète est disponible ici... [Compodoc Rules](./docs/RULES.md#compodoc)  
 
@@ -66,7 +66,7 @@ C'est la configuration principale de **Compodoc** (dossier de sortie, port, thè
 
 Celui-ci sert à définir la structure du menu latéral pour la documentation additionnelle (fichiers **Markdown**).  
 
-> [Consulter la configuration](./docs/summary.json)  
+> [📄 Consulter la configuration](./docs/summary.json)  
 
 **Etape 3 :** Ajouter les scripts au `package.json`  
 
@@ -82,7 +82,7 @@ Celui-ci sert à définir la structure du menu latéral pour la documentation ad
 
 `pnpm doc:build` ne génère simplement que des fichiers statiques, ce script n'est utile que pour vérifier le build en local...Il n'est pas utilisé dans le déploiement !  
 
-> [Consulter les scripts](./package.json)  
+> [📄 Consulter les scripts](./package.json)  
 
 **Etape 4 :** Lancer le serveur **Compodoc** en local =>  
 
@@ -157,7 +157,7 @@ Le déploiement ne se lance que sur la branche `main`. Il nécessite que les job
 
 La documentation est hébergée gratuitement via **GitHub Pages**. Elle est automatiquement mise à jour à chaque modification sur la branche main.  
 
-> [Lien vers la documentation GitHub Pages](https://EmmanuelLefevre.github.io/AngularTemplate/)  
+> [🔗 Lien vers la documentation GitHub Pages](https://EmmanuelLefevre.github.io/AngularTemplate/)  
 
 <h2 id="depot">
   <img
@@ -175,4 +175,4 @@ Pour que le site soit accessible, la configuration suivante a été appliquée d
 - **Source :** Deploy from a branch
 - **Branch :** gh-pages / (root)
 
-> [Lien vers la configuration GitHub Pages](https://github.com/EmmanuelLefevre/AngularTemplate/settings/pages)  
+> [🔗 Lien vers la configuration GitHub Pages](https://github.com/EmmanuelLefevre/AngularTemplate/settings/pages)  

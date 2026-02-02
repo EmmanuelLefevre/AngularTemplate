@@ -28,7 +28,7 @@ Renseigner le chemin des fichiers d'environnement et définir des budgets de per
 
 De plus il faut ajouter le favicon, les scripts, le browser et l'index dans l'objet `options`.  
 
-> [Consulter la configuration](./angular.json)  
+> [📄 Consulter la configuration](./angular.json)  
 
 <h2 id="packaging">
   <img

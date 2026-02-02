@@ -107,9 +107,6 @@
       "eslint --fix --max-warnings=50",
       "prettier --write"
     ],
-    "src/**/*.{ts,html}": [
-      "pnpm i18n:lint"
-    ],
     "**/*.{css,scss,json,md}": [
       "prettier --write"
     ],

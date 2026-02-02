@@ -29,7 +29,7 @@ Installer les librairies suivantes =>
 pnpm add @ngx-translate/core @ngx-translate/http-loader
 ```
 
-> [Ngx Translate Documentation](https://ngx-translate.org/)  
+> [🔗 Ngx Translate Documentation](https://ngx-translate.org/)  
 
 **Internationalisation avec NGX-Translate**  
 
@@ -43,7 +43,7 @@ L'implémentation choisie repose sur **NGX-Translate**, la bibliothèque de réf
 
 <h3 id="extension">EXTENSION VSCODE</h3>
 
-> [I18n Ally VSCode Extension](https://marketplace.visualstudio.com/items?itemName=Lokalise.i18n-ally)  
+> [🔗 I18n Ally VSCode Extension](https://marketplace.visualstudio.com/items?itemName=Lokalise.i18n-ally)  
 
 Pour un confort de développement absolu, l'extension **I18n Ally** a été implémenté dans ce projet. Elle permet de voir la traduction directement dans le code (à la place de la clé brute) et d'éditer les **JSON** sans changer de fichier.  
 
@@ -64,7 +64,7 @@ Permettre de modifier le texte (`en.json` et `fr.json`) directement depuis une i
 
 💡 Une documentation complète est disponible dans le fichier `.vscode/settings.json` et ici... [I18n Ally Config Rules](./docs/RULES.md#i18n-ally-rules)  
 
-> [Consulter la configuration](./.vscode/settings.json)  
+> [📄 Consulter la configuration](./.vscode/settings.json)  
 
 <h2 id="ngx-translate">
   <img
@@ -80,7 +80,7 @@ Gérer l'internationalisation (**I18n**) manuellement est source d'erreurs : oub
 
 <h3 id="ngx-translate-linter">NGX TRANSLATE LINTER</h3>
 
-> [Ngx Translate Linter Documentation](https://www.npmjs.com/package/ngx-translate-lint)  
+> [🔗 Ngx Translate Linter Documentation](https://www.npmjs.com/package/ngx-translate-lint)  
 
 **Le Gardien (ngx-translate-lint) :**  
 
@@ -88,7 +88,7 @@ Il agit comme un garde-fou strict dans notre **CI/CD**. Il vérifie que chaque c
 
 <h3 id="ngx-translate-extract">NGX TRANSLATE EXTRACT</h3>
 
-> [Ngx Translate Extract Documentation](https://www.npmjs.com/package/@bartholomej/ngx-translate-extract)  
+> [🔗 Ngx Translate Extract Documentation](https://www.npmjs.com/package/@bartholomej/ngx-translate-extract)  
 
 **L'Assistant (ngx-translate-extract) :**  
 

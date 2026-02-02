@@ -53,9 +53,9 @@ En rendant votre site accessible pour le cas "permanent", vous résolvez automat
   A11Y
 </h2>
 
-> [A11y Documentation](https://www.a11yproject.com/)  
+> [🔗 A11y Documentation](https://www.a11yproject.com/)  
 
-Au-delà de l'abréviation, **A11y** est la pratique de concevoir et développer des sites web et des applications numériques pour qu'ils soient utilisables par tout le monde, y compris et surtout les personnes en situation de handicap.
+Au-delà de l'abréviation, **A11y** est la pratique de concevoir et développer des sites web et des applications numériques pour qu'ils soient utilisables par tout le monde, y compris et surtout les personnes en situation de handicap.  
 
 **Que signifie A11y ?**
 
@@ -65,7 +65,9 @@ C'est un numéronyme (une abréviation basée sur des chiffres) pour le mot angl
 - **11 :** le nombre de lettres entre la première et la dernière (c-c-e-s-s-i-b-i-l-i-t)
 - **Y :** la dernière lettre
 
-On le prononce souvent "Al-li" (comme le prénom Allie en anglais) ou simplement "Accessibilité".
+On le prononce souvent "Al-li" (comme le prénom Allie en anglais) ou simplement "Accessibilité".  
+
+![A11y](https://github.com/EmmanuelLefevre/MarkdownImg/blob/main/a11y.png)  
 
 **Pourquoi utiliser ce terme ?**
 
@@ -85,7 +87,7 @@ Si le numéronyme **A11y** est une convention, les règles techniques à respect
 
 Tout repose sur le **WCAG** (**Web Content Accessibility Guidelines**), édicté par le **W3C** (l'organisme qui standardise le **Web** comme le **HTML** ou le **CSS**).
 
-> [WCAG Documentation](https://www.accessiway.com/economies-sanctions-accessibilite?adgroupid=189936695924&utm_campaign=TA_SRC_2_Des+Mob_FR_Generic_Exact&utm_source=google&utm_medium=cpc&utm_content=783031921168&utm_term=p_wcag&hsa_acc=9218225427&hsa_cam=23095677526&hsa_grp=189936695924&hsa_ad=783031921168&hsa_src=g&hsa_tgt=kwd-387224701&hsa_kw=wcag&hsa_mt=p&hsa_net=adwords&hsa_ver=3&gad_source=1&gad_campaignid=23095677526&gbraid=0AAAAApYqMe7DLm4ytvmfzg6EIeP0cZ-0O&gclid=Cj0KCQiA7fbLBhDJARIsAOAqhscZfe_t_2GQs19eI41fuSBJ5AaMb53iXL-pqTJkhjfAUF-C01cpox0aAuqwEALw_wcB)  
+> [🔗 WCAG Documentation](https://www.accessiway.com/economies-sanctions-accessibilite?adgroupid=189936695924&utm_campaign=TA_SRC_2_Des+Mob_FR_Generic_Exact&utm_source=google&utm_medium=cpc&utm_content=783031921168&utm_term=p_wcag&hsa_acc=9218225427&hsa_cam=23095677526&hsa_grp=189936695924&hsa_ad=783031921168&hsa_src=g&hsa_tgt=kwd-387224701&hsa_kw=wcag&hsa_mt=p&hsa_net=adwords&hsa_ver=3&gad_source=1&gad_campaignid=23095677526&gbraid=0AAAAApYqMe7DLm4ytvmfzg6EIeP0cZ-0O&gclid=Cj0KCQiA7fbLBhDJARIsAOAqhscZfe_t_2GQs19eI41fuSBJ5AaMb53iXL-pqTJkhjfAUF-C01cpox0aAuqwEALw_wcB)  
 
 Le **WCAG** est la norme technique mondiale. Elle est structurée en 4 grands principes :
 

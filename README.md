@@ -126,7 +126,7 @@ La documentation détaillée est disponible ici :
 
 <br>
 
-> [Lien vers la documentation GitHub Pages](https://emmanuellefevre.github.io/AngularTemplate/)  
+> [🔗 Lien vers la documentation GitHub Pages](https://emmanuellefevre.github.io/AngularTemplate/)  
 
 ## ⚡ QUICK START
 
@@ -136,32 +136,35 @@ La documentation détaillée est disponible ici :
 | :--------- | :---------------------------------------- | :----------------------- | :--------------------- |
 |  `21.0.x`  | `^20.19.0` \|\| `^22.12.0` \|\| `^24.0.0` | `>=5.9.0` \|\| `<=6.0.0` | `^6.5.3` \|\| `^7.4.0` |
 
-- Installer la version requise de **NodeJS** via **NVM**  
+**Etape 1 :** Node.js  
+
+- Ce projet nécessite une version précise de **NodeJS**. Utilisez **NVM**  
 
 ```shell
 nvm install 22.12.0
-```
-
-Puis basculer dessus :  
-
-```shell
 nvm use 22.12.0
 ```
 
-> [NVM Cheatsheets](https://github.com/EmmanuelLefevre/Documentations/blob/main/Personnal%20Cheatsheets/nvm_cheatsheets.md)  
+> [🔗 NVM Cheatsheets](https://github.com/EmmanuelLefevre/Documentations/blob/main/Personnal%20Cheatsheets/nvm_cheatsheets.md)  
 
-- Installer en global la version requise de **PNPM**  
+**Etape 2 :** Gestionnaire de paquets : **PNPM** & **Corepack**  
+
+Ce projet utilise **Corepack** (inclus dans **NodeJS**) pour garantir que tous les développeurs utilisent exactement la même version de **PNPM** (définie dans le `package.json`).  
+
+⚠️ Vous pouvez toutefois installer **PNPM** en global.  
 
 [Setup](./docs/SETUP.md#pnpm)
 
-### Installation
+### Installation & Démarrage
 
-- Via Clone  
+- Via Clone **SSH**  
 
 ```bash
-git clone [https://github.com/EmmanuelLefevre/AngularTemplate.git](https://github.com/EmmanuelLefevre/AngularTemplate.git)
+git clone git@github.com:EmmanuelLefevre/AngularTemplate.git
 cd AngularTemplate
+corepack enable
 pnpm install
+pnpm start
 ```
 
 - Via Package  

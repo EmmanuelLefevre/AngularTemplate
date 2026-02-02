@@ -5,9 +5,16 @@
 
 ## SOMMAIRE
 
+- [COREPACK](#corepack)
 - [PNPM](#pnpm)
 - [ANGULAR](#angular)
 - [NPMRC](#npmrc)
+
+<h2 id="corepack">COREPACK</h2>
+
+Plutôt que de gérer manuellement les versions de **PNPM** ("On a la v8 ou la v9 ?"), nous utilisons le champ "`packageManager`" du `package.json`.  
+
+Lorsque l'on lance `pnpm install`, **Corepack** intercepte la commande et utilise la version stricte (avec vérification de signature **SHA**) requise par le projet. Cela garantit une stabilité totale entre la **CI/CD** et son poste local.  
 
 <h2 id="pnpm">
   <img
@@ -159,7 +166,7 @@ Une fois le `package.json` modifié avec les tildes (~), ne pas oublier d'enregi
 pnpm install
 ```
 
-> [Consulter les librairies](./package.json)  
+> [📄 Consulter les librairies](./package.json)  
 
 <h2 id="npmrc">
   <img
@@ -196,4 +203,4 @@ save-exact=true
 
 Désormais, si on lance `pnpm add rxjs`, il installera **`"rxjs"`: `"7.8.0"`** au lieu de **`"^7.8.0"`**.  
 
-> [Consulter la configuration](./.npmrc)  
+> [📄 Consulter la configuration](./.npmrc)  
