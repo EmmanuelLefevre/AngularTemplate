@@ -409,16 +409,16 @@ pnpm add -D ngx-translate-lint
 ```JSON
 {
   "scripts": {
-    "i18n:lint": "ngx-translate-lint -c ./translate-lint.json",
+    "i18n:lint": "ngx-translate-lint -c ./.ngx-translate-lint.json",
   }
 }
 ```
 
 > [📄 Consulter le script](./package.json)  
 
-**Etape 3 :** Créer le fichier `translate-lint.json`  
+**Etape 3 :** Créer le fichier `.ngx-translate-lint.json`  
 
-> [📄 Consulter la configuration](translate-lint.json)  
+> [📄 Consulter la configuration](./.ngx-translate-lint.json)  
 
 💡 Une documentation complète est disponible ici... [Ngx Translate Linter Rules](./docs/RULES.md#i18n-lint-rules)  
 

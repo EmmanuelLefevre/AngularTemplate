@@ -12,6 +12,7 @@
 💻.vscode
 📘docs
 🌍public
+ ┣ ⚙️.htaccess
  ┣ 🛠️manifest.json
  ┣ 🤖robots.txt
  ┣ 🗺️sitemap.xml
@@ -132,6 +133,7 @@
 📄.gitattributes
 📄.gitignore
 📄.htmlhintrc
+📄.ngx-translate-lint.json
 📄.npmrc
 📄.prettier.js
 📄.secretlintrc.json
@@ -143,7 +145,6 @@
 📄pnpm-lock.yaml
 📄README.md
 🛡️sonar-project.properties
-📄translate-lint.json
 📄tsconfig.app.json
 📄tsconfig.doc.json
 📄tsconfig.json

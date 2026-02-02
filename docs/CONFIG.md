@@ -9,6 +9,7 @@
   - [Configuration de base](#base-config)
   - [Alias & Chemins)](#paths-aliases)
   - [Configuration applicative](#app-config)
+- [SERVER CONFIG (APACHE)](#apache-config)
 - [SCHEMATICS](#schematics)
 
 <h2 id="ts-config">
@@ -33,7 +34,7 @@ Il définit le niveau de rigueur du typage (**Strict Mode**) et la compatibilit�
 
 💡 Une documentation complète est disponible dans le fichier `tsconfig.json` et ici... [TypeScript Base Config Rules](./docs/RULES.md#ts-base-config-rules)  
 
-📄 Consulter la configuration](./tsconfig.json)  
+📄 [Consulter la configuration](./tsconfig.json)  
 
 <h3 id="paths-aliases">Alias & Chemins</h3>
 
@@ -49,6 +50,53 @@ Ces raccourcis sont définis dans `compilerOptions.paths` du `tsconfig.json`.
 💡 Une documentation complète est disponible dans le fichier `tsconfig.app.json` et ici... [TypeScript App Config Rules](./docs/RULES.md#ts-app-config-rules)  
 
 > [📄 Consulter la configuration](./tsconfig.app.json)  
+
+<h2 id="apache-config">
+  <img
+    alt="Apache"
+    title="Apache"
+    width="34px"
+    src="https://raw.githubusercontent.com/EmmanuelLefevre/GitHubProfileIcons/main/apache.png"
+  />
+  SERVER CONFIG (Apache)
+</h2>
+
+### A propos d'Apache HTTP Server ::
+
+**Apache** est le serveur web qui héberge notre application en production.  
+Contrairement à un serveur d'application (comme **NodeJS*** ou **Java**), son rôle ici est de servir des fichiers statiques (**HTML**, **SCSS**, **JS**, **Images**) au navigateur de l'utilisateur.  
+
+### Le défi des "Single Page Applications" (SPA)
+
+**Angular** est une **SPA** : il n'y a qu'un seul fichier réel (`index.html`). La navigation (ex: `/dashboard`, `/profile`) est virtuelle et gérée par **JavaScript** dans le navigateur.  
+
+**Le problème :**  
+
+Si un utilisateur rafraîchit la page sur `https://monsite.com/dashboard`, le serveur **Apache** cherche un fichier `dashboard.html` qui n'existe pas et renvoie une **Erreur 404**.  
+
+**La solution (.htaccess) :**  
+
+Nous utilisons un fichier de configuration distribué (`.htaccess`) pour intercepter toutes les requêtes entrantes et dire au serveur :  
+> *"Si tu ne trouves pas le fichier demandé, renvoie `index.html` et laisse Angular gérer l'affichage."*  
+
+### Le fichier `.htaccess`
+
+Ce fichier est situé dans le dossier des assets publics et est automatiquement copié à la racine du build lors de la compilation.  
+
+**Emplacement source :**  
+> [📄 Consulter la configuration](./public/.htaccess)  
+
+**Emplacement build :** `dist/AngularTemplate/browser/.htaccess`  
+
+### Fonctionnalités activées :
+
+Le fichier assure trois rôles critiques pour la sécurité et la navigation :  
+
+| Catégorie | Description |
+| :--- | :--- |
+| **🔀 URL Rewriting** | **SPA Fallback** : Rediriger toutes les requêtes inconnues vers `index.html` pour que le **Router Angular** prenne le relais (évite les erreurs 404 au rechargement) |
+| **🔒 Force HTTPS** | Rediriger automatiquement tout le trafic **HTTP** (Port 80) vers **HTTPS** (Port 443) pour chiffrer les échanges |
+| **🛡️ Security Headers** | Injecter des en-têtes **HTTP** stricts pour protéger l'application contre les attaques courantes <br> - `Strict-Transport-Security` (**HSTS**) <br> - `Content-Security-Policy` (**XSS**) <br> - `X-Frame-Options` (**Clickjacking**) |
 
 <h2 id="schematics">
   <img
