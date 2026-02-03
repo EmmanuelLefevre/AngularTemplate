@@ -113,8 +113,7 @@ La norme technique (**WCAG**) est ensuite transformée en obligation légale par
 
 1. **Sites web non accessibles en 2024**
 
-**Source :**  
-> [🔗 The WebAIM Million](https://webaim.org/projects/million/)
+**Source :** [🔗 The WebAIM Million](https://webaim.org/projects/million/)
 
 - **96%** des sites web présentent des défaillances d'accessibilité.
 - texte à faible contraste => présent sur **79%** des pages d'accueil.
@@ -130,22 +129,16 @@ Il est important de noter que ce test est automatisé et ne détecte qu'environ 
 
 - A l'échelle mondiale : **1,3 milliard** de personnes de personnes, soit environ **16%** de la population mondiale (1 personne sur 6), vivent avec un handicap significatif.  
 
-**Source :**  
-
-> [🔗 OMS : rapport mondial sur la santé et le handicap 2023](https://www.who.int/fr/news-room/fact-sheets/detail/disability-and-health)
+**Source :** [🔗 OMS : rapport mondial sur la santé et le handicap 2023](https://www.who.int/fr/news-room/fact-sheets/detail/disability-and-health)
 
 - A l'échelle européenne : environ **135M** de personnes dans l'Union Européenne, soit près d'un citoyen sur quatre (**27%**), déclarent une forme de handicap ou de limitation durable.  
 
-  **Source :**  
-
-> [🔗 Eurostat : statistiques sur le handicap 2023/2024](https://drees.solidarites-sante.gouv.fr/sites/default/files/2025-01/Fiche%208.7%20-%20Le%20handicap%20en%20Europe.pdf)
+**Source :** [🔗 Eurostat : statistiques sur le handicap 2023/2024](https://drees.solidarites-sante.gouv.fr/sites/default/files/2025-01/Fiche%208.7%20-%20Le%20handicap%20en%20Europe.pdf)
 
 - A l'échelle de la France : **12M** de personnes sont touchées par un handicap (1 personne sur 5).  
   **80%** des handicaps sont invisibles (troubles cognitifs, maladies chroniques invalidantes...).  
 
-**Source :**  
-
-> [🔗 Chiffres consolidés par l'INSEE et la DREES 2022-2024](https://handicap.gouv.fr/publication-drees-le-handicap-en-chiffres-edition-2024#:~:text=Les%20chiffres%20cl%C3%A9s%20du%20handicap,des%20probl%C3%A8mes%20de%20m%C3%A9moire%2C%20etc.)
+**Source :** [🔗 Chiffres consolidés par l'INSEE et la DREES 2022-2024](https://handicap.gouv.fr/publication-drees-le-handicap-en-chiffres-edition-2024#:~:text=Les%20chiffres%20cl%C3%A9s%20du%20handicap,des%20probl%C3%A8mes%20de%20m%C3%A9moire%2C%20etc.)
 
 3. **Conformité dans le secteur public français**
 
@@ -155,13 +148,11 @@ Malgré l'obligation légale (depuis la loi de 2005) pour les services publics d
 
 Dans son baromètre de 2025, l'Observatoire révélait que le taux de conformité moyen au RGAA (Référentiel Général d'Amélioration de l'Accessibilité) pour les 250 démarches les plus utilisées par les Français stagnait en dessous de **60%** (loin des **100%** requis par la loi).  
 
-**Source :**  
-
-> [🔗 Observatoire de la qualité des démarches en ligne 2025](https://observatoire.numerique.gouv.fr/observatoire)
+**Source :** [🔗 Observatoire de la qualité des démarches en ligne 2025](https://observatoire.numerique.gouv.fr/observatoire)
 
 L'accessibilité numérique n'est pas seulement une bonne pratique technique, c'est avant tout une obligation éthique et légale visant à construire un web inclusif.
 
-Concrètement, cela signifie permettre :
+De manière non exhaustive cela signifie permettre :
 
 - à un utilisateur malvoyant de comprendre la structure et le contenu via un lecteur d'écran. Celui-ci vocalise la page en se basant sur un balisage correct : il annonce les titres (`h1`, `h2`), décrit le rôle des éléments (`bouton`, `lien`) et lit le contenu textuel des images grâce à leur attribut `alt`.
 - à un utilisateur de lecteur d'écran de bénéficier d'une prononciation correcte. En déclarant la langue principale de la page avec `<html lang="fr">`, la synthèse vocale utilise le bon accent pour tout le site.
@@ -180,7 +171,7 @@ Le cadre légal s'appuie notamment sur la transposition en droit français des d
 
 > [🔗 Directive Européenne sur l'Accessibilité](https://www.economie.gouv.fr/dgccrf/les-fiches-pratiques/la-nouvelle-directive-europeenne-accessibilite-pour-des-produits-et-des-services-accessibles-aux-personnes-en-situation)
 
-**Qui est concerné ?**  
+#### Qui est concerné ?**
 
 La loi s'applique à une vaste gamme de produits et services numériques :
 
@@ -190,30 +181,28 @@ La loi s'applique à une vaste gamme de produits et services numériques :
 - Livres numériques (e-books) et logiciels spécialisés.  
 - Équipements terminaux (bornes de paiement, distributeurs de billets).  
 
-**Sanctions**  
+#### Sanctions
 
 En France, le non-respect des obligations d'accessibilité numérique, définies par le **RGAA**, expose les organismes concernés à des sanctions financières.  
 Le défaut de conformité ou l'absence de publication d'une déclaration d'accessibilité peut entraîner une sanction administrative dont le montant peut s'élever jusqu'à **25K€/PAR infraction** constatée.
 
 > [🔗 Décret n° 2019-768 du 24 juillet 2019](https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000038811937)
 
-**Exemptions et Nuances**  
+#### Exemptions et Nuances
 
 Il existe des dérogations, mais elles sont encadrées strictement. Ne sont pas soumises aux mêmes obligations les **micro-entreprises** (définies comme employant **moins de 10 personnes** et dont le **CA**** annuel ou le bilan total n'excède pas **2 millions d'euros**).  
 
 Cependant, l'application diffère selon votre rôle :  
 
 - **Prestataires de services** (petite agence web, freelance, site vitrine artisanal...)  
-
 Ils sont **exemptés** des obligations d'accessibilité de la directive.  
 
 💡💡💡 Même exemptés légalement, l'accessibilité reste un atout commercial et éthique majeur.  
 
 - **Fabricants, importateurs et distributeurs de produits**  
-
 Ils peuvent déroger aux obligations sans avoir à fournir de justificatifs administratifs lourds mais sont encouragés à respecter les normes.  
 
-**Autres critères d'exemption (Charge disproportionnée)**  
+#### Autres critères d'exemption (Charge disproportionnée)
 
 Pour les entreprises dépassant les seuils ci-dessus, deux cas spécifiques permettent une dérogation (qui doit être justifiée et documentée) :  
 
@@ -270,23 +259,23 @@ Très visuel, il permet de voir le rendu du texte sur le fond en temps réel et 
 
 Permet de simuler différents troubles de la vision (daltonisme, cataracte, vision floue) directement sur votre site pour vérifier que l'interface reste utilisable.  
 
-### 🗣️ Lecteurs d'écrans (screen readers)**
+### 🗣️ Lecteurs d'écrans (screen readers)
 
-C'est l'outil final qui valide ou invalide tout votre travail. Un lecteur d'écran est un logiciel d'assistance qui transmet l'information affichée à l'écran (texte, images, liens, menus) à un utilisateur aveugle ou malvoyant, soit par **synthèse vocale** (**Text-to-Speech**) soit via une **plage braille**.  
+C'est l'outil final qui valide ou invalide tout votre travail. Un lecteur d'écran est un logiciel d'assistance qui transmet l'information affichée à l'écran (texte, images, liens, menus) à un utilisateur aveugle ou malvoyant, soit par synthèse vocale (**Text-to-Speech**) soit via une plage braille.  
 
-**Comment ça marche ?**  
+#### Comment ça marche ?
 
-Contrairement à une idée reçue, un utilisateur de lecteur d'écran n'écoute pas la page du début à la fin de manière linéaire (ce serait interminable). Il **navigue** dans la page en sautant d'élément en élément.  
+Contrairement à une idée reçue, un utilisateur de lecteur d'écran n'écoute pas la page du début à la fin de manière linéaire (ce serait interminable). Il navigue dans la page en sautant d'élément en élément.  
 
-D'où l'importance cruciale de votre code HTML :  
+D'où l'importance cruciale de votre code **HTML** :  
 
-- Il utilise des raccourcis pour sauter de **Titre** en **Titre** (`H1`, `H2`...).  
-- Il peut lister tous les **Liens** de la page pour trouver "Contact".  
-- Il navigue par **Landmarks** (Régions) pour aller directement au `<footer>` ou au `<main>`.  
+- Il utilise des raccourcis pour sauter de titre en titre (`H1`, `H2`...).  
+- Il peut lister tous les liens de la page pour trouver "Contact".  
+- Il navigue par **Landmarks** pour aller directement au `<footer>` ou au `<main>`.  
 
 Si votre sémantique est mauvaise (pas de balises `<h1>` ou des boutons `<div>`) la page devient un labyrinthe sans issue.  
 
-**Les solutions du marché**  
+#### Les solutions du marché
 
 Il existe quelques acteurs majeurs qu'il est bon de connaître :  
 
@@ -314,7 +303,8 @@ L'accessibilité ne se limite pas à des contrastes de couleurs. Elle repose sur
 
 1. **La Sémantique** (Structure de la page)
 
-Les lecteurs d'écran utilisent les balises **HTML** pour naviguer ("Aller au menu", "Aller au contenu principal"). Remplacer des <div> par des balises sémantiques est la fondation.  
+Les lecteurs d'écran utilisent les balises **HTML** pour naviguer ("`Aller au menu`", "`Aller au contenu principal`").  
+Remplacer des `<div>` par des balises sémantiques est la fondation.  
 
 ❌ **Mauvaise pratique :**
 
@@ -356,8 +346,6 @@ Le texte alternatif remplace l'image si elle ne s'affiche pas ou pour un utilisa
 
 Le texte doit être lisible pour les malvoyants ou en cas de forte luminosité (soleil sur écran). Le ratio minimum standard (**AA**) est de 4.5:1 pour un texte normal.  
 
-💡 Astuce : utiliser les **DevTools** du navigateur pour vérifier le ratio !  
-
 ❌ **Mauvaise pratique :**
 
 ```CSS
@@ -375,6 +363,8 @@ Le texte doit être lisible pour les malvoyants ou en cas de forte luminosité (
   background-color: #ffffff;
 }
 ```
+
+💡 Astuce : utiliser les **DevTools** du navigateur pour vérifier le ratio !  
 
 4. **Navigation Clavier** (Indicateur visuel)  
 
@@ -449,7 +439,7 @@ Il ne faut pas utiliser des `<div>` ou `<span>` pour créer des boutons. Si vous
 
 7. **Formulaires & Labels**
 
-Un champ de saisie doit toujours être lié à une étiquette. Le placeholder ne suffit pas...  
+Un champ de saisie doit toujours être lié à une étiquette. Le placeholder ne suffit pas.  
 
 ❌ **Mauvaise pratique :**
 
