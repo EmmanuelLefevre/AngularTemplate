@@ -225,6 +225,8 @@ Pour les entreprises dépassant les seuils ci-dessus, deux cas spécifiques perm
 
 L'accessibilité ne se devine pas, elle se mesure. Voici les outils de référence pour auditer vos projets, au-delà du simple score **Lighthouse**.  
 
+Contrairement à **HTMLHint** (qui vérifie si notre code est valide syntaxiquement), ces outils vérifient comment ce code est interprété par les technologies d'assistance.  
+
 ### 🔍 Audit & Scan Global
 
 > [🔗 Google Lighthouse](https://developers.google.com/web/tools/lighthouse)
