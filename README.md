@@ -63,16 +63,16 @@ Scans automatiques de vulnérabilités (**Snyk**), détection de secrets (**GitL
 Build ultra-rapide (**Esbuild**), serveur de développement quasi instantané (**Vite**) et gestionnaire de paquets optimisé et reproductible via (**PNPM**).  
 
 🧪 **Tests Next-Gen :**  
-Stratégie de tests unitaires modernisée propulsée par **Vitest** offrant une exécution instantanée et une compatibilité native avec l'écosystème Vite.  
+Stratégie de tests unitaires modernisée propulsée par **Vitest** offrant une exécution instantanée et une compatibilité native avec l'écosystème **Vite**.  
 
 🚧 **Gatekeeping Local :**  
 Finis les commits cassés. **Husky** et **lint-staged** interceptent chaque commit pour formater, linter et vérifier les secrets sur les fichiers modifiés uniquement. La qualité est forcée à la source avant même d'arriver sur la CI.  
 
 🤖 **CI/CD Ready :**  
-Pipelines **GitHub Actions** complètes incluant tests, linting, documentations audits de sécurité et déploiement.  
+Pipelines **GitHub Actions** complètes incluant tests, linting, documentations, audits de sécurité et déploiement.  
 
 🏷️ **Packaging & Release Automatisés :**  
-Fini la gestion manuelle des versions. Le template intègre **Semantic Release** pour calculer automatiquement le **SemVer**, générer le **Changelog**, créer la Release GitHub et publier les artefacts sur **GitHub Packages**.  
+Fini la gestion manuelle des versions. Le template intègre **Semantic Release** pour calculer automatiquement le **SemVer**, générer le **Changelog**, créer la **Release GitHub** et publier les artefacts sur **GitHub Packages**.  
 
 🛠️ **DX & Corepack :**  
 Onboarding immédiat. Grâce à **Corepack**, le projet installe et utilise automatiquement la version stricte de **PNPM** définie dans le `package.json`. Fini les conflits de versions entre développeurs ou les installations globales.  
@@ -91,19 +91,19 @@ L'intégrité des traductions est garantie par un outillage automatisé :
 - 👮 **Validation stricte :** `pnpm i18n:lint` un garde-fou **CI/CD** qui bloque le déploiement si une clé est manquante ou inutilisée.
 
 🎨 **Design System & Mobile-First :**  
-Conception intégralement pensée pour le mobile. Le Design System est entièrement variabilisé (mixins, couleurs, polices, espacements...) pour une personnalisation sans douleur.  
+Conception intégralement pensée pour le mobile. Le **Design System** est entièrement variabilisé (mixins, couleurs, polices, espacements...) pour une personnalisation sans douleur.  
 
 🧩 **Smart UI Kit :**  
 Une bibliothèque de composants internes (Custom Form, Generic Input, Button, Link, ScrollToTop) et des layouts (Public, Admin, Header, Footer, Nav...) prêts à l'emploi. **Tous couverts à 100% par des tests.**  
 
 🧠 **Architecture :**  
-**Error Handler** global, **Interceptors**, **Guards** d'authentification, une partie de l'application **Public** et **Private** ainsi qu'un **Dashboard Admin** fonctionnel sont déjà configurés.  
+**Error Handler** global, **Interceptors**, **Guards** d'authentification, une partie de l'application **Public** et **Private** ainsi qu'un **Dashboard Admin** fonctionnel sont déjà configurés. **Tous couverts à 100% par des tests.**  
 
 🛠️ **Pipes & Directives :**  
 Des outils essentiels comme des **Directives** (`input-focus`, `input-trim`, `input-uppercase`...) et des **Pipes** (`date-format`...) sont inclus et **testés à 100%**.  
 
 📘 **Documentation :**  
-Architecture documentée en temps réel. **Compodoc** génère une documentation technique complète, automatiquement déployée et hébergée sur **GitHub Pages** à chaque merge. Cette **Compodoc** est évidemment aussi disponible en local !
+Architecture documentée en temps réel. **Compodoc** génère une documentation technique complète, automatiquement déployée et hébergée sur **GitHub Pages** à chaque merge sur le code stable (branche `main`). Cette **Compodoc** est évidemment aussi disponible en local !
 
 ## 📚 DOCUMENTATION
 
