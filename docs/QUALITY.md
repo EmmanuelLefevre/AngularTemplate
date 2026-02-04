@@ -265,7 +265,7 @@ C'est précisément le rôle de **HTMLHint**, un analyseur de code statique (ou 
 En l'intégrant dans notre chaîne d'outils de développement, nous pouvons automatiser l'inspection de nos fichiers `.html` afin de détecter les erreurs courantes, les mauvaises pratiques et les incohérences de style.  
 Grâce à un ensemble de règles configurables via un fichier `.htmlhintrc`, **HTMLHint** nous aide à renforcer les standards de code de notre équipe, prévenir des bugs liés aux balises et **PAR-DESSUS TOUT** améliorer l'accessibilité de nos applications (**A11y**) !!!  
 
-> [🔗 En savoir plus sur l'accessibilité](./docs/ACCESSIBILITY.md)
+> [👀 En savoir plus sur l'accessibilité](./docs/ACCESSIBILITY.md)
 
 **Etape 1 :** Ajouter le package **HTMLLint**  
 
@@ -394,7 +394,7 @@ ainsi que le script =>
 
 ### Introduction :
 
-> [📄 Consulter la documentation du projet](./docs/LANGUAGES.md#ngx-translate-linter)  
+> [👀 Consulter la documentation du projet](./docs/LANGUAGES.md#ngx-translate-linter)  
 
 ### Configuration :
 
@@ -448,7 +448,7 @@ pnpm run i18n:lint
 
 ### Introduction :
 
-> [📄 Consulter la documentation du projet](./docs/LANGUAGES.md#ngx-translate-extract)  
+> [👀 Consulter la documentation du projet](./docs/LANGUAGES.md#ngx-translate-extract)  
 
 ### Configuration :
 

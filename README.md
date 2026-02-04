@@ -153,7 +153,7 @@ Ce projet utilise **Corepack** (inclus dans **NodeJS**) pour garantir que tous l
 
 ⚠️ Vous pouvez toutefois installer **PNPM** en global.  
 
-[Setup](./docs/SETUP.md#pnpm)
+[👀 Setup](./docs/SETUP.md#pnpm)
 
 ### Installation & Démarrage
 

@@ -66,6 +66,8 @@ pnpm add -D vite-tsconfig-paths
 pnpm add -D @vitest/ui
 ```
 
+![Vitest UI](https://github.com/EmmanuelLefevre/MarkdownImg/blob/main/vitest_ui.png.png)  
+
 **Etape 5 :** Installer le package de coverage `@vitest/coverage-v8`
 
 ```shell
