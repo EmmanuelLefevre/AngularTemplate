@@ -108,7 +108,8 @@ Cette configuration de sécurité a été séparée dans un autre fichier afin d
 
 Ouvrir le fichier `eslint.config.js` (qui vient d'être créé à la racine).  
 
-💡 Une documentation complète est disponible ici... [👀 ESLint Rules](./docs/RULES-REFERENCES.md#eslint-rules)  
+💡 Une documentation complète est disponible ici... =>  
+> [👀 ESLint Rules](./docs/RULES-REFERENCES.md#eslint-rules)  
 
 **\* Note :** Prettier ne sera pas ajouté automatiquement il faut le faire manuellement.  
 
@@ -201,7 +202,8 @@ pnpm add -D prettier
 
 **Etape 2 :** Créer un fichier `.prettierrc.js` à la racine et y coller la configuration présente dans le template.  
 
-💡 Une documentation complète est disponible dans le fichier `.prettierrc.js` et ici... [👀 Prettier Rules](./docs/RULES-REFERENCES.md#prettier-rules)  
+💡 Une documentation complète est disponible dans le fichier `.prettierrc.js` et ici... =>  
+> [👀 Prettier Rules](./docs/RULES-REFERENCES.md#prettier-rules)  
 
 Installer l'extension **Trivago** pour le tri des imports.  
 
@@ -283,7 +285,8 @@ De plus cela activera l'autocomplétion et la validation du fichier `.htmlhintrc
 
 Il faut créer le fichier `.htmlhintrc` à la racine du projet et y coller la configuration présente dans le template.  
 
-💡 Une documentation complète est disponible ici... [👀 HTMLLint Rules](./docs/RULES-REFERENCES.md#htmlhint-rules)  
+💡 Une documentation complète est disponible ici... =>  
+> [👀 HTMLLint Rules](./docs/RULES-REFERENCES.md#htmlhint-rules)  
 
 Pour finir ouvrir le fichier `package.json` et ajouter la commande suivante dans la partie `scripts` =>  
 
@@ -310,7 +313,8 @@ Si le script n'est pas défini dans le `package.json` =>
 npx htmlhint "**/*.html"
 ```
 
-💡 Une documentation complète est disponible ici... [👀 HTMLHint Rules](./docs/RULES-REFERENCES.md#htmlhint-rules)  
+💡 Une documentation complète est disponible ici... =>  
+> [👀 HTMLHint Rules](./docs/RULES-REFERENCES.md#htmlhint-rules)  
 
 <h2 id="stylelint">
   <img
@@ -358,7 +362,8 @@ ainsi que le script =>
 }
 ```
 
-💡 Une documentation complète est disponible ici... [👀 StyleLint Rules](./docs/RULES-REFERENCES.md#stylelint-rules)  
+💡 Une documentation complète est disponible ici... =>  
+> [👀 StyleLint Rules](./docs/RULES-REFERENCES.md#stylelint-rules)  
 
 <h2 id="translate">
   <img
@@ -396,7 +401,8 @@ pnpm add -D ngx-translate-lint
 
 **Etape 3 :** Créer le fichier `.ngx-translate-lint.json`  
 
-💡 Une documentation complète est disponible ici... [👀 Ngx Translate Linter Rules](./docs/RULES-REFERENCES.md#i18n-lint-rules)  
+💡 Une documentation complète est disponible ici... =>  
+> [👀 Ngx Translate Linter Rules](./docs/RULES-REFERENCES.md#i18n-lint-rules)  
 
 **Etape 4 :** Configurer `lint-staged`  
 

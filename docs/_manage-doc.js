@@ -68,7 +68,7 @@ function gitTrackFile(filePath) {
     console.log(`👀 Git tracking: ${path.basename(filePath)}`);
   }
   catch (e) {
-    // We ignore the errors
+    // Ignore errors
   }
 }
 
@@ -78,13 +78,9 @@ function gitTrackFile(filePath) {
 // ---------------------//
 
 function transformLinks(content, fileType) {
-  // Transformation simple : on remplace l'extension .md par .html
-  // Puisque tes fichiers sont maintenant nommés correctement (ex: RULES-REFERENCE.md),
-  // le slug (rules-reference.html) correspondra nativement au titre Compodoc.
-
   const linkReplacer = (_match, filepath, anchor) => {
-    const filename = path.basename(filepath, '.md'); // Ex: RULES-REFERENCE
-    const slug = filename.toLowerCase();             // Ex: rules-reference
+    const filename = path.basename(filepath, '.md');
+    const slug = filename.toLowerCase();
     return `](additional-documentation/${slug}.html${anchor ? '#' + anchor : ''})`;
   };
 
@@ -95,11 +91,9 @@ function transformLinks(content, fileType) {
   };
 
   if (fileType === 'root') {
-    // README : liens vers ./docs/XXX.md
     content = content.replace(/\]\((?:\.\/)?docs\/(.+?)\.md(?:#(.+?))?\)/g, linkReplacer);
   }
   else {
-    // DOCS : liens vers les frères ./XXX.md
     content = content
       .replace(/\]\((?:\.\/)?(.+?)\.md(?:#(.+?))?\)/g, siblingReplacer)
       .replace(/\]\((?:\.\.\/)?README\.md\)/g, '](overview.html)');
