@@ -109,20 +109,20 @@ Architecture documentée en temps réel. **Compodoc** génère une documentation
 
 La documentation détaillée est disponible ici :  
 
-- 🏗 [Architecture](./docs/ARCHI.md)
+- 🏗 [Architecture](./docs/ARCHITECTURE.md)
 - 🚀 [Setup](./docs/SETUP.md)
-- 💎 [Quality](./docs/QUALITY.md)
+- 💎 [Qualité](./docs/QUALITE.md)
 - 🧪 [Tests](./docs/TESTS.md)
-- ⚙️ [Configuration](./docs/CONFIG.md)
-- 🏷️ [Build & Packaging](./docs/BUILD.md)
+- ⚙️ [Configuration](./docs/CONFIGURATION.md)
+- 🏷️ [Build & Packaging](./docs/BUILD-&-PACKAGING.md)
 - 🤖 [CICD](./docs/CICD.md)
 - 🎨 [Styles](./docs/STYLES.md)
-- 🗣️ [Multi Langues](./docs/LANGUAGES.md)
-- ♿ [Accessibilité](./docs/ACCESSIBILITY.md)
+- 🗣️ [Multi Langues](./docs/MULTI-LANGUES.md)
+- ♿ [Accessibilité](./docs/ACCESSIBILITE.md)
 - 📈 [SEO](./docs/SEO.md)
-- 📘 [Documentation](./docs/DOC.md)
-- 🔧 [Rules Reference](./docs/RULES.md)
-- 💡 [FAQ & Erreurs](./docs/FAQ.md)
+- 📘 [Documentation](./docs/DOCUMENTATION.md)
+- 🔧 [Rules Reference](./docs/RULES-REFERENCES.md)
+- 💡 [FAQ & Erreurs](./docs/FAQ-&-ERREURS.md)
 
 <br>
 

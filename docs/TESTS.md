@@ -42,8 +42,6 @@ pnpm add -D vite-tsconfig-paths
 }
 ```
 
-> [📄 Consulter la configuration](./tsconfig.spec.json)  
-
 **Etape 3 :** Dans `angular.json` ajouter la propriété `test` dans `@architect`.  
 
 ```JSON
@@ -55,8 +53,6 @@ pnpm add -D vite-tsconfig-paths
   }
 },
 ```
-
-> [📄 Consulter la configuration](./angular.json)  
 
 **Etape 4 (Optionnel) :** Installer l'interface graphique de **Vitest**.  
 
@@ -84,7 +80,7 @@ import { BrowserTestingModule, platformBrowserTesting } from '@angular/platform-
 getTestBed().initTestEnvironment(BrowserTestingModule, platformBrowserTesting());
 ```
 
-> [📄 Consulter le barrel file des tests](./src/test-setup.ts)  
+> 📄 Consulter le barrel file des tests : `./src/test-setup.ts`  
 
 **Etape 7 :** Créer le fichier `vitest.config.ts` et y coller la configuration présente dans le template.
 
@@ -99,8 +95,6 @@ Dans `angular.json` ajouter la propriété `coverage` à l'objet `test`.
 },
 ```
 
-> [📄 Consulter la configuration](./vitest.config.ts)  
-
 **Etape 8 :** Ajouter les scripts dans `package.json`  
 
 ```JSON
@@ -112,8 +106,6 @@ Dans `angular.json` ajouter la propriété `coverage` à l'objet `test`.
   }
 }
 ```
-
-> [📄 Consulter les scripts](./package.json)  
 
 **Etape 9 :** Lancer les tests
 

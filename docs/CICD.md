@@ -98,8 +98,6 @@ Configurer son compte **SonarCloud** et son secret `SONAR_TOKEN`.
 
 Créer le fichier `sonar-project.properties` à la racine et y coller la configuration présente dans le template...  
 
-> [📄 Consulter la configuration](./sonar-project.properties)  
-
 <h2 id="snyk">
   <img
     alt="Snyk"
@@ -227,7 +225,7 @@ Objectif : ne garder que l'historique des builds réussis pour une meilleure lis
 - Il cible spécifiquement l'historique du fichier `cleanup.yml`.
 - Il supprime les anciennes exécutions réussies (completed) de ce workflow de nettoyage.
 
-💡 **Note :** Il exclut l'exécution en cours ($GITHUB_RUN_ID).  
+💡 **Note :** Il exclut l'exécution en cours (`$GITHUB_RUN_ID`).  
 
 **Eviter que l'historique ne soit pollué par des centaines de logs inutiles.**
 

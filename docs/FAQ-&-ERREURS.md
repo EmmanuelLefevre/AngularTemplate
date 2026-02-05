@@ -58,7 +58,7 @@ Si un secret valide traîne réellement :
 
 Si le commit est déjà sur le serveur : il faudra utiliser un outil comme **BFG Repo-Cleaner** ou **git filter-repo**.
 
-> [🔗 Procédure Git Filter Repo](github_tricks.html)
+> [🔗 Procédure Git Filter Repo](https://github.com/EmmanuelLefevre/Documentations/blob/main/Tutorials/github_tricks.md)
 
 3. **Cas B : C'est un "Faux Positif"**
 

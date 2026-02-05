@@ -166,8 +166,6 @@ Une fois le `package.json` modifié avec les tildes (~), ne pas oublier d'enregi
 pnpm install
 ```
 
-> [📄 Consulter les librairies](./package.json)  
-
 <h2 id="npmrc">
   <img
     alt="NPMRC"
@@ -202,5 +200,3 @@ save-exact=true
 ```
 
 Désormais, si on lance `pnpm add rxjs`, il installera **`"rxjs"`: `"7.8.0"`** au lieu de **`"^7.8.0"`**.  
-
-> [📄 Consulter la configuration](./.npmrc)  

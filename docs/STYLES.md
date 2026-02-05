@@ -34,8 +34,6 @@ Dans `angular.json` ajouter la propriété `stylePreprocessorOptions` dans `@arc
 }
 ```
 
-> [📄 Consulter la configuration](./angular.json)  
-
 <h2 id="sass">
   <img
     alt="SASS"

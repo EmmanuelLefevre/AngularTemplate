@@ -27,7 +27,7 @@ Génèrer automatiquement les balises `og:title`, `og:description` et `og:image`
 - **Configuration Globale :**  
 Appliquer systématiquement les balises techniques définies dans l'environnement (`robots`, `author`, `keywords`, `theme-color`, `lang`).  
 
-> [📄 Consulter le SEO service](./src/app/core/_services/seo/seo.service.ts)  
+> 📄 Consulter le SEO service : `./src/app/core/_services/seo/seo.service.ts`  
 
 <h2 id="routing">
   ROUTING & INJECTION DYNAMIQUE
@@ -88,7 +88,7 @@ L'application lit les propriétés `data.seo` de la route active.
 - **Injection :**  
 Le **SeoService** reçoit ces données, traduit les textes si nécessaire et met à jour les balises `<head>`.  
 
-> [📄 Consulter le routing](./src/app/app.route.ts)  
+> 📄 Consulter le routing : `./src/app/app.route.ts`  
 
 <h2 id="orchestration">
   ORCHESTRATION
@@ -123,7 +123,7 @@ Bien que ce ne soit pas strictement des "`meta tags`", le reset du scroll (`wind
 
 **Google** prenant en compte les signaux **UX** (**Core Web Vitals**) pour le référencement, cette fonction contribue indirectement à un meilleur score **SEO**.  
 
-> [📄 Consulter l'entry point](./src/app/app.component.ts)  
+> 📄 Consulter l'entry point : `./src/app/app.component.ts`  
 
 <h2 id="sitemap">
   <img
@@ -143,7 +143,7 @@ Le **Sitemap XML** est un fichier essentiel pour l'indexation. Il agit comme une
 
 **Contenu type :** **URL** de la page, la date de dernière modification (`lastmod`) et la fréquence de changement (`changefreq`).  
 
-> [📄 Consulter le sitemap.xml](./public/sitemap.xml)  
+> 📄 Consulter le sitemap.xml : `./public/sitemap.xml`  
 
 <h2 id="robots">
   <img
@@ -163,7 +163,7 @@ Le fichier `robots.txt` est la première ressource consultée par les robots d'e
 
 **Lien avec le Sitemap :** il est recommandé d'inclure l'**URL** de notre **Sitemap** à la fin du fichier `robots.txt`.  
 
-> [📄 Consulter le robots.txt](./public/robots.txt)  
+> 📄 Consulter le robots.txt : `./public/robots.txt`  
 
 <h2 id="sémantique">
   <img
