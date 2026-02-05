@@ -52,21 +52,15 @@ pnpm add -D @compodoc/compodoc
 
 1. Créer `tsconfig.doc.json` (à la racine), afin que **Compodoc** exclu les fichiers de tests (`.spec.ts`) de la documentation....  
 
-> [📄 Consulter la configuration](./tsconfig.doc.json)  
-
 2. Créer le fichier `.compodocrc.json` =>  
 
 C'est la configuration principale de **Compodoc** (dossier de sortie, port, thème...)  
 
-> [📄 Consulter la configuration](./.compodocrc.json)  
-
-💡 Une documentation complète est disponible ici... [Compodoc Rules](./docs/RULES.md#compodoc)  
+💡 Une documentation complète est disponible ici... [Compodoc Rules](rules-references.html#compodoc)  
 
 3. Créer le fichier `summary.json` dans un dossier `docs` à la racine =>  
 
 Celui-ci sert à définir la structure du menu latéral pour la documentation additionnelle (fichiers **Markdown**).  
-
-> [📄 Consulter la configuration](./docs/summary.json)  
 
 **Etape 3 :** Ajouter les scripts au `package.json`  
 
@@ -81,8 +75,6 @@ Celui-ci sert à définir la structure du menu latéral pour la documentation ad
 ```
 
 `pnpm doc:build` ne génère simplement que des fichiers statiques, ce script n'est utile que pour vérifier le build en local...Il n'est pas utilisé dans le déploiement !  
-
-> [📄 Consulter les scripts](./package.json)  
 
 **Etape 4 :** Lancer le serveur **Compodoc** en local =>  
 

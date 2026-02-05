@@ -1,4 +1,4 @@
-<h1 align="center">🔧 RULES_REFERENCE 🔧</h1>
+<h1 align="center">🔧 RULES REFERENCES 🔧</h1>
 
 <br>
 <br>

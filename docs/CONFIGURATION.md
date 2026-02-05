@@ -32,7 +32,7 @@ Ce fichier contient les paramètres fondamentaux du compilateur **TypeScript** (
 
 Il définit le niveau de rigueur du typage (**Strict Mode**) et la compatibilité du code généré.  
 
-💡 Une documentation complète est disponible dans le fichier `tsconfig.json` et ici... [TypeScript Base Config Rules](./docs/RULES.md#ts-base-config-rules)  
+💡 Une documentation complète est disponible dans le fichier `tsconfig.json` et ici... [TypeScript Base Config Rules](rules-references.html#ts-base-config-rules)  
 
 📄 [Consulter la configuration](./tsconfig.json)  
 
@@ -41,15 +41,13 @@ Il définit le niveau de rigueur du typage (**Strict Mode**) et la compatibilit�
 Pour éviter les imports relatifs illisibles comme `../../../../core/services/auth.service`, nous utilisons des **Alias**.  
 Ces raccourcis sont définis dans `compilerOptions.paths` du `tsconfig.json`.  
 
-💡 Une documentation complète est disponible dans le fichier `tsconfig.app.json` et ici... [TypeScript Alias Config Rules](./docs/RULES.md#ts-alias-config-rules)  
+💡 Une documentation complète est disponible dans le fichier `tsconfig.app.json` et ici... [TypeScript Alias Config Rules](rules-references.html#ts-alias-config-rules)  
 
 <h3 id="app-config">Configuration applicative</h3>
 
 **`tsconfig.app.json`**  
 
-💡 Une documentation complète est disponible dans le fichier `tsconfig.app.json` et ici... [TypeScript App Config Rules](./docs/RULES.md#ts-app-config-rules)  
-
-> [📄 Consulter la configuration](./tsconfig.app.json)  
+💡 Une documentation complète est disponible dans le fichier `tsconfig.app.json` et ici... [TypeScript App Config Rules](rules-references.html#ts-app-config-rules)  
 
 <h2 id="apache-config">
   <img
@@ -82,9 +80,6 @@ Nous utilisons un fichier de configuration distribué (`.htaccess`) pour interce
 ### Le fichier `.htaccess`
 
 Ce fichier est situé dans le dossier des assets publics et est automatiquement copié à la racine du build lors de la compilation.  
-
-**Emplacement source :**  
-> [📄 Consulter la configuration](./public/.htaccess)  
 
 **Emplacement build :** `dist/AngularTemplate/browser/.htaccess`  
 
@@ -124,6 +119,4 @@ Les **schematics** utilisent des règles pour définir comment le code doit êtr
 
 La configuration se trouve dans le fichier `angular.json`.  
 
-> [📄 Consulter la configuration](./angular.json)  
-
-💡 Une documentation complète est disponible ici... [Schematics Rules](./docs/RULES.md#schematics-rules)  
+💡 Une documentation complète est disponible ici... [Schematics Rules](rules-references.html#schematics-rules)  

@@ -5,7 +5,9 @@
 /bazel-out
 
 # Compodoc
+.docs_backup/
 .documentation-output
+docs/generated/
 README_BACKUP.md
 
 # Environments Files

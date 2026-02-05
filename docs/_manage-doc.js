@@ -8,149 +8,228 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const rootDir = path.join(__dirname, '../');
+const docsDir = path.join(rootDir, 'docs');
 
-const readmePath = path.join(rootDir, 'README.md');
-const backupPath = path.join(rootDir, 'README_BACKUP.md');
 const outputDir = path.join(rootDir, '.documentation-output');
+const backupDir = path.join(rootDir, '.docs_backup');
 
 const keepFiles = process.argv.includes('--keep');
 
-// --- GIT UTILITIES FUNCTIONS ---
-function gitIgnoreFile() {
-  try {
-    // Tells Git to temporarily ignore changes to this file
-    execSync('git update-index --assume-unchanged README.md', { cwd: rootDir, stdio: 'ignore' });
 
-    console.log('🙈 Git is strictly ignoring README.md changes during generation.');
+// ----------------------//
+// --- CONFIGURATION --- //
+// ----------------------//
+
+// Initializing the list of files to be processed
+// Here we store both the original path AND the future path in the backup folder
+const filesToProcess = [
+  {
+    originalPath: path.join(rootDir, 'README.md'),
+    backupPath: path.join(backupDir, 'root_README.md'),
+    type: 'root'
+  }
+];
+
+// Dynamically adding files from the docs/ folder
+if (fs.existsSync(docsDir)) {
+  const docFiles = fs.readdirSync(docsDir).filter(file => file.endsWith('.md'));
+
+  docFiles.forEach(file => {
+    filesToProcess.push({
+      originalPath: path.join(docsDir, file),
+      backupPath: path.join(backupDir, `docs_${file}`),
+      type: 'doc'
+    });
+  });
+}
+
+
+// ----------------------------//
+// --- UTILITIES FUNCTIONS --- //
+// ----------------------------//
+
+function gitIgnoreFile(filePath) {
+  try {
+    const relativePath = path.relative(rootDir, filePath);
+
+    execSync(`git update-index --assume-unchanged "${relativePath}"`, { cwd: rootDir, stdio: 'ignore' });
+    console.log(`🙈 Git ignoring: ${path.basename(filePath)}`);
   }
   catch (e) {
-    console.error(e);
+    // It is unknown whether the file is not tracked
   }
 }
 
-function gitTrackFile() {
+function gitTrackFile(filePath) {
   try {
-    // Tell Git to start tracking the file normally again
-    execSync('git update-index --no-assume-unchanged README.md', { cwd: rootDir, stdio: 'ignore' });
+    const relativePath = path.relative(rootDir, filePath);
 
-    console.log('👀 Git is tracking README.md again...');
+    execSync(`git update-index --no-assume-unchanged "${relativePath}"`, { cwd: rootDir, stdio: 'ignore' });
+    console.log(`👀 Git tracking: ${path.basename(filePath)}`);
   }
   catch (e) {
-    console.error(e);
+    // We ignore the errors
   }
 }
 
-// 1. Saving original README.md
-if (fs.existsSync(backupPath)) {
-  console.log('⚠️ A backup already exists. Forced restore before starting.');
 
-  try {
-    // Restore original file
-    fs.copyFileSync(backupPath, readmePath);
-    // Delete old corrupted backup
-    fs.unlinkSync(backupPath);
+// ---------------------//
+// --- TRANSFORMERS --- //
+// ---------------------//
+
+function transformLinks(content, fileType) {
+  // Transformation simple : on remplace l'extension .md par .html
+  // Puisque tes fichiers sont maintenant nommés correctement (ex: RULES-REFERENCE.md),
+  // le slug (rules-reference.html) correspondra nativement au titre Compodoc.
+
+  const linkReplacer = (_match, filepath, anchor) => {
+    const filename = path.basename(filepath, '.md'); // Ex: RULES-REFERENCE
+    const slug = filename.toLowerCase();             // Ex: rules-reference
+    return `](additional-documentation/${slug}.html${anchor ? '#' + anchor : ''})`;
+  };
+
+  const siblingReplacer = (_match, filepath, anchor) => {
+    const filename = path.basename(filepath, '.md');
+    const slug = filename.toLowerCase();
+    return `](${slug}.html${anchor ? '#' + anchor : ''})`;
+  };
+
+  if (fileType === 'root') {
+    // README : liens vers ./docs/XXX.md
+    content = content.replace(/\]\((?:\.\/)?docs\/(.+?)\.md(?:#(.+?))?\)/g, linkReplacer);
   }
-  catch(e) {
-    console.error('❌ CRITICAL : Unable to restore previous backup !');
-    console.error('To prevent data loss, process has been stopped.');
-    console.error('👉 Please manually check README.md and delete README_BACKUP.md');
-    console.error(e);
-    process.exit(1);
+  else {
+    // DOCS : liens vers les frères ./XXX.md
+    content = content
+      .replace(/\]\((?:\.\/)?(.+?)\.md(?:#(.+?))?\)/g, siblingReplacer)
+      .replace(/\]\((?:\.\.\/)?README\.md\)/g, '](overview.html)');
   }
+
+  return content;
 }
 
-// Create a fresh backup for this session
-if (fs.existsSync(readmePath)) {
-  fs.copyFileSync(readmePath, backupPath);
-}
 
-// 2. Link transformation for Compodoc and Git Lockdown
-try {
-  // Lock Git BEFORE modifying the file
-  gitIgnoreFile();
+// ---------------------//
+// --- MAIN PROCESS --- //
+// ---------------------//
 
-  let content = fs.readFileSync(readmePath, 'utf8');
+// 1. CRASH RECOVERY
+if (fs.existsSync(backupDir)) {
+  console.warn('⚠️  Previous backup detected. Restoring files before starting...');
 
-  // Transform [Title](./docs/XXX.md) into [Title](additional-documentation/xxx.html)
-  content = content.replace(/\]\(\.\/docs\/(.+?)\.md\)/g, (_match, filename) => {
-    return `](additional-documentation/${filename.toLowerCase()}.html)`;
+  filesToProcess.forEach(file => {
+    if (fs.existsSync(file.backupPath)) {
+
+      try {
+        fs.copyFileSync(file.backupPath, file.originalPath);
+        gitTrackFile(file.originalPath);
+      }
+      catch(e) {
+        console.error('❌ CRITICAL : Unable to restore backups !');
+        console.error('To prevent data loss, process has been stopped.');
+        console.error('👉 Please manually check all the .md files and delete all backup files');
+        console.error(e);
+        process.exit(1);
+      }
+    }
   });
 
-  // "Time-of-check to time-of-use" safety: use file descriptor to write file
-  const fd = fs.openSync(readmePath, 'w');
   try {
-    fs.writeSync(fd, content);
+    fs.rmSync(backupDir, { recursive: true, force: true });
   }
-  finally {
-    fs.closeSync(fd);
+  catch(e) {
+    console.warn(`⚠️ Warning: Could not delete old backup dir: ${e.message}`);
   }
-
-  console.log('🔄 README.md prepared for Compodoc (Corrected links).');
-}
-catch (err) {
-  console.error('❌ Error during preparation : ', err);
-  restoreAndExit(1);
 }
 
-// 3. Determine command line arguments
+console.log('📦 Preparing documentation files...');
+fs.mkdirSync(backupDir, { recursive: true });
+
+// 2. BACKUP & TRANSFORMATION
+filesToProcess.forEach(file => {
+  if (fs.existsSync(file.originalPath)) {
+    // Backup
+    fs.copyFileSync(file.originalPath, file.backupPath);
+
+    // Ignore changes
+    gitIgnoreFile(file.originalPath);
+
+    // Transform
+    let content = fs.readFileSync(file.originalPath, 'utf8');
+    content = transformLinks(content, file.type);
+
+    fs.writeFileSync(file.originalPath, content, 'utf8');
+  }
+});
+
+console.log(`🔄 Links transformed & backup secured in ${backupDir}`);
+console.log('🙈 Git is strictly ignoring documentation changes.');
+
+
+// --------------------------//
+// --- COMPODOC LAUNCHER --- //
+// --------------------------//
+
 const mode = process.argv[2] || 'build';
 const isServe = mode === 'serve';
+const args = [];
+
+if (isServe) args.push('-s', '-w');
 
 console.log(`🚀 Launching Compodoc in mode : ${mode.toUpperCase()}`);
 
-const args = [];
-if (isServe) {
-  args.push('-s', '-w');
-}
+const child = spawn('npx', ['compodoc', ...args], { stdio: 'inherit', cwd: rootDir, shell: true });
+// Pass the exitCode to the restore function to see if it was successful
+child.on('close', (code) => restoreAndExit(code));
 
-// 4. Launch Compodoc process
-const child = spawn('npx', ['compodoc', ...args], {
-  stdio: 'inherit',
-  cwd: rootDir,
-  shell: true
-});
-
-child.on('error', (err) => {
-  console.error('❌ Critical error during Compodoc launch : ', err);
-  restoreAndExit(1);
-});
-
-child.on('close', (code) => {
-  restoreAndExit(code);
-});
 
 process.on('SIGINT', () => {
   console.log('\n🛑 Shutdown detected...');
   restoreAndExit(0);
 });
 
+
+// -----------------------//
+// --- RESTORE & EXIT --- //
+// -----------------------//
+
 function restoreAndExit(code = 0) {
-  try {
-    // Restore original README.md
-    if (fs.existsSync(backupPath)) {
-      fs.copyFileSync(backupPath, readmePath);
-      fs.unlinkSync(backupPath);
+  console.log('\n♻️  Restoring original files...');
 
-      console.log('✅ Original README.md restored.');
+  filesToProcess.forEach(file => {
+    try {
+      if (fs.existsSync(file.backupPath)) {
+        fs.copyFileSync(file.backupPath, file.originalPath);
+      }
+
+      gitTrackFile(file.originalPath);
     }
-
-    // Reactivating Git tracking
-    gitTrackFile();
-
-    // Delete output folder
-    // ONLY delete if the --keep option is NOT enabled
-    if (!keepFiles && fs.existsSync(outputDir)) {
-      fs.rmSync(outputDir, { recursive: true, force: true });
-
-      console.log('🧹 Documentation output directory cleaned.');
+    catch (e) {
+      console.error(`⚠️ Error restoring ${path.basename(file.originalPath)}:`, e);
     }
-    else if (keepFiles) {
-      console.log('💾 "--keep" flag detected: Output directory preserved.');
+  });
+
+  // Removing backup directory
+  if (!keepFiles && fs.existsSync(backupDir)) {
+    try {
+      fs.rmSync(backupDir, { recursive: true, force: true });
+    }
+    catch(e) {}
+
+    console.log('🗑️  Backup cleaned.');
+  }
+
+  // Clean Output ONLY ON FAILURE (or just a temporary server)
+  if (!keepFiles && fs.existsSync(outputDir)) {
+    if (code !== 0 || isServe) {
+      try {
+        fs.rmSync(outputDir, { recursive: true, force: true });
+
+        console.log(code !== 0 ? '🧹 Failed build output cleaned.' : '🧹 Temporary server output cleaned.');
+      }
+      catch(e) {}
     }
   }
-  catch (e) {
-    console.error('⚠️ Error during restoration : ', e);
-    gitTrackFile();
-  }
+
   process.exit(code);
 }
