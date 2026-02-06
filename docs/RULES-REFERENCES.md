@@ -340,6 +340,10 @@ Le plugin (**eslint-plugin-security**) ajoute une couche de sécurité statique.
 
 > [🔗 TypeScript Config Documentation](https://www.typescriptlang.org/tsconfig/)  
 
+<details>
+
+  <summary>👁️ Tout voir</summary>
+
 <h3 id="ts-base-config-rules">TypeScript Base Config Rules</h3>
 
 <details>
@@ -445,11 +449,13 @@ Ces paramètres contrôlent le compilateur AOT (Ahead-of-Time) d'Angular, spéci
 
 </details>
 
+</details>
+
 <h2 id="compodoc">
   <img
     alt="Compodoc"
     title="Compodoc"
-    width="60px"
+    width="34px"
     src="https://raw.githubusercontent.com/EmmanuelLefevre/GitHubProfileIcons/main/compodoc.svg"
   />
   Compodoc Rules
@@ -457,7 +463,7 @@ Ces paramètres contrôlent le compilateur AOT (Ahead-of-Time) d'Angular, spéci
 
 <details>
 
-  <summary>👁️ Tout voir</summary>
+  <summary>🧐 Consulter la configuration détaillée</summary>
 
 &nbsp;
 
@@ -721,7 +727,7 @@ Configuration pour la gestion globale des services (`ng g s`).
   <img
     alt="VSCODE"
     title="VSCODE"
-    width="34px"
+    width="30px"
     src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg"
   />
   VSCode Rules
