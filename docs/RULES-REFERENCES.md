@@ -411,7 +411,7 @@ Ces paramètres contrôlent le compilateur AOT (Ahead-of-Time) d'Angular, spéci
 
 <details>
 
-  <summary>👁️ Tout voir</summary>
+  <summary>🧐 Consulter la configuration détaillée</summary>
 
 &nbsp;
 
@@ -434,7 +434,7 @@ Ces paramètres contrôlent le compilateur AOT (Ahead-of-Time) d'Angular, spéci
 
 <details>
 
-  <summary>👁️ Tout voir</summary>
+  <summary>🧐 Consulter la configuration détaillée</summary>
 
 &nbsp;
 
