@@ -9,7 +9,7 @@ import { ENVIRONMENT } from '@env/environment';
 import { SeoService } from './seo.service';
 import { SeoData } from '@core/_models/seo/seo.model';
 
-const NULL = 0;
+const INITIAL_VALUE = 0;
 
 describe('SeoService', () => {
 
@@ -281,6 +281,6 @@ describe('SeoService', () => {
       ([firstArg]) => firstArg?.property === 'og:image'
     );
 
-    expect(OG_IMAGE_CALLS.length).toBe(NULL);
+    expect(OG_IMAGE_CALLS.length).toBe(INITIAL_VALUE);
   });
 });

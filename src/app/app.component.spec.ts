@@ -10,7 +10,7 @@ import { AuthService } from '@core/_services/auth/auth.service';
 import { SeoService } from '@core/_services/seo/seo.service';
 
 const NAV_ID = 1;
-const NULL = 0;
+const INITIAL_VALUE = 0;
 
 describe('AppComponent', () => {
 
@@ -184,7 +184,7 @@ describe('AppComponent', () => {
     routerEventsSubject.next(new NavigationEnd(NAV_ID, '/new-page', '/new-page'));
 
     // --- ASSERT ---
-    expect(SCROLL_SPY).toHaveBeenCalledWith(NULL, NULL);
+    expect(SCROLL_SPY).toHaveBeenCalledWith(INITIAL_VALUE, INITIAL_VALUE);
 
     SCROLL_SPY.mockRestore();
   });

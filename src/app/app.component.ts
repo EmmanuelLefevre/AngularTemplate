@@ -7,7 +7,7 @@ import { AuthService } from '@core/_services/auth/auth.service';
 import { SeoService } from '@core/_services/seo/seo.service';
 import { SeoData } from '@core/_models/seo/seo.model';
 
-const NULL = 0;
+const INITIAL_VALUE = 0;
 
 @Component({
   selector: 'app-root',
@@ -63,7 +63,7 @@ export class AppComponent implements OnInit {
     this.router.events.pipe(
       filter((event): event is NavigationEnd => event instanceof NavigationEnd)
     ).subscribe(() => {
-      window.scrollTo(NULL, NULL);
+      window.scrollTo(INITIAL_VALUE, INITIAL_VALUE);
     });
   }
 }

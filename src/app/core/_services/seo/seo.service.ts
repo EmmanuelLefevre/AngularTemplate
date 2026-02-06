@@ -7,7 +7,7 @@ import { firstValueFrom } from 'rxjs';
 import { ENVIRONMENT } from '@env/environment';
 import { SeoData } from '@core/_models/seo/seo.model';
 
-const NULL = 0;
+const INITIAL_VALUE = 0;
 
 @Injectable({
   providedIn: 'root'
@@ -33,7 +33,7 @@ export class SeoService {
 
     // Retrieve translations ONLY if there are keys
     let translations: Record<string, string> = {};
-    if (KEYS.length > NULL) {
+    if (KEYS.length > INITIAL_VALUE) {
       translations = await firstValueFrom(this.translate.get(KEYS));
     }
 
