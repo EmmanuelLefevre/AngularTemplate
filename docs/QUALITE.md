@@ -113,30 +113,55 @@ Ouvrir le fichier `eslint.config.js` (qui vient d'être créé à la racine).
 
 **\* Note :** Prettier ne sera pas ajouté automatiquement il faut le faire manuellement.  
 
-**Etape 3 :** Overrides
+**Etape 3 :** Global ignores  
 
-Dans la nouvelle Flat Config d'**ESLint**, la propriété overrides (telle qu'elle existait dans l'ancien format `.eslintrc`) n'existe plus.  
+Cette section **GLOBAL IGNORES** de la configuration **ESLint** permet de spécifier des motifs de fichiers ou de dossiers à ignorer par l’outil de linting de manière globale. Autrement dit **ESLint** n’appliquera pas ses règles à tous les fichiers qui correspondent à ces motifs et ce quel que soit le fichier dans le projet. Cela est utile pour exclure des répertoires ou des fichiers qui ne doivent pas être lintés.  
+
+```js
+// GLOBAL IGNORES ----------
+export default defineConfig([
+  {
+    ignores: [
+      '.angular/',
+      'dist/',
+      'node_modules/'
+    ]
+  }
+]);
+```
+
+**Etape 4 :** Overrides  
+
+Cette section **OVERRIDES** de la configuration **ESLint** permet de désactiver certaines règles pour des fichiers spécifiques où l'on ne souhaite pas appliquer certaines règles.  
+Cela est particulièrement utile pour les fichiers de **Directives**, **Pipes** ou d'environnements qui peuvent avoir des conventions ainsi que des besoins différents par rapport au reste du code.  
+
+Dans la nouvelle **Flat Config** d'**ESLint**, la propriété `overrides` (telle qu'elle existait dans l'ancien format `.eslintrc`) n'existe plus.  
 
 Le concept est maintenant le suivant : **TOUT** est "override". Pour créer des exceptions, il suffit d'ajouter un nouvel objet à la fin du tableau `defineConfig`. Comme **ESLint** lit la configuration de haut en bas, les règles définies à la fin écrasent celles du début pour les fichiers correspondants.  
 
 ```js
 export default defineConfig([
+  // OVERRIDES ----------
   {
     files: ['**/*.spec.ts'],
     rules: {
-      '@typescript-eslint/no-magic-numbers': 'off',
+      '@angular-eslint/no-empty-lifecycle-method': 'off',
       '@typescript-eslint/explicit-function-return-type': 'off',
       '@typescript-eslint/no-empty-function': 'off',
-      '@angular-eslint/no-empty-lifecycle-method': 'off'
+      '@typescript-eslint/no-magic-numbers': 'off'
+    }
+  },
+  {
+    files: ["src/environments/*.ts"],
+    rules: {
+      "@typescript-eslint/naming-convention": ["off"],
+      "capitalized-comments": ["off"]
     }
   }
 ]);
 ```
 
-Cette section `overrides` de la configuration **ESLint** permet de désactiver certaines règles pour des fichiers spécifiques où l'on ne souhaite pas appliquer certaines règles.  
-Cela est particulièrement utile pour les fichiers de directives, pipes ou d'environnements qui peuvent avoir des conventions ainsi que des besoins différents par rapport au reste du code.  
-
-**Etape 4 :** Ajouter les scripts pratiques  
+**Etape 5 :** Ajouter les scripts pratiques  
 
 Mettre à jour la section "scripts" du `package.json` pour faciliter l'utilisation en créant ces commandes =>  
 
@@ -150,7 +175,7 @@ Mettre à jour la section "scripts" du `package.json` pour faciliter l'utilisati
 }
 ```
 
-**Etape 5 :** Tester la commande  
+**Etape 6 :** Tester la commande  
 
 ```shell
 pnpm lint
@@ -164,7 +189,7 @@ Vous devriez voir s'afficher =>
 
 <br>
 
-**Etape 6 :** Ajouter les autres packages **ESLint**  
+**Etape 7 :** Ajouter les autres packages **ESLint**  
 
 ```shell
 pnpm add -D @angular-eslint/builder @eslint/js typescript-eslint
