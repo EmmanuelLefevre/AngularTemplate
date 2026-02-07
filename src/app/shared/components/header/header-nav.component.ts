@@ -25,8 +25,8 @@ import { HEADER_NAV_LINKS } from '@core/_config/links/nav-links.constant';
 export class HeaderNavComponent {
 
   protected readonly navLinks = HEADER_NAV_LINKS;
-  private readonly renderer = inject(Renderer2);
 
+  private readonly renderer = inject(Renderer2);
   private readonly router = inject(Router);
 
   public isMenuOpen = signal(false);

@@ -9,14 +9,14 @@ import { AuthService } from '@core/_services/auth/auth.service';
 
 import { CloseButtonComponent } from '@shared/components/close-button/close-button.component';
 import { DynamicFormComponent } from '@shared/components/dynamic-form/dynamic-form.component';
-import { LinkComponent } from '@shared/components/link/link.component';
+import { MainLinkComponent } from '@shared/components/link/main-link.component';
 
 @Component({
   selector: 'login-view',
   imports: [
     CloseButtonComponent,
     DynamicFormComponent,
-    LinkComponent,
+    MainLinkComponent,
     TranslateModule
   ],
   templateUrl: './login-view.component.html',
@@ -37,22 +37,22 @@ export class LoginViewComponent {
   readonly loginFields: FormFieldConfig[] = [
     {
       name: 'email',
-      label: 'UI_COMPONENTS.FORM.EMAIL.LABEL',
+      label: 'UI.FORMS.LABELS.EMAIL',
       type: 'email',
-      placeholder: 'UI_COMPONENTS.FORM.EMAIL.PLACEHOLDER'
+      placeholder: 'UI.FORMS.PLACEHOLDERS.EMAIL'
     },
     {
       name: 'password',
-      label: 'UI_COMPONENTS.FORM.PASSWORD.LABEL',
+      label: 'UI.FORMS.LABELS.PASSWORD',
       type: 'password',
-      placeholder: 'UI_COMPONENTS.FORM.PASSWORD.PLACEHOLDER',
+      placeholder: 'UI.FORMS.PLACEHOLDERS.PASSWORD',
       behaviors: { hasPasswordToggle: true }
     },
     {
       name: 'confirmPassword',
-      label: 'UI_COMPONENTS.FORM.CONFIRM_PASSWORD.LABEL',
+      label: 'UI.FORMS.LABELS.CONFIRM_PASSWORD',
       type: 'password',
-      placeholder: 'UI_COMPONENTS.FORM.CONFIRM_PASSWORD.PLACEHOLDER',
+      placeholder: 'UI.FORMS.PLACEHOLDERS.CONFIRM_PASSWORD',
       behaviors: { hasPasswordToggle: true }
     }
   ];

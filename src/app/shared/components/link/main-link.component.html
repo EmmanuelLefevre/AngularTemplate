@@ -2,7 +2,7 @@
   [routerLink]="routerLink() ? routerLink() : null"
   [queryParams]="queryParams()"
   [class]="'c-link ' + customClass()"
-  [attr.aria-label]="ariaLabel() | translate"
+  [attr.aria-label]="ariaLabel() || label() | translate"
   (click)="onHandleClick($event)">
   @if (icon()) {
     <i

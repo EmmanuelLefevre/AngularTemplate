@@ -21,7 +21,9 @@
         type="button"
         class="c-field__toggle"
         (click)="togglePassword()"
-        [attr.aria-label]="(showPassword() ? 'AUTH.HIDE_PWD' : 'AUTH.SHOW_PWD') | translate">
+        [attr.aria-label]="
+          (showPassword() ? 'UI.FORMS.ACTIONS.HIDE_PASSWORD' : 'UI.FORMS.ACTIONS.SHOW_PASSWORD') | translate
+        ">
         <i [class]="showPassword() ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye'"></i>
       </button>
     }

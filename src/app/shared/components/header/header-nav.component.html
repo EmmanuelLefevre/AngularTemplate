@@ -3,7 +3,7 @@
     <a
       routerLink="/"
       (click)="closeMenu()"
-      [attr.aria-label]="'HEADER.LOGO_LINK' | translate"
+      [attr.aria-label]="'UI.BUTTONS.LOGO.ARIA' | translate"
       class="header__logo">
       <span>ANGULAR</span>TEMPLATE
     </a>
@@ -15,7 +15,11 @@
       [class.is-active]="isMenuOpen()"
       [attr.aria-expanded]="isMenuOpen()"
       aria-controls="main-nav"
-      [attr.aria-label]="isMenuOpen() ? ('HEADER.CLOSE_MENU' | translate) : ('HEADER.OPEN_MENU' | translate)"
+      [attr.aria-label]="
+        isMenuOpen()
+          ? ('UI.BUTTONS.MOBILE.MENU.ARIA.CLOSE' | translate)
+          : ('UI.BUTTONS.MOBILE.MENU.ARIA.OPEN' | translate)
+      "
       class="header__burger">
       <span></span>
       <span></span>
@@ -35,7 +39,7 @@
               (click)="closeMenu()"
               (keydown.escape)="closeMenu()"
               class="header__link">
-              {{ link.label | translate }}
+              {{ link.labelKey | translate }}
             </a>
           </li>
         }
@@ -45,8 +49,8 @@
         <language-toggle />
         <main-button
           variant="primary"
-          [label]="'UI_COMPONENTS.BUTTON.LOGIN.LABEL' | translate"
-          [ariaLabel]="'UI_COMPONENTS.BUTTON.LOGIN.ARIA' | translate"
+          [label]="'UI.BUTTONS.LOGIN.LABEL' | translate"
+          [ariaLabel]="'UI.BUTTONS.LOGIN.ARIA' | translate"
           (clicked)="onLoginClick()"
           class="header__login-btn" />
       </div>
@@ -56,8 +60,8 @@
       <language-toggle />
       <main-button
         variant="primary"
-        [label]="'UI_COMPONENTS.BUTTON.LOGIN.LABEL' | translate"
-        [ariaLabel]="'UI_COMPONENTS.BUTTON.LOGIN.ARIA' | translate"
+        [label]="'UI.BUTTONS.LOGIN.LABEL' | translate"
+        [ariaLabel]="'UI.BUTTONS.LOGIN.ARIA' | translate"
         (clicked)="onLoginClick()"
         class="header__login-btn" />
     </div>
@@ -71,6 +75,6 @@
   (keydown.enter)="closeMenu()"
   (keydown.space)="$event.preventDefault(); closeMenu()"
   [tabindex]="isMenuOpen() ? 0 : -1"
-  [attr.aria-label]="'HEADER.CLOSE_MENU' | translate"
+  [attr.aria-label]="'UI.BUTTONS.MOBILE.MENU.ARIA.CLOSE' | translate"
   type="button"
   class="header__overlay"></button>

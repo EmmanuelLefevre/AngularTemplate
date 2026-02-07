@@ -39,7 +39,7 @@
 - [DOCUMENTATION](#-documentation)
 - [QUICK START](#-quick-start)
   - [Requirements](#requirements)
-  - [Installation](#installation)
+  - [Installation & Démarrage](#installation--démarrage)
 
 ## 🚀 PRÉSENTATION
 
@@ -94,16 +94,16 @@ L'intégrité des traductions est garantie par un outillage automatisé :
 Conception intégralement pensée pour le mobile. Le **Design System** est entièrement variabilisé (mixins, couleurs, polices, espacements...) pour une personnalisation sans douleur.  
 
 🧩 **Smart UI Kit :**  
-Une bibliothèque de composants internes (Custom Form, Generic Input, Button, Link, ScrollToTop) et des layouts (Public, Admin, Header, Footer, Nav...) prêts à l'emploi. **Tous couverts à 100% par des tests.**  
+Une bibliothèque de composants internes (Custom Form, Generic Input, Button, Link, ScrollToTop...) et des layouts (Public, Admin, Header, Footer, Nav...) prêts à l'emploi. **Tous couverts à 100% par des tests.**  
 
 🧠 **Architecture :**  
 **Error Handler** global, **Interceptors**, **Guards** d'authentification, une partie de l'application **Public** et **Private** ainsi qu'un **Dashboard Admin** fonctionnel sont déjà configurés. **Tous couverts à 100% par des tests.**  
 
 🛠️ **Pipes & Directives :**  
-Des outils essentiels comme des **Directives** (`input-focus`, `input-trim`, `input-uppercase`...) et des **Pipes** (`date-format`...) sont inclus et **testés à 100%**.  
+Des outils essentiels comme des **Directives** (`input-focus`, `input-trim`, `input-uppercase`...) et des **Pipes** (`date-format`...) sont inclus. **Tous couverts à 100% par des tests.**  
 
 📘 **Documentation :**  
-Architecture documentée en temps réel. **Compodoc** génère une documentation technique complète, automatiquement déployée et hébergée sur **GitHub Pages** à chaque merge sur le code stable (branche `main`). Cette **Compodoc** est évidemment aussi disponible en local !
+Architecture documentée en temps réel. **Compodoc** génère une documentation technique complète, automatiquement déployée et hébergée sur **GitHub Pages** à chaque merge sur le code stable (branche `main`). Cette **Compodoc** est évidemment aussi disponible en environnement local !  
 
 ## 📚 DOCUMENTATION
 

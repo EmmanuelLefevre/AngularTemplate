@@ -1,12 +1,12 @@
 <footer class="footer">
   <ul class="footer__social-list">
-    @for (link of socialLinks; track link.label) {
+    @for (link of socialLinks; track link.ariaKey) {
       <li class="footer__social-item">
         @if (link.path) {
           <a
             [routerLink]="[link.path]"
-            [attr.aria-label]="link.label + '.ARIA' | translate"
-            [matTooltip]="link.label + '.TOOLTIP' | translate"
+            [attr.aria-label]="link.ariaKey | translate"
+            [matTooltip]="link.tooltipKey | translate"
             matTooltipPosition="above"
             matTooltipShowDelay="600"
             class="footer__link">
@@ -19,8 +19,8 @@
             [href]="link.href"
             target="_blank"
             rel="noopener noreferrer"
-            [attr.aria-label]="link.label + '.ARIA' | translate"
-            [matTooltip]="link.label + '.TOOLTIP' | translate"
+            [attr.aria-label]="link.ariaKey | translate"
+            [matTooltip]="link.tooltipKey | translate"
             matTooltipPosition="above"
             matTooltipShowDelay="600"
             class="footer__link">
@@ -34,9 +34,9 @@
   </ul>
 
   <p class="footer__copyright">
-    {{ 'FOOTER.COPYRIGHT' | translate: { year: currentYear } }}
-    <span class="footer__owner">{{ 'FOOTER.PROJECT' | translate }}</span>
-    - {{ 'FOOTER.RIGHTS_RESERVED' | translate }}
+    {{ copyrightKey | translate: { year: currentYear } }}
+    <span class="footer__owner">{{ appNameKey | translate }}</span>
+    - {{ rightsReservedKey | translate }}
   </p>
 
   <div class="footer__hosting">
@@ -48,8 +48,8 @@
             [href]="externalLinks.portfolio"
             target="_blank"
             rel="noopener noreferrer"
-            [attr.aria-label]="'FOOTER.LINKS.PORTFOLIO.ARIA' | translate"
-            [matTooltip]="'FOOTER.LINKS.PORTFOLIO.TOOLTIP' | translate"
+            [attr.aria-label]="hosting.developer.ariaKey | translate"
+            [matTooltip]="hosting.developer.tooltipKey | translate"
             matTooltipPosition="left"
             matTooltipShowDelay="600"
             >{{ hosting.developer.nameKey | translate }}
@@ -70,7 +70,7 @@
           [href]="hosting.host.url"
           target="_blank"
           rel="noopener"
-          [attr.aria-label]="'FOOTER.LINKS.HOST.ARIA' | translate"
+          [attr.aria-label]="hosting.host.ariaKey | translate"
           >{{ hosting.host.nameKey | translate }}
         </a>
       </span>

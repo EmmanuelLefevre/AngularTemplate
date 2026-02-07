@@ -26,4 +26,8 @@ export class MainFooterComponent {
   protected readonly hosting = HOSTING_INFOS;
 
   protected readonly currentYear = new Date().getFullYear();
+
+  protected readonly appNameKey = 'META.DEFAULT.APP_NAME';
+  protected readonly copyrightKey = 'LAYOUT.FOOTER.LEGAL.COPYRIGHT';
+  protected readonly rightsReservedKey = 'LAYOUT.FOOTER.LEGAL.RIGHTS_RESERVED';
 }

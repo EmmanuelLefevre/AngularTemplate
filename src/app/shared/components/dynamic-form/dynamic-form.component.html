@@ -1,6 +1,6 @@
 <form
   [formGroup]="form"
-  (ngSubmit)="submitted.emit(form.value)"
+  (ngSubmit)="onSubmit()"
   class="c-form">
   <div class="c-form__fields">
     @for (field of visibleFields(); track field.name) {
@@ -18,16 +18,16 @@
   <div class="c-form__actions">
     <main-button
       type="submit"
-      [label]="'UI_COMPONENTS.BUTTON.CONTINUE.LABEL'"
-      [ariaLabel]="'BUTTON.CONTINUE.ARIA'"
+      [label]="'UI.BUTTONS.CONTINUE.LABEL'"
+      [ariaLabel]="'UI.BUTTONS.CONTINUE.ARIA'"
       [isLoading]="isLoading()"
       [isDisabled]="form.invalid" />
 
     <main-button
       type="button"
       variant="ghost"
-      [label]="'UI_COMPONENTS.BUTTON.CANCEL.LABEL'"
-      [ariaLabel]="'BUTTON.CANCEL.ARIA'"
+      [label]="'UI.BUTTONS.CANCEL.LABEL'"
+      [ariaLabel]="'UI.BUTTONS.CANCEL.ARIA'"
       (clicked)="cancelled.emit()" />
   </div>
 </form>

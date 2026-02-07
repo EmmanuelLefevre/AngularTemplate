@@ -23,7 +23,7 @@ export const ROUTES: Routes = [
           '@features/public/public-views/home/home-view.component')
           .then(m => m.HomeViewComponent),
         data: {
-          seo: { titleKey: 'SEO.HOME_TITLE', descriptionKey: 'SEO.HOME_DESCRIPTION' }
+          seo: { titleKey: 'META.PAGES.HOME.TITLE', descriptionKey: 'META.PAGES.HOME.DESCRIPTION' }
         }
       },
       {
@@ -32,7 +32,7 @@ export const ROUTES: Routes = [
           '@features/public/public-views/login/login-view.component')
           .then(m => m.LoginViewComponent),
         data: {
-          seo: { titleKey: 'SEO.LOGIN_TITLE', descriptionKey: 'SEO.LOGIN_DESCRIPTION' }
+          seo: { titleKey: 'META.PAGES.LOGIN.TITLE', descriptionKey: 'META.PAGES.LOGIN.DESCRIPTION' }
         }
       },
       {
@@ -41,7 +41,7 @@ export const ROUTES: Routes = [
           '@features/public/public-views/contact/contact-view.component')
           .then(m => m.ContactViewComponent),
         data: {
-          seo: { titleKey: 'SEO.CONTACT_TITLE', descriptionKey: 'SEO.CONTACT_DESCRIPTION' }
+          seo: { titleKey: 'META.PAGES.CONTACT.TITLE', descriptionKey: 'META.PAGES.CONTACT.DESCRIPTION' }
         }
       },
       {

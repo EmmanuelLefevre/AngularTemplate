@@ -5,7 +5,7 @@
     [routerLink]="link()!"
     [class]="classes"
     [tabindex]="isDisabled() ? -1 : tabIndex()"
-    [attr.aria-label]="ariaLabel() | translate"
+    [attr.aria-label]="ariaLabel() ? (ariaLabel()! | translate) : null"
     [attr.aria-expanded]="ariaExpanded()"
     [attr.aria-controls]="ariaControls()"
     (keydown.escape)="onHandleKeydown($event)"
@@ -19,7 +19,7 @@
     [class]="classes"
     [disabled]="isDisabled() || isLoading()"
     [tabindex]="tabIndex()"
-    [attr.aria-label]="ariaLabel() | translate"
+    [attr.aria-label]="ariaLabel() ? (ariaLabel()! | translate) : null"
     [attr.aria-expanded]="ariaExpanded()"
     [attr.aria-controls]="ariaControls()"
     (click)="onHandleClick($event)"
@@ -36,7 +36,7 @@
       <span
         class="c-btn__loader"
         aria-hidden="true"></span>
-      <span class="u-visually-hidden">{{ 'COMMON.LOADING' | translate }}</span>
+      <span class="u-visually-hidden">{{ 'UI.LOADER.LOADING' | translate }}</span>
     } @else {
       @if (icon()) {
         <i

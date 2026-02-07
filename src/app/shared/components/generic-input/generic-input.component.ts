@@ -56,7 +56,7 @@ export class GenericInputComponent {
     }
 
     const TYPE = this.type().toUpperCase();
-    return `UI_COMPONENTS.FORM.ERROR.${TYPE}.INVALID`;
+    return `UI.FORMS.ERRORS.${TYPE}.INVALID`;
   });
 
   /**
