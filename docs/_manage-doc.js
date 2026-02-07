@@ -144,12 +144,12 @@ filesToProcess.forEach(file => {
   // "Time-of-check to time-of-use" safety: use file descriptor to write files after backup
   try {
     fs.copyFileSync(file.originalPath, file.backupPath);
-      gitIgnoreFile(file.originalPath);
+    gitIgnoreFile(file.originalPath);
 
-      let content = fs.readFileSync(file.originalPath, 'utf8');
-      content = transformLinks(content, file.type);
+    let content = fs.readFileSync(file.originalPath, 'utf8');
+    content = transformLinks(content, file.type);
 
-      fs.writeFileSync(file.originalPath, content, 'utf8');
+    fs.writeFileSync(file.originalPath, content, 'utf8');
   }
   catch (e) {
     if (e.code === 'ENOENT') {
