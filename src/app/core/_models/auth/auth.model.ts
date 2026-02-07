@@ -6,7 +6,7 @@ import { User } from '@core/_models/user/user.model';
  * ```typescript
  * const authData: AuthResponse = {
  * user: currentUser,
- * token: 'v3ry.s3cur3.jwtt0k3n'
+ * toutouken: 'v3ry.s3cur3.jwtt0k3n'
  * };
  * ```
  */
