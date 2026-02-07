@@ -27,7 +27,7 @@
   "attr-sorted": false,
   "attr-value-double-quotes": true,
   "attr-value-no-duplication": true,
-  "attr-whitespace": true,
+  "attr-whitespace": false,
   "button-type-require": true,
   "doctype-first": false,
   "doctype-html5": false,

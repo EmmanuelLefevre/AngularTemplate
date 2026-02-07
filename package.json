@@ -101,7 +101,8 @@
     ],
     "src/**/*.html": [
       "htmlhint",
-      "eslint --fix --max-warnings=50"
+      "eslint --fix --max-warnings=50",
+      "prettier --write"
     ],
     "src/**/*.ts": [
       "eslint --fix --max-warnings=50",
