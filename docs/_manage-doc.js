@@ -141,18 +141,22 @@ fs.mkdirSync(backupDir, { recursive: true });
 
 // 2. BACKUP & TRANSFORMATION
 filesToProcess.forEach(file => {
-  if (fs.existsSync(file.originalPath)) {
-    // Backup
+  // "Time-of-check to time-of-use" safety: use file descriptor to write files after backup
+  try {
     fs.copyFileSync(file.originalPath, file.backupPath);
+      gitIgnoreFile(file.originalPath);
 
-    // Ignore changes
-    gitIgnoreFile(file.originalPath);
+      let content = fs.readFileSync(file.originalPath, 'utf8');
+      content = transformLinks(content, file.type);
 
-    // Transform
-    let content = fs.readFileSync(file.originalPath, 'utf8');
-    content = transformLinks(content, file.type);
+      fs.writeFileSync(file.originalPath, content, 'utf8');
+  }
+  catch (e) {
+    if (e.code === 'ENOENT') {
+      return;
+    }
 
-    fs.writeFileSync(file.originalPath, content, 'utf8');
+    console.warn(`⚠️ Warning: Could not process ${path.basename(file.originalPath)}: ${error.message}`);
   }
 });
 
