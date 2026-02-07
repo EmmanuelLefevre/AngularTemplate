@@ -1,21 +1,27 @@
 import { HostingConfig } from '@core/_models/links/host-link.model';
+import { EXTERNAL_LINKS } from './social-links.constant';
 
 import { faPhoneAlt } from '@fortawesome/free-solid-svg-icons';
 
 export const HOSTING_INFOS: HostingConfig = {
   developer: {
-    labelKey: 'FOOTER.DEVELOPPER',
-    nameKey: 'FOOTER.DEVELOPPER_NAME',
-    url: 'https://www.emmanuellefevre.com/'
+    labelKey: 'LAYOUT.FOOTER.CREDITS.DEVELOPED_BY_PREFIX',
+    nameKey: 'LAYOUT.FOOTER.CREDITS.DEVELOPER_NAME',
+    url: EXTERNAL_LINKS.portfolio,
+    ariaKey: 'LAYOUT.FOOTER.SOCIAL_LINKS.PORTFOLIO.ARIA',
+    tooltipKey: 'LAYOUT.FOOTER.SOCIAL_LINKS.PORTFOLIO.TOOLTIP'
   },
+
   host: {
-    labelKey: 'FOOTER.HOST',
-    nameKey: 'FOOTER.HOST_NAME',
-    addressKey: 'FOOTER.HOST_ADDRESS',
-    url: 'https://www.planethoster.fr/'
+    labelKey: 'LAYOUT.FOOTER.CREDITS.HOSTED_BY_PREFIX',
+    nameKey: 'LAYOUT.FOOTER.CREDITS.HOST_PROVIDER_NAME',
+    addressKey: 'LAYOUT.FOOTER.ADDRESS.STREET',
+    url: EXTERNAL_LINKS.host,
+    ariaKey: 'LAYOUT.FOOTER.SOCIAL_LINKS.HOST.ARIA'
   },
+
   phone: {
     icon: faPhoneAlt,
-    nameKey: 'FOOTER.HOST_PHONE'
+    nameKey: 'LAYOUT.FOOTER.ADDRESS.PHONE'
   }
 };

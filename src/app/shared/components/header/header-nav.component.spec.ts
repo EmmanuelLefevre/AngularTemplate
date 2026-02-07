@@ -89,13 +89,13 @@ describe('HeaderNavComponent', () => {
     // --- ARRANGE ---
     const ROUTER = TestBed.inject(Router);
     const NAVIGATE_SPY = vi.spyOn(ROUTER, 'navigate').mockImplementation(() => Promise.resolve(true));
-    const CLOSE_MESNU_SPY = vi.spyOn(component, 'closeMenu');
+    const CLOSE_MENU_SPY = vi.spyOn(component, 'closeMenu');
 
     // --- ACT ---
     component.onLoginClick();
 
     // --- ASSERT ---
-    expect(CLOSE_MESNU_SPY).toHaveBeenCalled();
+    expect(CLOSE_MENU_SPY).toHaveBeenCalled();
     expect(NAVIGATE_SPY).toHaveBeenCalledWith(['/login']);
   });
 });

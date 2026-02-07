@@ -3,17 +3,17 @@ import { RouterLink, Params } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
-  selector: 'link',
+  selector: 'main-link',
   imports: [
     RouterLink,
     TranslateModule
   ],
-  templateUrl: './link.component.html',
-  styleUrl: './link.component.scss',
+  templateUrl: './main-link.component.html',
+  styleUrl: './main-link.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class LinkComponent {
+export class MainLinkComponent {
 
   readonly clicked = output<MouseEvent>();
 

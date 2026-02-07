@@ -25,15 +25,19 @@ export class MainButtonComponent {
   readonly label = input<string>('');
 
   readonly type = input<ButtonType>('button');
+
   readonly nativeType = computed(() => {
     const currentType = this.type();
     return currentType === 'link' ? 'button' : currentType;
   });
 
   readonly variant = input<ButtonVariant>('primary');
+
   readonly link = input<string | (string | number)[] | null>(null);
+
   readonly isDisabled = input<boolean>(false);
   readonly isLoading = input<boolean>(false);
+
   readonly icon = input<string | null>(null);
 
   // --- ACCESSIBILITY (A11Y) ---
@@ -52,7 +56,12 @@ export class MainButtonComponent {
    * Click manager
    */
   protected onHandleClick(event: Event): void {
-    if (this.isDisabled() || this.isLoading()) return;
+    if (this.isDisabled() || this.isLoading()) {
+      event.preventDefault();
+      event.stopPropagation();
+
+      return;
+    }
 
     // Cast event for the output
     this.clicked.emit(event as MouseEvent);
@@ -62,7 +71,12 @@ export class MainButtonComponent {
    * Keyboard manager
    */
   protected onHandleKeydown(event: Event): void {
-    if (this.isDisabled() || this.isLoading()) return;
+    if (this.isDisabled() || this.isLoading()) {
+      event.preventDefault();
+      event.stopPropagation();
+
+      return;
+    }
 
     const KEYBOARD_EVENT = event as KeyboardEvent;
 

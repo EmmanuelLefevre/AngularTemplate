@@ -15,12 +15,20 @@ import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 
 export class HomeViewComponent {
 
-  readonly title = signal('AngularTemplate');
+  readonly appNameKey = signal('META.DEFAULT.APP_NAME');
 
   readonly resources = [
-    { title: 'Explore the Docs', link: 'https://angular.dev' },
-    { title: 'Learn with Tutorials', link: 'https://angular.dev/tutorials' },
-    { title: 'CLI Docs', link: 'https://angular.dev/tools/cli' },
-    // ...
+    {
+      titleKey: 'PAGES.HOME.LINKS.EXPLORE',
+      link: 'https://angular.dev'
+    },
+    {
+      titleKey: 'PAGES.HOME.LINKS.LEARN',
+      link: 'https://angular.dev/tutorials'
+    },
+    {
+      titleKey: 'PAGES.HOME.LINKS.CLI',
+      link: 'https://angular.dev/tools/cli'
+    }
   ];
 }

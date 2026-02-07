@@ -3,13 +3,15 @@
     <div class="home__welcome">
       <img
         src="assets/logos/logo.png"
-        alt="Pizza Logo"
+        alt="{{ appNameKey() | translate }}"
         class="home__logo" />
-      <h1 class="home__title">{{ 'HOME.TITLE' | translate }}</h1>
+
+      <h1 class="home__title">{{ 'PAGES.HOME.HERO.TITLE' | translate }}</h1>
+
       <p class="home__description">
-        {{ 'HOME.WELCOME_PREFIX' | translate }}
-        <strong class="home__accent">{{ 'PROJECT_NAME' | translate }}</strong>
-        {{ 'HOME.WELCOME_SUFFIX' | translate }}
+        {{ 'PAGES.HOME.HERO.PREFIX' | translate }}
+        <strong class="home__accent">{{ appNameKey() | translate }}</strong>
+        {{ 'PAGES.HOME.HERO.SUFFIX' | translate }}
       </p>
     </div>
 
@@ -19,13 +21,13 @@
 
     <div class="home__resources">
       <div class="pill-group">
-        @for (item of resources; track item.title) {
+        @for (item of resources; track item.titleKey) {
           <a
             class="pill"
             [href]="item.link"
             target="_blank"
             rel="noopener">
-            <span>{{ item.title }}</span>
+            <span>{{ item.titleKey | translate }}</span>
             <i class="icon-external-link"></i>
           </a>
         }
