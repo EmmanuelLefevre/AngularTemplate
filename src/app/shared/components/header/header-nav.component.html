@@ -15,11 +15,7 @@
       [class.is-active]="isMenuOpen()"
       [attr.aria-expanded]="isMenuOpen()"
       aria-controls="main-nav"
-      [attr.aria-label]="
-        isMenuOpen()
-          ? ('UI.BUTTONS.MOBILE.MENU.ARIA.CLOSE' | translate)
-          : ('UI.BUTTONS.MOBILE.MENU.ARIA.OPEN' | translate)
-      "
+      [attr.aria-label]="isMenuOpen() ? ('UI.BUTTONS.MOBILE.MENU.ARIA.CLOSE' | translate) : ('UI.BUTTONS.MOBILE.MENU.ARIA.OPEN' | translate)"
       class="header__burger">
       <span></span>
       <span></span>
@@ -30,6 +26,7 @@
       id="main-nav"
       [class.is-open]="isMenuOpen()"
       class="header__nav">
+
       <ul class="header__list">
         @for (link of navLinks; track link.path) {
           <li class="header__item">
