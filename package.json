@@ -100,9 +100,9 @@
       "secretlint --maskSecrets"
     ],
     "src/**/*.html": [
-      "htmlhint",
+      "prettier --write",
       "eslint --fix --max-warnings=50",
-      "prettier --write"
+      "htmlhint"
     ],
     "src/**/*.ts": [
       "eslint --fix --max-warnings=50",
