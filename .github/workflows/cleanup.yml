@@ -35,7 +35,7 @@ jobs:
             | xargs -r -I{} gh run delete {}
           done
 
-      - name: 🧹 Delete Useless Workflows
+      - name: 🗑️ Delete Useless Workflows Runs
         continue-on-error: true
         run: |
           # Deletes workflows containing "fix", "maj" or "test" (case insensitive)
@@ -43,6 +43,15 @@ jobs:
           gh run list --limit 100 --status completed --json databaseId,displayTitle \
           -q '.[] | select(.displayTitle | test("fix|maj|test"; "i")) | .databaseId' \
           | xargs -r -t -I{} gh run delete {}
+
+      - name: 🗑️ Delete GitHub Pages Runs
+        continue-on-error: true
+        run: |
+          # Deletes workflows for GitHub Pages deployment ("pages build and deployment")
+
+          gh run list --limit 100 --json databaseId,displayTitle \
+          -q '.[] | select(.displayTitle == "pages build and deployment") | .databaseId' \
+          | xargs -r -I{} gh run delete {}
 
       - name: 🧼 Cleanup Self History
         if: always()

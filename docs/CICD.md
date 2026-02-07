@@ -198,7 +198,6 @@ Dans `package.json` ajouter les scripts `clean` et `test:coverage`
   CLEAN UP WORKFLOW
 </h2>
 
-
 ### MAINTENANCE : NETTOYAGE DES WORKFLOWS
 
 Ce workflow utilitaire `cleanup.yml` est conçu pour maintenir la propreté de l'onglet **GitHub Actions** en supprimant automatiquement les anciennes éxécutions inutiles.  
@@ -215,19 +214,26 @@ Le script utilise la **GitHub CLI** (gh) pour effectuer deux types de nettoyage 
 1. **Suppression des échecs et annulations :**
 
 - Il scanne tous les workflows du projet.
-- Il identifie les 100 dernières exécutions ayant le statut failure (échec) ou cancelled (annulé).
-- Il les supprime une par une.
+- Il identifie les 100 dernières exécutions basées sur leur statut `failure` (échec) ou `cancelled` (annulé).
 
-Objectif : ne garder que l'historique des builds réussis pour une meilleure lisibilité.  
+**Objectif :** ne garder que l'historique des builds réussis pour une meilleure lisibilité.  
 
-2. **Auto-nettoyage (Self-Cleanup) :**
+2. **Suppression des déploiements GitHub Pages :**
+
+- Il cible spécifiquement les pipelines générés automatiquement par **GitHub** sous le nom "`pages build and deployment`".
+- Il filtre les 100 dernières exécutions basées sur leur titre d'affichage (`displayTitle`).
+- Il supprime ces entrées pour éviter l'accumulation de logs de déploiement qui se déclenchent à chaque mise à jour de la branche de publication.
+
+**Objectif :** nettoyer les traces de déploiement automatique de la **Compodoc** sur **GitHub Pages**.  
+
+3. **Auto-nettoyage (Self-Cleanup) :**
 
 - Il cible spécifiquement l'historique du fichier `cleanup.yml`.
 - Il supprime les anciennes exécutions réussies (completed) de ce workflow de nettoyage.
 
 💡 **Note :** Il exclut l'exécution en cours (`$GITHUB_RUN_ID`).  
 
-**Eviter que l'historique ne soit pollué par des centaines de logs inutiles.**
+**Objectif :** éviter que l'historique ne soit pollué par des centaines de logs inutiles.  
 
 ⚠️ **Important !!!**  
 Si vous renommez le fichier `cleanup.yml`, mettre impérativement à jour la variable `WORKFLOW_FILE="cleanup.yml"` du script, sinon l'auto-nettoyage ne fonctionnera plus !  
