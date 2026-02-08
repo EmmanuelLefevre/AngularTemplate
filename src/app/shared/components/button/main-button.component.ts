@@ -56,12 +56,7 @@ export class MainButtonComponent {
    * Click manager
    */
   protected onHandleClick(event: Event): void {
-    if (this.isDisabled() || this.isLoading()) {
-      event.preventDefault();
-      event.stopPropagation();
-
-      return;
-    }
+    if (this.isDisabled() || this.isLoading()) return;
 
     // Cast event for the output
     this.clicked.emit(event as MouseEvent);
@@ -71,12 +66,7 @@ export class MainButtonComponent {
    * Keyboard manager
    */
   protected onHandleKeydown(event: Event): void {
-    if (this.isDisabled() || this.isLoading()) {
-      event.preventDefault();
-      event.stopPropagation();
-
-      return;
-    }
+    if (this.isDisabled() || this.isLoading()) return;
 
     const KEYBOARD_EVENT = event as KeyboardEvent;
 

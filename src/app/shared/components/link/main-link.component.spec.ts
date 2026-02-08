@@ -3,17 +3,17 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 import { provideTranslateService } from '@ngx-translate/core';
 
-import { LinkComponent } from './link.component';
+import { MainLinkComponent } from './main-link.component';
 
-describe('LinkComponent', () => {
+describe('MainLinkComponent', () => {
 
-  let component: LinkComponent;
-  let fixture: ComponentFixture<LinkComponent>;
+  let component: MainLinkComponent;
+  let fixture: ComponentFixture<MainLinkComponent>;
 
   beforeEach(async() => {
     await TestBed.configureTestingModule({
       imports: [
-        LinkComponent
+        MainLinkComponent
       ],
       providers: [
         provideRouter([]),
@@ -21,7 +21,7 @@ describe('LinkComponent', () => {
       ]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(LinkComponent);
+    fixture = TestBed.createComponent(MainLinkComponent);
     component = fixture.componentInstance;
   });
 

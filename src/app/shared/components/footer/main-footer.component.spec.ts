@@ -31,12 +31,16 @@ describe('MainFooterComponent', () => {
     component = fixture.componentInstance;
 
     translate.setTranslation('fr', {
-      'FOOTER': {
-        'COPYRIGHT': '©{{year}}',
-        'LINKS': {
-          'LINKEDIN': { 'TOOLTIP': 'Lien LinkedIn' },
-          'GITHUB': { 'TOOLTIP': 'Lien GitHub' },
-          'CONTACT': { 'TOOLTIP': 'Me contacter' }
+      'LAYOUT': {
+        'FOOTER': {
+          'LEGAL': {
+            'COPYRIGHT': '©{{year}}',
+            'SOCIAL_LINKS': {
+              'LINKEDIN': { 'TOOLTIP': 'Lien LinkedIn' },
+              'GITHUB': { 'TOOLTIP': 'Lien GitHub' },
+              'CONTACT': { 'TOOLTIP': 'Me contacter' }
+            }
+          }
         }
       }
     });

@@ -56,7 +56,8 @@ export class GenericInputComponent {
     }
 
     const TYPE = this.type().toUpperCase();
-    return `UI.FORMS.ERRORS.${TYPE}.INVALID`;
+
+    return `UI.FORMS.ERRORS.${TYPE}_INVALID`;
   });
 
   /**
@@ -65,6 +66,7 @@ export class GenericInputComponent {
   protected readonly hasError = computed(() => {
     this._stateTrigger();
     const CTRL = this.control();
+
     return CTRL.invalid && (CTRL.dirty || CTRL.touched);
   });
 }

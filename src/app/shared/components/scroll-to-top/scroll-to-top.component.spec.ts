@@ -166,7 +166,7 @@ describe('ScrollToTopComponent', () => {
   describe('Accessibility & Translation', () => {
     it('should have the correct translated aria-label', async(): Promise<void> => {
       // --- ARRANGE ---
-      const EXPECTED_ARIA = 'UI_COMPONENTS.SCROLL_TO_TOP.ARIA';
+      const EXPECTED_ARIA = 'UI.BUTTONS.SCROLL_TOP.ARIA';
 
       fixture.detectChanges();
       await fixture.whenStable();

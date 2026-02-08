@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 import { GenericInputComponent } from './generic-input.component';
 
@@ -9,6 +9,7 @@ describe('GenericInputComponent', () => {
   let component: GenericInputComponent;
   let fixture: ComponentFixture<GenericInputComponent>;
   let mockControl: FormControl;
+  let translate: TranslateService;
 
   beforeEach(async() => {
     mockControl = new FormControl('', [Validators.required]);
@@ -21,11 +22,25 @@ describe('GenericInputComponent', () => {
       ]
     }).compileComponents();
 
+    translate = TestBed.inject(TranslateService);
     fixture = TestBed.createComponent(GenericInputComponent);
     component = fixture.componentInstance;
 
+    translate.setTranslation('fr', {
+      'UI': {
+        'FORMS': {
+          'LABELS': { 'EMAIL': 'Email' },
+          'ERRORS': {
+            'EMAIL_INVALID': 'L\'email n\'est pas valide.',
+            'PASSWORD_INVALID': 'Le mot de passe n\'est pas valide.'
+          }
+        }
+      }
+    });
+    translate.use('fr');
+
     fixture.componentRef.setInput('id', 'test-input');
-    fixture.componentRef.setInput('label', 'UI_COMPONENTS.FORM.EMAIL.LABEL');
+    fixture.componentRef.setInput('label', 'UI.FORMS.LABELS.EMAIL');
     fixture.componentRef.setInput('control', mockControl);
 
     fixture.detectChanges();
@@ -37,7 +52,6 @@ describe('GenericInputComponent', () => {
 
   it('should create and have default values', () => {
     // --- ASSERT ---
-    expect(component).toBeTruthy();
     expect(component.type()).toBe('text');
     expect(component['isPassword']()).toBe(false);
   });
@@ -115,15 +129,21 @@ describe('GenericInputComponent', () => {
 
   describe('Error Handling & i18n Keys', () => {
     it('should compute the correct dynamic errorKey based on type', () => {
-      // Test EMAIL
+      // CASE : TYPE EMAIL
+      // --- ARRANGE & ACT ---
       fixture.componentRef.setInput('type', 'email');
       fixture.detectChanges();
-      expect(component['errorKey']()).toBe('UI_COMPONENTS.FORM.ERROR.EMAIL.INVALID');
 
-      // Test PASSWORD
+      // --- ASSERT ---
+      expect(component['errorKey']()).toBe('UI.FORMS.ERRORS.EMAIL_INVALID');
+
+      // CASE : TYPE PASSWORD
+      // --- ARRANGE & ACT ---
       fixture.componentRef.setInput('type', 'password');
       fixture.detectChanges();
-      expect(component['errorKey']()).toBe('UI_COMPONENTS.FORM.ERROR.PASSWORD.INVALID');
+
+      // --- ASSERT ---
+      expect(component['errorKey']()).toBe('UI.FORMS.ERRORS.PASSWORD_INVALID');
     });
 
     it('should compute the correct dynamic errorKey based on type', () => {
@@ -131,22 +151,26 @@ describe('GenericInputComponent', () => {
       fixture.componentRef.setInput('type', 'email');
 
       // --- ASSERT ---
-      expect(component['errorKey']()).toBe('UI_COMPONENTS.FORM.ERROR.EMAIL.INVALID');
+      expect(component['errorKey']()).toBe('UI.FORMS.ERRORS.EMAIL_INVALID');
 
       // --- ACT ---
       fixture.componentRef.setInput('type', 'password');
 
       // --- ASSERT ---
-      expect(component['errorKey']()).toBe('UI_COMPONENTS.FORM.ERROR.PASSWORD.INVALID');
+      expect(component['errorKey']()).toBe('UI.FORMS.ERRORS.PASSWORD_INVALID');
     });
 
-    it('should use customErrorKey if provided by parent', () => {
+    it('should use customErrorKey if provided by parent (Priority Check)', () => {
       // --- ARRANGE ---
-      fixture.componentRef.setInput('customErrorKey', 'CUSTOM.ERROR.KEY');
+      const OVERRIDE_PASSWORD_KEY = 'UI.FORMS.ERRORS.PASSWORD_INVALID';
+      fixture.componentRef.setInput('type', 'email');
+
+      // --- ACT ---
+      fixture.componentRef.setInput('customErrorKey', OVERRIDE_PASSWORD_KEY);
       fixture.detectChanges();
 
       // --- ASSERT ---
-      expect(component['errorKey']()).toBe('CUSTOM.ERROR.KEY');
+      expect(component['errorKey']()).toBe(OVERRIDE_PASSWORD_KEY);
     });
   });
 
@@ -154,7 +178,7 @@ describe('GenericInputComponent', () => {
     it('should render the label with correct translation key', () => {
       // --- ASSERT ---
       const LABEL_ELEMENT = fixture.nativeElement.querySelector('label');
-      expect(LABEL_ELEMENT.textContent).toContain('UI_COMPONENTS.FORM.EMAIL.LABEL');
+      expect(LABEL_ELEMENT.textContent).toContain('Email');
     });
 
     it('should apply is-invalid class when hasError is true', async() => {
