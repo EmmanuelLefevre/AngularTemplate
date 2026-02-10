@@ -1,26 +1,67 @@
 {
   "META": {
-    "DEFAULT": {},
+    "DEFAULT": {
+      "APP_NAME": "AngularTemplate",
+      "TITLE": "AngularTemplate",
+      "DESCRIPTION": "Angular 21 template with CI/CD, SEO, i18n and more."
+    },
     "PAGES": {
-      "HOME": {},
-      "CONTACT": {},
-      "LOGIN": {}
+      "HOME": {
+        "TITLE": "Home",
+        "DESCRIPTION": "Welcome to Angular Template"
+      },
+      "CONTACT": {
+        "TITLE": "Contact",
+        "DESCRIPTION": "Website contact page"
+      },
+      "LOGIN": {
+        "TITLE": "Login",
+        "DESCRIPTION": "Website login page"
+      }
     }
   },
   "LAYOUT": {
     "HEADER": {
-      "NAV": {}
+      "NAV": {
+        "WELCOME": "Welcome",
+        "CONTACT": "Contact"
+      }
     },
     "FOOTER": {
-      "LEGAL": {},
-      "CREDITS": {},
-      "ADDRESS": {},
+      "LEGAL": {
+        "COPYRIGHT": "©{{year}}",
+        "RIGHTS_RESERVED": "All rights reserved."
+      },
+      "CREDITS": {
+        "DEVELOPED_BY_PREFIX": "Site developped by",
+        "DEVELOPER_NAME": "Emmanuel Lefevre ",
+        "HOSTED_BY_PREFIX": "and hosted on",
+        "HOST_PROVIDER_NAME": "Planet Hoster "
+      },
+      "ADDRESS": {
+        "STREET": "10, Rue de la Paix 75000 Paris",
+        "PHONE": "0 800 123 456"
+      },
       "SOCIAL_LINKS": {
-        "LINKEDIN": {},
-        "GITHUB": {},
-        "PORTFOLIO": {},
-        "CONTACT": {},
-        "HOST": {}
+        "LINKEDIN": {
+          "TOOLTIP": "LinkedIn Link",
+          "ARIA": "Link to the website developer's LinkedIn profile"
+        },
+        "GITHUB": {
+          "TOOLTIP": "GitHub Link",
+          "ARIA": "Link to the developer's GitHub profile"
+        },
+        "PORTFOLIO": {
+          "TOOLTIP": "Portfolio",
+          "ARIA": "Link to the website developer's portfolio"
+        },
+        "CONTACT": {
+          "TOOLTIP": "Contact us",
+          "ARIA": "Link to the website's contact form"
+        },
+        "HOST": {
+          "ARIA": "Link to the website's hosting provider"
+        }
       }
     }
   },
@@ -31,23 +72,55 @@
         "PREFIX": "Your new project",
         "SUFFIX": "is ready 🎉"
       },
-      "LINKS": {}
+      "LINKS": {
+        "EXPLORE": "Explore the doc",
+        "LEARN": "Learn with tutorials",
+        "CLI": "CLI Doc"
+      }
     },
     "AUTH": {
-      "LOGIN": {},
-      "REGISTER": {},
-      "A11Y": {}
+      "LOGIN": {
+        "TITLE": "Great to see you again !",
+        "SUBTITLE": "Login to access your private area.",
+        "CTA_SWITCH": "Already have an account ? Login..."
+      },
+      "REGISTER": {
+        "TITLE": "Create an account",
+        "SUBTITLE": "Join us in just a few clicks.",
+        "CTA_SWITCH": "Don't have an account yet ? Sign up..."
+      },
+      "A11Y": {
+        "SWITCH_MODE_ARIA": "Switch between the login form and the registration form"
+      }
     },
     "ERROR": {
-      "NOT_FOUND": {}
+      "NOT_FOUND": {
+        "TITLE": "An error has occurred.",
+        "LABEL": "Error",
+        "ACTION": "Back to home"
+      }
     }
   },
   "UI": {
     "FORMS": {
-      "LABELS": {},
-      "PLACEHOLDERS": {},
-      "ACTIONS": {},
-      "ERRORS": {}
+      "LABELS": {
+        "EMAIL": "Email",
+        "PASSWORD": "Password",
+        "CONFIRM_PASSWORD": "Confirm password"
+      },
+      "PLACEHOLDERS": {
+        "EMAIL": "exemple@domaine.com",
+        "PASSWORD": "Password",
+        "CONFIRM_PASSWORD": "Confirm password"
+      },
+      "ACTIONS": {
+        "SHOW_PASSWORD": "Display password",
+        "HIDE_PASSWORD": "Hide password"
+      },
+      "ERRORS": {
+        "EMAIL_INVALID": "The email is invalid.",
+        "PASSWORD_INVALID": "The password is invalid."
+      }
     },
     "BUTTONS": {
       "LOGO": {
@@ -65,13 +138,22 @@
         "LABEL": "Login",
         "ARIA": "Button to open the login form"
       },
-      "CONTINUE": {},
-      "CANCEL": {},
+      "CONTINUE": {
+        "LABEL": "Continue",
+        "ARIA": "Button to login"
+      },
+      "CANCEL": {
+        "LABEL": "Cancel",
+        "ARIA": "Button to cancel entry"
+      },
       "CLOSE": {
         "ARIA": "Close",
         "TOOLTIP": "Close"
       },
-      "LANGUAGE_TOGGLE": {},
+      "LANGUAGE_TOGGLE": {
+        "ARIA": "Switch language to English",
+        "TOOLTIP": "EN"
+      },
       "SCROLL_TOP": {
         "ARIA": "Go to the top of the page",
         "TOOLTIP": "Top of page"

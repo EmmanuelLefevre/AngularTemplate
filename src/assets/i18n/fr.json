@@ -1,26 +1,67 @@
 {
   "META": {
-    "DEFAULT": {},
+    "DEFAULT": {
+      "APP_NAME": "AngularTemplate",
+      "TITLE": "AngularTemplate",
+      "DESCRIPTION": "Template Angular 21 avec CI/CD, SEO, i18n et plus."
+    },
     "PAGES": {
-      "HOME": {},
-      "CONTACT": {},
-      "LOGIN": {}
+      "HOME": {
+        "TITLE": "Accueil",
+        "DESCRIPTION": "Bienvenue sur Template Angular"
+      },
+      "CONTACT": {
+        "TITLE": "Contact",
+        "DESCRIPTION": "Page de contact du site"
+      },
+      "LOGIN": {
+        "TITLE": "Connexion",
+        "DESCRIPTION": "Page de connexion du site"
+      }
     }
   },
   "LAYOUT": {
     "HEADER": {
-      "NAV": {}
+      "NAV": {
+        "WELCOME": "Bienvenue",
+        "CONTACT": "Contact"
+      }
     },
     "FOOTER": {
-      "LEGAL": {},
-      "CREDITS": {},
-      "ADDRESS": {},
+      "LEGAL": {
+        "COPYRIGHT": "©{{year}}",
+        "RIGHTS_RESERVED": "Tous droits réservés."
+      },
+      "CREDITS": {
+        "DEVELOPED_BY_PREFIX": "Site développé par",
+        "DEVELOPER_NAME": "Emmanuel Lefevre ",
+        "HOSTED_BY_PREFIX": "et hébergé sur",
+        "HOST_PROVIDER_NAME": "Planet Hoster "
+      },
+      "ADDRESS": {
+        "STREET": "10, Rue de la Paix 75000 Paris",
+        "PHONE": "0 800 123 456"
+      },
       "SOCIAL_LINKS": {
-        "LINKEDIN": {},
-        "GITHUB": {},
-        "PORTFOLIO": {},
-        "CONTACT": {},
-        "HOST": {}
+        "LINKEDIN": {
+          "TOOLTIP": "Lien LinkedIn",
+          "ARIA": "Lien vers le profil LinkedIn du développeur du site"
+        },
+        "GITHUB": {
+          "TOOLTIP": "Lien GitHub",
+          "ARIA": "Lien vers le profil GitHub du développeur du site"
+        },
+        "PORTFOLIO": {
+          "TOOLTIP": "Portfolio",
+          "ARIA": "Lien vers le portfolio du développeur du site"
+        },
+        "CONTACT": {
+          "TOOLTIP": "Contactez-nous",
+          "ARIA": "Lien vers le formulaire de contact du site"
+        },
+        "HOST": {
+          "ARIA": "Lien vers l'hébergeur du site"
+        }
       }
     }
   },
@@ -31,23 +72,55 @@
         "PREFIX": "Ton nouveau projet",
         "SUFFIX": "est prêt 🎉"
       },
-      "LINKS": {}
+      "LINKS": {
+        "EXPLORE": "Explorer la doc",
+        "LEARN": "Apprendre via Tutoriels",
+        "CLI": "Doc de la CLI"
+      }
     },
     "AUTH": {
-      "LOGIN": {},
-      "REGISTER": {},
-      "A11Y": {}
+      "LOGIN": {
+        "TITLE": "Ravi de vous revoir !",
+        "SUBTITLE": "Connectez-vous pour accéder à votre espace privé.",
+        "CTA_SWITCH": "Déjà un compte ? Connectez-vous..."
+      },
+      "REGISTER": {
+        "TITLE": "Créer un compte",
+        "SUBTITLE": "Rejoignez-nous en quelques clics.",
+        "CTA_SWITCH": "Pas encore de compte ? S'inscrire..."
+      },
+      "A11Y": {
+        "SWITCH_MODE_ARIA": "Basculer entre le formulaire de connexion et celui d'inscription"
+      }
     },
     "ERROR": {
-      "NOT_FOUND": {}
+      "NOT_FOUND": {
+        "TITLE": "Une erreur est survenue.",
+        "LABEL": "Erreur",
+        "ACTION": "Retour à l'accueil"
+      }
     }
   },
   "UI": {
     "FORMS": {
-      "LABELS": {},
-      "PLACEHOLDERS": {},
-      "ACTIONS": {},
-      "ERRORS": {}
+      "LABELS": {
+        "EMAIL": "Email",
+        "PASSWORD": "Mot de passe",
+        "CONFIRM_PASSWORD": "Confirmer mot de passe"
+      },
+      "PLACEHOLDERS": {
+        "EMAIL": "exemple@domaine.com",
+        "PASSWORD": "Mot de passe",
+        "CONFIRM_PASSWORD": "Confirmer mot de passe"
+      },
+      "ACTIONS": {
+        "SHOW_PASSWORD": "Afficher le mot de passe",
+        "HIDE_PASSWORD": "Masquer le mot de passe"
+      },
+      "ERRORS": {
+        "EMAIL_INVALID": "L'email n'est pas valide.",
+        "PASSWORD_INVALID": "Le mot de passe n'est pas valide."
+      }
     },
     "BUTTONS": {
       "LOGO": {
@@ -65,13 +138,22 @@
         "LABEL": "Se connecter",
         "ARIA": "Bouton pour ouvrir le formulaire de connexion"
       },
-      "CONTINUE": {},
-      "CANCEL": {},
+      "CONTINUE": {
+        "LABEL": "Continuer",
+        "ARIA": "Bouton pour se connecter"
+      },
+      "CANCEL": {
+        "LABEL": "Annuler",
+        "ARIA": "Bouton pour annuler la saisie"
+      },
       "CLOSE": {
         "ARIA": "Fermer",
         "TOOLTIP": "Fermer"
       },
-      "LANGUAGE_TOGGLE": {},
+      "LANGUAGE_TOGGLE": {
+        "ARIA": "Changer la langue en Français",
+        "TOOLTIP": "FR"
+      },
       "SCROLL_TOP": {
         "ARIA": "Aller en haut de la page",
         "TOOLTIP": "Haut de page"

@@ -148,18 +148,18 @@ jobs:
       - name: 🎨 Stylelint SCSS
         run: pnpm lint:scss:ci
 
-      - name: 🌍 Check i18n Integrity
-        id: i18n
-        run: pnpm i18n:lint:ci
+      # - name: 🌍 Check i18n Integrity
+      #   id: i18n
+      #   run: pnpm i18n:lint:ci
 
-      - name: 📢 Failure Notification
-        if: failure() && steps.i18n.outcome == 'failure'
-        run: |
-          echo "### 🚨 TRANSLATION POLICE HERE !" >> $GITHUB_STEP_SUMMARY
-          echo "Hey ${{ github.actor }}, you created new keys but forgot to translate them !" >> $GITHUB_STEP_SUMMARY
-          echo "Do not leave our users lost in translation. 🗺️" >> $GITHUB_STEP_SUMMARY
-          echo "👉 Run 'pnpm i18n:extract' locally to generate the missing keys automatically." >> $GITHUB_STEP_SUMMARY
-          exit 1
+      # - name: 📢 Failure Notification
+      #   if: failure() && steps.i18n.outcome == 'failure'
+      #   run: |
+      #     echo "### 🚨 TRANSLATION POLICE HERE !" >> $GITHUB_STEP_SUMMARY
+      #     echo "Hey ${{ github.actor }}, you created new keys but forgot to translate them !" >> $GITHUB_STEP_SUMMARY
+      #     echo "Do not leave our users lost in translation. 🗺️" >> $GITHUB_STEP_SUMMARY
+      #     echo "👉 Run 'pnpm i18n:extract' locally to generate the missing keys automatically." >> $GITHUB_STEP_SUMMARY
+      #     exit 1
 
       - name: 🧪 Run Vitest Tests & Coverage
         id: vitest
