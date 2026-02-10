@@ -63,7 +63,7 @@ Signaler visuellement si une traduction est manquante dans une des langues.
 Permettre de modifier le texte (`en.json` et `fr.json`) directement depuis une info-bulle dans le code, sans ouvrir les fichiers **JSON**.  
 
 💡 Une documentation complète est disponible dans le fichier `.vscode/settings.json` et ici... =>  
-> [👀 I18n Ally Config Rules](./docs/RULES-REFERENCES.md#i18n-ally-rules)  
+> [👀 I18n Ally Config Rules](./RULES-REFERENCES.md#i18n-ally-rules)  
 
 <h2 id="ngx-translate">
   <img

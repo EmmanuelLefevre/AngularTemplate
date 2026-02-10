@@ -33,7 +33,7 @@ Ce fichier contient les paramètres fondamentaux du compilateur **TypeScript** (
 Il définit le niveau de rigueur du typage (**Strict Mode**) et la compatibilité du code généré.  
 
 💡 Une documentation complète est disponible dans le fichier `tsconfig.json` et ici =>  
-> [👀 TypeScript Base Config Rules](./docs/RULES-REFERENCES.md#ts-base-config-rules)  
+> [👀 TypeScript Base Config Rules](./RULES-REFERENCES.md#ts-base-config-rules)  
 
 📄 [Consulter la configuration](./tsconfig.json)  
 
@@ -43,14 +43,14 @@ Pour éviter les imports relatifs illisibles comme `../../../../core/services/au
 Ces raccourcis sont définis dans `compilerOptions.paths` du `tsconfig.json`.  
 
 💡 Une documentation complète est disponible dans le fichier `tsconfig.app.json` et ici... =>  
-> [👀 TypeScript Alias Config Rules](./docs/RULES-REFERENCES.md#ts-alias-config-rules)  
+> [👀 TypeScript Alias Config Rules](./RULES-REFERENCES.md#ts-alias-config-rules)  
 
 <h3 id="app-config">Configuration applicative</h3>
 
 **`tsconfig.app.json`**  
 
 💡 Une documentation complète est disponible dans le fichier `tsconfig.app.json` et ici... =>  
-> [👀 TypeScript App Config Rules](./docs/RULES-REFERENCES.md#ts-app-config-rules)  
+> [👀 TypeScript App Config Rules](./RULES-REFERENCES.md#ts-app-config-rules)  
 
 <h2 id="apache-config">
   <img
@@ -123,4 +123,4 @@ Les **schematics** utilisent des règles pour définir comment le code doit êtr
 La configuration se trouve dans le fichier `angular.json`.  
 
 💡 Une documentation complète est disponible ici... =>  
-> [👀 Schematics Rules](./docs/RULES-REFERENCES.md#schematics-rules)  
+> [👀 Schematics Rules](./RULES-REFERENCES.md#schematics-rules)  

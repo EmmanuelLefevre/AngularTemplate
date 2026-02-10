@@ -57,7 +57,7 @@ pnpm add -D @compodoc/compodoc
 C'est la configuration principale de **Compodoc** (dossier de sortie, port, thème...)  
 
 💡 Une documentation complète est disponible ici... =>  
-> [👀 Compodoc Rules](./docs/RULES-REFERENCES.md#compodoc)  
+> [👀 Compodoc Rules](.RULES-REFERENCES.md#compodoc)  
 
 3. Créer le fichier `summary.json` dans un dossier `docs` à la racine =>  
 

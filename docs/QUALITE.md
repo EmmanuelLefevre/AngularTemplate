@@ -109,7 +109,7 @@ Cette configuration de sécurité a été séparée dans un autre fichier afin d
 Ouvrir le fichier `eslint.config.js` (qui vient d'être créé à la racine).  
 
 💡 Une documentation complète est disponible ici... =>  
-> [👀 ESLint Rules](./docs/RULES-REFERENCES.md#eslint-rules)  
+> [👀 ESLint Rules](./RULES-REFERENCES.md#eslint-rules)  
 
 **\* Note :** Prettier ne sera pas ajouté automatiquement il faut le faire manuellement.  
 
@@ -228,7 +228,7 @@ pnpm add -D prettier
 **Etape 2 :** Créer un fichier `.prettierrc.js` à la racine et y coller la configuration présente dans le template.  
 
 💡 Une documentation complète est disponible dans le fichier `.prettierrc.js` et ici... =>  
-> [👀 Prettier Rules](./docs/RULES-REFERENCES.md#prettier-rules)  
+> [👀 Prettier Rules](./RULES-REFERENCES.md#prettier-rules)  
 
 Installer l'extension **Trivago** pour le tri des imports.  
 
@@ -280,7 +280,7 @@ C'est précisément le rôle de **HTMLHint**, un analyseur de code statique (ou 
 En l'intégrant dans notre chaîne d'outils de développement, nous pouvons automatiser l'inspection de nos fichiers `.html` afin de détecter les erreurs courantes, les mauvaises pratiques et les incohérences de style.  
 Grâce à un ensemble de règles configurables via un fichier `.htmlhintrc`, **HTMLHint** nous aide à renforcer les standards de code de notre équipe, prévenir des bugs liés aux balises et **PAR-DESSUS TOUT** améliorer l'accessibilité de nos applications (**A11y**) !!!  
 
-> [👀 En savoir plus sur l'accessibilité](./docs/ACCESSIBILITY.md)
+> [👀 En savoir plus sur l'accessibilité](./ACCESSIBILITY.md)
 
 **Etape 1 :** Ajouter le package **HTMLLint**  
 
@@ -311,7 +311,7 @@ De plus cela activera l'autocomplétion et la validation du fichier `.htmlhintrc
 Il faut créer le fichier `.htmlhintrc` à la racine du projet et y coller la configuration présente dans le template.  
 
 💡 Une documentation complète est disponible ici... =>  
-> [👀 HTMLLint Rules](./docs/RULES-REFERENCES.md#htmlhint-rules)  
+> [👀 HTMLLint Rules](./RULES-REFERENCES.md#htmlhint-rules)  
 
 Pour finir ouvrir le fichier `package.json` et ajouter la commande suivante dans la partie `scripts` =>  
 
@@ -339,7 +339,7 @@ npx htmlhint "**/*.html"
 ```
 
 💡 Une documentation complète est disponible ici... =>  
-> [👀 HTMLHint Rules](./docs/RULES-REFERENCES.md#htmlhint-rules)  
+> [👀 HTMLHint Rules](./RULES-REFERENCES.md#htmlhint-rules)  
 
 <h2 id="stylelint">
   <img
@@ -388,7 +388,7 @@ ainsi que le script =>
 ```
 
 💡 Une documentation complète est disponible ici... =>  
-> [👀 StyleLint Rules](./docs/RULES-REFERENCES.md#stylelint-rules)  
+> [👀 StyleLint Rules](./RULES-REFERENCES.md#stylelint-rules)  
 
 <h2 id="translate">
   <img
@@ -404,7 +404,7 @@ ainsi que le script =>
 
 ### Introduction :
 
-> [👀 Consulter la documentation du projet](./docs/MULTI-LANGUES.md#ngx-translate-linter)  
+> [👀 Consulter la documentation du projet](./MULTI-LANGUES.md#ngx-translate-linter)  
 
 ### Configuration :
 
@@ -427,7 +427,7 @@ pnpm add -D ngx-translate-lint
 **Etape 3 :** Créer le fichier `.ngx-translate-lint.json`  
 
 💡 Une documentation complète est disponible ici... =>  
-> [👀 Ngx Translate Linter Rules](./docs/RULES-REFERENCES.md#i18n-lint-rules)  
+> [👀 Ngx Translate Linter Rules](./RULES-REFERENCES.md#i18n-lint-rules)  
 
 **Etape 4 :** Configurer `lint-staged`  
 
@@ -453,7 +453,7 @@ pnpm run i18n:lint
 
 ### Introduction :
 
-> [👀 Consulter la documentation du projet](./docs/MULTI-LANGUES.md#ngx-translate-extract)  
+> [👀 Consulter la documentation du projet](./MULTI-LANGUES.md#ngx-translate-extract)  
 
 ### Configuration :
 
