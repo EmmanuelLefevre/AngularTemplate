@@ -315,16 +315,57 @@ Le plugin (**eslint-plugin-security**) ajoute une couche de sécurité statique.
   I18n Lint Rules
 </h2>
 
-> [🔗 Ngx Translate Linter Documentation](https://www.npmjs.com/package/ngx-translate-lint)  
+<details>
+
+  <summary>👁️ Tout voir</summary>
+
+<h3 id="ts-base-config-rules">Ngx Translate Linter Rules</h3>
 
 <details>
 
   <summary>🧐 Consulter la configuration détaillée</summary>
 
+> [🔗 Ngx Translate Linter Documentation](https://www.npmjs.com/package/ngx-translate-lint)  
+
 &nbsp;
 
 | Option | Valeur | Description |
 | :--- | :--- | :--- |
+| **`languages`** | `"./src/assets/i18n/*.json"` | Chemin vers les fichiers **JSON** de traduction à analyser |
+| **`project`** | `"./src/app/**/*.{html,ts}"` | Portée du scan : analyse tous les fichiers **HTML** et **TS** du dossier `app` |
+| **`rules.deepSearch`** | `"disable"` | Désactiver la recherche récursive profonde pour optimiser les performances |
+| **`rules.emptyKeys`** | `"error"` | Signaler une **erreur** si une clé existe dans le **JSON** mais que sa valeur est vide |
+| **`rules.ignoredKeys`** | `["META\\..*", "ngIf", ...]` | Liste de motifs (**Regex**) exclus de l'analyse (clés dynamiques, **Directives**) |
+| **`rules.keysOnViews`** | `"error"` | Signaler une **erreur** si une clé est utilisée dans le code mais manquante dans le fichier **JSON** |
+| **`rules.maxWarning`** | `"0"` | Tolérance zéro : le processus échoue dès qu'un seul avertissement est détecté |
+| **`rules.misprintKeys`** | `"disable"` | Désactiver la détection de similitude (fautes de frappe) pour éviter les faux positifs |
+| **`rules.zombieKeys`** | `"warning"` | Signaler un **avertissement** pour les clés présentes dans le **JSON** mais inutilisées dans le code |
+| **`options.fullKeys`** | `true` | Utiliser le chemin complet des clés dans les rapports d'erreur |
+
+</details>
+
+<h3 id="ts-base-config-rules">I18n Ally Rules</h3>
+
+<details>
+
+  <summary>🧐 Consulter la configuration détaillée</summary>
+
+> [🔗 I18n Ally](https://github.com/lokalise/i18n-ally/wiki/Configurations)  
+
+&nbsp;
+
+| Option | Valeur | Description |
+| :--- | :--- | :--- |
+| **`i18n-ally.displayLanguage`** | `"fr"` | Langue affichée dans les annotations (tooltips) de l'**IDE** pour visualiser les traductions |
+| **`i18n-ally.extract.autoDetect`** | `false` | Désactiver la détection automatique des textes en dur pour éviter les suggestions intrusives |
+| **`i18n-ally.enabledFrameworks`** | `["ngx-translate"]` | Activer le support spécifique pour le framework **Angular** `ngx-translate` |
+| **`i18n-ally.keepFulfilled`** | `false` | Définit s'il faut conserver les clés déjà traduites lors des opérations de nettoyage |
+| **`i18n-ally.keystyle`** | `"nested"` | Utiliser une structure d'objets imbriqués pour l'organisation des fichiers **JSON** |
+| **`i18n-ally.localesPaths`** | `"src/assets/i18n"` | Chemin vers le répertoire contenant les fichiers de traduction (`fr.json`...) |
+| **`i18n-ally.readonly`** | `true` | Activer le mode lecture seule pour empêcher la modification accidentelle via l'interface de l'extension |
+| **`i18n-ally.sourceLanguage`** | `"fr"` | Définir le français comme langue de référence (source de vérité) pour le projet |
+
+</details>
 
 </details>
 

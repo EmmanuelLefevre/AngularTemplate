@@ -414,7 +414,7 @@ ainsi que le script =>
 pnpm add -D ngx-translate-lint
 ```
 
-**Etape 2 :** Configurer le script dans `package.json`  
+**Etape 2 :** Configurer le script dans `package.json` pour la **CI**  
 
 ```JSON
 {
@@ -424,7 +424,7 @@ pnpm add -D ngx-translate-lint
 }
 ```
 
-**Etape 3 :** Créer le fichier `.ngx-translate-lint.json`  
+**Etape 3 :** Créer le fichier `.ngx-translate-lint.json`
 
 💡 Une documentation complète est disponible ici... =>  
 > [👀 Ngx Translate Linter Rules](./RULES-REFERENCES.md#i18n-lint-rules)  
@@ -446,7 +446,7 @@ Toujours dans le fichier `package.json`.
 **Etape 5 :** Vérifier le fonctionnement  
 
 ```shell
-pnpm run i18n:lint
+pnpm i18n:lint
 ```
 
 <h3 id="translate-extract">NGX TRANSLATE EXTRACT</h3>
@@ -468,7 +468,7 @@ pnpm add -D @bartholomej/ngx-translate-extract
 ```JSON
 {
   "scripts": {
-    "i18n:extract": "ngx-translate-extract --input ./src --output ./src/assets/i18n/en.json ./src/assets/i18n/fr.json --clean --sort --format namespaced-json",
+    "i18n:extract": "ngx-translate-extract --input ./src --output ./src/assets/i18n/en.json ./src/assets/i18n/fr.json --sort --format namespaced-json",
   }
 }
 ```
@@ -523,7 +523,7 @@ Gérer les hooks **Git** manuellement peut être complexe, car ils doivent être
 
 #### 3. Lint-Staged (l'optimiseur intelligent) :
 
-Pourquoi `lint-staged` ? Lancer `npm run lint` sur un gros projet prend du temps (10s... 30s... 1min). Si l'on doit attendre 1 minute à chaque commit, nous allons finir par désactiver **Husky**.  
+Pourquoi `lint-staged` ? Lancer `pnpm lint` sur un gros projet prend du temps (10s... 30s... 1min). Si l'on doit attendre 1 minute à chaque commit, nous allons finir par désactiver **Husky**.  
 
 C'est là que `lint-staged` entre en jeu. C'est un outil intelligent qui exécute des commandes uniquement sur les fichiers qui sont "staged". Au lieu de formater les 5000 fichiers du projet, il ne formatera que les 3 que vous venez de modifier et l'opération devient quasiment instantanée.  
 

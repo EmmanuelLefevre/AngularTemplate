@@ -11,7 +11,7 @@
     "doc:ci": "node docs/_manage-doc.js build --keep",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "i18n:extract": "ngx-translate-extract --input ./src --output ./src/assets/i18n/en.json ./src/assets/i18n/fr.json --clean --sort --format namespaced-json",
+    "i18n:extract": "ngx-translate-extract --input ./src --output ./src/assets/i18n/en.json ./src/assets/i18n/fr.json --sort --format namespaced-json",
     "i18n:lint": "ngx-translate-lint -c ./.ngx-translate-lint.json",
     "lint": "ng lint",
     "lint:html": "htmlhint \"src/**/*.html\"",
@@ -107,6 +107,9 @@
     "src/**/*.ts": [
       "eslint --fix --max-warnings=50",
       "prettier --write"
+    ],
+    "src/**/*.{ts,html}": [
+      "pnpm i18n:lint"
     ],
     "**/*.{css,scss,json,md}": [
       "prettier --write"

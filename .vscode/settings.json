@@ -5,12 +5,13 @@
     "tsconfig.app.json": "jsonc"
   },
   "i18n-ally.displayLanguage": "fr",
-  "i18n-ally.enabledParsers": ["json"],
-  "i18n-ally.extract.autoDetect": true,
+  "i18n-ally.extract.autoDetect": false,
+  "i18n-ally.enabledFrameworks": ["ngx-translate"],
+  "i18n-ally.keepFulfilled": false,
   "i18n-ally.keystyle": "nested",
-  "i18n-ally.localesPaths": ["src/assets/i18n"],
-  "i18n-ally.sortKeys": true,
-  "i18n-ally.sourceLanguage": "en"
+  "i18n-ally.localesPaths": "src/assets/i18n",
+  "i18n-ally.readonly": true,
+  "i18n-ally.sourceLanguage": "fr"
 }
 
 /* ========================================================================
@@ -43,25 +44,28 @@
     Sets the language displayed in the IDE annotations (tooltips).
     Allows the developer to see the French translation directly inline in the code.
 
-  * i18n-ally.enabledParsers: ["json"]
-    Restricts the extension to parse only JSON files for translations.
+   * i18n-ally.extract.autoDetect: false
+    Disables automatic detection of hardcoded strings in the source code.
+    Prevents the extension from being too intrusive during coding.
 
-  * i18n-ally.extract.autoDetect: true
-    Enables automatic detection of hardcoded strings in the source code.
-    Facilitates the extraction of text into translation keys directly from the editor.
+   * i18n-ally.enabledFrameworks: ["ngx-translate"]
+    Enables specific support for the ngx-translate (Angular) framework.
 
-  * i18n-ally.keystyle: "nested"
+   * i18n-ally.keepFulfilled: false
+    Determines whether to keep already fulfilled translation keys during cleanup.
+
+   * i18n-ally.keystyle: "nested"
     Specifies the structure of the translation JSON files.
-    "nested" means using objects (e.g., { "HOME": { "TITLE": "..." } }) rather than flat keys.
+    "nested" means using objects (e.g., { "HOME": { "TITLE": "..." } }).
 
-  * i18n-ally.localesPaths: ["src/assets/i18n"]
-    Defines the directory where translation files (en.json, fr.json) are located.
+   * i18n-ally.localesPaths: "src/assets/i18n"
+    Defines the directory path where translation files (fr.json, etc.) are located.
 
-  * i18n-ally.sortKeys: true
-    Automatically sorts translation keys alphabetically upon saving.
-    Keeps translation files clean, organized, and reduces merge conflicts.
+   * i18n-ally.readonly: true
+    Enables read-only mode for the extension's UI.
+    Prevents accidental modification of translation files through the editor interface.
 
-  * i18n-ally.sourceLanguage: "en"
-    Sets English as the source of truth for translations.
-    Used by the extension to identify missing keys in other languages.
+   * i18n-ally.sourceLanguage: "fr"
+    Sets French as the source of truth for translations.
+    Used as a reference to identify missing keys in other language files.
 */
