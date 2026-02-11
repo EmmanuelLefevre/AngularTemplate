@@ -39,7 +39,7 @@ L'implémentation choisie repose sur **NGX-Translate**, la bibliothèque de réf
 
 - **Flexibilité :** les traductions sont stockées dans des fichiers **JSON** simples (`fr.json`, `en.json`).
 - **Performance :** chargement à la demande (**Lazy Loading**) des fichiers de langue via **HTTP**.
-- **Simplicité :** utilisation de `pipes (| translate)` ou de directives dans les templates **HTML**.
+- **Simplicité :** utilisation de **Pipes** (`| translate`) ou de **Directives** dans les templates **HTML**.
 
 <h3 id="extension">EXTENSION VSCODE</h3>
 
