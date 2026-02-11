@@ -6,7 +6,7 @@
 ## SOMMAIRE
 
 - [I18N](#i18n)
-  - [EXTENSION VSCODE](#extension)
+- [EXTENSION VSCODE](#extension)
 - [NGX TRANSLATE](#ngx-translate)
   - [ESLINT NGX TRANSLATE LINTER](#eslint-ngx-translate-linter)
   - [NGX TRANSLATE EXTRACT](#ngx-translate-extract)
@@ -41,7 +41,7 @@ L'implémentation choisie repose sur **NGX-Translate**, la bibliothèque de réf
 - **Performance :** chargement à la demande (**Lazy Loading**) des fichiers de langue via **HTTP**.
 - **Simplicité :** utilisation de **Pipes** (`| translate`) ou de **Directives** dans les templates **HTML**.
 
-<h3 id="extension">EXTENSION VSCODE</h3>
+<h2 id="extension">EXTENSION VSCODE</h2>
 
 > [🔗 I18n Ally VSCode Extension](https://marketplace.visualstudio.com/items?itemName=Lokalise.i18n-ally)  
 

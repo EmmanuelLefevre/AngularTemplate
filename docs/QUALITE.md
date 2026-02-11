@@ -392,26 +392,26 @@ ainsi que le script =>
 
 <h2 id="translate">
   <img
-    alt="ESLINT NGX TRANSLATE"
-    title="ESLINT NGX TRANSLATE"
+    alt="NGX TRANSLATE"
+    title="NGX TRANSLATE"
     width="30px"
     src="https://raw.githubusercontent.com/EmmanuelLefevre/GitHubProfileIcons/main/ngx_translate.png"
   />
-  ESLINT NGX TRANSLATE
+  NGX TRANSLATE
 </h2>
 
-<h3 id="translate-lint">ESLINT NGX TRANSLATE LINTER</h3>
+<h3 id="translate-lint">NGX TRANSLATE LINTER</h3>
 
 ### Introduction :
 
-> [👀 Consulter la documentation du projet](./MULTI-LANGUES.md#eslint-ngx-translate-linter)  
+> [👀 Consulter la documentation du projet](./MULTI-LANGUES.md#ngx-translate-linter)  
 
 ### Configuration :
 
 **Etape 1 :** Installer **Ngx Translate Lint**  
 
 ```shell
-pnpm add -D eslint-plugin-ngx-translate
+pnpm add -D ngx-translate-lint
 ```
 
 **Etape 2 :** Configurer le script dans `package.json` pour la **CI**  
@@ -424,10 +424,10 @@ pnpm add -D eslint-plugin-ngx-translate
 }
 ```
 
-**Etape 3 :** Créer le fichier `eslint-translate.config.js`
+**Etape 3 :** Créer le fichier `.ngx-translate-lint.json`
 
 💡 Une documentation complète est disponible ici... =>  
-> [👀 ESLint Ngx Translate Linter Rules](./RULES-REFERENCES.md#i18n-lint-rules)  
+> [👀 Ngx Translate Linter Rules](./RULES-REFERENCES.md#i18n-lint-rules)  
 
 **Etape 4 :** Configurer `lint-staged`  
 
