@@ -133,7 +133,6 @@
 📄.gitattributes
 📄.gitignore
 📄.htmlhintrc
-📄.ngx-translate-lint.json
 📄.npmrc
 📄.prettier.js
 📄.secretlintrc.json

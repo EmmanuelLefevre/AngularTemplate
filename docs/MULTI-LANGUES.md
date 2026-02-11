@@ -8,7 +8,7 @@
 - [I18N](#i18n)
   - [EXTENSION VSCODE](#extension)
 - [NGX TRANSLATE](#ngx-translate)
-  - [NGX TRANSLATE LINTER](#ngx-translate-linter)
+  - [ESLINT NGX TRANSLATE LINTER](#eslint-ngx-translate-linter)
   - [NGX TRANSLATE EXTRACT](#ngx-translate-extract)
 
 <h2 id="i18n">
@@ -77,7 +77,7 @@ Permettre de modifier le texte (`en.json` et `fr.json`) directement depuis une i
 
 Gérer l'internationalisation (**I18n**) manuellement est source d'erreurs : oubli de clés, fautes de frappe ou traductions orphelines qui polluent le code. Pour garantir une qualité irréprochable et un coverage de **100%** (y compris dans nos tests), ce flux a donc été automatisé grâce à deux outils puissants.  
 
-<h3 id="ngx-translate-linter">NGX TRANSLATE LINTER</h3>
+<h3 id="eslint-ngx-translate-linter">NGX TRANSLATE LINTER</h3>
 
 > [🔗 Ngx Translate Linter Documentation](https://www.npmjs.com/package/ngx-translate-lint)  
 
@@ -85,7 +85,7 @@ Gérer l'internationalisation (**I18n**) manuellement est source d'erreurs : oub
 
 Il agit comme un garde-fou strict dans notre **CI/CD**. Il vérifie que chaque clé utilisée dans le code (et les tests !) existe bien dans tous les fichiers de traduction (`en.json`, `fr.json`).  
 
-<h3 id="ngx-translate-extract">NGX TRANSLATE EXTRACT</h3>
+<h3 id="ngx-translate-extract">ESLINT NGX TRANSLATE LINTER</h3>
 
 > [🔗 Ngx Translate Extract Documentation](https://www.npmjs.com/package/@bartholomej/ngx-translate-extract)  
 

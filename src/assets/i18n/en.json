@@ -149,7 +149,7 @@
         "ARIA": "Close",
         "TOOLTIP": "Close"
       },
-      "ERROR": {
+      "BACK": {
         "LABEL": "Back to home",
         "ARIA": "Back to home page"
       },

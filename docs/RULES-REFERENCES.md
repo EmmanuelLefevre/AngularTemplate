@@ -14,7 +14,7 @@
 - [Prettier Rules](#prettier-rules)
 - [HTMLHint Rules](#htmlhint-rules)
 - [StyleLint Rules](#stylelint-rules)
-- [I18n Lint Rules](#i18n-lint-rules)
+- [I18n Rules](#i18n-lint-rules)
 - [TypeScript Config Rules](#ts-config-rules)
   - [TypeScript Base Config Rules](#ts-base-config-rules)
   - [TypeScript Alias Config Rules](#ts-alias-config-rules)
