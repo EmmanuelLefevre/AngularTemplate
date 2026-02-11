@@ -96,8 +96,7 @@
     "ERROR": {
       "NOT_FOUND": {
         "TITLE": "An error has occurred.",
-        "LABEL": "Error",
-        "ACTION": "Back to home"
+        "LABEL": "Error"
       }
     }
   },
@@ -124,7 +123,7 @@
     },
     "BUTTONS": {
       "LOGO": {
-        "ARIA": "Back to home"
+        "ARIA": "Back to home page"
       },
       "MOBILE": {
         "MENU": {
@@ -149,6 +148,10 @@
       "CLOSE": {
         "ARIA": "Close",
         "TOOLTIP": "Close"
+      },
+      "ERROR": {
+        "LABEL": "Back to home",
+        "ARIA": "Back to home page"
       },
       "LANGUAGE_TOGGLE": {
         "ARIA": "Switch language to English",

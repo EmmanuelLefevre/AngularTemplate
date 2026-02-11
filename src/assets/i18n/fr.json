@@ -96,8 +96,7 @@
     "ERROR": {
       "NOT_FOUND": {
         "TITLE": "Une erreur est survenue.",
-        "LABEL": "Erreur",
-        "ACTION": "Retour à l'accueil"
+        "LABEL": "Erreur"
       }
     }
   },
@@ -124,7 +123,7 @@
     },
     "BUTTONS": {
       "LOGO": {
-        "ARIA": "Retour à l'accueil"
+        "ARIA": "Retour à la page d'accueil"
       },
       "MOBILE": {
         "MENU": {
@@ -149,6 +148,10 @@
       "CLOSE": {
         "ARIA": "Fermer",
         "TOOLTIP": "Fermer"
+      },
+      "ERROR": {
+        "LABEL": "Retour à l'accueil",
+        "ARIA": "Retour à la page d'accueil"
       },
       "LANGUAGE_TOGGLE": {
         "ARIA": "Changer la langue en Français",
