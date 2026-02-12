@@ -213,6 +213,8 @@ Pour un projet **Angular** moderne, la combinaison standard de l'industrie est *
 En l'intégrant, les développeurs peuvent automatiser le formatage des fichiers **JavaScript**, **TypeScript**, **HTML** et autres, ce qui uniformise le style du code au sein de l'équipe.  
 L'utilisation de **Prettier** permet d'améliorer la lisibilité et la maintenabilité du code, tout en minimisant les erreurs de syntaxe liées aux différents styles de codage. Cette approche assure que tout le code du projet respecte le même format.  
 
+**Note :** les fichiers `*.ts` ont été ajoutés au fichier `.prettierignore`. Cette modification permet d'éviter les conflits de formatage entre **Prettier** et certaines des règles **ESLint Stylistic** mises en place...  
+
 Un hook de `pre-commit` via **Husky** étant implémenté et utilisant `lint-staged` dans le `package.json`, **Prettier** ne formattera que les fichiers nécessaires lors d’un commit et ce de manière automatique et transparente pour le développeur.  
 
 Cela garantit que tous les fichiers commits respectent les normes de formatage définies par l'équipe. Cette automatisation rend le workflow de développement plus fluide et aide à maintenir un code uniforme sans nécessiter d'interventions manuelles.  
