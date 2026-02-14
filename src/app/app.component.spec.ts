@@ -8,6 +8,7 @@ import { of, Subject } from 'rxjs';
 import { AppComponent } from './app.component';
 import { AuthService } from '@core/_services/auth/auth.service';
 import { SeoService } from '@core/_services/seo/seo.service';
+import { TranslationService } from './core/_services/translation/translation.service';
 
 const NAV_ID = 1;
 const INITIAL_VALUE = 0;
@@ -17,14 +18,22 @@ describe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>;
   let component: AppComponent;
   let translateService: TranslateService;
+
   let authServiceMock: any;
   let seoServiceMock: any;
+  let translationServiceMock: any;
   let routerEventsSubject: Subject<any>;
 
   beforeEach(async() => {
 
     authServiceMock = { initAuth: vi.fn() };
     seoServiceMock = { updateMetaTags: vi.fn() };
+    translationServiceMock = {
+      initLanguage: vi.fn(),
+      getCurrentLang: vi.fn().mockReturnValue('fr'),
+      setLanguage: vi.fn()
+    };
+
     routerEventsSubject = new Subject<any>();
 
     const ROUTER_MOCK = {
@@ -48,6 +57,7 @@ describe('AppComponent', () => {
       providers: [
         { provide: AuthService, useValue: authServiceMock },
         { provide: SeoService, useValue: seoServiceMock },
+        { provide: TranslationService, useValue: translationServiceMock },
         { provide: Router, useValue: ROUTER_MOCK },
         { provide: ActivatedRoute, useValue: ACTIVATED_ROUTE_MOCK }
       ]
@@ -120,32 +130,6 @@ describe('AppComponent', () => {
 
     // --- ASSERT ---
     expect(seoServiceMock.updateMetaTags).toHaveBeenCalled();
-  });
-
-  it('should use "en" if browser language is "en"', () => {
-    // --- ARRANGE ---
-    vi.spyOn(translateService, 'getBrowserLang').mockReturnValue('en');
-    const SPY_USE = vi.spyOn(translateService, 'use');
-
-    // --- ACT ---
-    fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-
-    // --- ASSERT ---
-    expect(SPY_USE).toHaveBeenCalledWith('en');
-  });
-
-  it('should use "fr" if browser language is something else', () => {
-    // --- ARRANGE ---
-    vi.spyOn(translateService, 'getBrowserLang').mockReturnValue('de');
-    const SPY_USE = vi.spyOn(translateService, 'use');
-
-    // --- ACT ---
-    fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-
-    // --- ASSERT ---
-    expect(SPY_USE).toHaveBeenCalledWith('fr');
   });
 
   it('should handle route without data gracefully', () => {

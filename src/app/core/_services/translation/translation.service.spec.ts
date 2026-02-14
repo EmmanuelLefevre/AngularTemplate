@@ -19,12 +19,11 @@ describe('TranslationService', () => {
   beforeEach(() => {
     getItemSpy = vi.fn();
     setItemSpy = vi.fn();
-    const clearSpy = vi.fn();
 
     vi.stubGlobal('localStorage', {
       getItem: getItemSpy,
       setItem: setItemSpy,
-      clear: clearSpy,
+      clear: vi.fn(),
       removeItem: vi.fn(),
       length: 0,
       key: vi.fn()
@@ -61,8 +60,8 @@ describe('TranslationService', () => {
   describe('initLanguage', () => {
     it('should initialize supported langs and fallback lang', () => {
       // ARRANGE
-      vi.spyOn(localStorage, 'getItem').mockReturnValue(null);
-      translateServiceSpy.getBrowserLang.mockReturnValue('es');
+      getItemSpy.mockReturnValue(null);
+      translateServiceSpy.getBrowserLang.mockReturnValue('fr');
 
       // ACT
       service.initLanguage();
@@ -70,6 +69,19 @@ describe('TranslationService', () => {
       // ASSERT
       expect(translateServiceSpy.addLangs).toHaveBeenCalledWith(SUPPORTED_LANGS);
       expect(translateServiceSpy.setFallbackLang).toHaveBeenCalledWith(DEFAULT_LANG);
+    });
+
+    it('should prioritize LocalStorage and NOT call setItem if a valid lang already exists', () => {
+      // ARRANGE
+      getItemSpy.mockReturnValue('en');
+
+      // ACT
+      service.initLanguage();
+
+      // ASSERT
+      expect(getItemSpy).toHaveBeenCalledWith(STORAGE_KEY);
+      expect(translateServiceSpy.use).toHaveBeenCalledWith('en');
+      expect(setItemSpy).not.toHaveBeenCalled();
     });
 
     it('should prioritize LocalStorage language if supported', () => {
