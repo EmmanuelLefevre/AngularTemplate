@@ -50,8 +50,73 @@ export const ROUTES: Routes = [
           './features/private/private.component')
           .then(m => m.PrivateComponent),
         canActivate: [authGuard],
-      }
+      },
       // Add 'about', 'other views'...
+
+      // --- ERROR MANAGEMENT ---
+      {
+        path: 'error',
+        loadComponent: () => import(
+          '@shared/error-handler/error-handler.component')
+          .then(m => m.ErrorHandlerComponent),
+        data: {
+          seo: {
+            robots: 'noindex, nofollow'
+          }
+        },
+        children: [
+          { path: 'unauthorized-error',
+            loadComponent: () => import(
+              '@shared/error-handler/error-views/unauthorized-error/unauthorized-error.component')
+              .then(m => m.UnauthorizedErrorComponent),
+            data: {
+              seo: {
+                robots: 'noindex, nofollow'
+              }
+            }
+          },
+          { path: 'unfound-error',
+            loadComponent: () => import(
+              '@shared/error-handler/error-views/unfound-error/unfound-error.component')
+              .then(m => m.UnfoundErrorComponent),
+            data: {
+              seo: {
+                robots: 'noindex, nofollow'
+              }
+            }
+          },
+          { path: 'server-error',
+            loadComponent: () => import(
+              '@shared/error-handler/error-views/server-error/server-error.component')
+              .then(m => m.ServerErrorComponent),
+            data: {
+              seo: {
+                robots: 'noindex, nofollow'
+              }
+            }
+          },
+          { path: 'generic-error',
+            loadComponent: () => import(
+              '@shared/error-handler/error-views/generic-error/generic-error.component')
+              .then(m => m.GenericErrorComponent),
+            data: {
+              seo: {
+                robots: 'noindex, nofollow'
+              }
+            }
+          },
+          { path: 'unknown-error',
+            loadComponent: () => import(
+              '@shared/error-handler/error-views/unknown-error/unknown-error.component')
+              .then(m => m.UnknownErrorComponent),
+            data: {
+              seo: {
+                robots: 'noindex, nofollow'
+              }
+            }
+          }
+        ]
+      },
     ]
   },
 
@@ -73,71 +138,6 @@ export const ROUTES: Routes = [
       //   path: 'users',
       //   loadComponent: () => import('@features/admin/components/users/users.component').then(m => m.UsersComponent)
       // }
-    ]
-  },
-
-  // --- ERROR MANAGEMENT ---
-  {
-    path: 'error',
-    loadComponent: () => import(
-      '@shared/error-handler/error-handler.component')
-      .then(m => m.ErrorHandlerComponent),
-    data: {
-      seo: {
-        robots: 'noindex, nofollow'
-      }
-    },
-    children: [
-      { path: 'unauthorized-error',
-        loadComponent: () => import(
-          '@shared/error-handler/error-views/unauthorized-error/unauthorized-error.component')
-          .then(m => m.UnauthorizedErrorComponent),
-        data: {
-          seo: {
-            robots: 'noindex, nofollow'
-          }
-        }
-      },
-      { path: 'unfound-error',
-        loadComponent: () => import(
-          '@shared/error-handler/error-views/unfound-error/unfound-error.component')
-          .then(m => m.UnfoundErrorComponent),
-        data: {
-          seo: {
-            robots: 'noindex, nofollow'
-          }
-        }
-      },
-      { path: 'server-error',
-        loadComponent: () => import(
-          '@shared/error-handler/error-views/server-error/server-error.component')
-          .then(m => m.ServerErrorComponent),
-        data: {
-          seo: {
-            robots: 'noindex, nofollow'
-          }
-        }
-      },
-      { path: 'generic-error',
-        loadComponent: () => import(
-          '@shared/error-handler/error-views/generic-error/generic-error.component')
-          .then(m => m.GenericErrorComponent),
-        data: {
-          seo: {
-            robots: 'noindex, nofollow'
-          }
-        }
-      },
-      { path: 'unknown-error',
-        loadComponent: () => import(
-          '@shared/error-handler/error-views/unknown-error/unknown-error.component')
-          .then(m => m.UnknownErrorComponent),
-        data: {
-          seo: {
-            robots: 'noindex, nofollow'
-          }
-        }
-      }
     ]
   },
 

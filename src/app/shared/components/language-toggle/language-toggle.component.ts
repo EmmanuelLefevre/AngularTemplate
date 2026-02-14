@@ -15,8 +15,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 })
 
 export class LanguageToggleComponent {
-  private readonly translate = inject(TranslateService);
 
+  private readonly translate = inject(TranslateService);
   private readonly langEvent = toSignal(this.translate.onLangChange);
 
   public readonly currentLang = computed(() =>

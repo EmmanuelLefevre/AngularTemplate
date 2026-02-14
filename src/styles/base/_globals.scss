@@ -10,6 +10,12 @@ body {
   user-select: none;
   -webkit-user-select: none;
   -webkit-touch-callout: none;
+
+  &.no-scroll {
+    height: 100vh;
+    overflow: hidden;
+    scrollbar-gutter: stable;
+  }
 }
 
 /* =========== REACTIVATING SELECTION (UX CRITICAL) =========== */

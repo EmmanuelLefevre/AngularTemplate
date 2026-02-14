@@ -3,9 +3,12 @@ import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { TranslateModule } from '@ngx-translate/core';
 
+import { MainButtonComponent } from '../shared';
+
 @Component({
   selector: 'error-handler',
   imports: [
+    MainButtonComponent,
     RouterOutlet,
     TranslateModule
   ],
@@ -15,6 +18,7 @@ import { TranslateModule } from '@ngx-translate/core';
 })
 
 export class ErrorHandlerComponent implements OnInit {
+
   private readonly cdr = inject(ChangeDetectorRef);
   private readonly destroyRef = inject(DestroyRef);
   private readonly route = inject(ActivatedRoute);

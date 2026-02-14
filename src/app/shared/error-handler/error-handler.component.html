@@ -1,15 +1,23 @@
-<section>
-  <h1>{{ 'PAGES.ERROR.NOT_FOUND.TITLE' | translate }}</h1>
+<section class="error-view">
+  <h1 class="error-view__title">
+    {{ 'PAGES.ERROR.NOT_FOUND.TITLE' | translate }}
+  </h1>
 
-  <h3>{{ 'PAGES.ERROR.NOT_FOUND.LABEL' | translate }} {{ code() }}</h3>
+  <h3 class="error-view__code">
+    {{ 'PAGES.ERROR.NOT_FOUND.LABEL' | translate }}
+    <span class="error-view__code-value">{{ code() }}</span>
+  </h3>
 
-  <div class="error-view-slot">
+  <div class="error-view__content">
     <router-outlet />
   </div>
 
-  <button
-    (click)="goHome()"
-    type="button">
-    {{ 'UI.BUTTONS.BACK.LABEL' | translate }}
-  </button>
+  <div class="error-view__actions">
+    <main-button
+      variant="primary"
+      [label]="'UI.BUTTONS.BACK.LABEL' | translate"
+      [ariaLabel]="'UI.BUTTONS.BACK.ARIA' | translate"
+      (clicked)="goHome()"
+      class="error-view__button" />
+  </div>
 </section>

@@ -1,3 +1,45 @@
 :host {
   display: block;
 }
+
+.error-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  min-height: 60vh;
+
+  &__title {
+    margin-bottom: 1rem;
+    font-size: 2.5rem;
+    color: var(--text-primary-color);
+  }
+
+  &__code {
+    margin-bottom: 2rem;
+    color: var(--text-black-color);
+    &-value {
+      color: var(--text-primary-color);
+      font-weight: bold;
+    }
+  }
+
+  &__content {
+    margin-bottom: 3rem;
+    width: 100%;
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  &__button {
+    width: 100%;
+    max-width: 180px;
+    height: 50px;
+  }
+}

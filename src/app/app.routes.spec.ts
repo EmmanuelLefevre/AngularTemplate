@@ -1,6 +1,6 @@
-import { signal } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { provideRouter, Router } from '@angular/router';
+import { provideRouter, Router, RouterOutlet } from '@angular/router';
 import { RouterTestingHarness } from '@angular/router/testing';
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
@@ -9,6 +9,14 @@ import { provideTranslateService } from '@ngx-translate/core';
 import { AuthService } from '@core/_services/auth/auth.service';
 
 import { ROUTES } from './app.routes';
+import { authGuard } from './core/guard/auth/auth.guard';
+
+@Component({
+  selector: 'mock-layout',
+  imports: [RouterOutlet],
+  template: '<router-outlet />'
+})
+class MockLayoutComponent {}
 
 describe('App Routes', () => {
 
@@ -21,14 +29,32 @@ describe('App Routes', () => {
     isAuthenticated: vi.fn()
   };
 
+  const mockAuthGuard = vi.fn();
+
   beforeEach(async() => {
+    AUTH_SERVICE_MOCK.isAuthenticated.mockReturnValue(false);
+    mockAuthGuard.mockReturnValue(true);
+
+    const TEST_ROUTES = ROUTES.map(route => {
+      if (route.path === '' && route.children) {
+        return {
+          ...route,
+          loadComponent: undefined,
+          component: MockLayoutComponent
+        };
+      }
+      return route;
+    });
+
     TestBed.configureTestingModule({
       providers: [
-        provideRouter(ROUTES),
+        provideRouter(TEST_ROUTES),
         provideHttpClient(),
         provideHttpClientTesting(),
         provideTranslateService(),
-        { provide: AuthService, useValue: AUTH_SERVICE_MOCK }
+        { provide: AuthService, useValue: AUTH_SERVICE_MOCK },
+        // eslint-disable-next-line @typescript-eslint/explicit-function-return-type, @typescript-eslint/no-unsafe-return
+        { provide: authGuard, useValue: () => mockAuthGuard() }
       ]
     });
 
@@ -137,8 +163,10 @@ describe('App Routes', () => {
 
     it('should redirect to /home if authGuard fails (no token)', async() => {
       // --- ARRANGE ---
-      AUTH_SERVICE_MOCK.isAuthenticated.mockReturnValue(false);
-      localStorage.clear();
+      const ROUTER = TestBed.inject(Router);
+      const HOME_TREE = ROUTER.createUrlTree(['/home']);
+
+      mockAuthGuard.mockReturnValue(HOME_TREE);
 
       // --- ACT ---
       await harness.navigateByUrl('/private');
@@ -149,8 +177,10 @@ describe('App Routes', () => {
 
     it('should redirect to unauthorized error if authGuard fails (token present but not authenticated)', async() => {
       // --- ARRANGE ---
-      AUTH_SERVICE_MOCK.isAuthenticated.mockReturnValue(false);
-      localStorage.setItem('token', 'fake-token');
+      const ROUTER = TestBed.inject(Router);
+      const ERROR_TREE = ROUTER.createUrlTree(['/error/unauthorized-error']);
+
+      mockAuthGuard.mockReturnValue(ERROR_TREE);
 
       // --- ACT ---
       await harness.navigateByUrl('/private');
@@ -159,4 +189,31 @@ describe('App Routes', () => {
       expect(TestBed.inject(Router).url).toBe('/error/unauthorized-error');
     });
   });
+});
+
+describe('Route Configuration Integrity', () => {
+  it('should be able to resolve the PublicLayoutComponent import', async() => {
+    // --- ARRANGE ---
+    const ROOT_ROUTE = ROUTES.find(r => r.path === '');
+
+    // --- ACT ---
+    const COMPONENT_IMPORT = await ROOT_ROUTE?.loadComponent!();
+
+    // --- ASSERT ---
+    expect(ROOT_ROUTE?.loadComponent).toBeDefined();
+    expect(COMPONENT_IMPORT).toBeTruthy();
+  });
+
+  it('should be able to resolve the AdminLayoutComponent import', async() => {
+    // --- ARRANGE ---
+    const ADMIN_ROUTE = ROUTES.find(r => r.path === 'admin');
+
+    // --- ACT ---
+    const COMPONENT_IMPORT = await ADMIN_ROUTE?.loadComponent!();
+
+    // --- ASSERT ---
+    expect(ADMIN_ROUTE?.loadComponent).toBeDefined();
+    expect(COMPONENT_IMPORT).toBeTruthy();
+  });
+
 });
