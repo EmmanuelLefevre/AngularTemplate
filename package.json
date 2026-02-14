@@ -1,6 +1,49 @@
 {
   "name": "angular-template",
   "version": "1.0.0",
+  "private": true,
+  "description": "Angular 21 development accelerator designed for demanding teams",
+  "keywords": [
+    "Angular",
+    "boilerplate",
+    "Signals",
+    "PNPM",
+    "ESLint",
+    "Prettier",
+    "HTMLHint",
+    "Stylelint",
+    "Husky",
+    "lint-staged",
+    "GitLeaks",
+    "Secret Lint",
+    "I18n",
+    "Vite",
+    "Vitest",
+    "SonarCloud",
+    "Snyk",
+    "CodeQL",
+    "GitHub Actions",
+    "CICD",
+    "Compodoc",
+    "GitHub Pages",
+    "Fontawesome",
+    "Angular Material"
+  ],
+  "homepage": "https://www.angulartemplate.emmanuellefevre.com/home",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/EmmanuelLefevre/AngularTemplate"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Emmanuel Lefevre",
+    "url": "https://www.emmanuellefevre.com/"
+  },
+  "packageManager": "pnpm@10.25.0",
+  "engines": {
+    "node": ">=22.20.0",
+    "pnpm": ">=10.25.0"
+  },
   "type": "module",
   "scripts": {
     "ng": "ng",
@@ -26,8 +69,6 @@
     "test:coverage": "ng test --coverage --watch=false",
     "watch": "ng build --watch --configuration development"
   },
-  "private": true,
-  "packageManager": "pnpm@10.25.0",
   "pnpm": {
     "overrides": {
       "@isaacs/brace-expansion": ">=5.0.1",
