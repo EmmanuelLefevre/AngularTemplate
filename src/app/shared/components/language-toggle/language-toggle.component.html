@@ -6,7 +6,7 @@
     (click)="switchLanguage(toggleState().code)"
     [attr.aria-label]="toggleState().keys.aria | translate"
     [matTooltip]="toggleState().keys.tooltip | translate"
-    matTooltipPosition="below"
+    matTooltipPosition="left"
     matTooltipShowDelay="200">
     <img
       [src]="toggleState().flagPath"
