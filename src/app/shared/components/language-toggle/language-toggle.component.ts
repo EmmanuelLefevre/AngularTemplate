@@ -2,6 +2,9 @@ import { ChangeDetectionStrategy, Component, inject, computed } from '@angular/c
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { map } from 'rxjs';
+
+import { TranslationService } from '@app/core/_services/translation/translation.service';
 
 @Component({
   selector: 'language-toggle',
@@ -16,15 +19,17 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 
 export class LanguageToggleComponent {
 
+  private readonly translationService = inject(TranslationService);
   private readonly translate = inject(TranslateService);
-  private readonly langEvent = toSignal(this.translate.onLangChange);
 
-  public readonly currentLang = computed(() =>
-    this.langEvent()?.lang ?? this.translate.getFallbackLang() ?? 'fr'
+  public readonly currentLang = toSignal(
+    this.translate.onLangChange.pipe(map(event => event.lang)),
+    { initialValue: this.translationService.getCurrentLang() }
   );
 
   public readonly toggleState = computed(() => {
-    const isFr = this.currentLang() === 'fr';
+    const current = this.currentLang();
+    const isFr = current === 'fr';
 
     return {
       code: isFr ? 'en' : 'fr',
@@ -37,6 +42,6 @@ export class LanguageToggleComponent {
   });
 
   switchLanguage(lang: string): void {
-    this.translate.use(lang);
+    this.translationService.setLanguage(lang);
   }
 }

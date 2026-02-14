@@ -34,8 +34,10 @@
  ┃ ┃ ┣ 💉_services
  ┃ ┃ ┃ ┣ 🔐auth
  ┃ ┃ ┃ ┃ ┗ 📄auth.service.ts
- ┃ ┃ ┃ ┗ 📈seo
- ┃ ┃ ┃   ┗ 📄seo.service.ts
+ ┃ ┃ ┃ ┣ 📈seo
+ ┃ ┃ ┃ ┃ ┗ 📄seo.service.ts
+ ┃ ┃ ┃ ┗ 🗣️translation
+ ┃ ┃ ┃   ┗ 📄translation.service.ts
  ┃ ┃ ┣ 📂guard
  ┃ ┃ ┃ ┗ 📄admin.guard.ts
  ┃ ┃ ┗ 📂interceptor

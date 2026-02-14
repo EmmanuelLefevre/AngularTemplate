@@ -6,6 +6,7 @@ import { filter, map } from 'rxjs';
 import { AuthService } from '@core/_services/auth/auth.service';
 import { SeoService } from '@core/_services/seo/seo.service';
 import { SeoData } from '@core/_models/seo/seo.model';
+import { TranslationService } from './core/_services/translation/translation.service';
 
 const INITIAL_VALUE = 0;
 
@@ -19,15 +20,16 @@ const INITIAL_VALUE = 0;
 })
 
 export class AppComponent implements OnInit {
-  private readonly translate = inject(TranslateService);
+  private readonly translationService = inject(TranslationService);
   private readonly authService = inject(AuthService);
-  private readonly router = inject(Router);
-  private readonly activatedRoute = inject(ActivatedRoute);
   private readonly seoService = inject(SeoService);
 
+  private readonly router = inject(Router);
+  private readonly activatedRoute = inject(ActivatedRoute);
+  private readonly translate = inject(TranslateService);
+
   constructor() {
-    const BROWSER_LANG = this.translate.getBrowserLang();
-    this.translate.use(BROWSER_LANG?.match(/en|fr/) ? BROWSER_LANG : 'fr');
+    this.translationService.initLanguage();
   }
 
   ngOnInit(): void {

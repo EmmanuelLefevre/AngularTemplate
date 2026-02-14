@@ -52,10 +52,10 @@ describe('LanguageToggleComponent', () => {
     fixture.detectChanges();
 
     // --- ACT ---
-    component.switchLanguage('es');
+    component.switchLanguage('en');
 
     // --- ASSERT ---
-    expect(translateService.use).toHaveBeenCalledWith('es');
+    expect(translateService.use).toHaveBeenCalledWith('en');
   });
 
   it('should update currentLang signal when language changes', () => {
