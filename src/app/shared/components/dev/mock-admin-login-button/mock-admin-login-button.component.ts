@@ -22,7 +22,7 @@ export class MockAdminLoginButtonComponent {
   handleLogin(): void {
     this.authService.login({
       email: 'admin@test.com',
-      password: ENVIRONMENT.mockAdminPassword
+      password: ENVIRONMENT.mockAdminPassword ?? ''
     }).subscribe({
       next: () => {
         setTimeout(() => {
