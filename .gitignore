@@ -10,10 +10,6 @@
 docs/generated/
 README_BACKUP.md
 
-# Environments Files
-src/_environments/environment.prod.ts
-.env.local
-
 # Node
 /node_modules
 npm-debug.log
