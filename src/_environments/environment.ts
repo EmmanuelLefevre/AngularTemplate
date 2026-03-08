@@ -1,9 +1,11 @@
-export const ENVIRONMENT = {
+import { IEnvironment } from '@core/_models/environment/environment.interface';
+
+export const ENVIRONMENT: IEnvironment = {
   production: false,
   useMocks: true,
   apiUrl: 'http://localhost:3000/api',
   logLevel: 'debug',
-  mockAdminPassword: import.meta.env['VITE_MOCK_ADMIN_PWD'] || '1234',
+  mockAdminPassword: '1234',
   application: {
     name: 'AngularTemplate',
     author: 'Emmanuel Lefevre',

@@ -18,7 +18,7 @@
  ┣ 🗺️sitemap.xml
 📂src
  ┣ 🔄_environments
- ┃ ┣ 🔑environment.prod.sample.ts
+ ┃ ┣ 🔑environment.prod.ts
  ┃ ┗ 🔑environment.ts
  ┣ 🈸app
  ┃ ┣ 🧠core
@@ -28,6 +28,8 @@
  ┃ ┃ ┃ ┗ social-links.constant.ts
  ┃ ┃ ┣ 🧱_models
  ┃ ┃ ┃ ┣ 📂auth
+ ┃ ┃ ┃ ┣ 📂environment
+ ┃ ┃ ┃ ┣ 📂forms
  ┃ ┃ ┃ ┣ 📂links
  ┃ ┃ ┃ ┣ 📂seo
  ┃ ┃ ┃ ┗ 📂user
