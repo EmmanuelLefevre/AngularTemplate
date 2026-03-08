@@ -1,8 +1,13 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
+import { ChangeDetectorRef } from '@angular/core';
+import { By } from '@angular/platform-browser';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { AuthService } from '@core/_services/auth/auth.service';
+import { ENVIRONMENT } from '@env/environment';
 
 import { PublicLayoutComponent } from './public-layout.component';
 
@@ -37,5 +42,37 @@ describe('PublicLayoutComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should initialize isMockEnabled from the current environment', () => {
+    expect(component.isMockEnabled).toBe(ENVIRONMENT.useMocks);
+  });
+
+  it('should render the mock admin login button when isMockEnabled is true', () => {
+    // --- ARRANGE ---
+    (component as any).isMockEnabled = true;
+    fixture.debugElement.injector.get(ChangeDetectorRef).markForCheck();
+
+    // --- ACT ---
+    fixture.detectChanges();
+
+    // --- ASSERT ---
+    const mockButton = fixture.debugElement.query(By.css('mock-admin-login-button'));
+
+    expect(mockButton).toBeTruthy();
+  });
+
+  it('should NOT render the mock admin login button when isMockEnabled is false', () => {
+    // --- ARRANGE ---
+    (component as any).isMockEnabled = false;
+    fixture.debugElement.injector.get(ChangeDetectorRef).markForCheck();
+
+    // --- ACT ---
+    fixture.detectChanges();
+
+    // --- ASSERT ---
+    const mockButton = fixture.debugElement.query(By.css('mock-admin-login-button'));
+
+    expect(mockButton).toBeFalsy();
   });
 });

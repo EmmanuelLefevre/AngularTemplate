@@ -80,4 +80,23 @@ describe('MockAdminLoginButtonComponent', () => {
     // --- ASSERT ---
     expect(HANDLE_LOGIN_SPY).toHaveBeenCalled();
   });
+
+  it('should use empty string for password if ENVIRONMENT.mockAdminPassword is undefined', () => {
+    // --- ARRANGE ---
+    const originalPassword = ENVIRONMENT.mockAdminPassword;
+
+    (ENVIRONMENT as any).mockAdminPassword = undefined;
+
+    // --- ACT ---
+    component.handleLogin();
+
+    // --- ASSERT ---
+    expect(authServiceMock.login).toHaveBeenCalledWith({
+      email: 'admin@test.com',
+      password: ''
+    });
+
+    // --- CLEANUP ---
+    (ENVIRONMENT as any).mockAdminPassword = originalPassword;
+  });
 });

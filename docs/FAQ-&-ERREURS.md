@@ -15,11 +15,11 @@
 
 &nbsp;
 
-C'est normal si vous aviez laissé des warnings. Votre commit est passé localement car il respectait la limite des 50, mais la CI exige la perfection.
+C'est normal si vous aviez laissé des warnings. Votre commit est passé localement car il respectait la limite des 50 mais la **CI** exige la perfection.
 
 Pour corriger :
 
-- Regardez les logs de l'action GitHub pour voir les fichiers incriminés.
+- Regardez les logs de l'action **GitHub** pour voir les fichiers incriminés.
 - Lancez la vérification stricte en local pour les reproduire :
 
 ```Bash
@@ -86,7 +86,7 @@ Prendre 2 minutes pour vérifier, cela peut éviter des heures de gestion de cri
 
 &nbsp;
 
-> Message : "ERR_PNPM_OUTDATED_LOCKFILE"
+> **Message :** "ERR_PNPM_OUTDATED_LOCKFILE"
 
 Le fichier `pnpm-lock.yaml` n'est pas synchronisé avec le `package.json`. Cela arrive typiquement quand :
 
@@ -116,7 +116,7 @@ Push again 😜
 
 &nbsp;
 
-> Message : "Critical vulnerability found in qs"
+> **Message :** "Critical vulnerability found in qs"
 
 ```shell
 Critical vulnerability found in qs
@@ -138,7 +138,7 @@ Ajouter sa version patchée dans `package.json` =>
 }
 ```
 
-Refaire une installation du package :  
+Supprimer le dossier `node_modules` et `pnpm-lock.yaml` puis relancer une install :  
 
 ```Bash
 pnpm install
@@ -220,5 +220,25 @@ Pour le fichier de configuration de l'application
 ```shell
 npx @andrewbranch/ts5to6 --fixRootDir ./tsconfig.app.json
 ```
+
+</details>
+
+### 🛑 SonarQube Cloud : faux positif sur le mot de passe de mock !
+
+<details>
+
+  <summary>🧐 Consulter la méthode de résolution du problème</summary>
+
+&nbsp;
+
+> **Message :** "Review this potentially hard-coded password."
+
+La meilleure pratique DevOps est d'utiliser l'outil pour gérer les exceptions sans modifier un code qui est légitime.  
+
+1. Se connecter au dashboard **SonarQube Cloud**.
+2. Aller dans l'onglet **Issues** du projet.
+3. Retrouver l'alerte concernant le fichier `environment.ts`.
+4. Cliquer sur le statut de l'anomalie (*Open*).
+5. Changer le statut en **"Resolve as False Positive"**.
 
 </details>

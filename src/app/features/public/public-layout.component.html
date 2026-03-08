@@ -5,7 +5,9 @@
     <router-outlet />
   </main>
 
-  <mock-admin-login-button />
+  @if (isMockEnabled) {
+    <mock-admin-login-button />
+  }
 
   <scroll-to-top />
 
