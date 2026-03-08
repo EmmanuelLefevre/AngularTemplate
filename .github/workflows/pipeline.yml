@@ -36,7 +36,7 @@ jobs:
       - name: 📢 Failure Notification
         if: failure() && steps.install.outcome == 'failure'
         run: |
-          echo "### 🚨 CRIMINAL ACTIVITY DETECTED !" >> $GITHUB_STEP_SUMMARY
+          echo "##### 🚨 CRIMINAL ACTIVITY DETECTED ! #####" >> $GITHUB_STEP_SUMMARY
           echo "CI refuses to work with untracked dependencies 😤" >> $GITHUB_STEP_SUMMARY
           echo "Hey ${{ github.actor }}, you modified 'package.json' without updating 'pnpm-lock.yaml' !" >> $GITHUB_STEP_SUMMARY
           echo "👉 Run 'pnpm install' locally and push your updated lockfile plz..." >> $GITHUB_STEP_SUMMARY
@@ -66,8 +66,8 @@ jobs:
       - name: 📢 Failure Notification
         if: failure() && steps.gitleaks.outcome == 'failure'
         run: |
-          echo "### 🚨 SECURITY BREACH DETECTED !" >> $GITHUB_STEP_SUMMARY
-          echo "### 😱 Are you trying to offer our API Keys to the hackers ?" >> $GITHUB_STEP_SUMMARY
+          echo "##### 🚨 SECURITY BREACH DETECTED ! #####" >> $GITHUB_STEP_SUMMARY
+          echo "😱 Are you trying to offer our API Keys to the hackers ?" >> $GITHUB_STEP_SUMMARY
           echo "Hey ${{ github.actor }}, Gitleaks found a secret in your code !" >> $GITHUB_STEP_SUMMARY
           echo "We appreciate your generosity, but please revoke it immediately and remove it from git history." >> $GITHUB_STEP_SUMMARY
           echo "👉 Check the logs in the "🔑 Check Leaked Secrets" step to find the leak..." >> $GITHUB_STEP_SUMMARY
@@ -155,7 +155,7 @@ jobs:
       # - name: 📢 Failure Notification
       #   if: failure() && steps.i18n.outcome == 'failure'
       #   run: |
-      #     echo "### 🚨 TRANSLATION POLICE HERE !" >> $GITHUB_STEP_SUMMARY
+      #     echo "##### 🚨 TRANSLATION POLICE HERE ! #####" >> $GITHUB_STEP_SUMMARY
       #     echo "Hey ${{ github.actor }}, you created new keys but forgot to translate them !" >> $GITHUB_STEP_SUMMARY
       #     echo "Do not leave our users lost in translation. 🗺️" >> $GITHUB_STEP_SUMMARY
       #     echo "👉 Run 'pnpm i18n:extract' locally to generate the missing keys automatically." >> $GITHUB_STEP_SUMMARY
@@ -168,8 +168,8 @@ jobs:
       - name: 📢 Failure Notification
         if: failure() && steps.vitest.outcome == 'failure'
         run: |
-          echo "### 🚨 CRIMINAL ACTIVITY DETECTED !" >> $GITHUB_STEP_SUMMARY
-          echo "### ❌ Pipeline failed because test coverage is less than 80% !" >> $GITHUB_STEP_SUMMARY
+          echo "##### 🚨 CRIMINAL ACTIVITY DETECTED ! #####" >> $GITHUB_STEP_SUMMARY
+          echo "❌ Pipeline failed because test coverage is less than 80% !" >> $GITHUB_STEP_SUMMARY
           echo "Hey ${{ github.actor }}, please work harder on your coverage ! 🤣🤣🤣" >> $GITHUB_STEP_SUMMARY
           exit 1
 
