@@ -23,9 +23,12 @@
  ┣ 🈸app
  ┃ ┣ 🧠core
  ┃ ┃ ┣ ⚙️_config
- ┃ ┃ ┃ ┣ host-links.constant.ts
- ┃ ┃ ┃ ┣ nav-links.constant.ts
- ┃ ┃ ┃ ┗ social-links.constant.ts
+ ┃ ┃ ┃ ┣ 🔗links
+ ┃ ┃ ┃ ┃ ┣ host-links.constant.ts
+ ┃ ┃ ┃ ┃ ┣ nav-links.constant.ts
+ ┃ ┃ ┃ ┃ ┗ social-links.constant.ts
+ ┃ ┃ ┃ ┗ 🔔snackbar
+ ┃ ┃ ┃   ┗ snackbar.constant.ts
  ┃ ┃ ┣ 🧱_models
  ┃ ┃ ┃ ┣ 📂auth
  ┃ ┃ ┃ ┣ 📂environment

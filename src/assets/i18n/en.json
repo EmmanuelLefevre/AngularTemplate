@@ -101,6 +101,10 @@
     }
   },
   "UI": {
+    "SNACKBAR": {
+      "LOGIN_SUCCESS": "Administrator login successful !",
+      "LOGIN_ERROR": "Connection failed. Please verify your spoofed credentials."
+    },
     "FORMS": {
       "LABELS": {
         "EMAIL": "Email",

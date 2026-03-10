@@ -1,0 +1,20 @@
+<div class="snackbar">
+  <span
+    class="snackbar__message"
+    role="status">
+    {{ data.message }}
+  </span>
+
+  <button
+    type="button"
+    (click)="snackBarRef.dismiss()"
+    [aria-label]="'UI.BUTTONS.CLOSE.ARIA' | translate"
+    [matTooltip]="'UI.BUTTONS.CLOSE.TOOLTIP' | translate"
+    matTooltipPosition="above"
+    class="snackbar__action"
+    mat-icon-button>
+    <fa-icon
+      [icon]="faXmark"
+      class="snackbar__icon" />
+  </button>
+</div>

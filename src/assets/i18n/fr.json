@@ -101,6 +101,10 @@
     }
   },
   "UI": {
+    "SNACKBAR": {
+      "LOGIN_SUCCESS": "Connexion administrateur réussie !",
+      "LOGIN_ERROR": "Échec de la connexion. Vérifiez vos identifiants mockés."
+    },
     "FORMS": {
       "LABELS": {
         "EMAIL": "Email",

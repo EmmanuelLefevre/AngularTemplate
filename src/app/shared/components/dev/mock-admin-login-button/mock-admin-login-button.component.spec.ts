@@ -1,22 +1,26 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { TestBed } from '@angular/core/testing';
-import { Router } from '@angular/router';
-import { of } from 'rxjs';
 
-import { AuthService } from '@core/_services/auth/auth.service';
-import { ENVIRONMENT } from '@env/environment';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Router } from '@angular/router';
+import { of, throwError } from 'rxjs';
+
 import { MockAdminLoginButtonComponent } from './mock-admin-login-button.component';
+import { AuthService } from '@core/_services/auth/auth.service';
+import { SnackbarService } from '@app/core/_services/snackbar/snackbar.service';
+import { SNACKBAR_KEYS } from '@core/_config/snackbar/snackbar.constant';
+import { ENVIRONMENT } from '@env/environment';
 
 describe('MockAdminLoginButtonComponent', () => {
 
   let component: MockAdminLoginButtonComponent;
+  let fixture: ComponentFixture<MockAdminLoginButtonComponent>;
   let authServiceMock: any;
+  let snackbarServiceSpy: any;
   let routerMock: any;
 
   const NAVIGATION_DELAY_MS = 100;
 
   beforeEach(async() => {
-    // --- ARRANGE ---
     vi.useFakeTimers();
 
     authServiceMock = {
@@ -27,18 +31,23 @@ describe('MockAdminLoginButtonComponent', () => {
       navigate: vi.fn().mockResolvedValue(true)
     };
 
+    snackbarServiceSpy = {
+      showNotification: vi.fn()
+    };
+
     await TestBed.configureTestingModule({
       imports: [MockAdminLoginButtonComponent],
       providers: [
         { provide: AuthService, useValue: authServiceMock },
-        { provide: Router, useValue: routerMock }
+        { provide: Router, useValue: routerMock },
+        { provide: SnackbarService, useValue: snackbarServiceSpy }
       ]
     }).compileComponents();
 
-    const FIXTURE = TestBed.createComponent(MockAdminLoginButtonComponent);
-    component = FIXTURE.componentInstance;
+    fixture = TestBed.createComponent(MockAdminLoginButtonComponent);
+    component = fixture.componentInstance;
 
-    FIXTURE.detectChanges();
+    fixture.detectChanges();
   });
 
   afterEach(() => {
@@ -50,7 +59,7 @@ describe('MockAdminLoginButtonComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should call authService.login and navigate after delay on click', () => {
+  it('should call authService.login, show success notification and navigate after delay on click', () => {
     // --- ACT ---
     component.handleLogin();
 
@@ -59,6 +68,11 @@ describe('MockAdminLoginButtonComponent', () => {
       email: 'admin@test.com',
       password: ENVIRONMENT.mockAdminPassword
     });
+
+    expect(snackbarServiceSpy.showNotification).toHaveBeenCalledWith(
+      SNACKBAR_KEYS.LOGIN_SUCCESS,
+      'logIn-logOut'
+    );
 
     expect(routerMock.navigate).not.toHaveBeenCalled();
 
@@ -98,5 +112,21 @@ describe('MockAdminLoginButtonComponent', () => {
 
     // --- CLEANUP ---
     (ENVIRONMENT as any).mockAdminPassword = originalPassword;
+  });
+
+  it('should show error notification if login fails', () => {
+    // --- ARRANGE ---
+    authServiceMock.login.mockReturnValue(throwError(() => new Error('Mock API Error')));
+
+    // --- ACT ---
+    component.handleLogin();
+
+    // --- ASSERT ---
+    expect(authServiceMock.login).toHaveBeenCalled();
+    expect(snackbarServiceSpy.showNotification).toHaveBeenCalledWith(
+      SNACKBAR_KEYS.LOGIN_ERROR,
+      'red-alert'
+    );
+    expect(routerMock.navigate).not.toHaveBeenCalled();
   });
 });
