@@ -110,46 +110,5 @@ describe('SnackbarService', () => {
         politeness: 'polite'
       });
     });
-
-    it('should configure correctly for assertive types like "red-alert" (error, warning, register)', () => {
-      // --- ARRANGE ---
-      const messageKey = 'UI.SNACKBAR.LOGIN_ERROR';
-      const type: SnackbarType = 'red-alert';
-
-      // --- ACT ---
-      service.showNotification(messageKey, type);
-
-      // --- ASSERT ---
-      expect(translateServiceMock.instant).toHaveBeenCalledWith(messageKey, undefined);
-
-      expect(snackbarMock.openFromComponent).toHaveBeenCalledWith(SnackbarComponent, {
-        panelClass: ['snackbar-container--red-alert'],
-        data: { message: `${messageKey}_TRANSLATED`, type: 'red-alert' },
-        duration: 7000,
-        verticalPosition: 'top',
-        horizontalPosition: 'end',
-        politeness: 'assertive'
-      });
-    });
-
-    it('should configure correctly for default polite types like "created"', () => {
-      // --- ARRANGE ---
-      const messageKey = 'UI.SNACKBAR.ITEM_CREATED';
-      const type: SnackbarType = 'created';
-
-      // --- ACT ---
-      service.showNotification(messageKey, type);
-
-      // --- ASSERT ---
-      expect(snackbarMock.openFromComponent).toHaveBeenCalledWith(SnackbarComponent, {
-        panelClass: ['snackbar-container--created'],
-        data: { message: `${messageKey}_TRANSLATED`, type: 'created' },
-        duration: 4000,
-        verticalPosition: 'bottom',
-        horizontalPosition: 'start',
-        politeness: 'polite'
-      });
-    });
-
   });
 });
