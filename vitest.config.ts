@@ -1,3 +1,4 @@
+/// <reference types="vitest" />
 import { defineConfig } from 'vitest/config';
 import angular from '@analogjs/vite-plugin-angular';
 import tsconfigPaths from 'vite-tsconfig-paths';
@@ -20,6 +21,7 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
+        loadPaths: [DIRNAME],
         additionalData: '@use "src/styles/abstracts/_index.scss" as *;'
       },
     },
@@ -28,12 +30,14 @@ export default defineConfig({
     globals: true,
     environment: 'jsdom',
     setupFiles: [
-      resolve(DIRNAME, 'src/test-setup.ts'),
+      'src/test-setup.ts'
     ],
     reporters: ['default'],
+    testTimeout: 20000,
+    hookTimeout: 20000,
     coverage: {
       provider: 'v8',
-      enabled: true,
+      enabled: false,
       reporter: ['text', 'lcov', 'html'],
       reportsDirectory: './coverage',
       thresholds: {

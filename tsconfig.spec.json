@@ -6,8 +6,7 @@
     "module": "ESNext",
     "moduleResolution": "Bundler",
     "types": [
-      "vitest/globals",
-      "vitest/importMeta",
+      "vitest",
       "vite/client",
       "node"
     ]
@@ -15,5 +14,8 @@
   "include": [
     "src/**/*.d.ts",
     "src/**/*.spec.ts"
+  ],
+  "files": [
+    "src/test-setup.ts"
   ]
 }

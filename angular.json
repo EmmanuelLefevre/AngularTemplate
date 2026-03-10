@@ -179,11 +179,9 @@
           "defaultConfiguration": "development"
         },
         "test": {
-          "builder": "@angular/build:unit-test",
+          "builder": "@analogjs/vitest-angular:test",
           "options": {
-            "runnerConfig": "vitest.config.ts",
-            "tsConfig": "tsconfig.spec.json",
-            "coverage": true
+            "configFile": "vitest.config.ts"
           }
         },
         "lint": {

@@ -65,8 +65,9 @@
     "prepare": "husky",
     "start": "ng serve",
     "test": "ng test",
-    "test:ui": "ng test --ui",
     "test:coverage": "ng test --coverage --watch=false",
+    "test:ui": "vitest --ui",
+    "test:watch": "vitest",
     "watch": "ng build --watch --configuration development"
   },
   "pnpm": {
