@@ -58,7 +58,7 @@ describe('SnackbarService', () => {
       expect(snackbarMock.openFromComponent).toHaveBeenCalledWith(SnackbarComponent, {
         panelClass: ['snackbar-container--logIn-logOut'],
         data: { message: `${messageKey}_TRANSLATED`, type: 'logIn-logOut' },
-        duration: 3000,
+        duration: 7000,
         verticalPosition: 'top',
         horizontalPosition: 'end',
         politeness: 'polite'
@@ -104,7 +104,7 @@ describe('SnackbarService', () => {
       expect(snackbarMock.openFromComponent).toHaveBeenCalledWith(SnackbarComponent, {
         panelClass: [`snackbar-container--${type}`],
         data: { message: `${messageKey}_TRANSLATED`, type },
-        duration: 4000,
+        duration: 7000,
         verticalPosition: 'bottom',
         horizontalPosition: 'start',
         politeness: 'polite'

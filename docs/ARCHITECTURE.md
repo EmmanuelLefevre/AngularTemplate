@@ -35,21 +35,25 @@
  ┃ ┃ ┃ ┣ 📂forms
  ┃ ┃ ┃ ┣ 📂links
  ┃ ┃ ┃ ┣ 📂seo
+ ┃ ┃ ┃ ┣ 📂snackbar
  ┃ ┃ ┃ ┗ 📂user
  ┃ ┃ ┣ 💉_services
  ┃ ┃ ┃ ┣ 🔐auth
  ┃ ┃ ┃ ┃ ┗ 📄auth.service.ts
  ┃ ┃ ┃ ┣ 📈seo
  ┃ ┃ ┃ ┃ ┗ 📄seo.service.ts
+ ┃ ┃ ┃ ┣ 🔔snackbar
+ ┃ ┃ ┃ ┃ ┗ 📄snackbar.service.ts
  ┃ ┃ ┃ ┗ 🗣️translation
  ┃ ┃ ┃   ┗ 📄translation.service.ts
- ┃ ┃ ┣ 📂guard
- ┃ ┃ ┃ ┗ 📄admin.guard.ts
- ┃ ┃ ┗ 📂interceptor
- ┃ ┃   ┗ 📂auth
+ ┃ ┃ ┣ 🚧guard
+ ┃ ┃ ┃ ┣ 👑admin
+ ┃ ┃ ┃ ┗ 🆔auth
+ ┃ ┃ ┗ 🎣interceptor
+ ┃ ┃   ┗ 🆔auth
  ┃ ┃     ┗ 📄auth.interceptor.ts
  ┃ ┣ 🧩features
- ┃ ┃ ┣ 👔admin
+ ┃ ┃ ┣ 👑admin
  ┃ ┃ ┃ ┣ ⚙️_config
  ┃ ┃ ┃ ┣ 🧱_models
  ┃ ┃ ┃ ┣ 💉_services

@@ -41,10 +41,10 @@ describe('SnackbarComponent', () => {
     component = fixture.componentInstance;
     translateService = TestBed.inject(TranslateService);
 
-    // Mock du TranslateService pour renvoyer directement la clé demandée
     vi.spyOn(translateService, 'get').mockImplementation(
       (key: string | string[]): Observable<string | object> => of(key)
     );
+
     vi.spyOn(translateService, 'stream').mockImplementation(
       (key: string | string[]): Observable<string | object> => of(key)
     );
@@ -111,6 +111,42 @@ describe('SnackbarComponent', () => {
 
       // --- ASSERT ---
       expect(MESSAGE_SPAN.getAttribute('role')).toBe('status');
+    });
+
+    it('should call dismiss on snackBarRef when Enter key is pressed on the close button', () => {
+      // --- ARRANGE ---
+      const CLOSE_BUTTON_DEBUG = fixture.debugElement.query(By.css('.snackbar__action'));
+      const event = new KeyboardEvent('keydown', { key: 'Enter' });
+
+      // --- ACT ---
+      CLOSE_BUTTON_DEBUG.triggerEventHandler('keydown.enter', event);
+
+      // --- ASSERT ---
+      expect(snackBarRefMock.dismiss).toHaveBeenCalledOnce();
+    });
+
+    it('should call dismiss on snackBarRef when Space key is pressed on the close button', () => {
+      // --- ARRANGE ---
+      const CLOSE_BUTTON_DEBUG = fixture.debugElement.query(By.css('.snackbar__action'));
+      const event = new KeyboardEvent('keydown', { key: 'Space' });
+
+      // --- ACT ---
+      CLOSE_BUTTON_DEBUG.triggerEventHandler('keydown.space', event);
+
+      // --- ASSERT ---
+      expect(snackBarRefMock.dismiss).toHaveBeenCalledOnce();
+    });
+
+    it('should have aria-hidden="true" on the FontAwesome icon to hide it from screen readers', () => {
+      // --- ARRANGE ---
+      const ICON_DEBUG = fixture.debugElement.query(By.css('fa-icon'));
+      const ICON_NATIVE = ICON_DEBUG.nativeElement;
+
+      // --- ACT ---
+      const ariaHiddenValue = ICON_NATIVE.getAttribute('aria-hidden');
+
+      // --- ASSERT ---
+      expect(ariaHiddenValue).toBe('true');
     });
   });
 });
