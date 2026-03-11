@@ -13,11 +13,20 @@
   </div>
 
   <div class="error-view__actions">
-    <main-button
-      variant="primary"
-      [label]="'UI.BUTTONS.BACK.LABEL' | translate"
-      [ariaLabel]="'UI.BUTTONS.BACK.ARIA' | translate"
-      (clicked)="goHome()"
-      class="error-view__button" />
+    @if (code() === '401') {
+      <main-button
+        variant="primary"
+        [label]="'UI.BUTTONS.LOGIN.LABEL' | translate"
+        [ariaLabel]="'UI.BUTTONS.LOGIN.ARIA' | translate"
+        (clicked)="navigateAction('/login')"
+        class="error-view__button" />
+    } @else {
+      <main-button
+        variant="primary"
+        [label]="'UI.BUTTONS.BACKHOME.LABEL' | translate"
+        [ariaLabel]="'UI.BUTTONS.BACKHOME.ARIA' | translate"
+        (clicked)="navigateAction('/')"
+        class="error-view__button" />
+    }
   </div>
 </section>

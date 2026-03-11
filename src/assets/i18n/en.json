@@ -157,7 +157,7 @@
         "ARIA": "Close",
         "TOOLTIP": "Close"
       },
-      "BACK": {
+      "BACKHOME": {
         "LABEL": "Back to home",
         "ARIA": "Back to home page"
       },

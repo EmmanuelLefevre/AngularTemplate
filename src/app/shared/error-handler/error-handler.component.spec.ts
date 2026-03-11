@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { By } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { BehaviorSubject } from 'rxjs';
 
 import { ErrorHandlerComponent } from './error-handler.component';
@@ -15,6 +16,7 @@ describe('ErrorHandlerComponent', () => {
 
   let queryParams$: BehaviorSubject<any>;
   let router: Router;
+  let translate: TranslateService;
 
   beforeEach(async() => {
     queryParams$ = new BehaviorSubject({});
@@ -43,6 +45,54 @@ describe('ErrorHandlerComponent', () => {
     }).compileComponents();
 
     router = TestBed.inject(Router);
+    translate = TestBed.inject(TranslateService);
+
+    translate.setTranslation('fr', {
+      'PAGES': {
+        'ERROR': {
+          'NOT_FOUND': {
+            'TITLE': 'Une erreur est survenue.',
+            'LABEL': 'Erreur'
+          }
+        }
+      },
+      'UI': {
+        'BUTTONS': {
+          'BACKHOME': {
+            'LABEL': 'Retour à l\'accueil',
+            'ARIA': 'Retour à la page d\'accueil'
+          },
+          'LOGIN': {
+            'LABEL': 'Se connecter',
+            'ARIA': 'Bouton pour ouvrir le formulaire de connexion'
+          }
+        }
+      }
+    });
+    translate.setTranslation('en', {
+      'PAGES': {
+        'ERROR': {
+          'NOT_FOUND': {
+            'TITLE': 'An error has occurred.',
+            'LABEL': 'Error'
+          }
+        }
+      },
+      'UI': {
+        'BUTTONS': {
+          'BACKHOME': {
+            'LABEL': 'Back to home',
+            'ARIA': 'Back to home page'
+          },
+          'LOGIN': {
+            'LABEL': 'Login',
+            'ARIA': 'Button to open the login form'
+          }
+        }
+      }
+    });
+    translate.use('fr');
+
     fixture = TestBed.createComponent(ErrorHandlerComponent);
     component = fixture.componentInstance;
   });
@@ -55,199 +105,295 @@ describe('ErrorHandlerComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should handle missing code parameter and navigate to unknown-error', () => {
-    // --- ARRANGE ---
-    queryParams$.next({});
+  describe('Routing logic & Code inference', () => {
+    it('should handle missing code parameter and navigate to unknown-error', () => {
+      // --- ARRANGE ---
+      queryParams$.next({});
 
-    // --- ACT ---
-    fixture.detectChanges();
+      // --- ACT ---
+      fixture.detectChanges();
 
-    // --- ASSERT ---
-    expect(component.code()).toBe('');
-    expect(router.navigate).toHaveBeenCalledWith(
-      ['unknown-error'],
-      expect.objectContaining({
-        queryParams: undefined,
-        replaceUrl: true
-      })
-    );
+      // --- ASSERT ---
+      expect(component.code()).toBe('');
+      expect(router.navigate).toHaveBeenCalledWith(
+        ['unknown-error'],
+        expect.objectContaining({
+          queryParams: undefined,
+          replaceUrl: true
+        })
+      );
+    });
+
+    it('should cover the generic-error branch (Regex TRUE)', () => {
+      // --- ARRANGE ---
+      const CUSTOM_CODE = '418';
+      queryParams$.next({ code: CUSTOM_CODE });
+
+      // --- ACT ---
+      fixture.detectChanges();
+
+      // --- ASSERT ---
+      expect(router.navigate).toHaveBeenCalledWith(
+        ['generic-error'],
+        expect.objectContaining({
+          queryParams: { code: CUSTOM_CODE },
+          relativeTo: expect.any(Object),
+          replaceUrl: true
+        })
+      );
+    });
+
+    it('should cover the unknown-error branch (Regex FALSE)', () => {
+      // --- ARRANGE ---
+      queryParams$.next({ code: '999' });
+
+      // --- ACT ---
+      fixture.detectChanges();
+
+      // --- ASSERT ---
+      expect(router.navigate).toHaveBeenCalledWith(
+        ['unknown-error'],
+        expect.objectContaining({
+          queryParams: { code: '999' },
+          replaceUrl: true
+        })
+      );
+    });
+
+    it('should navigate to "unauthorized-error" when code is 401', () => {
+      // --- ARRANGE ---
+      queryParams$.next({ code: '401' });
+
+      // --- ACT ---
+      fixture.detectChanges();
+
+      // --- ASSERT ---
+      expect(router.navigate).toHaveBeenCalledWith(
+        ['unauthorized-error'],
+        expect.objectContaining({
+          queryParams: { code: '401' },
+          relativeTo: expect.any(Object)
+        })
+      );
+    });
+
+    it('should navigate to "unfound-error" when code is 404', () => {
+      // --- ARRANGE ---
+      queryParams$.next({ code: '404' });
+
+      // --- ACT ---
+      fixture.detectChanges();
+
+      // --- ASSERT ---
+      expect(router.navigate).toHaveBeenCalledWith(
+        ['unfound-error'],
+        expect.objectContaining({
+          queryParams: { code: '404' },
+          relativeTo: expect.any(Object)
+        })
+      );
+    });
+
+    it('should navigate to "server-error" when code is 500', () => {
+      // --- ARRANGE ---
+      queryParams$.next({ code: '500' });
+
+      // --- ACT ---
+      fixture.detectChanges();
+
+      // --- ASSERT ---
+      expect(router.navigate).toHaveBeenCalledWith(
+        ['server-error'],
+        expect.objectContaining({
+          queryParams: { code: '500' },
+          relativeTo: expect.any(Object)
+        })
+      );
+    });
+
+    it('should navigate to "generic-error" with params when code is valid but unhandled', () => {
+      // --- ARRANGE ---
+      const CUSTOM_CODE = '418';
+      queryParams$.next({ code: CUSTOM_CODE });
+
+      // --- ACT ---
+      fixture.detectChanges();
+
+      // --- ASSERT ---
+      expect(router.navigate).toHaveBeenCalledWith(
+        ['generic-error'],
+        expect.objectContaining({
+          queryParams: { code: CUSTOM_CODE },
+          relativeTo: expect.any(Object)
+        })
+      );
+    });
+
+    it('should NOT navigate if the current URL already includes an error page', () => {
+      // --- ARRANGE ---
+      Object.defineProperty(router, 'url', { get: () => '/error/unfound-error' });
+      queryParams$.next({ code: '404' });
+
+      // --- ACT ---
+      fixture.detectChanges();
+
+      // --- ASSERT ---
+      expect(router.navigate).not.toHaveBeenCalled();
+    });
+
+    it('should infer code 404 from URL when queryParams are missing', () => {
+      // --- ARRANGE ---
+      Object.defineProperty(router, 'url', { value: '/error/unfound-error', configurable: true });
+      queryParams$.next({});
+
+      // --- ACT ---
+      fixture.detectChanges();
+
+      // --- ASSERT ---
+      expect(component.code()).toBe('404');
+    });
+
+    it('should infer code 401 from URL when queryParams are missing', () => {
+      // --- ARRANGE ---
+      Object.defineProperty(router, 'url', { value: '/error/unauthorized-error', configurable: true });
+      queryParams$.next({});
+
+      // --- ACT ---
+      fixture.detectChanges();
+
+      // --- ASSERT ---
+      expect(component.code()).toBe('401');
+    });
+
+    it('should infer code 500 from URL when queryParams are missing', () => {
+      // --- ARRANGE ---
+      Object.defineProperty(router, 'url', { value: '/error/server-error', configurable: true });
+      queryParams$.next({});
+
+      // --- ACT ---
+      fixture.detectChanges();
+
+      // --- ASSERT ---
+      expect(component.code()).toBe('500');
+    });
   });
 
-  it('should cover the generic-error branch (Regex TRUE)', () => {
-    // --- ARRANGE ---
-    const CUSTOM_CODE = '418';
-    queryParams$.next({ code: CUSTOM_CODE });
+  describe('UI & Navigation Actions', () => {
+    it('should call router.navigate with the provided path when navigateAction is called', () => {
+      // --- ARRANGE ---
+      fixture.detectChanges();
 
-    // --- ACT ---
-    fixture.detectChanges();
+      // --- ACT ---
+      component.navigateAction('/test-path');
 
-    // --- ASSERT ---
-    expect(router.navigate).toHaveBeenCalledWith(
-      ['generic-error'],
-      expect.objectContaining({
-        queryParams: { code: CUSTOM_CODE },
-        relativeTo: expect.any(Object),
-        replaceUrl: true
-      })
-    );
+      // --- ASSERT ---
+      expect(router.navigate).toHaveBeenCalledWith(['/test-path']);
+    });
+
+    it('should render the "Back to Home" button and navigate to "/" for non-401 errors', () => {
+      // --- ARRANGE ---
+      Object.defineProperty(router, 'url', { value: '/error/unfound-error', configurable: true });
+      queryParams$.next({ code: '404' });
+      fixture.detectChanges();
+
+      const buttonDebugEl = fixture.debugElement.query(By.css('main-button'));
+
+      // --- ACT ---
+      buttonDebugEl.triggerEventHandler('clicked', null);
+
+      // --- ASSERT ---
+      expect(component.code()).toBe('404');
+      expect(buttonDebugEl.componentInstance.label()).toBe('Retour à l\'accueil');
+      expect(router.navigate).toHaveBeenCalledWith(['/']);
+    });
+
+    it('should render the "Login" button and navigate to "/login" for 401 errors', () => {
+      // --- ARRANGE ---
+      Object.defineProperty(router, 'url', { value: '/error/unauthorized-error', configurable: true });
+      queryParams$.next({ code: '401' });
+      fixture.detectChanges();
+
+      const buttonDebugEl = fixture.debugElement.query(By.css('main-button'));
+
+      // --- ACT ---
+      buttonDebugEl.triggerEventHandler('clicked', null);
+
+      // --- ASSERT ---
+      expect(component.code()).toBe('401');
+      expect(buttonDebugEl.componentInstance.label()).toBe('Se connecter');
+      expect(router.navigate).toHaveBeenCalledWith(['/login']);
+    });
   });
 
-  it('should cover the unknown-error branch (Regex FALSE)', () => {
-    // --- ARRANGE ---
-    queryParams$.next({ code: '999' });
+  describe('Internationalization (i18n)', () => {
+    it('should display the default French translations on init', () => {
+      // --- ACT ---
+      fixture.detectChanges();
 
-    // --- ACT ---
-    fixture.detectChanges();
+      const title = fixture.debugElement.query(By.css('.error-view__title')).nativeElement;
+      const codeLabel = fixture.debugElement.query(By.css('.error-view__code')).nativeElement;
 
-    // --- ASSERT ---
-    expect(router.navigate).toHaveBeenCalledWith(
-      ['unknown-error'],
-      expect.objectContaining({
-        queryParams: { code: '999' },
-        replaceUrl: true
-      })
-    );
-  });
+      // --- ASSERT ---
+      expect(title.textContent.trim()).toBe('Une erreur est survenue.');
+      expect(codeLabel.textContent).toContain('Erreur');
+    });
 
-  it('should navigate to /home when the button is clicked in the UI', () => {
-    // --- ARRANGE ---
-    fixture.detectChanges();
-    const BUTTON_DEBUG_EL = fixture.debugElement.query(By.css('button'));
+    it('should update static texts when language is switched to English', () => {
+      // --- ARRANGE ---
+      fixture.detectChanges();
 
-    // --- ACT ---
-    BUTTON_DEBUG_EL.triggerEventHandler('click', null);
+      // --- ACT ---
+      translate.use('en');
+      fixture.detectChanges();
 
-    // --- ASSERT ---
-    expect(router.navigate).toHaveBeenCalledWith(['/']);
-  });
+      const title = fixture.debugElement.query(By.css('.error-view__title')).nativeElement;
+      const codeLabel = fixture.debugElement.query(By.css('.error-view__code')).nativeElement;
 
-  it('should navigate to /home when goHome() is called', () => {
-    // --- ARRANGE ---
-    fixture.detectChanges();
+      // --- ASSERT ---
+      expect(title.textContent.trim()).toBe('An error has occurred.');
+      expect(codeLabel.textContent).toContain('Error');
+    });
 
-    // --- ACT ---
-    component.goHome();
+    it('should translate the "Back to Home" button for non-401 errors when language changes', () => {
+      // --- ARRANGE ---
+      Object.defineProperty(router, 'url', { value: '/error/server-error', configurable: true });
+      queryParams$.next({ code: '500' });
+      fixture.detectChanges();
 
-    // --- ASSERT ---
-    expect(router.navigate).toHaveBeenCalledWith(['/']);
-  });
+      let buttonComponent = fixture.debugElement.query(By.css('main-button')).componentInstance;
+      // On exécute le signal
+      expect(buttonComponent.label()).toBe('Retour à l\'accueil');
 
-  // --- Redirection tests ---
+      // --- ACT ---
+      translate.use('en');
+      fixture.detectChanges();
 
-  it('should navigate to "unauthorized-error" when code is 401', () => {
-    // --- ARRANGE ---
-    queryParams$.next({ code: '401' });
+      // --- ASSERT ---
+      buttonComponent = fixture.debugElement.query(By.css('main-button')).componentInstance;
 
-    // --- ACT ---
-    fixture.detectChanges();
+      expect(buttonComponent.label()).toBe('Back to home');
+      expect(buttonComponent.ariaLabel()).toBe('Back to home page');
+    });
 
-    // --- ASSERT ---
-    expect(router.navigate).toHaveBeenCalledWith(
-      ['unauthorized-error'],
-      expect.objectContaining({
-        queryParams: { code: '401' },
-        relativeTo: expect.any(Object)
-      })
-    );
-  });
+    it('should translate the "Login" button for 401 errors when language changes', () => {
+      // --- ARRANGE ---
+      Object.defineProperty(router, 'url', { value: '/error/unauthorized-error', configurable: true });
+      queryParams$.next({ code: '401' });
+      fixture.detectChanges();
 
-  it('should navigate to "unfound-error" when code is 404', () => {
-    // --- ARRANGE ---
-    queryParams$.next({ code: '404' });
+      let buttonComponent = fixture.debugElement.query(By.css('main-button')).componentInstance;
+      // On exécute le signal
+      expect(buttonComponent.label()).toBe('Se connecter');
 
-    // --- ACT ---
-    fixture.detectChanges();
+      // --- ACT ---
+      translate.use('en');
+      fixture.detectChanges();
 
-    // --- ASSERT ---
-    expect(router.navigate).toHaveBeenCalledWith(
-      ['unfound-error'],
-      expect.objectContaining({
-        queryParams: { code: '404' },
-        relativeTo: expect.any(Object)
-      })
-    );
-  });
+      // --- ASSERT ---
+      buttonComponent = fixture.debugElement.query(By.css('main-button')).componentInstance;
 
-  it('should navigate to "server-error" when code is 500', () => {
-    // --- ARRANGE ---
-    queryParams$.next({ code: '500' });
-
-    // --- ACT ---
-    fixture.detectChanges();
-
-    // --- ASSERT ---
-    expect(router.navigate).toHaveBeenCalledWith(
-      ['server-error'],
-      expect.objectContaining({
-        queryParams: { code: '500' },
-        relativeTo: expect.any(Object)
-      })
-    );
-  });
-
-  it('should navigate to "generic-error" with params when code is valid but unhandled', () => {
-    // --- ARRANGE ---
-    const CUSTOM_CODE = '418';
-    queryParams$.next({ code: CUSTOM_CODE });
-
-    // --- ACT ---
-    fixture.detectChanges();
-
-    // --- ASSERT ---
-    expect(router.navigate).toHaveBeenCalledWith(
-      ['generic-error'],
-      expect.objectContaining({
-        queryParams: { code: CUSTOM_CODE },
-        relativeTo: expect.any(Object)
-      })
-    );
-  });
-
-  it('should NOT navigate if the current URL already includes an error page', () => {
-    // --- ARRANGE ---
-    Object.defineProperty(router, 'url', { get: () => '/error/unfound-error' });
-    queryParams$.next({ code: '404' });
-
-    // --- ACT ---
-    fixture.detectChanges();
-
-    // --- ASSERT ---
-    expect(router.navigate).not.toHaveBeenCalled();
-  });
-
-  it('should infer code 404 from URL when queryParams are missing', () => {
-    // --- ARRANGE ---
-    Object.defineProperty(router, 'url', { value: '/error/unfound-error', configurable: true });
-    queryParams$.next({});
-
-    // --- ACT ---
-    fixture.detectChanges();
-
-    // --- ASSERT ---
-    expect(component.code()).toBe('404');
-  });
-
-  it('should infer code 401 from URL when queryParams are missing', () => {
-    // --- ARRANGE ---
-    Object.defineProperty(router, 'url', { value: '/error/unauthorized-error', configurable: true });
-    queryParams$.next({});
-
-    // --- ACT ---
-    fixture.detectChanges();
-
-    // --- ASSERT ---
-    expect(component.code()).toBe('401');
-  });
-
-  it('should infer code 500 from URL when queryParams are missing', () => {
-    // --- ARRANGE ---
-    Object.defineProperty(router, 'url', { value: '/error/server-error', configurable: true });
-    queryParams$.next({});
-
-    // --- ACT ---
-    fixture.detectChanges();
-
-    // --- ASSERT ---
-    expect(component.code()).toBe('500');
+      expect(buttonComponent.label()).toBe('Login');
+      expect(buttonComponent.ariaLabel()).toBe('Button to open the login form');
+    });
   });
 });

@@ -95,7 +95,7 @@ export class ErrorHandlerComponent implements OnInit {
     });
   }
 
-  goHome(): void {
-    this.router.navigate(['/']);
+  navigateAction(path: string): void {
+    this.router.navigate([path]);
   }
 }

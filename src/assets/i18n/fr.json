@@ -157,7 +157,7 @@
         "ARIA": "Fermer",
         "TOOLTIP": "Fermer"
       },
-      "BACK": {
+      "BACKHOME": {
         "LABEL": "Retour à l'accueil",
         "ARIA": "Retour à la page d'accueil"
       },

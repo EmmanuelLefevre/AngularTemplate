@@ -30,7 +30,7 @@
       var(--deep-black-color) 80%
     );
 
-    animation: defective-bulb 2s infinite;
+    animation: defective-bulb 1.5s infinite;
 
     @media (prefers-reduced-motion: reduce) {
       transition: none;
