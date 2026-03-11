@@ -2,7 +2,7 @@
 
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
-import { ChangeDetectorRef } from '@angular/core';
+import { signal } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -10,6 +10,13 @@ import { AuthService } from '@core/_services/auth/auth.service';
 import { ENVIRONMENT } from '@env/environment';
 
 import { PublicLayoutComponent } from './public-layout.component';
+
+vi.mock('@shared/_utils/dev/mock/mock-routing.util', () => ({
+  injectIsHomeRoute: vi.fn()
+}));
+
+import { injectIsHomeRoute } from '@app/shared/_utils/dev/mock/mock-routing.util';
+import { Mock } from 'vitest';
 
 describe('PublicLayoutComponent', () => {
 
@@ -22,6 +29,8 @@ describe('PublicLayoutComponent', () => {
   };
 
   beforeEach(async() => {
+    (injectIsHomeRoute as Mock).mockReturnValue(signal(false));
+
     await TestBed.configureTestingModule({
       imports: [
         PublicLayoutComponent,
@@ -35,9 +44,10 @@ describe('PublicLayoutComponent', () => {
 
     fixture = TestBed.createComponent(PublicLayoutComponent);
     component = fixture.componentInstance;
+  });
 
-    fixture.detectChanges();
-    await fixture.whenStable();
+  afterEach(() => {
+    vi.clearAllMocks();
   });
 
   it('should create', () => {
@@ -48,31 +58,73 @@ describe('PublicLayoutComponent', () => {
     expect(component.isMockEnabled).toBe(ENVIRONMENT.useMocks);
   });
 
-  it('should render the mock admin login button when isMockEnabled is true', () => {
+  it('should initialize isMockEnabled from the current environment', () => {
     // --- ARRANGE ---
-    (component as any).isMockEnabled = true;
-    fixture.debugElement.injector.get(ChangeDetectorRef).markForCheck();
 
     // --- ACT ---
     fixture.detectChanges();
 
     // --- ASSERT ---
-    const mockButton = fixture.debugElement.query(By.css('mock-admin-login-button'));
-
-    expect(mockButton).toBeTruthy();
+    expect(component.isMockEnabled).toBe(ENVIRONMENT.useMocks);
   });
 
-  it('should NOT render the mock admin login button when isMockEnabled is false', () => {
-    // --- ARRANGE ---
-    (component as any).isMockEnabled = false;
-    fixture.debugElement.injector.get(ChangeDetectorRef).markForCheck();
+  describe('Mock Button Rendering', () => {
+    it('should render the mock button when isMockEnabled is TRUE AND isHomeRoute is TRUE', () => {
+      // --- ARRANGE ---
+      (component as any).isMockEnabled = true;
+      (component as any).isHomeRoute = signal(true);
 
-    // --- ACT ---
-    fixture.detectChanges();
+      // --- ACT ---
+      fixture.detectChanges();
 
-    // --- ASSERT ---
-    const mockButton = fixture.debugElement.query(By.css('mock-admin-login-button'));
+      // --- ASSERT ---
+      const mockButton = fixture.debugElement.query(By.css('mock-admin-login-button'));
+      expect(mockButton).toBeTruthy();
+    });
 
-    expect(mockButton).toBeFalsy();
+    it('should NOT render the mock button when isMockEnabled is TRUE BUT isHomeRoute is FALSE', () => {
+      // --- ARRANGE ---
+      (component as any).isMockEnabled = true;
+      (component as any).isHomeRoute = signal(false);
+
+      // --- ACT ---
+      fixture.detectChanges();
+
+      // --- ASSERT ---
+      const mockButton = fixture.debugElement.query(By.css('mock-admin-login-button'));
+      expect(mockButton).toBeFalsy();
+    });
+
+    it('should NOT render the mock button when isMockEnabled is FALSE (Prod Mode)', () => {
+      // --- ARRANGE ---
+      (component as any).isMockEnabled = false;
+      (component as any).isHomeRoute = signal(true);
+
+      // --- ACT ---
+      fixture.detectChanges();
+
+      // --- ASSERT ---
+      const mockButton = fixture.debugElement.query(By.css('mock-admin-login-button'));
+      expect(mockButton).toBeFalsy();
+    });
+  });
+
+  describe('Initialization Branches (Coverage 100%)', () => {
+    it('should initialize isHomeRoute with a false signal when ENVIRONMENT.useMocks is FALSE', () => {
+      // --- ARRANGE ---
+      const originalMockValue = ENVIRONMENT.useMocks;
+
+      (ENVIRONMENT as any).useMocks = false;
+
+      // --- ACT ---
+      const prodFixture = TestBed.createComponent(PublicLayoutComponent);
+      const prodComponent = prodFixture.componentInstance;
+
+      // --- ASSERT ---
+      expect(prodComponent.isHomeRoute()).toBe(false);
+
+      // --- CLEANUP ---
+      (ENVIRONMENT as any).useMocks = originalMockValue;
+    });
   });
 });
