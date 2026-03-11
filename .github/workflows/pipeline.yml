@@ -8,6 +8,7 @@ on:
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+  ACTIONS_STEP_DEBUG: true
 
 # Cancel current execution for this workflow and branch if a new push is detected
 concurrency:
@@ -89,7 +90,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: 🛡️ PNPM Audit
-        run: pnpm audit --audit-level=high
+        run: pnpm audit --audit-level=critical
 
       - name: 🧪 Security Linting
         run: pnpm lint:security:ci
