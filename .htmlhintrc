@@ -9,6 +9,7 @@
     "[className]",
     "[formControl]",
     "[formGroup]",
+    "[typeWriter]",
     "[isDisabled]",
     "[isLoading]",
     "[isRegisterMode]",

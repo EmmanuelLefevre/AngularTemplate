@@ -97,6 +97,10 @@
       "NOT_FOUND": {
         "TITLE": "Une erreur est survenue.",
         "LABEL": "Erreur"
+      },
+      "UNAUTHORIZED": {
+        "TITLE": "Accès Restreint",
+        "MESSAGE": "On a quelques questions avant de te laisser passer. A commencer par : t'es qui toi ? Ton accréditation ne passe pas pour cette zone."
       }
     }
   },

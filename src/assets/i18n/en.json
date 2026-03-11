@@ -97,6 +97,10 @@
       "NOT_FOUND": {
         "TITLE": "An error has occurred.",
         "LABEL": "Error"
+      },
+      "UNAUTHORIZED": {
+        "TITLE": "Restricted Access",
+        "MESSAGE": "We have a few questions before we let you through. First of all: who are you? Your accreditation isn't valid for this area."
       }
     }
   },
