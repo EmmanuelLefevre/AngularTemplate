@@ -15,8 +15,13 @@
       <button
         type="button"
         (click)="unmuteVideo()"
+        [attr.aria-label]="'UI.BUTTONS.UNMUTE.ARIA' | translate"
         class="unfound-error__unmute-btn">
-        <span class="unfound-error__unmute-icon">🔊</span>
+        <span
+          class="unfound-error__unmute-icon"
+          aria-hidden="true"
+          >🔊</span
+        >
       </button>
     }
   </div>

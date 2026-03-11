@@ -164,6 +164,9 @@
       "SCROLL_TOP": {
         "ARIA": "Aller en haut de la page",
         "TOOLTIP": "Haut de page"
+      },
+      "UNMUTE": {
+        "ARIA": "Activer le son de la vidéo"
       }
     },
     "LOADER": {

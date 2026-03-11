@@ -1,20 +1,47 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 import { UnfoundErrorComponent } from './unfound-error.component';
+import { By } from '@angular/platform-browser';
 
 describe('UnfoundErrorComponent', () => {
   let component: UnfoundErrorComponent;
   let fixture: ComponentFixture<UnfoundErrorComponent>;
+  let translate: TranslateService;
 
   beforeEach(async() => {
     await TestBed.configureTestingModule({
-      imports: [UnfoundErrorComponent]
+      imports: [
+        UnfoundErrorComponent,
+        TranslateModule.forRoot()
+      ]
     }).compileComponents();
 
+    translate = TestBed.inject(TranslateService);
     fixture = TestBed.createComponent(UnfoundErrorComponent);
     component = fixture.componentInstance;
+
+    translate.setTranslation('fr', {
+      'UI': {
+        'BUTTONS': {
+          'UNMUTE': {
+            'ARIA': 'Activer le son de la vidéo'
+          }
+        }
+      }
+    });
+    translate.setTranslation('en', {
+      'UI': {
+        'BUTTONS': {
+          'UNMUTE': {
+            'ARIA': 'Unmute video'
+          }
+        }
+      }
+    });
+    translate.use('fr');
   });
 
   afterEach(() => {
@@ -36,8 +63,6 @@ describe('UnfoundErrorComponent', () => {
 
   describe('ngOnInit', () => {
     it('should create the YouTube API script tag if it does not exist', () => {
-      // --- ARRANGE ---
-
       // --- ACT ---
       fixture.detectChanges();
 
@@ -145,6 +170,93 @@ describe('UnfoundErrorComponent', () => {
 
       // --- ASSERT ---
       expect(action).not.toThrow();
+    });
+  });
+
+  describe('Internationalization & Accessibility', () => {
+    it('should display the unmute button with translated aria-label when muted', () => {
+      // --- ARRANGE ---
+      component.isMuted = true;
+      fixture.detectChanges();
+
+      const button = fixture.debugElement.query(By.css('.unfound-error__unmute-btn'));
+
+      // --- ACT ---
+      const ariaLabel = button.nativeElement.getAttribute('aria-label');
+
+      // --- ASSERT ---
+      expect(ariaLabel).toBe('Activer le son de la vidéo');
+    });
+
+    it('should have aria-hidden="true" on the emoji icon to avoid screen reader redundancy', () => {
+      // --- ARRANGE ---
+      component.isMuted = true;
+      fixture.detectChanges();
+
+      // --- ACT ---
+      const icon = fixture.debugElement.query(By.css('.unfound-error__unmute-icon'));
+
+      // --- ASSERT ---
+      expect(icon.nativeElement.getAttribute('aria-hidden')).toBe('true');
+    });
+
+    it('should remove the button from DOM when isMuted is false', () => {
+      // --- ARRANGE ---
+      component.isMuted = false;
+
+      // --- ACT ---
+      fixture.detectChanges();
+      const button = fixture.debugElement.query(By.css('.unfound-error__unmute-btn'));
+
+      // --- ASSERT ---
+      expect(button).toBeNull();
+    });
+  });
+
+  describe('Internationalization & Accessibility', () => {
+
+    it('should display the unmute button with translated aria-label in French', () => {
+      // --- ARRANGE ---
+      translate.use('fr');
+      component.isMuted = true;
+      fixture.detectChanges();
+
+      // --- ACT ---
+      const button = fixture.debugElement.query(By.css('.unfound-error__unmute-btn'));
+      const ariaLabel = button.nativeElement.getAttribute('aria-label');
+
+      // --- ASSERT ---
+      expect(ariaLabel).toBe('Activer le son de la vidéo');
+    });
+
+    it('should update aria-label when language changes to English', () => {
+      // --- ARRANGE ---
+      component.isMuted = true;
+      fixture.detectChanges();
+
+      // --- ACT ---
+      translate.use('en');
+      fixture.detectChanges();
+
+      const button = fixture.debugElement.query(By.css('.unfound-error__unmute-btn'));
+      const ariaLabel = button.nativeElement.getAttribute('aria-label');
+
+      // --- ASSERT ---
+      expect(ariaLabel).toBe('Unmute video');
+    });
+
+    it('should have aria-hidden="true" on the emoji icon', () => {
+      component.isMuted = true;
+      fixture.detectChanges();
+      const icon = fixture.debugElement.query(By.css('.unfound-error__unmute-icon'));
+      expect(icon.nativeElement.getAttribute('aria-hidden')).toBe('true');
+    });
+
+    it('should remove the button from DOM when isMuted is false', () => {
+      component.isMuted = false;
+      fixture.detectChanges();
+      const button = fixture.debugElement.query(By.css('.unfound-error__unmute-btn'));
+      expect(button).toBeNull();
     });
   });
 });

@@ -1,10 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, OnInit, OnDestroy } from '@angular/core';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'unfound-error',
-  imports: [],
+  imports: [
+    TranslateModule
+  ],
   templateUrl: './unfound-error.component.html',
   styleUrl: './unfound-error.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
