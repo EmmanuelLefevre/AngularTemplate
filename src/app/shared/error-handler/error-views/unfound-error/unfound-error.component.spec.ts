@@ -7,6 +7,7 @@ import { UnfoundErrorComponent } from './unfound-error.component';
 import { By } from '@angular/platform-browser';
 
 describe('UnfoundErrorComponent', () => {
+
   let component: UnfoundErrorComponent;
   let fixture: ComponentFixture<UnfoundErrorComponent>;
   let translate: TranslateService;

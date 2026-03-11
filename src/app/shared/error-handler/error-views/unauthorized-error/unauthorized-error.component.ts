@@ -1,11 +1,10 @@
 import { ChangeDetectionStrategy, Component, ElementRef, inject, OnInit, DestroyRef } from '@angular/core';
-
-import { TypeWriterDirective } from '@shared/_directives/typewriter/typewriter.directive';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'unauthorized-error',
   imports: [
-    TypeWriterDirective,
+    TranslateModule,
   ],
   templateUrl: './unauthorized-error.component.html',
   styleUrl: './unauthorized-error.component.scss',
