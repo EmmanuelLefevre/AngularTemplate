@@ -188,48 +188,7 @@ describe('UnfoundErrorComponent', () => {
       expect(ariaLabel).toBe('Activer le son de la vidéo');
     });
 
-    it('should have aria-hidden="true" on the emoji icon to avoid screen reader redundancy', () => {
-      // --- ARRANGE ---
-      component.isMuted = true;
-      fixture.detectChanges();
-
-      // --- ACT ---
-      const icon = fixture.debugElement.query(By.css('.unfound-error__unmute-icon'));
-
-      // --- ASSERT ---
-      expect(icon.nativeElement.getAttribute('aria-hidden')).toBe('true');
-    });
-
-    it('should remove the button from DOM when isMuted is false', () => {
-      // --- ARRANGE ---
-      component.isMuted = false;
-
-      // --- ACT ---
-      fixture.detectChanges();
-      const button = fixture.debugElement.query(By.css('.unfound-error__unmute-btn'));
-
-      // --- ASSERT ---
-      expect(button).toBeNull();
-    });
-  });
-
-  describe('Internationalization & Accessibility', () => {
-
-    it('should display the unmute button with translated aria-label in French', () => {
-      // --- ARRANGE ---
-      translate.use('fr');
-      component.isMuted = true;
-      fixture.detectChanges();
-
-      // --- ACT ---
-      const button = fixture.debugElement.query(By.css('.unfound-error__unmute-btn'));
-      const ariaLabel = button.nativeElement.getAttribute('aria-label');
-
-      // --- ASSERT ---
-      expect(ariaLabel).toBe('Activer le son de la vidéo');
-    });
-
-    it('should update aria-label when language changes to English', () => {
+    it('should update the aria-label when switching to English', () => {
       // --- ARRANGE ---
       component.isMuted = true;
       fixture.detectChanges();
@@ -237,20 +196,18 @@ describe('UnfoundErrorComponent', () => {
       // --- ACT ---
       translate.use('en');
       fixture.detectChanges();
-
-      const button = fixture.debugElement.query(By.css('.unfound-error__unmute-btn'));
-      const ariaLabel = button.nativeElement.getAttribute('aria-label');
+      const button = fixture.debugElement.query(By.css('.unfound-error__unmute-btn')).nativeElement;
 
       // --- ASSERT ---
-      expect(ariaLabel).toBe('Unmute video');
+      expect(button.getAttribute('aria-label')).toBe('Unmute video');
     });
 
-    it('should have aria-hidden="true" on the emoji icon', () => {
+    it('should have aria-hidden="true" on the emoji icon to avoid screen reader redundancy', () => {
       // --- ARRANGE ---
       component.isMuted = true;
+      fixture.detectChanges();
 
       // --- ACT ---
-      fixture.detectChanges();
       const icon = fixture.debugElement.query(By.css('.unfound-error__unmute-icon'));
 
       // --- ASSERT ---
