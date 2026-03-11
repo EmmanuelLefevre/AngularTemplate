@@ -2,13 +2,13 @@
   /* =========== COLORS =========== */
   --black-color: oklch(0.3211 0 0);
   --deep-black-color: oklch(0 0 0);
+  --typewriter-grey-color: oklch(0.7572 0 0);
   --white-color: oklch(1 0 0);
 
   --danger-color: oklch(0.6311 0.2545 28.85);
   --danger-color-2: oklch(0.7063 0.168157 58.5084);
   --error-color: oklch(0.6311 0.2545 28.85);
   --info-color: oklch(0.9681 0.2101 109.76);
-  --typewriter-color: oklch(0.7572 0 0);
 
   /* =========== MAIN COLORS =========== */
   --primary-color: oklch(0.7116 0.1812 22.84);
@@ -26,6 +26,9 @@
 
   --text-primary-color-light: var(--primary-light);
   --text-secondary-color-light: var(--secondary-light);
+
+  --text-danger-color: var(--danger-color);
+  --text-typewriter-color: var(--typewriter-grey-color);
 
   /* =========== BACKGROUNDS =========== */
   --bg-color: oklch(0.9736 0.0034 174.48);

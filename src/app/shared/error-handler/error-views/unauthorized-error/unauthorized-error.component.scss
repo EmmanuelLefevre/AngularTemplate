@@ -9,7 +9,7 @@
   align-items: center;
   justify-content: center;
   font-family: var(--font-typewriter);
-  color: var(--typewriter-color);
+  color: var(--text-typewriter-color);
   width: 100%;
   max-width: 560px;
   margin: 0 auto;
@@ -55,7 +55,7 @@
   &__title {
     font-size: 24px;
     text-transform: uppercase;
-    color: var(--danger-color);
+    color: var(--text-danger-color);
     margin-bottom: 18px;
     letter-spacing: 1px;
   }
