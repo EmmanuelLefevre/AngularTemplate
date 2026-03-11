@@ -6,10 +6,6 @@ on:
   pull_request:
     branches: [main, develop]
 
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-  ACTIONS_STEP_DEBUG: true
-
 # Cancel current execution for this workflow and branch if a new push is detected
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -22,13 +18,13 @@ jobs:
 
     steps:
       - name: 📂 Get Code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
 
       - name: 📦 Install PNPM
         uses: pnpm/action-setup@v4
 
       - name: 🏗️ Setup Node
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: 'pnpm'
@@ -57,7 +53,7 @@ jobs:
 
     steps:
       - name: 📂 Get Code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
@@ -81,7 +77,7 @@ jobs:
         uses: pnpm/action-setup@v4
 
       - name: 🏗️ Setup Node
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: 'pnpm'
@@ -90,7 +86,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: 🛡️ PNPM Audit
-        run: pnpm audit --audit-level=critical
+        run: pnpm audit --audit-level=high
 
       - name: 🧪 Security Linting
         run: pnpm lint:security:ci
@@ -124,7 +120,7 @@ jobs:
 
     steps:
       - name: 📂 Get Code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
@@ -132,7 +128,7 @@ jobs:
         uses: pnpm/action-setup@v4
 
       - name: 🏗️ Setup Node
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: 'pnpm'
@@ -203,13 +199,13 @@ jobs:
 
     steps:
       - name: 📂 Get Code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
 
       - name: 📦 Install PNPM
         uses: pnpm/action-setup@v4
 
       - name: 🏗️ Setup Node
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: 'pnpm'
@@ -236,13 +232,13 @@ jobs:
 
     steps:
       - name: 📂 Get Code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
 
       - name: 📦 Install PNPM
         uses: pnpm/action-setup@v4
 
       - name: 🏗️ Setup Node
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: 'pnpm'
