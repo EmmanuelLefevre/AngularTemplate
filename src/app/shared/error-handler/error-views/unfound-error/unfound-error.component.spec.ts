@@ -246,16 +246,26 @@ describe('UnfoundErrorComponent', () => {
     });
 
     it('should have aria-hidden="true" on the emoji icon', () => {
+      // --- ARRANGE ---
       component.isMuted = true;
+
+      // --- ACT ---
       fixture.detectChanges();
       const icon = fixture.debugElement.query(By.css('.unfound-error__unmute-icon'));
+
+      // --- ASSERT ---
       expect(icon.nativeElement.getAttribute('aria-hidden')).toBe('true');
     });
 
     it('should remove the button from DOM when isMuted is false', () => {
+      // --- ARRANGE ---
       component.isMuted = false;
+
+      // --- ACT ---
       fixture.detectChanges();
       const button = fixture.debugElement.query(By.css('.unfound-error__unmute-btn'));
+
+      // --- ASSERT ---
       expect(button).toBeNull();
     });
   });
