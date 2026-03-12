@@ -41,7 +41,7 @@
   },
   "packageManager": "pnpm@10.25.0",
   "engines": {
-    "node": ">=22.20.0",
+    "node": ">=22.21.1",
     "pnpm": ">=10.25.0"
   },
   "type": "module",

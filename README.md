@@ -134,15 +134,15 @@ La documentation détaillée est disponible ici :
 
 |   Angular  |                  Node.js                  |         TypeScript       |           RxJS         |
 | :--------- | :---------------------------------------- | :----------------------- | :--------------------- |
-|  `21.0.x`  | `^20.19.0` \|\| `^22.12.0` \|\| `^24.0.0` | `>=5.9.0` \|\| `<=6.0.0` | `^6.5.3` \|\| `^7.4.0` |
+|  `21.0.x`  | `^20.19.0` \|\| `^22.21.1` \|\| `^24.0.0` | `>=5.9.0` \|\| `<=6.0.0` | `^6.5.3` \|\| `^7.4.0` |
 
 **Etape 1 :** Node.js  
 
 - Ce projet nécessite une version précise de **NodeJS**. Utilisez **NVM**  
 
 ```shell
-nvm install 22.12.0
-nvm use 22.12.0
+nvm install 22.21.1
+nvm use 22.21.1
 ```
 
 > [🔗 NVM Cheatsheets](https://github.com/EmmanuelLefevre/Documentations/blob/main/Personnal%20Cheatsheets/nvm_cheatsheets.md)  
