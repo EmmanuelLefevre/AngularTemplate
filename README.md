@@ -173,4 +173,8 @@ pnpm start
 
 ```
 
+### Installation d'une librairie
 
+```bash
+$env:ALLOW_UPDATE=1; pnpm add <nom-du-package>
+```
