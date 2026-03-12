@@ -178,3 +178,9 @@ pnpm start
 ```bash
 $env:ALLOW_UPDATE=1; pnpm add <nom-du-package>
 ```
+
+### Installation de la CLI Angular en global
+
+```bash
+pnpm add -g @angular/cli@21.2.1
+```
