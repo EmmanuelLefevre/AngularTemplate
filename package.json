@@ -46,6 +46,7 @@
   },
   "type": "module",
   "scripts": {
+    "preinstall": "node -e \"if (!process.env.npm_config_frozen_lockfile && !process.env.ALLOW_UPDATE) { console.error('❌ ERROR: You must use --frozen-lockfile (or ALLOW_UPDATE=1 pnpm add ...)'); process.exit(1); }\"",
     "ng": "ng",
     "clean": "rimraf coverage .angular",
     "build": "pnpm clean && ng build",

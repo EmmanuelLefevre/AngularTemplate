@@ -39,7 +39,7 @@ jobs:
           echo "##### 🚨 CRIMINAL ACTIVITY DETECTED ! #####" >> $GITHUB_STEP_SUMMARY
           echo "CI refuses to work with untracked dependencies 😤" >> $GITHUB_STEP_SUMMARY
           echo "Hey ${{ github.actor }}, you modified 'package.json' without updating 'pnpm-lock.yaml' !" >> $GITHUB_STEP_SUMMARY
-          echo "👉 Run 'pnpm install' locally and push your updated lockfile plz..." >> $GITHUB_STEP_SUMMARY
+          echo "👉 Run 'pnpm install --frozen-lockfile' locally and push your updated lockfile plz..." >> $GITHUB_STEP_SUMMARY
           exit 1
 
   security:

@@ -163,7 +163,7 @@ Ce projet utilise **Corepack** (inclus dans **NodeJS**) pour garantir que tous l
 git clone git@github.com:EmmanuelLefevre/AngularTemplate.git
 cd AngularTemplate
 corepack enable
-pnpm install
+pnpm install --frozen-lockfile
 pnpm start
 ```
 
