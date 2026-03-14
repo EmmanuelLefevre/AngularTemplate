@@ -72,6 +72,9 @@
   /* =========== FONT SIZES (SEMANTIC) =========== */
   --font-size-footer: 10px;
   --font-size-h1: 24px;
+  --font-size-link: 1.2rem;
+  --font-size-logo: 1.5rem;
+  --font-size-snackbar: 14px;
 
   @include respond-to('tablet') {
     --font-size-footer: 12px;
@@ -91,17 +94,20 @@
   --size-icon-footer-copyright: 0.75rem;
   --size-icon-footer-owner: 16px;
   --size-icon-footer-social: 22px;
-
-  @include respond-to('tablet') {
-    --size-icon-footer: 12px;
-  }
+  --size-icon-scroll-to-top: 30px;
 
   @include respond-to('desktop') {
-    --size-icon-footer: 15px;
+    --size-icon-scroll-to-top: 35px;
+  }
+
+  @include respond-to('desktop-xl') {
+    --size-icon-scroll-to-top: 40px;
   }
 
   /* =========== ELEVATIONS / SHADOWS =========== */
   --shadow-color: rgba(0, 0, 0, 0.1);
 
+  --shadow-close-button: 0 -2px 10px var(--shadow-color);
   --shadow-footer: 0 -2px 10px var(--shadow-color);
+  --shadow-header: 0 2px 10px var(--shadow-color);
 }

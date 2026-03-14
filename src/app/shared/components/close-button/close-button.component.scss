@@ -23,7 +23,7 @@
     height: 3.5rem;
     padding: 0;
     margin: 0;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-close-button);
     border: 2px solid var(--primary-color);
     border-radius: 50%;
     background-color: var(--bg-white-color);
@@ -31,6 +31,7 @@
 
     &:hover {
       color: var(--white-color);
+      border: 1px solid var(--white-color);
       background-color: var(--bg-primary-color);
       animation: bounce 2.5s infinite;
       transform-origin: center bottom;

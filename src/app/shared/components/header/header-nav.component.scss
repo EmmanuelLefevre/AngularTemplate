@@ -11,7 +11,7 @@
   right: 0;
   width: 100%;
   height: 70px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-header);
   background: var(--bg-header-color);
   z-index: 1100;
 
@@ -31,8 +31,8 @@
     display: flex;
     align-items: center;
     flex: 0 1 auto;
-    font-weight: bold;
-    font-size: 1.5rem;
+    font-weight: var(--font-weight-bold);
+    font-size: var(--font-size-logo);
     color: var(--text-black-color);
 
     span {
@@ -57,7 +57,6 @@
     height: 100vh;
     padding: 100px 0 40px;
     gap: 40px;
-    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
     transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     background: var(--bg-header-color);
     z-index: 1110;
@@ -107,8 +106,8 @@
 
   &__link {
     color: var(--text-black-color);
-    font-size: 1.2rem;
-    font-weight: 500;
+    font-size: var(--font-size-link);
+    font-weight: var(--font-weight-medium);
     opacity: 0;
     transform: translateX(20px);
     transition:

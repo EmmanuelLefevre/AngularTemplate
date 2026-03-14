@@ -5,20 +5,34 @@
 }
 
 .scroll-top {
-  display: none;
   position: fixed;
+  display: none;
   justify-content: center;
   align-items: center;
   text-align: center;
   border: 3px solid var(--primary-color);
   border-radius: 50%;
   background-color: var(--bg-white-color);
-  opacity: 0;
-  transition: all 0.2s ease-in-out;
   z-index: 10000;
 
-  &--visible {
+  @include respond-to('tablet') {
+    visibility: hidden;
     display: flex;
+    right: 2vw;
+    bottom: 5vh;
+    width: 3.5rem;
+    height: 3.5rem;
+    transition:
+      visibility 0.2s,
+      opacity 0.2s ease-in-out,
+      background-color 0.2s;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  &--visible {
+    visibility: visible;
+    pointer-events: auto;
     opacity: 1;
   }
 
@@ -31,38 +45,21 @@
     }
   }
 
-  @include respond-to('mobile') {
-    width: 3.5rem;
-    height: 3.5rem;
-    right: 2vw;
-    bottom: 2vh;
-    line-height: 28px;
-  }
-
   @include respond-to('desktop') {
     width: 4rem;
     height: 4rem;
-    right: 2vw;
-    bottom: 2vh;
-
-    .scroll-top__icon {
-      font-size: 35px;
-    }
+    bottom: 3.5vh;
   }
 
   @include respond-to('desktop-xl') {
     width: 4.4rem;
     height: 4.4rem;
     right: 2.3vw;
-    bottom: 4vh;
-
-    .scroll-top__icon {
-      font-size: 40px;
-    }
+    bottom: 3vh;
   }
 
   &__icon {
-    font-size: 30px;
+    font-size: var(--size-icon-scroll-to-top);
     color: var(--primary-color);
     transition: color 0.2s ease-in-out;
     background: transparent;

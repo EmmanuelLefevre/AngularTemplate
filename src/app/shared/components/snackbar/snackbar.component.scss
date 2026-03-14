@@ -15,8 +15,8 @@
 
   &__message {
     font-family: var(--font-snackbar);
-    font-size: 14px;
-    font-weight: 500;
+    font-size: var(--font-size-snackbar);
+    font-weight: var(--font-weight-medium);
   }
 
   &__action {
