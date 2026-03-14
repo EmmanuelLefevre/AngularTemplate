@@ -31,6 +31,7 @@
 
     &:hover {
       color: var(--white-color);
+      box-shadow: none;
       border: 1px solid var(--white-color);
       background-color: var(--bg-primary-color);
       animation: bounce 2.5s infinite;

@@ -3,6 +3,7 @@
 :root {
   /* =========== COLORS =========== */
   --black-color: oklch(0.3211 0 0);
+  --black-color-light: oklch(0.4585 0 0);
   --deep-black-color: oklch(0 0 0);
   --typewriter-grey-color: oklch(0.7572 0 0);
   --white-color: oklch(1 0 0);
@@ -30,6 +31,7 @@
   --text-secondary-color-light: var(--secondary-light);
 
   --text-danger-color: var(--danger-color);
+  --text-nav-color: var(--black-color-light);
   --text-typewriter-color: var(--typewriter-grey-color);
 
   /* =========== BACKGROUNDS =========== */
@@ -70,8 +72,10 @@
   --font-weight-black: 900;
 
   /* =========== FONT SIZES (SEMANTIC) =========== */
+  --font-size-base: 14px;
   --font-size-footer: 10px;
   --font-size-h1: 24px;
+  --font-size-h1-form: 24px;
   --font-size-link: 1.2rem;
   --font-size-logo: 1.5rem;
   --font-size-snackbar: 14px;
@@ -79,6 +83,7 @@
   @include respond-to('tablet') {
     --font-size-footer: 12px;
     --font-size-h1: 32px;
+    --font-size-h1-form: 26px;
   }
 
   @include respond-to('desktop') {
@@ -104,10 +109,15 @@
     --size-icon-scroll-to-top: 40px;
   }
 
-  /* =========== ELEVATIONS / SHADOWS =========== */
-  --shadow-color: rgba(0, 0, 0, 0.1);
+  /* =========== SHADOWS =========== */
+  --shadow-color-xs: rgba(0, 0, 0, 0.1);
+  --shadow-color-s: rgba(0, 0, 0, 0.25);
+  --shadow-color-m: rgba(0, 0, 0, 0.5);
+  --shadow-color-l: rgba(0, 0, 0, 0.75);
+  --shadow-color-xl: rgba(0, 0, 0, 1);
 
-  --shadow-close-button: 0 -2px 10px var(--shadow-color);
-  --shadow-footer: 0 -2px 10px var(--shadow-color);
-  --shadow-header: 0 2px 10px var(--shadow-color);
+  --shadow-close-button: 0 -2px 10px var(--shadow-color-xs);
+  --shadow-footer: 0 -2px 10px var(--shadow-color-xs);
+  --shadow-header: 0 2px 10px var(--shadow-color-xs);
+  --shadow-login-page: 0 10px 25px var(--shadow-color-m);
 }
