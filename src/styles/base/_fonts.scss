@@ -75,8 +75,27 @@
 /* =========== HELLO RADEA =========== */
 @font-face {
   font-family: 'Hello Radea';
-  src: url('/assets/fonts/hello_radea.woff') format('woff');
+  src: url('/assets/fonts/hello-radea/hello_radea.woff') format('woff');
   font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* =========== ALEGREYA SANS =========== */
+// Normal
+@font-face {
+  font-family: 'Alegreya Sans';
+  src: url('/assets/fonts/alegreya-sans/alegreya_sans_regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+// Bold
+@font-face {
+  font-family: 'Alegreya Sans';
+  src: url('/assets/fonts/alegreya-sans/alegreya_sans_bold.ttf') format('truetype');
+  font-weight: 700;
   font-style: normal;
   font-display: swap;
 }

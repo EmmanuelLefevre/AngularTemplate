@@ -17,8 +17,22 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-title);
   letter-spacing: -0.02em;
+}
+
+h1 {
+  font-family: var(--font-title-primary);
+  text-transform: none;
+  font-variant: small-caps;
+  font-feature-settings: 'smcp' 1;
+}
+
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-title-secondary);
 }
 
 /* =========== TAGS =========== */
