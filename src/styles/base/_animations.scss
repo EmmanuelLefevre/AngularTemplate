@@ -313,7 +313,7 @@ $shake-intensity: 1%;
 }
 
 /*------Flip Spin 2 Round------*/
-@keyframes flip-spin-2-Round {
+@keyframes flip-spin-2-round {
   0% {
     transform: perspective(1200px) rotateY(0deg) scale(1);
   }
@@ -324,7 +324,7 @@ $shake-intensity: 1%;
     transform: perspective(1200px) rotateY(900deg) scale(1);
   }
 }
-@-webkit-keyframes flip-spin-2-Round {
+@-webkit-keyframes flip-spin-2-round {
   0% {
     -webkit-transform: perspective(1200px) rotateY(0deg) scale(1);
   }

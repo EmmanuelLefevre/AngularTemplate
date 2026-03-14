@@ -9,6 +9,10 @@ import { DynamicFormComponent } from '@shared/components/dynamic-form/dynamic-fo
 
 import { LoginViewComponent } from './login-view.component';
 
+const FLIP_ANIMATION_DURATION_MS = 800;
+const FLIP_ANIMATION_MIDPOINT_RATIO = 0.5;
+const FLIP_ANIMATION_MIDPOINT_MS = FLIP_ANIMATION_DURATION_MS * FLIP_ANIMATION_MIDPOINT_RATIO;
+
 describe('LoginViewComponent', () => {
 
   let component: LoginViewComponent;
@@ -52,21 +56,63 @@ describe('LoginViewComponent', () => {
     // --- ASSERT ---
     expect(component.isRegisterMode()).toBe(false);
     expect(component.isLoading()).toBe(false);
+    expect(component.isFlipping()).toBe(false);
   });
 
   describe('toggleMode()', () => {
-    it('should flip the isRegisterMode signal', () => {
+    beforeEach(() => {
+      vi.useFakeTimers();
+    });
+
+    afterEach(() => {
+      vi.useRealTimers();
+    });
+
+    it('should handle the flip animation sequence correctly with timers', () => {
+      // --- ARRANGE ---
+      const RESET_SPY = vi.fn();
+
+      interface ComponentWithPrivateForm {
+        dynamicForm: Signal<Partial<DynamicFormComponent> | undefined>;
+      }
+
+      vi.spyOn((component as unknown as ComponentWithPrivateForm), 'dynamicForm')
+        .mockReturnValue({ resetForm: RESET_SPY });
+
       // --- ACT ---
       component.toggleMode();
+
+      // --- ASSERT ---
+      expect(component.isFlipping()).toBe(true);
+      expect(component.isRegisterMode()).toBe(false);
+
+      // --- ACT ---
+      vi.advanceTimersByTime(FLIP_ANIMATION_MIDPOINT_MS);
 
       // --- ASSERT ---
       expect(component.isRegisterMode()).toBe(true);
+      expect(RESET_SPY).toHaveBeenCalled();
+      expect(component.isFlipping()).toBe(true);
+
+      // --- ACT ---
+      vi.advanceTimersByTime(FLIP_ANIMATION_DURATION_MS - FLIP_ANIMATION_MIDPOINT_MS);
+
+      // --- ASSERT ---
+      expect(component.isFlipping()).toBe(false);
+    });
+
+    it('should abort if animation is already running (isFlipping is true)', () => {
+      // --- ARRANGE ---
+      component.isFlipping.set(true);
+      const initialRegisterMode = component.isRegisterMode();
 
       // --- ACT ---
       component.toggleMode();
 
+      vi.advanceTimersByTime(FLIP_ANIMATION_DURATION_MS);
+
       // --- ASSERT ---
-      expect(component.isRegisterMode()).toBe(false);
+      expect(component.isRegisterMode()).toBe(initialRegisterMode);
     });
   });
 
