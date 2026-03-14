@@ -11,6 +11,10 @@ import { CloseButtonComponent } from '@shared/components/close-button/close-butt
 import { DynamicFormComponent } from '@shared/components/dynamic-form/dynamic-form.component';
 import { MainLinkComponent } from '@shared/components/link/main-link.component';
 
+const FLIP_ANIMATION_DURATION_MS = 800;
+const FLIP_ANIMATION_MIDPOINT_RATIO = 0.5;
+const FLIP_ANIMATION_MIDPOINT_MS = FLIP_ANIMATION_DURATION_MS * FLIP_ANIMATION_MIDPOINT_RATIO;
+
 @Component({
   selector: 'login-view',
   imports: [
@@ -33,6 +37,7 @@ export class LoginViewComponent {
 
   readonly isRegisterMode = signal(false);
   readonly isLoading = signal(false);
+  readonly isFlipping = signal(false);
 
   readonly loginFields: FormFieldConfig[] = [
     {
@@ -58,7 +63,19 @@ export class LoginViewComponent {
   ];
 
   toggleMode(): void {
-    this.isRegisterMode.update(v => !v);
+    if (this.isFlipping()) return;
+
+    this.isFlipping.set(true);
+
+    setTimeout(() => {
+      this.isRegisterMode.update(v => !v);
+
+      this.dynamicForm()?.resetForm();
+    }, FLIP_ANIMATION_MIDPOINT_MS);
+
+    setTimeout(() => {
+      this.isFlipping.set(false);
+    }, FLIP_ANIMATION_DURATION_MS);
   }
 
   onFormSubmit(data: DynamicFormRawValue): void {

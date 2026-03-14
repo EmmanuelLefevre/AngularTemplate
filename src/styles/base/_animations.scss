@@ -281,3 +281,57 @@ $shake-intensity: 1%;
     opacity: 1;
   }
 }
+
+/*------Flip Spin------*/
+@keyframes flip-spin {
+  0% {
+    transform: perspective(1200px) rotateY(0deg) scale(1);
+  }
+  49.99% {
+    transform: perspective(1200px) rotateY(90deg) scale(0.9);
+  }
+  50% {
+    transform: perspective(1200px) rotateY(-90deg) scale(0.9);
+  }
+  100% {
+    transform: perspective(1200px) rotateY(0deg) scale(1);
+  }
+}
+@-webkit-keyframes flip-spin {
+  0% {
+    -webkit-transform: perspective(1200px) rotateY(0deg) scale(1);
+  }
+  49.99% {
+    -webkit-transform: perspective(1200px) rotateY(90deg) scale(0.9);
+  }
+  50% {
+    -webkit-transform: perspective(1200px) rotateY(-90deg) scale(0.9);
+  }
+  100% {
+    -webkit-transform: perspective(1200px) rotateY(0deg) scale(1);
+  }
+}
+
+/*------Flip Spin 2 Round------*/
+@keyframes flip-spin-2-Round {
+  0% {
+    transform: perspective(1200px) rotateY(0deg) scale(1);
+  }
+  50% {
+    transform: perspective(1200px) rotateY(450deg) scale(0.8);
+  }
+  100% {
+    transform: perspective(1200px) rotateY(900deg) scale(1);
+  }
+}
+@-webkit-keyframes flip-spin-2-Round {
+  0% {
+    -webkit-transform: perspective(1200px) rotateY(0deg) scale(1);
+  }
+  50% {
+    -webkit-transform: perspective(1200px) rotateY(450deg) scale(0.8);
+  }
+  100% {
+    -webkit-transform: perspective(1200px) rotateY(900deg) scale(1);
+  }
+}

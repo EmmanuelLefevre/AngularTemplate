@@ -1,28 +1,32 @@
 <section class="login">
-  <div class="login__container">
-    <close-button />
+  <div class="login__wrapper">
+    <div
+      class="login__container"
+      [class.is-flipping]="isFlipping()">
+      <close-button />
 
-    <div class="login__header">
-      <h1 class="login__title">
-        {{ (isRegisterMode() ? 'PAGES.AUTH.REGISTER.TITLE' : 'PAGES.AUTH.LOGIN.TITLE') | translate }}
-      </h1>
+      <div class="login__header">
+        <h1 class="login__title">
+          {{ (isRegisterMode() ? 'PAGES.AUTH.REGISTER.TITLE' : 'PAGES.AUTH.LOGIN.TITLE') | translate }}
+        </h1>
 
-      <p class="login__subtitle">
-        {{ (isRegisterMode() ? 'PAGES.AUTH.REGISTER.SUBTITLE' : 'PAGES.AUTH.LOGIN.SUBTITLE') | translate }}
-      </p>
-    </div>
+        <p class="login__subtitle">
+          {{ (isRegisterMode() ? 'PAGES.AUTH.REGISTER.SUBTITLE' : 'PAGES.AUTH.LOGIN.SUBTITLE') | translate }}
+        </p>
+      </div>
 
-    <dynamic-form
-      [fields]="loginFields"
-      [isRegisterMode]="isRegisterMode()"
-      [isLoading]="isLoading()"
-      (submitted)="onFormSubmit($event)"
-      (cancelled)="onCancel()" />
+      <dynamic-form
+        [fields]="loginFields"
+        [isRegisterMode]="isRegisterMode()"
+        [isLoading]="isLoading()"
+        (submitted)="onFormSubmit($event)"
+        (cancelled)="onCancel()" />
 
-    <div class="login__footer">
-      <main-link
-        [label]="isRegisterMode() ? 'PAGES.AUTH.LOGIN.CTA_SWITCH' : 'PAGES.AUTH.REGISTER.CTA_SWITCH'"
-        (clicked)="toggleMode()" />
+      <div class="login__footer">
+        <main-link
+          [label]="isRegisterMode() ? 'PAGES.AUTH.LOGIN.CTA_SWITCH' : 'PAGES.AUTH.REGISTER.CTA_SWITCH'"
+          (clicked)="toggleMode()" />
+      </div>
     </div>
   </div>
 </section>
