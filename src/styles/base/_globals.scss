@@ -31,15 +31,13 @@ button,
 input,
 select,
 textarea {
-  font: inherit;
-  color: inherit;
   border: none;
   background: none;
 }
 
 /* =========== TAGS =========== */
 a {
-  text-decoration: none;
+  display: inline-block;
   cursor: pointer;
 }
 

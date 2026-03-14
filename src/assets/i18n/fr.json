@@ -60,6 +60,7 @@
           "ARIA": "Lien vers le formulaire de contact du site"
         },
         "HOST": {
+          "TOOLTIP": "Hébergeur",
           "ARIA": "Lien vers l'hébergeur du site"
         }
       }

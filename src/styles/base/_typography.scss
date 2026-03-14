@@ -3,6 +3,7 @@
 /* =========== BODY =========== */
 body {
   font-family: var(--font-main);
+  font-weight: var(--font-weight-regular);
   font-optical-sizing: auto;
   line-height: 1.5;
   text-rendering: optimizeLegibility;
@@ -22,9 +23,8 @@ h6 {
 
 h1 {
   font-family: var(--font-title-primary);
-  text-transform: none;
-  font-variant: small-caps;
-  font-feature-settings: 'smcp' 1;
+  font-size: var(--font-size-h1);
+  font-weight: var(--font-weight-bold);
 }
 
 h2,
@@ -39,8 +39,15 @@ h6 {
 nav {
   font-family: var(--font-nav);
 }
+
 footer {
   font-family: var(--font-footer);
+}
+
+code,
+pre,
+.admin-id {
+  font-family: var(--font-mono);
 }
 
 /* =========== LINKS =========== */
@@ -51,9 +58,17 @@ a {
   cursor: pointer;
 }
 
-/* =========== ADMIN =========== */
-code,
-pre,
-.admin-id {
-  font-family: var(--font-mono);
+/* =========== LINKS =========== */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* =========== FORMS =========== */
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
 }

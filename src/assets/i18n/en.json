@@ -60,6 +60,7 @@
           "ARIA": "Link to the website's contact form"
         },
         "HOST": {
+          "TOOLTIP": "Host",
           "ARIA": "Link to the website's hosting provider"
         }
       }

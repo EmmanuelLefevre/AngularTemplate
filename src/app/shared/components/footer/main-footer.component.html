@@ -69,8 +69,11 @@
         <a
           [href]="hosting.host.url"
           target="_blank"
-          rel="noopener"
+          rel="noopener noreferrer"
           [attr.aria-label]="hosting.host.ariaKey | translate"
+          [matTooltip]="hosting.host.tooltipKey | translate"
+          matTooltipPosition="left"
+          matTooltipShowDelay="600"
           >{{ hosting.host.nameKey | translate }}
         </a>
       </span>

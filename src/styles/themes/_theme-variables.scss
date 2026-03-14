@@ -55,4 +55,51 @@
   --font-title-primary: 'Alegreya', sans-serif;
   --font-title-secondary: 'Montserrat', sans-serif;
   --font-typewriter: var(--font-mono);
+
+  /* =========== FONT WEIGHTS =========== */
+  --font-weight-thin: 100;
+  --font-weight-extra-light: 200;
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semi-bold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extra-bold: 800;
+  --font-weight-black: 900;
+
+  /* =========== FONT SIZES (SEMANTIC) =========== */
+  --font-size-footer: 10px;
+  --font-size-h1: 24px;
+
+  @include respond-to('tablet') {
+    --font-size-footer: 12px;
+    --font-size-h1: 32px;
+  }
+
+  @include respond-to('desktop') {
+    --font-size-h1: 40px;
+  }
+
+  @include respond-to('desktop-xl') {
+    --font-size-h1: 48px;
+  }
+
+  /* =========== ICONS =========== */
+  --size-icon-footer: 10px;
+  --size-icon-footer-copyright: 0.75rem;
+  --size-icon-footer-owner: 16px;
+  --size-icon-footer-social: 22px;
+
+  @include respond-to('tablet') {
+    --size-icon-footer: 12px;
+  }
+
+  @include respond-to('desktop') {
+    --size-icon-footer: 15px;
+  }
+
+  /* =========== ELEVATIONS / SHADOWS =========== */
+  --shadow-color: rgba(0, 0, 0, 0.1);
+
+  --shadow-footer: 0 -2px 10px var(--shadow-color);
 }

@@ -15,6 +15,7 @@ export interface HostingConfig {
   host: HostLink & {
     addressKey: string;
     ariaKey: string;
+    tooltipKey: string;
   };
 
   phone: {

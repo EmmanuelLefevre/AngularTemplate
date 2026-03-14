@@ -1,10 +1,18 @@
 @use 'abstracts' as *;
 
 :host {
-  display: block;
+  display: flex;
+  flex: 1;
+  width: 100%;
 }
 
 .home {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  width: 100%;
   padding: 2rem 1rem;
 
   @include respond-to('tablet') {
@@ -12,10 +20,12 @@
   }
 
   &__hero {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 2rem;
+    z-index: 1;
 
     @include respond-to('tablet') {
       flex-direction: row;

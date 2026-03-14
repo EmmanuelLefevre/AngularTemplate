@@ -17,7 +17,8 @@ export const HOSTING_INFOS: HostingConfig = {
     nameKey: 'LAYOUT.FOOTER.CREDITS.HOST_PROVIDER_NAME',
     addressKey: 'LAYOUT.FOOTER.ADDRESS.STREET',
     url: EXTERNAL_LINKS.host,
-    ariaKey: 'LAYOUT.FOOTER.SOCIAL_LINKS.HOST.ARIA'
+    ariaKey: 'LAYOUT.FOOTER.SOCIAL_LINKS.HOST.ARIA',
+    tooltipKey: 'LAYOUT.FOOTER.SOCIAL_LINKS.HOST.TOOLTIP'
   },
 
   phone: {
