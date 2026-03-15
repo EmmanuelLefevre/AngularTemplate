@@ -68,7 +68,7 @@
 
   &__accent {
     color: var(--text-primary-color);
-    font-weight: bold;
+    font-weight: var(--font-weight-bold);
   }
 
   &__divider {
