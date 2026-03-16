@@ -37,7 +37,7 @@ export default defineConfig({
     hookTimeout: 20000,
     coverage: {
       provider: 'v8',
-      enabled: false,
+      enabled: true,
       reporter: ['text', 'lcov', 'html'],
       reportsDirectory: './coverage',
       thresholds: {
