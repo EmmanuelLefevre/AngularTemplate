@@ -15,6 +15,9 @@
   margin: 0 auto;
   min-height: calc(100vh - 500px);
   background-color: var(--deep-black-color);
+  cursor:
+    url('/assets/img/flashlight.svg') 0 32,
+    crosshair;
   overflow: hidden;
 
   &__spotlight {
@@ -24,7 +27,7 @@
     z-index: 10;
 
     background: radial-gradient(
-      circle 200px at var(--mouse-x) var(--mouse-y),
+      circle 250px at calc(var(--mouse-x) - 120px) calc(var(--mouse-y) + 120px),
       transparent 0%,
       rgba(0, 0, 0, 0.8) 50%,
       var(--deep-black-color) 80%

@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { By } from '@angular/platform-browser';
@@ -84,7 +87,7 @@ describe('UnauthorizedErrorComponent', () => {
     });
   });
 
-  describe('Mousemove Spotlight Effect', () => {
+  describe('Spotlight Effect (Mouse & Touch)', () => {
     it('should update CSS variables --mouse-x and --mouse-y on mousemove', () => {
       // --- ARRANGE ---
       fixture.detectChanges();
@@ -99,7 +102,6 @@ describe('UnauthorizedErrorComponent', () => {
         bottom: 550,
         x: 100,
         y: 50,
-        // eslint-disable-next-line @typescript-eslint/no-empty-function
         toJSON: () => {}
       });
 
@@ -133,6 +135,88 @@ describe('UnauthorizedErrorComponent', () => {
       expect(action).not.toThrow();
 
       parent.appendChild(container);
+    });
+
+    it('should update CSS variables --mouse-x and --mouse-y on touchstart', () => {
+      // --- ARRANGE ---
+      fixture.detectChanges();
+      const container = fixture.debugElement.query(By.css('.interrogation-room')).nativeElement;
+
+      vi.spyOn(container, 'getBoundingClientRect').mockReturnValue({
+        left: 100,
+        top: 50,
+        width: 500,
+        height: 500,
+        right: 600,
+        bottom: 550,
+        x: 100,
+        y: 50,
+        toJSON: () => {}
+      });
+
+      // --- ACT ---
+      const touchEvent = new Event('touchstart') as any;
+      touchEvent.touches = [{ clientX: 250, clientY: 150 }];
+      document.dispatchEvent(touchEvent);
+
+      // --- ASSERT ---
+      expect(container.style.getPropertyValue('--mouse-x')).toBe('150px');
+      expect(container.style.getPropertyValue('--mouse-y')).toBe('100px');
+    });
+
+    it('should update CSS variables --mouse-x and --mouse-y on touchmove', () => {
+      // --- ARRANGE ---
+      fixture.detectChanges();
+      const container = fixture.debugElement.query(By.css('.interrogation-room')).nativeElement;
+
+      vi.spyOn(container, 'getBoundingClientRect').mockReturnValue({
+        left: 100,
+        top: 50,
+        width: 500,
+        height: 500,
+        right: 600,
+        bottom: 550,
+        x: 100,
+        y: 50,
+        toJSON: () => {}
+      });
+
+      // --- ACT ---
+      const touchEvent = new Event('touchmove') as any;
+      touchEvent.touches = [{ clientX: 300, clientY: 200 }];
+      document.dispatchEvent(touchEvent);
+
+      // --- ASSERT ---
+      expect(container.style.getPropertyValue('--mouse-x')).toBe('200px');
+      expect(container.style.getPropertyValue('--mouse-y')).toBe('150px');
+    });
+
+    it('should return early during ngOnInit if the container is missing', () => {
+      // --- ARRANGE ---
+      const querySelectorSpy = vi.spyOn(fixture.debugElement.nativeElement, 'querySelector').mockReturnValue(null);
+      const addEventListenerSpy = vi.spyOn(document, 'addEventListener');
+
+      // --- ACT ---
+      fixture.detectChanges();
+
+      // --- ASSERT ---
+      expect(querySelectorSpy).toHaveBeenCalledWith('.interrogation-room');
+      expect(addEventListenerSpy).not.toHaveBeenCalledWith('mousemove', expect.any(Function));
+    });
+
+    it('should do nothing if touch event has no touches data', () => {
+      // --- ARRANGE ---
+      fixture.detectChanges();
+      const container = fixture.debugElement.query(By.css('.interrogation-room')).nativeElement;
+      const setPropertySpy = vi.spyOn(container.style, 'setProperty');
+
+      // --- ACT ---
+      const touchEvent = new Event('touchstart') as any;
+      touchEvent.touches = [];
+      document.dispatchEvent(touchEvent);
+
+      // --- ASSERT ---
+      expect(setPropertySpy).not.toHaveBeenCalled();
     });
   });
 
