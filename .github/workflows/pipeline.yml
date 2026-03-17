@@ -173,13 +173,13 @@ jobs:
           echo "Hey ${{ github.actor }}, please work harder on your coverage ! 🤣🤣🤣" >> $GITHUB_STEP_SUMMARY
           exit 1
 
-      - name: 🚀 SonarQube Scan
+      - name: ☁️ SonarQube Cloud Scan
         if: success()
         uses: SonarSource/sonarqube-scan-action@v6
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
-      - name: 📊 SonarQube Quality Gate
+      - name: 📊 SonarQube Cloud Quality Gate
         uses: SonarSource/sonarqube-quality-gate-action@v1
         timeout-minutes: 5
         env:
