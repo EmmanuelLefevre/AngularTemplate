@@ -208,6 +208,10 @@ jobs:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
 
+    environment:
+      name: production
+      url: https://angulartemplate.emmanuellefevre.com/
+
     steps:
       - name: 📂 Get Code
         uses: actions/checkout@v4
