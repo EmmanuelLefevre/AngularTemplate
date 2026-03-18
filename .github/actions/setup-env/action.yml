@@ -1,0 +1,28 @@
+name: 'Setup Environment'
+description: 'Install PNPM, Node and dependencies'
+
+inputs:
+  step-name:
+    description: 'Installation step name'
+    required: false
+    default: '⚙️ Install Dependencies'
+
+runs:
+  using: 'composite'
+  steps:
+    - shell: bash
+      run: echo "📦 Install PNPM"
+    - uses: pnpm/action-setup@v4
+
+    - shell: bash
+      run: echo "🏗️ Setup Node"
+    - uses: actions/setup-node@v4
+      with:
+        node-version: 22
+        cache: 'pnpm'
+
+    - shell: bash
+      run: |
+        echo "::group::${{ inputs.step-name }}"
+        pnpm install --frozen-lockfile
+        echo "::endgroup::"

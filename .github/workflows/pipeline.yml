@@ -20,18 +20,11 @@ jobs:
       - name: 📂 Get Code
         uses: actions/checkout@v4
 
-      - name: 📦 Install PNPM
-        uses: pnpm/action-setup@v4
-
-      - name: 🏗️ Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: 'pnpm'
-
-      - name: ⚙️ Verify Lockfile Sync
+      - name: 🛠️ Setup Environment
         id: install
-        run: pnpm install --frozen-lockfile
+        uses: ./.github/actions/setup-env
+        with:
+          step-name: '⚙️ Verify Lockfile Sync'
 
       - name: 📢 Failure Notification
         if: failure() && steps.install.outcome == 'failure'
@@ -73,17 +66,8 @@ jobs:
           echo "👉 Check the logs in the "🔑 Check Leaked Secrets" step to find the leak..." >> $GITHUB_STEP_SUMMARY
           exit 1
 
-      - name: 📦 Install PNPM
-        uses: pnpm/action-setup@v4
-
-      - name: 🏗️ Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: 'pnpm'
-
-      - name: ⚙️ Install Dependencies
-        run: pnpm install --frozen-lockfile
+      - name: 🛠️ Setup Environment
+        uses: ./.github/actions/setup-env
 
       - name: 🛡️ PNPM Audit
         run: pnpm audit --audit-level=high
@@ -124,17 +108,8 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: 📦 Install PNPM
-        uses: pnpm/action-setup@v4
-
-      - name: 🏗️ Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: 'pnpm'
-
-      - name: ⚙️ Install Dependencies
-        run: pnpm install --frozen-lockfile
+      - name: 🛠️ Setup Environment
+        uses: ./.github/actions/setup-env
 
       - name: 💄 Prettier Formatting
         run: pnpm format:check
@@ -195,32 +170,35 @@ jobs:
     runs-on: ubuntu-latest
 
     permissions:
-      contents: write
+      contents: read
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
       - name: 📂 Get Code
         uses: actions/checkout@v4
 
-      - name: 📦 Install PNPM
-        uses: pnpm/action-setup@v4
-
-      - name: 🏗️ Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: 'pnpm'
-
-      - name: ⚙️ Install Dependencies
-        run: pnpm install --frozen-lockfile
+      - name: 🛠️ Setup Environment
+        uses: ./.github/actions/setup-env
 
       - name: 📚 Build Documentation
         run: pnpm doc:ci --base-href /${{ github.event.repository.name }}/
 
-      - name: 🚀 Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+      - name: ⚙️ Setup GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: 📤 Upload Artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./.documentation-output
+          path: './.documentation-output'
+
+      - name: 🚀 Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
 
   deploy:
     name: 🎯 Deploy to Production
@@ -234,17 +212,8 @@ jobs:
       - name: 📂 Get Code
         uses: actions/checkout@v4
 
-      - name: 📦 Install PNPM
-        uses: pnpm/action-setup@v4
-
-      - name: 🏗️ Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: 'pnpm'
-
-      - name: ⚙️ Install Dependencies
-        run: pnpm install --frozen-lockfile
+      - name: 🛠️ Setup Environment
+        uses: ./.github/actions/setup-env
 
       - name: 🧱 Build Project
         run: pnpm build --configuration=production
