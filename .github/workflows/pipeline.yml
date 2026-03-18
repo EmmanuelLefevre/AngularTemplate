@@ -42,7 +42,7 @@ jobs:
 
     environment:
       name: snyk
-      url: https://app.snyk.io/tenant/b81ff6f8-b5cb-4ee8-b2a5-74a8b63faafc
+      url: https://app.snyk.io/org/emmanuellefevre/projects?groupBy=targets&before&after&searchQuery=&sortBy=highest+severity&filters[Show]=&filters[Integrations]=&filters[CollectionIds]=
 
     permissions:
       security-events: write
