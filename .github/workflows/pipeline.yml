@@ -40,6 +40,10 @@ jobs:
     needs: [check-integrity]
     runs-on: ubuntu-latest
 
+    environment:
+      name: snyk
+      url: https://app.snyk.io/tenant/b81ff6f8-b5cb-4ee8-b2a5-74a8b63faafc
+
     permissions:
       security-events: write
       contents: read
@@ -101,6 +105,10 @@ jobs:
     name: ✨ Quality & Tests
     needs: [check-integrity]
     runs-on: ubuntu-latest
+
+    environment:
+      name: sonarqube
+      url: https://sonarcloud.io/project/overview?id=emmanuel-lefevre_angular-template
 
     steps:
       - name: 📂 Get Code
