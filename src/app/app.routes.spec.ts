@@ -6,10 +6,9 @@ import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideTranslateService } from '@ngx-translate/core';
 
+import { authGuard } from '@core/guard/auth/auth.guard';
 import { AuthService } from '@core/_services/auth/auth.service';
-
-import { ROUTES } from './app.routes';
-import { authGuard } from './core/guard/auth/auth.guard';
+import { ROUTES } from '@app/app.routes';
 
 @Component({
   selector: 'mock-layout',

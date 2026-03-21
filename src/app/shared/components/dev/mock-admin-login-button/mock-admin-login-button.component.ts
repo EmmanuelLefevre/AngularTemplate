@@ -24,6 +24,7 @@ export class MockAdminLoginButtonComponent {
 
   handleLogin(): void {
     this.authService.login({
+      // snyk-ignore: CWE-798
       email: 'admin@test.com',
       password: ENVIRONMENT.mockAdminPassword ?? ''
     }).subscribe({

@@ -35,7 +35,7 @@ export const mockInterceptor: HttpInterceptorFn = (req, next) => {
       })).pipe(delay(MOCK_DELAY_MS));
     }
 
-    const IS_ADMIN: boolean = BODY.email.toLowerCase() === 'admin@test.com';
+    const IS_ADMIN: boolean = BODY?.email?.toLowerCase() === 'admin@test.com';
 
     return of(new HttpResponse({
       status: HTTP_STATUS_OK,
