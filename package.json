@@ -76,6 +76,7 @@
       "@isaacs/brace-expansion": ">=5.0.1",
       "@modelcontextprotocol/sdk": ">=1.26.0",
       "express-rate-limit": ">=8.2.2",
+      "flatted": ">=3.4.2",
       "hono": ">=4.12.4",
       "immutable": ">=5.1.5",
       "minimatch": ">=10.2.3",

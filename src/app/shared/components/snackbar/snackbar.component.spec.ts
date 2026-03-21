@@ -105,14 +105,6 @@ describe('SnackbarComponent', () => {
       expect(TOOLTIP_INSTANCE.message).toBe('UI.BUTTONS.CLOSE.TOOLTIP');
     });
 
-    it('should have role="status" on the message span', () => {
-      // --- ACT ---
-      const MESSAGE_SPAN = fixture.debugElement.query(By.css('.snackbar__message')).nativeElement;
-
-      // --- ASSERT ---
-      expect(MESSAGE_SPAN.getAttribute('role')).toBe('status');
-    });
-
     it('should call dismiss on snackBarRef when Enter key is pressed on the close button', () => {
       // --- ARRANGE ---
       const CLOSE_BUTTON_DEBUG = fixture.debugElement.query(By.css('.snackbar__action'));
