@@ -1,0 +1,5 @@
+version: v1.25.0
+
+exclude:
+  global:
+    - "**/*.spec.ts"
