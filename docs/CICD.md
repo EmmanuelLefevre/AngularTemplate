@@ -108,10 +108,16 @@ Créer le fichier `sonar-project.properties` à la racine et y coller la configu
   SNYK
 </h2>
 
-**Snyk** est le spécialiste des dépendances externes. Dans un projet moderne, **80%** du code provient de bibliothèques tierces (via **NPM** ou **PNPM**). **Snyk** s'assure que ces bibliothèques que nous importons ne sont pas empoisonnées.
+**Snyk** est un bouclier de sécurité global. Si dans un projet moderne **80%** du code provient de bibliothèques tierces (via **NPM** ou **PNPM**), **Snyk** s'assure que ces dépendances sont saines, **mais il analyse également le code !**  
 
-**Son rôle**  
-Il parcourt le fichier `package.json` et le `pnpm-lock.yaml` pour les comparer à une base de données géante de vulnérabilités connues (**CVE**).
+Snyk agit sur deux fronts principaux :  
+
+- **Snyk Open Source (les dépendances) :** il parcourt les fichiers `package.json` et `pnpm-lock.yaml` pour les comparer à une base de données géante de vulnérabilités connues (**CVE**).  
+
+- **Snyk Code (analyse statique - SAST) :** il scanne le code source à la recherche de failles de sécurité ou de mauvaises pratiques (mots de passe en dur, fuites de données...).  
+
+**Configuration et Faux Positifs**
+Pour éviter que l'analyse de code ne déclenche des alertes inutiles (faux mots de passe utilisés dans les tests unitaires), un fichier `.snyk` est crée à la racine du projet. Ce fichier permet d'exclure spécifiquement les fichiers de tests de l'analyse **Snyk Code**.
 
 **Pourquoi c'est top**  
 Il ne se contente pas de dire "c'est cassé", il propose souvent la version précise à laquelle l'on doit mettre à jour pour corriger la faille.
