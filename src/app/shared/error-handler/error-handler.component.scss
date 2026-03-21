@@ -1,5 +1,6 @@
 :host {
-  display: block;
+  display: flex;
+  flex: 1;
 }
 
 .error-view {
@@ -7,28 +8,29 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  flex: 1;
   text-align: center;
   padding: 2rem;
-  min-height: 60vh;
 
   &__title {
-    margin-bottom: 1rem;
-    font-size: 24px;
     color: var(--text-primary-color);
+    font-size: var(--font-size-h1);
+    margin-bottom: 1rem;
   }
 
   &__code {
-    margin-bottom: 2rem;
     color: var(--text-black-color);
+    font-size: var(--font-size-h3);
+    margin-bottom: 2rem;
     &-value {
       color: var(--text-primary-color);
-      font-weight: bold;
+      font-weight: var(--font-weight-bold);
     }
   }
 
   &__content {
-    margin-bottom: 3rem;
     width: 100%;
+    margin-bottom: 3rem;
   }
 
   &__actions {

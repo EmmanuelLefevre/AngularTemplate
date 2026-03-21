@@ -157,12 +157,13 @@ jobs:
           exit 1
 
       - name: ☁️ SonarQube Cloud Scan
-        if: success()
+        if: success() && github.ref == 'refs/heads/main'
         uses: SonarSource/sonarqube-scan-action@v6
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
       - name: 📊 SonarQube Cloud Quality Gate
+        if: github.ref == 'refs/heads/main'
         uses: SonarSource/sonarqube-quality-gate-action@v1
         timeout-minutes: 5
         env:

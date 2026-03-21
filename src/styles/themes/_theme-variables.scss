@@ -20,6 +20,13 @@
   --primary-light: color-mix(in oklch, var(--primary-color), transparent 40%);
   --secondary-light: color-mix(in oklch, var(--secondary-color), transparent 40%);
 
+  /* =========== RGBA =========== */
+  --rgba-color-xs: rgba(0, 0, 0, 0.1);
+  --rgba-color-s: rgba(0, 0, 0, 0.25);
+  --rgba-color-m: rgba(0, 0, 0, 0.5);
+  --rgba-color-l: rgba(0, 0, 0, 0.75);
+  --rgba-color-xl: rgba(0, 0, 0, 1);
+
   /* =========== TEXT COLORS =========== */
   --text-black-color: var(--black-color);
   --text-white-color: var(--white-color);
@@ -72,27 +79,18 @@
   --font-weight-black: 900;
 
   /* =========== FONT SIZES (SEMANTIC) =========== */
-  --font-size-base: 14px;
-  --font-size-footer: 10px;
-  --font-size-h1: 24px;
-  --font-size-h1-form: 24px;
+  --font-size-base: clamp(14px, 1.2vw, 16px);
+  --font-size-description: clamp(16px, 2.5vw, 22px);
+  --font-size-footer: clamp(10px, 1.2vw, 12px);
   --font-size-link: 1.2rem;
   --font-size-logo: 1.5rem;
   --font-size-snackbar: 14px;
 
-  @include respond-to('tablet') {
-    --font-size-footer: 12px;
-    --font-size-h1: 32px;
-    --font-size-h1-form: 26px;
-  }
-
-  @include respond-to('desktop') {
-    --font-size-h1: 40px;
-  }
-
-  @include respond-to('desktop-xl') {
-    --font-size-h1: 48px;
-  }
+  --font-size-h1: clamp(24px, 4vw, 32px);
+  --font-size-h2: clamp(20px, 3vw, 28px);
+  --font-size-h3: clamp(16px, 2vw, 24px);
+  --font-size-h1-form: clamp(24px, 3vw, 26px);
+  --font-size-h1-hero: clamp(24px, 4vw, 44px);
 
   /* =========== ICONS =========== */
   --size-icon-footer: 10px;
@@ -110,12 +108,6 @@
   }
 
   /* =========== SHADOWS =========== */
-  --rgba-color-xs: rgba(0, 0, 0, 0.1);
-  --rgba-color-s: rgba(0, 0, 0, 0.25);
-  --rgba-color-m: rgba(0, 0, 0, 0.5);
-  --rgba-color-l: rgba(0, 0, 0, 0.75);
-  --rgba-color-xl: rgba(0, 0, 0, 1);
-
   --shadow-close-button: 0 -2px 10px var(--rgba-color-xs);
   --shadow-footer: 0 -2px 10px var(--rgba-color-xs);
   --shadow-header: 0 2px 10px var(--rgba-color-xs);
