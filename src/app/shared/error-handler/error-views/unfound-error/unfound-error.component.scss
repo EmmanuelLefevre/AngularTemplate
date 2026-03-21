@@ -1,5 +1,7 @@
 @use 'abstracts' as *;
 
+$reserved-vertical-space: 500px;
+
 :host {
   display: block;
   width: 100%;
@@ -12,11 +14,11 @@
   &__video-container {
     position: relative;
     width: 90%;
-    max-width: min(700px, calc((100vh - 500px) * (16 / 9)));
+    max-width: min(700px, calc((100vh - #{$reserved-vertical-space}) * (16 / 9)));
+    aspect-ratio: 16 / 9;
     margin: 0 auto;
     border-radius: 8px;
     box-shadow: 0 4px 15px var(--rgba-color-s);
-    aspect-ratio: 16 / 9;
     overflow: hidden;
   }
 
