@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, OnInit, inject, signal, DestroyRef, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
-import { MainButtonComponent } from '../shared';
+import { MainButtonComponent } from '@shared';
 
 @Component({
   selector: 'error-handler',
@@ -25,6 +25,7 @@ export class ErrorHandlerComponent implements OnInit {
   private readonly router = inject(Router);
 
   public readonly code = signal<string>('');
+  public readonly translate = inject(TranslateService);
 
   ngOnInit(): void {
     this.route.queryParams.pipe(takeUntilDestroyed(this.destroyRef)).subscribe((params) => {

@@ -276,6 +276,18 @@ describe('ErrorHandlerComponent', () => {
       // --- ASSERT ---
       expect(component.code()).toBe('500');
     });
+
+    it('should set code to empty string if URL does not match any known error pattern', () => {
+      // --- ARRANGE ---
+      Object.defineProperty(router, 'url', { value: '/error/unknown-path', configurable: true });
+      queryParams$.next({});
+
+      // --- ACT ---
+      fixture.detectChanges();
+
+      // --- ASSERT ---
+      expect(component.code()).toBe('');
+    });
   });
 
   describe('UI & Navigation Actions', () => {
@@ -394,6 +406,28 @@ describe('ErrorHandlerComponent', () => {
 
       expect(buttonComponent.label()).toBe('Login');
       expect(buttonComponent.ariaLabel()).toBe('Button to open the login form');
+    });
+
+    it('should apply "is-english" class to the code container when language is English', () => {
+      // --- ACT ---
+      translate.use('en');
+      fixture.detectChanges();
+
+      const codeContainer = fixture.debugElement.query(By.css('.error-view__code'));
+
+      // --- ASSERT ---
+      expect(codeContainer.nativeElement.classList.contains('is-english')).toBe(true);
+    });
+
+    it('should NOT apply "is-english" class when language is French', () => {
+      // --- ACT ---
+      translate.use('fr');
+      fixture.detectChanges();
+
+      const codeContainer = fixture.debugElement.query(By.css('.error-view__code'));
+
+      // --- ASSERT ---
+      expect(codeContainer.nativeElement.classList.contains('is-english')).toBe(false);
     });
   });
 });
