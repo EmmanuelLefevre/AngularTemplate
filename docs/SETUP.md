@@ -200,3 +200,13 @@ save-exact=true
 ```
 
 Désormais, si on lance `pnpm add rxjs`, il installera **`"rxjs"`: `"7.8.0"`** au lieu de **`"^7.8.0"`**.  
+
+3. **Restreindre les versions de l'environnement** (`engine-strict`)
+
+Pour s'assurer que tous les développeurs utilisent les mêmes versions des outils de base (comme **Node.js** et **PNPM**) nous pouvons utiliser la propriété "engines" du `package.json`.  
+
+Cependant, par défaut, si un développeur utilise une version non prise en charge, cela n'affiche qu'un simple avertissement. Cette option force **PNPM** à faire échouer l'installation de manière stricte si la version de **Node.js** ou de **PNPM** ne correspond pas à celle déclarée.  
+
+```shell
+engine-strict=true
+```

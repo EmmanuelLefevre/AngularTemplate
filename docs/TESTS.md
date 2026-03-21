@@ -21,11 +21,12 @@ Activer le nouveau système de tests unitaires natif d'**Angular**. Ce builder m
 pnpm add -D vitest jsdom
 pnpm add -D @angular/platform-browser-dynamic
 pnpm add -D @analogjs/vite-plugin-angular
+pnpm add -D @analogjs/vitest-angular
 pnpm add -D @types/node
 pnpm add -D vite-tsconfig-paths
 ```
 
-**Etape 2 :** Dans `tsconfig.spec.json` remplacer par ces propriétés dans `@compilerOptions`.  
+**Etape 2 :** Dans `tsconfig.spec.json` remplacer la configuration présente par celle-ci dans la propriété `@compilerOptions`.  
 
 ```JSON
 "compilerOptions": {
@@ -34,6 +35,7 @@ pnpm add -D vite-tsconfig-paths
   "module": "ESNext",
   "moduleResolution": "Bundler",
   "types": [
+    "vitest",
     "vitest/globals",
     "vitest/importMeta",
     "vite/client",
@@ -46,10 +48,9 @@ pnpm add -D vite-tsconfig-paths
 
 ```JSON
 "test": {
-  "builder": "@angular/build:unit-test",
+  "builder": "@analogjs/vitest-angular:test",
   "options": {
-    "runnerConfig": "vitest.config.ts",
-    "tsConfig": "tsconfig.spec.json"
+    "configFile": "vitest.config.ts"
   }
 },
 ```
@@ -73,11 +74,23 @@ pnpm add -D @vitest/coverage-v8
 **Etape 6 :** Créer le fichier `test-setup.ts` dans `src`
 
 ```typescript
-import '@angular/compiler';
-import { getTestBed } from '@angular/core/testing';
+import { getTestBed, TestBed } from '@angular/core/testing';
 import { BrowserTestingModule, platformBrowserTesting } from '@angular/platform-browser/testing';
+import { provideZonelessChangeDetection } from '@angular/core';
+import { beforeEach } from 'vitest';
 
-getTestBed().initTestEnvironment(BrowserTestingModule, platformBrowserTesting());
+getTestBed().resetTestEnvironment();
+
+getTestBed().initTestEnvironment(
+  BrowserTestingModule,
+  platformBrowserTesting()
+);
+
+beforeEach(() => {
+  TestBed.configureTestingModule({
+    providers: [provideZonelessChangeDetection()]
+  });
+});
 ```
 
 > 📄 Consulter le barrel file des tests : `./src/test-setup.ts`  
@@ -101,8 +114,9 @@ Dans `angular.json` ajouter la propriété `coverage` à l'objet `test`.
 {
   "scripts": {
     "test": "ng test",
-    "test:ui": "ng test --ui",
     "test:coverage": "ng test --coverage --watch=false",
+    "test:ui": "vitest --ui",
+    "test:watch": "vitest",
   }
 }
 ```
@@ -125,4 +139,10 @@ pnpm test:coverage
 
 ```shell
 pnpm test:ui
+```
+
+- **Mode Watch**  
+
+```shell
+pnpm test:watch
 ```
