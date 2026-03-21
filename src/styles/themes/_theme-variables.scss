@@ -110,14 +110,14 @@
   }
 
   /* =========== SHADOWS =========== */
-  --shadow-color-xs: rgba(0, 0, 0, 0.1);
-  --shadow-color-s: rgba(0, 0, 0, 0.25);
-  --shadow-color-m: rgba(0, 0, 0, 0.5);
-  --shadow-color-l: rgba(0, 0, 0, 0.75);
-  --shadow-color-xl: rgba(0, 0, 0, 1);
+  --rgba-color-xs: rgba(0, 0, 0, 0.1);
+  --rgba-color-s: rgba(0, 0, 0, 0.25);
+  --rgba-color-m: rgba(0, 0, 0, 0.5);
+  --rgba-color-l: rgba(0, 0, 0, 0.75);
+  --rgba-color-xl: rgba(0, 0, 0, 1);
 
-  --shadow-close-button: 0 -2px 10px var(--shadow-color-xs);
-  --shadow-footer: 0 -2px 10px var(--shadow-color-xs);
-  --shadow-header: 0 2px 10px var(--shadow-color-xs);
-  --shadow-login-page: 0 10px 25px var(--shadow-color-m);
+  --shadow-close-button: 0 -2px 10px var(--rgba-color-xs);
+  --shadow-footer: 0 -2px 10px var(--rgba-color-xs);
+  --shadow-header: 0 2px 10px var(--rgba-color-xs);
+  --shadow-login-page: 0 10px 25px var(--rgba-color-m);
 }

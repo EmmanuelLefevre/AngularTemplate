@@ -21,41 +21,40 @@ export class UnfoundErrorComponent implements OnInit, OnDestroy {
   isMuted = true;
 
   ngOnInit(): void {
-    if (!window.document.getElementById('yt-api-script')) {
+    if (!globalThis.document.getElementById('yt-api-script')) {
       const tag = document.createElement('script');
       tag.id = 'yt-api-script';
       tag.src = 'https://www.youtube.com/iframe_api';
       document.body.appendChild(tag);
     }
 
-    const win = window as any;
+    const globalObj = globalThis as any;
 
-    win.onYouTubeIframeAPIReady = (): void => {
+    globalObj.onYouTubeIframeAPIReady = (): void => {
       this.initPlayer();
     };
 
-    if (typeof win.YT !== 'undefined' && win.YT && win.YT.Player) {
+    if (globalObj.YT?.Player) {
       this.initPlayer();
     }
   }
 
   private initPlayer(): void {
-    const win = window as any;
+    const globalObj = globalThis as any;
 
-    this.player = new win.YT.Player('yt-player');
+    this.player = new globalObj.YT.Player('yt-player');
   }
 
   unmuteVideo(): void {
-    if (this.player && typeof this.player.unMute === 'function') {
+    if (typeof this.player?.unMute === 'function') {
       this.player.unMute();
       this.isMuted = false;
       this.cdr.detectChanges();
     }
   }
 
-  // 1. IMPLÉMENTATION DE ngOnDestroy
   ngOnDestroy(): void {
-    if (this.player && typeof this.player.destroy === 'function') {
+    if (typeof this.player?.destroy === 'function') {
       this.player.destroy();
       this.player = null;
     }
