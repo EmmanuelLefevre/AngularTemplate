@@ -25,10 +25,11 @@ describe('SeoService', () => {
   };
 
   const MOCK_TRANSLATIONS: Record<string, string> = {
-    'CUSTOM.TITLE': 'Ma Page',
-    'CUSTOM.DESCRIPTION': 'Ma Description',
-    'META.DEFAULT.TITLE': 'Titre Par Défaut',
-    'META.DEFAULT.DESCRIPTION': 'Description Par Défaut'
+    'CUSTOM.TITLE': 'My Page',
+    'CUSTOM.DESCRIPTION': 'My Description',
+    'META.DEFAULT.TITLE': 'Default Title',
+    'META.DEFAULT.DESCRIPTION': 'Default Description',
+    'META.DEFAULT.KEYWORDS': 'Keywords_1 , Keywords_2'
   };
 
   beforeEach(() => {
@@ -102,24 +103,6 @@ describe('SeoService', () => {
     expect(META_MOCK.updateTag).toHaveBeenCalledWith({
       name: 'robots',
       content: 'noindex, nofollow'
-    });
-  });
-
-  it('should update tags from environment configuration', async() => {
-    // --- ARRANGE ---
-    const DATA: SeoData = { titleKey: 'CUSTOM.TITLE' };
-
-    // --- ACT ---
-    await service.updateMetaTags(DATA);
-
-    // --- ASSERT ---
-    expect(META_MOCK.updateTag).toHaveBeenCalledWith({
-      name: 'author',
-      content: ENVIRONMENT.application.author
-    });
-    expect(META_MOCK.updateTag).toHaveBeenCalledWith({
-      name: 'keywords',
-      content: ENVIRONMENT.application.keywords
     });
   });
 
@@ -261,11 +244,11 @@ describe('SeoService', () => {
     await service.updateMetaTags(DATA);
 
     // --- ASSERT ---
-    expect(TITLE_MOCK.setTitle).toHaveBeenCalledWith('Ma Page');
-    expect(META_MOCK.updateTag).toHaveBeenCalledWith({ property: 'og:title', content: 'Ma Page' });
+    expect(TITLE_MOCK.setTitle).toHaveBeenCalledWith('My Page');
+    expect(META_MOCK.updateTag).toHaveBeenCalledWith({ property: 'og:title', content: 'My Page' });
 
-    expect(META_MOCK.updateTag).toHaveBeenCalledWith({ name: 'description', content: 'Ma Description' });
-    expect(META_MOCK.updateTag).toHaveBeenCalledWith({ property: 'og:description', content: 'Ma Description' });
+    expect(META_MOCK.updateTag).toHaveBeenCalledWith({ name: 'description', content: 'My Description' });
+    expect(META_MOCK.updateTag).toHaveBeenCalledWith({ property: 'og:description', content: 'My Description' });
   });
 
   it('should use default description fallback when descriptionKey is missing', async() => {
@@ -278,11 +261,11 @@ describe('SeoService', () => {
     await service.updateMetaTags(DATA);
 
     // --- ASSERT ---
-    expect(TITLE_MOCK.setTitle).toHaveBeenCalledWith('Ma Page');
-    expect(META_MOCK.updateTag).toHaveBeenCalledWith({ property: 'og:title', content: 'Ma Page' });
+    expect(TITLE_MOCK.setTitle).toHaveBeenCalledWith('My Page');
+    expect(META_MOCK.updateTag).toHaveBeenCalledWith({ property: 'og:title', content: 'My Page' });
 
-    expect(META_MOCK.updateTag).toHaveBeenCalledWith({ name: 'description', content: 'Description Par Défaut' });
-    expect(META_MOCK.updateTag).toHaveBeenCalledWith({ property: 'og:description', content: 'Description Par Défaut' });
+    expect(META_MOCK.updateTag).toHaveBeenCalledWith({ name: 'description', content: 'Default Description' });
+    expect(META_MOCK.updateTag).toHaveBeenCalledWith({ property: 'og:description', content: 'Default Description' });
   });
 
   it('should use default title fallback when titleKey is missing', async() => {
@@ -295,11 +278,11 @@ describe('SeoService', () => {
     await service.updateMetaTags(DATA);
 
     // --- ASSERT ---
-    expect(META_MOCK.updateTag).toHaveBeenCalledWith({ name: 'description', content: 'Ma Description' });
-    expect(META_MOCK.updateTag).toHaveBeenCalledWith({ property: 'og:description', content: 'Ma Description' });
+    expect(META_MOCK.updateTag).toHaveBeenCalledWith({ name: 'description', content: 'My Description' });
+    expect(META_MOCK.updateTag).toHaveBeenCalledWith({ property: 'og:description', content: 'My Description' });
 
-    expect(TITLE_MOCK.setTitle).toHaveBeenCalledWith('Titre Par Défaut');
-    expect(META_MOCK.updateTag).toHaveBeenCalledWith({ property: 'og:title', content: 'Titre Par Défaut' });
+    expect(TITLE_MOCK.setTitle).toHaveBeenCalledWith('Default Title');
+    expect(META_MOCK.updateTag).toHaveBeenCalledWith({ property: 'og:title', content: 'Default Title' });
   });
 
   it('should use both fallback values when no keys are provided', async() => {
@@ -310,10 +293,40 @@ describe('SeoService', () => {
     await service.updateMetaTags(DATA);
 
     // --- ASSERT ---
-    expect(TITLE_MOCK.setTitle).toHaveBeenCalledWith('Titre Par Défaut');
-    expect(META_MOCK.updateTag).toHaveBeenCalledWith({ property: 'og:title', content: 'Titre Par Défaut' });
+    expect(TITLE_MOCK.setTitle).toHaveBeenCalledWith('Default Title');
+    expect(META_MOCK.updateTag).toHaveBeenCalledWith({ property: 'og:title', content: 'Default Title' });
 
-    expect(META_MOCK.updateTag).toHaveBeenCalledWith({ name: 'description', content: 'Description Par Défaut' });
-    expect(META_MOCK.updateTag).toHaveBeenCalledWith({ property: 'og:description', content: 'Description Par Défaut' });
+    expect(META_MOCK.updateTag).toHaveBeenCalledWith({ name: 'description', content: 'Default Description' });
+    expect(META_MOCK.updateTag).toHaveBeenCalledWith({ property: 'og:description', content: 'Default Description' });
+  });
+
+  it('should update keywords tag from translations', async() => {
+    // --- ARRANGE ---
+    const DATA: SeoData = {};
+
+    // --- ACT ---
+    await service.updateMetaTags(DATA);
+
+    // --- ASSERT ---
+    expect(META_MOCK.updateTag).toHaveBeenCalledWith({
+      name: 'keywords',
+      content: 'Keywords_1 , Keywords_2'
+    });
+  });
+
+  it('should not update keywords tag if translation is empty or missing', async() => {
+    // --- ARRANGE ---
+    const TRANSLATE = TestBed.inject(TranslateService);
+    vi.spyOn(TRANSLATE, 'get').mockReturnValue(of({}));
+
+    const DATA: SeoData = {};
+
+    // --- ACT ---
+    await service.updateMetaTags(DATA);
+
+    // --- ASSERT ---
+    expect(META_MOCK.updateTag).not.toHaveBeenCalledWith(
+      expect.objectContaining({ name: 'keywords' })
+    );
   });
 });

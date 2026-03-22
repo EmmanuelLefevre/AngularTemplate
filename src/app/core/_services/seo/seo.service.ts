@@ -24,8 +24,13 @@ export class SeoService {
 
     const DEFAULT_TITLE_KEY = 'META.DEFAULT.TITLE';
     const DEFAULT_DESC_KEY = 'META.DEFAULT.DESCRIPTION';
+    const DEFAULT_KEYWORDS_KEY = 'META.DEFAULT.KEYWORDS';
 
-    const KEYS: string[] = [DEFAULT_TITLE_KEY, DEFAULT_DESC_KEY];
+    const KEYS: string[] = [
+      DEFAULT_TITLE_KEY,
+      DEFAULT_DESC_KEY,
+      DEFAULT_KEYWORDS_KEY
+    ];
 
     if (data.titleKey) {
       KEYS.push(data.titleKey);
@@ -44,6 +49,8 @@ export class SeoService {
       ? translations[data.descriptionKey]
       : translations[DEFAULT_DESC_KEY];
 
+    const KEYWORDS = translations[DEFAULT_KEYWORDS_KEY];
+
     if (TITLE) {
       this.title.setTitle(TITLE);
       this.meta.updateTag({ property: 'og:title', content: TITLE });
@@ -54,13 +61,16 @@ export class SeoService {
       this.meta.updateTag({ property: 'og:description', content: DESCRIPTION });
     }
 
+    if (KEYWORDS) {
+      this.meta.updateTag({ name: 'keywords', content: KEYWORDS });
+    }
+
     if (this.document?.documentElement) {
       this.document.documentElement.lang = this.translate.currentLang || 'fr';
     }
 
     this.meta.updateTag({ name: 'robots', content: data.robots || 'index, follow' });
     this.meta.updateTag({ name: 'author', content: this.config.author });
-    this.meta.updateTag({ name: 'keywords', content: this.config.keywords });
     this.meta.updateTag({ name: 'theme-color', content: this.config.themeColor });
 
     this.meta.updateTag({ property: 'og:url', content: this.document.URL });

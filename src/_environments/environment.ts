@@ -9,7 +9,6 @@ export const ENVIRONMENT: IEnvironment = {
   application: {
     name: 'AngularTemplate',
     author: 'Emmanuel Lefevre',
-    keywords: 'angular, template, seo, i18n, vitest, pnpm',
     themeColor: '#ff6b6b',
     defaultShareImage: 'https://angulartemplate.emmanuellefevre.com/assets/logos/logo.png'
   }

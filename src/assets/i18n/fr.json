@@ -3,7 +3,8 @@
     "DEFAULT": {
       "APP_NAME": "AngularTemplate",
       "TITLE": "AngularTemplate",
-      "DESCRIPTION": "Template Angular 21 avec CI/CD, SEO, i18n et plus."
+      "DESCRIPTION": "Kit de démarrage Angular conçu pour une qualité de production.",
+      "KEYWORDS": "Angular 21, boilerplate, template, starter kit, PNPM, ESBuild, Vite, Vitest, Husky, lint-staged, ESLint, StyleLint, HTMLHint, SecretLint, Prettier, SonarQube Cloud, Snyk, CodeQL, GitLeaks, GitHub Actions, CI/CD, I18n, SEO, PWA, clean architecture, a11y, Compodoc, Font Awesome, Angular Material, Corepack, GitHub Pages, GitHub Packages, SEMVER,Changelog, design system, mobile-first, TypeScript, RXJS, Signals, NodeJS, Angular Schematics"
     },
     "PAGES": {
       "HOME": {
