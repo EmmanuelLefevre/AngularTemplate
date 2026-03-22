@@ -17,6 +17,28 @@
       "LOGIN": {
         "TITLE": "Login",
         "DESCRIPTION": "Website login page"
+      },
+      "ERROR": {
+        "401": {
+          "TITLE": "Unauthorized",
+          "DESCRIPTION": "You do not have permission to access this page."
+        },
+        "404": {
+          "TITLE": "Page not found",
+          "DESCRIPTION": "The page you are looking for does not exist or has been deleted."
+        },
+        "500": {
+          "TITLE": "Server error",
+          "DESCRIPTION": "An unexpected error occurred on our servers."
+        },
+        "GENERIC": {
+          "TITLE": "Error occurred",
+          "DESCRIPTION": "We encountered a problem while processing your request."
+        },
+        "UNKNOWN": {
+          "TITLE": "Unknown error",
+          "DESCRIPTION": "An unknown error has occurred. Please try again later."
+        }
       }
     }
   },

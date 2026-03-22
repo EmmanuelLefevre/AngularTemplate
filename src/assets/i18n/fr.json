@@ -17,6 +17,28 @@
       "LOGIN": {
         "TITLE": "Connexion",
         "DESCRIPTION": "Page de connexion du site"
+      },
+      "ERROR": {
+        "401": {
+          "TITLE": "Non autorisé",
+          "DESCRIPTION": "Vous n'avez pas la permission d'accéder à cette page."
+        },
+        "404": {
+          "TITLE": "Page introuvable",
+          "DESCRIPTION": "La page que vous recherchez n'existe pas ou a été supprimée."
+        },
+        "500": {
+          "TITLE": "Erreur serveur",
+          "DESCRIPTION": "Une erreur inattendue s'est produite sur nos serveurs."
+        },
+        "GENERIC": {
+          "TITLE": "Une erreur est survenue",
+          "DESCRIPTION": "Nous avons rencontré un problème lors du traitement de votre demande."
+        },
+        "UNKNOWN": {
+          "TITLE": "Erreur inconnue",
+          "DESCRIPTION": "Une erreur inconnue s'est produite. Veuillez réessayer plus tard."
+        }
       }
     }
   },

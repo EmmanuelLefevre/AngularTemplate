@@ -71,6 +71,8 @@ export const ROUTES: Routes = [
               .then(m => m.UnauthorizedErrorComponent),
             data: {
               seo: {
+                titleKey: 'META.PAGES.ERROR.401.TITLE',
+                descriptionKey: 'META.PAGES.ERROR.401.DESCRIPTION',
                 robots: 'noindex, nofollow'
               }
             }
@@ -81,6 +83,8 @@ export const ROUTES: Routes = [
               .then(m => m.UnfoundErrorComponent),
             data: {
               seo: {
+                titleKey: 'META.PAGES.ERROR.404.TITLE',
+                descriptionKey: 'META.PAGES.ERROR.404.DESCRIPTION',
                 robots: 'noindex, nofollow'
               }
             }
@@ -91,6 +95,8 @@ export const ROUTES: Routes = [
               .then(m => m.ServerErrorComponent),
             data: {
               seo: {
+                titleKey: 'META.PAGES.ERROR.500.TITLE',
+                descriptionKey: 'META.PAGES.ERROR.500.DESCRIPTION',
                 robots: 'noindex, nofollow'
               }
             }
@@ -101,6 +107,8 @@ export const ROUTES: Routes = [
               .then(m => m.GenericErrorComponent),
             data: {
               seo: {
+                titleKey: 'META.PAGES.ERROR.GENERIC.TITLE',
+                descriptionKey: 'META.PAGES.ERROR.GENERIC.DESCRIPTION',
                 robots: 'noindex, nofollow'
               }
             }
@@ -111,6 +119,8 @@ export const ROUTES: Routes = [
               .then(m => m.UnknownErrorComponent),
             data: {
               seo: {
+                titleKey: 'META.PAGES.ERROR.UNKNOWN.TITLE',
+                descriptionKey: 'META.PAGES.ERROR.UNKNOWN.DESCRIPTION',
                 robots: 'noindex, nofollow'
               }
             }

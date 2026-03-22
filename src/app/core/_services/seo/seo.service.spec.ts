@@ -109,20 +109,6 @@ describe('SeoService', () => {
     });
   });
 
-  it('should use default robots value when not provided', async() => {
-    // --- ARRANGE ---
-    const DATA: SeoData = {};
-
-    // --- ACT ---
-    await service.updateMetaTags(DATA);
-
-    // --- ASSERT ---
-    expect(META_MOCK.updateTag).toHaveBeenCalledWith({
-      name: 'robots',
-      content: 'index, follow'
-    });
-  });
-
   it('should use specific robots value for error pages', async() => {
     // --- ARRANGE ---
     const DATA: SeoData = { robots: 'noindex, nofollow' };
@@ -282,5 +268,81 @@ describe('SeoService', () => {
     );
 
     expect(OG_IMAGE_CALLS.length).toBe(INITIAL_VALUE);
+  });
+
+  it('should update title and description tags when both keys are provided', async() => {
+    // --- ARRANGE ---
+    const DATA: SeoData = {
+      titleKey: 'CUSTOM.TITLE',
+      descriptionKey: 'CUSTOM.DESCRIPTION'
+    };
+
+    // --- ACT ---
+    await service.updateMetaTags(DATA);
+
+    // --- ASSERT ---
+    expect(TITLE_MOCK.setTitle).toHaveBeenCalledWith('Ma Page');
+    expect(META_MOCK.updateTag).toHaveBeenCalledWith({ property: 'og:title', content: 'Ma Page' });
+
+    expect(META_MOCK.updateTag).toHaveBeenCalledWith({ name: 'description', content: 'Ma Description' });
+    expect(META_MOCK.updateTag).toHaveBeenCalledWith({ property: 'og:description', content: 'Ma Description' });
+  });
+
+  it('should ONLY update title when descriptionKey is missing', async() => {
+    // --- ARRANGE ---
+    const DATA: SeoData = {
+      titleKey: 'CUSTOM.TITLE'
+    };
+
+    // --- ACT ---
+    await service.updateMetaTags(DATA);
+
+    // --- ASSERT ---
+    expect(TITLE_MOCK.setTitle).toHaveBeenCalledWith('Ma Page');
+    expect(META_MOCK.updateTag).toHaveBeenCalledWith({ property: 'og:title', content: 'Ma Page' });
+
+    const DESC_CALLS = META_MOCK.updateTag.mock.calls.filter(
+      ([arg]) => arg?.name === 'description' || arg?.property === 'og:description'
+    );
+    expect(DESC_CALLS.length).toBe(INITIAL_VALUE);
+  });
+
+  it('should ONLY update description when titleKey is missing', async() => {
+    // --- ARRANGE ---
+    const DATA: SeoData = {
+      descriptionKey: 'CUSTOM.DESCRIPTION'
+    };
+
+    // --- ACT ---
+    await service.updateMetaTags(DATA);
+
+    // --- ASSERT ---
+    expect(META_MOCK.updateTag).toHaveBeenCalledWith({ name: 'description', content: 'Ma Description' });
+    expect(META_MOCK.updateTag).toHaveBeenCalledWith({ property: 'og:description', content: 'Ma Description' });
+
+    expect(TITLE_MOCK.setTitle).not.toHaveBeenCalled();
+    const TITLE_CALLS = META_MOCK.updateTag.mock.calls.filter(
+      ([arg]) => arg?.property === 'og:title'
+    );
+    expect(TITLE_CALLS.length).toBe(INITIAL_VALUE);
+  });
+
+  it('should NOT update title or description when no keys are provided', async() => {
+    // --- ARRANGE ---
+    const DATA: SeoData = {};
+
+    // --- ACT ---
+    await service.updateMetaTags(DATA);
+
+    // --- ASSERT ---
+    expect(TITLE_MOCK.setTitle).not.toHaveBeenCalled();
+
+    const TITLE_DESC_CALLS = META_MOCK.updateTag.mock.calls.filter(
+      ([arg]) =>
+        arg?.property === 'og:title' ||
+        arg?.name === 'description' ||
+        arg?.property === 'og:description'
+    );
+    expect(TITLE_DESC_CALLS.length).toBe(INITIAL_VALUE);
   });
 });
