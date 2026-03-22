@@ -7,22 +7,25 @@ import { firstValueFrom } from 'rxjs';
 import { ENVIRONMENT } from '@env/environment';
 import { SeoData } from '@core/_models/seo/seo.model';
 
-const INITIAL_VALUE = 0;
-
 @Injectable({
   providedIn: 'root'
 })
 
 export class SeoService {
+
+  private readonly document = inject(DOCUMENT);
   private readonly meta = inject(Meta);
   private readonly title = inject(Title);
-  private readonly document = inject(DOCUMENT);
   private readonly translate = inject(TranslateService);
 
   private readonly config = ENVIRONMENT.application;
 
   async updateMetaTags(data: SeoData = {}): Promise<void> {
-    const KEYS: string[] = [];
+
+    const DEFAULT_TITLE_KEY = 'META.DEFAULT.TITLE';
+    const DEFAULT_DESC_KEY = 'META.DEFAULT.DESCRIPTION';
+
+    const KEYS: string[] = [DEFAULT_TITLE_KEY, DEFAULT_DESC_KEY];
 
     if (data.titleKey) {
       KEYS.push(data.titleKey);
@@ -31,15 +34,15 @@ export class SeoService {
       KEYS.push(data.descriptionKey);
     }
 
-    // Retrieve translations ONLY if there are keys
-    let translations: Record<string, string> = {};
-    if (KEYS.length > INITIAL_VALUE) {
-      translations = await firstValueFrom(this.translate.get(KEYS));
-    }
+    const translations = await firstValueFrom(this.translate.get(KEYS));
 
-    // Extracting values
-    const TITLE = data.titleKey ? translations[data.titleKey] : null;
-    const DESCRIPTION = data.descriptionKey ? translations[data.descriptionKey] : null;
+    const TITLE = data.titleKey && translations[data.titleKey]
+      ? translations[data.titleKey]
+      : translations[DEFAULT_TITLE_KEY];
+
+    const DESCRIPTION = data.descriptionKey && translations[data.descriptionKey]
+      ? translations[data.descriptionKey]
+      : translations[DEFAULT_DESC_KEY];
 
     if (TITLE) {
       this.title.setTitle(TITLE);
@@ -51,7 +54,6 @@ export class SeoService {
       this.meta.updateTag({ property: 'og:description', content: DESCRIPTION });
     }
 
-    // Systematic tags (Always updated)
     if (this.document?.documentElement) {
       this.document.documentElement.lang = this.translate.currentLang || 'fr';
     }
@@ -66,11 +68,18 @@ export class SeoService {
     if (data.type) {
       this.meta.updateTag({ property: 'og:type', content: data.type });
     }
+    else {
+      this.meta.updateTag({ property: 'og:type', content: 'website' });
+    }
 
     const IMAGE_TO_USE = data.image || this.config.defaultShareImage;
     if (IMAGE_TO_USE && IMAGE_TO_USE.trim() !== '') {
       this.meta.updateTag({ property: 'og:image', content: IMAGE_TO_USE });
       this.meta.updateTag({ name: 'twitter:image', content: IMAGE_TO_USE });
+    }
+    else {
+      this.meta.removeTag('property=\'og:image\'');
+      this.meta.removeTag('name=\'twitter:image\'');
     }
   }
 }

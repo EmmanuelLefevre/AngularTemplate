@@ -7,7 +7,6 @@ export interface IEnvironment {
   application: {
     name: string;
     author: string;
-    mainDescription: string;
     keywords: string;
     themeColor: string;
     defaultShareImage: string;
