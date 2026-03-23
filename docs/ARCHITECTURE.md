@@ -27,8 +27,10 @@
  ┃ ┃ ┃ ┃ ┣ host-links.constant.ts
  ┃ ┃ ┃ ┃ ┣ nav-links.constant.ts
  ┃ ┃ ┃ ┃ ┗ social-links.constant.ts
- ┃ ┃ ┃ ┗ 🔔snackbar
- ┃ ┃ ┃   ┗ snackbar.constant.ts
+ ┃ ┃ ┃ ┣ 🔔snackbar
+ ┃ ┃ ┃ ┃ ┗ snackbar.constant.ts
+ ┃ ┃ ┃ ┗ 👨‍💻team
+ ┃ ┃ ┃ ┃ ┗ developers.constant.ts
  ┃ ┃ ┣ 🧱_models
  ┃ ┃ ┃ ┣ 📂auth
  ┃ ┃ ┃ ┣ 📂environment
@@ -36,6 +38,7 @@
  ┃ ┃ ┃ ┣ 📂links
  ┃ ┃ ┃ ┣ 📂seo
  ┃ ┃ ┃ ┣ 📂snackbar
+ ┃ ┃ ┃ ┣ 📂team
  ┃ ┃ ┃ ┗ 📂user
  ┃ ┃ ┣ 💉_services
  ┃ ┃ ┃ ┣ 🔐auth
@@ -116,7 +119,8 @@
  ┃ ┣ 🗣️i18n
  ┃ ┣ ✨icons
  ┃ ┣ 📷img
- ┃ ┗ 🏢logos
+ ┃ ┣ 🏢logos
+ ┃ ┗ 🔊sounds
  ┣ 🎨styles
  ┃ ┣ 📂abstracts
  ┃ ┃ ┣ 🎨_functions.scss

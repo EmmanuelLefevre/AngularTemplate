@@ -1,1 +1,86 @@
-<p>server-error works!</p>
+<!-- eslint-disable @angular-eslint/template/no-inline-styles -->
+
+<img
+  src="assets/img/bulk.png"
+  width="493"
+  height="506"
+  alt=""
+  [alt]="'PAGES.ERROR.SERVER.IMG.ALT.BULK' | translate"
+  [class.is-visible]="shouldShowBulk() || isHitting()"
+  [class.is-hitting]="isHitting()"
+  [ngStyle]="{
+    'left.px': mouseX(),
+    'top.px': mouseY()
+  }"
+  class="bulk" />
+
+<section
+  class="server-error"
+  [class.is-shaking]="isHitting()"
+  [class.is-hitting]="isHitting()">
+  <h4 class="server-error__subtitle">
+    {{ 'PAGES.ERROR.SERVER.SUBTITLE' | translate }}
+  </h4>
+
+  <blockquote class="server-error__instruction">
+    <span class="server-error__instruction-mobile">
+      {{ 'PAGES.ERROR.SERVER.INSTRUCTION.MOBILE' | translate }}
+    </span>
+
+    <span class="server-error__instruction-desktop">
+      {{ 'PAGES.ERROR.SERVER.INSTRUCTION.DESKTOP' | translate }}
+    </span>
+  </blockquote>
+
+  <div class="server-error__grid">
+    @for (dev of developers(); track dev.id) {
+      <div class="server-error__dev-wrapper">
+        <button
+          type="button"
+          [class.is-whacked]="dev.isWhacked"
+          [class.is-returning]="dev.isReturning"
+          (click)="whackDeveloper(dev.id)"
+          (mouseenter)="hoveredDevId.set(dev.id)"
+          (mouseleave)="hoveredDevId.set(null)"
+          class="server-error__dev-photo-button">
+          <div class="server-error__hole"></div>
+
+          <div class="server-error__mask">
+            <img
+              ngSrc="assets/img/hamster.png"
+              width="500"
+              height="500"
+              alt=""
+              [alt]="'PAGES.ERROR.SERVER.IMG.ALT.HAMSTER' | translate"
+              class="server-error__hamster" />
+
+            <div class="server-error__dev-photo-wrapper">
+              <img
+                [ngSrc]="dev.photoUrl"
+                width="200"
+                height="200"
+                priority
+                alt=""
+                [attr.alt]="dev.name"
+                [ngStyle]="{
+                  transform:
+                    (dev.photoScale ? 'scale(' + dev.photoScale + ') ' : 'scale(1) ') +
+                    (dev.photoTranslateY ? 'translateY(' + dev.photoTranslateY + ')' : 'translateY(0)')
+                }"
+                class="server-error__dev-photo" />
+            </div>
+          </div>
+        </button>
+
+        @if (whackedDev()?.id === dev.id) {
+          <div class="server-error__apologize-bubble">
+            <blockquote class="server-error__quote">
+              <p class="server-error__message">"&nbsp;{{ dev.apologizesMessage | translate }}&nbsp;"</p>
+              <cite class="server-error__author">— {{ dev.name }}</cite>
+            </blockquote>
+          </div>
+        }
+      </div>
+    }
+  </div>
+</section>

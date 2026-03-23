@@ -9,8 +9,8 @@ import { TranslationService } from '@app/core/_services/translation/translation.
 @Component({
   selector: 'language-toggle',
   imports: [
-    TranslateModule,
-    MatTooltipModule
+    MatTooltipModule,
+    TranslateModule
   ],
   templateUrl: './language-toggle.component.html',
   styleUrls: ['./language-toggle.component.scss'],

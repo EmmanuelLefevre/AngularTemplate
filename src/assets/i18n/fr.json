@@ -125,6 +125,28 @@
       "UNAUTHORIZED": {
         "TITLE": "Accès Interdit",
         "MESSAGE": "On a quelques questions avant de te laisser passer. A commencer par : t'es qui ? Ton accréditation ne passe pas pour cette zone."
+      },
+      "SERVER": {
+        "SUBTITLE": "Oup's nos serveurs sont HS...",
+        "INSTRUCTION": {
+          "MOBILE": "Mettre un coup de masse au développeur avec votre pouce !",
+          "DESKTOP": "Choisir le développeur coupable et lui donner un coup de masse !"
+        },
+        "APOLOGIZES": {
+          "DEV": {
+            "1": "Désolé, c'est ma faute... Je vais régler ça !",
+            "2": "C'est pas moi c'est ChatGPT !",
+            "3": "Je chosis l'appel à un ami 🤣",
+            "4": "Pas concerné, ma spécialité c'est l'IA !",
+            "5": "C'est un problème de HTML ?"
+          }
+        },
+        "IMG": {
+          "ALT": {
+            "BULK": "Masse pour frapper les développeurs",
+            "HAMSTER": "Hamster sortant d'un trou qui se moque de vous"
+          }
+        }
       }
     }
   },

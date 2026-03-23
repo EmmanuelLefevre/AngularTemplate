@@ -125,6 +125,28 @@
       "UNAUTHORIZED": {
         "TITLE": "Forbidden Access",
         "MESSAGE": "We have a few questions before we let you through. First of all : who are you? Your accreditation isn't valid for this area."
+      },
+      "SERVER": {
+        "SUBTITLE": "Oops, our servers are down...",
+        "INSTRUCTION": {
+          "MOBILE": "Give the developer a bulk whack with your thumb !",
+          "DESKTOP": "Choose the guilty developer and give him a whack with a bulk !"
+        },
+        "APOLOGIZES": {
+          "DEV": {
+            "1": "Sorry, it's my fault... I'll fix it !",
+            "2": "It wasn't me, it was ChatGPT !",
+            "3": "I choose the friend call 🤣",
+            "4": "Not relevant, my specialty is AI !",
+            "5": "Is this an HTML problem ?"
+          }
+        },
+        "IMG": {
+          "ALT": {
+            "BULK": "Bulk to hit the developers",
+            "HAMSTER": "Hamster coming out of a hole, laughing at you"
+          }
+        }
       }
     }
   },

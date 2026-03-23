@@ -23,7 +23,7 @@ $reserved-vertical-space: 500px;
   box-shadow: 0 4px 15px var(--rgba-color-s);
   overflow: hidden;
   cursor:
-    url('/assets/img/flashlight.svg') 0 32,
+    url('/assets/icons/cursors/flashlight.svg') 0 32,
     crosshair;
 
   &__spotlight {
@@ -40,12 +40,10 @@ $reserved-vertical-space: 500px;
     );
 
     animation: defective-bulb 1.5s infinite;
-    -webkit-animation: defective-bulb 1.5s infinite;
 
     @media (prefers-reduced-motion: reduce) {
       transition: none;
       animation: none;
-      -webkit-animation: none;
       background: radial-gradient(
         circle 400px at 50% 50%,
         transparent 0%,

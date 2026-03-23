@@ -15,8 +15,8 @@ const FIRST_TOUCH_INDEX = 0;
 
 export class UnauthorizedErrorComponent implements OnInit {
 
-  private readonly el = inject(ElementRef);
   private readonly destroyRef = inject(DestroyRef);
+  private readonly el = inject(ElementRef);
 
   ngOnInit(): void {
     const container = this.el.nativeElement.querySelector('.interrogation-room');

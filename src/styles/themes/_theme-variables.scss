@@ -5,13 +5,14 @@
   --black-color: oklch(0.3211 0 0);
   --black-color-light: oklch(0.4585 0 0);
   --deep-black-color: oklch(0 0 0);
-  --typewriter-grey-color: oklch(0.7572 0 0);
+  --grey-color: oklch(0.5979 0 0);
   --white-color: oklch(1 0 0);
 
   --danger-color: oklch(0.6311 0.2545 28.85);
   --danger-color-2: oklch(0.7063 0.168157 58.5084);
   --error-color: oklch(0.6311 0.2545 28.85);
   --info-color: oklch(0.9681 0.2101 109.76);
+  --typewriter-grey-color: oklch(0.7572 0 0);
 
   /* =========== MAIN COLORS =========== */
   --primary-color: oklch(0.7116 0.1812 22.84);
@@ -29,6 +30,7 @@
 
   /* =========== TEXT COLORS =========== */
   --text-black-color: var(--black-color);
+  --text-grey-color: var(--grey-color);
   --text-white-color: var(--white-color);
 
   --text-primary-color: var(--primary-color);
@@ -39,6 +41,7 @@
 
   --text-danger-color: var(--danger-color);
   --text-nav-color: var(--black-color-light);
+  --text-quote-color: var(--grey-color);
   --text-typewriter-color: var(--typewriter-grey-color);
 
   /* =========== BACKGROUNDS =========== */
@@ -55,17 +58,25 @@
   --bg-secondary-light: var(--secondary-light);
 
   /* =========== FONTS =========== */
-  --font-alt: 'Open Sans', sans-serif;
-  --font-footer: 'Roboto', sans-serif;
-  --font-header: 'Montserrat', sans-serif;
-  --font-main: 'Roboto', sans-serif;
-  --font-mono: 'Fira Code', monospace;
-  --font-nav: 'Roboto', sans-serif;
-  --font-special: 'Inter', sans-serif;
-  --font-snackbar: 'Roboto', sans-serif;
-  --font-title-primary: 'Alegreya', sans-serif;
-  --font-title-secondary: 'Montserrat', sans-serif;
-  --font-typewriter: var(--font-mono);
+  --font-aria-sans-serif: 'Aria', sans-serif;
+  --font-fira-code: 'Fira Code', monospace;
+  --font-montserrat-sans-serif: 'Montserrat', sans-serif;
+  --font-robot-condensed: 'Roboto Condensed', sans-serif;
+  --font-robot-serif: 'Roboto Serif', serif;
+  --font-robot-sans-serif: 'Roboto', sans-serif;
+
+  --font-alt: var(--font-montserrat-sans-serif);
+  --font-bubble: var(--font-robot-condensed);
+  --font-footer: var(--font-robot-sans-serif);
+  --font-header: var(--font-robot-sans-serif);
+  --font-main: var(--font-robot-sans-serif);
+  --font-mono: var(--font-fira-code);
+  --font-nav: var(--font-robot-sans-serif);
+  --font-special: var(--font-robot-serif);
+  --font-snackbar: var(--font-robot-sans-serif);
+  --font-title-primary: var(--font-aria-sans-serif);
+  --font-title-secondary: var(--font-montserrat-sans-serif);
+  --font-typewriter: var(--font-fira-code);
 
   /* =========== FONT WEIGHTS =========== */
   --font-weight-thin: 100;
@@ -80,6 +91,7 @@
 
   /* =========== FONT SIZES (SEMANTIC) =========== */
   --font-size-base: clamp(14px, 1.2vw, 16px);
+  --font-size-bubble: clamp(11px, 1.2vw, 14px);
   --font-size-description: clamp(16px, 2.5vw, 22px);
   --font-size-footer: clamp(10px, 1.2vw, 12px);
   --font-size-link: 1.2rem;
@@ -89,6 +101,7 @@
   --font-size-h1: clamp(24px, 4vw, 32px);
   --font-size-h2: clamp(20px, 3vw, 28px);
   --font-size-h3: clamp(16px, 2vw, 24px);
+  --font-size-h4: clamp(14px, 2vw, 20px);
   --font-size-h1-form: clamp(24px, 3vw, 26px);
   --font-size-h1-hero: clamp(24px, 4vw, 44px);
 

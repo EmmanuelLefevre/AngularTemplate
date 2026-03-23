@@ -44,25 +44,48 @@ h3 {
   font-size: var(--font-size-h3);
 }
 
+h4 {
+  font-size: var(--font-size-h4);
+}
+
 /* =========== TAGS =========== */
-nav {
-  font-family: var(--font-nav);
+blockquote {
+  font-family: var(--font-main);
+  font-size: var(--font-size-base);
+}
+
+cite {
+  font-family: var(--font-mono);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-bubble);
 }
 
 footer {
   font-family: var(--font-footer);
 }
 
+nav {
+  font-family: var(--font-nav);
+  font-weight: var(--font-weight-light);
+}
+
+p {
+  font-family: var(--font-main);
+  font-size: var(--font-size-base);
+  text-wrap: pretty;
+}
+
 p,
 li,
 blockquote,
+cite,
 span {
   text-wrap: pretty;
 }
 
 code,
-pre,
-.admin-id {
+cite,
+pre {
   font-family: var(--font-mono);
 }
 
