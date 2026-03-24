@@ -60,11 +60,11 @@ export default defineConfig({
       clean: true
     },
     onConsoleLog(log: string): false | void {
-      if (log.includes('NG02956') || log.includes('NgOptimizedImage')) {
-        return false;
-      }
+      const IGNORED_MESSAGES = [
+        'NG02956'
+      ];
 
-      if (log.includes('HTMLMediaElement\'s load() method')) {
+      if (IGNORED_MESSAGES.some(msg => log.includes(msg))) {
         return false;
       }
     }
