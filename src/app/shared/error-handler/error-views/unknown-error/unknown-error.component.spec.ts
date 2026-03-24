@@ -55,7 +55,7 @@ describe('UnknownErrorComponent', () => {
   });
 
   describe('UI & Media Rendering', () => {
-    it('should render the UFO animation correctly', () => {
+    it('should render the UFO animation canvas correctly', () => {
       // --- ARRANGE ---
       fixture.detectChanges();
 
@@ -63,18 +63,8 @@ describe('UnknownErrorComponent', () => {
       const lottieAnim = fixture.debugElement.query(By.css('.unknown-error__lottie')).nativeElement;
 
       // --- ASSERT ---
-      expect(lottieAnim.getAttribute('src')).toBe('assets/animations/unknown-error-abduction.lottie');
+      expect(lottieAnim.tagName.toLowerCase()).toBe('canvas');
       expect(lottieAnim.getAttribute('aria-label')).toBe('Une soucoupe volante aspirant une chenille');
-    });
-
-    it('should render the Lottie animation correctly', () => {
-      fixture.detectChanges();
-
-      const lottiePlayer = fixture.debugElement.query(By.css('dotlottie-wc'));
-
-      if (lottiePlayer) {
-        expect(lottiePlayer.nativeElement.getAttribute('src')).toContain('unknown-error-abduction.lottie');
-      }
     });
   });
 

@@ -3,6 +3,7 @@
   "attr-lowercase": [
     "*ngTemplateOutlet",
     "#logoImage",
+    "#lottieCanvas",
     "#renderContent",
     "(ngSubmit)",
     "[ariaLabel]",

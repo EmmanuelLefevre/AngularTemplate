@@ -1,13 +1,12 @@
 <section class="unknown-error">
   <div class="unknown-error__content">
     <div class="unknown-error__animation-wrapper">
-      <dotlottie-wc
-        src="assets/animations/unknown-error-abduction.lottie"
-        autoplay
-        loop
+      <canvas
+        #lottieCanvas
         role="img"
         [attr.aria-label]="'PAGES.ERROR.UNKNOWN.IMG.ALT.ABDUCTION' | translate"
-        class="unknown-error__lottie" />
+        class="unknown-error__lottie">
+      </canvas>
     </div>
 
     <h4 class="unknown-error__title">

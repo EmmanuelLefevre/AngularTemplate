@@ -4,6 +4,7 @@ import { provideTranslateService, TranslateLoader, TranslateService } from '@ngx
 import { provideClientHydration } from '@angular/platform-browser';
 import { provideRouter } from '@angular/router';
 import { catchError, firstValueFrom, Observable, of } from 'rxjs';
+import { DotLottie } from '@lottiefiles/dotlottie-web';
 
 import { ROUTES } from '@app/app.routes';
 import { authInterceptor } from '@core/interceptor/auth/auth.interceptor';
@@ -36,6 +37,8 @@ export const APP_CONFIG: ApplicationConfig = {
       withInterceptors(HTTP_INTERCEPTORS)
     ),
     provideAppInitializer(async() => {
+      DotLottie.setWasmUrl('/assets/wasm/dotlottie-player.wasm');
+
       const AUTH_SERVICE = inject(AuthService);
       const TRANSLATE = inject(TranslateService);
 
