@@ -4,6 +4,29 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 import { UnknownErrorComponent } from './unknown-error.component';
 
+vi.mock('@lottiefiles/dotlottie-web', () => {
+  return {
+    DotLottie: vi.fn().mockImplementation(function() {
+      let readyCallback: (() => void) | undefined;
+
+      return {
+        addEventListener: vi.fn((event: string, callback: () => void): void => {
+          if (event === 'ready') {
+            readyCallback = callback;
+          }
+        }),
+
+        uiTriggerReady: (): void => {
+          if (readyCallback) {
+            readyCallback();
+          }
+        },
+        destroy: vi.fn(),
+      };
+    }),
+  };
+});
+
 describe('UnknownErrorComponent', () => {
 
   let component: UnknownErrorComponent;
@@ -95,6 +118,24 @@ describe('UnknownErrorComponent', () => {
       // --- ASSERT ---
       expect(title.textContent.trim()).toBe('Houston, we have a problem!');
       expect(subtitle.textContent.trim()).toBe('It seems this page took a leap through spacetime...');
+    });
+  });
+
+  describe('Animation Lifecycle', () => {
+    it('should set isReady to true when animation is ready', () => {
+      // --- ARRANGE ---
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const lottieInstance = (component as any).dotLottieInstance;
+
+      // --- ACT ---
+      lottieInstance.uiTriggerReady();
+      fixture.detectChanges();
+
+      // --- ASSERT ---
+      expect(component.isReady).toBe(true);
+
+      const section = fixture.debugElement.query(By.css('.unknown-error')).nativeElement;
+      expect(section.classList.contains('is-ready')).toBe(true);
     });
   });
 });
