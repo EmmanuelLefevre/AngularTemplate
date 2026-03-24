@@ -6,6 +6,7 @@
 .git
 .htmlhintrc
 .ngx-translate-lint.json
+_animations.scss
 angular.json
 coverage/
 dist/
