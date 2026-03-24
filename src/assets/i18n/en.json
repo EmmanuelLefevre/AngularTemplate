@@ -28,6 +28,10 @@
           "TITLE": "Page Not Found",
           "DESCRIPTION": "The page you are looking for does not exist or has been deleted."
         },
+        "408": {
+          "TITLE": "Timeout",
+          "DESCRIPTION": "The connection took too long to respond."
+        },
         "500": {
           "TITLE": "Server Error",
           "DESCRIPTION": "An unexpected error occurred on our servers."
@@ -154,6 +158,15 @@
         "IMG": {
           "ALT": {
             "ABDUCTION": "An alien flying saucer abducts a camper asleep in his sleeping bag."
+          }
+        }
+      },
+      "TIMEOUT": {
+        "TITLE": "Signal loss !",
+        "SUBTITLE": "Even light takes time to travel across the universe...",
+        "IMG": {
+          "ALT": {
+            "SANDGLASS": "A sandglass spinning on its axis."
           }
         }
       }

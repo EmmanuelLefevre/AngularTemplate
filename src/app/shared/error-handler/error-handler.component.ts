@@ -42,6 +42,9 @@ export class ErrorHandlerComponent implements OnInit {
           case URL.includes('unauthorized-error'):
             codeValue = '401';
             break;
+          case URL.includes('timeout-error'):
+            codeValue = '408';
+            break;
           case URL.includes('server-error'):
             codeValue = '500';
             break;
@@ -60,7 +63,8 @@ export class ErrorHandlerComponent implements OnInit {
         'unfound-error',
         'server-error',
         'generic-error',
-        'unknown-error'
+        'unknown-error',
+        'timeout-error'
       ];
 
       if (ERROR_PAGES.some(page => CURRENT_URL.includes(page))) {
@@ -76,6 +80,10 @@ export class ErrorHandlerComponent implements OnInit {
           break;
         case RAW_VALUE === '404':
           destination = 'unfound-error';
+          break;
+        case RAW_VALUE === '408':
+        case RAW_VALUE === '504':
+          destination = 'timeout-error';
           break;
         case RAW_VALUE === '500':
           destination = 'server-error';

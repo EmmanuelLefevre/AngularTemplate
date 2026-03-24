@@ -1,0 +1,22 @@
+<section
+  class="timeout-error"
+  [class.is-ready]="isReady">
+  <div class="timeout-error__content">
+    <div class="timeout-error__animation-wrapper">
+      <canvas
+        #lottieCanvas
+        role="img"
+        [attr.aria-label]="'PAGES.ERROR.TIMEOUT.IMG.ALT.SANDGLASS' | translate"
+        class="timeout-error__lottie">
+      </canvas>
+    </div>
+
+    <h4 class="timeout-error__title">
+      {{ 'PAGES.ERROR.TIMEOUT.TITLE' | translate }}
+    </h4>
+
+    <h5 class="timeout-error__subtitle">
+      {{ 'PAGES.ERROR.TIMEOUT.SUBTITLE' | translate }}
+    </h5>
+  </div>
+</section>

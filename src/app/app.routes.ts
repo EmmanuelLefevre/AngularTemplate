@@ -124,6 +124,18 @@ export const ROUTES: Routes = [
                 robots: 'noindex, nofollow'
               }
             }
+          },
+          { path: 'timeout-error',
+            loadComponent: () => import(
+              '@shared/error-handler/error-views/timeout-error/timeout-error.component')
+              .then(m => m.TimeoutErrorComponent),
+            data: {
+              seo: {
+                titleKey: 'META.PAGES.ERROR.408.TITLE',
+                descriptionKey: 'META.PAGES.ERROR.408.DESCRIPTION',
+                robots: 'noindex, nofollow'
+              }
+            }
           }
         ]
       },

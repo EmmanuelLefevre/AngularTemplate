@@ -177,6 +177,31 @@ describe('ErrorHandlerComponent', () => {
       );
     });
 
+    it('should infer code 401 from URL when queryParams are missing and URL is unauthorized-error', () => {
+      // --- ARRANGE ---
+      Object.defineProperty(router, 'url', { value: '/error/unauthorized-error', configurable: true });
+      queryParams$.next({});
+
+      // --- ACT ---
+      fixture.detectChanges();
+
+      // --- ASSERT ---
+      expect(component.code()).toBe('401');
+    });
+
+    it('should NOT navigate if the current URL is unauthorized-error', () => {
+      // --- ARRANGE ---
+      Object.defineProperty(router, 'url', { get: () => '/error/unauthorized-error' });
+
+      queryParams$.next({ code: '401' });
+
+      // --- ACT ---
+      fixture.detectChanges();
+
+      // --- ASSERT ---
+      expect(router.navigate).not.toHaveBeenCalled();
+    });
+
     it('should navigate to "unfound-error" when code is 404', () => {
       // --- ARRANGE ---
       queryParams$.next({ code: '404' });
@@ -194,6 +219,73 @@ describe('ErrorHandlerComponent', () => {
       );
     });
 
+    it('should infer code 404 from URL when queryParams are missing and URL is unfound-error', () => {
+      // --- ARRANGE ---
+      Object.defineProperty(router, 'url', { value: '/error/unfound-error', configurable: true });
+      queryParams$.next({});
+
+      // --- ACT ---
+      fixture.detectChanges();
+
+      // --- ASSERT ---
+      expect(component.code()).toBe('404');
+    });
+
+    it('should NOT navigate if the current URL is unfound-error', () => {
+      // --- ARRANGE ---
+      Object.defineProperty(router, 'url', { get: () => '/error/unfound-error' });
+
+      queryParams$.next({ code: '404' });
+
+      // --- ACT ---
+      fixture.detectChanges();
+
+      // --- ASSERT ---
+      expect(router.navigate).not.toHaveBeenCalled();
+    });
+
+    it('should navigate to "timeout-error" when code is 408', () => {
+      // --- ARRANGE ---
+      queryParams$.next({ code: '408' });
+
+      // --- ACT ---
+      fixture.detectChanges();
+
+      // --- ASSERT ---
+      expect(router.navigate).toHaveBeenCalledWith(
+        ['timeout-error'],
+        expect.objectContaining({
+          queryParams: { code: '408' },
+          relativeTo: expect.any(Object)
+        })
+      );
+    });
+
+    it('should infer code 408 from URL when queryParams are missing and URL is timeout-error', () => {
+      // --- ARRANGE ---
+      Object.defineProperty(router, 'url', { value: '/error/timeout-error', configurable: true });
+      queryParams$.next({});
+
+      // --- ACT ---
+      fixture.detectChanges();
+
+      // --- ASSERT ---
+      expect(component.code()).toBe('408');
+    });
+
+    it('should NOT navigate if the current URL is timeout-error', () => {
+      // --- ARRANGE ---
+      Object.defineProperty(router, 'url', { get: () => '/error/timeout-error' });
+
+      queryParams$.next({ code: '408' });
+
+      // --- ACT ---
+      fixture.detectChanges();
+
+      // --- ASSERT ---
+      expect(router.navigate).not.toHaveBeenCalled();
+    });
+
     it('should navigate to "server-error" when code is 500', () => {
       // --- ARRANGE ---
       queryParams$.next({ code: '500' });
@@ -209,6 +301,62 @@ describe('ErrorHandlerComponent', () => {
           relativeTo: expect.any(Object)
         })
       );
+    });
+
+    it('should infer code 500 from URL when queryParams are missing and URL is server-error', () => {
+      // --- ARRANGE ---
+      Object.defineProperty(router, 'url', { value: '/error/server-error', configurable: true });
+      queryParams$.next({});
+
+      // --- ACT ---
+      fixture.detectChanges();
+
+      // --- ASSERT ---
+      expect(component.code()).toBe('500');
+    });
+
+    it('should NOT navigate if the current URL is server-error', () => {
+      // --- ARRANGE ---
+      Object.defineProperty(router, 'url', { get: () => '/error/server-error' });
+
+      queryParams$.next({ code: '500' });
+
+      // --- ACT ---
+      fixture.detectChanges();
+
+      // --- ASSERT ---
+      expect(router.navigate).not.toHaveBeenCalled();
+    });
+
+    it('should navigate to "timeout-error" when code is 504', () => {
+      // --- ARRANGE ---
+      queryParams$.next({ code: '504' });
+
+      // --- ACT ---
+      fixture.detectChanges();
+
+      // --- ASSERT ---
+      // --- ASSERT ---
+      expect(router.navigate).toHaveBeenCalledWith(
+        ['timeout-error'],
+        expect.objectContaining({
+          queryParams: { code: '504' },
+          relativeTo: expect.any(Object)
+        })
+      );
+    });
+
+    it('should NOT navigate if the current URL is timeout-error', () => {
+      // --- ARRANGE ---
+      Object.defineProperty(router, 'url', { get: () => '/error/timeout-error' });
+
+      queryParams$.next({ code: '504' });
+
+      // --- ACT ---
+      fixture.detectChanges();
+
+      // --- ASSERT ---
+      expect(router.navigate).not.toHaveBeenCalled();
     });
 
     it('should navigate to "generic-error" with params when code is valid but unhandled', () => {
@@ -263,6 +411,18 @@ describe('ErrorHandlerComponent', () => {
 
       // --- ASSERT ---
       expect(component.code()).toBe('401');
+    });
+
+    it('should infer code 408 from URL when queryParams are missing', () => {
+      // --- ARRANGE ---
+      Object.defineProperty(router, 'url', { value: '/error/timeout-error', configurable: true });
+      queryParams$.next({});
+
+      // --- ACT ---
+      fixture.detectChanges();
+
+      // --- ASSERT ---
+      expect(component.code()).toBe('408');
     });
 
     it('should infer code 500 from URL when queryParams are missing', () => {

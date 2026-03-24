@@ -28,6 +28,10 @@
           "TITLE": "Page Introuvable",
           "DESCRIPTION": "La page que vous recherchez n'existe pas ou a été supprimée."
         },
+        "408": {
+          "TITLE": "Délai Expiré",
+          "DESCRIPTION": "La connexion a mis trop de temps à répondre."
+        },
         "500": {
           "TITLE": "Erreur Serveur",
           "DESCRIPTION": "Une erreur inattendue s'est produite sur nos serveurs."
@@ -153,7 +157,16 @@
         "SUBTITLE": "Il semblerait que cette page ait fait un saut dans l'espace-temps...",
         "IMG": {
           "ALT": {
-            "ABDUCTION": "Une soucoupe volante extraterrestre enlevant un campeur endormi dans son sac de couchage."
+            "ABDUCTION": "Une soucoupe volante extraterrestre enlevant un campeur endormi dans son sac de couchage"
+          }
+        }
+      },
+      "TIMEOUT": {
+        "TITLE": "Perte de signal !",
+        "SUBTITLE": "Même la lumière met du temps à traverser l'univers...",
+        "IMG": {
+          "ALT": {
+            "SANDGLASS": "Un sablier en train de tourner sur lui-même"
           }
         }
       }

@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
-import { UnknownErrorComponent } from './unknown-error.component';
+import { TimeoutErrorComponent } from './timeout-error.component';
 
 vi.mock('@lottiefiles/dotlottie-web', () => {
   return {
@@ -27,16 +27,16 @@ vi.mock('@lottiefiles/dotlottie-web', () => {
   };
 });
 
-describe('UnknownErrorComponent', () => {
+describe('TimeoutErrorComponent', () => {
 
-  let component: UnknownErrorComponent;
-  let fixture: ComponentFixture<UnknownErrorComponent>;
+  let component: TimeoutErrorComponent;
+  let fixture: ComponentFixture<TimeoutErrorComponent>;
   let translate: TranslateService;
 
   beforeEach(async() => {
     await TestBed.configureTestingModule({
       imports: [
-        UnknownErrorComponent,
+        TimeoutErrorComponent,
         TranslateModule.forRoot()
       ]
     }).compileComponents();
@@ -46,10 +46,10 @@ describe('UnknownErrorComponent', () => {
     translate.setTranslation('fr', {
       'PAGES': {
         'ERROR': {
-          'UNKNOWN': {
-            'TITLE': 'Houston, on a un problème !',
-            'SUBTITLE': 'Il semblerait que cette page ait fait un saut dans l\'espace-temps...',
-            'IMG.ALT.ABDUCTION': 'Une soucoupe volante aspirant une chenille'
+          'TIMEOUT': {
+            'TITLE': 'Perte de signal !',
+            'SUBTITLE': 'Même la lumière met du temps à traverser l\'univers...',
+            'IMG.ALT.SANDGLASS': 'Un sablier en train de tourner sur lui-même'
           }
         }
       }
@@ -57,17 +57,17 @@ describe('UnknownErrorComponent', () => {
     translate.setTranslation('en', {
       'PAGES': {
         'ERROR': {
-          'UNKNOWN': {
-            'TITLE': 'Houston, we have a problem !',
-            'SUBTITLE': 'It seems this page took a leap through spacetime...',
-            'IMG.ALT.ABDUCTION': 'A flying saucer abducting a caterpillar'
+          'TIMEOUT': {
+            'TITLE': 'Signal loss !',
+            'SUBTITLE': 'Even light takes time to travel across the universe...',
+            'IMG.ALT.SANDGLASS': 'A sandglass spinning on its axis'
           }
         }
       }
     });
     translate.use('fr');
 
-    fixture = TestBed.createComponent(UnknownErrorComponent);
+    fixture = TestBed.createComponent(TimeoutErrorComponent);
     component = fixture.componentInstance;
 
     await fixture.whenStable();
@@ -83,11 +83,11 @@ describe('UnknownErrorComponent', () => {
       fixture.detectChanges();
 
       // --- ACT ---
-      const lottieAnim = fixture.debugElement.query(By.css('.unknown-error__lottie')).nativeElement;
+      const lottieAnim = fixture.debugElement.query(By.css('.timeout-error__lottie')).nativeElement;
 
       // --- ASSERT ---
       expect(lottieAnim.tagName.toLowerCase()).toBe('canvas');
-      expect(lottieAnim.getAttribute('aria-label')).toBe('Une soucoupe volante aspirant une chenille');
+      expect(lottieAnim.getAttribute('aria-label')).toBe('Un sablier en train de tourner sur lui-même');
     });
   });
 
@@ -96,12 +96,12 @@ describe('UnknownErrorComponent', () => {
       // --- ACT ---
       fixture.detectChanges();
 
-      const title = fixture.debugElement.query(By.css('.unknown-error__title')).nativeElement;
-      const subtitle = fixture.debugElement.query(By.css('.unknown-error__subtitle')).nativeElement;
+      const title = fixture.debugElement.query(By.css('.timeout-error__title')).nativeElement;
+      const subtitle = fixture.debugElement.query(By.css('.timeout-error__subtitle')).nativeElement;
 
       // --- ASSERT ---
-      expect(title.textContent.trim()).toBe('Houston, on a un problème !');
-      expect(subtitle.textContent.trim()).toBe('Il semblerait que cette page ait fait un saut dans l\'espace-temps...');
+      expect(title.textContent.trim()).toBe('Perte de signal !');
+      expect(subtitle.textContent.trim()).toBe('Même la lumière met du temps à traverser l\'univers...');
     });
 
     it('should update texts when language is switched to English', () => {
@@ -112,12 +112,12 @@ describe('UnknownErrorComponent', () => {
       translate.use('en');
       fixture.detectChanges();
 
-      const title = fixture.debugElement.query(By.css('.unknown-error__title')).nativeElement;
-      const subtitle = fixture.debugElement.query(By.css('.unknown-error__subtitle')).nativeElement;
+      const title = fixture.debugElement.query(By.css('.timeout-error__title')).nativeElement;
+      const subtitle = fixture.debugElement.query(By.css('.timeout-error__subtitle')).nativeElement;
 
       // --- ASSERT ---
-      expect(title.textContent.trim()).toBe('Houston, we have a problem !');
-      expect(subtitle.textContent.trim()).toBe('It seems this page took a leap through spacetime...');
+      expect(title.textContent.trim()).toBe('Signal loss !');
+      expect(subtitle.textContent.trim()).toBe('Even light takes time to travel across the universe...');
     });
   });
 
@@ -134,7 +134,7 @@ describe('UnknownErrorComponent', () => {
       // --- ASSERT ---
       expect(component.isReady).toBe(true);
 
-      const section = fixture.debugElement.query(By.css('.unknown-error')).nativeElement;
+      const section = fixture.debugElement.query(By.css('.timeout-error')).nativeElement;
       expect(section.classList.contains('is-ready')).toBe(true);
     });
   });
