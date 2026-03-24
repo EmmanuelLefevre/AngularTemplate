@@ -223,3 +223,13 @@ $shake-intensity: 1%;
   80% { transform: translate(1px, 1px); }
   90% { transform: translate(-1px, 0px); }
 }
+
+/*------Float------*/
+.float{
+  animation: float 6s ease-in-out infinite;
+}
+@keyframes float {
+  0%   { transform: translateY(0px); }
+  50%  { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}

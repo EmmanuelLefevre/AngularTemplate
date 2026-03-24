@@ -1,1 +1,21 @@
-<p>Hello World unknown-error works!</p>
+<section class="unknown-error">
+  <div class="unknown-error__content">
+    <div class="unknown-error__animation-wrapper">
+      <dotlottie-wc
+        src="assets/animations/unknown-error-abduction.lottie"
+        autoplay
+        loop
+        role="img"
+        [attr.aria-label]="'PAGES.ERROR.UNKNOWN.IMG.ALT.ABDUCTION' | translate"
+        class="unknown-error__lottie" />
+    </div>
+
+    <h4 class="unknown-error__title">
+      {{ 'PAGES.ERROR.UNKNOWN.TITLE' | translate }}
+    </h4>
+
+    <h5 class="unknown-error__subtitle">
+      {{ 'PAGES.ERROR.UNKNOWN.SUBTITLE' | translate }}
+    </h5>
+  </div>
+</section>

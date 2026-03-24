@@ -114,6 +114,7 @@
  ┣ 🖼️assets
  ┃ ┣ ⚙️_config
  ┃ ┣ 💾_data
+ ┃ ┣ 🎬animations
  ┃ ┣ 🌄background
  ┃ ┣ 🔡fonts
  ┃ ┣ 🗣️i18n

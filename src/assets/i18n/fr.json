@@ -124,7 +124,7 @@
       },
       "UNAUTHORIZED": {
         "TITLE": "Accès Interdit",
-        "MESSAGE": "On a quelques questions avant de te laisser passer. A commencer par : t'es qui ? Ton accréditation ne passe pas pour cette zone."
+        "MESSAGE": "On a quelques questions avant de te laisser passer. A commencer par : t'es qui ? Ton accréditation n'est pas valable pour cette zone."
       },
       "SERVER": {
         "SUBTITLE": "Oup's nos serveurs sont HS...",
@@ -145,6 +145,15 @@
           "ALT": {
             "BULK": "Masse pour frapper les développeurs",
             "HAMSTER": "Hamster sortant d'un trou qui se moque de vous"
+          }
+        }
+      },
+      "UNKNOWN": {
+        "TITLE": "Houston, on a un problème !",
+        "SUBTITLE": "Il semblerait que cette page ait fait un saut dans l'espace-temps...",
+        "IMG": {
+          "ALT": {
+            "ABDUCTION": "Une soucoupe volante extraterrestre enlevant un campeur endormi dans son sac de couchage."
           }
         }
       }

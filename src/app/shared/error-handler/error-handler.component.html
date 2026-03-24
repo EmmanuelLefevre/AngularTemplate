@@ -3,12 +3,14 @@
     {{ 'PAGES.ERROR.NOT_FOUND.TITLE' | translate }}
   </h1>
 
-  <h3
-    class="error-view__code"
-    [class.is-english]="translate.getCurrentLang() === 'en'">
-    <span class="error-view__label">{{ 'PAGES.ERROR.NOT_FOUND.LABEL' | translate }}</span>
-    <span class="error-view__code-value">{{ code() }}</span>
-  </h3>
+  @if (code()) {
+    <h3
+      class="error-view__code"
+      [class.is-english]="translate.getCurrentLang() === 'en'">
+      <span class="error-view__label">{{ 'PAGES.ERROR.NOT_FOUND.LABEL' | translate }}</span>
+      <span class="error-view__code-value">{{ code() }}</span>
+    </h3>
+  }
 
   <div class="error-view__content">
     <router-outlet />

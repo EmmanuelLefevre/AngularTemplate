@@ -29,8 +29,8 @@ export const TEAM_DEVELOPERS: Developer[] = [
     id: 5,
     name: 'Jason Parse',
     photoUrl: 'https://api.dicebear.com/9.x/fun-emoji/svg?seed=JasonParse&backgroundColor=b6e3f4',
-    photoScale: 0.9,
-    photoTranslateY: '7px',
+    photoScale: 1.1,
+    photoTranslateY: '0px',
     apologizesMessage: 'PAGES.ERROR.SERVER.APOLOGIZES.DEV.3'
   }
 ];

@@ -124,7 +124,7 @@
       },
       "UNAUTHORIZED": {
         "TITLE": "Forbidden Access",
-        "MESSAGE": "We have a few questions before we let you through. First of all : who are you? Your accreditation isn't valid for this area."
+        "MESSAGE": "We have a few questions before we let you through. First of all: who are you ? Your accreditation isn't valid for this area."
       },
       "SERVER": {
         "SUBTITLE": "Oops, our servers are down...",
@@ -145,6 +145,15 @@
           "ALT": {
             "BULK": "Bulk to hit the developers",
             "HAMSTER": "Hamster coming out of a hole, laughing at you"
+          }
+        }
+      },
+      "UNKNOWN": {
+        "TITLE": "Houston, we have a problem !",
+        "SUBTITLE": "It would seem that this page has taken a leap through space and time...",
+        "IMG": {
+          "ALT": {
+            "ABDUCTION": "An alien flying saucer abducts a camper asleep in his sleeping bag."
           }
         }
       }

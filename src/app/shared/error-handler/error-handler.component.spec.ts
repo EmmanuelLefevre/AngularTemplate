@@ -335,10 +335,46 @@ describe('ErrorHandlerComponent', () => {
       expect(buttonDebugEl.componentInstance.label()).toBe('Se connecter');
       expect(router.navigate).toHaveBeenCalledWith(['/login']);
     });
+
+    it('should NOT render the error code block when code is empty (unknown error)', () => {
+      // --- ARRANGE ---
+      Object.defineProperty(router, 'url', { value: '/error/unknown-error', configurable: true });
+      queryParams$.next({});
+
+      // --- ACT ---
+      fixture.detectChanges();
+
+      // --- ASSERT ---
+      expect(component.code()).toBe('');
+
+      const codeContainer = fixture.debugElement.query(By.css('.error-view__code'));
+
+      expect(codeContainer).toBeNull();
+    });
+
+    it('should render the error code block when code is provided', () => {
+      // --- ARRANGE ---
+      Object.defineProperty(router, 'url', { value: '/error/unfound-error', configurable: true });
+      queryParams$.next({ code: '404' });
+
+      // --- ACT ---
+      fixture.detectChanges();
+
+      // --- ASSERT ---
+      expect(component.code()).toBe('404');
+
+      const codeContainer = fixture.debugElement.query(By.css('.error-view__code'));
+
+      expect(codeContainer).toBeTruthy();
+      expect(codeContainer.nativeElement.textContent).toContain('404');
+    });
   });
 
   describe('Internationalization (i18n)', () => {
     it('should display the default French translations on init', () => {
+      // --- ARRANGE ---
+      queryParams$.next({ code: '404' });
+
       // --- ACT ---
       fixture.detectChanges();
 
@@ -352,6 +388,7 @@ describe('ErrorHandlerComponent', () => {
 
     it('should update static texts when language is switched to English', () => {
       // --- ARRANGE ---
+      queryParams$.next({ code: '404' });
       fixture.detectChanges();
 
       // --- ACT ---
@@ -409,6 +446,9 @@ describe('ErrorHandlerComponent', () => {
     });
 
     it('should apply "is-english" class to the code container when language is English', () => {
+      // --- ARRANGE ---
+      queryParams$.next({ code: '404' });
+
       // --- ACT ---
       translate.use('en');
       fixture.detectChanges();
@@ -420,6 +460,9 @@ describe('ErrorHandlerComponent', () => {
     });
 
     it('should NOT apply "is-english" class when language is French', () => {
+      // --- ARRANGE ---
+      queryParams$.next({ code: '404' });
+
       // --- ACT ---
       translate.use('fr');
       fixture.detectChanges();

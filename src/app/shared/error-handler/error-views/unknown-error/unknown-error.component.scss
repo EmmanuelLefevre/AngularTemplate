@@ -1,3 +1,52 @@
+@use 'abstracts' as *;
+
 :host {
   display: block;
+}
+
+.unknown-error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: var(--bg-color);
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    max-width: 600px;
+  }
+
+  &__animation-wrapper {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+    animation: float 6s ease-in-out infinite;
+  }
+
+  &__lottie {
+    display: block;
+    aspect-ratio: 1 / 1;
+    width: 100%;
+    height: auto;
+    border-radius: 16px;
+    border: solid 2px var(--primary-color);
+    overflow: hidden;
+  }
+
+  &__title {
+    color: var(--primary-color);
+    margin: 0;
+  }
+
+  &__subtitle {
+    color: transparent;
+    margin: 0;
+    background: linear-gradient(to right, var(--secondary-color), var(--primary-color));
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
 }
