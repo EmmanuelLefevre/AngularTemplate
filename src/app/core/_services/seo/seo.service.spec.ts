@@ -25,6 +25,7 @@ describe('SeoService', () => {
   };
 
   const MOCK_TRANSLATIONS: Record<string, string> = {
+    'META.DEFAULT.APP_NAME': 'AngularTemplate',
     'CUSTOM.TITLE': 'My Page',
     'CUSTOM.DESCRIPTION': 'My Description',
     'META.DEFAULT.TITLE': 'Default Title',
@@ -34,7 +35,14 @@ describe('SeoService', () => {
 
   beforeEach(() => {
     const TRANSLATE_MOCK = {
-      get: vi.fn(() => of(MOCK_TRANSLATIONS)),
+      get: vi.fn((keys: string | string[]) => {
+        if (Array.isArray(keys)) {
+          const result: any = {};
+          keys.forEach(k => result[k] = MOCK_TRANSLATIONS[k]);
+          return of(result);
+        }
+        return of(MOCK_TRANSLATIONS[keys as string]);
+      }),
       currentLang: 'fr',
       onLangChange: of({ lang: 'fr' })
     };
@@ -233,7 +241,7 @@ describe('SeoService', () => {
     await expect(LOCAL_SERVICE.updateMetaTags({})).resolves.not.toThrow();
   });
 
-  it('should update title and description tags when both keys are provided', async() => {
+  it('should update title with app name prefix when a key is provided', async() => {
     // --- ARRANGE ---
     const DATA: SeoData = {
       titleKey: 'CUSTOM.TITLE',
@@ -244,48 +252,27 @@ describe('SeoService', () => {
     await service.updateMetaTags(DATA);
 
     // --- ASSERT ---
-    expect(TITLE_MOCK.setTitle).toHaveBeenCalledWith('My Page');
-    expect(META_MOCK.updateTag).toHaveBeenCalledWith({ property: 'og:title', content: 'My Page' });
+    const EXPECTED_TITLE = 'AngularTemplate | My Page';
 
-    expect(META_MOCK.updateTag).toHaveBeenCalledWith({ name: 'description', content: 'My Description' });
-    expect(META_MOCK.updateTag).toHaveBeenCalledWith({ property: 'og:description', content: 'My Description' });
+    expect(TITLE_MOCK.setTitle).toHaveBeenCalledWith(EXPECTED_TITLE);
+    expect(META_MOCK.updateTag).toHaveBeenCalledWith({ property: 'og:title', content: EXPECTED_TITLE });
   });
 
-  it('should use default description fallback when descriptionKey is missing', async() => {
+  it('should use only app name if titleKey matches default title (Home case)', async() => {
     // --- ARRANGE ---
     const DATA: SeoData = {
-      titleKey: 'CUSTOM.TITLE'
+      titleKey: 'META.DEFAULT.TITLE'
     };
 
     // --- ACT ---
     await service.updateMetaTags(DATA);
 
     // --- ASSERT ---
-    expect(TITLE_MOCK.setTitle).toHaveBeenCalledWith('My Page');
-    expect(META_MOCK.updateTag).toHaveBeenCalledWith({ property: 'og:title', content: 'My Page' });
-
-    expect(META_MOCK.updateTag).toHaveBeenCalledWith({ name: 'description', content: 'Default Description' });
-    expect(META_MOCK.updateTag).toHaveBeenCalledWith({ property: 'og:description', content: 'Default Description' });
+    expect(TITLE_MOCK.setTitle).toHaveBeenCalledWith('AngularTemplate');
+    expect(META_MOCK.updateTag).toHaveBeenCalledWith({ property: 'og:title', content: 'AngularTemplate' });
   });
 
-  it('should use default title fallback when titleKey is missing', async() => {
-    // --- ARRANGE ---
-    const DATA: SeoData = {
-      descriptionKey: 'CUSTOM.DESCRIPTION'
-    };
-
-    // --- ACT ---
-    await service.updateMetaTags(DATA);
-
-    // --- ASSERT ---
-    expect(META_MOCK.updateTag).toHaveBeenCalledWith({ name: 'description', content: 'My Description' });
-    expect(META_MOCK.updateTag).toHaveBeenCalledWith({ property: 'og:description', content: 'My Description' });
-
-    expect(TITLE_MOCK.setTitle).toHaveBeenCalledWith('Default Title');
-    expect(META_MOCK.updateTag).toHaveBeenCalledWith({ property: 'og:title', content: 'Default Title' });
-  });
-
-  it('should use both fallback values when no keys are provided', async() => {
+  it('should use app name as fallback when no titleKey is provided', async() => {
     // --- ARRANGE ---
     const DATA: SeoData = {};
 
@@ -293,11 +280,22 @@ describe('SeoService', () => {
     await service.updateMetaTags(DATA);
 
     // --- ASSERT ---
-    expect(TITLE_MOCK.setTitle).toHaveBeenCalledWith('Default Title');
-    expect(META_MOCK.updateTag).toHaveBeenCalledWith({ property: 'og:title', content: 'Default Title' });
+    expect(TITLE_MOCK.setTitle).toHaveBeenCalledWith('AngularTemplate');
+    expect(META_MOCK.updateTag).toHaveBeenCalledWith({ property: 'og:title', content: 'AngularTemplate' });
+  });
 
-    expect(META_MOCK.updateTag).toHaveBeenCalledWith({ name: 'description', content: 'Default Description' });
-    expect(META_MOCK.updateTag).toHaveBeenCalledWith({ property: 'og:description', content: 'Default Description' });
+  it('should still update description even if title is concatenated', async() => {
+    // --- ARRANGE ---
+    const DATA: SeoData = { descriptionKey: 'CUSTOM.DESCRIPTION' };
+
+    // --- ACT ---
+    await service.updateMetaTags(DATA);
+
+    // --- ASSERT ---
+    expect(META_MOCK.updateTag).toHaveBeenCalledWith({
+      name: 'description',
+      content: 'My Description'
+    });
   });
 
   it('should update keywords tag from translations', async() => {

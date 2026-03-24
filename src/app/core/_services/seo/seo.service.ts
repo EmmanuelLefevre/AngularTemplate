@@ -7,6 +7,8 @@ import { firstValueFrom } from 'rxjs';
 import { ENVIRONMENT } from '@env/environment';
 import { SeoData } from '@core/_models/seo/seo.model';
 
+const TITLE_SEPARATOR = ' | ';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -22,11 +24,13 @@ export class SeoService {
 
   async updateMetaTags(data: SeoData = {}): Promise<void> {
 
+    const APP_NAME_KEY = 'META.DEFAULT.APP_NAME';
     const DEFAULT_TITLE_KEY = 'META.DEFAULT.TITLE';
     const DEFAULT_DESC_KEY = 'META.DEFAULT.DESCRIPTION';
     const DEFAULT_KEYWORDS_KEY = 'META.DEFAULT.KEYWORDS';
 
     const KEYS: string[] = [
+      APP_NAME_KEY,
       DEFAULT_TITLE_KEY,
       DEFAULT_DESC_KEY,
       DEFAULT_KEYWORDS_KEY
@@ -41,9 +45,17 @@ export class SeoService {
 
     const translations = await firstValueFrom(this.translate.get(KEYS));
 
-    const TITLE = data.titleKey && translations[data.titleKey]
-      ? translations[data.titleKey]
-      : translations[DEFAULT_TITLE_KEY];
+    const APP_NAME = translations[APP_NAME_KEY];
+    const PAGE_TITLE = data.titleKey ? translations[data.titleKey] : null;
+
+    let finalTitle: string;
+
+    if (PAGE_TITLE && PAGE_TITLE !== translations[DEFAULT_TITLE_KEY]) {
+      finalTitle = `${APP_NAME}${TITLE_SEPARATOR}${PAGE_TITLE}`;
+    }
+    else {
+      finalTitle = APP_NAME;
+    }
 
     const DESCRIPTION = data.descriptionKey && translations[data.descriptionKey]
       ? translations[data.descriptionKey]
@@ -51,9 +63,9 @@ export class SeoService {
 
     const KEYWORDS = translations[DEFAULT_KEYWORDS_KEY];
 
-    if (TITLE) {
-      this.title.setTitle(TITLE);
-      this.meta.updateTag({ property: 'og:title', content: TITLE });
+    if (finalTitle) {
+      this.title.setTitle(finalTitle);
+      this.meta.updateTag({ property: 'og:title', content: finalTitle });
     }
 
     if (DESCRIPTION) {

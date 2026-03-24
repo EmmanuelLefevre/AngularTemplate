@@ -25,19 +25,19 @@
           "DESCRIPTION": "You do not have permission to access this page."
         },
         "404": {
-          "TITLE": "Page not found",
+          "TITLE": "Page Not Found",
           "DESCRIPTION": "The page you are looking for does not exist or has been deleted."
         },
         "500": {
-          "TITLE": "Server error",
+          "TITLE": "Server Error",
           "DESCRIPTION": "An unexpected error occurred on our servers."
         },
         "GENERIC": {
-          "TITLE": "Error occurred",
+          "TITLE": "Error Occurred",
           "DESCRIPTION": "We encountered a problem while processing your request."
         },
         "UNKNOWN": {
-          "TITLE": "Unknown error",
+          "TITLE": "Unknown Error",
           "DESCRIPTION": "An unknown error has occurred. Please try again later."
         }
       }

@@ -21,23 +21,23 @@
       },
       "ERROR": {
         "401": {
-          "TITLE": "Non autorisé",
+          "TITLE": "Non Autorisé",
           "DESCRIPTION": "Vous n'avez pas la permission d'accéder à cette page."
         },
         "404": {
-          "TITLE": "Page introuvable",
+          "TITLE": "Page Introuvable",
           "DESCRIPTION": "La page que vous recherchez n'existe pas ou a été supprimée."
         },
         "500": {
-          "TITLE": "Erreur serveur",
+          "TITLE": "Erreur Serveur",
           "DESCRIPTION": "Une erreur inattendue s'est produite sur nos serveurs."
         },
         "GENERIC": {
-          "TITLE": "Une erreur est survenue",
+          "TITLE": "Une Erreur Est Survenue",
           "DESCRIPTION": "Nous avons rencontré un problème lors du traitement de votre demande."
         },
         "UNKNOWN": {
-          "TITLE": "Erreur inconnue",
+          "TITLE": "Erreur Inconnue",
           "DESCRIPTION": "Une erreur inconnue s'est produite. Veuillez réessayer plus tard."
         }
       }
