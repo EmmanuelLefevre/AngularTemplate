@@ -1,9 +1,10 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, inject, OnDestroy, ViewChild } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { DotLottie } from '@lottiefiles/dotlottie-web';
 
 const ALIGN_CENTER = 0.5;
+const DEFAULT_PIXEL_RATIO = 1;
 
 @Component({
   selector: 'unknown-error',
@@ -14,8 +15,7 @@ const ALIGN_CENTER = 0.5;
   styleUrl: './unknown-error.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-
-export class UnknownErrorComponent implements OnInit, OnDestroy {
+export class UnknownErrorComponent implements AfterViewInit, OnDestroy {
 
   private readonly cdr = inject(ChangeDetectorRef);
 
@@ -25,7 +25,7 @@ export class UnknownErrorComponent implements OnInit, OnDestroy {
 
   isReady = false;
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
     this.dotLottieInstance = new DotLottie({
       canvas: this.lottieCanvas.nativeElement,
       src: 'assets/animations/unknown-error-abduction.lottie',
@@ -34,6 +34,9 @@ export class UnknownErrorComponent implements OnInit, OnDestroy {
       layout: {
         fit: 'contain',
         align: [ALIGN_CENTER, ALIGN_CENTER],
+      },
+      renderConfig: {
+        devicePixelRatio: window.devicePixelRatio || DEFAULT_PIXEL_RATIO
       }
     });
 

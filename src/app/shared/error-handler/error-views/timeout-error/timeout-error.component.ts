@@ -1,9 +1,10 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, inject, OnDestroy, ViewChild } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { DotLottie } from '@lottiefiles/dotlottie-web';
 
 const ALIGN_CENTER = 0.5;
+const DEFAULT_PIXEL_RATIO = 1;
 
 @Component({
   selector: 'timeout-error',
@@ -15,7 +16,7 @@ const ALIGN_CENTER = 0.5;
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
-export class TimeoutErrorComponent implements OnInit, OnDestroy {
+export class TimeoutErrorComponent implements AfterViewInit, OnDestroy {
 
   private readonly cdr = inject(ChangeDetectorRef);
 
@@ -25,7 +26,7 @@ export class TimeoutErrorComponent implements OnInit, OnDestroy {
 
   isReady = false;
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
     this.dotLottieInstance = new DotLottie({
       canvas: this.lottieCanvas.nativeElement,
       src: 'assets/animations/timeout-error-sandglass.lottie',
@@ -34,6 +35,9 @@ export class TimeoutErrorComponent implements OnInit, OnDestroy {
       layout: {
         fit: 'contain',
         align: [ALIGN_CENTER, ALIGN_CENTER],
+      },
+      renderConfig: {
+        devicePixelRatio: window.devicePixelRatio || DEFAULT_PIXEL_RATIO
       }
     });
 
