@@ -59,5 +59,14 @@ export default defineConfig({
       ],
       clean: true
     },
+    onConsoleLog(log: string): false | void {
+      if (log.includes('NG02956') || log.includes('NgOptimizedImage')) {
+        return false;
+      }
+
+      if (log.includes('HTMLMediaElement\'s load() method')) {
+        return false;
+      }
+    }
   }
 });

@@ -29,7 +29,7 @@
   # Disables sensitive functions by default
   Header set Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=(), usb=(), magnetometer=()"
 
-  # ONLY allow scripts from your own site AND YouTube
+  # ONLY allow scripts from your own site, YouTube AND dicebear
   # Note : If you are using Google fonts or external APIs, you will need to add them here.
-  Header set Content-Security-Policy "default-src 'self'; script-src 'self' https://www.youtube.com https://s.ytimg.com; style-src 'self' 'unsafe-inline'; img-src 'self' https://i.ytimg.com; connect-src 'self' https://api.votre-domaine.com; frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com; object-src 'none'; base-uri 'self';"
+  Header set Content-Security-Policy "default-src 'self'; script-src 'self' https://www.youtube.com https://s.ytimg.com; style-src 'self' 'unsafe-inline'; img-src 'self' https://i.ytimg.com https://api.dicebear.com; connect-src 'self' https://api.votre-domaine.com; frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com; object-src 'none'; base-uri 'self';"
 </IfModule>

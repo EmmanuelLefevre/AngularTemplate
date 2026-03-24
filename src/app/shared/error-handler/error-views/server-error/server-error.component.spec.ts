@@ -21,6 +21,11 @@ describe('ServerErrorComponent', () => {
 
   beforeEach(async() => {
 
+    const link = document.createElement('link');
+    link.rel = 'preconnect';
+    link.href = 'https://api.dicebear.com';
+    document.head.appendChild(link);
+
     mockAudio = {
       play: vi.fn().mockReturnValue(Promise.resolve()),
       load: vi.fn(),
