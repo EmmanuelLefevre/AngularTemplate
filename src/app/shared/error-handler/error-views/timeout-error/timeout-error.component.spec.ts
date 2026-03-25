@@ -78,7 +78,7 @@ describe('TimeoutErrorComponent', () => {
   });
 
   describe('UI & Media Rendering', () => {
-    it('should render the UFO animation canvas correctly', () => {
+    it('should render the sandglass animation canvas correctly', () => {
       // --- ARRANGE ---
       fixture.detectChanges();
 
@@ -119,6 +119,20 @@ describe('TimeoutErrorComponent', () => {
       expect(title.textContent.trim()).toBe('Signal loss !');
       expect(subtitle.textContent.trim()).toBe('Even light takes time to travel across the universe...');
     });
+
+    it('should update the img aria-label when language is switched to English', () => {
+      // --- ARRANGE ---
+      fixture.detectChanges();
+
+      // --- ACT ---
+      translate.use('en');
+      fixture.detectChanges();
+
+      const lottieAnim = fixture.debugElement.query(By.css('.timeout-error__lottie')).nativeElement;
+
+      // --- ASSERT ---
+      expect(lottieAnim.getAttribute('aria-label')).toBe('A sandglass spinning on its axis');
+    });
   });
 
   describe('Animation Lifecycle', () => {
@@ -136,6 +150,34 @@ describe('TimeoutErrorComponent', () => {
 
       const section = fixture.debugElement.query(By.css('.timeout-error')).nativeElement;
       expect(section.classList.contains('is-ready')).toBe(true);
+    });
+  });
+
+  describe('Lottie Configuration', () => {
+    it('should fallback to DEFAULT_PIXEL_RATIO if window.devicePixelRatio is undefined', () => {
+      // --- ARRANGE ---
+      const originalPixelRatio = window.devicePixelRatio;
+
+      Object.defineProperty(window, 'devicePixelRatio', {
+        value: undefined,
+        writable: true
+      });
+
+      // --- ACT ---
+      fixture = TestBed.createComponent(TimeoutErrorComponent);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
+
+      // --- ASSERT ---
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const lottieInstance = (component as any).dotLottieInstance;
+      expect(lottieInstance).toBeDefined();
+
+      // --- CLEANUP ---
+      Object.defineProperty(window, 'devicePixelRatio', {
+        value: originalPixelRatio,
+        writable: true
+      });
     });
   });
 });

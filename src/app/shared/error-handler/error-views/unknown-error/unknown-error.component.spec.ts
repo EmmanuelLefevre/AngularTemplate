@@ -119,6 +119,20 @@ describe('UnknownErrorComponent', () => {
       expect(title.textContent.trim()).toBe('Houston, we have a problem !');
       expect(subtitle.textContent.trim()).toBe('It seems this page took a leap through spacetime...');
     });
+
+    it('should update the img aria-label when language is switched to English', () => {
+      // --- ARRANGE ---
+      fixture.detectChanges();
+
+      // --- ACT ---
+      translate.use('en');
+      fixture.detectChanges();
+
+      const lottieAnim = fixture.debugElement.query(By.css('.unknown-error__lottie')).nativeElement;
+
+      // --- ASSERT ---
+      expect(lottieAnim.getAttribute('aria-label')).toBe('A flying saucer abducting a caterpillar');
+    });
   });
 
   describe('Animation Lifecycle', () => {
@@ -136,6 +150,34 @@ describe('UnknownErrorComponent', () => {
 
       const section = fixture.debugElement.query(By.css('.unknown-error')).nativeElement;
       expect(section.classList.contains('is-ready')).toBe(true);
+    });
+  });
+
+  describe('Lottie Configuration', () => {
+    it('should fallback to DEFAULT_PIXEL_RATIO if window.devicePixelRatio is undefined', () => {
+      // --- ARRANGE ---
+      const originalPixelRatio = window.devicePixelRatio;
+
+      Object.defineProperty(window, 'devicePixelRatio', {
+        value: undefined,
+        writable: true
+      });
+
+      // --- ACT ---
+      fixture = TestBed.createComponent(UnknownErrorComponent);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
+
+      // --- ASSERT ---
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const lottieInstance = (component as any).dotLottieInstance;
+      expect(lottieInstance).toBeDefined();
+
+      // --- CLEANUP ---
+      Object.defineProperty(window, 'devicePixelRatio', {
+        value: originalPixelRatio,
+        writable: true
+      });
     });
   });
 });
