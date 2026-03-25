@@ -21,7 +21,6 @@
   &.is-ready {
     transform: translateY(0);
     opacity: 1;
-    pointer-events: auto;
   }
 
   &__content {

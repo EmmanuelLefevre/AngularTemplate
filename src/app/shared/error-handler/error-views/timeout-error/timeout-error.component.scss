@@ -19,7 +19,6 @@
   &.is-ready {
     transform: translateY(0);
     opacity: 1;
-    pointer-events: auto;
   }
 
   &__content {
@@ -36,8 +35,7 @@
     aspect-ratio: 1 / 1;
     max-width: 300px;
     margin: 0 auto;
-    animation: pop-in 0.8s cubic-bezier(0.26, 0.53, 0.74, 1.48) forwards;
-    will-change: transform;
+    animation: fade-in-up 0.7s ease-out forwards;
   }
 
   &__lottie {

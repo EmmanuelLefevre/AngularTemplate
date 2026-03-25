@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, inject, OnDestroy, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { DotLottie } from '@lottiefiles/dotlottie-web';
@@ -15,7 +15,7 @@ const DEFAULT_PIXEL_RATIO = 1;
   styleUrl: './unknown-error.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class UnknownErrorComponent implements AfterViewInit, OnDestroy {
+export class UnknownErrorComponent implements OnInit, OnDestroy {
 
   private readonly cdr = inject(ChangeDetectorRef);
 
@@ -25,7 +25,7 @@ export class UnknownErrorComponent implements AfterViewInit, OnDestroy {
 
   isReady = false;
 
-  ngAfterViewInit(): void {
+  ngOnInit(): void {
     this.dotLottieInstance = new DotLottie({
       canvas: this.lottieCanvas.nativeElement,
       src: 'assets/animations/unknown-error-abduction.lottie',
