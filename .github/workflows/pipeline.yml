@@ -242,8 +242,8 @@ jobs:
           # ⚠️ Double-check folder name in /dist directory after build (pnpm build)
           SOURCE: 'dist/AngularTemplate/browser/'
 
-          # Avoids sending git configuration files on server
-          EXCLUDE: '/node_modules/, /.github/, /.git/'
+          # Avoids deleting files on server
+          EXCLUDE: '/maintenance.enable'
 
           # Server IP address
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}

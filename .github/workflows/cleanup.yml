@@ -53,6 +53,17 @@ jobs:
           -q '.[] | select(.displayTitle == "pages build and deployment") | .databaseId' \
           | xargs -r -I{} gh run delete {}
 
+      - name: 🗑️ Delete Maintenance Workflow Runs
+        continue-on-error: true
+        run: |
+          # Deletes old runs of the Maintenance Toggle workflow
+
+          MAINTENANCE_FILE="toggle-maintenance.yml"
+
+          gh run list --workflow "$MAINTENANCE_FILE" --status completed --limit 100 \
+          --json databaseId -q '.[].databaseId' \
+          | xargs -r -I{} gh run delete {}
+
       - name: 🧼 Cleanup Self History
         if: always()
         run: |

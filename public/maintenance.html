@@ -40,7 +40,9 @@
       rel="stylesheet"
       href="/maintenance.css" />
 
-    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <script
+      type="module"
+      src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs"></script>
   </head>
   <body>
     <main class="error-view">
@@ -65,8 +67,9 @@
         <section class="maintenance-error">
           <div class="maintenance-error__content">
             <div class="maintenance-error__animation-wrapper">
-              <lottie-player
-                src="/assets/animations/maintenance-error-under-construction.json"
+              <dotlottie-player
+                id="lottie"
+                src="/assets/animations/maintenance-error-under-construction.lottie"
                 background="transparent"
                 speed="1"
                 style="width: 100%; height: 100%"
@@ -92,56 +95,6 @@
       </div>
     </main>
 
-    <script>
-      const translations = {
-        fr: {
-          title: 'Une erreur est survenue.',
-          label: 'Erreur',
-          subtitle: 'Casques obligatoires !',
-          message: 'On laisse sécher le code et on revient vite...',
-          ariaLabel: "Une équipe technique s'affairant autour d'un écran en maintenance"
-        },
-        en: {
-          title: 'An error has occurred.',
-          label: 'Error',
-          subtitle: 'Helmets are needed !',
-          message: "We'll let the code dry and we'll be back soon...",
-          ariaLabel: 'A technical team working on a screen undergoing maintenance'
-        }
-      };
-
-      const userLang = navigator.language || navigator.userLanguage;
-      const lang = userLang.startsWith('en') ? 'en' : 'fr';
-
-      document.getElementById('h1').innerText = translations[lang].title;
-      document.getElementById('h3').innerText = translations[lang].label;
-      document.getElementById('h4').innerText = translations[lang].subtitle;
-      document.getElementById('h5').innerText = translations[lang].message;
-
-      document.getElementById('lottie').setAttribute('aria-label', translations[lang].ariaLabel);
-
-      if (lang === 'en') {
-        document.getElementById('h3-wrapper').style.flexDirection = 'row-reverse';
-      }
-
-      document.documentElement.lang = lang;
-    </script>
-
-    <script>
-      setInterval(async () => {
-        try {
-          const response = await fetch(window.location.href, {
-            method: 'HEAD',
-            cache: 'no-store'
-          });
-
-          if (response.ok) {
-            window.location.reload();
-          }
-        } catch (error) {
-          console.info('Website still under maintenance...');
-        }
-      }, 30000);
-    </script>
+    <script src="/maintenance.js"></script>
   </body>
 </html>
