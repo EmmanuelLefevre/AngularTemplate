@@ -109,7 +109,7 @@ Des outils essentiels comme des **Directives** (`input-focus`, `input-trim`, `in
 Architecture documentée en temps réel. **Compodoc** génère une documentation technique complète, automatiquement déployée et hébergée sur **GitHub Pages** à chaque merge sur le code stable (branche `main`). Cette **Compodoc** est évidemment aussi disponible en environnement local !  
 
 🚦 **Toggle Maintenance :**  
-Besoin de geler l'application en production pour une maintenance ? Un workflow **GitHub Actions** dédié agit comme un interrupteur (`toggle-maintenance.yml`). Depuis l'onglet `Actions` de **GitHub** un simple clic permet d'activer (🔴) ou de désactiver (🟢) la page de maintenance statique (**Erreur 503**). Pour cela le script se connecte en **SSH** pour piloter le fichier `maintenance.enable` intercepté par le `.htaccess`.  
+Besoin de geler l'application en production pour une maintenance ? Un workflow **GitHub Actions** dédié agit comme un interrupteur (`toggle-maintenance.yml`). Depuis l'onglet `Actions` de **GitHub**, un simple clic permet d'activer ou de désactiver la page de maintenance statique (**Erreur 503**). Pour cela le script se connecte en **SSH** pour piloter le fichier `maintenance.enable` intercepté par le `.htaccess`.  
 Un script ping le serveur et recharge automatiquement la page de l'utilisateur dès lors que le site revient en ligne (sans qu'ils n'aient besoin de rafraîchir manuellement !). ✨✨✨  
 
 ![Toggle Maintenance Mode](https://github.com/EmmanuelLefevre/MarkdownImg/blob/main/toggle_maintenance_mode.png)  
