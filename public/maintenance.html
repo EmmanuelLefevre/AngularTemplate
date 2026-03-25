@@ -26,12 +26,12 @@
 
   <main class="error-view">
 
-    <h1 class="error-view__title">
+    <h1 class="error-view__title" id="h1">
       Une erreur est survenue.
     </h1>
 
-    <h3 class="error-view__code">
-      <span class="error-view__label">Erreur</span>
+    <h3 class="error-view__code" id="h3-wrapper">
+      <span class="error-view__label" id="h3">Erreur</span>
       <span class="error-view__code-value">503</span>
     </h3>
 
@@ -51,11 +51,11 @@
               aria-label="Une équipe technique s'affairant autour d'un écran en maintenance" />
           </div>
 
-          <h4 class="maintenance-error__title">
+          <h4 class="maintenance-error__title" id="h4">
             Casques obligatoires !
           </h4>
 
-          <h5 class="maintenance-error__subtitle">
+          <h5 class="maintenance-error__subtitle" id="h5">
             On laisse sécher le code et on revient vite...
           </h5>
 
@@ -64,6 +64,41 @@
     </div>
 
   </main>
+
+  <script>
+    const translations = {
+      fr: {
+        title: "Une erreur est survenue.",
+        label: "Erreur",
+        subtitle: "Casques obligatoires !",
+        message: "On laisse sécher le code et on revient vite...",
+        ariaLabel: "Une équipe technique s'affairant autour d'un écran en maintenance"
+      },
+      en: {
+        title: "An error has occurred.",
+        label: "Error",
+        subtitle: "Helmets are needed !",
+        message: "We'll let the code dry and we'll be back soon...",
+        ariaLabel: "A technical team working on a screen undergoing maintenance"
+      }
+    };
+
+    const userLang = navigator.language || navigator.userLanguage;
+    const lang = userLang.startsWith('en') ? 'en' : 'fr';
+
+    document.getElementById('h1').innerText = translations[lang].title;
+    document.getElementById('h3').innerText = translations[lang].label;
+    document.getElementById('h4').innerText = translations[lang].subtitle;
+    document.getElementById('h5').innerText = translations[lang].message;
+
+    document.getElementById('lottie').setAttribute('aria-label', translations[lang].ariaLabel);
+
+    if (lang === 'en') {
+      document.getElementById('h3-wrapper').style.flexDirection = 'row-reverse';
+    }
+
+    document.documentElement.lang = lang;
+  </script>
 
   <script>
     setInterval(async () => {
