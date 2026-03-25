@@ -80,25 +80,25 @@ ng add @angular-eslint/schematics --package-manager=pnpm
 1. Installer la config de compatibilité
 
 ```shell
-pnpm add -D eslint-config-prettier
+pnpm add -DE eslint-config-prettier@latest
 ```
 
 2. Installer **ESLint** et **Angular ESLint**
 
 ```shell
-pnpm add -D eslint angular-eslint
+pnpm add -DE eslint angular-eslint@latest
 ```
 
 3. Installer les `stylistics`
 
 ```shell
-pnpm add -D @stylistic/eslint-plugin
+pnpm add -DE @stylistic/eslint-plugin@latest
 ```
 
 4. Installer le plugin `security`
 
 ```shell
-pnpm add -D eslint-plugin-security
+pnpm add -DE eslint-plugin-security@latest
 ```
 
 Créer un fichier `eslint-security.config.js` et y coller la configuration présente dans le template.  
@@ -192,7 +192,7 @@ Vous devriez voir s'afficher =>
 **Etape 7 :** Ajouter les autres packages **ESLint**  
 
 ```shell
-pnpm add -D @angular-eslint/builder @eslint/js typescript-eslint
+pnpm add -DE @angular-eslint/builder@latest @eslint/js@latest typescript-eslint@latest
 ```
 
 <h2 id="prettier">
@@ -224,7 +224,7 @@ Cela garantit que tous les fichiers commits respectent les normes de formatage d
 Bien qu'il y ait une configuration dans `package.json`, il est préférable (Best Practice) d'avoir un fichier de configuration dédié `.prettierrc`.
 
 ```shell
-pnpm add -D prettier
+pnpm add -DE prettier@latest
 ```
 
 **Etape 2 :** Créer un fichier `.prettierrc.js` à la racine et y coller la configuration présente dans le template.  
@@ -235,7 +235,7 @@ pnpm add -D prettier
 Installer l'extension **Trivago** pour le tri des imports.  
 
 ```shell
-pnpm add -D @trivago/prettier-plugin-sort-imports
+pnpm add -DE @trivago/prettier-plugin-sort-imports@latest
 ```
 
 Formater le code :  
@@ -287,7 +287,7 @@ Grâce à un ensemble de règles configurables via un fichier `.htmlhintrc`, **H
 **Etape 1 :** Ajouter le package **HTMLLint**  
 
 ```shell
-pnpm add -D htmlhint
+pnpm add -DE htmlhint@latest
 ```
 
 **Etape 2 :** Ajouter l'extension **VSCode** :  
@@ -363,7 +363,7 @@ Concrètement, **Stylelint** analyse vos fichiers de style et nous signale tout 
 ### Configuration :
 
 ```shell
-pnpm add -D stylelint stylelint-scss postcss-scss
+pnpm add -DE stylelint@latest stylelint-scss@latest postcss-scss@latest
 ```
 
 Il faut ensuite créer le fichier `.stylelintrc.json` à la racine et y coller la configuration présente dans le template.  
@@ -413,7 +413,7 @@ ainsi que le script =>
 **Etape 1 :** Installer **Ngx Translate Lint**  
 
 ```shell
-pnpm add -D ngx-translate-lint
+pnpm add -DE ngx-translate-lint@latest
 ```
 
 **Etape 2 :** Configurer le script dans `package.json` pour la **CI**  
@@ -462,7 +462,7 @@ pnpm i18n:lint
 **Etape 1 :** Installer **Ngx Translate Extract**  
 
 ```shell
-pnpm add -D @bartholomej/ngx-translate-extract
+pnpm add -DE @bartholomej/ngx-translate-extract@latest
 ```
 
 **Etape 2 :** Configurer le script dans `package.json`  
@@ -534,7 +534,7 @@ C'est là que `lint-staged` entre en jeu. C'est un outil intelligent qui exécut
 **Etape 1 :** Installer **Husky** et `lint-staged`  
 
 ```shell
-pnpm add -D husky lint-staged
+pnpm add -DE husky lint-staged@latest
 ```
 
 **Etape 2 :** Initialiser **Husky**  
@@ -626,7 +626,7 @@ Une fois qu'un secret est "poussé" sur un dépôt (même privé), il est consid
 Il évite la pollution de l'historique **Git**. Une fois qu'un secret est commité, il est techniquement compromis et difficile à effacer totalement. **Secretlint** bloque le processus dès la détection, forçant le développeur à placer ses secrets dans des variables d'environnement (`.env`) ou des gestionnaires de secrets sécurisés (comme les **GitHub Secrets** ou **HashiCorp Vault**) garantissant ainsi que le code partagé reste sain.  
 
 ```shell
-pnpm add -D secretlint @secretlint/secretlint-rule-preset-recommend
+pnpm add -DE secretlint@latest @secretlint/secretlint-rule-preset-recommend@latest
 ```
 
 De plus il est nécessaire d'ajouter dans le fichier `package.json` l'exécution de **Secretlint** sur les fichiers en `pre-commit` via `lint-staged`.  

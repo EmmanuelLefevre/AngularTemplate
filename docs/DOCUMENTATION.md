@@ -45,7 +45,7 @@ Dans ce projet, nous avons poussé l'intégration plus loin pour permettre une d
 **Etape 1 :** Installer **Compodoc**  
 
 ```shell
-pnpm add -D @compodoc/compodoc
+pnpm add -DE @compodoc/compodoc@latest
 ```
 
 **Etape 2 :**  

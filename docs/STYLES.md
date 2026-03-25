@@ -189,7 +189,7 @@ En **SCSS** avec **BEM**, évitez d'imbriquer plus de 1 niveau de profondeur (le
 **Angular Material** est la bibliothèque de composants officielle basée sur les principes du **Material Design**. Elle offre une collection de composants UI testés, accessibles et performants.  
 
 ```shell
-pnpm add @angular/material @angular/cdk
+pnpm add @angular/material@latest @angular/cdk@latest
 ```
 
 ⚠️ Les surcharges de **Angular Material** (`_material-overrides.scss`) sont globales et doivent être importées une seule fois dans le fichier `styles.scss` principal dans `src/styles` et non dans chaque composant.  
@@ -212,11 +212,11 @@ Pour l'iconographie, **Font Awesome** est le standard de l'industrie. Plutôt qu
 - **Modularité :** possibilité d'importer uniquement les packs nécessaires (Solid, Regular, Brands).
 
 ```shell
-pnpm add @fortawesome/fontawesome-svg-core @fortawesome/angular-fontawesome
+pnpm add @fortawesome/fontawesome-svg-core@latest @fortawesome/angular-fontawesome@latest
 ```
 
 Puis ajouter les différentes variantes d'icônes...  
 
 ```shell
-pnpm add @fortawesome/free-solid-svg-icons @fortawesome/free-brands-svg-icons @fortawesome/free-regular-svg-icons
+pnpm add @fortawesome/free-solid-svg-icons@latest @fortawesome/free-brands-svg-icons@latest @fortawesome/free-regular-svg-icons@latest
 ```

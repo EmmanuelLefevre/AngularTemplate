@@ -182,7 +182,7 @@ Si **Gitleaks** trouve une faille, le job **Security** échoue immédiatement, b
 L'utilisation de **rimraf** permet de supprimer des dossiers de manière fiable que l'on soit sous **Windows**, **macOS** ou **Linux**. C'est essentiel pour éviter que d'anciens rapports de couverture ne viennent fausser les nouvelles analyses.
 
 ```shell
-pnpm add -D rimraf
+pnpm add -DE rimraf@latest
 ```
 
 Dans `package.json` ajouter les scripts `clean` et `test:coverage`

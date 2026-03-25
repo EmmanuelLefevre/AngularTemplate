@@ -18,12 +18,12 @@ Activer le nouveau système de tests unitaires natif d'**Angular**. Ce builder m
 **Etape 1 :** Installer les librairies requises  
 
 ```shell
-pnpm add -D vitest jsdom
-pnpm add -D @angular/platform-browser-dynamic
-pnpm add -D @analogjs/vite-plugin-angular
-pnpm add -D @analogjs/vitest-angular
-pnpm add -D @types/node
-pnpm add -D vite-tsconfig-paths
+pnpm add -DE vitest jsdom@latest
+pnpm add -DE @angular/platform-browser-dynamic@latest
+pnpm add -DE @analogjs/vite-plugin-angular@latest
+pnpm add -DE @analogjs/vitest-angular@latest
+pnpm add -DE @types/node@latest
+pnpm add -DE vite-tsconfig-paths@latest
 ```
 
 **Etape 2 :** Dans `tsconfig.spec.json` remplacer la configuration présente par celle-ci dans la propriété `@compilerOptions`.  
@@ -60,7 +60,7 @@ pnpm add -D vite-tsconfig-paths
 **Vitest** possède une interface web agréable pour visualiser les tests, voir le code et les logs. C'est bien plus pratique que le terminal.
 
 ```shell
-pnpm add -D @vitest/ui
+pnpm add -DE @vitest/ui@latest
 ```
 
 ![Vitest UI](https://github.com/EmmanuelLefevre/MarkdownImg/blob/main/vitest_ui.png.png)  
@@ -68,7 +68,7 @@ pnpm add -D @vitest/ui
 **Etape 5 :** Installer le package de coverage `@vitest/coverage-v8`
 
 ```shell
-pnpm add -D @vitest/coverage-v8
+pnpm add -DE @vitest/coverage-v8@latest
 ```
 
 **Etape 6 :** Créer le fichier `test-setup.ts` dans `src`

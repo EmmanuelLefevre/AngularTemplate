@@ -26,7 +26,7 @@ Pour offrir une expérience utilisateur de premier plan, l'internationalisation 
 Installer les librairies suivantes =>  
 
 ```shell
-pnpm add @ngx-translate/core @ngx-translate/http-loader
+pnpm add @ngx-translate/core@latest @ngx-translate/http-loader@latest
 ```
 
 > [🔗 Ngx Translate Documentation](https://ngx-translate.org/)  
