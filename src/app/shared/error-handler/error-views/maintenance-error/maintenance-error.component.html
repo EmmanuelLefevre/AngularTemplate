@@ -3,10 +3,14 @@
   [class.is-ready]="isReady">
   <div class="maintenance-error__content">
     <div class="maintenance-error__animation-wrapper">
+      <span class="sr-only">
+        {{ 'PAGES.ERROR.MAINTENANCE.IMG.ALT.MAINTENANCE' | translate }}
+      </span>
+
       <canvas
         #lottieCanvas
-        role="img"
-        [attr.aria-label]="'PAGES.ERROR.MAINTENANCE.IMG.ALT.MAINTENANCE' | translate"
+        aria-hidden="true"
+        tabindex="-1"
         class="maintenance-error__lottie">
       </canvas>
     </div>

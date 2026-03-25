@@ -1,122 +1,147 @@
 <!-- eslint-disable @angular-eslint/template/no-inline-styles -->
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0" />
 
-  <base href="/" />
+    <base href="/" />
 
-  <title>AngularTemplate - En Maintenance</title>
-  <meta name="description" content="Site web en maintenance, on revient vite." />
-  <meta name="keywords" content="Angular 21, boilerplate, template, starter kit, PNPM, ESBuild, Vite, Vitest, Husky, lint-staged, ESLint, StyleLint, HTMLHint, SecretLint, Prettier, SonarQube Cloud, Snyk, CodeQL, GitLeaks, GitHub Actions, CI/CD, I18n, SEO, PWA, clean architecture, a11y, Compodoc, Font Awesome, Angular Material, Corepack, GitHub Pages, GitHub Packages, SEMVER,Changelog, design system, mobile-first, TypeScript, RXJS, Signals, NodeJS, Angular Schematics" />
-  <meta name="robots" content="noindex, follow" />
+    <title>AngularTemplate - En Maintenance</title>
+    <meta
+      name="description"
+      content="Site web en maintenance, on revient vite." />
+    <meta
+      name="keywords"
+      content="Angular 21, boilerplate, template, starter kit, PNPM, ESBuild, Vite, Vitest, Husky, lint-staged, ESLint, StyleLint, HTMLHint, SecretLint, Prettier, SonarQube Cloud, Snyk, CodeQL, GitLeaks, GitHub Actions, CI/CD, I18n, SEO, PWA, clean architecture, a11y, Compodoc, Font Awesome, Angular Material, Corepack, GitHub Pages, GitHub Packages, SEMVER,Changelog, design system, mobile-first, TypeScript, RXJS, Signals, NodeJS, Angular Schematics" />
+    <meta
+      name="robots"
+      content="noindex, follow" />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100&family=Roboto+Condensed:wght@700&family=Roboto:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link
+      rel="preconnect"
+      href="https://fonts.googleapis.com" />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100&family=Roboto+Condensed:wght@700&family=Roboto:wght@400;500;600;700&display=swap"
+      rel="stylesheet" />
 
-  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-  <link rel="stylesheet" href="/maintenance.css" />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="/favicon.ico" />
+    <link
+      rel="stylesheet"
+      href="/maintenance.css" />
 
-  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-</head>
-<body>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+  </head>
+  <body>
+    <main class="error-view">
+      <h1
+        class="error-view__title"
+        id="h1">
+        Une erreur est survenue.
+      </h1>
 
-  <main class="error-view">
+      <h3
+        class="error-view__code"
+        id="h3-wrapper">
+        <span
+          class="error-view__label"
+          id="h3"
+          >Erreur</span
+        >
+        <span class="error-view__code-value">503</span>
+      </h3>
 
-    <h1 class="error-view__title" id="h1">
-      Une erreur est survenue.
-    </h1>
+      <div class="error-view__content">
+        <section class="maintenance-error">
+          <div class="maintenance-error__content">
+            <div class="maintenance-error__animation-wrapper">
+              <lottie-player
+                src="/assets/animations/maintenance-error-under-construction.json"
+                background="transparent"
+                speed="1"
+                style="width: 100%; height: 100%"
+                loop
+                autoplay
+                class="maintenance-error__lottie"
+                aria-label="Une équipe technique s'affairant autour d'un écran en maintenance" />
+            </div>
 
-    <h3 class="error-view__code" id="h3-wrapper">
-      <span class="error-view__label" id="h3">Erreur</span>
-      <span class="error-view__code-value">503</span>
-    </h3>
+            <h4
+              class="maintenance-error__title"
+              id="h4">
+              Casques obligatoires !
+            </h4>
 
-    <div class="error-view__content">
-      <section class="maintenance-error">
-        <div class="maintenance-error__content">
-
-          <div class="maintenance-error__animation-wrapper">
-            <lottie-player
-              src="/assets/animations/maintenance-error-under-construction.json"
-              background="transparent"
-              speed="1"
-              style="width: 100%; height: 100%;"
-              loop
-              autoplay
-              class="maintenance-error__lottie"
-              aria-label="Une équipe technique s'affairant autour d'un écran en maintenance" />
+            <h5
+              class="maintenance-error__subtitle"
+              id="h5">
+              On laisse sécher le code et on revient vite...
+            </h5>
           </div>
+        </section>
+      </div>
+    </main>
 
-          <h4 class="maintenance-error__title" id="h4">
-            Casques obligatoires !
-          </h4>
-
-          <h5 class="maintenance-error__subtitle" id="h5">
-            On laisse sécher le code et on revient vite...
-          </h5>
-
-        </div>
-      </section>
-    </div>
-
-  </main>
-
-  <script>
-    const translations = {
-      fr: {
-        title: "Une erreur est survenue.",
-        label: "Erreur",
-        subtitle: "Casques obligatoires !",
-        message: "On laisse sécher le code et on revient vite...",
-        ariaLabel: "Une équipe technique s'affairant autour d'un écran en maintenance"
-      },
-      en: {
-        title: "An error has occurred.",
-        label: "Error",
-        subtitle: "Helmets are needed !",
-        message: "We'll let the code dry and we'll be back soon...",
-        ariaLabel: "A technical team working on a screen undergoing maintenance"
-      }
-    };
-
-    const userLang = navigator.language || navigator.userLanguage;
-    const lang = userLang.startsWith('en') ? 'en' : 'fr';
-
-    document.getElementById('h1').innerText = translations[lang].title;
-    document.getElementById('h3').innerText = translations[lang].label;
-    document.getElementById('h4').innerText = translations[lang].subtitle;
-    document.getElementById('h5').innerText = translations[lang].message;
-
-    document.getElementById('lottie').setAttribute('aria-label', translations[lang].ariaLabel);
-
-    if (lang === 'en') {
-      document.getElementById('h3-wrapper').style.flexDirection = 'row-reverse';
-    }
-
-    document.documentElement.lang = lang;
-  </script>
-
-  <script>
-    setInterval(async () => {
-      try {
-        const response = await fetch(window.location.href, {
-          method: 'HEAD',
-          cache: 'no-store'
-        });
-
-        if (response.ok) {
-          window.location.reload();
+    <script>
+      const translations = {
+        fr: {
+          title: 'Une erreur est survenue.',
+          label: 'Erreur',
+          subtitle: 'Casques obligatoires !',
+          message: 'On laisse sécher le code et on revient vite...',
+          ariaLabel: "Une équipe technique s'affairant autour d'un écran en maintenance"
+        },
+        en: {
+          title: 'An error has occurred.',
+          label: 'Error',
+          subtitle: 'Helmets are needed !',
+          message: "We'll let the code dry and we'll be back soon...",
+          ariaLabel: 'A technical team working on a screen undergoing maintenance'
         }
-      }
-      catch (error) {
-        console.info("Website still under maintenance...");
-      }
-    }, 30000);
-  </script>
+      };
 
-</body>
+      const userLang = navigator.language || navigator.userLanguage;
+      const lang = userLang.startsWith('en') ? 'en' : 'fr';
+
+      document.getElementById('h1').innerText = translations[lang].title;
+      document.getElementById('h3').innerText = translations[lang].label;
+      document.getElementById('h4').innerText = translations[lang].subtitle;
+      document.getElementById('h5').innerText = translations[lang].message;
+
+      document.getElementById('lottie').setAttribute('aria-label', translations[lang].ariaLabel);
+
+      if (lang === 'en') {
+        document.getElementById('h3-wrapper').style.flexDirection = 'row-reverse';
+      }
+
+      document.documentElement.lang = lang;
+    </script>
+
+    <script>
+      setInterval(async () => {
+        try {
+          const response = await fetch(window.location.href, {
+            method: 'HEAD',
+            cache: 'no-store'
+          });
+
+          if (response.ok) {
+            window.location.reload();
+          }
+        } catch (error) {
+          console.info('Website still under maintenance...');
+        }
+      }, 30000);
+    </script>
+  </body>
 </html>

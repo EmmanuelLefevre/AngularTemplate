@@ -3,10 +3,14 @@
   [class.is-ready]="isReady">
   <div class="timeout-error__content">
     <div class="timeout-error__animation-wrapper">
+      <span class="sr-only">
+        {{ 'PAGES.ERROR.TIMEOUT.IMG.ALT.SANDGLASS' | translate }}
+      </span>
+
       <canvas
         #lottieCanvas
-        role="img"
-        [attr.aria-label]="'PAGES.ERROR.TIMEOUT.IMG.ALT.SANDGLASS' | translate"
+        aria-hidden="true"
+        tabindex="-1"
         class="timeout-error__lottie">
       </canvas>
     </div>

@@ -18,18 +18,18 @@ vi.mock('@lottiefiles/dotlottie-web', () => {
   };
 });
 
-Object.defineProperty(window.HTMLMediaElement.prototype, 'load', {
+Object.defineProperty(globalThis.HTMLMediaElement.prototype, 'load', {
   configurable: true,
   value: () => { /* Silence */ },
 });
 
-Object.defineProperty(window, 'scrollTo', {
+Object.defineProperty(globalThis, 'scrollTo', {
   configurable: true,
   value: () => { /* Silence */ },
 });
 
-window.scroll = vi.fn();
-window.scrollBy = vi.fn();
+globalThis.scroll = vi.fn();
+globalThis.scrollBy = vi.fn();
 
 getTestBed().resetTestEnvironment();
 

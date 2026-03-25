@@ -7,6 +7,11 @@ import { firstValueFrom } from 'rxjs';
 import { ENVIRONMENT } from '@env/environment';
 import { SeoData } from '@core/_models/seo/seo.model';
 
+const APP_NAME_KEY = 'META.DEFAULT.APP_NAME';
+const DEFAULT_TITLE_KEY = 'META.DEFAULT.TITLE';
+const DEFAULT_DESC_KEY = 'META.DEFAULT.DESCRIPTION';
+const DEFAULT_KEYWORDS_KEY = 'META.DEFAULT.KEYWORDS';
+
 const TITLE_SEPARATOR = ' | ';
 
 @Injectable({
@@ -23,59 +28,63 @@ export class SeoService {
   private readonly config = ENVIRONMENT.application;
 
   async updateMetaTags(data: SeoData = {}): Promise<void> {
+    const translations = await this.fetchTranslations(data);
 
-    const APP_NAME_KEY = 'META.DEFAULT.APP_NAME';
-    const DEFAULT_TITLE_KEY = 'META.DEFAULT.TITLE';
-    const DEFAULT_DESC_KEY = 'META.DEFAULT.DESCRIPTION';
-    const DEFAULT_KEYWORDS_KEY = 'META.DEFAULT.KEYWORDS';
+    this.updateTitle(data, translations);
+    this.updateDescriptionAndKeywords(data, translations);
+    this.updateGeneralTags(data);
+    this.updateImageTags(data.image);
+  }
 
-    const KEYS: string[] = [
+  private async fetchTranslations(data: SeoData): Promise<Record<string, string>> {
+
+    const keys: string[] = [
       APP_NAME_KEY,
       DEFAULT_TITLE_KEY,
       DEFAULT_DESC_KEY,
       DEFAULT_KEYWORDS_KEY
     ];
 
-    if (data.titleKey) {
-      KEYS.push(data.titleKey);
-    }
-    if (data.descriptionKey) {
-      KEYS.push(data.descriptionKey);
-    }
+    if (data.titleKey) keys.push(data.titleKey);
+    if (data.descriptionKey) keys.push(data.descriptionKey);
 
-    const translations = await firstValueFrom(this.translate.get(KEYS));
+    return firstValueFrom(this.translate.get(keys)) as Promise<Record<string, string>>;
+  }
 
-    const APP_NAME = translations[APP_NAME_KEY];
-    const PAGE_TITLE = data.titleKey ? translations[data.titleKey] : null;
+  private updateTitle(data: SeoData, translations: Record<string, string>): void {
 
-    let finalTitle: string;
+    const appName = translations[APP_NAME_KEY];
+    const pageTitle = data.titleKey ? translations[data.titleKey] : null;
 
-    if (PAGE_TITLE && PAGE_TITLE !== translations[DEFAULT_TITLE_KEY]) {
-      finalTitle = `${APP_NAME}${TITLE_SEPARATOR}${PAGE_TITLE}`;
-    }
-    else {
-      finalTitle = APP_NAME;
-    }
-
-    const DESCRIPTION = data.descriptionKey && translations[data.descriptionKey]
-      ? translations[data.descriptionKey]
-      : translations[DEFAULT_DESC_KEY];
-
-    const KEYWORDS = translations[DEFAULT_KEYWORDS_KEY];
+    const finalTitle = (pageTitle && pageTitle !== translations[DEFAULT_TITLE_KEY])
+      ? `${appName}${TITLE_SEPARATOR}${pageTitle}`
+      : appName;
 
     if (finalTitle) {
       this.title.setTitle(finalTitle);
       this.meta.updateTag({ property: 'og:title', content: finalTitle });
     }
+  }
 
-    if (DESCRIPTION) {
-      this.meta.updateTag({ name: 'description', content: DESCRIPTION });
-      this.meta.updateTag({ property: 'og:description', content: DESCRIPTION });
+  private updateDescriptionAndKeywords(data: SeoData, translations: Record<string, string>): void {
+
+    const description = (data.descriptionKey && translations[data.descriptionKey])
+      ? translations[data.descriptionKey]
+      : translations[DEFAULT_DESC_KEY];
+
+    const keywords = translations[DEFAULT_KEYWORDS_KEY];
+
+    if (description) {
+      this.meta.updateTag({ name: 'description', content: description });
+      this.meta.updateTag({ property: 'og:description', content: description });
     }
 
-    if (KEYWORDS) {
-      this.meta.updateTag({ name: 'keywords', content: KEYWORDS });
+    if (keywords) {
+      this.meta.updateTag({ name: 'keywords', content: keywords });
     }
+  }
+
+  private updateGeneralTags(data: SeoData): void {
 
     if (this.document?.documentElement) {
       this.document.documentElement.lang = this.translate.currentLang || 'fr';
@@ -84,20 +93,18 @@ export class SeoService {
     this.meta.updateTag({ name: 'robots', content: data.robots || 'index, follow' });
     this.meta.updateTag({ name: 'author', content: this.config.author });
     this.meta.updateTag({ name: 'theme-color', content: this.config.themeColor });
-
     this.meta.updateTag({ property: 'og:url', content: this.document.URL });
 
-    if (data.type) {
-      this.meta.updateTag({ property: 'og:type', content: data.type });
-    }
-    else {
-      this.meta.updateTag({ property: 'og:type', content: 'website' });
-    }
+    this.meta.updateTag({ property: 'og:type', content: data.type || 'website' });
+  }
 
-    const IMAGE_TO_USE = data.image || this.config.defaultShareImage;
-    if (IMAGE_TO_USE && IMAGE_TO_USE.trim() !== '') {
-      this.meta.updateTag({ property: 'og:image', content: IMAGE_TO_USE });
-      this.meta.updateTag({ name: 'twitter:image', content: IMAGE_TO_USE });
+  private updateImageTags(imageUrl?: string): void {
+
+    const imageToUse = imageUrl || this.config.defaultShareImage;
+
+    if (imageToUse && imageToUse.trim() !== '') {
+      this.meta.updateTag({ property: 'og:image', content: imageToUse });
+      this.meta.updateTag({ name: 'twitter:image', content: imageToUse });
     }
     else {
       this.meta.removeTag('property=\'og:image\'');

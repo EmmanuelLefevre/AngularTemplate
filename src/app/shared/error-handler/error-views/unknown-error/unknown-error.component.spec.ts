@@ -83,11 +83,13 @@ describe('UnknownErrorComponent', () => {
       fixture.detectChanges();
 
       // --- ACT ---
-      const lottieAnim = fixture.debugElement.query(By.css('.unknown-error__lottie')).nativeElement;
+      const canvas = fixture.debugElement.query(By.css('.unknown-error__lottie')).nativeElement;
+      const srOnlySpan = fixture.debugElement.query(By.css('.sr-only')).nativeElement;
 
       // --- ASSERT ---
-      expect(lottieAnim.tagName.toLowerCase()).toBe('canvas');
-      expect(lottieAnim.getAttribute('aria-label')).toBe('Une soucoupe volante aspirant une chenille');
+      expect(canvas.tagName.toLowerCase()).toBe('canvas');
+      expect(srOnlySpan.textContent.trim()).toBe('Une soucoupe volante aspirant une chenille');
+      expect(canvas.getAttribute('aria-hidden')).toBe('true');
     });
   });
 
@@ -120,7 +122,7 @@ describe('UnknownErrorComponent', () => {
       expect(subtitle.textContent.trim()).toBe('It seems this page took a leap through spacetime...');
     });
 
-    it('should update the img aria-label when language is switched to English', () => {
+    it('should update the img description when language is switched to English', () => {
       // --- ARRANGE ---
       fixture.detectChanges();
 
@@ -128,10 +130,10 @@ describe('UnknownErrorComponent', () => {
       translate.use('en');
       fixture.detectChanges();
 
-      const lottieAnim = fixture.debugElement.query(By.css('.unknown-error__lottie')).nativeElement;
+      const srOnlySpan = fixture.debugElement.query(By.css('.sr-only')).nativeElement;
 
       // --- ASSERT ---
-      expect(lottieAnim.getAttribute('aria-label')).toBe('A flying saucer abducting a caterpillar');
+      expect(srOnlySpan.textContent.trim()).toBe('A flying saucer abducting a caterpillar');
     });
   });
 
@@ -154,11 +156,11 @@ describe('UnknownErrorComponent', () => {
   });
 
   describe('Lottie Configuration', () => {
-    it('should fallback to DEFAULT_PIXEL_RATIO if window.devicePixelRatio is undefined', () => {
+    it('should fallback to DEFAULT_PIXEL_RATIO if globalThis.devicePixelRatio is undefined', () => {
       // --- ARRANGE ---
-      const originalPixelRatio = window.devicePixelRatio;
+      const originalPixelRatio = globalThis.devicePixelRatio;
 
-      Object.defineProperty(window, 'devicePixelRatio', {
+      Object.defineProperty(globalThis, 'devicePixelRatio', {
         value: undefined,
         writable: true
       });
@@ -174,7 +176,7 @@ describe('UnknownErrorComponent', () => {
       expect(lottieInstance).toBeDefined();
 
       // --- CLEANUP ---
-      Object.defineProperty(window, 'devicePixelRatio', {
+      Object.defineProperty(globalThis, 'devicePixelRatio', {
         value: originalPixelRatio,
         writable: true
       });

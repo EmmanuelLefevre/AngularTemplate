@@ -86,6 +86,30 @@ describe('App Routes', () => {
     expect(TestBed.inject(Router).url).toBe('/login');
   });
 
+  it('should redirect to home (via root) if adminGuard fails due to missing token', async() => {
+    // --- ARRANGE ---
+    AUTH_SERVICE_MOCK.isAdmin.mockReturnValue(false);
+    localStorage.clear();
+
+    // --- ACT ---
+    await harness.navigateByUrl('/admin/dashboard');
+
+    // --- ASSERT ---
+    expect(TestBed.inject(Router).url).toBe('/home');
+  });
+
+  it('should allow /admin/dashboard if adminGuard passes', async() => {
+    // --- ARRANGE ---
+    AUTH_SERVICE_MOCK.isAdmin.mockReturnValue(true);
+    AUTH_SERVICE_MOCK.currentUser.set({ roles: ['ADMIN'] });
+
+    // --- ACT ---
+    await harness.navigateByUrl('/admin/dashboard');
+
+    // --- ASSERT ---
+    expect(TestBed.inject(Router).url).toBe('/admin/dashboard');
+  });
+
   it('should navigate to unfound-error for unknown routes (wildcard)', async() => {
     // --- ACT ---
     await harness.navigateByUrl('/path/that/does/not/exist');
