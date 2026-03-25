@@ -2,7 +2,6 @@
 .rubber-band {
   animation: rubber-band 0.5s ease-in-out;
 }
-
 @keyframes rubber-band {
   from { transform: scale3d(1, 1, 1); }
   30%  { transform: scale3d(1.25, 0.75, 1); }
@@ -17,7 +16,6 @@
 .slide-left {
   animation: slide-left 0.5s ease-in-out;
 }
-
 @keyframes slide-left {
   from { transform: translateX(100%); }
   to   { transform: translateX(0); }
@@ -27,7 +25,6 @@
 .slide-bottom {
   animation: slide-bottom 0.5s ease-in-out;
 }
-
 @keyframes slide-bottom {
   from { transform: translateY(100%); }
   to   { transform: translateY(0); }
@@ -37,7 +34,6 @@
 .bounce {
   animation: bounce 0.5s ease-in-out;
 }
-
 @keyframes bounce {
   0%,
   20%,
@@ -80,7 +76,6 @@ $shake-intensity: 1%;
 .fade-in {
   animation: fade-in 0.5s ease-in-out;
 }
-
 @keyframes fade-in {
   from { opacity: 0; }
   to   { opacity: 1; }
@@ -91,7 +86,6 @@ $shake-intensity: 1%;
 .fade-in-up {
   animation: fade-in-up 0.7s ease-in-out;
 }
-
 @keyframes fade-in-up {
   from { opacity: 0; transform: translate3d(0, 50%, 0); }
   to   { opacity: 1; transform: translate3d(0, 0, 0); }
@@ -101,7 +95,6 @@ $shake-intensity: 1%;
 .fade-in-right {
   animation: fade-in-right 0.5s ease-in-out;
 }
-
 @keyframes fade-in-right {
   from { opacity: 0; transform: translate3d(100%, 0, 0); }
   to   { opacity: 1; transform: translate3d(0, 0, 0); }
@@ -111,7 +104,6 @@ $shake-intensity: 1%;
 .defective-bulb {
   animation: fade-in-right 0.5s ease-in-out;
 }
-
 @keyframes defective-bulb {
   0%   { opacity: 1; }
   3%   { opacity: 0.4; }
@@ -128,7 +120,6 @@ $shake-intensity: 1%;
 .flip-spin {
   animation: flip-spin 0.8s ease-in-out forwards;
 }
-
 @keyframes flip-spin {
   0%     { transform: perspective(1200px) rotateY(0deg) scale(1); }
   49.99% { transform: perspective(1200px) rotateY(90deg) scale(0.9); }
@@ -140,7 +131,6 @@ $shake-intensity: 1%;
 .flip-spin-2-round {
   animation: flip-spin 0.8s ease-in-out forwards;
 }
-
 @keyframes flip-spin-2-round {
   0%   { transform: perspective(1200px) rotateY(0deg) scale(1); }
   50%  { transform: perspective(1200px) rotateY(450deg) scale(0.8); }
@@ -151,7 +141,6 @@ $shake-intensity: 1%;
 .hole-advent {
   animation: hole-advent 1.1s both;
 }
-
 @keyframes hole-advent {
   0%   { transform: translateX(-50%) scaleX(0); opacity: 0; }
   20%  { transform: translateX(-50%) scaleX(1); opacity: 1; }
@@ -163,7 +152,6 @@ $shake-intensity: 1%;
 .dev-photo-fall {
   animation: dev-photo-fall 0.3s ease-in 0.1s both;
 }
-
 @keyframes dev-photo-fall {
   0%   { transform: translateY(0) scaleX(1) scaleY(1); opacity: 1; }
   30%  { transform: translateY(40%) scaleX(0.2) scaleY(1.8); opacity: 1; }
@@ -174,7 +162,6 @@ $shake-intensity: 1%;
 .reveal-dev-at-end {
   animation: reveal-dev-at-end 0.8s forwards;
 }
-
 @keyframes reveal-dev-at-end {
   0%, 89%   { opacity: 0; z-index: 1; transform: rotateY(0deg); }
   90%, 100% { opacity: 1; z-index: 10; transform: rotateY(180deg); }
@@ -184,7 +171,6 @@ $shake-intensity: 1%;
 .hamster-rise {
   animation: hamster-rise 0.4s cubic-bezier(0.18, 0.89, 0.32, 1.28) 0.5s both;
 }
-
 @keyframes hamster-rise {
   0%   { transform: translateY(150%) scaleX(0) scaleY(2.5); opacity: 0; }
   34%  { transform: translateY(150%) scaleX(0.1) scaleY(2.5); opacity: 0; }
@@ -196,7 +182,6 @@ $shake-intensity: 1%;
 .keep-hamster-until-end {
   animation: keep-hamster-until-end 0.8s forwards;
 }
-
 @keyframes keep-hamster-until-end {
   0%, 89%   { opacity: 1; z-index: 10; transform: rotateY(0deg); }
   90%, 100% { opacity: 0; z-index: 1; transform: rotateY(0deg); }
@@ -206,7 +191,6 @@ $shake-intensity: 1%;
 .bubble-pop {
   animation: bubble-pop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 }
-
 @keyframes bubble-pop {
   from { opacity: 0; transform: scale(0.8) translateY(10px); }
   to   { opacity: 1; transform: scale(1) translateY(0); }
@@ -216,7 +200,6 @@ $shake-intensity: 1%;
 .bulk-strike {
   animation: bulk-strike 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 }
-
 @keyframes bulk-strike {
   0%   { transform: rotate(0deg); }
   50%  { transform: rotate(-60deg); }
@@ -227,7 +210,6 @@ $shake-intensity: 1%;
 .shake-screen {
   animation: shake-screen 0.2s ease-in-out;
 }
-
 @keyframes shake-screen {
   0%, 100% { transform: translate(0, 0); }
   10% { transform: translate(-2px, -1px); }
@@ -285,4 +267,25 @@ $shake-intensity: 1%;
 }
 @keyframes shimmer {
   to { background-position: 200% center; }
+}
+
+/*------Drop Heavy------*/
+.drop-heavy {
+  animation: drop-heavy 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+@keyframes drop-heavy {
+  0%   { transform: translateY(-100px); opacity: 0; }
+  60%  { transform: translateY(15px); opacity: 1; }
+  80%  { transform: translateY(-5px); }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+/*------Swing------*/
+.swing {
+  animation: swing 3s ease-in-out infinite;
+}
+@keyframes swing {
+  0%,
+  100% { transform: rotate(-3deg); transform-origin: top center; }
+  50%  { transform: rotate(3deg); transform-origin: top center; }
 }

@@ -136,6 +136,18 @@ export const ROUTES: Routes = [
                 robots: 'noindex, nofollow'
               }
             }
+          },
+          { path: 'maintenance-error',
+            loadComponent: () => import(
+              '@shared/error-handler/error-views/maintenance-error/maintenance-error.component')
+              .then(m => m.MaintenanceErrorComponent),
+            data: {
+              seo: {
+                titleKey: 'META.PAGES.ERROR.503.TITLE',
+                descriptionKey: 'META.PAGES.ERROR.503.DESCRIPTION',
+                robots: 'noindex, nofollow'
+              }
+            }
           }
         ]
       },

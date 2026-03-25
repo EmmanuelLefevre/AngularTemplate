@@ -36,6 +36,10 @@
           "TITLE": "Erreur Serveur",
           "DESCRIPTION": "Une erreur inattendue s'est produite sur nos serveurs."
         },
+        "503": {
+          "TITLE": "En Maintenance",
+          "DESCRIPTION": "Site web en maintenance, on revient vite."
+        },
         "GENERIC": {
           "TITLE": "Une Erreur Est Survenue",
           "DESCRIPTION": "Nous avons rencontré un problème lors du traitement de votre demande."
@@ -167,6 +171,15 @@
         "IMG": {
           "ALT": {
             "SANDGLASS": "Un sablier en train de tourner sur lui-même"
+          }
+        }
+      },
+      "MAINTENANCE": {
+        "TITLE": "Casques obligatoires !",
+        "SUBTITLE": "On laisse sécher le code et on revient vite...",
+        "IMG": {
+          "ALT": {
+            "MAINTENANCE": "Une équipe technique s'affairant autour d'un écran en maintenance"
           }
         }
       }

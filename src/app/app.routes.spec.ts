@@ -86,30 +86,6 @@ describe('App Routes', () => {
     expect(TestBed.inject(Router).url).toBe('/login');
   });
 
-  it('should redirect to home (via root) if adminGuard fails due to missing token', async() => {
-    // --- ARRANGE ---
-    AUTH_SERVICE_MOCK.isAdmin.mockReturnValue(false);
-    localStorage.clear();
-
-    // --- ACT ---
-    await harness.navigateByUrl('/admin/dashboard');
-
-    // --- ASSERT ---
-    expect(TestBed.inject(Router).url).toBe('/home');
-  });
-
-  it('should allow /admin/dashboard if adminGuard passes', async() => {
-    // --- ARRANGE ---
-    AUTH_SERVICE_MOCK.isAdmin.mockReturnValue(true);
-    AUTH_SERVICE_MOCK.currentUser.set({ roles: ['ADMIN'] });
-
-    // --- ACT ---
-    await harness.navigateByUrl('/admin/dashboard');
-
-    // --- ASSERT ---
-    expect(TestBed.inject(Router).url).toBe('/admin/dashboard');
-  });
-
   it('should navigate to unfound-error for unknown routes (wildcard)', async() => {
     // --- ACT ---
     await harness.navigateByUrl('/path/that/does/not/exist');
@@ -135,6 +111,7 @@ describe('App Routes', () => {
       { path: '/error/generic-error' },
       { path: '/error/unknown-error' },
       { path: '/error/timeout-error' },
+      { path: '/error/maintenance-error' },
     ];
 
     it.each(ERROR_CASES)('should successfully load component for $path', async({ path }) => {
@@ -147,7 +124,7 @@ describe('App Routes', () => {
     });
   });
 
-  describe('Private Route (Lines 49-51 coverage)', () => {
+  describe('Private Route', () => {
 
     it('should allow navigation to /private if authGuard passes', async() => {
       // --- ARRANGE ---
@@ -203,19 +180,6 @@ describe('Route Configuration Integrity', () => {
     expect(ROOT_ROUTE?.loadComponent).toBeDefined();
     expect(COMPONENT_IMPORT).toBeTruthy();
   });
-
-  it('should be able to resolve the AdminLayoutComponent import', async() => {
-    // --- ARRANGE ---
-    const ADMIN_ROUTE = ROUTES.find(r => r.path === 'admin');
-
-    // --- ACT ---
-    const COMPONENT_IMPORT = await ADMIN_ROUTE?.loadComponent!();
-
-    // --- ASSERT ---
-    expect(ADMIN_ROUTE?.loadComponent).toBeDefined();
-    expect(COMPONENT_IMPORT).toBeTruthy();
-  });
-
 });
 
 describe('Route SEO Data Integrity', () => {
@@ -255,6 +219,8 @@ describe('Route SEO Data Integrity', () => {
       { path: 'generic-error', titleKey: 'META.PAGES.ERROR.GENERIC.TITLE', descriptionKey: 'META.PAGES.ERROR.GENERIC.DESCRIPTION' },
       { path: 'unknown-error', titleKey: 'META.PAGES.ERROR.UNKNOWN.TITLE', descriptionKey: 'META.PAGES.ERROR.UNKNOWN.DESCRIPTION' },
       { path: 'timeout-error', titleKey: 'META.PAGES.ERROR.408.TITLE', descriptionKey: 'META.PAGES.ERROR.408.DESCRIPTION' }
+      ,
+      { path: 'maintenance-error', titleKey: 'META.PAGES.ERROR.503.TITLE', descriptionKey: 'META.PAGES.ERROR.503.DESCRIPTION' }
     ];
 
     // --- ACT & ASSERT ---

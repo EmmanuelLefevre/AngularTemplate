@@ -36,6 +36,10 @@
           "TITLE": "Server Error",
           "DESCRIPTION": "An unexpected error occurred on our servers."
         },
+        "503": {
+          "TITLE": "Maintenance Error",
+          "DESCRIPTION": "Website is under contruction, we'll back soon."
+        },
         "GENERIC": {
           "TITLE": "Error Occurred",
           "DESCRIPTION": "We encountered a problem while processing your request."
@@ -167,6 +171,15 @@
         "IMG": {
           "ALT": {
             "SANDGLASS": "A sandglass spinning on its axis."
+          }
+        }
+      },
+      "MAINTENANCE": {
+        "TITLE": "Helmets are needed !",
+        "SUBTITLE": "We'll let the code dry and we'll be back soon...",
+        "IMG": {
+          "ALT": {
+            "MAINTENANCE": "A technical team working on a screen undergoing maintenance"
           }
         }
       }

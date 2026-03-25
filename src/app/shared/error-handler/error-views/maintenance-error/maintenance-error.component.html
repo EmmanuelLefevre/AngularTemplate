@@ -1,0 +1,22 @@
+<section
+  class="maintenance-error"
+  [class.is-ready]="isReady">
+  <div class="maintenance-error__content">
+    <div class="maintenance-error__animation-wrapper">
+      <canvas
+        #lottieCanvas
+        role="img"
+        [attr.aria-label]="'PAGES.ERROR.MAINTENANCE.IMG.ALT.MAINTENANCE' | translate"
+        class="maintenance-error__lottie">
+      </canvas>
+    </div>
+
+    <h4 class="maintenance-error__title">
+      {{ 'PAGES.ERROR.MAINTENANCE.TITLE' | translate }}
+    </h4>
+
+    <h5 class="maintenance-error__subtitle">
+      {{ 'PAGES.ERROR.MAINTENANCE.SUBTITLE' | translate }}
+    </h5>
+  </div>
+</section>

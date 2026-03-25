@@ -328,6 +328,48 @@ describe('ErrorHandlerComponent', () => {
       expect(router.navigate).not.toHaveBeenCalled();
     });
 
+    it('should navigate to "maintenance-error" when code is 503', () => {
+      // --- ARRANGE ---
+      queryParams$.next({ code: '503' });
+
+      // --- ACT ---
+      fixture.detectChanges();
+
+      // --- ASSERT ---
+      expect(router.navigate).toHaveBeenCalledWith(
+        ['maintenance-error'],
+        expect.objectContaining({
+          queryParams: { code: '503' },
+          relativeTo: expect.any(Object)
+        })
+      );
+    });
+
+    it('should infer code 503 from URL when queryParams are missing and URL is maintenance-error', () => {
+      // --- ARRANGE ---
+      Object.defineProperty(router, 'url', { value: '/error/maintenance-error', configurable: true });
+      queryParams$.next({});
+
+      // --- ACT ---
+      fixture.detectChanges();
+
+      // --- ASSERT ---
+      expect(component.code()).toBe('503');
+    });
+
+    it('should NOT navigate if the current URL is maintenance-error', () => {
+      // --- ARRANGE ---
+      Object.defineProperty(router, 'url', { get: () => '/error/maintenance-error' });
+
+      queryParams$.next({ code: '503' });
+
+      // --- ACT ---
+      fixture.detectChanges();
+
+      // --- ASSERT ---
+      expect(router.navigate).not.toHaveBeenCalled();
+    });
+
     it('should navigate to "timeout-error" when code is 504', () => {
       // --- ARRANGE ---
       queryParams$.next({ code: '504' });

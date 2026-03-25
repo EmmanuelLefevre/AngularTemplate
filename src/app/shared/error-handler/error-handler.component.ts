@@ -48,6 +48,9 @@ export class ErrorHandlerComponent implements OnInit {
           case URL.includes('server-error'):
             codeValue = '500';
             break;
+          case URL.includes('maintenance-error'):
+            codeValue = '503';
+            break;
           default:
             codeValue = '';
             break;
@@ -64,7 +67,8 @@ export class ErrorHandlerComponent implements OnInit {
         'server-error',
         'generic-error',
         'unknown-error',
-        'timeout-error'
+        'timeout-error',
+        'maintenance-error'
       ];
 
       if (ERROR_PAGES.some(page => CURRENT_URL.includes(page))) {
@@ -87,6 +91,9 @@ export class ErrorHandlerComponent implements OnInit {
           break;
         case RAW_VALUE === '500':
           destination = 'server-error';
+          break;
+        case RAW_VALUE === '503':
+          destination = 'maintenance-error';
           break;
         case /^[1-5]\d{2}$/.test(RAW_VALUE):
           destination = 'generic-error';
