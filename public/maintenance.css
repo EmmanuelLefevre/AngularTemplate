@@ -1,0 +1,204 @@
+/* =========== DOCUMENT ROOT & RESETS =========== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  height: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  height: 100%;
+  overflow-x: hidden;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+/* =========== VARIABLES (DESIGN TOKENS) =========== */
+:root {
+  --bg-color: oklch(0.9736 0.0034 174.48);
+  --primary-color: oklch(0.7116 0.1812 22.84);
+  --secondary-color: oklch(0.65 0.12 210);
+
+  --font-title-primary: 'Arial', Helvetica, sans-serif;
+  --font-title: 'Montserrat', Arial, Helvetica, sans-serif;
+  --font-main: 'Roboto', 'Segoe UI', Tahoma, Verdana, sans-serif;
+  --font-subtitle: 'Roboto Condensed', Arial, Helvetica, sans-serif;
+
+  --font-weight-regular: 400;
+  --font-weight-bold: 700;
+
+  --font-size-base: clamp(14px, 1.2vw, 16px);
+  --font-size-h1: clamp(24px, 4vw, 32px);
+  --font-size-h3: clamp(16px, 2vw, 24px);
+  --font-size-h4: clamp(14px, 1.9vw, 20px);
+  --font-size-h5: clamp(13px, 1.8vw, 18px);
+}
+
+/* =========== BASE =========== */
+body,
+html {
+  display: flex;
+  flex-direction: column;
+  color: var(--text-black-color);
+  font-family: var(--font-main);
+  background-color: var(--bg-color);
+}
+
+/* =========== GLOBAL STRUCTURE =========== */
+.error-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  text-align: center;
+  padding: 2rem;
+}
+
+.error-view__title {
+  color: transparent;
+  font-family: var(--font-title-primary);
+  font-size: var(--font-size-h1);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: 1rem;
+  background: linear-gradient(90deg, var(--secondary-color), var(--primary-color), var(--secondary-color));
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  animation: shimmer 4s linear infinite;
+  -webkit-animation: shimmer 4s linear infinite;
+}
+
+.error-view__code {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-title);
+  font-size: var(--font-size-h3);
+  margin-bottom: 2rem;
+}
+
+.error-view__code-value {
+  color: var(--primary-color);
+  font-weight: var(--font-weight-bold);
+}
+
+.error-view__content {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 3rem;
+}
+
+/* =========== MAINTENANCE CONTAINER =========== */
+.maintenance-error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.maintenance-error__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  max-width: 600px;
+}
+
+.maintenance-error__animation-wrapper {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  max-width: 300px;
+  margin: 0 auto;
+  animation: drop-heavy 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  -webkit-animation: drop-heavy 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+.maintenance-error__lottie {
+  display: block;
+  width: 100%;
+  height: 100%;
+  animation: swing 3s ease-in-out infinite;
+  -webkit-animation: swing 3s ease-in-out infinite;
+}
+
+.maintenance-error__title {
+  font-family: var(--font-title);
+  font-size: var(--font-size-h4);
+  font-weight: var(--font-weight-bold);
+  color: var(--primary-color);
+  margin: 0;
+}
+
+.maintenance-error__subtitle {
+  font-family: var(--font-subtitle);
+  font-size: var(--font-size-h5);
+  color: transparent;
+  line-height: 1.4;
+  margin: 0;
+  background: linear-gradient(90deg, var(--secondary-color), var(--primary-color), var(--secondary-color));
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: shimmer 4s linear infinite;
+  -webkit-animation: shimmer 4s linear infinite;
+}
+
+/* =========== ANIMATIONS =========== */
+@keyframes drop-heavy {
+  0% {
+    transform: translateY(-100px);
+    opacity: 0;
+  }
+  60% {
+    transform: translateY(15px);
+    opacity: 1;
+  }
+  80% {
+    transform: translateY(-5px);
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes swing {
+  0%,
+  100% {
+    transform: rotate(-3deg);
+    transform-origin: top center;
+  }
+  50% {
+    transform: rotate(3deg);
+    transform-origin: top center;
+  }
+}
+
+@keyframes shimmer {
+  to {
+    background-position: 200% center;
+  }
+}

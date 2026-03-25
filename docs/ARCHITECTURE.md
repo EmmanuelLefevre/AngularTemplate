@@ -13,6 +13,9 @@
 📘docs
 🌍public
  ┣ ⚙️.htaccess
+ ┣ ⭐favicon.ico
+ ┣ 📄maintenance.css
+ ┣ 📄maintenance.html
  ┣ 🛠️manifest.json
  ┣ 🤖robots.txt
  ┣ 🗺️sitemap.xml

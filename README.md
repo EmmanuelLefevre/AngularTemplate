@@ -97,13 +97,20 @@ Conception intégralement pensée pour le mobile. Le **Design System** est enti�
 Une bibliothèque de composants internes (Custom Form, Generic Input, Button, Link, ScrollToTop...) et des layouts (Public, Admin, Header, Footer, Nav...) prêts à l'emploi. **Tous couverts à 100% par des tests.**  
 
 🧠 **Architecture :**  
-**Error Handler** global, **Interceptors**, **Guards** d'authentification, une partie de l'application **Public** et **Private** ainsi qu'un **Dashboard Admin** fonctionnel sont déjà configurés. **Tous couverts à 100% par des tests.**  
+Des **Interceptors** robustes, des **Guards** d'authentification, une partie de l'application **Public** et **Private** ainsi qu'un **Dashboard Admin** fonctionnel sont déjà configurés. **Tous couverts à 100% par des tests.**  
+
+📢 **Résilience & Gestion des Erreurs :**  
+Un **Error Handler** global intercepte et redirige intelligemment vers des vues dédiées pour chaque scénario (**401**, **404**, **500**, **Generic**, **Timeout 504 408**, **Unknown**...). Une gestion du code **HHTP 503** est implémentée à double niveau : si l'**API** est indisponible, **Angular** affiche sa vue de maintenance. Si c'est l'application elle-même qui est en mise à jour (**Front-End** down), un mécanisme serveur (`.htaccess` via trigger **CI/CD**) prend instantanément le relais avec une page pur **HTML**/**CSS** statique. Le **SEO** est maintenu !
 
 🛠️ **Pipes & Directives :**  
 Des outils essentiels comme des **Directives** (`input-focus`, `input-trim`, `input-uppercase`...) et des **Pipes** (`date-format`...) sont inclus. **Tous couverts à 100% par des tests.**  
 
 📘 **Documentation :**  
 Architecture documentée en temps réel. **Compodoc** génère une documentation technique complète, automatiquement déployée et hébergée sur **GitHub Pages** à chaque merge sur le code stable (branche `main`). Cette **Compodoc** est évidemment aussi disponible en environnement local !  
+
+🚦 **Toggle Maintenance :**  
+Besoin de geler l'application en production pour une maintenance ? Un workflow **GitHub Actions** dédié agit comme un interrupteur (`toggle-maintenance.yml`). Depuis l'onglet `Actions` de **GitHub** un simple clic permet d'activer (🔴) ou de désactiver (🟢) la page de maintenance statique (**Erreur 503**). Pour cela le script se connecte en **SSH** pour piloter le fichier `maintenance.enable` intercepté par le `.htaccess`.  
+✨ Un script ping le serveur et recharge automatiquement la page de l'utilisateur dès lors que le site revient en ligne (sans qu'ils n'aient besoin de rafraîchir manuellement !).  
 
 ## 📚 DOCUMENTATION
 
