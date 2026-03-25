@@ -77,6 +77,7 @@ h3,
 h4,
 h5,
 h6 {
+  font-weight: var(--font-weight-bold);
   text-wrap: balance;
   letter-spacing: -0.02em;
 }
@@ -85,19 +86,17 @@ h6 {
 h1 {
   font-family: var(--font-title-primary);
   font-size: var(--font-size-h1);
-  font-weight: var(--font-weight-bold);
 }
 
 h3 {
   font-family: var(--font-title);
   font-size: var(--font-size-h3);
-  font-weight: var(--font-weight-thin);
+  color: var(--primary-color);
 }
 
 h4 {
   font-family: var(--font-title);
   font-size: var(--font-size-h4);
-  font-weight: var(--font-weight-bold);
   color: var(--primary-color);
 }
 
@@ -119,6 +118,7 @@ h5 {
 }
 
 .error-view__title {
+  padding-bottom: 1rem;
   animation: shimmer 4s linear infinite;
   -webkit-animation: shimmer 4s linear infinite;
 }
@@ -133,7 +133,6 @@ h5 {
 
 .error-view__code-value {
   color: var(--primary-color);
-  font-weight: var(--font-weight-bold);
 }
 
 .error-view__content {
