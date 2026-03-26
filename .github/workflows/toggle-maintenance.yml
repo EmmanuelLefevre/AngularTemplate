@@ -9,9 +9,9 @@ on:
         type: choice
 
         options:
-          - '🟢 ENABLE (Switch site to offline mode)'
-          - '🔴 DISABLE (Put back site online)'
-        default: '🟢 ENABLE (Switch site to offline mode)'
+          - '🟢 ENABLE (Switch website to offline mode)'
+          - '🔴 DISABLE (Put back website online)'
+        default: '🟢 ENABLE (Switch website to offline mode)'
 
 jobs:
   manage-maintenance:
@@ -23,7 +23,7 @@ jobs:
     steps:
       # ===== ENABLE =====
       - name: 🚧 Enable Maintenance Mode
-        if: ${{ inputs.action == '🟢 ENABLE (Switch site to offline mode)' }}
+        if: ${{ inputs.action == '🟢 ENABLE (Switch website to offline mode)' }}
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.REMOTE_HOST }}
@@ -33,15 +33,15 @@ jobs:
           script: touch ${{ secrets.TARGET_PATH }}/maintenance.enable
 
       - name: 📢 Enable Summary
-        if: ${{ inputs.action == '🟢 ENABLE (Switch site to offline mode)' }}
+        if: ${{ inputs.action == '🟢 ENABLE (Switch website to offline mode)' }}
         run: |
           echo "##### 🚧 CONSTRUCTION IN PROGRESS ! #####" >> $GITHUB_STEP_SUMMARY
-          echo "🟢 The 'maintenance.enable' file has been deployed. The site is serving a static 503 error page." >> $GITHUB_STEP_SUMMARY
-          echo "Hey ${{ github.actor }} 👷‍♂️👷👷‍♂️, don't forget to restart the pipeline to bring the site back online when you're finished. 🏗️ " >> $GITHUB_STEP_SUMMARY
+          echo "🟢 The 'maintenance.enable' file has been deployed. The website is serving a static 503 error page." >> $GITHUB_STEP_SUMMARY
+          echo "Hey ${{ github.actor }} 👷‍♂️👷👷‍♂️, don't forget to restart the pipeline to bring the website back online when you're finished. 🏗️ " >> $GITHUB_STEP_SUMMARY
 
       # ===== DISABLE =====
       - name: ✅ Disable Maintenance Mode
-        if: ${{ inputs.action == '🔴 DISABLE (Put back site online)' }}
+        if: ${{ inputs.action == '🔴 DISABLE (Put back website online)' }}
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.REMOTE_HOST }}
@@ -51,8 +51,8 @@ jobs:
           script: rm -f ${{ secrets.TARGET_PATH }}/maintenance.enable
 
       - name: 📢 Disable Summary
-        if: ${{ inputs.action == '🔴 DISABLE (Put back site online)' }}
+        if: ${{ inputs.action == '🔴 DISABLE (Put back website online)' }}
         run: |
-          echo "##### ✅ CONSTRUCTION SITE COMPLETED ! #####" >> $GITHUB_STEP_SUMMARY
-          echo "🚀 The 'maintenance.enable' file has been deleted. Site is online again. 🚀" >> $GITHUB_STEP_SUMMARY
+          echo "##### ✅ CONSTRUCTION WEBSITE COMPLETED ! #####" >> $GITHUB_STEP_SUMMARY
+          echo "🚀 The 'maintenance.enable' file has been deleted. Website is online again. 🚀" >> $GITHUB_STEP_SUMMARY
           echo "Good job ${{ github.actor }}. 🥳🥳🥳" >> $GITHUB_STEP_SUMMARY

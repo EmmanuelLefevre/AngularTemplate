@@ -10,7 +10,6 @@
   justify-content: center;
   flex: 1;
   padding: 2rem;
-  background-color: var(--bg-color);
 
   &__wrapper {
     width: 100%;
@@ -44,14 +43,13 @@
 
   &__title {
     font-size: var(--font-size-h1-form);
-    font-weight: var(--font-weight-bold);
-    color: var(--text-primary-color);
     margin-bottom: 10px;
   }
 
   &__subtitle {
+    font-family: var(--font-main);
     font-size: var(--font-size-base);
-    color: var(--text-black-color);
+    color: var(--primary-color);
     line-height: 1.5;
   }
 

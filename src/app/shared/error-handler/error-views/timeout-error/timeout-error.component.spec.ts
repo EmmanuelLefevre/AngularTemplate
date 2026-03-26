@@ -49,7 +49,7 @@ describe('TimeoutErrorComponent', () => {
           'TIMEOUT': {
             'TITLE': 'Perte de signal !',
             'SUBTITLE': 'Même la lumière met du temps à traverser l\'univers...',
-            'IMG.ALT.SANDGLASS': 'Un sablier en train de tourner sur lui-même'
+            'IMG.ALT': 'Un sablier en train de tourner sur lui-même'
           }
         }
       }
@@ -60,7 +60,7 @@ describe('TimeoutErrorComponent', () => {
           'TIMEOUT': {
             'TITLE': 'Signal loss !',
             'SUBTITLE': 'Even light takes time to travel across the universe...',
-            'IMG.ALT.SANDGLASS': 'A sandglass spinning on its axis'
+            'IMG.ALT': 'A sandglass spinning on its axis'
           }
         }
       }

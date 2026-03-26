@@ -49,7 +49,7 @@ describe('UnknownErrorComponent', () => {
           'UNKNOWN': {
             'TITLE': 'Houston, on a un problème !',
             'SUBTITLE': 'Il semblerait que cette page ait fait un saut dans l\'espace-temps...',
-            'IMG.ALT.ABDUCTION': 'Une soucoupe volante aspirant une chenille'
+            'IMG.ALT': 'Une soucoupe volante aspirant une chenille'
           }
         }
       }
@@ -60,7 +60,7 @@ describe('UnknownErrorComponent', () => {
           'UNKNOWN': {
             'TITLE': 'Houston, we have a problem !',
             'SUBTITLE': 'It seems this page took a leap through spacetime...',
-            'IMG.ALT.ABDUCTION': 'A flying saucer abducting a caterpillar'
+            'IMG.ALT': 'A flying saucer abducting a caterpillar'
           }
         }
       }

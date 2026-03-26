@@ -46,4 +46,4 @@ setInterval(async () => {
   } catch (error) {
     console.info('Website still under maintenance...');
   }
-}, 30000);
+}, 120000);

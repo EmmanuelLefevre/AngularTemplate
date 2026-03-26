@@ -82,7 +82,7 @@ h6 {
   letter-spacing: -0.02em;
 }
 
-/* =========== TITLES =========== */
+/* =========== TYPOGRAPHY =========== */
 h1 {
   font-family: var(--font-title-primary);
   font-size: var(--font-size-h1);
@@ -106,7 +106,7 @@ h5 {
   line-height: 1.4;
 }
 
-/* =========== GLOBAL STRUCTURE =========== */
+/* =========== MAIN STRUCTURE =========== */
 .error-view {
   display: flex;
   flex-direction: column;

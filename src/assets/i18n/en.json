@@ -160,27 +160,21 @@
         "TITLE": "Houston, we have a problem !",
         "SUBTITLE": "It would seem that this page has taken a leap through space and time...",
         "IMG": {
-          "ALT": {
-            "ABDUCTION": "An alien flying saucer abducts a camper asleep in his sleeping bag."
-          }
+          "ALT": "An alien flying saucer abducts a camper asleep in his sleeping bag"
         }
       },
       "TIMEOUT": {
         "TITLE": "Signal loss !",
         "SUBTITLE": "Even light takes time to travel across the universe...",
         "IMG": {
-          "ALT": {
-            "SANDGLASS": "A sandglass spinning on its axis."
-          }
+          "ALT": "A sandglass spinning on its axis"
         }
       },
       "MAINTENANCE": {
         "TITLE": "Helmets are needed !",
         "SUBTITLE": "We'll let the code dry and we'll be back soon...",
         "IMG": {
-          "ALT": {
-            "MAINTENANCE": "A technical team working on a screen undergoing maintenance"
-          }
+          "ALT": "A technical team working on a screen undergoing maintenance"
         }
       }
     }

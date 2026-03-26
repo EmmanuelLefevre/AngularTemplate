@@ -13,7 +13,6 @@
   padding: 2rem;
 
   &__title {
-    font-size: var(--font-size-h1);
     margin-bottom: 1rem;
   }
 
@@ -23,12 +22,10 @@
     align-items: center;
     gap: 0.5rem;
     color: var(--text-black-color);
-    font-size: var(--font-size-h3);
     margin-bottom: 2rem;
 
     &-value {
       color: var(--text-primary-color);
-      font-weight: var(--font-weight-bold);
     }
 
     &.is-english {

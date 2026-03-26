@@ -49,7 +49,7 @@ describe('MaintenanceErrorComponent', () => {
           'MAINTENANCE': {
             'TITLE': 'Casques obligatoires !',
             'SUBTITLE': 'On laisse sécher le code et on revient vite...',
-            'IMG.ALT.MAINTENANCE': 'Une équipe technique s\'affairant autour d\'un écran en maintenance'
+            'IMG.ALT': 'Une équipe technique s\'affairant autour d\'un écran en maintenance'
           }
         }
       }
@@ -60,7 +60,7 @@ describe('MaintenanceErrorComponent', () => {
           'MAINTENANCE': {
             'TITLE': 'Helmets are needed !',
             'SUBTITLE': 'We\'ll let the code dry and we\'ll be back soon...',
-            'IMG.ALT.MAINTENANCE': 'A technical team working on a screen undergoing maintenance'
+            'IMG.ALT': 'A technical team working on a screen undergoing maintenance'
           }
         }
       }

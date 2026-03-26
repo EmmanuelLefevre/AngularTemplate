@@ -60,3 +60,15 @@ button {
   white-space: nowrap;
   border: 0;
 }
+
+/* =========== BACKGROUND TEXT EFFECT =========== */
+.text-background-effect {
+  font-family: var(--font-robot-condensed);
+  font-size: var(--font-size-h5);
+  color: transparent;
+  line-height: 1.4;
+  background: linear-gradient(90deg, var(--secondary-color), var(--primary-color), var(--secondary-color));
+  background-size: 200% auto;
+  background-clip: text;
+  animation: shimmer 4s linear infinite;
+}

@@ -51,12 +51,6 @@
   }
 
   &__subtitle {
-    color: transparent;
-    line-height: 1.4;
     margin: 0;
-    background: linear-gradient(90deg, var(--secondary-color), var(--primary-color), var(--secondary-color));
-    background-size: 200% auto;
-    background-clip: text;
-    animation: shimmer 4s linear infinite;
   }
 }

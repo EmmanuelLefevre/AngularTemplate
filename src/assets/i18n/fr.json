@@ -160,27 +160,21 @@
         "TITLE": "Houston, on a un problème !",
         "SUBTITLE": "Il semblerait que cette page ait fait un saut dans l'espace-temps...",
         "IMG": {
-          "ALT": {
-            "ABDUCTION": "Une soucoupe volante extraterrestre enlevant un campeur endormi dans son sac de couchage"
-          }
+          "ALT": "Une soucoupe volante extraterrestre enlevant un campeur endormi dans son sac de couchage"
         }
       },
       "TIMEOUT": {
         "TITLE": "Perte de signal !",
         "SUBTITLE": "Même la lumière met du temps à traverser l'univers...",
         "IMG": {
-          "ALT": {
-            "SANDGLASS": "Un sablier en train de tourner sur lui-même"
-          }
+          "ALT": "Un sablier en train de tourner sur lui-même"
         }
       },
       "MAINTENANCE": {
         "TITLE": "Casques obligatoires !",
         "SUBTITLE": "On laisse sécher le code et on revient vite...",
         "IMG": {
-          "ALT": {
-            "MAINTENANCE": "Une équipe technique s'affairant autour d'un écran en maintenance"
-          }
+          "ALT": "Une équipe technique s'affairant autour d'un écran en maintenance"
         }
       }
     }
