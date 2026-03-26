@@ -201,11 +201,3 @@ pnpm add -DE <MA_LIBRAIRIE>@latest
 ```bash
 pnpm add <MA_LIBRAIRIE>@latest
 ```
-
-Supprimer le `node_modules`, le `pnpm-lock.yaml` et clean le cache de **PNPM** =>
-
-````bash
-pnpm store prune
-```
-
-Push 🤜🤜🤜

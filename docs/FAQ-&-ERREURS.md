@@ -138,13 +138,19 @@ Ajouter sa version patchée dans `package.json` =>
 }
 ```
 
-Supprimer le dossier `node_modules` et `pnpm-lock.yaml` puis relancer une install :  
+Supprimer le `node_modules`, le `pnpm-lock.yaml` et clean le cache de **PNPM** =>
 
-```Bash
-pnpm install
+```bash
+pnpm store prune
 ```
 
-Push again 😜
+Puis relancer une install :
+
+```Bash
+pnpm install --no-frozen-lockfile
+```
+
+Push 🤜🤜🤜
 
 </details>
 
