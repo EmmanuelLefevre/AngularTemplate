@@ -1,9 +1,9 @@
 import { TestBed } from '@angular/core/testing';
-import { HttpClient, HttpErrorResponse, provideHttpClient, withInterceptors } from '@angular/common/http';
+import { HttpClient, HttpContext, HttpErrorResponse, provideHttpClient, withInterceptors } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { Router } from '@angular/router';
 
-import { errorInterceptor } from './error.interceptor';
+import { errorInterceptor, BYPASS_GLOBAL_ERROR } from './error.interceptor';
 
 class MockRouter {
   url = '/home';
@@ -131,6 +131,55 @@ describe('errorInterceptor', () => {
 
     const req = httpTestingController.expectOne('/api/data');
     req.flush('Redirect', { status: 302, statusText: 'Found' });
+
+    // --- ASSERT ---
+    expect(mockRouter.navigate).not.toHaveBeenCalled();
+  });
+
+  it('should NOT redirect for validation errors (400 Bad Request)', () => {
+    // --- ARRANGE ---
+    mockRouter.url = '/login';
+
+    // --- ACT ---
+    httpClient.get('/api/data').subscribe({
+      error: vi.fn()
+    });
+
+    const req = httpTestingController.expectOne('/api/data');
+    req.flush('Bad form data', { status: 400, statusText: 'Bad Request' });
+
+    // --- ASSERT ---
+    expect(mockRouter.navigate).not.toHaveBeenCalled();
+  });
+
+  it('should NOT redirect for validation errors (422 Unprocessable Entity)', () => {
+    // --- ARRANGE ---
+    mockRouter.url = '/login';
+
+    // --- ACT ---
+    httpClient.get('/api/data').subscribe({
+      error: vi.fn()
+    });
+
+    const req = httpTestingController.expectOne('/api/data');
+    req.flush('Invalid fields', { status: 422, statusText: 'Unprocessable Entity' });
+
+    // --- ASSERT ---
+    expect(mockRouter.navigate).not.toHaveBeenCalled();
+  });
+
+  it('should NOT redirect if BYPASS_GLOBAL_ERROR token is provided, even on 500 Error', () => {
+    // --- ARRANGE ---
+    mockRouter.url = '/home';
+    const context = new HttpContext().set(BYPASS_GLOBAL_ERROR, true);
+
+    // --- ACT ---
+    httpClient.get('/api/data', { context }).subscribe({
+      error: vi.fn()
+    });
+
+    const req = httpTestingController.expectOne('/api/data');
+    req.flush('Background sync failed', { status: 500, statusText: 'Internal Server Error' });
 
     // --- ASSERT ---
     expect(mockRouter.navigate).not.toHaveBeenCalled();
