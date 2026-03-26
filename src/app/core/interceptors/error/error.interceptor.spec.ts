@@ -103,4 +103,36 @@ describe('errorInterceptor', () => {
     // --- ASSERT ---
     expect(mockRouter.navigate).not.toHaveBeenCalled();
   });
+
+  it('should NOT redirect for informational status codes (1xx)', () => {
+    // --- ARRANGE ---
+    mockRouter.url = '/home';
+
+    // --- ACT ---
+    httpClient.get('/api/data').subscribe({
+      error: vi.fn()
+    });
+
+    const req = httpTestingController.expectOne('/api/data');
+    req.flush('Info', { status: 100, statusText: 'Continue' });
+
+    // --- ASSERT ---
+    expect(mockRouter.navigate).not.toHaveBeenCalled();
+  });
+
+  it('should NOT redirect for redirection status codes (3xx)', () => {
+    // --- ARRANGE ---
+    mockRouter.url = '/home';
+
+    // --- ACT ---
+    httpClient.get('/api/data').subscribe({
+      error: vi.fn()
+    });
+
+    const req = httpTestingController.expectOne('/api/data');
+    req.flush('Redirect', { status: 302, statusText: 'Found' });
+
+    // --- ASSERT ---
+    expect(mockRouter.navigate).not.toHaveBeenCalled();
+  });
 });
