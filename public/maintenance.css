@@ -91,7 +91,6 @@ h1 {
 h3 {
   font-family: var(--font-title);
   font-size: var(--font-size-h3);
-  color: var(--primary-color);
 }
 
 h4 {
