@@ -131,6 +131,10 @@ h5 {
   margin-bottom: 2rem;
 }
 
+.error-view__label {
+  color: var(--text-black-color);
+}
+
 .error-view__code-value {
   color: var(--primary-color);
 }
