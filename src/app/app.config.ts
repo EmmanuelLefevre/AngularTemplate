@@ -7,8 +7,8 @@ import { catchError, firstValueFrom, Observable, of } from 'rxjs';
 import { DotLottie } from '@lottiefiles/dotlottie-web';
 
 import { ROUTES } from '@app/app.routes';
-import { authInterceptor } from '@core/interceptor/auth/auth.interceptor';
-import { mockInterceptor } from '@core/interceptor/dev/mock.interceptor';
+import { authInterceptor } from '@core/interceptors/auth/auth.interceptor';
+import { mockInterceptor } from '@core/interceptors/dev/mock.interceptor';
 import { AuthService } from '@core/_services/auth/auth.service';
 import { ENVIRONMENT } from '@env/environment';
 
