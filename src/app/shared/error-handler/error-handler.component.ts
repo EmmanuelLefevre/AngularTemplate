@@ -1,9 +1,11 @@
-import { ChangeDetectionStrategy, Component, OnInit, inject, signal, DestroyRef, ChangeDetectorRef } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject, signal, DestroyRef, ChangeDetectorRef, computed } from '@angular/core';
 import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 import { MainButtonComponent } from '@shared';
+
+const SPECIFIC_ERROR_CODES = ['401', '404', '408', '500', '503', '504'];
 
 @Component({
   selector: 'error-handler',
@@ -26,6 +28,19 @@ export class ErrorHandlerComponent implements OnInit {
 
   public readonly code = signal<string>('');
   public readonly translate = inject(TranslateService);
+
+  protected readonly specificCodes = SPECIFIC_ERROR_CODES;
+
+  public readonly titleKey = computed(() => {
+    const currentCode = this.code();
+    const isGenericCode = /^[1-5]\d{2}$/.test(currentCode);
+
+    if (!SPECIFIC_ERROR_CODES.includes(currentCode) && !isGenericCode) {
+      return 'PAGES.ERROR.TITLE.UNKNOWN';
+    }
+
+    return 'PAGES.ERROR.TITLE.COMMON';
+  });
 
   ngOnInit(): void {
     this.route.queryParams.pipe(takeUntilDestroyed(this.destroyRef)).subscribe((params) => {
@@ -51,6 +66,9 @@ export class ErrorHandlerComponent implements OnInit {
           case URL.includes('maintenance-error'):
             codeValue = '503';
             break;
+          case URL.includes('generic-error'):
+            codeValue = '502';
+            break;
           default:
             codeValue = '';
             break;
@@ -59,21 +77,6 @@ export class ErrorHandlerComponent implements OnInit {
 
       this.code.set(codeValue);
       this.cdr.markForCheck();
-
-      const CURRENT_URL = this.router.url;
-      const ERROR_PAGES = [
-        'unauthorized-error',
-        'unfound-error',
-        'server-error',
-        'generic-error',
-        'unknown-error',
-        'timeout-error',
-        'maintenance-error'
-      ];
-
-      if (ERROR_PAGES.some(page => CURRENT_URL.includes(page))) {
-        return;
-      }
 
       const RAW_VALUE = this.code();
       let destination: string;
@@ -101,6 +104,11 @@ export class ErrorHandlerComponent implements OnInit {
         default:
           destination = 'unknown-error';
           break;
+      }
+
+      // Check if we're not ALREADY on the correct child route
+      if (this.router.url.includes(destination)) {
+        return;
       }
 
       this.router.navigate([destination], {

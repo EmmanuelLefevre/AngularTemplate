@@ -50,10 +50,11 @@ describe('ErrorHandlerComponent', () => {
     translate.setTranslation('fr', {
       'PAGES': {
         'ERROR': {
-          'NOT_FOUND': {
-            'TITLE': 'Une erreur est survenue.',
-            'LABEL': 'Erreur'
-          }
+          'TITLE': {
+            'COMMON': 'Une erreur est survenue.',
+            'UNKNOWN': 'Une erreur inconnue est survenue.'
+          },
+          'LABEL': 'Erreur'
         }
       },
       'UI': {
@@ -72,10 +73,11 @@ describe('ErrorHandlerComponent', () => {
     translate.setTranslation('en', {
       'PAGES': {
         'ERROR': {
-          'NOT_FOUND': {
-            'TITLE': 'An error has occurred.',
-            'LABEL': 'Error'
-          }
+          'TITLE': {
+            'COMMON': 'An error has occurred.',
+            'UNKNOWN': 'An unknown error has occurred.'
+          },
+          'LABEL': 'Error'
         }
       },
       'UI': {

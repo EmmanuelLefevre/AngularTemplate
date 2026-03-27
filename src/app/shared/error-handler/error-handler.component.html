@@ -1,13 +1,13 @@
 <section class="error-view">
   <h1 class="error-view__title">
-    {{ 'PAGES.ERROR.NOT_FOUND.TITLE' | translate }}
+    {{ titleKey() | translate }}
   </h1>
 
   @if (code()) {
     <h3
       class="error-view__code"
       [class.is-english]="translate.getCurrentLang() === 'en'">
-      <span class="error-view__label">{{ 'PAGES.ERROR.NOT_FOUND.LABEL' | translate }}</span>
+      <span class="error-view__label">{{ 'PAGES.ERROR.LABEL' | translate }}</span>
       <span class="error-view__code-value">{{ code() }}</span>
     </h3>
   }
@@ -24,7 +24,7 @@
         [ariaLabel]="'UI.BUTTONS.LOGIN.ARIA' | translate"
         (clicked)="navigateAction('/login')"
         class="error-view__button" />
-    } @else {
+    } @else if (code() === '' || specificCodes.includes(code())) {
       <main-button
         variant="primary"
         [label]="'UI.BUTTONS.BACKHOME.LABEL' | translate"

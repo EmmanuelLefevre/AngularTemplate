@@ -1,1 +1,52 @@
-<p>generic-error works!</p>
+<section class="generic-error">
+  <div class="generic-error__illustration-placeholder">
+    <img
+      ngSrc="assets/img/generic-error.png"
+      width="6000"
+      height="300"
+      priority
+      alt=""
+      [alt]="'PAGES.ERROR.GENERIC.IMG.ALT' | translate"
+      class="generic-error__img" />
+
+    @if (isSystemRebooted()) {
+      <div
+        [class.is-nearly-rebooted]="countdown() === 0"
+        class="generic-error__overlay">
+        <p
+          [class.is-nearly-rebooted]="countdown() === 0"
+          class="generic-error__success-message">
+          {{ 'PAGES.ERROR.GENERIC.SUCCESS' | translate }}
+        </p>
+
+        @if (countdown() !== 0) {
+          <span class="generic-error__countdown">
+            {{ countdown() }}
+          </span>
+        }
+      </div>
+    }
+  </div>
+
+  <h4 class="generic-error__title">
+    {{ 'PAGES.ERROR.GENERIC.TITLE' | translate }}
+  </h4>
+
+  <h5 class="generic-error__subtitle text-background-effect">
+    {{ 'PAGES.ERROR.GENERIC.SUBTITLE' | translate }}
+  </h5>
+
+  <div
+    [class.is-nearly-rebooted]="countdown() === 0"
+    [class.is-rebooted]="isSystemRebooted()"
+    class="generic-error__control-panel">
+    @for (node of systemNodes(); track node.id) {
+      <button
+        type="button"
+        class="control-button"
+        [class.is-fixed]="node.isFixed"
+        (click)="$event.stopPropagation(); fixSystem(node.id)"
+        [attr.aria-label]="'Réparer le système ' + node.id"></button>
+    }
+  </div>
+</section>

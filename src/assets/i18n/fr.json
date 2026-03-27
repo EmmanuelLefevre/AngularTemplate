@@ -126,10 +126,11 @@
       }
     },
     "ERROR": {
-      "NOT_FOUND": {
-        "TITLE": "Une erreur est survenue.",
-        "LABEL": "Erreur"
+      "TITLE": {
+        "COMMON": "Une erreur est survenue.",
+        "UNKNOWN": "Une erreur inconnue est survenue."
       },
+      "LABEL": "Erreur",
       "UNAUTHORIZED": {
         "TITLE": "Accès Interdit",
         "MESSAGE": "On a quelques questions avant de te laisser passer. A commencer par : t'es qui ? Ton accréditation n'est pas valable pour cette zone."
@@ -175,6 +176,14 @@
         "SUBTITLE": "On laisse sécher le code et on revient vite...",
         "IMG": {
           "ALT": "Une équipe technique s'affairant autour d'un écran en maintenance"
+        }
+      },
+      "GENERIC": {
+        "TITLE": "Nos algorithmes sont formels : c'est impossible...",
+        "SUBTITLE": "Bidouillez ce qui clignote pour vous échapper en vitesse !",
+        "SUCCESS": "Erreur colmatée. Tunnel de sortie stable !",
+        "IMG": {
+          "ALT": "Illustration d'un vieux cimetière lugubre et brumeux"
         }
       }
     }

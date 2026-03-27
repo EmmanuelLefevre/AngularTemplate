@@ -126,10 +126,11 @@
       }
     },
     "ERROR": {
-      "NOT_FOUND": {
-        "TITLE": "An error has occurred.",
-        "LABEL": "Error"
+      "TITLE": {
+        "COMMON": "An error has occurred.",
+        "UNKNOWN": "An unknown error has occurred."
       },
+      "LABEL": "Error",
       "UNAUTHORIZED": {
         "TITLE": "Forbidden Access",
         "MESSAGE": "We have a few questions before we let you through. First of all: who are you ? Your accreditation isn't valid for this area."
@@ -175,6 +176,14 @@
         "SUBTITLE": "We'll let the code dry and we'll be back soon...",
         "IMG": {
           "ALT": "A technical team working on a screen undergoing maintenance"
+        }
+      },
+      "GENERIC": {
+        "TITLE": "Our algorithms are formal : it's impossible...",
+        "SUBTITLE": "Tweak with the flashing lights to escape quickly !",
+        "SUCCESS": "Error fixed. Stable exit tunnel !",
+        "IMG": {
+          "ALT": "Illustration of an old, gloomy, and foggy cemetery"
         }
       }
     }

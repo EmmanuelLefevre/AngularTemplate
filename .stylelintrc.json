@@ -7,7 +7,7 @@
     "scss/at-extend-no-missing-placeholder": true,
     "scss/at-if-no-null": true,
     "max-nesting-depth": [
-      3,
+      5,
       {
         "ignore": ["blockless-at-rules"]
       }
