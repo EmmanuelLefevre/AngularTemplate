@@ -1,0 +1,73 @@
+@use 'abstracts' as *;
+
+$loader-wave-height: 3px;
+
+$loader-width-mobile: 54px;
+$loader-width-tablet: 60px;
+$loader-width-desktop: 80px;
+
+:host {
+  display: block;
+}
+
+.loader {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--rgba-color-m);
+  backdrop-filter: blur(3px);
+  inset: 0;
+  z-index: 9999;
+
+  &__container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: $loader-width-mobile;
+    height: $loader-width-mobile;
+    border-radius: 50%;
+    border: 2px solid var(--primary-color);
+    background-color: var(--white-color);
+    box-shadow: 0 4px 15px var(--rgba-color-s);
+    animation: fade-in-up-2 0.7s ease-in-out;
+
+    @include respond-to('tablet') {
+      width: $loader-width-tablet;
+      height: $loader-width-tablet;
+    }
+
+    @include respond-to('desktop') {
+      width: $loader-width-desktop;
+      height: $loader-width-desktop;
+    }
+
+    &::after {
+      position: absolute;
+      content: '';
+      top: -$loader-wave-height;
+      left: -$loader-wave-height;
+      right: -$loader-wave-height;
+      bottom: -$loader-wave-height;
+      border-radius: 50%;
+      background: repeating-conic-gradient(transparent 0deg, var(--primary-color) 20deg, transparent 40deg);
+      animation: spin 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+      z-index: -1;
+    }
+  }
+
+  &__icon {
+    font-size: 24px;
+    color: var(--primary-color);
+    animation: spin 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+
+    @include respond-to('tablet') {
+      font-size: 30px;
+    }
+
+    @include respond-to('desktop') {
+      font-size: 40px;
+    }
+  }
+}

@@ -258,7 +258,7 @@
       }
     },
     "LOADER": {
-      "LOADING": "Chargement..."
+      "ARIA": "Chargement de la page en cours"
     }
   }
 }

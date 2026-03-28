@@ -3,16 +3,18 @@ import { ActivatedRoute, Data, NavigationEnd, Router, RouterOutlet } from '@angu
 import { TranslateService } from '@ngx-translate/core';
 import { filter, map } from 'rxjs';
 
+import { LoaderComponent } from '@shared/components/loader/loader.component';
+import { TranslationService } from '@core/_services/translation/translation.service';
 import { AuthService } from '@core/_services/auth/auth.service';
 import { SeoService } from '@core/_services/seo/seo.service';
 import { SeoData } from '@core/_models/seo/seo.model';
-import { TranslationService } from './core/_services/translation/translation.service';
 
 const INITIAL_VALUE = 0;
 
 @Component({
   selector: 'app-root',
   imports: [
+    LoaderComponent,
     RouterOutlet,
   ],
   templateUrl: './app.component.html',

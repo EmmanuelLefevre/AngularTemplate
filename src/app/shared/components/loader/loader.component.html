@@ -1,0 +1,14 @@
+@if (isLoading()) {
+  <div
+    role="status"
+    aria-live="polite"
+    [attr.aria-label]="'UI.LOADER.ARIA' | translate"
+    class="loader">
+    <div class="loader__container">
+      <fa-icon
+        [icon]="icon"
+        aria-hidden="true"
+        class="loader__icon" />
+    </div>
+  </div>
+}
