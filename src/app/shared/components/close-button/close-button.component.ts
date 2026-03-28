@@ -3,14 +3,14 @@ import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'close-button',
   imports: [
-    FontAwesomeModule,
+    FaIconComponent,
     MatTooltipModule,
     TranslateModule
   ],
