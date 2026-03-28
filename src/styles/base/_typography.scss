@@ -27,7 +27,7 @@ h4 {
 }
 
 h1 {
-  color: transparent;
+  color: var(--bg-text-effect-color);
   font-family: var(--font-title-primary);
   font-size: var(--font-size-h1);
   font-weight: var(--font-weight-bold);
