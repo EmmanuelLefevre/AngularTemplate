@@ -54,7 +54,7 @@ ol {
 }
 
 /* =========== GLOBALS =========== */
-.text-background-effect {
+.background-text-effect {
   color: transparent;
   background: linear-gradient(90deg, var(--secondary-color), var(--primary-color), var(--secondary-color));
   background-size: 200% auto;

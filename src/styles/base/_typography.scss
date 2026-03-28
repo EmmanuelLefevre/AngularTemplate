@@ -31,10 +31,10 @@ h1 {
   font-family: var(--font-title-primary);
   font-size: var(--font-size-h1);
   font-weight: var(--font-weight-bold);
-  background: linear-gradient(90deg, var(--secondary-color), var(--primary-color), var(--secondary-color));
-  background-size: 200% auto;
-  background-clip: text;
-  animation: shimmer 4s linear infinite;
+  background: var(--bg-text-effect);
+  background-size: var(--bg-text-effect-size);
+  background-clip: var(--bg-text-effect-clip);
+  animation: var(--bg-text-effect-animation);
 }
 
 h2 {

@@ -62,13 +62,13 @@ button {
 }
 
 /* =========== BACKGROUND TEXT EFFECT =========== */
-.text-background-effect {
+.background-text-effect {
+  color: var(--bg-text-effect-color);
   font-family: var(--font-robot-condensed);
   font-size: var(--font-size-h5);
-  color: transparent;
   line-height: 1.4;
-  background: linear-gradient(90deg, var(--secondary-color), var(--primary-color), var(--secondary-color));
-  background-size: 200% auto;
-  background-clip: text;
-  animation: shimmer 4s linear infinite;
+  background: var(--bg-text-effect);
+  background-size: var(--bg-text-effect-size);
+  background-clip: var(--bg-text-effect-clip);
+  animation: var(--bg-text-effect-animation);
 }
