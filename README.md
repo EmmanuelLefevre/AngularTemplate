@@ -176,7 +176,7 @@ git clone git@github.com:EmmanuelLefevre/AngularTemplate.git
 cd AngularTemplate
 corepack enable
 pnpm install --frozen-lockfile
-pnpm start/ng serve
+pnpm start
 ```
 
 - Via Package  
