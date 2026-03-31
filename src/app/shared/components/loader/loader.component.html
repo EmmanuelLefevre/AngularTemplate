@@ -1,7 +1,5 @@
 @if (isLoading()) {
-  <div
-    role="status"
-    aria-live="polite"
+  <output
     [attr.aria-label]="'UI.LOADER.ARIA' | translate"
     class="loader">
     <div class="loader__container">
@@ -10,5 +8,5 @@
         aria-hidden="true"
         class="loader__icon" />
     </div>
-  </div>
+  </output>
 }

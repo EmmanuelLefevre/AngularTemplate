@@ -65,7 +65,6 @@ describe('LoaderComponent', () => {
     it('should render the translated aria-label when loading', () => {
       // --- ARRANGE ---
       fixture.detectChanges();
-
       (component as any).isLoading.set(true);
 
       // --- ACT ---
@@ -73,9 +72,9 @@ describe('LoaderComponent', () => {
 
       // --- ASSERT ---
       const loaderElement = fixture.debugElement.query(By.css('.loader')).nativeElement;
+
+      expect(loaderElement.tagName.toLowerCase()).toBe('output');
       expect(loaderElement.getAttribute('aria-label')).toBe('Page loading in progress');
-      expect(loaderElement.getAttribute('role')).toBe('status');
-      expect(loaderElement.getAttribute('aria-live')).toBe('polite');
     });
 
     it('should render the FontAwesome leaf icon properly hidden from screen readers', () => {
