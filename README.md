@@ -6,7 +6,7 @@
 
 <br>
 
-<div align="center"><a href="https://github.com/EmmanuelLefevre/AngularTemplate/actions"><img src="https://github.com/EmmanuelLefevre/AngularTemplate/actions/workflows/pipeline.yml/badge.svg" alt="CI/CD Pipeline"/></a>&nbsp;&nbsp;<a href="https://snyk.io/test/github/EmmanuelLefevre/AngularTemplate"><img src="https://snyk.io/test/github/EmmanuelLefevre/AngularTemplate/badge.svg?targetFile=package.json" alt="Libraries Vulnerabilities"/>></a></div>
+<div align="center"><a href="https://github.com/EmmanuelLefevre/AngularTemplate/actions"><img src="https://github.com/EmmanuelLefevre/AngularTemplate/actions/workflows/pipeline.yml/badge.svg" alt="CI/CD Pipeline"/></a>&nbsp;&nbsp;<a href="https://snyk.io/test/github/EmmanuelLefevre/AngularTemplate"><img src="https://snyk.io/test/github/EmmanuelLefevre/AngularTemplate/badge.svg?targetFile=package.json" alt="Libraries Vulnerabilities"/></a></div>
 
 <br>
 
