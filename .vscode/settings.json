@@ -1,12 +1,16 @@
 {
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.formatOnSave": true,
   "files.associations": {
     "*.json": "jsonc",
     "tsconfig.json": "jsonc",
     "tsconfig.app.json": "jsonc"
   },
+  "files.insertFinalNewline": true,
+  "files.trimTrailingWhitespace": true,
   "i18n-ally.displayLanguage": "fr",
   "i18n-ally.extract.autoDetect": false,
-  "i18n-ally.enabledFrameworks": ["ngx-translate"],
   "i18n-ally.keepFulfilled": false,
   "i18n-ally.keystyle": "nested",
   "i18n-ally.localesPaths": "src/assets/i18n",
@@ -24,6 +28,17 @@
   within this specific IDE instance, particularly for translations.
   =========================================================================
 
+  --- EDITOR SETTINGS ----------------------------------------------------
+
+   * editor.tabSize
+    Sets the number of spaces a tab is equal to (Standard is 2 for Web/Angular).
+
+   * editor.insertSpaces
+    Ensures that pressing 'Tab' inserts spaces instead of actual tab characters.
+
+   * editor.formatOnSave
+    Automatically formats the current file whenever it is saved.
+
   --- FILE ASSOCIATIONS --------------------------------------------------
 
   * files.associations
@@ -36,6 +51,16 @@
   * "tsconfig.json" / "tsconfig.app.json": "jsonc"
     Explicitly forces TypeScript configuration files to be treated as JSONC.
 
+  --- FILE FORMATTING ----------------------------------------------------
+
+   * files.insertFinalNewline
+    Ensures every file ends with a single blank line, matching POSIX standards
+    and preventing Git end-of-file warnings.
+
+   * files.trimTrailingWhitespace
+    Automatically removes invisible trailing spaces at the end of lines on save.
+    Keeps git diffs clean.
+
   --- I18N ALLY CONFIGURATION --------------------------------------------
 
   Settings for the "i18n Ally" extension, used to manage translation files.
@@ -47,9 +72,6 @@
    * i18n-ally.extract.autoDetect: false
     Disables automatic detection of hardcoded strings in the source code.
     Prevents the extension from being too intrusive during coding.
-
-   * i18n-ally.enabledFrameworks: ["ngx-translate"]
-    Enables specific support for the ngx-translate (Angular) framework.
 
    * i18n-ally.keepFulfilled: false
     Determines whether to keep already fulfilled translation keys during cleanup.

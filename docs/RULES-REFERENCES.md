@@ -37,8 +37,8 @@
   ESLint Rules
 </h2>
 
-> [🔗 ESLint Documentation](https://eslint.org/docs/latest/use/getting-started)  
-> [🔗 ESLint Recommanded Documentation](https://eslint.org/docs/latest/rules/)  
+> [🔗 ESLint Documentation](https://eslint.org/docs/latest/use/getting-started)
+> [🔗 ESLint Recommanded Documentation](https://eslint.org/docs/latest/rules/)
 
 <details>
 
@@ -48,7 +48,7 @@
 
 <h3 id="angular">Angular</h3>
 
-> [🔗 ESLint Angular Documentation](https://www.npmjs.com/package/@angular-eslint/eslint-plugin)  
+> [🔗 ESLint Angular Documentation](https://www.npmjs.com/package/@angular-eslint/eslint-plugin)
 
 <details>
 
@@ -56,7 +56,7 @@
 
 &nbsp;
 
-Cette section regroupe les règles spécifiques au framework **Angular**. Elles visent à faire respecter les bonnes pratiques architecturales, les conventions de nommage propres à l'écosystème (comme le `kebab-case` pour les sélecteurs de composants) et à prévenir des erreurs courantes impactant les performances (comme les **Pipes** impurs).  
+Cette section regroupe les règles spécifiques au framework **Angular**. Elles visent à faire respecter les bonnes pratiques architecturales, les conventions de nommage propres à l'écosystème (comme le `kebab-case` pour les sélecteurs de composants) et à prévenir des erreurs courantes impactant les performances (comme les **Pipes** impurs).
 
 | Option | Valeur | Description  |
 | :--- | :--- | :--- |
@@ -74,7 +74,7 @@ Cette section regroupe les règles spécifiques au framework **Angular**. Elles 
 
 <h3 id="typescript">TypeScript</h3>
 
-> [🔗 ESLint TypeScript Documentation](https://typescript-eslint.io/rules/)  
+> [🔗 ESLint TypeScript Documentation](https://typescript-eslint.io/rules/)
 
 <details>
 
@@ -82,7 +82,7 @@ Cette section regroupe les règles spécifiques au framework **Angular**. Elles 
 
 &nbsp;
 
-Ces règles étendent les capacités d'**ESLint** pour comprendre la syntaxe **TypeScript**. Elles se concentrent sur la sûreté du typage (`type safety`), la lisibilité et la prévention de bugs subtils liés à la gestion des types (comme l'usage de `any` ou les `magic numbers`).  
+Ces règles étendent les capacités d'**ESLint** pour comprendre la syntaxe **TypeScript**. Elles se concentrent sur la sûreté du typage (`type safety`), la lisibilité et la prévention de bugs subtils liés à la gestion des types (comme l'usage de `any` ou les `magic numbers`).
 
 | Option | Valeur | Description |
 | :--- | :--- | :--- |
@@ -100,7 +100,7 @@ Ces règles étendent les capacités d'**ESLint** pour comprendre la syntaxe **T
 
 <h3 id="angular-template">Angular Template</h3>
 
-> [🔗 ESLint Angular Template Documentation](https://www.npmjs.com/package/@angular-eslint/eslint-plugin-template)  
+> [🔗 ESLint Angular Template Documentation](https://www.npmjs.com/package/@angular-eslint/eslint-plugin-template)
 
 <details>
 
@@ -108,7 +108,7 @@ Ces règles étendent les capacités d'**ESLint** pour comprendre la syntaxe **T
 
 &nbsp;
 
-Ce linter analyse spécifiquement les fichiers **HTML** (`.html`). Il est crucial pour garantir l'accessibilité (**A11y**) de l'application, éviter des erreurs de syntaxe **Angular** complexes et limiter la complexité logique directement dans les vues.  
+Ce linter analyse spécifiquement les fichiers **HTML** (`.html`). Il est crucial pour garantir l'accessibilité (**A11y**) de l'application, éviter des erreurs de syntaxe **Angular** complexes et limiter la complexité logique directement dans les vues.
 
 | Option | Valeur | Description |
 | :--- | :--- | :--- |
@@ -130,7 +130,7 @@ Ce linter analyse spécifiquement les fichiers **HTML** (`.html`). Il est crucia
 
 <h3 id="stylistics">Stylistics</h3>
 
-> [🔗 ESLint Stylistics Documentation](https://eslint.style/rules)  
+> [🔗 ESLint Stylistics Documentation](https://eslint.style/rules)
 
 <details>
 
@@ -138,7 +138,7 @@ Ce linter analyse spécifiquement les fichiers **HTML** (`.html`). Il est crucia
 
 &nbsp;
 
-Depuis la dépréciation des règles de formatage dans **ESLint core**, ce plugin (`@stylistic`) prend le relais. Il assure une uniformité visuelle stricte (espaces, virgules, points-virgules) qui n'impacte pas la logique mais rend le code agréable à lire et évite les `Git diff` inutiles.  
+Depuis la dépréciation des règles de formatage dans **ESLint core**, ce plugin (`@stylistic`) prend le relais. Il assure une uniformité visuelle stricte (espaces, virgules, points-virgules) qui n'impacte pas la logique mais rend le code agréable à lire et évite les `Git diff` inutiles.
 
 | Option | Valeur | Description |
 | :--- | :--- | :--- |
@@ -159,7 +159,7 @@ Depuis la dépréciation des règles de formatage dans **ESLint core**, ce plugi
 
 <h3 id="security">Security</h3>
 
-> [🔗 ESLint Security Documentation](https://www.npmjs.com/package/eslint-plugin-security)  
+> [🔗 ESLint Security Documentation](https://www.npmjs.com/package/eslint-plugin-security)
 
 <details>
 
@@ -167,7 +167,7 @@ Depuis la dépréciation des règles de formatage dans **ESLint core**, ce plugi
 
 &nbsp;
 
-Le plugin (**eslint-plugin-security**) ajoute une couche de sécurité statique. Il scanne le code pour détecter des modèles susceptibles de créer des vulnérabilités, comme les attaques par déni de service via **RegEx** (`ReDoS`) ou l'injection d'objets non sécurisés. Nous utilisons ici la configuration recommended standard.  
+Le plugin (**eslint-plugin-security**) ajoute une couche de sécurité statique. Il scanne le code pour détecter des modèles susceptibles de créer des vulnérabilités, comme les attaques par déni de service via **RegEx** (`ReDoS`) ou l'injection d'objets non sécurisés. Nous utilisons ici la configuration recommended standard.
 
 </details>
 
@@ -183,7 +183,7 @@ Le plugin (**eslint-plugin-security**) ajoute une couche de sécurité statique.
   Prettier Rules
 </h2>
 
-> [🔗 Prettier Documentation](https://prettier.io/docs/options)  
+> [🔗 Prettier Documentation](https://prettier.io/docs/options)
 
 <details>
 
@@ -230,7 +230,7 @@ Le plugin (**eslint-plugin-security**) ajoute une couche de sécurité statique.
   HTMLHint Rules
 </h2>
 
-> [🔗 HTMLHint Documentation](https://htmlhint.com/rules/)  
+> [🔗 HTMLHint Documentation](https://htmlhint.com/rules/)
 
 <details>
 
@@ -283,7 +283,7 @@ Le plugin (**eslint-plugin-security**) ajoute une couche de sécurité statique.
   StyleLint Rules
 </h2>
 
-> [🔗 StyleLint SCSS Documentation](https://stylelint.io/user-guide/rules)  
+> [🔗 StyleLint SCSS Documentation](https://stylelint.io/user-guide/rules)
 
 <details>
 
@@ -312,37 +312,8 @@ Le plugin (**eslint-plugin-security**) ajoute une couche de sécurité statique.
     width="34px"
     src="https://raw.githubusercontent.com/EmmanuelLefevre/GitHubProfileIcons/main/i18n.svg"
   />
-  I18n Lint Rules
+  I18n Ally Rules
 </h2>
-
-<details>
-
-  <summary>👁️ Tout voir</summary>
-
-<h3 id="ts-base-config-rules">Ngx Translate Linter Rules</h3>
-
-<details>
-
-  <summary>🧐 Consulter la configuration détaillée</summary>
-
-> [🔗 Ngx Translate Linter Documentation](https://www.npmjs.com/package/ngx-translate-lint)  
-
-&nbsp;
-
-| Option | Valeur | Description |
-| :--- | :--- | :--- |
-| **`languages`** | `"./src/assets/i18n/*.json"` | Chemin vers les fichiers **JSON** de traduction à analyser |
-| **`project`** | `"./src/app/**/*.{html,ts}"` | Portée du scan : analyse tous les fichiers **HTML** et **TS** du dossier `app` |
-| **`rules.deepSearch`** | `"disable"` | Désactiver la recherche récursive profonde pour optimiser les performances |
-| **`rules.emptyKeys`** | `"error"` | Signaler une **erreur** si une clé existe dans le **JSON** mais que sa valeur est vide |
-| **`rules.ignoredKeys`** | `["META\\..*", "ngIf", ...]` | Liste de motifs (**Regex**) exclus de l'analyse (clés dynamiques, **Directives**) |
-| **`rules.keysOnViews`** | `"error"` | Signaler une **erreur** si une clé est utilisée dans le code mais manquante dans le fichier **JSON** |
-| **`rules.maxWarning`** | `"0"` | Tolérance zéro : le processus échoue dès qu'un seul avertissement est détecté |
-| **`rules.misprintKeys`** | `"disable"` | Désactiver la détection de similitude (fautes de frappe) pour éviter les faux positifs |
-| **`rules.zombieKeys`** | `"warning"` | Signaler un **avertissement** pour les clés présentes dans le **JSON** mais inutilisées dans le code |
-| **`options.fullKeys`** | `true` | Utiliser le chemin complet des clés dans les rapports d'erreur |
-
-</details>
 
 <h3 id="ts-base-config-rules">I18n Ally Rules</h3>
 
@@ -350,7 +321,7 @@ Le plugin (**eslint-plugin-security**) ajoute une couche de sécurité statique.
 
   <summary>🧐 Consulter la configuration détaillée</summary>
 
-> [🔗 I18n Ally](https://github.com/lokalise/i18n-ally/wiki/Configurations)  
+> [🔗 I18n Ally](https://github.com/lokalise/i18n-ally/wiki/Configurations)
 
 &nbsp;
 
@@ -358,14 +329,11 @@ Le plugin (**eslint-plugin-security**) ajoute une couche de sécurité statique.
 | :--- | :--- | :--- |
 | **`i18n-ally.displayLanguage`** | `"fr"` | Langue affichée dans les annotations (tooltips) de l'**IDE** pour visualiser les traductions |
 | **`i18n-ally.extract.autoDetect`** | `false` | Désactiver la détection automatique des textes en dur pour éviter les suggestions intrusives |
-| **`i18n-ally.enabledFrameworks`** | `["ngx-translate"]` | Activer le support spécifique pour le framework **Angular** `ngx-translate` |
 | **`i18n-ally.keepFulfilled`** | `false` | Définit s'il faut conserver les clés déjà traduites lors des opérations de nettoyage |
 | **`i18n-ally.keystyle`** | `"nested"` | Utiliser une structure d'objets imbriqués pour l'organisation des fichiers **JSON** |
 | **`i18n-ally.localesPaths`** | `"src/assets/i18n"` | Chemin vers le répertoire contenant les fichiers de traduction (`fr.json`...) |
 | **`i18n-ally.readonly`** | `true` | Activer le mode lecture seule pour empêcher la modification accidentelle via l'interface de l'extension |
 | **`i18n-ally.sourceLanguage`** | `"fr"` | Définir le français comme langue de référence (source de vérité) pour le projet |
-
-</details>
 
 </details>
 
@@ -379,7 +347,7 @@ Le plugin (**eslint-plugin-security**) ajoute une couche de sécurité statique.
   TypeScript Config Rules
 </h2>
 
-> [🔗 TypeScript Config Documentation](https://www.typescriptlang.org/tsconfig/)  
+> [🔗 TypeScript Config Documentation](https://www.typescriptlang.org/tsconfig/)
 
 <details>
 
@@ -393,7 +361,7 @@ Le plugin (**eslint-plugin-security**) ajoute une couche de sécurité statique.
 
 &nbsp;
 
-Cette configuration (`tsconfig.json`) sert de **base stricte** pour l'ensemble de l'espace de travail. Elle utilise l'approche **"Solution Style"**, déléguant la compilation effective aux fichiers `tsconfig.app.json` (pour l'application) et `tsconfig.spec.json` (pour les tests).  
+Cette configuration (`tsconfig.json`) sert de **base stricte** pour l'ensemble de l'espace de travail. Elle utilise l'approche **"Solution Style"**, déléguant la compilation effective aux fichiers `tsconfig.app.json` (pour l'application) et `tsconfig.spec.json` (pour les tests).
 
 #### 1. Options du Compilateur (`compilerOptions`)
 
@@ -428,7 +396,7 @@ Cette configuration (`tsconfig.json`) sert de **base stricte** pour l'ensemble d
 
 #### 2. Options du Compilateur Angular (`angularCompilerOptions`)
 
-Ces paramètres contrôlent le compilateur AOT (Ahead-of-Time) d'Angular, spécifiquement pour la vérification des types dans les templates HTML.  
+Ces paramètres contrôlent le compilateur AOT (Ahead-of-Time) d'Angular, spécifiquement pour la vérification des types dans les templates HTML.
 
 <details>
 
@@ -545,7 +513,7 @@ Ces paramètres contrôlent le compilateur AOT (Ahead-of-Time) d'Angular, spéci
 
 #### 1. @schematics/angular:application (`Project Initialization`)
 
-Définit les caractéristiques fondamentales de l'application, principalement utilisées lors de la création du projet.  
+Définit les caractéristiques fondamentales de l'application, principalement utilisées lors de la création du projet.
 
 <details>
 
@@ -570,7 +538,7 @@ Définit les caractéristiques fondamentales de l'application, principalement ut
 
 #### 2. @schematics/angular:class (`Class`)
 
-Configuration pour la génération des classes (`ng g cl`).  
+Configuration pour la génération des classes (`ng g cl`).
 
 <details>
 
@@ -586,7 +554,7 @@ Configuration pour la génération des classes (`ng g cl`).
 
 #### 3. @schematics/angular:component (`Components`)
 
-Configuration pour la génération des composants (`ng g c`).  
+Configuration pour la génération des composants (`ng g c`).
 
 <details>
 
@@ -609,7 +577,7 @@ Configuration pour la génération des composants (`ng g c`).
 
 #### 4. @schematics/angular:directive (`Directives`)
 
-Configuration pour la génération des directives (`ng g d`).  
+Configuration pour la génération des directives (`ng g d`).
 
 <details>
 
@@ -628,7 +596,7 @@ Configuration pour la génération des directives (`ng g d`).
 
 #### 5. @schematics/angular:enum (`Enum`)
 
-Configuration pour la génération des enums (`ng g e`).  
+Configuration pour la génération des enums (`ng g e`).
 
 <details>
 
@@ -644,7 +612,7 @@ Configuration pour la génération des enums (`ng g e`).
 
 #### 6. @schematics/angular:guard (`Guards`)
 
-Configuration pour le routage des guards (`ng g guard`).  
+Configuration pour le routage des guards (`ng g guard`).
 
 <details>
 
@@ -663,7 +631,7 @@ Configuration pour le routage des guards (`ng g guard`).
 
 #### 7. @schematics/angular:interceptor (`HTTP Interceptors`)
 
-Configuration pour la gestion des interceptors (`ng g interceptor`).  
+Configuration pour la gestion des interceptors (`ng g interceptor`).
 
 <details>
 
@@ -680,7 +648,7 @@ Configuration pour la gestion des interceptors (`ng g interceptor`).
 
 #### 8. @schematics/angular:interface (`Interfaces`)
 
-Configuration pour la gestion globale des interfaces (`ng g i`).  
+Configuration pour la gestion globale des interfaces (`ng g i`).
 
 <details>
 
@@ -696,7 +664,7 @@ Configuration pour la gestion globale des interfaces (`ng g i`).
 
 #### 9. @schematics/angular:module (`Modules`)
 
-Configuration pour la gestion globale des modules (`ng g m`).  
+Configuration pour la gestion globale des modules (`ng g m`).
 
 <details>
 
@@ -712,7 +680,7 @@ Configuration pour la gestion globale des modules (`ng g m`).
 
 #### 10. @schematics/angular:pipe (`Pipes`)
 
-Configuration pour la gestion globale des pipes (`ng g p`).  
+Configuration pour la gestion globale des pipes (`ng g p`).
 
 <details>
 
@@ -730,7 +698,7 @@ Configuration pour la gestion globale des pipes (`ng g p`).
 
 #### 11. @schematics/angular:resolver (`Resolvers`)
 
-Configuration pour la gestion globale des resolvers (`ng g r`).  
+Configuration pour la gestion globale des resolvers (`ng g r`).
 
 <details>
 
@@ -747,7 +715,7 @@ Configuration pour la gestion globale des resolvers (`ng g r`).
 
 #### 12. @schematics/angular:service (`Services`)
 
-Configuration pour la gestion globale des services (`ng g s`).  
+Configuration pour la gestion globale des services (`ng g s`).
 
 <details>
 
