@@ -65,7 +65,7 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
       }
 
       if (isRealError && !isValidationError && !isAlreadyOnErrorPage) {
-        let destination = 'unknown-error';
+        let destination: string;
         const errorCode = error.status ? String(error.status) : '';
 
         switch (true) {
@@ -91,11 +91,10 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
           case error.status === HTTP_CODE_503:
             destination = 'maintenance-error';
             break;
-          case /^[1-5]\d{2}$/.test(errorCode):
-            destination = 'generic-error';
-            break;
           default:
-            destination = 'unknown-error';
+            destination = /^[1-5]\d{2}$/.test(errorCode)
+              ? 'generic-error'
+              : 'unknown-error';
             break;
         }
 
