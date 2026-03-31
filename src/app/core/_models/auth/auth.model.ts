@@ -2,13 +2,7 @@ import { User } from '@core/_models/user/user.model';
 
 /**
  * Represents the server response after a successful authentication process.
- * * @example
- * ```typescript
- * const authData: AuthResponse = {
- * user: currentUser,
- * toutouken: 'v3ry.s3cur3.jwtt0k3n'
- * };
- * ```
+ * The token is handled natively by the browser via HttpOnly cookie.
  */
 export interface AuthResponse {
   /**
@@ -16,11 +10,6 @@ export interface AuthResponse {
    * @see {@link User}
    */
   user: User;
-
-  /**
-   * The JSON Web Token (JWT) used to authorize subsequent API requests.
-   */
-  token: string;
 }
 
 /**

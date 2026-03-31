@@ -1,36 +1,38 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { TestBed } from '@angular/core/testing';
-import { provideHttpClient, withInterceptors, HttpClient } from '@angular/common/http';
+import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting, HttpTestingController } from '@angular/common/http/testing';
-import { provideRouter } from '@angular/router';
+import { Router } from '@angular/router';
 
 import { AuthService } from './auth.service';
-import { authInterceptor } from '@core/interceptors/auth/auth.interceptor';
 import { ENVIRONMENT } from '@env/environment';
 import { User } from '@core/_models/user/user.model';
+import { BYPASS_GLOBAL_ERROR } from '@core/interceptors/error/error.interceptor';
 
 describe('AuthService', () => {
 
   let service: AuthService;
   let httpMock: HttpTestingController;
-  let httpClient: HttpClient;
+  let router: Router;
 
-  const MOCK_USER: User = { id: 1, username: 'AdminUser', email: 'admin@test.com', roles: ['ADMIN'] };
+  const MOCK_USER: User = { id: 1, username: 'TestUser', email: 'test@test.com', roles: ['ADMIN'] };
 
   beforeEach(() => {
+    const ROUTER_MOCK = {
+      navigate: vi.fn()
+    };
+
     TestBed.configureTestingModule({
       providers: [
         AuthService,
-        provideHttpClient(withInterceptors([authInterceptor])),
+        provideHttpClient(),
         provideHttpClientTesting(),
-        provideRouter([])
+        { provide: Router, useValue: ROUTER_MOCK }
       ]
     });
 
     service = TestBed.inject(AuthService);
     httpMock = TestBed.inject(HttpTestingController);
-    httpClient = TestBed.inject(HttpClient);
-    localStorage.clear();
+    router = TestBed.inject(Router);
   });
 
   afterEach(() => {
@@ -41,239 +43,186 @@ describe('AuthService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should login and update signals/localStorage', () => {
+  it('should login with credentials, send withCredentials and update signal', () => {
     // --- ARRANGE ---
-    const MOCK_CREDENTIALS = { email: 'admin@test.com', password: 'password' };
-    const MOCK_RESPONSE = { user: MOCK_USER, token: 'fake-jwt-token' };
+    const MOCK_CREDENTIALS = { email: 'test@test.com', password: 'password' };
 
     // --- ACT ---
-    service.login(MOCK_CREDENTIALS).subscribe(response => {
-      // --- ASSERT (Inside Subscribe) ---
-      expect(response.token).toBe('fake-jwt-token');
+    service.login(MOCK_CREDENTIALS).subscribe((user) => {
+
+      // --- ASSERT ---
+      expect(user).toEqual(MOCK_USER);
       expect(service.currentUser()).toEqual(MOCK_USER);
-      expect(service.token()).toBe('fake-jwt-token');
-      expect(localStorage.getItem('token')).toBe('fake-jwt-token');
     });
 
-    // --- ASSERT (HTTP Verification) ---
+    // --- ASSERT ---
     const REQUEST = httpMock.expectOne(`${ENVIRONMENT.apiUrl}/auth/login`);
+
     expect(REQUEST.request.method).toBe('POST');
     expect(REQUEST.request.body).toEqual(MOCK_CREDENTIALS);
+    expect(REQUEST.request.withCredentials).toBe(true);
 
-    REQUEST.flush(MOCK_RESPONSE);
+    REQUEST.flush(MOCK_USER);
   });
 
-  it('should reset signals on logout', () => {
+  it('should call GET /me, send withCredentials + bypass context and update currentUser on success', () => {
+    // --- ACT ---
+
+    service.initAuth().subscribe((user) => {
+      // --- ASSERT ---
+      expect(user).toEqual(MOCK_USER);
+      expect(service.currentUser()).toEqual(MOCK_USER);
+    });
+
+    // --- ASSERT ---
+    const REQUEST = httpMock.expectOne(`${ENVIRONMENT.apiUrl}/auth/me`);
+
+    expect(REQUEST.request.method).toBe('GET');
+    expect(REQUEST.request.withCredentials).toBe(true);
+    expect(REQUEST.request.context.get(BYPASS_GLOBAL_ERROR)).toBe(true);
+
+    REQUEST.flush(MOCK_USER);
+  });
+
+  it('should set currentUser to null and return null if initAuth fails (401 Unauthorized)', () => {
+    // --- ACT ---
+    service.initAuth().subscribe((result) => {
+
+      // --- ASSERT ---
+      expect(result).toBeNull();
+      expect(service.currentUser()).toBeNull();
+    });
+
+    // --- ASSERT ---
+    const REQUEST = httpMock.expectOne(`${ENVIRONMENT.apiUrl}/auth/me`);
+
+    REQUEST.flush('Unauthorized', { status: 401, statusText: 'Unauthorized' });
+  });
+
+  it('should call API logout, clear session and navigate to home on success', () => {
     // --- ARRANGE ---
     service.currentUser.set(MOCK_USER);
-    service.token.set('fake-token');
 
     // --- ACT ---
     service.logout();
 
     // --- ASSERT ---
+    const REQUEST = httpMock.expectOne(`${ENVIRONMENT.apiUrl}/auth/logout`);
+
+    expect(REQUEST.request.method).toBe('POST');
+    expect(REQUEST.request.withCredentials).toBe(true);
+
+    REQUEST.flush({});
+
     expect(service.currentUser()).toBeNull();
-    expect(service.token()).toBeNull();
-    expect(localStorage.getItem('token')).toBeNull();
+    expect(router.navigate).toHaveBeenCalledWith(['/']);
   });
 
-  it('should correctly compute isAdmin', () => {
-    // --- ARRANGE ---
-    service.currentUser.set({ ...MOCK_USER, roles: ['USER'] });
-
-    // --- ACT & ASSERT ---
-    expect(service.isAdmin()).toBe(false);
-
-    // --- ARRANGE ---
-    service.currentUser.set({ ...MOCK_USER, roles: ['ADMIN'] });
-
-    // --- ACT & ASSERT ---
-    expect(service.isAdmin()).toBe(true);
-  });
-
-  it('should add Authorization header if token is present and URL is API', () => {
-    // --- ARRANGE ---
-    const FAKE_TOKEN = 'my-jwt-token';
-    service.token.set(FAKE_TOKEN);
-
-    // --- ACT ---
-    httpClient.get(`${ENVIRONMENT.apiUrl}/test`).subscribe();
-
-    // --- ASSERT ---
-    const REQUEST = httpMock.expectOne(`${ENVIRONMENT.apiUrl}/test`);
-    expect(REQUEST.request.headers.has('Authorization')).toBe(true);
-    expect(REQUEST.request.headers.get('Authorization')).toBe(`Bearer ${FAKE_TOKEN}`);
-  });
-
-  it('should NOT add Authorization header for external URLs', () => {
-    // --- ARRANGE ---
-    service.token.set('some-token');
-    const EXTERNAL_URL = 'https://google.com/api';
-
-    // --- ACT ---
-    httpClient.get(EXTERNAL_URL).subscribe();
-
-    // --- ASSERT ---
-    const REQUEST = httpMock.expectOne(EXTERNAL_URL);
-    expect(REQUEST.request.headers.has('Authorization')).toBe(false);
-  });
-
-  it('should return null and NOT call HTTP if no token is present', () => {
-    // --- ARRANGE ---
-    service.token.set(null);
-
-    // --- ACT ---
-    const RESULT = service.refreshUser();
-
-    // --- ASSERT ---
-    expect(RESULT).toBeNull();
-    httpMock.expectNone(`${ENVIRONMENT.apiUrl}/auth/me`);
-  });
-
-  it('should call GET /me and update currentUser when token is present', () => {
-    // --- ARRANGE ---
-    const FAKE_TOKEN = 'valid-token';
-    service.token.set(FAKE_TOKEN);
-
-    // --- ACT ---
-    service.refreshUser()?.subscribe(user => {
-      // --- ASSERT (Inside Subscribe) ---
-      expect(user).toEqual(MOCK_USER);
-      expect(service.currentUser()).toEqual(MOCK_USER);
-    });
-
-    // --- ASSERT (HTTP Verification) ---
-    const REQUEST = httpMock.expectOne(`${ENVIRONMENT.apiUrl}/auth/me`);
-    expect(REQUEST.request.method).toBe('GET');
-
-    REQUEST.flush(MOCK_USER);
-  });
-
-  it('should return false when currentUser is null (initial state)', () => {
-    // --- ARRANGE ---
-    service.currentUser.set(null);
-
-    // --- ACT & ASSERT ---
-    // Test case : currentUser()? -> null -> ?? false
-    expect(service.isAdmin()).toBe(false);
-  });
-
-  it('should return false when user does NOT have ADMIN role', () => {
-    // --- ARRANGE ---
-    const BASIC_USER: User = { ...MOCK_USER, roles: ['USER'] };
-    service.currentUser.set(BASIC_USER);
-
-    // --- ACT & ASSERT ---
-    // Test case : roles.includes('ADMIN') -> false
-    expect(service.isAdmin()).toBe(false);
-  });
-
-  it('should return true when user has ADMIN role', () => {
-    // --- ARRANGE ---
-    const ADMIN_USER: User = { ...MOCK_USER, roles: ['ADMIN', 'USER'] };
-    service.currentUser.set(ADMIN_USER);
-
-    // --- ACT & ASSERT ---
-    // Test case : roles.includes('ADMIN') -> true
-    expect(service.isAdmin()).toBe(true);
-  });
-
-  it('should return false when currentUser is null', () => {
-    // --- ARRANGE ---
-    service.currentUser.set(null);
-
-    // --- ACT & ASSERT ---
-    expect(service.isAuthenticated()).toBe(false);
-  });
-
-  it('should return true when currentUser is set', () => {
+  it('should still clear session and navigate to home even if API logout fails', () => {
     // --- ARRANGE ---
     service.currentUser.set(MOCK_USER);
 
-    // --- ACT & ASSERT ---
+    // --- ACT ---
+    service.logout();
+
+    // --- ASSERT ---
+    const REQUEST = httpMock.expectOne(`${ENVIRONMENT.apiUrl}/auth/logout`);
+
+    REQUEST.flush('Server Error', { status: 500, statusText: 'Server Error' });
+
+    expect(service.currentUser()).toBeNull();
+    expect(router.navigate).toHaveBeenCalledWith(['/']);
+  });
+
+  it('should correctly compute isAuthenticated', () => {
+    // --- ASSERT ---
+    expect(service.isAuthenticated()).toBe(false);
+
+    // --- ARRANGE & ACT ---
+    service.currentUser.set(null);
+
+    // --- ASSERT ---
+    expect(service.isAuthenticated()).toBe(false);
+
+    // --- ARRANGE & ACT ---
+    service.currentUser.set(MOCK_USER);
+
+    // --- ASSERT ---
     expect(service.isAuthenticated()).toBe(true);
   });
 
-  it('should initialize token signal with value from localStorage on creation', () => {
+  it('should correctly compute isAuthLoaded', () => {
+    // --- ASSERT ---
+    expect(service.isAuthLoaded()).toBe(false);
+
+    // --- ARRANGE & ACT ---
+    service.currentUser.set(null);
+
+    // --- ASSERT ---
+    expect(service.isAuthLoaded()).toBe(true);
+
+    // --- ARRANGE & ACT ---
+    service.currentUser.set(MOCK_USER);
+
+    // --- ASSERT ---
+    expect(service.isAuthLoaded()).toBe(true);
+  });
+
+  it('should return false for isAdmin when currentUser is undefined (initial state)', () => {
     // --- ARRANGE ---
-    const PERSISTED_TOKEN = 'stored-token';
-    localStorage.setItem('token', PERSISTED_TOKEN);
-
-    TestBed.resetTestingModule();
-    TestBed.configureTestingModule({
-      providers: [
-        AuthService,
-        provideHttpClient(),
-        provideHttpClientTesting()
-      ]
-    });
-
-    const NEW_SERVICE = TestBed.inject(AuthService);
+    // currentUser est undefined par défaut dans le service
 
     // --- ACT & ASSERT ---
-    expect(NEW_SERVICE.token()).toBe(PERSISTED_TOKEN);
+    expect(service.isAdmin()).toBe(false);
   });
 
-  it('should call refreshUser and update currentUser on success', () => {
+  it('should return false for isAdmin when currentUser is null (logged out)', () => {
     // --- ARRANGE ---
-    const FAKE_TOKEN = 'valid-token';
-    service.token.set(FAKE_TOKEN);
+    service.currentUser.set(null);
 
-    // --- ACT ---
-    service.initAuth();
-
-    // --- ASSERT (HTTP Verification) ---
-    const REQUEST = httpMock.expectOne(`${ENVIRONMENT.apiUrl}/auth/me`);
-    expect(REQUEST.request.method).toBe('GET');
-
-    REQUEST.flush(MOCK_USER);
-    expect(service.currentUser()).toEqual(MOCK_USER);
+    // --- ACT & ASSERT ---
+    expect(service.isAdmin()).toBe(false);
   });
 
-  it('should call logout() if refreshUser fails', () => {
+  it('should return false for isAdmin when user has only USER role', () => {
     // --- ARRANGE ---
-    service.token.set('expired-token');
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-    const LOGOUT_SPY = vi.spyOn(service, 'logout').mockImplementation(() => {});
+    const STANDARD_USER: User = {
+      id: 2,
+      username: 'Standard',
+      email: 'user@test.com',
+      roles: ['USER']
+    };
+    service.currentUser.set(STANDARD_USER);
 
-    // --- ACT ---
-    service.initAuth();
-
-    // --- ASSERT ---
-    const REQUEST = httpMock.expectOne(`${ENVIRONMENT.apiUrl}/auth/me`);
-    REQUEST.flush('Invalid token', { status: 401, statusText: 'Unauthorized' });
-
-    expect(LOGOUT_SPY).toHaveBeenCalled();
+    // --- ACT & ASSERT ---
+    expect(service.isAdmin()).toBe(false);
   });
 
-  it('should do nothing if no token is present', () => {
+  it('should return true for isAdmin when user has ADMIN role', () => {
     // --- ARRANGE ---
-    service.token.set(null);
+    const ADMIN_USER: User = {
+      id: 1,
+      username: 'Boss',
+      email: 'admin@test.com',
+      roles: ['ADMIN']
+    };
+    service.currentUser.set(ADMIN_USER);
 
-    // --- ACT ---
-    service.initAuth();
-
-    // --- ASSERT ---
-    httpMock.expectNone(`${ENVIRONMENT.apiUrl}/auth/me`);
+    // --- ACT & ASSERT ---
+    expect(service.isAdmin()).toBe(true);
   });
 
-  it('should NOT update signals or localStorage if response is missing user or token', () => {
+  it('should return true for isAdmin when user has multiple roles including ADMIN', () => {
     // --- ARRANGE ---
-    const MOCK_CREDENTIALS = { email: 'admin@test.com', password: '1234' };
-    // On simule une réponse incomplète (il manque le token ici)
-    const MALFORMED_RESPONSE = { user: { id: 1, username: 'Admin' } } as any;
+    const MULTI_ROLE_USER: User = {
+      id: 3,
+      username: 'SuperUser',
+      email: 'super@test.com',
+      roles: ['USER', 'ADMIN']
+    };
+    service.currentUser.set(MULTI_ROLE_USER);
 
-    const SAVE_SESSION_SPY = vi.spyOn(service as any, 'saveSession');
-
-    // --- ACT ---
-    service.login(MOCK_CREDENTIALS).subscribe();
-
-    // --- ASSERT ---
-    const REQUEST = httpMock.expectOne(`${ENVIRONMENT.apiUrl}/auth/login`);
-    REQUEST.flush(MALFORMED_RESPONSE);
-
-    expect(SAVE_SESSION_SPY).not.toHaveBeenCalled();
-    expect(service.currentUser()).toBeUndefined();
-    expect(localStorage.getItem('token')).toBeNull();
+    // --- ACT & ASSERT ---
+    expect(service.isAdmin()).toBe(true);
   });
 });

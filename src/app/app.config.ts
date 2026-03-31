@@ -3,7 +3,7 @@ import { HttpClient, HttpInterceptorFn, provideHttpClient, withInterceptors } fr
 import { provideTranslateService, TranslateLoader, TranslateService } from '@ngx-translate/core';
 import { provideClientHydration } from '@angular/platform-browser';
 import { provideRouter } from '@angular/router';
-import { catchError, firstValueFrom, Observable, of } from 'rxjs';
+import { firstValueFrom, Observable } from 'rxjs';
 import { DotLottie } from '@lottiefiles/dotlottie-web';
 
 import { ROUTES } from '@app/app.routes';
@@ -50,7 +50,7 @@ export const APP_CONFIG: ApplicationConfig = {
       TRANSLATE.setFallbackLang('fr');
 
       await Promise.all([
-        firstValueFrom(AUTH_SERVICE.refreshUser()?.pipe(catchError(() => of(null))) || of(null)),
+        firstValueFrom(AUTH_SERVICE.initAuth()),
         firstValueFrom(TRANSLATE.use(LANG_TO_USE))
       ]);
     }),

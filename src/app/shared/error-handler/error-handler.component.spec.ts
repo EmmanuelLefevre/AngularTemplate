@@ -108,22 +108,19 @@ describe('ErrorHandlerComponent', () => {
   });
 
   describe('Routing logic & Code inference', () => {
-    it('should handle missing code parameter and navigate to unknown-error', () => {
+    it('should handle missing code parameter and NOT navigate (handled by interceptor or layout)', () => {
       // --- ARRANGE ---
+      Object.defineProperty(router, 'url', { value: '/error', configurable: true });
       queryParams$.next({});
+
+      vi.mocked(router.navigate).mockClear();
 
       // --- ACT ---
       fixture.detectChanges();
 
       // --- ASSERT ---
       expect(component.code()).toBe('');
-      expect(router.navigate).toHaveBeenCalledWith(
-        ['unknown-error'],
-        expect.objectContaining({
-          queryParams: undefined,
-          replaceUrl: true
-        })
-      );
+      expect(router.navigate).not.toHaveBeenCalled();
     });
 
     it('should cover the generic-error branch (Regex TRUE)', () => {
@@ -196,6 +193,48 @@ describe('ErrorHandlerComponent', () => {
       Object.defineProperty(router, 'url', { get: () => '/error/unauthorized-error' });
 
       queryParams$.next({ code: '401' });
+
+      // --- ACT ---
+      fixture.detectChanges();
+
+      // --- ASSERT ---
+      expect(router.navigate).not.toHaveBeenCalled();
+    });
+
+    it('should navigate to "forbidden-error" when code is 403', () => {
+      // --- ARRANGE ---
+      queryParams$.next({ code: '403' });
+
+      // --- ACT ---
+      fixture.detectChanges();
+
+      // --- ASSERT ---
+      expect(router.navigate).toHaveBeenCalledWith(
+        ['forbidden-error'],
+        expect.objectContaining({
+          queryParams: { code: '403' },
+          relativeTo: expect.any(Object),
+          replaceUrl: true
+        })
+      );
+    });
+
+    it('should infer code 403 from URL when queryParams are missing and URL is forbidden-error', () => {
+      // --- ARRANGE ---
+      Object.defineProperty(router, 'url', { value: '/error/forbidden-error', configurable: true });
+      queryParams$.next({});
+
+      // --- ACT ---
+      fixture.detectChanges();
+
+      // --- ASSERT ---
+      expect(component.code()).toBe('403');
+    });
+
+    it('should NOT navigate if the current URL is forbidden-error', () => {
+      // --- ARRANGE ---
+      Object.defineProperty(router, 'url', { get: () => '/error/forbidden-error' });
+      queryParams$.next({ code: '403' });
 
       // --- ACT ---
       fixture.detectChanges();

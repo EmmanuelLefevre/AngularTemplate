@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
+import { AuthService } from '@core/_services/auth/auth.service';
+
 /**
  * HTTP context token allowing bypassing the global error interceptor.
  * * CONTEXT OF USE :
@@ -20,6 +22,14 @@ import { catchError } from 'rxjs/operators';
  */
 export const BYPASS_GLOBAL_ERROR = new HttpContextToken<boolean>(() => false);
 
+const HTTP_CODE_401 = 401;
+const HTTP_CODE_403 = 403;
+const HTTP_CODE_404 = 404;
+const HTTP_CODE_408 = 408;
+const HTTP_CODE_500 = 500;
+const HTTP_CODE_503 = 503;
+const HTTP_CODE_504 = 504;
+
 const BAD_REQUEST_STATUS = 400;
 const MIN_HTTP_ERROR_STATUS = 400;
 const NETWORK_ERROR_STATUS = 0;
@@ -28,6 +38,7 @@ const UNPROCESSABLE_ENTITY_STATUS = 422;
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export const errorInterceptor: HttpInterceptorFn = (req, next) => {
 
+  const authService = inject(AuthService);
   const router = inject(Router);
 
   // If request explicitly asks not to be intercepted, allowed it to pass.
@@ -48,13 +59,48 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
       const [baseUrl] = router.url.split('?');
       const isAlreadyOnErrorPage = baseUrl.startsWith('/error');
 
-      if (isRealError && !isValidationError && !isAlreadyOnErrorPage) {
+      // Specific session expiration management
+      if (error.status === HTTP_CODE_401 && !req.url.includes('/login')) {
+        authService.currentUser.set(null);
+      }
 
-        // Retrieve code (or leave it blank if we can't read it)
+      if (isRealError && !isValidationError && !isAlreadyOnErrorPage) {
+        let destination = 'unknown-error';
         const errorCode = error.status ? String(error.status) : '';
 
-        router.navigate(['/error'], {
-          queryParams: { code: errorCode },
+        switch (true) {
+          case error.status === NETWORK_ERROR_STATUS:
+            destination = 'unknown-error';
+            break;
+          case error.status === HTTP_CODE_401:
+            destination = 'unauthorized-error';
+            break;
+          case error.status === HTTP_CODE_403:
+            destination = 'forbidden-error';
+            break;
+          case error.status === HTTP_CODE_404:
+            destination = 'unfound-error';
+            break;
+          case error.status === HTTP_CODE_408:
+          case error.status === HTTP_CODE_504:
+            destination = 'timeout-error';
+            break;
+          case error.status === HTTP_CODE_500:
+            destination = 'server-error';
+            break;
+          case error.status === HTTP_CODE_503:
+            destination = 'maintenance-error';
+            break;
+          case /^[1-5]\d{2}$/.test(errorCode):
+            destination = 'generic-error';
+            break;
+          default:
+            destination = 'unknown-error';
+            break;
+        }
+
+        router.navigate([`/error/${destination}`], {
+          queryParams: errorCode ? { code: errorCode } : undefined,
           // Replaces URL in history to not break browser's back button
           replaceUrl: true
         });

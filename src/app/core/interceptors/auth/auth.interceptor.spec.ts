@@ -1,77 +1,76 @@
-import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
-import { HttpClient, provideHttpClient, withInterceptors } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
-import { signal } from '@angular/core';
+import { HttpClient, provideHttpClient, withInterceptors } from '@angular/common/http';
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 
-import { AuthService } from '@core/_services/auth/auth.service';
-import { ENVIRONMENT } from '@env/environment';
 import { authInterceptor } from './auth.interceptor';
+import { ENVIRONMENT } from '@env/environment';
 
 describe('authInterceptor', () => {
 
-  let httpMock: HttpTestingController;
   let httpClient: HttpClient;
-
-  const AUTH_SERVICE_MOCK = {
-    token: signal<string | null>(null)
-  };
-
-  const API_URL = ENVIRONMENT.apiUrl;
-  const EXTERNAL_URL = 'https://external-api.com/data';
-  const MOCK_TOKEN = 'my-fake-token';
+  let httpMock: HttpTestingController;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
         provideHttpClient(withInterceptors([authInterceptor])),
-        provideHttpClientTesting(),
-        { provide: AuthService, useValue: AUTH_SERVICE_MOCK }
+        provideHttpClientTesting()
       ]
     });
 
-    httpMock = TestBed.inject(HttpTestingController);
     httpClient = TestBed.inject(HttpClient);
-
-    AUTH_SERVICE_MOCK.token.set(null);
+    httpMock = TestBed.inject(HttpTestingController);
   });
 
-  it('should add Authorization header when token exists and URL is API URL', () => {
+  afterEach(() => {
+    httpMock.verify();
+  });
+
+  it('should add withCredentials: true if the request URL starts with the API URL', () => {
     // --- ARRANGE ---
-    AUTH_SERVICE_MOCK.token.set(MOCK_TOKEN);
+    const API_ENDPOINT = `${ENVIRONMENT.apiUrl}/users`;
 
     // --- ACT ---
-    httpClient.get(`${API_URL}/users`).subscribe();
+    httpClient.get(API_ENDPOINT).subscribe();
 
     // --- ASSERT ---
-    const REQ = httpMock.expectOne(`${API_URL}/users`);
-    expect(REQ.request.headers.has('Authorization')).toBe(true);
-    expect(REQ.request.headers.get('Authorization')).toBe(`Bearer ${MOCK_TOKEN}`);
-    REQ.flush({});
+    const REQUEST = httpMock.expectOne(API_ENDPOINT);
+
+    expect(REQUEST.request.method).toBe('GET');
+    expect(REQUEST.request.withCredentials).toBe(true);
+
+    REQUEST.flush({});
   });
 
-  it('should NOT add Authorization header when token exists but URL is NOT API URL', () => {
+  it('should NOT modify the request (no withCredentials) if the URL is external', () => {
     // --- ARRANGE ---
-    AUTH_SERVICE_MOCK.token.set(MOCK_TOKEN);
+    const EXTERNAL_URL = 'https://api.github.com/users';
 
     // --- ACT ---
     httpClient.get(EXTERNAL_URL).subscribe();
 
     // --- ASSERT ---
-    const REQ = httpMock.expectOne(EXTERNAL_URL);
-    expect(REQ.request.headers.has('Authorization')).toBe(false);
-    REQ.flush({});
+    const REQUEST = httpMock.expectOne(EXTERNAL_URL);
+
+    expect(REQUEST.request.method).toBe('GET');
+    expect(REQUEST.request.withCredentials).toBeFalsy();
+
+    REQUEST.flush({});
   });
 
-  it('should NOT add Authorization header when URL is correct but token is missing', () => {
+  it('should NOT modify the request if the URL is a local asset', () => {
     // --- ARRANGE ---
-    AUTH_SERVICE_MOCK.token.set(null);
+    const LOCAL_ASSET_URL = './assets/i18n/fr.json';
 
     // --- ACT ---
-    httpClient.get(`${API_URL}/users`).subscribe();
+    httpClient.get(LOCAL_ASSET_URL).subscribe();
 
     // --- ASSERT ---
-    const REQ = httpMock.expectOne(`${API_URL}/users`);
-    expect(REQ.request.headers.has('Authorization')).toBe(false);
-    REQ.flush({});
+    const REQUEST = httpMock.expectOne(LOCAL_ASSET_URL);
+
+    expect(REQUEST.request.method).toBe('GET');
+    expect(REQUEST.request.withCredentials).toBeFalsy();
+
+    REQUEST.flush({});
   });
 });

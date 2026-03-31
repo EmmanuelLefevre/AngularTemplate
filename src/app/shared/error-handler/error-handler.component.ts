@@ -1,11 +1,11 @@
-import { ChangeDetectionStrategy, Component, OnInit, inject, signal, DestroyRef, ChangeDetectorRef, computed } from '@angular/core';
-import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { ChangeDetectionStrategy, Component, inject, computed, effect } from '@angular/core';
+import { ActivatedRoute, Params, Router, RouterOutlet } from '@angular/router';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 import { MainButtonComponent } from '@shared';
 
-const SPECIFIC_ERROR_CODES = ['401', '404', '408', '500', '503', '504'];
+const SPECIFIC_ERROR_CODES = ['401', '403', '404', '408', '500', '503', '504'];
 
 @Component({
   selector: 'error-handler',
@@ -19,17 +19,35 @@ const SPECIFIC_ERROR_CODES = ['401', '404', '408', '500', '503', '504'];
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class ErrorHandlerComponent implements OnInit {
+export class ErrorHandlerComponent {
 
-  private readonly cdr = inject(ChangeDetectorRef);
-  private readonly destroyRef = inject(DestroyRef);
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
 
-  public readonly code = signal<string>('');
+  public readonly specificCodes = SPECIFIC_ERROR_CODES;
   public readonly translate = inject(TranslateService);
 
-  protected readonly specificCodes = SPECIFIC_ERROR_CODES;
+  private readonly queryParamsSignal = toSignal(this.route.queryParams, { initialValue: {} as Params });
+
+  public readonly code = computed<string>(() => {
+    const params = this.queryParamsSignal();
+
+    if (params['code']) {
+      return String(params['code']);
+    }
+
+    const url = this.router.url;
+    switch (true) {
+      case url.includes('unauthorized-error'): return '401';
+      case url.includes('forbidden-error'): return '403';
+      case url.includes('unfound-error'): return '404';
+      case url.includes('timeout-error'): return '408';
+      case url.includes('server-error'): return '500';
+      case url.includes('generic-error'): return '502';
+      case url.includes('maintenance-error'): return '503';
+      default: return '';
+    }
+  });
 
   public readonly titleKey = computed(() => {
     const currentCode = this.code();
@@ -42,80 +60,48 @@ export class ErrorHandlerComponent implements OnInit {
     return 'PAGES.ERROR.TITLE.COMMON';
   });
 
-  ngOnInit(): void {
-    this.route.queryParams.pipe(takeUntilDestroyed(this.destroyRef)).subscribe((params) => {
+  public readonly isAuthError = computed(() => this.code() === '401');
 
-      let codeValue = params['code'] ? String(params['code']) : '';
+  constructor() {
+    effect(() => {
+      const rawCode = this.code();
+      if (!rawCode) return;
 
-      if (!codeValue) {
-        const URL = this.router.url;
-
-        switch (true) {
-          case URL.includes('unfound-error'):
-            codeValue = '404';
-            break;
-          case URL.includes('unauthorized-error'):
-            codeValue = '401';
-            break;
-          case URL.includes('timeout-error'):
-            codeValue = '408';
-            break;
-          case URL.includes('server-error'):
-            codeValue = '500';
-            break;
-          case URL.includes('maintenance-error'):
-            codeValue = '503';
-            break;
-          case URL.includes('generic-error'):
-            codeValue = '502';
-            break;
-          default:
-            codeValue = '';
-            break;
-        }
-      }
-
-      this.code.set(codeValue);
-      this.cdr.markForCheck();
-
-      const RAW_VALUE = this.code();
-      let destination: string;
+      let destination = 'unknown-error';
 
       switch (true) {
-        case RAW_VALUE === '401':
+        case rawCode === '401':
           destination = 'unauthorized-error';
           break;
-        case RAW_VALUE === '404':
+        case rawCode === '403':
+          destination = 'forbidden-error';
+          break;
+        case rawCode === '404':
           destination = 'unfound-error';
           break;
-        case RAW_VALUE === '408':
-        case RAW_VALUE === '504':
+        case rawCode === '408':
+        case rawCode === '504':
           destination = 'timeout-error';
           break;
-        case RAW_VALUE === '500':
+        case rawCode === '500':
           destination = 'server-error';
           break;
-        case RAW_VALUE === '503':
+        case rawCode === '503':
           destination = 'maintenance-error';
           break;
-        case /^[1-5]\d{2}$/.test(RAW_VALUE):
+        case /^[1-5]\d{2}$/.test(rawCode):
           destination = 'generic-error';
           break;
-        default:
-          destination = 'unknown-error';
-          break;
       }
 
-      // Check if we're not ALREADY on the correct child route
-      if (this.router.url.includes(destination)) {
-        return;
+      if (!this.router.url.includes(destination)) {
+        this.router.navigate([destination], {
+          relativeTo: this.route,
+          queryParams: { code: rawCode },
+          // Replaces URL in history to not break browser's back button
+          replaceUrl: true
+        });
       }
-
-      this.router.navigate([destination], {
-        relativeTo: this.route,
-        queryParams: RAW_VALUE ? { code: RAW_VALUE } : undefined,
-        replaceUrl: true
-      });
     });
   }
 

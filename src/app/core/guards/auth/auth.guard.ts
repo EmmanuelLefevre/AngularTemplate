@@ -1,25 +1,23 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
+import { toObservable } from '@angular/core/rxjs-interop';
+import { filter, map } from 'rxjs';
 
 import { AuthService } from '@core/_services/auth/auth.service';
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export const authGuard: CanActivateFn = () => {
 
-  const AUTH_SERVICE = inject(AuthService);
-  const ROUTER = inject(Router);
+  const authService = inject(AuthService);
+  const router = inject(Router);
 
-  // Immediate signal verification
-  if (AUTH_SERVICE.isAuthenticated()) {
-    return true;
+  if (authService.isAuthLoaded()) {
+    return authService.isAuthenticated() ? true : router.parseUrl('/');
   }
 
-  // If no token locally, return to homepage to login
-  if (!localStorage.getItem('token')) {
-    return ROUTER.parseUrl('/');
-  }
-
-  // If we have a token but not yet the user (refresh in progress)
-  // We allow it or redirect it according to the initAuth() policy
-  return ROUTER.parseUrl('/error/unauthorized-error');
+  // If status is 'undefined' (page refresh), wait for the API call to complete
+  return toObservable(authService.isAuthLoaded).pipe(
+    filter((isLoaded) => isLoaded === true),
+    map(() => authService.isAuthenticated() ? true : router.parseUrl('/'))
+  );
 };
