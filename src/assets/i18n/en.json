@@ -24,6 +24,10 @@
           "TITLE": "Unauthorized",
           "DESCRIPTION": "You do not have permission to access this page."
         },
+        "403": {
+          "TITLE": "Forbidden",
+          "DESCRIPTION": "You do not have the necessary permissions to access this resource."
+        },
         "404": {
           "TITLE": "Page Not Found",
           "DESCRIPTION": "The page you are looking for does not exist or has been deleted."

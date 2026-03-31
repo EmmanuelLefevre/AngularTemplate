@@ -77,6 +77,18 @@ export const ROUTES: Routes = [
               }
             }
           },
+          { path: 'forbidden-error',
+            loadComponent: () => import(
+              '@shared/error-handler/error-views/forbidden-error/forbidden-error.component')
+              .then(m => m.ForbiddenErrorComponent),
+            data: {
+              seo: {
+                titleKey: 'META.PAGES.ERROR.403.TITLE',
+                descriptionKey: 'META.PAGES.ERROR.403.DESCRIPTION',
+                robots: 'noindex, nofollow'
+              }
+            }
+          },
           { path: 'unfound-error',
             loadComponent: () => import(
               '@shared/error-handler/error-views/unfound-error/unfound-error.component')

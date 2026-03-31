@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+
 import { Component, signal } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { provideRouter, Router, RouterOutlet } from '@angular/router';
@@ -7,6 +10,7 @@ import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideTranslateService } from '@ngx-translate/core';
 
 import { authGuard } from '@core/guards/auth/auth.guard';
+import { adminGuard } from '@core/guards/admin/admin.guard';
 import { AuthService } from '@core/_services/auth/auth.service';
 import { ROUTES } from '@app/app.routes';
 
@@ -20,6 +24,7 @@ class MockLayoutComponent {}
 describe('App Routes', () => {
 
   let harness: RouterTestingHarness;
+  let router: Router;
 
   const AUTH_SERVICE_MOCK = {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -29,10 +34,13 @@ describe('App Routes', () => {
   };
 
   const mockAuthGuard = vi.fn();
+  const mockAdminGuard = vi.fn();
 
   beforeEach(async() => {
+    vi.clearAllMocks();
     AUTH_SERVICE_MOCK.isAuthenticated.mockReturnValue(false);
     mockAuthGuard.mockReturnValue(true);
+    mockAdminGuard.mockReturnValue(true);
 
     const TEST_ROUTES = ROUTES.map(route => {
       if (route.path === '' && route.children) {
@@ -52,11 +60,12 @@ describe('App Routes', () => {
         provideHttpClientTesting(),
         provideTranslateService(),
         { provide: AuthService, useValue: AUTH_SERVICE_MOCK },
-        // eslint-disable-next-line @typescript-eslint/explicit-function-return-type, @typescript-eslint/no-unsafe-return
-        { provide: authGuard, useValue: () => mockAuthGuard() }
+        { provide: authGuard, useValue: () => mockAuthGuard() },
+        { provide: adminGuard, useValue: () => mockAdminGuard() }
       ]
     });
 
+    router = TestBed.inject(Router);
     harness = await RouterTestingHarness.create();
   });
 
@@ -84,18 +93,6 @@ describe('App Routes', () => {
     // --- ASSERT ---
     expect(INSTANCE).toBeTruthy();
     expect(TestBed.inject(Router).url).toBe('/login');
-  });
-
-  it('should redirect to home (via root) if adminGuard fails due to missing token', async() => {
-    // --- ARRANGE ---
-    AUTH_SERVICE_MOCK.isAdmin.mockReturnValue(false);
-    localStorage.clear();
-
-    // --- ACT ---
-    await harness.navigateByUrl('/admin/dashboard');
-
-    // --- ASSERT ---
-    expect(TestBed.inject(Router).url).toBe('/home');
   });
 
   it('should allow /admin/dashboard if adminGuard passes', async() => {
@@ -130,6 +127,7 @@ describe('App Routes', () => {
 
     const ERROR_CASES = [
       { path: '/error/unauthorized-error' },
+      { path: '/error/forbidden-error' },
       { path: '/error/unfound-error' },
       { path: '/error/server-error' },
       { path: '/error/generic-error' },
@@ -150,44 +148,65 @@ describe('App Routes', () => {
 
   describe('Private Route', () => {
 
-    it('should allow navigation to /private if authGuard passes', async() => {
+    it('should allow navigation to /private if authGuard returns true', async() => {
       // --- ARRANGE ---
-      AUTH_SERVICE_MOCK.isAuthenticated.mockReturnValue(true);
+      mockAuthGuard.mockReturnValue(true);
 
       // --- ACT ---
       const INSTANCE = await harness.navigateByUrl('/private');
 
       // --- ASSERT ---
       expect(INSTANCE).toBeTruthy();
-      expect(TestBed.inject(Router).url).toBe('/private');
+      expect(router.url).toBe('/private');
     });
 
-    it('should redirect to /home if authGuard fails (no token)', async() => {
+    it('should redirect to root (/) if authGuard rejects unauthenticated user', async() => {
       // --- ARRANGE ---
-      const ROUTER = TestBed.inject(Router);
-      const HOME_TREE = ROUTER.createUrlTree(['/home']);
-
-      mockAuthGuard.mockReturnValue(HOME_TREE);
+      mockAuthGuard.mockReturnValue(router.parseUrl('/'));
 
       // --- ACT ---
       await harness.navigateByUrl('/private');
 
       // --- ASSERT ---
-      expect(TestBed.inject(Router).url).toBe('/home');
+      expect(router.url).toBe('/home');
     });
+  });
 
-    it('should redirect to unauthorized error if authGuard fails (token present but not authenticated)', async() => {
+  describe('Admin Route (Protected by adminGuard)', () => {
+
+    it('should allow access to /admin if adminGuard returns true', async() => {
       // --- ARRANGE ---
-      const ROUTER = TestBed.inject(Router);
-      const ERROR_TREE = ROUTER.createUrlTree(['/error/unauthorized-error']);
-
-      mockAuthGuard.mockReturnValue(ERROR_TREE);
+      mockAdminGuard.mockReturnValue(true);
 
       // --- ACT ---
-      await harness.navigateByUrl('/private');
+      const INSTANCE = await harness.navigateByUrl('/admin');
 
       // --- ASSERT ---
-      expect(TestBed.inject(Router).url).toBe('/error/unauthorized-error');
+      expect(INSTANCE).toBeTruthy();
+      expect(router.url).toBe('/admin');
+    });
+
+    it('should redirect to root (/) if adminGuard rejects visitor (401 case)', async() => {
+      // --- ARRANGE ---
+      mockAdminGuard.mockReturnValue(router.parseUrl('/'));
+
+      // --- ACT ---
+      await harness.navigateByUrl('/admin');
+
+      // --- ASSERT ---
+      expect(router.url).toBe('/home');
+    });
+
+    it('should redirect to forbidden-error if adminGuard rejects non-admin user (403 case)', async() => {
+      // --- ARRANGE ---
+      const FORBIDDEN_TREE = router.parseUrl('/error/forbidden-error');
+      mockAdminGuard.mockReturnValue(FORBIDDEN_TREE);
+
+      // --- ACT ---
+      await harness.navigateByUrl('/admin');
+
+      // --- ASSERT ---
+      expect(router.url).toBe('/error/forbidden-error');
     });
   });
 });
@@ -238,6 +257,7 @@ describe('Route SEO Data Integrity', () => {
     // --- ARRANGE ---
     const expectedErrorSeo = [
       { path: 'unauthorized-error', titleKey: 'META.PAGES.ERROR.401.TITLE', descriptionKey: 'META.PAGES.ERROR.401.DESCRIPTION' },
+      { path: 'forbidden-error', titleKey: 'META.PAGES.ERROR.403.TITLE', descriptionKey: 'META.PAGES.ERROR.403.DESCRIPTION' },
       { path: 'unfound-error', titleKey: 'META.PAGES.ERROR.404.TITLE', descriptionKey: 'META.PAGES.ERROR.404.DESCRIPTION' },
       { path: 'server-error', titleKey: 'META.PAGES.ERROR.500.TITLE', descriptionKey: 'META.PAGES.ERROR.500.DESCRIPTION' },
       { path: 'generic-error', titleKey: 'META.PAGES.ERROR.GENERIC.TITLE', descriptionKey: 'META.PAGES.ERROR.GENERIC.DESCRIPTION' },

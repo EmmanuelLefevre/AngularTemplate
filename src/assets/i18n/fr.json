@@ -24,6 +24,10 @@
           "TITLE": "Non Autorisé",
           "DESCRIPTION": "Vous n'avez pas la permission d'accéder à cette page."
         },
+        "403": {
+          "TITLE": "Interdit",
+          "DESCRIPTION": "Vous n'avez pas les permissions nécessaires pour accéder à cette ressource."
+        },
         "404": {
           "TITLE": "Page Introuvable",
           "DESCRIPTION": "La page que vous recherchez n'existe pas ou a été supprimée."
