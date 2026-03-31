@@ -315,13 +315,11 @@ Le plugin (**eslint-plugin-security**) ajoute une couche de sécurité statique.
   I18n Ally Rules
 </h2>
 
-<h3 id="ts-base-config-rules">I18n Ally Rules</h3>
+> [🔗 I18n Ally Documentation](https://github.com/lokalise/i18n-ally/wiki/Configurations)
 
 <details>
 
   <summary>🧐 Consulter la configuration détaillée</summary>
-
-> [🔗 I18n Ally](https://github.com/lokalise/i18n-ally/wiki/Configurations)
 
 &nbsp;
 
