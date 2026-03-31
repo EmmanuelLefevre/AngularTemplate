@@ -21,7 +21,6 @@ describe('adminGuard', () => {
   beforeEach(() => {
     vi.clearAllMocks();
 
-    // Initialisation des signaux de mock
     isAuthLoadedMock = signal(false);
     isAuthenticatedMock = signal(false);
     isAdminMock = signal(false);
@@ -54,7 +53,7 @@ describe('adminGuard', () => {
       expect(RESULT).toBe(true);
     });
 
-    it('should redirect to root (/) if user is not authenticated', () => {
+    it('should redirect to unauthorized-error (401) if user is not authenticated', () => {
       // --- ARRANGE ---
       isAuthLoadedMock.set(true);
       isAuthenticatedMock.set(false);
@@ -64,11 +63,11 @@ describe('adminGuard', () => {
       const RESULT = TestBed.runInInjectionContext(() => adminGuard({} as any, {} as any));
 
       // --- ASSERT ---
-      expect(ROUTER_MOCK.parseUrl).toHaveBeenCalledWith('/');
-      expect(RESULT).toBe('/');
+      expect(ROUTER_MOCK.parseUrl).toHaveBeenCalledWith('/error/unauthorized-error');
+      expect(RESULT).toBe('/error/unauthorized-error');
     });
 
-    it('should redirect to forbidden-error if user is authenticated but not admin', () => {
+    it('should redirect to forbidden-error (403) if user is authenticated but not admin', () => {
       // --- ARRANGE ---
       isAuthLoadedMock.set(true);
       isAuthenticatedMock.set(true);
@@ -100,6 +99,24 @@ describe('adminGuard', () => {
 
       // --- ASSERT ---
       expect(FINAL_RESULT).toBe(true);
+    });
+
+    it('should wait for auth to load and redirect to unauthorized-error for non-authenticated visitor', async() => {
+      // --- ARRANGE ---
+      isAuthLoadedMock.set(false);
+      isAuthenticatedMock.set(false);
+
+      // --- ACT ---
+      const OBS$ = TestBed.runInInjectionContext(() =>
+        adminGuard({} as any, {} as any)
+      ) as Observable<boolean | UrlTree>;
+
+      isAuthLoadedMock.set(true);
+      const FINAL_RESULT = await firstValueFrom(OBS$);
+
+      // --- ASSERT ---
+      expect(ROUTER_MOCK.parseUrl).toHaveBeenCalledWith('/error/unauthorized-error');
+      expect(FINAL_RESULT).toBe('/error/unauthorized-error');
     });
 
     it('should wait for auth to load and redirect to forbidden-error for non-admin', async() => {

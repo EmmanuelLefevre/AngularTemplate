@@ -8,7 +8,6 @@ import { BehaviorSubject } from 'rxjs';
 
 import { ErrorHandlerComponent } from './error-handler.component';
 
-
 describe('ErrorHandlerComponent', () => {
 
   let component: ErrorHandlerComponent;

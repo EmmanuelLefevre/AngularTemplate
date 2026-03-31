@@ -11,13 +11,15 @@ export const authGuard: CanActivateFn = () => {
   const authService = inject(AuthService);
   const router = inject(Router);
 
+  const unauthorizedTree = router.parseUrl('/error/unauthorized-error');
+
   if (authService.isAuthLoaded()) {
-    return authService.isAuthenticated() ? true : router.parseUrl('/');
+    return authService.isAuthenticated() ? true : unauthorizedTree;
   }
 
   // If status is 'undefined' (page refresh), wait for the API call to complete
   return toObservable(authService.isAuthLoaded).pipe(
     filter((isLoaded) => isLoaded === true),
-    map(() => authService.isAuthenticated() ? true : router.parseUrl('/'))
+    map(() => authService.isAuthenticated() ? true : unauthorizedTree)
   );
 };

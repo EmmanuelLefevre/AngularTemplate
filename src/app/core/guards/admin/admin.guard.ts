@@ -20,7 +20,7 @@ export const adminGuard: CanActivateFn = () => {
 
     return authService.isAuthenticated()
       ? router.parseUrl('/error/forbidden-error')
-      : router.parseUrl('/');
+      : router.parseUrl('/error/unauthorized-error');
   };
 
   if (authService.isAuthLoaded()) {

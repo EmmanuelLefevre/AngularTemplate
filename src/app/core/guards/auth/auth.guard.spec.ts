@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { TestBed } from '@angular/core/testing';
 import { signal, WritableSignal } from '@angular/core';
 import { Router, UrlTree } from '@angular/router';
@@ -49,7 +50,7 @@ describe('authGuard', () => {
     expect(RESULT).toBe(true);
   });
 
-  it('should redirect to root (/) synchronously if auth is loaded and user is NOT authenticated', () => {
+  it('should redirect to unauthorized-error synchronously if auth is loaded and user is NOT authenticated', () => {
     // --- ARRANGE ---
     isAuthLoadedSignal.set(true);
     isAuthenticatedSignal.set(false);
@@ -60,8 +61,8 @@ describe('authGuard', () => {
     );
 
     // --- ASSERT ---
-    expect(ROUTER_MOCK.parseUrl).toHaveBeenCalledWith('/');
-    expect(RESULT).toBe('/');
+    expect(ROUTER_MOCK.parseUrl).toHaveBeenCalledWith('/error/unauthorized-error');
+    expect(RESULT).toBe('/error/unauthorized-error');
   });
 
   it('should wait for auth to load and allow access if user becomes authenticated', async() => {
@@ -83,7 +84,7 @@ describe('authGuard', () => {
     expect(RESULT).toBe(true);
   });
 
-  it('should wait for auth to load and redirect to root (/) if user is NOT authenticated', async() => {
+  it('should wait for auth to load and redirect to unauthorized-error if user is NOT authenticated', async() => {
     // --- ARRANGE ---
     isAuthLoadedSignal.set(false);
     isAuthenticatedSignal.set(false);
@@ -93,12 +94,13 @@ describe('authGuard', () => {
       authGuard({} as any, {} as any)
     ) as Observable<boolean | UrlTree>;
 
+    // Simulation de la réponse API négative
     isAuthLoadedSignal.set(true);
 
     const RESULT = await firstValueFrom(RESULT_OBSERVABLE);
 
     // --- ASSERT ---
-    expect(ROUTER_MOCK.parseUrl).toHaveBeenCalledWith('/');
-    expect(RESULT).toBe('/');
+    expect(ROUTER_MOCK.parseUrl).toHaveBeenCalledWith('/error/unauthorized-error');
+    expect(RESULT).toBe('/error/unauthorized-error');
   });
 });
