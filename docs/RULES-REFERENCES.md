@@ -14,7 +14,7 @@
 - [Prettier Rules](#prettier-rules)
 - [HTMLHint Rules](#htmlhint-rules)
 - [StyleLint Rules](#stylelint-rules)
-- [I18n Rules](#i18n-lint-rules)
+- [I18n Ally Rules](#i18n-ally-rules)
 - [TypeScript Config Rules](#ts-config-rules)
   - [TypeScript Base Config Rules](#ts-base-config-rules)
   - [TypeScript Alias Config Rules](#ts-alias-config-rules)
@@ -305,10 +305,10 @@ Le plugin (**eslint-plugin-security**) ajoute une couche de sécurité statique.
 
 </details>
 
-<h2 id="i18n-lint-rules">
+<h2 id="i18n-ally-rules">
   <img
-    alt="I18NLINT"
-    title="I18NLINT"
+    alt="I18NALLY"
+    title="I18NALLY"
     width="34px"
     src="https://raw.githubusercontent.com/EmmanuelLefevre/GitHubProfileIcons/main/i18n.svg"
   />
