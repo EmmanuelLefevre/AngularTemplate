@@ -13,7 +13,7 @@
 <div align="center">
   <a href="https://snyk.io/test/github/EmmanuelLefevre/AngularTemplate">
     <img src="https://snyk.io/test/github/EmmanuelLefevre/AngularTemplate/badge.svg" alt="Known Vulnerabilities"/>
-  </a>&nbsp;&nbsp;
+  </a>
 </div>
 
 <br>
