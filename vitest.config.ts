@@ -47,6 +47,7 @@ export default defineConfig({
         lines: COVERAGE_THRESHOLD,
       },
       exclude: [
+        '**/*.constant.ts',
         '**/index.ts',
         '.angular/**',
         'coverage/**',
