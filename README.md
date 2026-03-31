@@ -202,5 +202,5 @@ pnpm add -DE <MA_LIBRAIRIE>@latest
 - En PROD  
 
 ```bash
-pnpm add <MA_LIBRAIRIE>@latest
+pnpm add -E <MA_LIBRAIRIE>@latest
 ```
