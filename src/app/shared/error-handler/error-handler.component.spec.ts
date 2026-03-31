@@ -108,6 +108,17 @@ describe('ErrorHandlerComponent', () => {
   });
 
   describe('Routing logic & Code inference', () => {
+    it('should return false for isAuthError when code is 404', () => {
+      // --- ARRANGE ---
+      queryParams$.next({ code: '404' });
+
+      // --- ACT ---
+      fixture.detectChanges();
+
+      // --- ASSERT ---
+      expect(component.isAuthError()).toBe(false);
+    });
+
     it('should handle missing code parameter and NOT navigate (handled by interceptor or layout)', () => {
       // --- ARRANGE ---
       Object.defineProperty(router, 'url', { value: '/error', configurable: true });
@@ -300,6 +311,18 @@ describe('ErrorHandlerComponent', () => {
           relativeTo: expect.any(Object)
         })
       );
+    });
+
+    it('should navigate to timeout-error when code is specifically 504', () => {
+      // --- ARRANGE ---
+      Object.defineProperty(router, 'url', { value: '/error', configurable: true });
+      queryParams$.next({ code: '504' });
+
+      // --- ACT ---
+      fixture.detectChanges();
+
+      // --- ASSERT ---
+      expect(router.navigate).toHaveBeenCalledWith(['timeout-error'], expect.any(Object));
     });
 
     it('should infer code 408 from URL when queryParams are missing and URL is timeout-error', () => {
@@ -530,6 +553,30 @@ describe('ErrorHandlerComponent', () => {
 
       // --- ASSERT ---
       expect(component.code()).toBe('');
+    });
+
+    it('should NOT navigate if already on generic-error page with a generic code', () => {
+      // --- ARRANGE ---
+      Object.defineProperty(router, 'url', { get: () => '/error/generic-error' });
+      queryParams$.next({ code: '502' });
+
+      // --- ACT ---
+      fixture.detectChanges();
+
+      // --- ASSERT ---
+      expect(router.navigate).not.toHaveBeenCalled();
+    });
+
+    it('should NOT navigate if already on unknown-error page with an unknown code', () => {
+      // --- ARRANGE ---
+      Object.defineProperty(router, 'url', { get: () => '/error/unknown-error' });
+      queryParams$.next({ code: '999' });
+
+      // --- ACT ---
+      fixture.detectChanges();
+
+      // --- ASSERT ---
+      expect(router.navigate).not.toHaveBeenCalled();
     });
   });
 
