@@ -83,17 +83,18 @@ export class LoginViewComponent implements OnInit {
 
       if (EMAIL_PARAM) {
         setTimeout(() => {
-          this.dynamicForm()?.patchEmail(EMAIL_PARAM);
-
           if (this.isRegisterMode()) {
-            this.toggleMode();
+            this.toggleMode(EMAIL_PARAM);
+          }
+          else {
+            this.dynamicForm()?.patchEmail(EMAIL_PARAM);
           }
         }, NEXT_TICK_MS);
       }
     });
   }
 
-  toggleMode(): void {
+  toggleMode(emailToPatch?: string): void {
     if (this.isFlipping()) return;
 
     this.isFlipping.set(true);
@@ -102,6 +103,10 @@ export class LoginViewComponent implements OnInit {
       this.isRegisterMode.update(v => !v);
 
       this.dynamicForm()?.resetForm();
+
+      if (emailToPatch) {
+        this.dynamicForm()?.patchEmail(emailToPatch);
+      }
     }, FLIP_ANIMATION_MIDPOINT_MS);
 
     setTimeout(() => {

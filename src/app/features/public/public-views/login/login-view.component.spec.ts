@@ -40,6 +40,8 @@ describe('LoginViewComponent', () => {
     snapshot: { queryParamMap: { get: vi.fn() } }
   };
 
+  const MOCK_DATA = { email: 'test@test.com', password: 'password123', username: 'Grower123' };
+
   beforeEach(async() => {
     queryParamsSubject.next({});
 
@@ -90,23 +92,40 @@ describe('LoginViewComponent', () => {
       vi.useRealTimers();
     });
 
-    it('should patch email and toggle mode to login if email query param is present', () => {
+    it('should call toggleMode with email param if isRegisterMode is true', () => {
       // --- ARRANGE ---
-      const PATCH_EMAIL_SPY = vi.fn();
+      vi.spyOn((component as any), 'dynamicForm').mockReturnValue({
+        patchEmail: vi.fn(),
+        resetForm: vi.fn()
+      });
+      const TOGGLE_SPY = vi.spyOn(component, 'toggleMode');
       component.isRegisterMode.set(true);
 
-      vi.spyOn((component as any), 'dynamicForm')
-        .mockReturnValue({ patchEmail: PATCH_EMAIL_SPY, resetForm: vi.fn() });
-
-      const TOGGLE_SPY = vi.spyOn(component, 'toggleMode');
-
       // --- ACT ---
-      queryParamsSubject.next({ email: 'test@email.com' });
+      queryParamsSubject.next({ email: 'test@logic.com' });
       vi.advanceTimersByTime(NEXT_TICK_MS);
 
       // --- ASSERT ---
-      expect(PATCH_EMAIL_SPY).toHaveBeenCalledWith('test@email.com');
-      expect(TOGGLE_SPY).toHaveBeenCalled();
+      expect(TOGGLE_SPY).toHaveBeenCalledWith('test@logic.com');
+    });
+
+    it('should patch email directly if isRegisterMode is false', () => {
+      // --- ARRANGE ---
+      const PATCH_EMAIL_SPY = vi.fn();
+      vi.spyOn((component as any), 'dynamicForm').mockReturnValue({
+        patchEmail: PATCH_EMAIL_SPY,
+        resetForm: vi.fn()
+      });
+      const TOGGLE_SPY = vi.spyOn(component, 'toggleMode');
+      component.isRegisterMode.set(false);
+
+      // --- ACT ---
+      queryParamsSubject.next({ email: 'autre@logic.com' });
+      vi.advanceTimersByTime(NEXT_TICK_MS);
+
+      // --- ASSERT ---
+      expect(PATCH_EMAIL_SPY).toHaveBeenCalledWith('autre@logic.com');
+      expect(TOGGLE_SPY).not.toHaveBeenCalled();
     });
 
     it('should call toggleMode if isRegisterMode is true when email param arrives', () => {
@@ -186,6 +205,27 @@ describe('LoginViewComponent', () => {
       expect(component.isFlipping()).toBe(false);
     });
 
+    it('should patch email after resetting form if emailToPatch is provided', () => {
+      // --- ARRANGE ---
+      const RESET_SPY = vi.fn();
+      const PATCH_EMAIL_SPY = vi.fn();
+
+      interface ComponentWithPrivateForm {
+        dynamicForm: Signal<Partial<DynamicFormComponent> | undefined>;
+      }
+
+      vi.spyOn((component as unknown as ComponentWithPrivateForm), 'dynamicForm')
+        .mockReturnValue({ resetForm: RESET_SPY, patchEmail: PATCH_EMAIL_SPY });
+
+      // --- ACT ---
+      component.toggleMode('delay@test.com');
+      vi.advanceTimersByTime(FLIP_ANIMATION_MIDPOINT_MS);
+
+      // --- ASSERT ---
+      expect(RESET_SPY).toHaveBeenCalled();
+      expect(PATCH_EMAIL_SPY).toHaveBeenCalledWith('delay@test.com');
+    });
+
     it('should abort if animation is already running (isFlipping is true)', () => {
       // --- ARRANGE ---
       component.isFlipping.set(true);
@@ -202,8 +242,6 @@ describe('LoginViewComponent', () => {
   });
 
   describe('onFormSubmit()', () => {
-    const MOCK_DATA = { email: 'test@test.com', password: 'password123', username: 'Grower123' };
-
     describe('Login Mode', () => {
       beforeEach(() => {
         component.isRegisterMode.set(false);
