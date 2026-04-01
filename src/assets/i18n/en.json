@@ -245,6 +245,10 @@
         "LABEL": "Login",
         "ARIA": "Button to open the login form"
       },
+      "LOGOUT": {
+        "LABEL": "Logout",
+        "ARIA": "Button to logout of the application"
+      },
       "CONTINUE": {
         "LABEL": "Continue",
         "ARIA": "Button to login"

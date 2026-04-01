@@ -49,9 +49,9 @@
         <language-toggle />
         <main-button
           variant="primary"
-          [label]="'UI.BUTTONS.LOGIN.LABEL' | translate"
-          [ariaLabel]="'UI.BUTTONS.LOGIN.ARIA' | translate"
-          (clicked)="onLoginClick()"
+          [label]="(authService.isAuthenticated() ? 'UI.BUTTONS.LOGOUT.LABEL' : 'UI.BUTTONS.LOGIN.LABEL') | translate"
+          [ariaLabel]="(authService.isAuthenticated() ? 'UI.BUTTONS.LOGOUT.ARIA' : 'UI.BUTTONS.LOGIN.ARIA') | translate"
+          (clicked)="onAuthActionClick()"
           class="header__login-btn" />
       </div>
     </nav>
@@ -60,9 +60,9 @@
       <language-toggle />
       <main-button
         variant="primary"
-        [label]="'UI.BUTTONS.LOGIN.LABEL' | translate"
-        [ariaLabel]="'UI.BUTTONS.LOGIN.ARIA' | translate"
-        (clicked)="onLoginClick()"
+        [label]="(authService.isAuthenticated() ? 'UI.BUTTONS.LOGOUT.LABEL' : 'UI.BUTTONS.LOGIN.LABEL') | translate"
+        [ariaLabel]="(authService.isAuthenticated() ? 'UI.BUTTONS.LOGOUT.ARIA' : 'UI.BUTTONS.LOGIN.ARIA') | translate"
+        (clicked)="onAuthActionClick()"
         class="header__login-btn" />
     </div>
   </div>

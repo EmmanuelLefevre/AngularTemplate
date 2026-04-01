@@ -245,6 +245,10 @@
         "LABEL": "Se connecter",
         "ARIA": "Bouton pour ouvrir le formulaire de connexion"
       },
+      "LOGOUT": {
+        "LABEL": "Se déconnecter",
+        "ARIA": "Bouton pour se déconnecter de l'application"
+      },
       "CONTINUE": {
         "LABEL": "Continuer",
         "ARIA": "Bouton pour se connecter"

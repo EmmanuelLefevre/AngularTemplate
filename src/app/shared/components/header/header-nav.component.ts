@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
+import { AuthService } from '@core/_services/auth/auth.service';
+
 import { LanguageToggleComponent } from '@shared/components/language-toggle/language-toggle.component';
 import { MainButtonComponent } from '@shared/shared';
 
@@ -24,6 +26,7 @@ import { HEADER_NAV_LINKS } from '@core/_config/links/nav-links.constant';
 
 export class HeaderNavComponent {
 
+  protected readonly authService = inject(AuthService);
   protected readonly navLinks = HEADER_NAV_LINKS;
 
   private readonly renderer = inject(Renderer2);
@@ -45,9 +48,15 @@ export class HeaderNavComponent {
     this.isMenuOpen.set(false);
   }
 
-  onLoginClick(): void {
+  onAuthActionClick(): void {
     this.closeMenu();
-    this.router.navigate(['/login']);
+
+    if (this.authService.isAuthenticated()) {
+      this.authService.logout();
+    }
+    else {
+      this.router.navigate(['/login']);
+    }
   }
 
   private updateScrollBlock(): void {

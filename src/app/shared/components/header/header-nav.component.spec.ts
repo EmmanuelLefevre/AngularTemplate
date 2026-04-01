@@ -1,7 +1,10 @@
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter, Router } from '@angular/router';
+import { signal } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { AuthService } from '@core/_services/auth/auth.service';
 
 import { HeaderNavComponent } from './header-nav.component';
 
@@ -10,8 +13,19 @@ describe('HeaderNavComponent', () => {
   let component: HeaderNavComponent;
   let fixture: ComponentFixture<HeaderNavComponent>;
   let translateService: TranslateService;
+  let router: Router;
+
+  const mockIsAuthenticated = signal(false);
+
+  const AUTH_SERVICE_MOCK = {
+    isAuthenticated: mockIsAuthenticated,
+    logout: vi.fn()
+  };
 
   beforeEach(async() => {
+    mockIsAuthenticated.set(false);
+    AUTH_SERVICE_MOCK.logout.mockClear();
+
     await TestBed.configureTestingModule({
       imports: [
         HeaderNavComponent,
@@ -19,11 +33,13 @@ describe('HeaderNavComponent', () => {
       ],
       providers: [
         provideRouter([]),
+        { provide: AuthService, useValue: AUTH_SERVICE_MOCK }
       ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(HeaderNavComponent);
     component = fixture.componentInstance;
+    router = TestBed.inject(Router);
 
     translateService = TestBed.inject(TranslateService);
     translateService.setTranslation('fr', {
@@ -43,6 +59,10 @@ describe('HeaderNavComponent', () => {
           'LOGIN': {
             'LABEL': 'Se connecter',
             'ARIA': 'Bouton pour ouvrir le formulaire de connexion'
+          },
+          'LOGOUT': {
+            'LABEL': 'Se déconnecter',
+            'ARIA': 'Bouton pour se déconnecter de l\'application'
           }
         }
       }
@@ -111,16 +131,32 @@ describe('HeaderNavComponent', () => {
   describe('Routing & Navigation', () => {
     it('should close the menu and navigate to /login when onLoginClick() is called', () => {
       // --- ARRANGE ---
-      const ROUTER = TestBed.inject(Router);
-      const NAVIGATE_SPY = vi.spyOn(ROUTER, 'navigate').mockImplementation(() => Promise.resolve(true));
+      const NAVIGATE_SPY = vi.spyOn(router, 'navigate').mockImplementation(() => Promise.resolve(true));
       const CLOSE_MENU_SPY = vi.spyOn(component, 'closeMenu');
+      mockIsAuthenticated.set(false);
 
       // --- ACT ---
-      component.onLoginClick();
+      component.onAuthActionClick();
 
       // --- ASSERT ---
       expect(CLOSE_MENU_SPY).toHaveBeenCalled();
       expect(NAVIGATE_SPY).toHaveBeenCalledWith(['/login']);
+      expect(AUTH_SERVICE_MOCK.logout).not.toHaveBeenCalled();
+    });
+
+    it('should close the menu and call logout when user is authenticated', () => {
+      // --- ARRANGE ---
+      const NAVIGATE_SPY = vi.spyOn(router, 'navigate').mockImplementation(() => Promise.resolve(true));
+      const CLOSE_MENU_SPY = vi.spyOn(component, 'closeMenu');
+      mockIsAuthenticated.set(true);
+
+      // --- ACT ---
+      component.onAuthActionClick();
+
+      // --- ASSERT ---
+      expect(CLOSE_MENU_SPY).toHaveBeenCalled();
+      expect(AUTH_SERVICE_MOCK.logout).toHaveBeenCalled();
+      expect(NAVIGATE_SPY).not.toHaveBeenCalled();
     });
   });
 
@@ -177,6 +213,38 @@ describe('HeaderNavComponent', () => {
       // ASSERT ---
       expect(buttonInstance.label()).toBe('Se connecter');
       expect(buttonInstance.ariaLabel()).toBe('Bouton pour ouvrir le formulaire de connexion');
+    });
+  });
+
+  describe('Internationalization & Accessibility (ARIA) & Dynamic Props', () => {
+    it('should pass LOGIN properties to main-button when user is NOT authenticated', () => {
+      // --- ARRANGE ---
+      mockIsAuthenticated.set(false);
+
+      // --- ACT ---
+      fixture.detectChanges();
+      const loginButtonDebugEl = fixture.debugElement.query(By.css('.header__login-btn'));
+      const buttonInstance = loginButtonDebugEl.componentInstance;
+
+      // --- ASSERT ---
+      expect(buttonInstance.label()).toBe('Se connecter');
+      expect(buttonInstance.ariaLabel()).toBe('Bouton pour ouvrir le formulaire de connexion');
+      expect(buttonInstance.variant()).toBe('primary');
+    });
+
+    it('should pass LOGOUT properties to main-button when user IS authenticated', () => {
+      // --- ARRANGE ---
+      mockIsAuthenticated.set(true);
+
+      // --- ACT ---
+      fixture.detectChanges();
+      const loginButtonDebugEl = fixture.debugElement.query(By.css('.header__login-btn'));
+      const buttonInstance = loginButtonDebugEl.componentInstance;
+
+      // --- ASSERT ---
+      expect(buttonInstance.label()).toBe('Se déconnecter');
+      expect(buttonInstance.ariaLabel()).toBe('Bouton pour se déconnecter de l\'application');
+      expect(buttonInstance.variant()).toBe('primary');
     });
   });
 });
