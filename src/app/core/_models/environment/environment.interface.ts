@@ -10,4 +10,8 @@ export interface IEnvironment {
     themeColor: string;
     defaultShareImage: string;
   };
+  supabase: {
+    url: string;
+    anonKey: string;
+  };
 }

@@ -11,5 +11,9 @@ export const ENVIRONMENT: IEnvironment = {
     author: 'Emmanuel Lefevre',
     themeColor: '#ff6b6b',
     defaultShareImage: 'https://angulartemplate.emmanuellefevre.com/assets/logos/logo.png'
+  },
+  supabase: {
+    url: PROCESS.env['NG_APP_SUPABASE_URL'] || '',
+    anonKey: PROCESS.env['NG_APP_SUPABASE_ANON_KEY'] || ''
   }
 };

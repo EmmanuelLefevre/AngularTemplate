@@ -42,6 +42,10 @@ testem.log
 /typings
 __screenshots__/
 
+# Secrets & Environment variables
+/.env
+!src/_environments/.env
+
 # System files
 .DS_Store
 Thumbs.db
