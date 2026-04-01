@@ -103,6 +103,9 @@ Une bibliothèque de composants internes (Custom Form, Generic Input, Button, Li
 🧠 **Architecture :**
 Des **Interceptors** robustes, des **Guards** d'authentification, une partie de l'application **Public** et **Private** ainsi qu'un **Dashboard Admin** fonctionnel sont déjà configurés. **Tous couverts à 100% par des tests.**
 
+🔐 **Authentification Supabase :**
+Mécanique d'authentification robuste et sécurisée pré-configurée avec **Supabase**. Gestion des sessions, des rôles (Admin/User), guards de routage stricts et flux complet d'inscription/connexion. L'état global est piloté via les **Angular Signals** pour une réactivité parfaite.
+
 📢 **Résilience & Gestion des Erreurs :**
 Un **Error Handler** global intercepte et redirige intelligemment vers des vues dédiées pour chaque scénario (**401**, **403**, **404**, **500**, **Generic**, **Timeout 408/504**, **Unknown**...). Une gestion du code **HHTP 503** est implémentée à double niveau : si l'**API** est indisponible, **Angular** affiche sa vue de maintenance. Si c'est l'application elle-même qui est en mise à jour (**Front-End** down), un mécanisme serveur (`.htaccess` via trigger **CI/CD**) prend instantanément le relais avec une page pur **HTML**/**CSS** statique. Le **SEO** est maintenu !
 
@@ -187,6 +190,16 @@ pnpm start
 
 ```bash
 
+```
+
+### Configuration de l'environnement
+
+Créer un fichier `.env` à la racine de l'application et renseigner les clés de configuration (**API endpoint** et **Supabase**) :
+
+```bash
+NG_APP_BACKEND_API_URL=https://monbackend/api
+NG_APP_SUPABASE_URL=votre_url_supabase
+NG_APP_SUPABASE_ANON_KEY=votre_cle_anonyme_supabase
 ```
 
 ### Installation de la CLI Angular en global

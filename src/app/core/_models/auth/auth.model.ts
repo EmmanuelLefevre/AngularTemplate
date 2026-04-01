@@ -28,3 +28,16 @@ export interface LoginCredentials {
    */
   password: string;
 }
+
+/**
+ * Payload structure required for a new user registration.
+ * Extends the base login credentials with profile-specific information.
+ */
+export interface RegisterCredentials extends LoginCredentials {
+  /**
+   * The chosen display name for the new account.
+   * This is typically stored in the user's metadata for profile display.
+   * @example "JonhDoe_42"
+   */
+  username: string;
+}

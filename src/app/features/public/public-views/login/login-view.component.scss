@@ -11,6 +11,10 @@
   flex: 1;
   padding: 2rem;
 
+  &.is-register {
+    padding: 5rem 2rem;
+  }
+
   &__wrapper {
     width: 100%;
     max-width: 480px;

@@ -12,9 +12,9 @@ export type UserRole = 'ADMIN' | 'USER';
 export interface User {
   /**
    * Unique identifier for the user (Primary Key).
-   * @example 42
+   * @example 123-uuid
    */
-  id: number;
+  id: string;
 
   /**
    * The display name chosen by the user.

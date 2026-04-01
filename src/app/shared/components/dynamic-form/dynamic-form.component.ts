@@ -30,10 +30,12 @@ export class DynamicFormComponent {
 
   protected form: FormGroup = this.fb.group({});
 
-  // ConfirmPassword ONLY appears if isRegisterMode is TRUE
+  // ConfirmPassword and UserName ONLY appears if isRegisterMode is TRUE
   protected readonly visibleFields = computed(() => {
+    const REGISTER_ONLY_FIELDS = ['confirmPassword', 'username'];
+
     return this.fields().filter(f =>
-      f.name !== 'confirmPassword' || this.isRegisterMode()
+      !REGISTER_ONLY_FIELDS.includes(f.name) || this.isRegisterMode()
     );
   });
 
@@ -50,6 +52,13 @@ export class DynamicFormComponent {
         }
       });
     });
+  }
+
+  patchEmail(email: string): void {
+    const emailControl = this.form.get('email');
+    if (emailControl) {
+      emailControl.setValue(email);
+    }
   }
 
   resetForm(): void {

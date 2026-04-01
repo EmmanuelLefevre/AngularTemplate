@@ -194,17 +194,28 @@
   },
   "UI": {
     "SNACKBAR": {
-      "LOGIN_SUCCESS": "Administrator login successful !",
-      "LOGIN_ERROR": "Connection failed. Please verify your spoofed credentials."
+      "AUTH": {
+        "LOGIN": {
+          "SUCCESS": "Welcome {{username}} !",
+          "ERROR": "Connection failed. Please verify your credentials.",
+          "CONFIRM_EMAIL_NEEDED": "Please confirm your email address before logging in."
+        },
+        "REGISTER": {
+          "SUCCESS": "Account created successfully ! You should confirm your email...",
+          "ERROR": "Registration failed. Please verify your information and try again."
+        }
+      }
     },
     "FORMS": {
       "LABELS": {
         "EMAIL": "Email",
+        "USERNAME": "Username",
         "PASSWORD": "Password",
         "CONFIRM_PASSWORD": "Confirm password"
       },
       "PLACEHOLDERS": {
         "EMAIL": "exemple@domaine.com",
+        "USERNAME": "Username",
         "PASSWORD": "Password",
         "CONFIRM_PASSWORD": "Confirm password"
       },
@@ -214,6 +225,7 @@
       },
       "ERRORS": {
         "EMAIL_INVALID": "The email is invalid.",
+        "USERNAME_INVALID": "The username is invalid.",
         "PASSWORD_INVALID": "The password is invalid."
       }
     },

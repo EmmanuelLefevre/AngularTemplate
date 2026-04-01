@@ -194,17 +194,28 @@
   },
   "UI": {
     "SNACKBAR": {
-      "LOGIN_SUCCESS": "Connexion administrateur réussie !",
-      "LOGIN_ERROR": "Échec de la connexion. Vérifiez vos identifiants mockés."
+      "AUTH": {
+        "LOGIN": {
+          "SUCCESS": "Bienvenu {{username}} !",
+          "ERROR": "La connexion a échoué. Veuillez vérifier vos identifiants.",
+          "CONFIRM_EMAIL_NEEDED": "Veuillez confirmer votre adresse e-mail avant de vous connecter."
+        },
+        "REGISTER": {
+          "SUCCESS": "Compte créé avec succès ! Veuillez confirmer votre adresse e-mail...",
+          "ERROR": "L'inscription a échoué. Veuillez vérifier vos informations et réessayer."
+        }
+      }
     },
     "FORMS": {
       "LABELS": {
         "EMAIL": "Email",
+        "USERNAME": "Nom d'utilisateur",
         "PASSWORD": "Mot de passe",
         "CONFIRM_PASSWORD": "Confirmer mot de passe"
       },
       "PLACEHOLDERS": {
         "EMAIL": "exemple@domaine.com",
+        "USERNAME": "Nom d'utilisateur",
         "PASSWORD": "Mot de passe",
         "CONFIRM_PASSWORD": "Confirmer mot de passe"
       },
@@ -214,6 +225,7 @@
       },
       "ERRORS": {
         "EMAIL_INVALID": "L'email n'est pas valide.",
+        "USERNAME_INVALID": "Le nom d'utilisateur n'est pas valide.",
         "PASSWORD_INVALID": "Le mot de passe n'est pas valide."
       }
     },

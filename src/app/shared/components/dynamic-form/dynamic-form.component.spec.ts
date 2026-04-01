@@ -7,7 +7,7 @@ import { FormFieldConfig } from '@core/_models/forms/form.model';
 import { DynamicFormComponent } from './dynamic-form.component';
 
 const VISIBLE_FIELDS_LENGTH_LOGIN = 2;
-const VISIBLE_FIELDS_LENGTH_REGISTER = 3;
+const VISIBLE_FIELDS_LENGTH_REGISTER = 4;
 
 describe('DynamicFormComponent', () => {
 
@@ -21,6 +21,11 @@ describe('DynamicFormComponent', () => {
       type: 'email',
       initialValue: 'test@test.com',
       validators: [Validators.required]
+    },
+    {
+      name: 'username',
+      label: 'Username',
+      type: 'text'
     },
     {
       name: 'password',
@@ -59,6 +64,7 @@ describe('DynamicFormComponent', () => {
   it('should create the form controls based on fields input (via effect)', () => {
     // --- ASSERT ---
     expect(component['form'].contains('email')).toBe(true);
+    expect(component['form'].contains('username')).toBe(true);
     expect(component['form'].contains('password')).toBe(true);
     expect(component['form'].contains('confirmPassword')).toBe(true);
   });
@@ -75,6 +81,7 @@ describe('DynamicFormComponent', () => {
       // --- ASSERT ---
       expect(VISIBLE.length).toBe(VISIBLE_FIELDS_LENGTH_LOGIN);
       expect(VISIBLE.find(f => f.name === 'confirmPassword')).toBeUndefined();
+      expect(VISIBLE.find(f => f.name === 'username')).toBeUndefined();
     });
 
     it('should include confirmPassword when isRegisterMode is true', async() => {
@@ -88,6 +95,29 @@ describe('DynamicFormComponent', () => {
       // --- ASSERT ---
       expect(VISIBLE.length).toBe(VISIBLE_FIELDS_LENGTH_REGISTER);
       expect(VISIBLE.find(f => f.name === 'confirmPassword')).toBeDefined();
+      expect(VISIBLE.find(f => f.name === 'username')).toBeDefined();
+    });
+  });
+
+  describe('patchEmail()', () => {
+    it('should set the value of the email control', () => {
+      // --- ARRANGE ---
+      const NEW_EMAIL = 'patched@logic.com';
+      component['form'].patchValue({ email: 'old@test.com' });
+
+      // --- ACT ---
+      component.patchEmail(NEW_EMAIL);
+
+      // --- ASSERT ---
+      expect(component['form'].get('email')?.value).toBe(NEW_EMAIL);
+    });
+
+    it('should not crash if the email control does not exist (branch coverage)', () => {
+      // --- ARRANGE ---
+      component['form'].removeControl('email');
+
+      // --- ACT & ASSERT ---
+      expect(() => component.patchEmail('test@logic.com')).not.toThrow();
     });
   });
 
@@ -97,6 +127,7 @@ describe('DynamicFormComponent', () => {
       const SPY = vi.spyOn(component.submitted, 'emit');
       component['form'].patchValue({
         email: 'test@test.com',
+        username: 'JohnDoe123',
         password: 'password123',
         confirmPassword: 'password123'
       });
@@ -107,6 +138,7 @@ describe('DynamicFormComponent', () => {
       // --- ASSERT ---
       expect(SPY).toHaveBeenCalledWith({
         email: 'test@test.com',
+        username: 'JohnDoe123',
         password: 'password123',
         confirmPassword: 'password123'
       });

@@ -1,13 +1,12 @@
-import { HttpClient, HttpContext } from '@angular/common/http';
-import { computed, inject, Injectable, signal } from '@angular/core';
+import { inject, Injectable, signal, computed } from '@angular/core';
 import { Router } from '@angular/router';
-import { catchError, Observable, of, tap } from 'rxjs';
+import { from, Observable, of } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators';
+import { User as SupabaseUser } from '@supabase/supabase-js';
 
-import { ENVIRONMENT } from '@env/environment';
-
-import { User } from '@core/_models/user/user.model';
-import { LoginCredentials } from '@core/_models/auth/auth.model';
-import { BYPASS_GLOBAL_ERROR } from '@core/interceptors/error/error.interceptor';
+import { SupabaseService } from '@core/_services/supabase/supabase.service';
+import { User as AppUser } from '@core/_models/user/user.model';
+import { LoginCredentials, RegisterCredentials } from '@core/_models/auth/auth.model';
 
 @Injectable({
   providedIn: 'root',
@@ -15,26 +14,34 @@ import { BYPASS_GLOBAL_ERROR } from '@core/interceptors/error/error.interceptor'
 
 export class AuthService {
 
-  private readonly http = inject(HttpClient);
-  private readonly apiUrl = `${ENVIRONMENT.apiUrl}/auth`;
+  private readonly supabase = inject(SupabaseService).client;
   private readonly router = inject(Router);
 
-  public readonly currentUser = signal<User | null | undefined>(undefined);
-  public readonly isAdmin = computed(() => this.currentUser()?.roles.includes('ADMIN') ?? false);
+  public readonly currentUser = signal<AppUser | null | undefined>(undefined);
+  public readonly isAdmin = computed(() => this.currentUser()?.roles?.includes('ADMIN') ?? false);
   public readonly isAuthenticated = computed(() => !!this.currentUser());
   public readonly isAuthLoaded = computed(() => this.currentUser() !== undefined);
 
-  login(credentials: LoginCredentials): Observable<User> {
-    return this.http.post<User>(`${this.apiUrl}/login`, credentials, { withCredentials: true }).pipe(
-      tap((user) => this.currentUser.set(user))
-    );
+  constructor() {
+    this.supabase.auth.onAuthStateChange((_event, session) => {
+      if (session?.user) {
+        this.currentUser.set(this.mapUser(session.user));
+      }
+      else {
+        this.currentUser.set(null);
+      }
+    });
   }
 
-  initAuth(): Observable<User | null> {
-    return this.http.get<User>(`${this.apiUrl}/me`, {
-      withCredentials: true,
-      context: new HttpContext().set(BYPASS_GLOBAL_ERROR, true)
-    }).pipe(
+  initAuth(): Observable<AppUser | null> {
+    return from(this.supabase.auth.getUser()).pipe(
+      map(({ data, error }) => {
+        if (error || !data.user) {
+          return null;
+        }
+
+        return this.mapUser(data.user);
+      }),
       tap((user) => this.currentUser.set(user)),
       catchError(() => {
         this.currentUser.set(null);
@@ -43,15 +50,70 @@ export class AuthService {
     );
   }
 
+  login(credentials: LoginCredentials): Observable<AppUser> {
+    return from(
+      this.supabase.auth.signInWithPassword({
+        email: credentials.email,
+        password: credentials.password,
+      })
+    ).pipe(
+      map(({ data, error }) => {
+        if (error) {
+          throw error;
+        }
+
+        return this.mapUser(data.user!);
+      }),
+      tap((user) => this.currentUser.set(user))
+    );
+  }
+
   logout(): void {
-    this.http.post(`${this.apiUrl}/logout`, {}, { withCredentials: true }).subscribe({
+    from(this.supabase.auth.signOut()).subscribe({
       next: () => this.clearSession(),
-      error: () => this.clearSession()
+      error: () => this.clearSession(),
     });
+  }
+
+  register(credentials: RegisterCredentials): Observable<AppUser> {
+    return from(
+      this.supabase.auth.signUp({
+        email: credentials.email,
+        password: credentials.password,
+        options: {
+          data: {
+            username: credentials.username,
+          },
+        },
+      })
+    ).pipe(
+      map(({ data, error }) => {
+        if (error) {
+          throw error;
+        }
+
+        if (!data.user) {
+          throw new Error('No user returned');
+        }
+
+        return this.mapUser(data.user);
+      }),
+      tap((user) => this.currentUser.set(user))
+    );
   }
 
   private clearSession(): void {
     this.currentUser.set(null);
     this.router.navigate(['/']);
+  }
+
+  private mapUser(sbUser: SupabaseUser): AppUser {
+    return {
+      id: sbUser.id,
+      email: sbUser.email ?? '',
+      // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+      username: sbUser.user_metadata['username'] ?? sbUser.email?.split('@')[0] ?? 'Anonyme',
+      roles: sbUser.app_metadata?.['roles'] ?? sbUser.user_metadata?.['roles'] ?? []
+    } as AppUser;
   }
 }
