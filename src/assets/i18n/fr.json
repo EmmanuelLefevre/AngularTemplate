@@ -200,6 +200,9 @@
           "ERROR": "La connexion a échoué. Veuillez vérifier vos identifiants.",
           "CONFIRM_EMAIL_NEEDED": "Veuillez confirmer votre adresse e-mail avant de vous connecter."
         },
+        "LOGOUT": {
+          "SUCCESS": "Au revoir {{username}} !"
+        },
         "REGISTER": {
           "SUCCESS": "Compte créé avec succès ! Veuillez confirmer votre adresse e-mail...",
           "ERROR": "L'inscription a échoué. Veuillez vérifier vos informations et réessayer."

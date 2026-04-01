@@ -200,6 +200,9 @@
           "ERROR": "Connection failed. Please verify your credentials.",
           "CONFIRM_EMAIL_NEEDED": "Please confirm your email address before logging in."
         },
+        "LOGOUT": {
+          "SUCCESS": "Goodbye {{username}} !"
+        },
         "REGISTER": {
           "SUCCESS": "Account created successfully ! You should confirm your email...",
           "ERROR": "Registration failed. Please verify your information and try again."

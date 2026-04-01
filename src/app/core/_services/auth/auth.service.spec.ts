@@ -3,16 +3,20 @@
 
 import { TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 import { firstValueFrom } from 'rxjs';
 
+import { SnackbarService } from '@core/_services/snackbar/snackbar.service';
 import { SupabaseService } from '@core/_services/supabase/supabase.service';
 import { User as AppUser } from '@core/_models/user/user.model';
+
 import { AuthService } from './auth.service';
 
 describe('AuthService', () => {
 
   let router: Router;
   let service: AuthService;
+  let snackbarServiceMock: any;
   let supabaseServiceMock: any;
 
   const MOCK_USER: AppUser = { id: '123-uuid', username: 'TestUser', email: 'test@test.com', roles: [] };
@@ -40,11 +44,19 @@ describe('AuthService', () => {
       navigate: vi.fn()
     };
 
+    snackbarServiceMock = {
+      showNotification: vi.fn()
+    };
+
     TestBed.configureTestingModule({
+      imports: [
+        TranslateModule.forRoot()
+      ],
       providers: [
         AuthService,
         { provide: SupabaseService, useValue: supabaseServiceMock },
-        { provide: Router, useValue: ROUTER_MOCK }
+        { provide: Router, useValue: ROUTER_MOCK },
+        { provide: SnackbarService, useValue: snackbarServiceMock }
       ]
     });
 
@@ -227,7 +239,7 @@ describe('AuthService', () => {
   });
 
   describe('Session Management', () => {
-    it('should call Supabase logout, clear session and navigate', async() => {
+    it('should call Supabase logout, clear session, navigate and show snackbar', async() => {
       // --- ARRANGE ---
       service.currentUser.set(MOCK_USER);
       supabaseServiceMock.client.auth.signOut.mockResolvedValue({ error: null });
@@ -241,9 +253,14 @@ describe('AuthService', () => {
       expect(supabaseServiceMock.client.auth.signOut).toHaveBeenCalled();
       expect(service.currentUser()).toBeNull();
       expect(router.navigate).toHaveBeenCalledWith(['/']);
+      expect(snackbarServiceMock.showNotification).toHaveBeenCalledWith(
+        'UI.SNACKBAR.AUTH.LOGOUT.SUCCESS',
+        'logIn-logOut',
+        { username: MOCK_USER.username }
+      );
     });
 
-    it('should clear session even if signOut fails (error branch)', async() => {
+    it('should clear session and show snackbar even if signOut fails (error branch)', async() => {
       // --- ARRANGE ---
       service.currentUser.set(MOCK_USER);
       supabaseServiceMock.client.auth.signOut.mockRejectedValue(new Error('Logout Error'));
@@ -255,6 +272,30 @@ describe('AuthService', () => {
       // --- ASSERT ---
       expect(service.currentUser()).toBeNull();
       expect(router.navigate).toHaveBeenCalledWith(['/']);
+      expect(snackbarServiceMock.showNotification).toHaveBeenCalledWith(
+        'UI.SNACKBAR.AUTH.LOGOUT.SUCCESS',
+        'logIn-logOut',
+        { username: MOCK_USER.username }
+      );
+    });
+
+    it('should fallback to empty string for username if currentUser is null during logout', async() => {
+      // --- ARRANGE ---
+      service.currentUser.set(null);
+      supabaseServiceMock.client.auth.signOut.mockResolvedValue({ error: null });
+
+      // --- ACT ---
+      service.logout();
+
+      await new Promise(resolve => setTimeout(resolve, 0));
+
+      // --- ASSERT ---
+      expect(snackbarServiceMock.showNotification).toHaveBeenCalledWith(
+        'UI.SNACKBAR.AUTH.LOGOUT.SUCCESS',
+        'logIn-logOut',
+        { username: '' }
+      );
+      expect(service.currentUser()).toBeNull();
     });
   });
 

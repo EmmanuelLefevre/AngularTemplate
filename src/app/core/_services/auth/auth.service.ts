@@ -4,7 +4,9 @@ import { from, Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { User as SupabaseUser } from '@supabase/supabase-js';
 
+import { SnackbarService } from '@core/_services/snackbar/snackbar.service';
 import { SupabaseService } from '@core/_services/supabase/supabase.service';
+
 import { User as AppUser } from '@core/_models/user/user.model';
 import { LoginCredentials, RegisterCredentials } from '@core/_models/auth/auth.model';
 
@@ -14,8 +16,9 @@ import { LoginCredentials, RegisterCredentials } from '@core/_models/auth/auth.m
 
 export class AuthService {
 
-  private readonly supabase = inject(SupabaseService).client;
   private readonly router = inject(Router);
+  private readonly snackbarService = inject(SnackbarService);
+  private readonly supabase = inject(SupabaseService).client;
 
   public readonly currentUser = signal<AppUser | null | undefined>(undefined);
   public readonly isAdmin = computed(() => this.currentUser()?.roles?.includes('ADMIN') ?? false);
@@ -69,9 +72,27 @@ export class AuthService {
   }
 
   logout(): void {
+    const USERNAME = this.currentUser()?.username || '';
+
     from(this.supabase.auth.signOut()).subscribe({
-      next: () => this.clearSession(),
-      error: () => this.clearSession(),
+      next: () => {
+        this.clearSession();
+
+        this.snackbarService.showNotification(
+          'UI.SNACKBAR.AUTH.LOGOUT.SUCCESS',
+          'logIn-logOut',
+          { username: USERNAME }
+        );
+      },
+      error: () => {
+        this.clearSession();
+
+        this.snackbarService.showNotification(
+          'UI.SNACKBAR.AUTH.LOGOUT.SUCCESS',
+          'logIn-logOut',
+          { username: USERNAME }
+        );
+      },
     });
   }
 
