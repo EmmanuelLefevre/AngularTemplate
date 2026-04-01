@@ -87,7 +87,7 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular/build:application",
+          "builder": "@ngx-env/builder:application",
           "options": {
             "index": "src/index.html",
             "browser": "src/main.ts",
