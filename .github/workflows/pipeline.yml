@@ -6,6 +6,10 @@ on:
   pull_request:
     branches: [main, develop]
 
+env:
+  NG_APP_SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+  NG_APP_SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+
 # Cancel current execution for this workflow and branch if a new push is detected
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
