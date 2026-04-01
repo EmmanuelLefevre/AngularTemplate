@@ -22,7 +22,7 @@
 - [Compodoc Rules](#compodoc)
 - [Schematics Rules](#schematics-rules)
 - [VSCode Rules](#vscode-rules)
-  - [Files Association](#files-association)
+  - [Editor & Files Settings](#editor-settings)
   - [I18n Ally](#i18n-ally)
 
 ## RULES
@@ -744,7 +744,7 @@ Configuration pour la gestion globale des services (`ng g s`).
 
   <summary>👁️ Tout voir</summary>
 
-<h3 id="files-association">Files Association</h3>
+<h3 id="editor-settings">Editor & Files Settings</h3>
 
 <details>
 
@@ -754,6 +754,13 @@ Configuration pour la gestion globale des services (`ng g s`).
 
 | Option | Valeur | Description |
 | :--- | :--- | :--- |
+| **`editor.tabSize`** | `2` | Définir la taille d'une tabulation (2 espaces) |
+| **`editor.insertSpaces`** | `false` | Insèrer de véritables caractères de tabulation au lieu d'espaces |
+| **`editor.formatOnSave`** | `true` | Formater automatiquement le fichier courant lors de sa sauvegarde |
+| **`files.associations."*.json"`** | `"jsonc"` | Traiter les fichiers JSON génériques comme JSON avec commentaires (JSONC) |
+| **`files.associations."tsconfig.json"`** | `"jsonc"` | Forcer la configuration TypeScript à être traitée comme JSONC |
+| **`files.associations."tsconfig.app.json"`** | `"jsonc"` | Forcer la configuration TypeScript de l'app à être traitée comme JSONC |
+| **`files.insertFinalNewline`** | `true` | Ajouter une ligne vide à la fin de chaque fichier (norme POSIX et Git) |
 
 </details>
 
@@ -767,6 +774,13 @@ Configuration pour la gestion globale des services (`ng g s`).
 
 | Option | Valeur | Description |
 | :--- | :--- | :--- |
+| **`i18n-ally.displayLanguage`** | `"fr"` | Afficher le français en ligne dans le code via les info-bulles (annotations) |
+| **`i18n-ally.extract.autoDetect`** | `false` | Désactiver la détection automatique des chaînes codées en dur |
+| **`i18n-ally.keepFulfilled`** | `false` | Ne pas conserver les clés de traduction déjà remplies lors du nettoyage |
+| **`i18n-ally.keystyle`** | `"nested"` | Utiliser une structure JSON imbriquée (ex: `{ "HOME": { "TITLE": "..." } }`) |
+| **`i18n-ally.localesPaths`** | `"src/assets/i18n"` | Définir le chemin du répertoire où se trouvent les fichiers de traduction |
+| **`i18n-ally.readonly`** | `true` | Activer le mode lecture seule pour empêcher les modifications accidentelles |
+| **`i18n-ally.sourceLanguage`** | `"fr"` | Définir le français comme langue source pour identifier les clés manquantes |
 
 </details>
 

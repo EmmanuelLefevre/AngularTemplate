@@ -1,6 +1,6 @@
 {
   "editor.tabSize": 2,
-  "editor.insertSpaces": true,
+  "editor.insertSpaces": false,
   "editor.formatOnSave": true,
   "files.associations": {
     "*.json": "jsonc",
@@ -8,7 +8,6 @@
     "tsconfig.app.json": "jsonc"
   },
   "files.insertFinalNewline": true,
-  "files.trimTrailingWhitespace": true,
   "i18n-ally.displayLanguage": "fr",
   "i18n-ally.extract.autoDetect": false,
   "i18n-ally.keepFulfilled": false,
@@ -34,7 +33,7 @@
     Sets the number of spaces a tab is equal to (Standard is 2 for Web/Angular).
 
    * editor.insertSpaces
-    Ensures that pressing 'Tab' inserts spaces instead of actual tab characters.
+    Ensures that pressing 'Tab' inserts actual tab characters instead of spaces.
 
    * editor.formatOnSave
     Automatically formats the current file whenever it is saved.
@@ -56,10 +55,6 @@
    * files.insertFinalNewline
     Ensures every file ends with a single blank line, matching POSIX standards
     and preventing Git end-of-file warnings.
-
-   * files.trimTrailingWhitespace
-    Automatically removes invisible trailing spaces at the end of lines on save.
-    Keeps git diffs clean.
 
   --- I18N ALLY CONFIGURATION --------------------------------------------
 
