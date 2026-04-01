@@ -3,7 +3,7 @@ import { IEnvironment } from '@core/_models/environment/environment.interface';
 export const ENVIRONMENT: IEnvironment = {
   production: false,
   useMocks: true,
-  apiUrl: 'http://localhost:3000/api',
+  apiUrl: process.env['NG_APP_BACKEND_API_URL'] || 'http://localhost:8000/api',
   logLevel: 'debug',
   mockAdminPassword: '1234',
   application: {
