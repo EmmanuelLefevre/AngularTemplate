@@ -216,7 +216,7 @@ describe('HeaderNavComponent', () => {
     });
   });
 
-  describe('Internationalization & Accessibility (ARIA) & Dynamic Props', () => {
+  describe('Dynamic Props', () => {
     it('should pass LOGIN properties to main-button when user is NOT authenticated', () => {
       // --- ARRANGE ---
       mockIsAuthenticated.set(false);
