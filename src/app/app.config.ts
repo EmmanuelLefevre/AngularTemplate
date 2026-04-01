@@ -39,6 +39,13 @@ export const APP_CONFIG: ApplicationConfig = {
     provideHttpClient(
       withInterceptors(HTTP_INTERCEPTORS)
     ),
+    provideTranslateService({
+      defaultLanguage: 'fr',
+      loader: {
+        provide: TranslateLoader,
+        useClass: CustomTranslateLoader
+      },
+    }),
     provideAppInitializer(async() => {
       DotLottie.setWasmUrl('/assets/wasm/dotlottie-player.wasm');
 
@@ -53,13 +60,6 @@ export const APP_CONFIG: ApplicationConfig = {
         firstValueFrom(AUTH_SERVICE.initAuth()),
         firstValueFrom(TRANSLATE.use(LANG_TO_USE))
       ]);
-    }),
-    provideTranslateService({
-      fallbackLang: 'fr',
-      loader: {
-        provide: TranslateLoader,
-        useClass: CustomTranslateLoader
-      },
-    }),
+    })
   ]
 };
