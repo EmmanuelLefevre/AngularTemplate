@@ -26,6 +26,10 @@ export default defineConfig({
       },
     },
   },
+  define: {
+    'process.env.NG_APP_SUPABASE_URL': JSON.stringify('https://mock-supabase-url.com'),
+    'process.env.NG_APP_SUPABASE_ANON_KEY': JSON.stringify('mock-anon-key')
+  },
   test: {
     globals: true,
     environment: 'jsdom',

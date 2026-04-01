@@ -13,7 +13,7 @@ export const ENVIRONMENT: IEnvironment = {
     defaultShareImage: 'https://angulartemplate.emmanuellefevre.com/assets/logos/logo.png'
   },
   supabase: {
-    url: PROCESS.env['NG_APP_SUPABASE_URL'] || '',
-    anonKey: PROCESS.env['NG_APP_SUPABASE_ANON_KEY'] || ''
+    url: process.env['NG_APP_SUPABASE_URL'] || '',
+    anonKey: process.env['NG_APP_SUPABASE_ANON_KEY'] || ''
   }
 };
