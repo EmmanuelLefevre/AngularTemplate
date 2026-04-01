@@ -3,7 +3,7 @@ import { IEnvironment } from '@core/_models/environment/environment.interface';
 export const ENVIRONMENT: IEnvironment = {
   production: true,
   useMocks: false,
-  apiUrl: process.env['NG_APP_BACKEND_API_URL'] || 'http://localhost:8000/api',
+  apiUrl: process.env['NG_APP_BACKEND_API_URL'] || '',
   logLevel: 'error',
   application: {
     name: 'AngularTemplate',

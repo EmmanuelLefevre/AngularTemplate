@@ -223,6 +223,10 @@ jobs:
       - name: 🧱 Build Project
         run: pnpm build --configuration=production
 
+      - name: 🔄 Inject CSP Variables in .htaccess
+        run: |
+          sed -i "s|__MY_BACKEND_URL__|${{ secrets.BACKEND_API_URL }}|g" dist/GrowLogic/browser/.htaccess
+
       - name: 🚀 Sync Files to Server
         uses: easingthemes/ssh-deploy@main
         with:
