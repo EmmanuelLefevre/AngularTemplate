@@ -225,7 +225,7 @@ jobs:
 
       - name: 🔄 Inject CSP Variables in .htaccess
         run: |
-          sed -i "s|__MY_BACKEND_URL__|${{ secrets.BACKEND_API_URL }}|g" dist/GrowLogic/browser/.htaccess
+          sed -i "s|__MY_BACKEND_URL__|${{ secrets.BACKEND_API_URL }}|g" dist/AngularTemplate/browser/.htaccess
 
       - name: 🚀 Sync Files to Server
         uses: easingthemes/ssh-deploy@main
