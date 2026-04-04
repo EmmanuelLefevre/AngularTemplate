@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, DestroyRef, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, DestroyRef, inject, OnInit, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { Location, DOCUMENT, NgOptimizedImage } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
@@ -29,11 +29,11 @@ const INITIAL_NODES = [
   styleUrl: './generic-error.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    '[class.is-terminating]': 'isTerminating()'
+    '[class.is-finish]': 'isFinish()'
   }
 })
 
-export class GenericErrorComponent {
+export class GenericErrorComponent implements OnInit {
 
   private readonly destroyRef = inject(DestroyRef);
   private readonly document = inject(DOCUMENT);
@@ -43,8 +43,12 @@ export class GenericErrorComponent {
   private isRedirecting = false;
   private timerInterval: ReturnType<typeof setInterval> | undefined;
 
+  private clickSound?: HTMLAudioElement;
+  private beepSound?: HTMLAudioElement;
+  private congratsSound?: HTMLAudioElement;
+
   protected readonly countdown = signal(COUNTDOWN_START);
-  protected readonly isTerminating = signal(false);
+  protected readonly isFinish = signal(false);
   protected readonly systemNodes = signal([...INITIAL_NODES]);
 
   // Calculated signal: true ONLY if all buttons are activated
@@ -52,14 +56,22 @@ export class GenericErrorComponent {
     this.systemNodes().every(node => node.isFixed)
   );
 
-  constructor() {
-    this.destroyRef.onDestroy(() => this.clearTimer());
+  ngOnInit(): void {
+    this.initAudio();
+
+    this.destroyRef.onDestroy(() => {
+      this.clearTimer();
+
+      this.clickSound = undefined;
+      this.beepSound = undefined;
+      this.congratsSound = undefined;
+    });
   }
 
   fixSystem(id: number): void {
     if (this.isRedirecting) return;
 
-    this.playSound('assets/sounds/funny-click.mp3');
+    this.playAudio(this.clickSound);
 
     this.systemNodes.update(nodes =>
       nodes.map(node => node.id === id ? { ...node, isFixed: !node.isFixed } : node)
@@ -72,21 +84,21 @@ export class GenericErrorComponent {
 
   private handleSuccessNavigation(): void {
     this.isRedirecting = true;
-    this.playSound('assets/sounds/timer-beep.mp3');
+    this.playAudio(this.beepSound);
 
     this.timerInterval = setInterval(() => {
       const currentValue = this.countdown() - COUNTDOWN_STEP;
       this.countdown.set(currentValue);
 
       if (currentValue > COUNTDOWN_END) {
-        this.playSound('assets/sounds/timer-beep.mp3');
+        this.playAudio(this.beepSound);
       }
       else {
         this.clearTimer();
-        this.playSound('assets/sounds/congrats.mp3');
+        this.playAudio(this.congratsSound);
 
         setTimeout(() => {
-          this.isTerminating.set(true);
+          this.isFinish.set(true);
         }, REDIRECT_CONGRATS_PERIOD_MS - TERMINATION_ANIMATION_MS);
 
         setTimeout(() => {
@@ -115,10 +127,26 @@ export class GenericErrorComponent {
     }
   }
 
-  private playSound(path: string): void {
-    if (this.document.defaultView) {
-      const audio = new Audio(path);
-      audio.play().catch(() => {
+  private initAudio(): void {
+    const window = this.document.defaultView;
+
+    if (window) {
+      this.clickSound = new window.Audio('assets/sounds/funny-click.mp3');
+      this.clickSound.load();
+
+      this.beepSound = new window.Audio('assets/sounds/timer-beep.mp3');
+      this.beepSound.load();
+
+      this.congratsSound = new window.Audio('assets/sounds/congrats.mp3');
+      this.congratsSound.load();
+    }
+  }
+
+  private playAudio(audioElement?: HTMLAudioElement): void {
+    if (audioElement) {
+      audioElement.currentTime = 0;
+
+      audioElement.play().catch(() => {
         console.info('Please enable audio in your browser to hear the sound effects.');
       });
     }

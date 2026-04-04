@@ -364,3 +364,12 @@ $shake-intensity: 1%;
   from { transform: rotate(0deg); }
   to   { transform: rotate(360deg); }
 }
+
+/*------Black Hole Suck------*/
+.black-hole-suck {
+  animation: black-hole-suck 0.3s ease-in forwards;
+}
+@keyframes black-hole-suck {
+  0%   { transform: scale(1) rotate(0deg); opacity: 1; }
+  100% { transform: scale(0) rotate(15deg); opacity: 0; filter: grayscale(1); }
+}

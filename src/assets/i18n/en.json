@@ -188,6 +188,9 @@
         "SUCCESS": "Error fixed. Stable exit tunnel !",
         "IMG": {
           "ALT": "Illustration of an old, gloomy, and foggy cemetery"
+        },
+        "BUTTON": {
+          "ARIA": "Fix system {{id}}"
         }
       }
     }

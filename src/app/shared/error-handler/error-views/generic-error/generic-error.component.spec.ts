@@ -2,11 +2,12 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
 
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { GenericErrorComponent } from './generic-error.component';
 import { Router } from '@angular/router';
 import { Location, DOCUMENT } from '@angular/common';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { By } from '@angular/platform-browser';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+
+import { GenericErrorComponent } from './generic-error.component';
 
 describe('GenericErrorComponent', () => {
 
@@ -15,19 +16,15 @@ describe('GenericErrorComponent', () => {
   let routerSpy: any;
   let locationSpy: any;
   let mockDocument: Document;
-  let mockAudio: any;
   let translate: TranslateService;
+
+  let mockAudioInstances: Record<string, any>;
 
   beforeEach(async() => {
 
     routerSpy = { navigate: vi.fn() };
     locationSpy = { back: vi.fn() };
-
-    mockAudio = {
-      play: vi.fn().mockReturnValue(Promise.resolve()),
-      load: vi.fn(),
-      currentTime: 0
-    };
+    mockAudioInstances = {};
 
     await TestBed.configureTestingModule({
       imports: [
@@ -43,10 +40,22 @@ describe('GenericErrorComponent', () => {
     translate = TestBed.inject(TranslateService);
     mockDocument = TestBed.inject(DOCUMENT);
 
-    vi.stubGlobal('Audio', vi.fn().mockImplementation(function() {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-      return mockAudio;
-    }));
+    const mockAudioConstructor = vi.fn().mockImplementation(function(this: any, path: string) {
+      this.play = vi.fn().mockResolvedValue(undefined);
+      this.load = vi.fn();
+      this.currentTime = 0;
+
+      mockAudioInstances[path] = this;
+    });
+
+    vi.stubGlobal('Audio', mockAudioConstructor);
+
+    if (mockDocument.defaultView) {
+      Object.defineProperty(mockDocument.defaultView, 'Audio', {
+        writable: true,
+        value: mockAudioConstructor
+      });
+    }
 
     translate.setTranslation('fr', {
       'PAGES.ERROR.GENERIC': {
@@ -55,6 +64,9 @@ describe('GenericErrorComponent', () => {
         'SUCCESS': 'Erreur colmatée',
         'IMG': {
           'ALT': 'Image d\'erreur'
+        },
+        'BUTTON': {
+          'ARIA': 'Réparer le système {{id}}'
         }
       }
     });
@@ -79,7 +91,7 @@ describe('GenericErrorComponent', () => {
       // --- ASSERT ---
       expect(component).toBeTruthy();
       expect((component as any).countdown()).toBe(4);
-      expect((component as any).isTerminating()).toBe(false);
+      expect((component as any).isFinish()).toBe(false);
       expect((component as any).isSystemRebooted()).toBe(false);
     });
   });
@@ -113,31 +125,63 @@ describe('GenericErrorComponent', () => {
       const successMessage = fixture.debugElement.query(By.css('.generic-error__success-message')).nativeElement;
       expect(successMessage.textContent.trim()).toBe('Erreur colmatée');
     });
+
+    it('should dynamically translate the aria-label of the control buttons with their IDs', () => {
+      // --- ACT ---
+      fixture.detectChanges();
+
+      // --- ASSERT ---
+      const buttons = fixture.debugElement.queryAll(By.css('.control-button'));
+
+      expect(buttons.length).toBe(3);
+
+      expect(buttons[0].nativeElement.getAttribute('aria-label')).toBe('Réparer le système 1');
+      expect(buttons[1].nativeElement.getAttribute('aria-label')).toBe('Réparer le système 2');
+      expect(buttons[2].nativeElement.getAttribute('aria-label')).toBe('Réparer le système 3');
+    });
   });
 
-  describe('Sound Effects', () => {
-    it('should initialize and play the click sound effect when fixing a node', () => {
+  describe('Sound Effects & Preloading', () => {
+    it('should preload all audio files on initialization (ngOnInit)', () => {
+      // --- ACT ---
+      fixture.detectChanges();
+
+      // --- ASSERT ---
+      expect(window.Audio).toHaveBeenCalledTimes(3);
+      expect(window.Audio).toHaveBeenCalledWith('assets/sounds/funny-click.mp3');
+      expect(window.Audio).toHaveBeenCalledWith('assets/sounds/timer-beep.mp3');
+      expect(window.Audio).toHaveBeenCalledWith('assets/sounds/congrats.mp3');
+
+      expect(mockAudioInstances['assets/sounds/funny-click.mp3'].load).toHaveBeenCalled();
+      expect(mockAudioInstances['assets/sounds/timer-beep.mp3'].load).toHaveBeenCalled();
+      expect(mockAudioInstances['assets/sounds/congrats.mp3'].load).toHaveBeenCalled();
+    });
+
+    it('should play the preloaded click sound effect when fixing a node', () => {
       // --- ARRANGE ---
       fixture.detectChanges();
+      const clickAudioMock = mockAudioInstances['assets/sounds/funny-click.mp3'];
 
       // --- ACT ---
       component.fixSystem(1);
 
       // --- ASSERT ---
-      expect(window.Audio).toHaveBeenCalledWith('assets/sounds/funny-click.mp3');
-      expect(mockAudio.play).toHaveBeenCalled();
+      expect(clickAudioMock.play).toHaveBeenCalledTimes(1);
+      expect(clickAudioMock.currentTime).toBe(0);
     });
 
     it('should log info if audio play is blocked by browser', async() => {
       // --- ARRANGE ---
       fixture.detectChanges();
+      const clickAudioMock = mockAudioInstances['assets/sounds/funny-click.mp3'];
+
       // eslint-disable-next-line @typescript-eslint/no-empty-function
       const consoleSpy = vi.spyOn(console, 'info').mockImplementation(() => {});
-      mockAudio.play.mockRejectedValue(new Error('NotAllowedError'));
+      clickAudioMock.play.mockRejectedValue(new Error('NotAllowedError'));
 
       // --- ACT ---
       component.fixSystem(1);
-      await Promise.resolve();
+      await vi.runAllTimersAsync();
 
       // --- ASSERT ---
       expect(consoleSpy).toHaveBeenCalledWith(
@@ -160,26 +204,31 @@ describe('GenericErrorComponent', () => {
       expect((component as any).isSystemRebooted()).toBe(false);
     });
 
-    it('should decrement the countdown and trigger termination sequence', () => {
+    it('should decrement the countdown and play correct sounds during termination sequence', () => {
       // --- ARRANGE ---
       vi.spyOn(mockDocument.defaultView!.history, 'length', 'get').mockReturnValue(2);
-
       fixture.detectChanges();
+
+      const beepAudioMock = mockAudioInstances['assets/sounds/timer-beep.mp3'];
+      const congratsAudioMock = mockAudioInstances['assets/sounds/congrats.mp3'];
+
       component.fixSystem(1);
       component.fixSystem(2);
       component.fixSystem(3);
 
       // --- ACT & ASSERT ---
+      expect(beepAudioMock.play).toHaveBeenCalledTimes(1);
+
       vi.advanceTimersByTime(1000);
       expect((component as any).countdown()).toBe(3);
-      expect(window.Audio).toHaveBeenCalledWith('assets/sounds/timer-beep.mp3');
+      expect(beepAudioMock.play).toHaveBeenCalledTimes(2);
 
       vi.advanceTimersByTime(3000);
       expect((component as any).countdown()).toBe(0);
-      expect(window.Audio).toHaveBeenCalledWith('assets/sounds/congrats.mp3');
+      expect(congratsAudioMock.play).toHaveBeenCalledTimes(1);
 
       vi.advanceTimersByTime(500);
-      expect((component as any).isTerminating()).toBe(true);
+      expect((component as any).isFinish()).toBe(true);
 
       vi.advanceTimersByTime(300);
       expect(locationSpy.back).toHaveBeenCalled();
@@ -204,17 +253,19 @@ describe('GenericErrorComponent', () => {
     it('should return early from fixSystem if redirection is already in progress', () => {
       // --- ARRANGE ---
       fixture.detectChanges();
+      const clickAudioMock = mockAudioInstances['assets/sounds/funny-click.mp3'];
+
       component.fixSystem(1);
       component.fixSystem(2);
       component.fixSystem(3);
 
-      mockAudio.play.mockClear();
+      clickAudioMock.play.mockClear();
 
       // --- ACT ---
       component.fixSystem(1);
 
       // --- ASSERT ---
-      expect(mockAudio.play).not.toHaveBeenCalled();
+      expect(clickAudioMock.play).not.toHaveBeenCalled();
     });
   });
 
@@ -233,10 +284,8 @@ describe('GenericErrorComponent', () => {
   });
 
   describe('Edge Cases (No Window Context)', () => {
-    it('should safely do nothing if defaultView is null when playing sound', () => {
+    it('should safely do nothing if defaultView is null during initialization and playing', () => {
       // --- ARRANGE ---
-      fixture.detectChanges();
-
       const viewSpy = vi.spyOn(mockDocument, 'defaultView', 'get').mockReturnValue(null as any);
 
       if (vi.isMockFunction(window.Audio)) {
@@ -244,6 +293,7 @@ describe('GenericErrorComponent', () => {
       }
 
       // --- ACT ---
+      component.ngOnInit();
       component.fixSystem(1);
 
       // --- ASSERT ---
@@ -256,7 +306,6 @@ describe('GenericErrorComponent', () => {
     it('should fallback to EMPTY_HISTORY and navigate home if defaultView is null during redirection', () => {
       // --- ARRANGE ---
       fixture.detectChanges();
-
       const viewSpy = vi.spyOn(mockDocument, 'defaultView', 'get').mockReturnValue(null as any);
 
       // --- ACT ---

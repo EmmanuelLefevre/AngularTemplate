@@ -188,6 +188,9 @@
         "SUCCESS": "Erreur colmatée. Tunnel de sortie stable !",
         "IMG": {
           "ALT": "Illustration d'un vieux cimetière lugubre et brumeux"
+        },
+        "BUTTON": {
+          "ARIA": "Réparer le système {{id}}"
         }
       }
     }

@@ -46,7 +46,7 @@
         class="control-button"
         [class.is-fixed]="node.isFixed"
         (click)="$event.stopPropagation(); fixSystem(node.id)"
-        [attr.aria-label]="'Réparer le système ' + node.id"></button>
+        [attr.aria-label]="'PAGES.ERROR.GENERIC.BUTTON.ARIA' | translate: { id: node.id }"></button>
     }
   </div>
 </section>
