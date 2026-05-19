@@ -102,6 +102,7 @@ export class AuthService {
         email: credentials.email,
         password: credentials.password,
         options: {
+          emailRedirectTo: window.location.origin,
           data: {
             username: credentials.username,
             display_name: credentials.username,
