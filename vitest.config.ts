@@ -18,6 +18,13 @@ export default defineConfig({
       projects: [resolve(DIRNAME, 'tsconfig.json')]
     })
   ],
+  optimizeDeps: {
+    include: [
+      '@oxc-project/runtime/helpers/defineProperty',
+      '@oxc-project/runtime/helpers/asyncToGenerator',
+      '@oxc-project/runtime/helpers/objectSpread2'
+    ]
+  },
   css: {
     preprocessorOptions: {
       scss: {
