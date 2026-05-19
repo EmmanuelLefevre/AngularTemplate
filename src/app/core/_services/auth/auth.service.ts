@@ -104,6 +104,7 @@ export class AuthService {
         options: {
           data: {
             username: credentials.username,
+            display_name: credentials.username,
           },
         },
       })
