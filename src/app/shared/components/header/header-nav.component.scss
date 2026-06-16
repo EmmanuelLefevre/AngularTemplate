@@ -16,6 +16,7 @@
   z-index: 1100;
 
   &__container {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -77,13 +78,15 @@
 
     // Desktop Styles (Centering)
     @include respond-to('tablet') {
-      position: static;
+      position: absolute;
       display: flex;
       justify-content: center;
       flex-direction: row;
-      flex: 1;
       height: auto;
       width: auto;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       padding: 0;
       box-shadow: none;
       background: transparent;
@@ -131,11 +134,17 @@
     display: none;
 
     @include respond-to('tablet') {
+      position: relative;
       display: flex;
       flex: 0 1 auto;
       justify-content: flex-end;
       align-items: center;
       gap: 30px;
+      z-index: 1120;
+
+      .header__login-btn {
+        width: 140px;
+      }
     }
   }
 
