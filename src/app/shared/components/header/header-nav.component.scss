@@ -29,12 +29,14 @@
 
   // --- LOGO ---
   &__logo {
+    position: relative;
     display: flex;
     align-items: center;
     flex: 0 1 auto;
     font-weight: var(--font-weight-bold);
     font-size: var(--font-size-logo);
     color: var(--text-black-color);
+    z-index: 1120;
 
     span {
       color: var(--text-primary-color);
